@@ -11,4 +11,5 @@ from foundation_tenant.models.abstract_place import AbstractPlace
 from foundation_tenant.models.country import Country
 from foundation_tenant.models.abstract_intangible import AbstractIntangible
 from foundation_tenant.models.brand import Brand
+from foundation_tenant.models.place import Place
 # from foundation_tenant.models.abstract_person import AbstractPerson
