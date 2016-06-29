@@ -15,7 +15,9 @@ class OrganizationSerializer(serializers.ModelSerializer):
     schema_name = serializers.CharField(required=True)
     class Meta:
         model = Organization
-        fields = ('id', 'created_on', 'last_modified', 'on_trial', 'paid_until', 'name', 'schema_name')
+        fields = ('id', 'created_on', 'last_modified', 'on_trial',
+                  'paid_until', 'name', 'alternate_name', 'description',
+                  'image', 'owner', 'schema_name')
 
 
 class PublicImageUploadSerializer(serializers.ModelSerializer):
