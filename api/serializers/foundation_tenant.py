@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
+from foundation_tenant.models.language import Language
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -18,3 +19,9 @@ class TenantFileUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = TenantFileUpload
         fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)
+
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url')

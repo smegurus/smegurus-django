@@ -1,2 +1,5 @@
 from foundation_tenant.models import fileupload
 from foundation_tenant.models import imageupload
+from foundation_tenant.models.abstract_creativework import AbstractCreativeWork
+from foundation_tenant.models.abstract_mediaobject import AbstractMediaObject
+from foundation_tenant.models.language import Language

@@ -11,6 +11,7 @@ from api.views.foundation_public.publicimageuploadviewset import PublicImageUplo
 from api.views.foundation_public.organizationviewset import OrganizationViewSet
 from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
 from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUploadViewSet
+from api.views.foundation_tenant.languageviewset import LanguageViewSet
 
 
 # URL Generator.
@@ -20,6 +21,7 @@ router.register(r'publicimageupload', PublicImageUploadViewSet)
 router.register(r'organizations', OrganizationViewSet)
 router.register(r'tenantfileupload', TenantFileUploadViewSet)
 router.register(r'tenantimageupload', TenantImageUploadViewSet)
+router.register(r'language', LanguageViewSet)
 
 
 # The API URLs are now determined automatically by the router.

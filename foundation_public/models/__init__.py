@@ -6,3 +6,4 @@ from foundation_public.models.organization import Organization
 from foundation_public.models.organization import Domain
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.imageupload import PublicImageUpload
+from foundation_public.models.abstract_thing import AbstractPublicThing
