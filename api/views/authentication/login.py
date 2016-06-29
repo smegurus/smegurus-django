@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import generics, permissions, status, response, views
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
-from api.serializers import LoginSerializer, TokenSerializer
+from api.serializers.authentication import LoginSerializer, TokenSerializer
 
 
 class ActionViewMixin(object):

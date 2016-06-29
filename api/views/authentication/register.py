@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework.permissions import AllowAny
-from api.serializers import RegisterSerializer
+from api.serializers.authentication import RegisterSerializer
 
 
 class RegisterViewSet(generics.ListCreateAPIView):

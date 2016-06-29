@@ -61,7 +61,7 @@ SHARED_APPS = (
   # everything below here is mandatory
   'django_tenants',  # mandatory
   'django.contrib.contenttypes', # mandatory
-  'foundation', # you must list the app where your tenant model resides in
+  'foundation_public', # you must list the app where your tenant model resides in
 
   # everything below is custom made by us.
   'landpage',
@@ -81,6 +81,7 @@ SHARED_APPS = (
 
 TENANT_APPS = (
   # your tenant-specific apps
+  'foundation_tenant',
   'api',
 )
 
@@ -97,7 +98,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'foundation.middleware.BanEnforcingMiddleware',
+    'foundation_public.middleware.BanEnforcingMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
 ]
 
@@ -141,9 +142,9 @@ DATABASE_ROUTERS = (
   'django_tenants.routers.TenantSyncRouter',
 )
 
-TENANT_MODEL = "foundation.Organization" # app.Model
+TENANT_MODEL = "foundation_public.Organization" # app.Model
 
-TENANT_DOMAIN_MODEL = "foundation.Domain"  # app.Model
+TENANT_DOMAIN_MODEL = "foundation_public.Domain"  # app.Model
 
 TENANT_LIMIT_SET_CALLS = True
 
@@ -226,8 +227,6 @@ DEFAULT_TO_EMAIL = env_var("DEFAULT_TO_EMAIL")
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        #'rest_framework.authentication.BasicAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': (

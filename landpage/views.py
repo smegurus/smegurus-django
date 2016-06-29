@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from foundation.decorators import tenant_required
+# from foundation.decorators import tenant_required
 
 
 def land_page(request):

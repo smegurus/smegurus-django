@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import status, response, views
 from rest_framework.permissions import AllowAny
-from api.serializers import ActivationSerializer
+from api.serializers.authentication import ActivationSerializer
 
 
 class ActionViewMixin(object):

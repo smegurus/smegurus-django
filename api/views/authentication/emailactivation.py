@@ -2,7 +2,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from rest_framework import status, response, views
 from rest_framework.permissions import AllowAny
-from api.serializers import EmailSerializer
+from api.serializers.authentication import EmailSerializer
 from smegurus.settings import env_var
 
 

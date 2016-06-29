@@ -6,11 +6,11 @@ from api.views.authentication.logout import LogoutViewSet
 from api.views.authentication.register import RegisterViewSet
 from api.views.authentication.emailactivation import EmailActivationView
 from api.views.authentication.activation import ActivationView
-from foundation.views.publicfileuploadviewset import PublicFileUploadViewSet
-from foundation.views.publicimageuploadviewset import PublicImageUploadViewSet
-from foundation.views.organizationviewset import OrganizationViewSet
-from foundation.views.privatefileuploadviewset import PrivateFileUploadViewSet
-from foundation.views.privateimageuploadviewset import PrivateImageUploadViewSet
+from api.views.foundation_public.publicfileuploadviewset import PublicFileUploadViewSet
+from api.views.foundation_public.publicimageuploadviewset import PublicImageUploadViewSet
+from api.views.foundation_public.organizationviewset import OrganizationViewSet
+from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
+from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUploadViewSet
 
 
 # URL Generator.
@@ -18,8 +18,8 @@ router = routers.DefaultRouter()
 router.register(r'publicfileupload', PublicFileUploadViewSet)
 router.register(r'publicimageupload', PublicImageUploadViewSet)
 router.register(r'organizations', OrganizationViewSet)
-router.register(r'privatefileupload', PrivateFileUploadViewSet)
-router.register(r'privateimageupload', PrivateImageUploadViewSet)
+router.register(r'tenantfileupload', TenantFileUploadViewSet)
+router.register(r'tenantimageupload', TenantImageUploadViewSet)
 
 
 # The API URLs are now determined automatically by the router.

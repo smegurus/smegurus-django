@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, AnonymousUser
 from rest_framework import permissions
-from foundation.models import BannedIP
+from foundation_public.models.banned import BannedIP
 from api.constants import *
 
 
