@@ -58,10 +58,13 @@ SITE_ID = 1
 # Application definition
 
 SHARED_APPS = (
+  # everything below here is mandatory
   'django_tenants',  # mandatory
   'django.contrib.contenttypes', # mandatory
   'foundation', # you must list the app where your tenant model resides in
-  # 'landpage',
+
+  # everything below is custom made by us.
+  'landpage',
 
   # everything below here is optional
   'django.contrib.auth',
@@ -94,7 +97,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'foundation.middleware.BanEnforcingMiddleware',
+    'foundation.middleware.BanEnforcingMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
 ]
 

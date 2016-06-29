@@ -6,7 +6,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 
 
-class LandpageSetup(TenantTestCase):
+class BaseSetup(TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -17,7 +17,7 @@ class LandpageSetup(TenantTestCase):
     
     @transaction.atomic
     def setUp(self):
-        super(LandpageSetup, self).setUp()
+        super(BaseSetup, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic

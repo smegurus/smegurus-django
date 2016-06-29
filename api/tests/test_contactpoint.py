@@ -11,13 +11,10 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
-from api.views import authentication
-from api.models.contactpoint import ContactPoint
-
-
-from django.core.urlresolvers import resolve, reverse
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from api.views import authentication
+from api.models.contactpoint import ContactPoint
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

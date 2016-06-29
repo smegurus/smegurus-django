@@ -15,9 +15,9 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from base.models import BannedIP
 from api.views import authentication
-from base.models.publicimageupload import PublicImageUpload
+from foundation.models import BannedIP
+from foundation.models.publicimageupload import PublicImageUpload
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -27,6 +27,9 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 class APIPublicImageUploadTestCase(APITestCase, TenantTestCase):
     fixtures = [
+        'banned_domains.json',
+        'banned_ips.json',
+        'banned_words.json',
         # 'groups',
         # 'permissions',
     ]

@@ -1,5 +1,4 @@
 import os
-import base64
 import json
 from django.db import transaction
 from django.core.urlresolvers import resolve, reverse
@@ -16,7 +15,7 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from base.models import BannedIP
+from foundation.models import BannedIP
 from api.views import authentication
 from api.models.privateimageupload import PrivateImageUpload
 

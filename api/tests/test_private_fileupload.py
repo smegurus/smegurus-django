@@ -11,13 +11,12 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
-from base.models import BannedIP
+from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.client import TenantClient
+from foundation.models import BannedIP
 from api.views import authentication
 from api.models.privatefileupload import PrivateFileUpload
 
-from django.core.urlresolvers import resolve, reverse
-from django_tenants.test.cases import TenantTestCase
-from django_tenants.test.client import TenantClient
 
 TEST_USER_EMAIL = "ledo@gah.com"
 TEST_USER_USERNAME = "ledo"

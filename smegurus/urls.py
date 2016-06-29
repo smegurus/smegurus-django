@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^', include('api.urls')),
 ]
 
-# urlpatterns += i18n_patterns(
-#     # url(r'^', include('landpage.urls')),
-# )
+urlpatterns += i18n_patterns(
+    url(r'^', include('foundation.urls')),
+    url(r'^', include('landpage.urls')),
+)

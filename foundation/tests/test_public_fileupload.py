@@ -11,9 +11,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
-from base.models import BannedIP
+from foundation.models import BannedIP
 from api.views import authentication
-from base.models.publicfileupload import PublicFileUpload
+from foundation.models.publicfileupload import PublicFileUpload
 
 from django.core.urlresolvers import resolve, reverse
 from django_tenants.test.cases import TenantTestCase
@@ -25,7 +25,13 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
 class APIPublicFileUploadTestCase(APITestCase, TenantTestCase):
-    fixtures = []
+    fixtures = [
+        'banned_domains.json',
+        'banned_ips.json',
+        'banned_words.json',
+        # 'groups',
+        # 'permissions',
+    ]
 
     @classmethod
     def setUpTestData(cls):

@@ -1,6 +1,5 @@
 from django.http import HttpResponseForbidden
-from foundation.models import BannedIP
-from api.constants import *
+from foundation.models.banned import BannedIP
 
 
 class BanEnforcingMiddleware(object):

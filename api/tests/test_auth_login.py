@@ -9,12 +9,9 @@ from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
-from api.views import authentication
-
-
-from django.core.urlresolvers import resolve, reverse
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from api.views import authentication
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -40,7 +37,7 @@ class APILoginTestCase(APITestCase, TenantTestCase):
         )
         user.is_active = True
         user.save()
-        
+
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
