@@ -17,6 +17,7 @@ from api.views.foundation_tenant.openinghoursspecificationviewset import Opening
 from api.views.foundation_tenant.contactpointviewset import ContactPointViewSet
 from api.views.foundation_tenant.geocoordinateviewset import GeoCoordinateViewSet
 from api.views.foundation_tenant.countryviewset import CountryViewSet
+from api.views.foundation_tenant.brandviewset import BrandViewSet
 
 
 # URL Generator.
@@ -32,6 +33,7 @@ router.register(r'openinghoursspecification', OpeningHoursSpecificationViewSet)
 router.register(r'contactpoint', ContactPointViewSet)
 router.register(r'geocoordinate', GeoCoordinateViewSet)
 router.register(r'country', CountryViewSet)
+router.register(r'brand', BrandViewSet)
 
 
 # The API URLs are now determined automatically by the router.

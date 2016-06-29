@@ -12,6 +12,7 @@ from foundation_tenant.models.openinghoursspecification import OpeningHoursSpeci
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.geocoordinate import GeoCoordinate
 from foundation_tenant.models.country import Country
+from foundation_tenant.models.brand import Brand
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -60,3 +61,9 @@ class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Country
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url',)
+
+
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url')
