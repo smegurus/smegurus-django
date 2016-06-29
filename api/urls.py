@@ -16,6 +16,7 @@ from api.views.foundation_tenant.postaladdressviewset import PostalAddressViewSe
 from api.views.foundation_tenant.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
 from api.views.foundation_tenant.contactpointviewset import ContactPointViewSet
 from api.views.foundation_tenant.geocoordinateviewset import GeoCoordinateViewSet
+from api.views.foundation_tenant.countryviewset import CountryViewSet
 
 
 # URL Generator.
@@ -30,6 +31,7 @@ router.register(r'postaladdress', PostalAddressViewSet)
 router.register(r'openinghoursspecification', OpeningHoursSpecificationViewSet)
 router.register(r'contactpoint', ContactPointViewSet)
 router.register(r'geocoordinate', GeoCoordinateViewSet)
+router.register(r'country', CountryViewSet)
 
 
 # The API URLs are now determined automatically by the router.

@@ -11,6 +11,7 @@ from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.geocoordinate import GeoCoordinate
+from foundation_tenant.models.country import Country
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -53,3 +54,9 @@ class GeoCoordinateSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeoCoordinate
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'address', 'address_country', 'elevation', 'latitude', 'longitude', 'postal_code',)
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url',)
