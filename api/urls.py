@@ -13,6 +13,8 @@ from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUpload
 from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUploadViewSet
 from api.views.foundation_tenant.languageviewset import LanguageViewSet
 from api.views.foundation_tenant.postaladdressviewset import PostalAddressViewSet
+from api.views.foundation_tenant.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
+from api.views.foundation_tenant.contactpointviewset import ContactPointViewSet
 
 
 # URL Generator.
@@ -24,6 +26,8 @@ router.register(r'tenantfileupload', TenantFileUploadViewSet)
 router.register(r'tenantimageupload', TenantImageUploadViewSet)
 router.register(r'language', LanguageViewSet)
 router.register(r'postaladdress', PostalAddressViewSet)
+router.register(r'openinghoursspecification', OpeningHoursSpecificationViewSet)
+router.register(r'contactpoint', ContactPointViewSet)
 
 
 # The API URLs are now determined automatically by the router.

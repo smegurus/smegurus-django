@@ -8,6 +8,8 @@ from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
+from foundation_tenant.models.contactpoint import ContactPoint
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -32,3 +34,15 @@ class PostalAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostalAddress
         fields = ('id', 'name', 'alternate_name', 'description', 'address_country', 'address_locality', 'address_region', 'post_office_box_number', 'postal_code', 'street_address', 'owner', 'url')
+
+
+class OpeningHoursSpecificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OpeningHoursSpecification
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'closes', 'day_of_week', 'opens', 'valid_from', 'valid_through',)
+
+
+class ContactPointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactPoint
+        fields = ('id', 'name', 'alternate_name', 'description', 'area_served', 'available_language', 'contact_type', 'email', 'fax_number', 'hours_available', 'product_supported', 'telephone', 'owner', 'url')
