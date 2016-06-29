@@ -6,38 +6,21 @@ from api.views.authentication.logout import LogoutViewSet
 from api.views.authentication.register import RegisterViewSet
 from api.views.authentication.emailactivation import EmailActivationView
 from api.views.authentication.activation import ActivationView
-# # from api_tenant.views.foundation.userviewset import UserViewSet
-# # from api_tenant.views.foundation.userviewset import GroupViewSet
-# from api_tenant.views.foundation.meviewset import MeViewSet
-from api.views.privatefileuploadviewset import PrivateFileUploadViewSet
-from api.views.privateimageuploadviewset import PrivateImageUploadViewSet
-# from api.views.languageviewset import LanguageViewSet
-# from api.views.postaladdressviewset import PostalAddressViewSet
-# from api.views.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
-# from api.views.contactpointviewset import ContactPointViewSet
-# from api.views.geocoordinateviewset import GeoCoordinateViewSet
 from foundation.views.publicfileuploadviewset import PublicFileUploadViewSet
 from foundation.views.publicimageuploadviewset import PublicImageUploadViewSet
 from foundation.views.organizationviewset import OrganizationViewSet
+from foundation.views.privatefileuploadviewset import PrivateFileUploadViewSet
+from foundation.views.privateimageuploadviewset import PrivateImageUploadViewSet
+
 
 # URL Generator.
 router = routers.DefaultRouter()
-
-# Tenant Specific.
-router.register(r'privatefileupload', PrivateFileUploadViewSet)
-router.register(r'privateimageupload', PrivateImageUploadViewSet)
-# router.register(r'language', LanguageViewSet)
-# router.register(r'postaladdress', PostalAddressViewSet)
-# router.register(r'openinghoursspecification', OpeningHoursSpecificationViewSet)
-# router.register(r'geocoordinate', GeoCoordinateViewSet)
-# router.register(r'contactpoint', ContactPointViewSet)
-# router.register(r'me', MeViewSet)
-
-# Public Tenant.
-# router.register(r'users', UserViewSet)
-# router.register(r'groups', GroupViewSet)
 router.register(r'publicfileupload', PublicFileUploadViewSet)
 router.register(r'publicimageupload', PublicImageUploadViewSet)
+router.register(r'organizations', OrganizationViewSet)
+router.register(r'privatefileupload', PrivateFileUploadViewSet)
+router.register(r'privateimageupload', PrivateImageUploadViewSet)
+
 
 # The API URLs are now determined automatically by the router.
 # Additionally, we include the login URLs for the browsable API.
@@ -58,5 +41,5 @@ urlpatterns = (
     url(r'^api-token-auth/', views.obtain_auth_token),
 
     # All the functions with custom API.
-    url(r'^api/organization/$', OrganizationViewSet.as_view(), name='api_organization'),
+    # url(r'^api/organization/$', OrganizationViewSet.as_view(), name='api_organization'),
 )

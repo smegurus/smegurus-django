@@ -4,8 +4,6 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from api.models.privateimageupload import PrivateImageUpload
-from api.models.privatefileupload import PrivateFileUpload
 
 
 INVALID_CREDENTIALS_ERROR = _('Unable to login with provided credentials.')
@@ -139,15 +137,3 @@ class ActivationSerializer(UidAndTokenSerializer):
         if self.user.is_active:
             raise exceptions.PermissionDenied(self.error_messages['stale_token'])
         return attrs
-
-
-class PrivateImageUploadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PrivateImageUpload
-        fields = ('id', 'imagefile', 'created', 'last_modified', 'owner',)
-
-
-class PrivateFileUploadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PrivateFileUpload
-        fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)

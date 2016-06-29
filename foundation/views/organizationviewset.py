@@ -1,17 +1,30 @@
+import django_filters
 from django.contrib.auth.models import User
 from rest_framework import authentication
 from rest_framework import generics, permissions, status, response, views, filters, mixins
-from rest_framework.permissions import AllowAny
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from foundation.serializers import OrganizationSerializer
 from foundation.models.organization import Organization
+from api.pagination import LargeResultsSetPagination
+from api.permissions import IsOwnerOrReadOnly
 from smegurus.settings import env_var
 
 
-class OrganizationViewSet(generics.ListCreateAPIView):
+class OrganizationFilter(django_filters.FilterSet):
+    class Meta:
+        model = Organization
+        fields = ['owner', 'name',]
+
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+    queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
+    pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = [AllowAny,]
-    queryset = User.objects.none() # Restrict so no-one sees the users.
+    permission_classes = (permissions.IsAuthenticated,)
+    filter_class = OrganizationFilter
+
 
     def perform_create(self, serializer):
         """

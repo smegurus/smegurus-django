@@ -7,6 +7,8 @@ from rest_framework.authtoken.models import Token
 from foundation.models.organization import Organization
 from foundation.models.publicimageupload import PublicImageUpload
 from foundation.models.publicfileupload import PublicFileUpload
+from foundation.models.privateimageupload import PrivateImageUpload
+from foundation.models.privatefileupload import PrivateFileUpload
 
 
 class OrganizationSerializer(serializers.ModelSerializer):
@@ -25,4 +27,16 @@ class PublicImageUploadSerializer(serializers.ModelSerializer):
 class PublicFileUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicFileUpload
+        fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)
+
+
+class PrivateImageUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PrivateImageUpload
+        fields = ('id', 'imagefile', 'created', 'last_modified', 'owner',)
+
+
+class PrivateFileUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PrivateFileUpload
         fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)
