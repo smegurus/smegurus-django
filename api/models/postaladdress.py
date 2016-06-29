@@ -11,7 +11,7 @@ class PostalAddress(AbstractThing):
     """
     class Meta:
         app_label = 'api'
-        db_table = 'den_postal_addresses'
+        db_table = 'biz_postal_addresses'
         verbose_name = 'Postal Address'
         verbose_name_plural = 'Postal Addresses'
 

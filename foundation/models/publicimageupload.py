@@ -12,7 +12,7 @@ class PublicImageUpload(models.Model):
     """
     class Meta:
         app_label = 'foundation'
-        db_table = 'den_public_image_uploads'
+        db_table = 'biz_public_image_uploads'
         verbose_name = 'Image Upload'
         verbose_name_plural = 'Image Uploads'
 

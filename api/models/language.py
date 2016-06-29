@@ -11,7 +11,7 @@ class Language(AbstractThing):
     """
     class Meta:
         app_label = 'api'
-        db_table = 'den_languages'
+        db_table = 'biz_languages'
         verbose_name = 'Language'
         verbose_name_plural = 'Languages'
 

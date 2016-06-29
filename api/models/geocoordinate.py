@@ -11,7 +11,7 @@ class GeoCoordinate(AbstractThing):
     """
     class Meta:
         app_label = 'api'
-        db_table = 'den_geocoordinates'
+        db_table = 'biz_geocoordinates'
         verbose_name = 'GeoCoordinate'
         verbose_name_plural = 'GeoCoordinates'
 

@@ -8,7 +8,7 @@ class PrivateFileUpload(models.Model):
     """A file uploaded object restricted to specific tenants only."""
     class Meta:
         app_label = 'api'
-        db_table = 'den_private_file_uploads'
+        db_table = 'biz_private_file_uploads'
         verbose_name = 'File Upload'
         verbose_name_plural = 'File Uploads'
 

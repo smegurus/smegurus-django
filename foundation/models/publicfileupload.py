@@ -8,7 +8,7 @@ class PublicFileUpload(models.Model):
     """A file uploaded object restricted to public tenant."""
     class Meta:
         app_label = 'foundation'
-        db_table = 'den_public_file_uploads'
+        db_table = 'biz_public_file_uploads'
         verbose_name = 'File Upload'
         verbose_name_plural = 'File Uploads'
 

@@ -13,7 +13,7 @@ class ContactPoint(AbstractThing):
     """
     class Meta:
         app_label = 'api'
-        db_table = 'den_contact_points'
+        db_table = 'biz_contact_points'
         verbose_name = 'Contact Point'
         verbose_name_plural = 'Contact Points'
 

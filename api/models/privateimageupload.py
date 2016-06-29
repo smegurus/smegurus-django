@@ -12,7 +12,7 @@ class PrivateImageUpload(models.Model):
     """
     class Meta:
         app_label = 'api'
-        db_table = 'den_private_image_uploads'
+        db_table = 'biz_private_image_uploads'
         verbose_name = 'Image Upload'
         verbose_name_plural = 'Image Uploads'
 
