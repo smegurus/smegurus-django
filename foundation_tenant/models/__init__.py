@@ -6,3 +6,4 @@ from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.geocoordinate import GeoCoordinate
