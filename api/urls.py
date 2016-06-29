@@ -6,7 +6,6 @@ from api.views.authentication.logout import LogoutViewSet
 from api.views.authentication.register import RegisterViewSet
 from api.views.authentication.emailactivation import EmailActivationView
 from api.views.authentication.activation import ActivationView
-from api.views.organizationviewset import OrganizationViewSet
 # # from api_tenant.views.foundation.userviewset import UserViewSet
 # # from api_tenant.views.foundation.userviewset import GroupViewSet
 # from api_tenant.views.foundation.meviewset import MeViewSet
@@ -19,6 +18,7 @@ from api.views.privateimageuploadviewset import PrivateImageUploadViewSet
 # from api.views.geocoordinateviewset import GeoCoordinateViewSet
 from foundation.views.publicfileuploadviewset import PublicFileUploadViewSet
 from foundation.views.publicimageuploadviewset import PublicImageUploadViewSet
+from foundation.views.organizationviewset import OrganizationViewSet
 
 # URL Generator.
 router = routers.DefaultRouter()

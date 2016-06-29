@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import authentication
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework.permissions import AllowAny
-from api.serializers import OrganizationSerializer
+from foundation.serializers import OrganizationSerializer
 from foundation.models.organization import Organization
 from smegurus.settings import env_var
 

@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from foundation.models.organization import Organization
 from api.models.privateimageupload import PrivateImageUpload
 from api.models.privatefileupload import PrivateFileUpload
 
@@ -140,13 +139,6 @@ class ActivationSerializer(UidAndTokenSerializer):
         if self.user.is_active:
             raise exceptions.PermissionDenied(self.error_messages['stale_token'])
         return attrs
-
-
-class OrganizationSerializer(serializers.ModelSerializer):
-    schema_name = serializers.CharField(required=True)
-    class Meta:
-        model = Organization
-        fields = ('id', 'created_on', 'last_modified', 'on_trial', 'paid_until', 'name', 'schema_name')
 
 
 class PrivateImageUploadSerializer(serializers.ModelSerializer):
