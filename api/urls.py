@@ -12,11 +12,11 @@ from api.views.organizationviewset import OrganizationViewSet
 # from api_tenant.views.foundation.meviewset import MeViewSet
 from api.views.privatefileuploadviewset import PrivateFileUploadViewSet
 from api.views.privateimageuploadviewset import PrivateImageUploadViewSet
-from api.views.languageviewset import LanguageViewSet
-from api.views.postaladdressviewset import PostalAddressViewSet
-from api.views.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
-from api.views.contactpointviewset import ContactPointViewSet
-from api.views.geocoordinateviewset import GeoCoordinateViewSet
+# from api.views.languageviewset import LanguageViewSet
+# from api.views.postaladdressviewset import PostalAddressViewSet
+# from api.views.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
+# from api.views.contactpointviewset import ContactPointViewSet
+# from api.views.geocoordinateviewset import GeoCoordinateViewSet
 from foundation.views.publicfileuploadviewset import PublicFileUploadViewSet
 from foundation.views.publicimageuploadviewset import PublicImageUploadViewSet
 
@@ -26,11 +26,11 @@ router = routers.DefaultRouter()
 # Tenant Specific.
 router.register(r'privatefileupload', PrivateFileUploadViewSet)
 router.register(r'privateimageupload', PrivateImageUploadViewSet)
-router.register(r'language', LanguageViewSet)
-router.register(r'postaladdress', PostalAddressViewSet)
-router.register(r'openinghoursspecification', OpeningHoursSpecificationViewSet)
-router.register(r'geocoordinate', GeoCoordinateViewSet)
-router.register(r'contactpoint', ContactPointViewSet)
+# router.register(r'language', LanguageViewSet)
+# router.register(r'postaladdress', PostalAddressViewSet)
+# router.register(r'openinghoursspecification', OpeningHoursSpecificationViewSet)
+# router.register(r'geocoordinate', GeoCoordinateViewSet)
+# router.register(r'contactpoint', ContactPointViewSet)
 # router.register(r'me', MeViewSet)
 
 # Public Tenant.

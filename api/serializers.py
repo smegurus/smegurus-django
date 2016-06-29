@@ -7,11 +7,6 @@ from rest_framework.authtoken.models import Token
 from foundation.models.organization import Organization
 from api.models.privateimageupload import PrivateImageUpload
 from api.models.privatefileupload import PrivateFileUpload
-from api.models.language import Language
-from api.models.postaladdress import PostalAddress
-from api.models.openinghoursspecification import OpeningHoursSpecification
-from api.models.contactpoint import ContactPoint
-from api.models.geocoordinate import GeoCoordinate
 
 
 INVALID_CREDENTIALS_ERROR = _('Unable to login with provided credentials.')
@@ -164,33 +159,3 @@ class PrivateFileUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrivateFileUpload
         fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)
-
-
-class LanguageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Language
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url')
-
-
-class PostalAddressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PostalAddress
-        fields = ('id', 'name', 'alternate_name', 'description', 'address_country', 'address_locality', 'address_region', 'post_office_box_number', 'postal_code', 'street_address', 'owner', 'url')
-
-
-class OpeningHoursSpecificationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = OpeningHoursSpecification
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'closes', 'day_of_week', 'opens', 'valid_from', 'valid_through',)
-
-
-class ContactPointSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ContactPoint
-        fields = ('id', 'name', 'alternate_name', 'description', 'area_served', 'available_language', 'contact_type', 'email', 'fax_number', 'hours_available', 'product_supported', 'telephone', 'owner', 'url')
-
-
-class GeoCoordinateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GeoCoordinate
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'address', 'address_country', 'elevation', 'latitude', 'longitude', 'postal_code',)

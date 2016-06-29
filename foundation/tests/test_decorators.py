@@ -6,7 +6,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 
 
-class BaseSetup(TenantTestCase):
+class BaseTestCase(TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -14,10 +14,10 @@ class BaseSetup(TenantTestCase):
         # 'groups',
         # 'permissions',
     ]
-    
+
     @transaction.atomic
     def setUp(self):
-        super(BaseSetup, self).setUp()
+        super(BaseTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic

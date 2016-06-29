@@ -1,3 +1,4 @@
+from foundation.models import user
 from foundation.models.banned import BannedDomain
 from foundation.models.banned import BannedIP
 from foundation.models.banned import BannedWord
