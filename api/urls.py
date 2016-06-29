@@ -19,6 +19,7 @@ from api.views.foundation_tenant.geocoordinateviewset import GeoCoordinateViewSe
 from api.views.foundation_tenant.countryviewset import CountryViewSet
 from api.views.foundation_tenant.brandviewset import BrandViewSet
 from api.views.foundation_tenant.placeviewset import PlaceViewSet
+from api.views.foundation_tenant.meviewset import MeViewSet
 
 
 # URL Generator.
@@ -36,6 +37,7 @@ router.register(r'geocoordinate', GeoCoordinateViewSet)
 router.register(r'country', CountryViewSet)
 router.register(r'brand', BrandViewSet)
 router.register(r'place', PlaceViewSet)
+router.register(r'me', MeViewSet)
 
 
 # The API URLs are now determined automatically by the router.
