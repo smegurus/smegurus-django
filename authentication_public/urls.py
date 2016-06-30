@@ -7,4 +7,5 @@ urlpatterns = (
     url(r'^activation_required$', views.public_activation_required_page, name='public_activation_required'),
     url(r'^activate/(.*)/$', views.public_activate_page, name='public_activation'),
     url(r'^login$', views.public_login_page, name='public_login'),
+    url(r'^launchpad$', views.public_launchpad_page, name='public_launchpad'),
 )

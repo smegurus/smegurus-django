@@ -37,8 +37,8 @@
             $('#id_password').val(),
             function(login_json_result) {
 
-                console.log(login_json_result);
-                window.location = "{% url 'public_activation_required' %}"; //TODO: CHANGE
+                console.log(login_json_result); // Debugging purposes only.
+                window.location = "{% url 'public_launchpad' %}";
 
             },
             function(login_error_json_result) {

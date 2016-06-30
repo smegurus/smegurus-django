@@ -1,10 +1,13 @@
 from django.core.signing import Signer
-from django.shortcuts import render
-from django.http import HttpResponseBadRequest, HttpResponseRedirect
-from django.utils.translation import get_language
+from django.core.urlresolvers import resolve, reverse
 from django.contrib.auth.models import User, Group
+from django.contrib.auth.decorators import login_required
+from django.utils.translation import get_language
+from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from foundation_public import constants
+from foundation_public.models.organization import Organization
 
 
 def public_registration_page(request):
@@ -47,4 +50,21 @@ def public_activate_page(request, signed_value):
 
 
 def public_login_page(request):
+    return render(request, 'authentication_public/login_view.html',{})
+
+
+@login_required(login_url='/en/login')
+def public_launchpad_page(request):
+    """
+    Function will either redirect the User to the specific tenanted
+    dashboard page or function will load the User to the Organization
+    registration page.
+    """
+    try:
+        org = Organization.objects.get(owner_id=request.user.id)
+    except Organization.DoesNotExist:
+        org = None
+
+    print("Organization", org) #TODO: Redirect to either dashboard or org register.
+
     return render(request, 'authentication_public/login_view.html',{})

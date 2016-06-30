@@ -35,12 +35,11 @@
     <script type="text/javascript" src="{% static 'js/retina.js' %}"></script> -->
 
     {% include "foundation_public/common_js.html" %}
+    {% include "api/login.html" %}
+    {% include "api/register.html" %}
+    {% include "api/activation.html" %}
 
     {% if request.user.is_authenticated %}
-        {% include "api/activation.html" %}
-    {% else %}
-        {% include "api/login.html" %}
-        {% include "api/register.html" %}
     {% endif %}
     {% endcompress %}
 </html>
