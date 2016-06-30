@@ -3,8 +3,7 @@ from registration_public import views
 
 
 urlpatterns = (
-    url(r'^register$', views.org_owner_registration_page, name='org_owner_registration'),
-    url(r'^activation_required$', views.org_owner_activation_required_page, name='org_owner_activation_required'),
-    # url(r'^registration/pre-intake$', views.registration_stage_2_page, name='registration_stage2'),
-    # url(r'^registration/intake$', views.registration_stage_3_page, name='registration_stage3'),
+    url(r'^register$', views.public_registration_page, name='public_registration'),
+    url(r'^activation_required$', views.public_activation_required_page, name='public_activation_required'),
+    url(r'^activate/(.*)/$', views.public_activate_page, name='public_activation'),
 )

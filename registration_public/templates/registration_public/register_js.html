@@ -64,7 +64,7 @@
         ajax_new_user(
             function(json_result) {
                 // Redirect to the page where the user sends a activation email.
-                window.location = "{% url 'org_owner_activation_required' %}";
+                window.location = "{% url 'public_activation_required' %}";
             },
             function(error_json_result) {
                 // Convert the error json into string.

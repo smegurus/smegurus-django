@@ -1,3 +1,4 @@
+from django.core.signing import Signer
 from django.db import transaction
 from django.contrib.auth.models import User
 from django.utils import translation
@@ -12,7 +13,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class RegistrationPublicTestCases(APITestCase, TenantTestCase):
+class RegistrationPublicViewsTestCases(APITestCase, TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -34,7 +35,7 @@ class RegistrationPublicTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(RegistrationPublicTestCases, self).setUp()
+        super(RegistrationPublicViewsTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -44,15 +45,40 @@ class RegistrationPublicTestCases(APITestCase, TenantTestCase):
             user.delete()
 
     @transaction.atomic
-    def test_org_owner_registration_page_view(self):
-        response = self.c.get(reverse('org_owner_registration'))
+    def test_public_registration_page_view(self):
+        response = self.c.get(reverse('public_registration'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
-    def test_org_owner_activation_required_page_view(self):
-        response = self.c.get(reverse('org_owner_activation_required'))
+    def test_public_activation_required_page_view(self):
+        response = self.c.get(reverse('public_activation_required'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
+
+    @transaction.atomic
+    def test_public_activate_page_view(self):
+        """
+        Unit test will take a User account which hasen't been activated and
+        run the URL where activation happens and verify the User has been
+        activated.
+        """
+        # Convert our User's ID into an encrypted value.
+        user = User.objects.get(email=TEST_USER_EMAIL)
+        user.is_activet = False
+        user.save()
+        signer = Signer()
+        id_sting = str(user.id).encode()
+        value = signer.sign(id_sting)
+
+        # Run test.
+        response = self.c.get(reverse('public_activation', args={'signed_value':value} ))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
+
+        # Verify
+        user = User.objects.get(email=TEST_USER_EMAIL)
+        self.assertTrue(user.is_active)
