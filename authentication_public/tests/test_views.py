@@ -98,3 +98,10 @@ class AuthenticationPublicViewsTestCases(APITestCase, TenantTestCase):
         response = self.c.get(reverse('public_activation', args=['bad-value'] ))
         self.assertEqual(response.status_code, 400)
         self.assertTrue(len(response.content) > 1)
+
+    @transaction.atomic
+    def test_public_login_page_view(self):
+        response = self.c.get(reverse('public_login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'This is a land page.',response.content) #TODO: Change text

@@ -1,0 +1,15 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'authentication_public/login_js.html' %}
+{% endcompress %}
+
+<form style="width:280px;margin:auto;">
+    <input type="text" placeholder="{% trans 'Email' %}" name="email" id="id_email" />
+    <input type="password" placeholder="{% trans 'Password' %}" name="pass1" id="id_password" />
+    <input onclick="ajax_login();" type="button" value="{% trans 'Login' %}" class="ui-btn ui-corner-all" />
+</form>
+
+{% endblock content %}

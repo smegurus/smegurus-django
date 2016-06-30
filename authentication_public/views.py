@@ -44,3 +44,7 @@ def public_activate_page(request, signed_value):
     return render(request, 'authentication_public/activate_view.html',{
         'user': user,
     })
+
+
+def public_login_page(request):
+    return render(request, 'authentication_public/login_view.html',{})
