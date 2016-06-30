@@ -24,6 +24,7 @@ class Command(BaseCommand):
 
     def begin_processing(self, user):
         # Convert our User's ID into an encrypted value.
+        # Note: https://docs.djangoproject.com/en/dev/topics/signing/
         signer = Signer()
         id_sting = str(user.id).encode()
         value = signer.sign(id_sting)

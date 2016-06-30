@@ -8,11 +8,11 @@ from foundation_public import constants
 
 
 def public_registration_page(request):
-    return render(request, 'registration_public/register_view.html',{})
+    return render(request, 'authentication_public/register_view.html',{})
 
 
 def public_activation_required_page(request):
-    return render(request, 'registration_public/activation_required_view.html',{})
+    return render(request, 'authentication_public/activation_required_view.html',{})
 
 
 def public_activate_page(request, signed_value):
@@ -41,7 +41,6 @@ def public_activate_page(request, signed_value):
     org_admin_group = get_object_or_404(Group, pk=constants.ORGANIZATION_ADMIN_GROUP_ID)
     user.groups.add(org_admin_group)
 
-    return render(request, 'registration_public/activate_view.html',{
+    return render(request, 'authentication_public/activate_view.html',{
         'user': user,
-        'group': org_admin_group,
     })

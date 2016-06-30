@@ -21,13 +21,7 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
 class SendActivationEmailTestCase(APITestCase, TenantTestCase):
-    fixtures = [
-        'banned_domains.json',
-        'banned_ips.json',
-        'banned_words.json',
-        'groups',
-        # 'permissions',
-    ]
+    fixtures = []
 
     @classmethod
     def setUpTestData(cls):

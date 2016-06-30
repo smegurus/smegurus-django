@@ -66,7 +66,7 @@ SHARED_APPS = (
 
   # everything below is custom made by us.
   'landpage',
-  'registration_public',
+  'authentication_public',
 
   # everything below here is optional
   'django.contrib.auth',
@@ -85,7 +85,7 @@ TENANT_APPS = (
   # your tenant-specific apps
   'foundation_tenant',
   'api',
-  'registration_tenant',
+  'authentication_tenant',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]

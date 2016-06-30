@@ -14,14 +14,8 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class RegistrationPublicModelsTestCases(APITestCase, TenantTestCase):
-    fixtures = [
-        'banned_domains.json',
-        'banned_ips.json',
-        'banned_words.json',
-        'groups',
-        # 'permissions',
-    ]
+class AuthenticationPublicModelsTestCases(APITestCase, TenantTestCase):
+    fixtures = []
 
     @classmethod
     def setUpTestData(cls):
@@ -30,7 +24,7 @@ class RegistrationPublicModelsTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(RegistrationPublicModelsTestCases, self).setUp()
+        super(AuthenticationPublicModelsTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic

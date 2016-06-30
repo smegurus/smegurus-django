@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from registration_tenant import views
+from authentication_tenant import views
 
 
 urlpatterns = (
