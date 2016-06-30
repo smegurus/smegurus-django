@@ -59,7 +59,7 @@ class RegistrationPublicViewsTestCases(APITestCase, TenantTestCase):
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
-    def test_public_activate_page_view(self):
+    def test_public_activate_page_view_with_success(self):
         """
         Unit test will take a User account which hasen't been activated and
         run the URL where activation happens and verify the User has been
@@ -74,11 +74,18 @@ class RegistrationPublicViewsTestCases(APITestCase, TenantTestCase):
         value = signer.sign(id_sting)
 
         # Run test.
-        response = self.c.get(reverse('public_activation', args={'signed_value':value} ))
+        url = reverse('public_activation', args=[value])
+        response = self.c.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
-        # Verify
+        # Verify.
         user = User.objects.get(email=TEST_USER_EMAIL)
         self.assertTrue(user.is_active)
+
+    @transaction.atomic
+    def test_public_activate_page_view_with_failure(self):
+        # Run test & verify.
+        response = self.c.get(reverse('public_activation', args=['bad-value'] ))
+        self.assertEqual(response.status_code, 400)
+        self.assertTrue(len(response.content) > 1)

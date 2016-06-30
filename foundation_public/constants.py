@@ -16,6 +16,15 @@ QUESTION_TYPE_OPTIONS = (
     (2, _('Closed Question - Checkbox')),
 )
 
+# Constants assign identification to groups.
+ENTREPRENEUR_GROUP_ID = 1
+MENTOR_GROUP_ID = 2
+ADVISOR_GROUP_ID = 3
+ORGANIZATION_MANAGER_GROUP_ID = 4
+ORGANIZATION_ADMIN_GROUP_ID = 5
+CLIENT_MANAGER_GROUP_ID = 6
+SYSTEM_ADMIN_GROUP_ID = 7
+
 # Constant lists all the roles belonging to the employee system of the
 # application.
 EMPLOYEE_GROUPS = [
