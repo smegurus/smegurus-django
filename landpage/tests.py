@@ -11,7 +11,7 @@ class LandpageTestCase(TenantTestCase):
         'banned_domains.json',
         'banned_ips.json',
         'banned_words.json',
-        # 'groups',
+        'groups',
         # 'permissions',
     ]
 
