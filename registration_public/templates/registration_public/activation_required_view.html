@@ -2,10 +2,17 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
-{% compress js inline %}
-    {% include 'api/activation.html' %}
-{% endcompress %}
+    {% compress js inline %}
+        {% include 'api/activation.html' %}
+    {% endcompress %}
 
-<p>TODO</p>
+    <h1>Activation Is Required</h1>
+    <p>Please wait and you will receive an activation email. If you haven't received your activation emial, please click here:
+        <ul>
+            <li>
+                <a href="{% url 'org_owner_registration' %}">Email Activation</a>
+            </li>
+        </ul>
+    </p>
 
 {% endblock content %}

@@ -2,11 +2,17 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 
 
-class RegistrationPublicTestCases(TenantTestCase):
+TEST_USER_EMAIL = "ledo@gah.com"
+TEST_USER_USERNAME = "ledo"
+TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
+
+
+class RegistrationPublicTestCases(APITestCase, TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -15,8 +21,19 @@ class RegistrationPublicTestCases(TenantTestCase):
         # 'permissions',
     ]
 
+    @classmethod
+    def setUpTestData(cls):
+        user = User.objects.create_user(  # Create our User.
+            email=TEST_USER_EMAIL,
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        user.is_active = True
+        user.save()
+
     @transaction.atomic
     def setUp(self):
+        translation.activate('en')  # Set English
         super(RegistrationPublicTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 

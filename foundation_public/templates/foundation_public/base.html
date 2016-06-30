@@ -37,6 +37,7 @@
     {% include "foundation_public/common_js.html" %}
 
     {% if request.user.is_authenticated %}
+        {% include "api/activation.html" %}
     {% else %}
         {% include "api/login.html" %}
         {% include "api/register.html" %}

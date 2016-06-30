@@ -1,16 +1,12 @@
 {% extends 'foundation_public/base.html' %}
 {% load staticfiles i18n %}
 {% block content %}
-<html>
-    <body>
-        <h1>This is a land page.</h1>
-        <p>Here are the URLS:
-            <ul>
-                <li>
-                    <a href="{% url 'org_owner_registration' %}">Org Registration</a>
-                </li>
-            </ul>
-        </p>
-    </body>
-</html>
+    <h1>This is a land page.</h1>
+    <p>Here are the URLS:
+        <ul>
+            <li>
+                <a href="{% url 'org_owner_registration' %}">Org Registration</a>
+            </li>
+        </ul>
+    </p>
 {% endblock content %}

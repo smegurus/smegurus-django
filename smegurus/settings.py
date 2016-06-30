@@ -213,30 +213,6 @@ DEFAULT_FROM_EMAIL = env_var("DEFAULT_FROM_EMAIL")
 DEFAULT_TO_EMAIL = env_var("DEFAULT_TO_EMAIL")
 
 
-# Django-REST-Framework
-#
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-    'DEFAULT_FILTER_BACKENDS': (
-        'rest_framework.filters.DjangoFilterBackend',
-    ),
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.AdminRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer'
-    ],
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',
-        'rest_framework.parsers.MultiPartParser',
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 100
-}
-
-
 # Amazon S3 Service
 # http://django-storages.readthedocs.org/en/latest/index.html
 
@@ -244,7 +220,6 @@ AWS_STORAGE_BUCKET_NAME = env_var("AWS_STORAGE_BUCKET_NAME")
 AWS_ACCESS_KEY_ID = env_var("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = env_var("AWS_SECRET_ACCESS_KEY")
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
 
 
 # Static files (CSS, JavaScript, Images)
@@ -293,3 +268,28 @@ COMPRESS_STORAGE = 'smegurus.s3utils.CachedS3BotoStorage'
 
 HTML_MINIFY = env_var("HTML_MINIFY")
 KEEP_COMMENTS_ON_MINIFYING = env_var("KEEP_COMMENTS_ON_MINIFYING")
+
+
+# Django-REST-Framework
+#
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.DjangoFilterBackend',
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.AdminRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ],
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+}

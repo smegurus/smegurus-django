@@ -7,19 +7,12 @@ from django.contrib.auth.models import User
 
 
 def org_owner_registration_page(request):
-
-    #TODO: Implement.
-
     return render(request, 'registration_public/register_view.html',{
 
     })
 
 
-
 def org_owner_activation_required_page(request):
-
-    #TODO: Implement.
-
     return render(request, 'registration_public/activation_required_view.html',{
 
     })
