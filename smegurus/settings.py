@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Python .ENV Configuration
 #
@@ -65,6 +66,7 @@ SHARED_APPS = (
 
   # everything below is custom made by us.
   'landpage',
+  'registration_public',
 
   # everything below here is optional
   'django.contrib.auth',
@@ -83,6 +85,7 @@ TENANT_APPS = (
   # your tenant-specific apps
   'foundation_tenant',
   'api',
+  'registration_tenant',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
@@ -167,6 +170,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+if env_var("IS_DEBUG"):
+    """If doing dev work, run a less secure hasher to speed up unit tests."""
+    PASSWORD_HASHERS = (
+        'django.contrib.auth.hashers.MD5PasswordHasher',
+    )
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
@@ -191,25 +201,6 @@ LANGUAGES = (
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, "locale"),
 )
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static')
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'smegurus', 'static'),
-)
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
-]
 
 
 # Email
@@ -246,12 +237,55 @@ REST_FRAMEWORK = {
 }
 
 
+# Amazon S3 Service
+# http://django-storages.readthedocs.org/en/latest/index.html
+
+AWS_STORAGE_BUCKET_NAME = env_var("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = env_var("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env_var("AWS_SECRET_ACCESS_KEY")
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/dev/howto/static-files/
+
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'smegurus.s3utils.StaticStorage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'smegurus.s3utils.MediaStorage'
+
+MEDIA_ROOT = os.path.join(DATA_DIR, 'media')
+STATIC_ROOT = os.path.join(DATA_DIR, 'static')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, 'static'),
+]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+
 # Django-Compressor
 # http://django-compressor.readthedocs.org/en/latest/settings/
 
 COMPRESS_ENABLED = env_var("COMPRESS_ENABLED")
 COMPRESS_CSS_FILTERS = ['compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.rCSSMinFilter',]
 COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
+
+
+# Django-Compressor + Django-Storages
+#
+
+COMPRESS_STORAGE = 'smegurus.s3utils.CachedS3BotoStorage'
 
 
 # django-htmlmin

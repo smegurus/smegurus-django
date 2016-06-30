@@ -1,0 +1,11 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'api/activation.html' %}
+{% endcompress %}
+
+<p>TODO</p>
+
+{% endblock content %}

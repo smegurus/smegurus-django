@@ -6,7 +6,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 
 
-class LandpageTestCase(TenantTestCase):
+class RegistrationPublicTestCases(TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -17,7 +17,7 @@ class LandpageTestCase(TenantTestCase):
 
     @transaction.atomic
     def setUp(self):
-        super(LandpageTestCase, self).setUp()
+        super(RegistrationPublicTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -27,8 +27,15 @@ class LandpageTestCase(TenantTestCase):
             user.delete()
 
     @transaction.atomic
-    def test_landpage_view(self):
-        response = self.c.get(reverse('landpage'))
+    def test_org_owner_registration_page_view(self):
+        response = self.c.get(reverse('org_owner_registration'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'This is a land page.',response.content) #TODO: Change text
+        # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
+
+    @transaction.atomic
+    def test_org_owner_activation_required_page_view(self):
+        response = self.c.get(reverse('org_owner_activation_required'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'This is a land page.',response.content) #TODO: Change text

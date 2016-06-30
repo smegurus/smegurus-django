@@ -27,4 +27,6 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     url(r'^', include('foundation_public.urls')),
     url(r'^', include('landpage.urls')),
+    url(r'^', include('registration_public.urls')),
+    url(r'^', include('registration_tenant.urls')),
 )

@@ -1,0 +1,45 @@
+{% load staticfiles compress %}
+<!DOCTYPE html>
+<html lang="{{ request.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="entrepreneurship, financial, literacy, youth, app, saving money, money, learning, teaching,">
+    <link type="text/plain" rel="author" href="https://www.flyapp.ca/humans.txt" />
+    <title>Bizmula</title>
+
+    {% compress css %}
+        <!-- <link rel="stylesheet" href="{% static 'css/jquery.mobile-1.4.5.min.css' %}"> -->
+    {% endcompress %}
+
+    {% compress js %}
+        <script src="{% static 'js/jquery/jquery-1.10.1.min.js' %}"></script>
+        <!-- <script src="{% static 'js/jquery.mobile-1.4.5.min.js' %}"></script>
+        <script src="{% static 'js/share-button.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+    {% endcompress %}
+</head>
+<body>
+    <!-- CSRF Token -->
+    {% csrf_token %}
+
+    <!-- CONTENT -->
+    {% block content %}
+    {% endblock %}
+    <!-- /.CONTENT -->
+</body>
+
+{% compress js %}
+    <!-- <script type="text/javascript" src="{% static 'js/storage.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/retina.js' %}"></script> -->
+
+    {% include "foundation_public/common_js.html" %}
+
+    {% if request.user.is_authenticated %}
+    {% else %}
+        {% include "api/login.html" %}
+        {% include "api/register.html" %}
+    {% endif %}
+    {% endcompress %}
+</html>
