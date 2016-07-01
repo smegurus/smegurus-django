@@ -40,6 +40,7 @@
     {% include "api/activation.html" %}
 
     {% if request.user.is_authenticated %}
+        {% include "api/organization.html" %}
     {% endif %}
     {% endcompress %}
 </html>

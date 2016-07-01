@@ -11,11 +11,11 @@ from foundation_public.models.organization import Organization
 
 
 def public_registration_page(request):
-    return render(request, 'authentication_public/register_view.html',{})
+    return render(request, 'authentication_public/user_register_view.html',{})
 
 
 def public_activation_required_page(request):
-    return render(request, 'authentication_public/activation_required_view.html',{})
+    return render(request, 'authentication_public/user_activation_required_view.html',{})
 
 
 def public_activate_page(request, signed_value):
@@ -44,13 +44,13 @@ def public_activate_page(request, signed_value):
     org_admin_group = get_object_or_404(Group, pk=constants.ORGANIZATION_ADMIN_GROUP_ID)
     user.groups.add(org_admin_group)
 
-    return render(request, 'authentication_public/activate_view.html',{
+    return render(request, 'authentication_public/user_activate_view.html',{
         'user': user,
     })
 
 
 def public_login_page(request):
-    return render(request, 'authentication_public/login_view.html',{})
+    return render(request, 'authentication_public/user_login_view.html',{})
 
 
 @login_required(login_url='/en/login')
@@ -61,10 +61,11 @@ def public_launchpad_page(request):
     registration page.
     """
     try:
-        org = Organization.objects.get(owner_id=request.user.id)
+        Organization.objects.get(owner_id=request.user.id)
+        return HttpResponseRedirect('/en/dashboard') # TODO: replace with 'resolve()'.
     except Organization.DoesNotExist:
-        org = None
+        return HttpResponseRedirect(reverse('public_org_registration'))
 
-    print("Organization", org) #TODO: Redirect to either dashboard or org register.
 
-    return render(request, 'authentication_public/login_view.html',{})
+def public_org_registration_page(request):
+    return render(request, 'authentication_public/org_register_view.html',{})
