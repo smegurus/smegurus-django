@@ -1,9 +1,9 @@
 <script>
-    function set_organization(data, success_callback, error_callback)
+    function set_public_organization(data, success_callback, error_callback)
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/organization/";
+        var url = "/api/publicorganization/";
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -34,8 +34,8 @@
         });
     }
 
-    function get_organization(id, success_callback, error_callback) {
-        var url = "/api/organization/" + id + "/?format=json";
+    function get_public_organization(id, success_callback, error_callback) {
+        var url = "/api/publicorganization/" + id + "/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -58,8 +58,8 @@
         });
     }
 
-    function delete_organization(id, success_callback, error_callback) {
-        var url = "/api/organization/" + id + "/";
+    function delete_public_organization(id, success_callback, error_callback) {
+        var url = "/api/publicorganization/" + id + "/";
         jQuery.ajax({
             url: url,
             headers: {
@@ -82,8 +82,8 @@
         });
     }
 
-    function evaluate_organization(id, success_callback, error_callback) {
-        var url = "/api/organization/" + id + "/evaluate_organization/?format=json";
+    function evaluate_public_organization(id, success_callback, error_callback) {
+        var url = "/api/publicorganization/" + id + "/evaluate_organization/?format=json";
         jQuery.ajax({
             url: url,
             headers: {

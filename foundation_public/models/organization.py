@@ -5,7 +5,7 @@ from django_tenants.models import TenantMixin, DomainMixin
 from foundation_public.models.imageupload import PublicImageUpload
 
 
-class Organization(TenantMixin):
+class PublicOrganization(TenantMixin):
     name = models.CharField(
         _("Name"),
         max_length=100

@@ -8,7 +8,7 @@ from api.views.authentication.emailactivation import EmailActivationView
 from api.views.authentication.activation import ActivationView
 from api.views.foundation_public.publicfileuploadviewset import PublicFileUploadViewSet
 from api.views.foundation_public.publicimageuploadviewset import PublicImageUploadViewSet
-from api.views.foundation_public.organizationviewset import OrganizationViewSet
+from api.views.foundation_public.organizationviewset import PublicOrganizationViewSet
 from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
 from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUploadViewSet
 from api.views.foundation_tenant.languageviewset import LanguageViewSet
@@ -26,7 +26,7 @@ from api.views.foundation_tenant.meviewset import MeViewSet
 router = routers.DefaultRouter()
 router.register(r'publicfileupload', PublicFileUploadViewSet)
 router.register(r'publicimageupload', PublicImageUploadViewSet)
-router.register(r'organizations', OrganizationViewSet)
+router.register(r'publicorganization', PublicOrganizationViewSet)
 router.register(r'tenantfileupload', TenantFileUploadViewSet)
 router.register(r'tenantimageupload', TenantImageUploadViewSet)
 router.register(r'language', LanguageViewSet)

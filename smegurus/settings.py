@@ -145,7 +145,7 @@ DATABASE_ROUTERS = (
   'django_tenants.routers.TenantSyncRouter',
 )
 
-TENANT_MODEL = "foundation_public.Organization" # app.Model
+TENANT_MODEL = "foundation_public.PublicOrganization" # app.Model
 
 TENANT_DOMAIN_MODEL = "foundation_public.Domain"  # app.Model
 

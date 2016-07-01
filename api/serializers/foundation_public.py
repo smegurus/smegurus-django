@@ -4,15 +4,15 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from foundation_public.models.organization import Organization
+from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.fileupload import PublicFileUpload
 
 
-class OrganizationSerializer(serializers.ModelSerializer):
+class PublicOrganizationSerializer(serializers.ModelSerializer):
     schema_name = serializers.CharField(required=True)
     class Meta:
-        model = Organization
+        model = PublicOrganization
         fields = ('id', 'created_on', 'last_modified', 'on_trial', 'paid_until', 'name', 'schema_name')
 
 

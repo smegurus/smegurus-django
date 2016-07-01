@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from foundation_public import constants
-from foundation_public.models.organization import Organization
+from foundation_public.models.organization import PublicOrganization
 
 
 def public_registration_page(request):
@@ -61,9 +61,9 @@ def public_launchpad_page(request):
     registration page.
     """
     try:
-        Organization.objects.get(owner_id=request.user.id)
+        PublicOrganization.objects.get(owner_id=request.user.id)
         return HttpResponseRedirect('/en/dashboard') # TODO: replace with 'resolve()'.
-    except Organization.DoesNotExist:
+    except PublicOrganization.DoesNotExist:
         return HttpResponseRedirect(reverse('public_org_registration'))
 
 
