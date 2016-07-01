@@ -2,36 +2,25 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_tenants.models import TenantMixin, DomainMixin
+from foundation_public.models.abstract_thing import AbstractPublicThing
 from foundation_public.models.imageupload import PublicImageUpload
+from foundation_public.models.brand import PublicBrand
+from foundation_public.models.contactpoint import PublicContactPoint
+from foundation_public.models.geocoordinate import PublicGeoCoordinate
+from foundation_public.models.language import PublicLanguage
+from foundation_public.models.openinghoursspecification import PublicOpeningHoursSpecification
+from foundation_public.models.postaladdress import PublicPostalAddress
+from foundation_public.models.place import PublicPlace
 
 
-class PublicOrganization(TenantMixin):
-    name = models.CharField(
-        _("Name"),
-        max_length=100
-    )
-    alternate_name = models.CharField(
-        _("Alternate Name"),
-        max_length=255,
-        help_text=_('An alias for the item.'),
-        blank=True,
-        null=True,
-    )
-    description = models.TextField(
-        _("Description"),
-        help_text=_('A short description of the item.'),
-        blank=True,
-        null=True,
-    )
-    image = models.ForeignKey(
-        PublicImageUpload,
-        help_text=_('An image of the item.'),
-        null=True,
-        blank=True,
-        related_name="thing_image_%(app_label)s_%(class)s_related"
-    )
 
-    # Payment Information
+class PublicOrganization(TenantMixin, AbstractPublicThing):
+    """
+    An organization such as a school, NGO, corporation, club, etc.
+
+    https://schema.org/Organization
+    """
+    # Payment Information.
     on_trial = models.BooleanField(default=False)
     paid_until =  models.DateField(
         auto_now_add=True,
@@ -39,19 +28,140 @@ class PublicOrganization(TenantMixin):
         null=True,
     )
 
-    # Ownership
-    owner = models.ForeignKey(
-        User,
-        help_text=_('The user whom owns this thing.'),
+    # Django-Tenant Information.
+    auto_create_schema = True
+    auto_drop_schema = True
+
+    # General Information.
+    address = models.ForeignKey(
+        PublicPostalAddress,
+        help_text=_('Physical address of the item.'),
+        null=True,
+        blank=True,
+        related_name="organization_address_%(app_label)s_%(class)s_related"
+    )
+    brands = models.ManyToManyField(
+        PublicBrand,
+        help_text=_('The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.'),
+        blank=True,
+        related_name="organization_brands_%(app_label)s_%(class)s_related"
+    )
+    contact_point = models.ForeignKey(
+        PublicContactPoint,
+        help_text=_('A contact point for a person or organization'),
+        null=True,
+        blank=True,
+        related_name="organization_contact_point_%(app_label)s_%(class)s_related"
+    )
+    department = models.ForeignKey(
+        'self',
+        help_text=_('A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe.'),
+        null=True,
+        blank=True,
+        related_name="organization_department_%(app_label)s_%(class)s_related"
+    )
+    dissolution_date = models.DateField(
+        _("Dissolution Date"),
+        help_text=_('The date that this organization was dissolved.'),
         blank=True,
         null=True
     )
-
-    # Misc
-    created_on = models.DateField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-    auto_create_schema = True
-    auto_drop_schema = True
+    duns = models.CharField(
+        _("Additional Name"),
+        max_length=127,
+        help_text=_('The Dun & Bradstreet DUNS number for identifying an organization or business person.'),
+        blank=True,
+        null=True,
+    )
+    email = models.EmailField(
+        _("Email"),
+        help_text=_('Email address.'),
+        null=True,
+        blank=True
+    )
+    fax_number = models.CharField(
+        _("Fax Number"),
+        max_length=31,
+        help_text=_('The fax number.'),
+        blank=True,
+        null=True,
+    )
+    founding_date = models.DateField(
+        _("Founding Date"),
+        help_text=_('The date that this organization was founded.'),
+        blank=True,
+        null=True
+    )
+    founding_location = models.ForeignKey(
+        PublicPlace,
+        help_text=_('The place where the Organization was founded.'),
+        null=True,
+        blank=True,
+        related_name="organization_founding_location_%(app_label)s_%(class)s_related"
+    )
+    global_location_number = models.CharField(
+        _("Global Location Number"),
+        max_length=255,
+        help_text=_('The <a href="http://www.gs1.org/gln">Global Location Number</a> (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.'),
+        blank=True,
+        null=True,
+    )
+    isic_v4 = models.CharField(
+        _("ISIC V4"),
+        max_length=255,
+        help_text=_('The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.'),
+        blank=True,
+        null=True,
+    )
+    legal_name = models.CharField(
+        _("Legal Name"),
+        max_length=255,
+        help_text=_('The official name of the organization, e.g. the registered company name.'),
+        blank=True,
+        null=True,
+    )
+    logo = models.ForeignKey(
+        PublicImageUpload,
+        help_text=_('An associated logo.'),
+        null=True,
+        blank=True,
+        related_name="organization_logo_%(app_label)s_%(class)s_related"
+    )
+    naics = models.CharField(
+        _("NAICS"),
+        max_length=127,
+        help_text=_('The North American Industry Classification System (NAICS) code for a particular organization or business person.'),
+        blank=True,
+        null=True,
+    )
+    parent_organization = models.ForeignKey(
+        'self',
+        help_text=_('The larger organization that this organization is a branch of, if any. Supersedes branchOf.'),
+        null=True,
+        blank=True,
+        related_name="organization_parent_%(app_label)s_%(class)s_related"
+    )
+    tax_id = models.CharField(
+        _("Tax ID"),
+        max_length=255,
+        help_text=_('The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.'),
+        blank=True,
+        null=True,
+    )
+    telephone = models.CharField(
+        _("Telephone"),
+        max_length=31,
+        help_text=_('The telephone number.'),
+        blank=True,
+        null=True,
+    )
+    vat_id = models.CharField(
+        _("Tax ID"),
+        max_length=255,
+        help_text=_('The Value-added Tax ID of the organization or person.'),
+        blank=True,
+        null=True,
+    )
 
 
 class Domain(DomainMixin):
