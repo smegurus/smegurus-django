@@ -10,15 +10,15 @@ from foundation_public import constants
 from foundation_public.models.organization import PublicOrganization
 
 
-def public_registration_page(request):
+def public_user_registration_page(request):
     return render(request, 'authentication_public/user_register_view.html',{})
 
 
-def public_activation_required_page(request):
+def public_user_activation_required_page(request):
     return render(request, 'authentication_public/user_activation_required_view.html',{})
 
 
-def public_activate_page(request, signed_value):
+def public_user_activate_page(request, signed_value):
     """
     Function will decode the 'signed_value' parameter and extract the User
     object from this value then set the User account to be active in our
@@ -49,12 +49,12 @@ def public_activate_page(request, signed_value):
     })
 
 
-def public_login_page(request):
+def public_user_login_page(request):
     return render(request, 'authentication_public/user_login_view.html',{})
 
 
 @login_required(login_url='/en/login')
-def public_launchpad_page(request):
+def public_user_launchpad_page(request):
     """
     Function will either redirect the User to the specific tenanted
     dashboard page or function will load the User to the Organization

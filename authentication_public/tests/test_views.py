@@ -54,21 +54,21 @@ class AuthenticationPublicViewsTestCases(APITestCase, TenantTestCase):
             group.delete()
 
     @transaction.atomic
-    def test_public_authentication_page_view(self):
-        response = self.c.get(reverse('public_registration'))
+    def test_public_user_authentication_page_view(self):
+        response = self.c.get(reverse('public_user_registration'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
-    def test_public_activation_required_page_view(self):
-        response = self.c.get(reverse('public_activation_required'))
+    def test_public_user_activation_required_page_view(self):
+        response = self.c.get(reverse('public_user_activation_required'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
-    def test_public_activate_page_view_with_success(self):
+    def test_public_user_activate_page_view_with_success(self):
         """
         Unit test will take a User account which hasen't been activated and
         run the URL where activation happens and verify the User has been
@@ -83,7 +83,7 @@ class AuthenticationPublicViewsTestCases(APITestCase, TenantTestCase):
         value = signer.sign(id_sting)
 
         # Run test.
-        url = reverse('public_activation', args=[value])
+        url = reverse('public_user_activation', args=[value])
         response = self.c.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
@@ -93,33 +93,33 @@ class AuthenticationPublicViewsTestCases(APITestCase, TenantTestCase):
         self.assertTrue(user.is_active)
 
     @transaction.atomic
-    def test_public_activate_page_view_with_failure(self):
+    def test_public_user_activate_page_view_with_failure(self):
         # Run test & verify.
-        response = self.c.get(reverse('public_activation', args=['bad-value'] ))
+        response = self.c.get(reverse('public_user_activation', args=['bad-value'] ))
         self.assertEqual(response.status_code, 400)
         self.assertTrue(len(response.content) > 1)
 
     @transaction.atomic
-    def test_public_login_page_view(self):
-        response = self.c.get(reverse('public_login'))
+    def test_public_user_login_page_view(self):
+        response = self.c.get(reverse('public_user_login'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
-    def testpublic_launchpad_page_view_with_unauthorized(self):
+    def test_public_user_launchpad_page_view_with_unauthorized(self):
         pass #TODO: Implement.
 
     @transaction.atomic
-    def testpublic_launchpad_page_view_with_redirect_to_org_reg(self):
+    def test_public_user_launchpad_page_view_with_redirect_to_org_reg(self):
         pass #TODO: Implement.
 
     @transaction.atomic
-    def testpublic_launchpad_page_view_with_redirect_to_dashboard(self):
+    def test_public_user_launchpad_page_view_with_redirect_to_dashboard(self):
         pass #TODO: Implement.
 
     @transaction.atomic
-    def test_public_login_page_view(self):
+    def test_public_user_login_page_view(self):
         response = self.c.get(reverse('public_org_registration'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)

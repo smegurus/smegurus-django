@@ -38,7 +38,7 @@
             function(login_json_result) {
 
                 console.log(login_json_result); // Debugging purposes only.
-                window.location = "{% url 'public_launchpad' %}";
+                window.location = "{% url 'public_user_launchpad' %}";
 
             },
             function(login_error_json_result) {

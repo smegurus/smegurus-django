@@ -4,7 +4,7 @@
 
     <h1>Activation</h1>
     {% if user.is_active %}
-        <p>Successfully activated, login <a href="{% url 'public_login' %}">here</a></p>
+        <p>Successfully activated, login <a href="{% url 'public_user_login' %}">here</a></p>
     {% endif %}
 
 {% endblock content %}
