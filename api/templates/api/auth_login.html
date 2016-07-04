@@ -11,6 +11,7 @@
             url: url,
             data: data,
             type: type,
+            async: false,
             traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
             success: function(json_result){
                 success_callback(json_result); // Call back the function with the JSON results.
@@ -26,18 +27,21 @@
             complete: function(xhr,status) {
                 // Do nothing.
             }
-        });
-
+        }); // end Sign In
     }
 
 
     function sign_off(success_callback, error_callback) {
-        var url = "/en/api/logout/?format=json";
+        var url = "/api/logout/?format=json";
 
      jQuery.ajax({
         url: url,
+        headers: {
+            Authorization: 'Token ' + '{{ request.token }}'
+        },
         data: {},
         type: "POST",
+        async: true,
         traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
         success: function(json_result) {
             success_callback(json_result);  // Call back the function with the JSON results.
@@ -53,7 +57,6 @@
         complete: function(xhr,status) {
             // Do nothing.
         }
-    });
-
+    }); // end Sign Off
 }
 </script>
