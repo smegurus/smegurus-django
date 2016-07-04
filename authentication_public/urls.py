@@ -9,4 +9,5 @@ urlpatterns = (
     url(r'^login$', views.public_user_login_page, name='public_user_login'),
     url(r'^launchpad$', views.public_user_launchpad_page, name='public_user_launchpad'),
     url(r'^org_register$', views.public_org_registration_page, name='public_org_registration'),
+    url(r'^org_successful_register$', views.public_org_successful_registration, name='public_org_successful_registration'),
 )

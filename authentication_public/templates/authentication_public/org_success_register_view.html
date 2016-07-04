@@ -1,0 +1,10 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+<h1>Successful Registration</h1>
+<p>You have successfully registered your Organization! Final step is to login and begin:</p>
+<a href="{% url 'public_user_launchpad' %}">Login My Organization</a>
+
+
+{% endblock content %}

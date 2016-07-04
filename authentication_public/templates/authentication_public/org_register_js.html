@@ -87,7 +87,7 @@
                     function(o_success_result) {
                         console.log("Successfully Created Organization");
                         console.log(o_success_result);
-                        window.location = "{% url 'public_user_launchpad' %}";
+                        window.location = "{% url 'public_org_successful_registration' %}";
                     },
                     function(o_error_result) {
                         console.log("BAD Organization");

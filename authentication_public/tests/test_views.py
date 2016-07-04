@@ -107,6 +107,12 @@ class AuthenticationPublicViewsTestCases(APITestCase, TenantTestCase):
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
+    def test_public_org_successful_registration_view(self):
+        response = self.c.get(reverse('public_org_successful_registration'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(len(response.content) > 1)
+
+    @transaction.atomic
     def test_public_user_launchpad_page_view_with_unauthorized(self):
         pass #TODO: Implement.
 

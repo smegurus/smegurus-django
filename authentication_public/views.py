@@ -69,6 +69,11 @@ def public_org_registration_page(request):
 
 
 @login_required(login_url='/en/login')
+def public_org_successful_registration(request):
+    return render(request, 'authentication_public/org_success_register_view.html',{})
+    
+
+@login_required(login_url='/en/login')
 def public_user_launchpad_page(request):
     """
     Function will either redirect the User to the specific tenanted
