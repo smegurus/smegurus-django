@@ -7,6 +7,7 @@ from django.utils.translation import get_language
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from django.utils.translation import ugettext_lazy as _
 from foundation_public import constants
 from foundation_public.models.organization import PublicOrganization
 from smegurus.settings import env_var
@@ -56,6 +57,18 @@ def public_user_login_page(request):
 
 
 @login_required(login_url='/en/login')
+def public_org_registration_page(request):
+    """
+    Function provides the UI for a new User to create a new Organization to own.
+    """
+    org_membership_count = PublicOrganization.objects.filter(owner_id=request.user.id).count()
+    if org_membership_count >= 1:
+        return HttpResponseBadRequest(_("User cannot own any organization when registering a new organization."))
+    else:
+        return render(request, 'authentication_public/org_register_view.html',{})
+
+
+@login_required(login_url='/en/login')
 def public_user_launchpad_page(request):
     """
     Function will either redirect the User to the specific tenanted
@@ -71,11 +84,7 @@ def public_user_launchpad_page(request):
         url += str(org.schema_name) + '.'
         url += get_current_site(request).domain
         url += reverse('tenant_dashboard')
-        
+
         return HttpResponseRedirect(url)  # Go to our new URL.
     except PublicOrganization.DoesNotExist:
         return HttpResponseRedirect(reverse('public_org_registration'))
-
-
-def public_org_registration_page(request):
-    return render(request, 'authentication_public/org_register_view.html',{})

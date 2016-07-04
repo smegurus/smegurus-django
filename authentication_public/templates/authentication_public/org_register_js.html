@@ -21,10 +21,8 @@
 
         set_public_postaladdress(
             data,
-            function(success_json_result) {
-                // Store the object-id of the newely created Postal Address obj.
-                $('#id_hidden_postaladdress').val(success_json_result['id']);
-                success_callback(success_json_result); // Call back the function with the JSON results.
+            function(json_result) {
+                success_callback(json_result); // Call back the function.
             },
             function(error_json_result) {
                 error_callback(error_json_result); // Return JSON
@@ -35,7 +33,7 @@
     /**
      *  Function creates an Organization.
      */
-    function api_organization(good_callback, bad_callback) {
+    function api_organization(success_callback, error_callback) {
         var data = {
             'schema_name': $('#id_schema_name').val(),
             'name': $('#id_name').val(),
@@ -43,7 +41,6 @@
             'legal_name': $('#id_legalname').val(),
             'email': $('#id_email').val(),
             'telephone': $('#id_telephone').val(),
-            'owner': {{ request.user.id }},
         };
 
         if ( $('#id_hidden_organization').val() ) {
@@ -56,24 +53,23 @@
 
         set_public_organization(data,
             data,
-            function(success_json_result) {
-                console.log(success_json_result);
-                good_callback("Success");
+            function(org_json_result) {
+                success_callback(org_json_result);
             },
-            function(error_json_result) {
-                bad_callback(error_json_result); // Return JSON
+            function(org_error_json_result) {
+                error_callback(org_error_json_result); // Return JSON
             }
         ); // end Organization
     }
 
     function ajax_save_org() {
         // Defensive Code: Name handling.
-        // if( $('#id_email').val() == "" ){
-        //     alert("Missing Email");
-        //     //$('#login-popup').popup('open');
-        //     //$('#id_error').html('{% trans "Please enter your first name." %}');
-        //     return;
-        // }
+        if( $('#id_schema_name').val() == "" ){
+            alert("Missing Schema Name");
+            //$('#login-popup').popup('open');
+            //$('#id_error').html('{% trans "Please enter your first name." %}');
+            return;
+        }
 
         /*
          *  Algorithm:
@@ -83,9 +79,14 @@
          */
         api_postal_address(
             function(pa_success_result) {
+                console.log("Successfully Created Postal Address");
+                console.log(pa_success_result);
+                $('#id_hidden_postaladdress').val(pa_success_result['id']);
+
                 api_organization(
                     function(o_success_result) {
-                        console.log("OK Organization");
+                        console.log("Successfully Created Organization");
+                        console.log(o_success_result);
                         window.location = "{% url 'public_user_launchpad' %}";
                     },
                     function(o_error_result) {
