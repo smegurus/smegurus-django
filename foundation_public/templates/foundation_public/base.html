@@ -41,6 +41,7 @@
 
     {% if request.user.is_authenticated %}
         {% include "api/public_organization.html" %}
+        {% include "api/public_postaladdress.html" %}
     {% endif %}
     {% endcompress %}
 </html>
