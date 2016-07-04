@@ -2,17 +2,34 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
+<input id="id_hidden_postaladdress" type="hidden" />
+<input id="id_hidden_organization" type="hidden" />
 {% compress js inline %}
     {% include 'authentication_public/org_register_js.html' %}
 {% endcompress %}
 
 <form style="width:280px;margin:auto;">
-    <input type="text" placeholder="{% trans 'Schema Name' %}" name="schema" id="id_schema" />
-    <input type="text" placeholder="{% trans 'Fully Company Name' %}" name="fullname" id="id_full_name" />
+    <!-- Org -->
+    <input type="text" placeholder="{% trans 'Schema Name' %}" name="schema" id="id_schema_name" />
+    <input type="text" placeholder="{% trans 'Common Company Name' %}" name="fullname" id="id_name" />
     <input type="text" placeholder="{% trans 'Alternative Company Name' %}" name="alternativename" id="id_alternative_name" />
-    <input type="password" placeholder="{% trans 'Password' %}" name="pass1" id="id_password" />
-    <input type="password" placeholder="{% trans 'Confirm Password' %}" name="pass2" id="id_password2" />
-    <input onclick="ajax_register();" type="button" value="{% trans 'Register' %}" class="ui-btn ui-corner-all" />
+    <input type="text" placeholder="{% trans 'Full Legal Company Name' %}" name="legalname" id="id_legalname" />
+    <input type="text" placeholder="{% trans 'Email' %}" name="email" id="id_email" />
+    <input type="text" placeholder="{% trans 'Telephone' %}" name="telephone" id="id_telephone" />
+    <!-- /.Org -->
+
+    <!-- Address -->
+    <input type="text" placeholder="{% trans 'Country' %}" name="address_country" id="id_address_country" />
+    <input type="text" placeholder="{% trans 'Province' %}" name="address_region" id="id_address_region" />
+    <input type="text" placeholder="{% trans 'City' %}" name="address_locality" id="id_address_locality" />
+    <input type="text" placeholder="{% trans 'Postal Office Box Number' %}" name="post_office_box_number" id="id_post_office_box_number" />
+    <input type="text" placeholder="{% trans 'Postal Code' %}" name="postal_code" id="id_postal_code" />
+    <input type="text" placeholder="{% trans 'Address' %}" name="street_address" id="id_street_address" />
+    <!-- /.Address -->
+
+    <!-- Submit -->
+    <input onclick="ajax_save_org();" type="button" value="{% trans 'Finalize' %}" class="ui-btn ui-corner-all" />
+    <!-- /.Submit -->
 </form>
 
 {% endblock content %}

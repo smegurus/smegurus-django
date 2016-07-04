@@ -31,7 +31,7 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
         Override the "create" functionality to use the "django-tenants"
         functionality for creating a new tenant.
         """
-        tenant = Organization(
+        tenant = PublicOrganization(
             schema_name=serializer.data['schema_name'],
             name=serializer.data['name'],
             # paid_until=serializer.data['paid_until'],

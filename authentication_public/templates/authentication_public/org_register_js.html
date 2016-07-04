@@ -1,2 +1,99 @@
+{% load i18n %}
 <script>
+    /**
+     *  Function creates an Postal Address.
+     */
+    function api_postal_address(success_callback, error_callback) {
+        var data = {
+            'name': $('#id_name').val() + ' HQ Address',
+            'address_country': $('#id_address_country').val(),
+            'address_locality': $('#id_address_locality').val(),
+            'address_region': $('#id_address_region').val(),
+            'post_office_box_number': $('#id_post_office_box_number').val(),
+            'postal_code': $('#id_postal_code').val(),
+            'street_address': $('#id_street_address').val(),
+            'owner': {{ request.user.id }},
+        };
+
+        if ( $('#id_hidden_postaladdress').val() ) {
+            data['id'] = $('#id_hidden_postaladdress').val();
+        }
+
+        set_public_postaladdress(
+            data,
+            function(success_json_result) {
+                // Store the object-id of the newely created Postal Address obj.
+                $('#id_hidden_postaladdress').val(success_json_result['id']);
+                success_callback(success_json_result); // Call back the function with the JSON results.
+            },
+            function(error_json_result) {
+                error_callback(error_json_result); // Return JSON
+            }
+        ); // end Postal Address
+    }
+
+    /**
+     *  Function creates an Organization.
+     */
+    function api_organization(success_callback, error_callback) {
+        var data = {
+            'schema_name': $('#id_schema_name').val(),
+            'name': $('#id_name').val(),
+            'alternate_name': $('#id_alternative_name').val(),
+            'legal_name': $('#id_legalname').val(),
+            'email': $('#id_email').val(),
+            'telephone': $('#id_telephone').val(),
+            'owner': {{ request.user.id }},
+        };
+
+        if ( $('#id_hidden_organization').val() ) {
+            data['id'] = $('#id_hidden_organization').val();
+        }
+
+        set_public_organization(data,
+            data,
+            function(success_json_result) {
+                // Store the object-id of the newely created Postal Address obj.
+                $('#id_hidden_organization').val(success_json_result['id']);
+                success_callback(success_json_result); // Call back the function with the JSON results.
+            },
+            function(error_json_result) {
+                error_callback(error_json_result); // Return JSON
+            }
+        ); // end Organization
+    }
+
+    function ajax_save_org() {
+        // Defensive Code: Name handling.
+        // if( $('#id_email').val() == "" ){
+        //     alert("Missing Email");
+        //     //$('#login-popup').popup('open');
+        //     //$('#id_error').html('{% trans "Please enter your first name." %}');
+        //     return;
+        // }
+
+        /*
+         *  Algorithm:
+         *  1. Save the Postal Address.
+         *  2. Save the Organization.
+         *  3. Load the dashboard page.
+         */
+        api_postal_address(
+            function(pa_success_result) {
+                api_organization(
+                    function(o_success_result) {
+                        console.log("OK Organization");
+                    },
+                    function(o_error_result) {
+                        console.log("BAD Organization");
+                        console.log(o_error_result);
+                    }
+                ); // end Organization
+            },
+            function(pa_error_result) {
+                console.log("BAD Postal Address");
+                console.log(pa_error_result);
+            }
+        ); // end Postal Address
+    }
 </script>

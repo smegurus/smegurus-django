@@ -101,7 +101,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'foundation_public.middleware.BanEnforcingMiddleware',
+    'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
+    'smegurus.middleware.SMEGurusTokenMiddleware',                 # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
 ]
 
