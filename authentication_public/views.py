@@ -2,12 +2,14 @@ from django.core.signing import Signer
 from django.core.urlresolvers import resolve, reverse
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import get_language
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from foundation_public import constants
 from foundation_public.models.organization import PublicOrganization
+from smegurus.settings import env_var
 
 
 def public_user_registration_page(request):
@@ -61,8 +63,16 @@ def public_user_launchpad_page(request):
     registration page.
     """
     try:
-        PublicOrganization.objects.get(owner_id=request.user.id)
-        return HttpResponseRedirect('/en/dashboard') # TODO: replace with 'resolve()'.
+        # Fetch the organization that this User belongs to.
+        org = PublicOrganization.objects.get(owner_id=request.user.id)
+
+        # Generate our new URL.
+        url = 'https://' if request.is_secure() else 'http://'
+        url += str(org.schema_name) + '.'
+        url += get_current_site(request).domain
+        url += reverse('tenant_dashboard')
+        
+        return HttpResponseRedirect(url)  # Go to our new URL.
     except PublicOrganization.DoesNotExist:
         return HttpResponseRedirect(reverse('public_org_registration'))
 

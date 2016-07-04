@@ -2,10 +2,6 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
-    {% compress js inline %}
-        {% include 'api/activation.html' %}
-    {% endcompress %}
-
     <h1>Activation Is Required</h1>
     <p>Please wait and you will receive an activation email. If you haven't received your activation emial, please click here:
         <ul>

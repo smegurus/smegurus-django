@@ -24,3 +24,28 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
     filter_class = PublicOrganizationFilter
+
+    def perform_create(self, serializer):
+        """
+        Override the "create" functionality to include creating a new Domain
+        object associated with the newely created Organization. This Domain
+        object is needed for "django-tenants" library to have.
+        """
+        # Pre-save action: Include the owner attribute directly, rather
+        # than from request data.
+        print("Creating Tenant")
+        org = serializer.save(owner=self.request.user)
+
+        # Perform a custom post-save action.
+        if org:
+            from foundation_public.models.organization import Domain
+            # Add one or more domains for the tenant
+            domain = Domain()
+            domain.domain = org.schema_name + '.smegurus.xyz'
+            domain.tenant = org
+            domain.is_primary = False
+            try:
+                print("Creating Tenant Domain")
+                domain.save()
+            except Exception as e:
+                print(e)

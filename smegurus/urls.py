@@ -29,4 +29,5 @@ urlpatterns += i18n_patterns(
     url(r'^', include('landpage.urls')),
     url(r'^', include('authentication_public.urls')),
     url(r'^', include('authentication_tenant.urls')),
+    url(r'^', include('dashboard.urls')),
 )

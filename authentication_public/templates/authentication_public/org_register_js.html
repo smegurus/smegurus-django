@@ -35,7 +35,7 @@
     /**
      *  Function creates an Organization.
      */
-    function api_organization(success_callback, error_callback) {
+    function api_organization(good_callback, bad_callback) {
         var data = {
             'schema_name': $('#id_schema_name').val(),
             'name': $('#id_name').val(),
@@ -57,12 +57,11 @@
         set_public_organization(data,
             data,
             function(success_json_result) {
-                // Store the object-id of the newely created Postal Address obj.
-                $('#id_hidden_organization').val(success_json_result['id']);
-                success_callback(success_json_result); // Call back the function with the JSON results.
+                console.log(success_json_result);
+                good_callback("Success");
             },
             function(error_json_result) {
-                error_callback(error_json_result); // Return JSON
+                bad_callback(error_json_result); // Return JSON
             }
         ); // end Organization
     }
@@ -87,6 +86,7 @@
                 api_organization(
                     function(o_success_result) {
                         console.log("OK Organization");
+                        window.location = "{% url 'public_user_launchpad' %}";
                     },
                     function(o_error_result) {
                         console.log("BAD Organization");

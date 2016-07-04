@@ -17,10 +17,11 @@
             data: data,
             type: type,
             traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
-            success: function(json_result){
-                success_callback(json_result); // Call back the function with the JSON results.
+            success: function(org_json_result){
+                console.log(org_json_result);
+                success_callback(org_json_result); // Call back the function with the JSON results.
             },
-            error: function(xhr,status,error) {
+            error: function(xhr, status, error) {
                 // Print the error log to console.
                 console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
 
