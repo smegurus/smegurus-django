@@ -18,7 +18,7 @@ class Command(BaseCommand):
             'banned_ips.json',
             'banned_words.json',
             'sites.json',
-            # 'groups',
+            'groups',
             # 'permissions'
         ]
 
