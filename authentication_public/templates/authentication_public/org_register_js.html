@@ -50,6 +50,10 @@
             data['id'] = $('#id_hidden_organization').val();
         }
 
+        if ( $('#id_hidden_postaladdress').val() ) {
+            data['address'] = $('#id_hidden_postaladdress').val();
+        }
+
         set_public_organization(data,
             data,
             function(success_json_result) {

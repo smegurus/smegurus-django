@@ -24,20 +24,3 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
     filter_class = PublicOrganizationFilter
-
-
-    def perform_create(self, serializer):
-        """
-        Override the "create" functionality to use the "django-tenants"
-        functionality for creating a new tenant.
-        """
-        tenant = PublicOrganization(
-            schema_name=serializer.data['schema_name'],
-            name=serializer.data['name'],
-            # paid_until=serializer.data['paid_until'],
-            on_trial=serializer.data['on_trial']
-        )
-        try:
-            tenant.save() # migrate_schemas automatically called, your tenant is ready to be used!
-        except Exception as e:
-            pass  #print(e)
