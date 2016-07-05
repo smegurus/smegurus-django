@@ -7,8 +7,11 @@
 {% endcompress %}
 
 <form style="width:280px;margin:auto;">
-
-    <h1>Org Admin Registration</h1>
+    {% if request.tenant.schema_name == 'public' %}
+        <h1>Org Admin Registration</h1>
+    {% else %}
+        <h1>User Registration</h1>
+    {% endif %}
     <p>For Schema: {{ request.tenant.schema_name }}</p>
     <input type="text" placeholder="{% trans 'Email Address' %}" name="email" id="id_email" />
     <input type="text" placeholder="{% trans 'First Name' %}" name="fname" id="id_first_name" />

@@ -1,7 +1,8 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework.permissions import AllowAny
 from api.serializers.authentication import RegisterSerializer
+from foundation_public.constants import *
 
 
 class RegisterViewSet(generics.ListCreateAPIView):
@@ -10,5 +11,16 @@ class RegisterViewSet(generics.ListCreateAPIView):
     queryset = User.objects.none() # Restrict so no-one sees the users.
 
     def perform_create(self, serializer):
-        instance = serializer.save()  # Register: Step 1
-        assert instance
+        # Save the User model from the serializer.
+        user = serializer.save()
+
+        # Assign the User to the specific Group depending on whether the
+        # User was regisered from the Tenant or on the Public schema.
+        group = None
+        if self.request.tenant.schema_name == 'public':
+            group = Group.objects.get(id=ORGANIZATION_ADMIN_GROUP_ID)
+        else:
+            group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
+        print("Attaching to Group:", group)
+        user.groups.add(group)
+        user.save()

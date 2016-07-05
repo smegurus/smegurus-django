@@ -61,7 +61,7 @@
             //return;
         //}
 
-        ajax_new_user(
+        api_register(
             function(json_result) {
                 // Redirect to the page where the user sends a activation email.
                 window.location = "{% url 'foundation_auth_user_activation_required' %}";
@@ -78,7 +78,7 @@
      *  Function extracts the Username, Email, Password, First & Last Names and
      *  calls the registration API to get our user registered.
      */
-    function ajax_new_user(success_callback, error_callback) {
+    function api_register(success_callback, error_callback) {
         var username = $('#id_email').val();
         var email = $('#id_email').val();
         var password = $('#id_password').val();

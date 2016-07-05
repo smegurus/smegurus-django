@@ -43,10 +43,6 @@ def user_activate_page(request, signed_value):
     user.is_active = True
     user.save()
 
-    # Attach group membership to 'Organization Administrator'.
-    org_admin_group = get_object_or_404(Group, pk=constants.ORGANIZATION_ADMIN_GROUP_ID)
-    user.groups.add(org_admin_group)
-
     return render(request, 'foundation_auth/user_activate_view.html',{
         'user': user,
     })
