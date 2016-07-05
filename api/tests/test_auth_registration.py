@@ -12,7 +12,7 @@ from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.constants import *
+from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -21,16 +21,18 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
 class APIRegistrationTestCase(APITestCase, TenantTestCase):
-    fixtures = [
-        'banned_domains.json',
-        'banned_ips.json',
-        'banned_words.json',
-        'groups',
-        # 'permissions',
-    ]
-
     @classmethod
     def setUpTestData(cls):
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
+
         user = User.objects.create_user(  # Create our user.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,
@@ -78,7 +80,7 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
             self.assertEqual(response.status_code, status.HTTP_201_CREATED)
             self.assertEqual(User.objects.count(), 1)
             self.assertEqual(User.objects.get().email, 'whalesquid@hideauze.com')
-            group = Group.objects.get(id=ORGANIZATION_ADMIN_GROUP_ID)
+            group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
 
             # Verify group membership.
             # is_org_admin = False
@@ -113,7 +115,7 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
             self.assertEqual(response.status_code, status.HTTP_201_CREATED)
             self.assertEqual(User.objects.count(), 1)
             self.assertEqual(User.objects.get().email, 'whalesquid@hideauze.com')
-            group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
+            group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
 
             # Verify group membership.
             is_entrepreneur = False
