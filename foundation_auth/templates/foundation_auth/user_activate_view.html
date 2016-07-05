@@ -1,0 +1,10 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+    <h1>Activation</h1>
+    {% if user.is_active %}
+        <p>Successfully activated, login <a href="{% url 'foundation_auth_user_login' %}">here</a></p>
+    {% endif %}
+
+{% endblock content %}

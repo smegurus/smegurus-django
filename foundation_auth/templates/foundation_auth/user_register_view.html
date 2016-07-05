@@ -1,0 +1,21 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'foundation_auth/user_register_js.html' %}
+{% endcompress %}
+
+<form style="width:280px;margin:auto;">
+
+    <h1>Org Admin Registration</h1>
+    <p>For Schema: {{ request.tenant.schema_name }}</p>
+    <input type="text" placeholder="{% trans 'Email Address' %}" name="email" id="id_email" />
+    <input type="text" placeholder="{% trans 'First Name' %}" name="fname" id="id_first_name" />
+    <input type="text" placeholder="{% trans 'Last Name' %}" name="lname" id="id_last_name" />
+    <input type="password" placeholder="{% trans 'Password' %}" name="pass1" id="id_password" />
+    <input type="password" placeholder="{% trans 'Confirm Password' %}" name="pass2" id="id_password2" />
+    <input onclick="ajax_register();" type="button" value="{% trans 'Register' %}" class="ui-btn ui-corner-all" />
+</form>
+
+{% endblock content %}

@@ -8,7 +8,7 @@
         sign_off(
             function(ok) {
                 console.log(ok);
-                window.location = "{% url 'public_user_login' %}";
+                window.location = "{% url 'foundation_auth_user_login' %}";
             },
             function(bad) {
                 console.log(bad);

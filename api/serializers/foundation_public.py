@@ -17,6 +17,18 @@ from foundation_public.models.country import PublicCountry
 from foundation_public.models.organization import PublicOrganization
 
 
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'groups')
+
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('url', 'name')
+
+
 class PublicOrganizationSerializer(serializers.ModelSerializer):
     schema_name = serializers.CharField(required=True)
     class Meta:

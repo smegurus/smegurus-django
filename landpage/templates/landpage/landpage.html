@@ -2,14 +2,21 @@
 {% load staticfiles i18n %}
 {% block content %}
     <h1>This is a land page.</h1>
-    <p>Here are the URLS:
+    <p>Here are the URLS:</p>
+    <h2>Organization Admin</h2>
+    <p>
         <ul>
             <li>
-                <a href="{% url 'public_user_registration' %}">Org Registration</a>
+                <a href="{% url 'foundation_auth_user_registration' %}">Registration</a>
             </li>
             <li>
-                <a href="{% url 'public_user_login' %}">Org Login</a>
+                <a href="{% url 'foundation_auth_user_login' %}">Login</a>
             </li>
+            {% if user.is_authenticate %}
+                <li>
+                    <a href="{% url 'tenant_dashboard' %}">Dashboard</a>
+                </li>
+            {% endif %}
         </ul>
     </p>
 {% endblock content %}

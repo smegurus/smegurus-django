@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from api_tenant.serializers.foundation import UserSerializer, GroupSerializer
+from api.serializers.foundation_public import UserSerializer, GroupSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

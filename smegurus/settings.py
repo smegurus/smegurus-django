@@ -66,7 +66,7 @@ SHARED_APPS = (
 
   # everything below is custom made by us.
   'landpage',
-  'authentication_public',
+  'foundation_auth',
 
   # everything below here is optional
   'django.contrib.auth',
@@ -85,7 +85,7 @@ TENANT_APPS = (
   # your tenant-specific apps
   'foundation_tenant',
   'api',
-  'authentication_tenant',
+  'foundation_auth',
   'dashboard',
 )
 
@@ -177,7 +177,8 @@ if env_var("IS_DEBUG"):
     PASSWORD_HASHERS = (
         'django.contrib.auth.hashers.MD5PasswordHasher',
     )
-
+    
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 
 # Internationalization
