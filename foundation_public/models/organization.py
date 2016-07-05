@@ -162,6 +162,12 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         null=True,
     )
+    users = models.ManyToManyField(
+        User,
+        help_text=_('The users that belong to this Organization.'),
+        blank=True,
+        related_name='organization_users_%(app_label)s_%(class)s_related',
+    )
 
 
 class Domain(DomainMixin):
