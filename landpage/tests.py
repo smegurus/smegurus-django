@@ -8,10 +8,10 @@ from django_tenants.test.client import TenantClient
 
 class LandpageTestCase(TenantTestCase):
     fixtures = [
-        'banned_domains.json',
-        'banned_ips.json',
-        'banned_words.json',
-        'groups',
+        # 'banned_domains.json',
+        # 'banned_ips.json',
+        # 'banned_words.json',
+        # 'groups',
         # 'permissions',
     ]
 
