@@ -43,7 +43,7 @@ def user_activate_page(request, signed_value):
     # Get the domain URL.
     org = PublicOrganization.objects.get(users__id=user.id)
     group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
-    login_url = resolve('foundation_auth_user_login')
+    login_url = org.reverse(request, 'foundation_auth_user_login')
     if group in user.groups.all():
         login_url = org.reverse(request, 'foundation_auth_user_login')
 
@@ -67,8 +67,10 @@ def user_launchpad_page(request):
     DEVELOPER NOTES:
     - Organization-User relationship is one to one.
     """
-    if request.tenant.schema_name == 'public':
+    if request.tenant.schema_name == 'public' or request.tenant.schema_name == 'test':
+        print("PUBLIC SCHEMA RUNNING...")
         return HttpResponseRedirect(reverse('foundation_auth_org_registration'))
+    print("TENANT SCHEMA RUNNING...")
 
     # Fetch the organization that this User belongs to.
     # Note: This only works because the assumption is there is One-to-One

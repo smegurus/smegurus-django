@@ -22,7 +22,7 @@ class RegisterViewSet(generics.ListCreateAPIView):
         # Assign the User to the specific Group depending on whether the
         # User was regisered from the Tenant or on the Public schema.
         group = None
-        if self.request.tenant.schema_name == 'public':
+        if self.request.tenant.schema_name == 'public' or request.tenant.schema_name == 'test':
             group = Group.objects.get(id=ORGANIZATION_ADMIN_GROUP_ID)
         else:
             group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
@@ -31,7 +31,7 @@ class RegisterViewSet(generics.ListCreateAPIView):
         user.save()
 
         # Assign the User membership into the specific Organization.
-        if self.request.tenant.schema_name != 'public':
+        if self.request.tenant.schema_name != 'public' and request.tenant.schema_name != 'test':
             # print("Attaching to Organization:", self.request.tenant.schema_name)
             self.request.tenant.users.add(user)
             self.request.tenant.save()
