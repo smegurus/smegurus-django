@@ -70,12 +70,12 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_list(self):
-        response = self.unauthorized_client.get('/api/openinghoursspecification/')
+        response = self.unauthorized_client.get('/api/tenantopeninghoursspecification/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_list_with_authentication(self):
-        response = self.authorized_client.get('/api/openinghoursspecification/')
+        response = self.authorized_client.get('/api/tenantopeninghoursspecification/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -85,7 +85,7 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.post('/api/openinghoursspecification/')
+        response = self.unauthorized_client.post('/api/tenantopeninghoursspecification/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -95,7 +95,7 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.authorized_client.post('/api/openinghoursspecification/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post('/api/tenantopeninghoursspecification/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -119,7 +119,7 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.put('/api/openinghoursspecification/1/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.put('/api/tenantopeninghoursspecification/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -144,15 +144,15 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.authorized_client.put('/api/openinghoursspecification/1/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put('/api/tenantopeninghoursspecification/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_delete(self):
-        response = self.unauthorized_client.delete('/api/openinghoursspecification/1/')
+        response = self.unauthorized_client.delete('/api/tenantopeninghoursspecification/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authentication(self):
-        response = self.authorized_client.delete('/api/openinghoursspecification/1/')
+        response = self.authorized_client.delete('/api/tenantopeninghoursspecification/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

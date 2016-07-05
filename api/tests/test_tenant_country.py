@@ -82,12 +82,12 @@ class APICountryTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_list(self):
-        response = self.unauthorized_client.get('/api/country/')
+        response = self.unauthorized_client.get('/api/tenantcountry/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_list_with_authentication(self):
-        response = self.authorized_client.get('/api/country/')
+        response = self.authorized_client.get('/api/tenantcountry/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -97,7 +97,7 @@ class APICountryTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.post('/api/country/')
+        response = self.unauthorized_client.post('/api/tenantcountry/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -107,7 +107,7 @@ class APICountryTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.authorized_client.post('/api/country/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post('/api/tenantcountry/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -131,7 +131,7 @@ class APICountryTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.put('/api/country/1/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.put('/api/tenantcountry/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -156,15 +156,15 @@ class APICountryTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.authorized_client.put('/api/country/1/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put('/api/tenantcountry/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_delete(self):
-        response = self.unauthorized_client.delete('/api/country/1/')
+        response = self.unauthorized_client.delete('/api/tenantcountry/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authentication(self):
-        response = self.authorized_client.delete('/api/country/1/')
+        response = self.authorized_client.delete('/api/tenantcountry/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

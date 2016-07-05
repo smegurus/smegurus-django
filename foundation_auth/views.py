@@ -13,6 +13,7 @@ from foundation_public import constants
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.constants import *
 
+
 def user_registration_page(request):
     return render(request, 'foundation_auth/user_register_view.html',{})
 
