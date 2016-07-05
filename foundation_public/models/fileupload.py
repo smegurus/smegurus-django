@@ -31,14 +31,14 @@ class PublicFileUpload(models.Model):
     def __str__(self):
         return str(self.datafile)
 
-    def delete(self, *args, **kwargs):
-        """
-            Overrided delete functionality to include deleting the local file
-            that we have stored on the system. Currently the deletion funciton
-            is missing this functionality as it's our responsibility to handle
-            the local files.
-        """
-        if self.datafile:
-            if os.path.isfile(self.datafile.path):
-                os.remove(self.datafile.path)
-        super(PublicFileUpload, self).delete(*args, **kwargs) # Call the "real" delete() method
+    # def delete(self, *args, **kwargs):
+    #     """
+    #         Overrided delete functionality to include deleting the local file
+    #         that we have stored on the system. Currently the deletion funciton
+    #         is missing this functionality as it's our responsibility to handle
+    #         the local files.
+    #     """
+    #     if self.datafile:
+    #         if os.path.isfile(self.datafile.path):
+    #             os.remove(self.datafile.path)
+    #     super(PublicFileUpload, self).delete(*args, **kwargs) # Call the "real" delete() method
