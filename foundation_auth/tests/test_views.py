@@ -130,6 +130,27 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
         # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
+    def test_org_reg_page_view(self):
+        response = self.authorized_client.get(reverse('foundation_auth_org_registration'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(len(response.content) > 1)
+
+    @transaction.atomic
+    def test_org_successful_registration_view(self):
+        user = User.objects.get(email=TEST_USER_EMAIL)
+        with PublicOrganization(schema_name='public'):
+           # Create tenant in this block
+            org = PublicOrganization.objects.create(schema_name="test_mikasoftware", owner=user,)
+
+            # Test
+            response = self.authorized_client.get(reverse('foundation_auth_org_successful_registration'))
+
+            # Verify
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(len(response.content) > 1)
+            self.assertIn(b'test_mikasoftware',response.content)
+            
+    @transaction.atomic
     def test_user_launchpad_page_view_with_unauthorized(self):
         response = self.unauthorized_client.get(reverse('foundation_auth_user_launchpad'))
         self.assertEqual(response.status_code, status.HTTP_302_FOUND)
@@ -167,24 +188,3 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
     #         response = self.authorized_client.get(url)
     #         self.assertEqual(response.status_code, status.HTTP_302_FOUND) #TODO: Figure out 404 error?
     #         self.assertRedirects(response, 'http://mikasoftware.example.com/en/dashboard')
-
-    # @transaction.atomic
-    # def test_org_reg_page_view(self):
-    #     response = self.authorized_client.get(reverse('foundation_auth_org_registration'))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTrue(len(response.content) > 1)
-    #
-    # @transaction.atomic
-    # def test_org_successful_registration_view(self):
-    #     user = User.objects.get(email=TEST_USER_EMAIL)
-    #     with PublicOrganization(schema_name='public'):
-    #        # Create tenant in this block
-    #         org = PublicOrganization.objects.create(schema_name="test_mikasoftware", owner=user,)
-    #
-    #         # Test
-    #         response = self.authorized_client.get(reverse('foundation_auth_org_successful_registration'))
-    #
-    #         # Verify
-    #         self.assertEqual(response.status_code, 200)
-    #         self.assertTrue(len(response.content) > 1)
-    #         self.assertIn(b'test_mikasoftware',response.content)
