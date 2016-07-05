@@ -44,10 +44,7 @@ def user_activate_page(request, signed_value):
     group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
     login_url = resolve('foundation_auth_user_login')
     if group in user.groups.all():
-        login_url = 'https://' if request.is_secure() else 'http://'
-        login_url += str(org.schema_name) + '.'
-        login_url += get_current_site(request).domain
-        login_url += reverse('foundation_auth_user_login')
+        login_url = org.reverse(request, 'foundation_auth_user_login')
 
     return render(request, 'foundation_auth/user_activate_view.html',{
         'user': user,
@@ -76,11 +73,7 @@ def user_launchpad_page(request):
     # Note: This only works because the assumption is there is One-to-One
     #       relationship between Organization and Users.
     org = get_object_or_404(PublicOrganization, users__id=request.user.id)
-    # Generate our new URL.
-    url = 'https://' if request.is_secure() else 'http://'
-    url += str(org.schema_name) + '.'
-    url += get_current_site(request).domain
-    url += reverse('tenant_dashboard')
+    url = org.reverse(request, 'tenant_dashboard')
     return HttpResponseRedirect(url)  # Go to our new URL.
 
 
@@ -99,13 +92,7 @@ def organization_registration_page(request):
 @login_required(login_url='/en/login')
 def organization_successful_registration(request):
     org = get_object_or_404(PublicOrganization, owner_id=request.user.id)
-
-    # Generate our new URL.
-    url = 'https://' if request.is_secure() else 'http://'
-    url += str(org.schema_name) + '.'
-    url += get_current_site(request).domain
-    url += reverse('foundation_auth_user_login')
-
+    url = org.reverse(request, 'foundation_auth_user_login')
     return render(request, 'foundation_auth/organization_success_register_view.html',{
         'tenant_login_url': url
     })

@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_tenants.models import TenantMixin, DomainMixin
+from django.contrib.sites.shortcuts import get_current_site # Reverse
+from django.core.urlresolvers import resolve, reverse # Reverse
 from foundation_public.models.abstract_thing import AbstractPublicThing
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.brand import PublicBrand
@@ -168,6 +170,19 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         related_name='organization_users_%(app_label)s_%(class)s_related',
     )
+
+    def __str__(self):
+        return str(self.name)
+
+    def reverse(self, request, view_name):
+        """
+        Reverse the URL of the request + view name for this Organization.
+        """
+        url = 'https://' if request.is_secure() else 'http://'
+        url += str(self.schema_name) + '.'
+        url += get_current_site(request).domain
+        url += reverse(view_name)
+        return url
 
 
 class Domain(DomainMixin):
