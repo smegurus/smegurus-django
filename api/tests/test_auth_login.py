@@ -11,7 +11,6 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from api.views import authentication
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -19,7 +18,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APILoginTestCase(APITestCase, TenantTestCase):
+class APILoginWithPublicSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = [
         # 'banned_domains.json',
         # 'banned_ips.json',
@@ -27,6 +26,11 @@ class APILoginTestCase(APITestCase, TenantTestCase):
         # 'groups',
         # 'permissions',
     ]
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -41,7 +45,7 @@ class APILoginTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(APILoginTestCase, self).setUp()
+        super(APILoginWithPublicSchemaTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -49,7 +53,7 @@ class APILoginTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APILoginTestCase, self).tearDown()
+        super(APILoginWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_api_login_with_success(self):

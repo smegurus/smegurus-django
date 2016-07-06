@@ -21,8 +21,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APILanguageTestCase(APITestCase, TenantTestCase):
+class APILanguageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Tenant Schema"""
+        tenant.schema_name = 'galacticalliance'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -39,7 +44,7 @@ class APILanguageTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APILanguageTestCase, self).setUp()
+        super(APILanguageWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -67,7 +72,7 @@ class APILanguageTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APILanguageTestCase, self).tearDown()
+        # super(APILanguageWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

@@ -11,7 +11,6 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from api.views import authentication
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -27,6 +26,11 @@ class APIEmailActivationTestCase(APITestCase, TenantTestCase):
         # 'groups',
         # 'permissions',
     ]
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):

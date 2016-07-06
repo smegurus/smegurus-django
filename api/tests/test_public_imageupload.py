@@ -25,7 +25,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APIPublicImageUploadTestCase(APITestCase, TenantTestCase):
+class APIPublicImageUploadWithPublicSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -33,6 +33,11 @@ class APIPublicImageUploadTestCase(APITestCase, TenantTestCase):
         # 'groups',
         # 'permissions',
     ]
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -48,7 +53,7 @@ class APIPublicImageUploadTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APIPublicImageUploadTestCase, self).setUp()
+        super(APIPublicImageUploadWithPublicSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -77,7 +82,7 @@ class APIPublicImageUploadTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APIPublicImageUploadTestCase, self).tearDown()
+        super(APIPublicImageUploadWithPublicSchemaTestCase, self).tearDown()
 
     def _create_test_image(self, path):
         # Create the image.

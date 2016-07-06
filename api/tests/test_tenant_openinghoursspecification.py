@@ -21,8 +21,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
+class APIOpeningHoursSpecificationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Tenant Schema"""
+        tenant.schema_name = 'galacticalliance'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -38,7 +43,7 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APIOpeningHoursSpecificationTestCase, self).setUp()
+        super(APIOpeningHoursSpecificationWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -66,7 +71,7 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APIOpeningHoursSpecificationTestCase, self).tearDown()
+        # super(APIOpeningHoursSpecificationWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list(self):

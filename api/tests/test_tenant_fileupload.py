@@ -23,14 +23,19 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APITenantFileUploadTestCase(APITestCase, TenantTestCase):
+class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = [
-        'banned_domains.json',
-        'banned_ips.json',
-        'banned_words.json',
+        # 'banned_domains.json',
+        # 'banned_ips.json',
+        # 'banned_words.json',
         # 'groups',
         # 'permissions',
     ]
+
+    def setup_tenant(self, tenant):
+        """Tenant Schema"""
+        tenant.schema_name = 'galacticalliance'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -46,7 +51,7 @@ class APITenantFileUploadTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APITenantFileUploadTestCase, self).setUp()
+        super(APITenantFileUploadWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -73,7 +78,7 @@ class APITenantFileUploadTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APITenantFileUploadTestCase, self).tearDown()
+        # super(APITenantFileUploadWithTenantSchemaTestCase, self).tearDown()
 
     def _create_test_file(self, path):
         """

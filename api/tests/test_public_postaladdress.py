@@ -22,8 +22,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APIPublicPostalAdressTestCase(APITestCase, TenantTestCase):
+class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -39,7 +44,7 @@ class APIPublicPostalAdressTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APIPublicPostalAdressTestCase, self).setUp()
+        super(APIPublicPostalAdressWithPublicSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -67,7 +72,7 @@ class APIPublicPostalAdressTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APIPublicPostalAdressTestCase, self).tearDown()
+        # super(APIPublicPostalAdressWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

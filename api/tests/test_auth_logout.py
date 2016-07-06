@@ -20,7 +20,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APILogoutTestCase(APITestCase, TenantTestCase):
+class APILogoutWithPublicSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = [
         # 'banned_domains.json',
         # 'banned_ips.json',
@@ -28,6 +28,11 @@ class APILogoutTestCase(APITestCase, TenantTestCase):
         # 'groups',
         # 'permissions',
     ]
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -42,7 +47,7 @@ class APILogoutTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APILogoutTestCase, self).setUp()
+        super(APILogoutWithPublicSchemaTestCase, self).setUp()
 
         self.user = User.objects.get()
         token = Token.objects.get(user__username=TEST_USER_USERNAME)
@@ -55,7 +60,7 @@ class APILogoutTestCase(APITestCase, TenantTestCase):
         for user in users.all():
             user.delete()
         tokens = Token.objects.all()
-        # super(APILogoutTestCase, self).tearDown()
+        super(APILogoutWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_api_logout_with_success(self):
