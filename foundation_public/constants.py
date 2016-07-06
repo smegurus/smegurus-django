@@ -7,6 +7,12 @@ HOW_DISCOVERED_OPTIONS = (
     ("Other", _("Other")),
 )
 
+HOW_MANY_SERVED_OPTIONS = (
+    (1, _('1-10')),
+    (2, _('11-50')),
+    (3, _('50+')),
+)
+
 QUESTION_CATEGORY_OPTIONS = (
     (1, _('Pre-Intake Registration')),
     (2, _('Intake Registration')),

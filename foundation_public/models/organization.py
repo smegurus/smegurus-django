@@ -13,7 +13,7 @@ from foundation_public.models.language import PublicLanguage
 from foundation_public.models.openinghoursspecification import PublicOpeningHoursSpecification
 from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
-
+from foundation_public import constants
 
 
 class PublicOrganization(TenantMixin, AbstractPublicThing):
@@ -39,6 +39,10 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     # Django-Tenant Information.
     auto_create_schema = True
     auto_drop_schema = True
+
+    # ------------------
+    # Schema Fields
+    # ------------------
 
     # General Information.
     address = models.ForeignKey(
@@ -175,6 +179,80 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         help_text=_('The users that belong to this Organization.'),
         blank=True,
         related_name='organization_users_%(app_label)s_%(class)s_related',
+    )
+
+    # ------------------
+    # Non-Schema Fields
+    # ------------------
+
+    # Metric
+    how_many_served = models.PositiveSmallIntegerField(
+        _("How many entrepreneurs served"),
+        help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
+        default=0,
+        blank=True,
+        choices=constants.HOW_MANY_SERVED_OPTIONS,
+    )
+    is_tos_signed = models.BooleanField(
+        _("Is terms of service signed"),
+        default=True
+    )
+
+    # Social Media
+    twitter_url = models.URLField(
+        _("Twitter"),
+        null=True,
+        blank=True
+    )
+    facebook_url = models.URLField(
+        _("Facebook"),
+        null=True,
+        blank=True
+    )
+    instagram_url = models.URLField(
+        _("Instagram"),
+        null=True,
+        blank=True
+    )
+    linkedin_url = models.URLField(
+        _("Linkedin"),
+        null=True,
+        blank=True
+    )
+    github_url = models.URLField(
+        _("GitHub"),
+        null=True,
+        blank=True
+    )
+    google_plus_url = models.URLField(
+        _("Google Plus"),
+        null=True,
+        blank=True
+    )
+    youtube_url = models.URLField(
+        _("Instagram"),
+        null=True,
+        blank=True
+    )
+    flickr_url = models.URLField(
+        _("Flickr"),
+        null=True,
+        blank=True
+    )
+    pintrest_url = models.URLField(
+        _("Pintrest"),
+        null=True,
+        blank=True
+    )
+    reddit_url = models.URLField(
+        _("Reddit"),
+        null=True,
+        blank=True
+    )
+    soundcloud_url = models.URLField(
+        _("Soundcloud"),
+        null=True,
+        blank=True
     )
 
     def __str__(self):
