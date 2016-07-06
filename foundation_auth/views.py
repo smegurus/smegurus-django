@@ -70,20 +70,15 @@ def user_launchpad_page(request):
     DEVELOPER NOTES:
     - Organization-User relationship is one to one.
     """
-    if request.tenant.schema_name == 'public' or request.tenant.schema_name == 'test':
-        print("PUBLIC SCHEMA RUNNING...")
+    # First check to see if this User belongs to any Organizations and if
+    # the User does then go to that Organizations "Dashboard".
+    try:
+        organization = PublicOrganization.objects.get(users__id=request.user.id)
+        url = organization.reverse(request, 'tenant_dashboard')
+        return HttpResponseRedirect(url)  # Go to our new URL.
+    except PublicOrganization.DoesNotExist:
         return HttpResponseRedirect(reverse('foundation_auth_org_registration'))
-    print("TENANT SCHEMA RUNNING...")
-
-    # Fetch the organization that this User belongs to.
-    # Note: This only works because the assumption is there is One-to-One
-    #       relationship between Organization and Users.
-    org = PublicOrganization.objects.all()
-    print(org)
-    org = get_object_or_404(PublicOrganization, users__id=request.user.id)
-    url = org.reverse(request, 'tenant_dashboard')
-    return HttpResponseRedirect(url)  # Go to our new URL.
-
+        
 
 @login_required(login_url='/en/login')
 def organization_registration_page(request):
