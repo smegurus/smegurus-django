@@ -20,7 +20,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APIRegistrationTestCase(APITestCase, TenantTestCase):
+class APIRegistrationWithPublicSchemaTestCase(APITestCase, TenantTestCase):
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
+
     @classmethod
     def setUpTestData(cls):
         Group.objects.bulk_create([
@@ -44,7 +50,7 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(APIRegistrationTestCase, self).setUp()
+        super(APIRegistrationWithPublicSchemaTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -55,7 +61,7 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        # super(APIRegistrationTestCase, self).tearDown()
+        super(APIRegistrationWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_api_registration_with_success_for_org_admin(self):
@@ -65,65 +71,29 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
             user.delete()
         self.assertEqual(User.objects.count(), 0)
 
-        with PublicOrganization(schema_name='public'):
-            # Perform the Unit-Tests
-            url = reverse('api_register')
-            data = {
-                'username': 'whalesquid@hideauze.com',
-                'email': 'whalesquid@hideauze.com',
-                'password': 'test',
-                'first_name': 'Transhumanist',
-                'last_name': '#1'
-            }
-            response = self.c.post(url, data, format='json')
+        # Perform the Unit-Tests
+        url = reverse('api_register')
+        data = {
+            'username': 'whalesquid@hideauze.com',
+            'email': 'whalesquid@hideauze.com',
+            'password': 'test',
+            'first_name': 'Transhumanist',
+            'last_name': '#1'
+        }
+        response = self.c.post(url, data, format='json')
 
-            # Verify general info.
-            self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-            self.assertEqual(User.objects.count(), 1)
-            self.assertEqual(User.objects.get().email, 'whalesquid@hideauze.com')
-            group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-
-            # Verify group membership.
-            # is_org_admin = False
-            # for a_group in User.objects.get().groups.all():
-            #     if a_group == group:
-            #         is_org_admin = True
-            # self.assertEqual(is_org_admin, True)  #TODO: Fix why it is False in unit testing.
-
-    @transaction.atomic
-    def test_api_registration_with_success_for_entrepreneur(self):
-        # Remove the existing user(s) before continuing.
+        # Verify general info.
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
-        for user in User.objects.all():
-            user.delete()
-        self.assertEqual(User.objects.count(), 0)
+        self.assertEqual(User.objects.get().email, 'whalesquid@hideauze.com')
+        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
 
-        # Run unit test for a different schema.
-        with PublicOrganization(schema_name='mikasoftware'):
-            # Perform the Unit-Tests
-            response = self.c.get(reverse('api_register'))
-            url = reverse('api_register')
-            data = {
-                'username': 'whalesquid@hideauze.com',
-                'email': 'whalesquid@hideauze.com',
-                'password': 'test',
-                'first_name': 'Transhumanist',
-                'last_name': '#1'
-            }
-            response = self.c.post(url, data, format='json')
-
-            # Verify general info.
-            self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-            self.assertEqual(User.objects.count(), 1)
-            self.assertEqual(User.objects.get().email, 'whalesquid@hideauze.com')
-            group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-
-            # # Verify group membership.
-            # is_entrepreneur = False
-            # for a_group in User.objects.get().groups.all():
-            #     if a_group == group:
-            #         is_entrepreneur = True
-            # self.assertEqual(is_entrepreneur, True)  #TODO: Fix why it is False in unit testing.
+        # Verify group membership.
+        is_org_admin = False
+        for a_group in User.objects.get().groups.all():
+            if a_group == group:
+                is_org_admin = True
+        self.assertEqual(is_org_admin, True)
 
     @transaction.atomic
     def test_api_registration_with_failure(self):
@@ -140,3 +110,81 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(User.objects.get().email, TEST_USER_EMAIL)
+
+
+class APIRegistrationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+
+    def setup_tenant(self, tenant):
+        """Tenant Schema"""
+        tenant.schema_name = 'galacticalliance'
+        tenant.name = "Galactic Alliance of Humankind"
+
+    @classmethod
+    def setUpTestData(cls):
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
+
+        user = User.objects.create_user(  # Create our user.
+            email=TEST_USER_EMAIL,
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        user.is_active = True
+        user.save()
+
+    @transaction.atomic
+    def setUp(self):
+        translation.activate('en')  # Set English
+        super(APIRegistrationWithTenantSchemaTestCase, self).setUp()
+        self.c = TenantClient(self.tenant)
+
+    @transaction.atomic
+    def tearDown(self):
+        users = User.objects.all()
+        for user in users.all():
+            user.delete()
+        groups = Group.objects.all()
+        for group in groups.all():
+            group.delete()
+        super(APIRegistrationWithTenantSchemaTestCase, self).tearDown()
+
+
+    @transaction.atomic
+    def test_api_registration_with_success_for_entrepreneur(self):
+        # Remove the existing user(s) before continuing.
+        self.assertEqual(User.objects.count(), 1)
+        for user in User.objects.all():
+            user.delete()
+        self.assertEqual(User.objects.count(), 0)
+
+        # Perform the Unit-Tests
+        response = self.c.get(reverse('api_register'))
+        url = reverse('api_register')
+        data = {
+            'username': 'whalesquid@hideauze.com',
+            'email': 'whalesquid@hideauze.com',
+            'password': 'test',
+            'first_name': 'Transhumanist',
+            'last_name': '#1'
+        }
+        response = self.c.post(url, data, format='json')
+
+        # Verify general info.
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(User.objects.get().email, 'whalesquid@hideauze.com')
+        group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+
+        # Verify group membership.
+        is_entrepreneur = False
+        for a_group in User.objects.get().groups.all():
+            if a_group == group:
+                is_entrepreneur = True
+        self.assertEqual(is_entrepreneur, True)
