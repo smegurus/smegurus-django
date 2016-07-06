@@ -82,27 +82,27 @@
         });
     }
 
-    function evaluate_me(id, success_callback, error_callback) {
-        var url = "/api/publicme/" + id + "/evaluate_me/?format=json";
-        jQuery.ajax({
-            url: url,
-            headers: {
-                Authorization: 'Token ' + '{{ request.token }}'
-            },
-            cache: false,
-            contentType: false,
-            processData: false,
-            type: 'GET',
-            success: function(json_results){
-                success_callback(json_results);
-            },
-            error: function(xhr,status,error) {
-                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
-                error_callback(xhr.responseText);
-            },
-            complete: function(xhr,status) {
-                // Do nothing.
-            }
-        });
-    }
+    // function evaluate_me(id, success_callback, error_callback) {
+    //     var url = "/api/publicme/" + id + "/evaluate_me/?format=json";
+    //     jQuery.ajax({
+    //         url: url,
+    //         headers: {
+    //             Authorization: 'Token ' + '{{ request.token }}'
+    //         },
+    //         cache: false,
+    //         contentType: false,
+    //         processData: false,
+    //         type: 'GET',
+    //         success: function(json_results){
+    //             success_callback(json_results);
+    //         },
+    //         error: function(xhr,status,error) {
+    //             console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+    //             error_callback(xhr.responseText);
+    //         },
+    //         complete: function(xhr,status) {
+    //             // Do nothing.
+    //         }
+    //     });
+    // }
 </script>

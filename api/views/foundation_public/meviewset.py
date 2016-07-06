@@ -28,7 +28,7 @@ class PublicMeViewSet(viewsets.ModelViewSet):
     filter_class = PublicMeFilter
 
 
-    @detail_route(methods=['get'], permission_classes=[IsOwnerOrReadOnly])
-    def evaluate_me(self, request, pk=None):
-        # call_command('evaluate_me',str(pk))
-        return Response({'status': 'success', 'message': 'successfully ran game loop for user.'})
+    # @detail_route(methods=['get'], permission_classes=[IsOwnerOrReadOnly])
+    # def evaluate_me(self, request, pk=None):
+    #     # call_command('evaluate_me',str(pk))
+    #     return Response({'status': 'success', 'message': 'successfully ran game loop for user.'})
