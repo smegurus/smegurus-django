@@ -22,6 +22,7 @@ urlpatterns = [
     # url(r'^i18n/', include('django.conf.urls.i18n')),
     url('^', include('django.contrib.auth.urls')),
     url(r'^', include('api.urls')),
+    url(r'^', include('landpage.urls')), # Index into our app here.
 ]
 
 urlpatterns += i18n_patterns(
