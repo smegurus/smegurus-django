@@ -38,8 +38,8 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
 
         # Perform a custom post-save action.
         if org:
+            # Our tenant requires a domain so create it here.
             from foundation_public.models.organization import Domain
-            # Add one or more domains for the tenant
             domain = Domain()
             domain.domain = org.schema_name + '.smegurus.xyz'
             domain.tenant = org
@@ -49,3 +49,7 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
                 domain.save()
             except Exception as e:
                 print(e)
+
+            # Attach our current logged in User for our Organization.
+            org.users.add(self.request.user)
+            org.save()

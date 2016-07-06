@@ -41,11 +41,14 @@ def user_activate_page(request, signed_value):
     user.save()
 
     # Get the domain URL.
-    org = PublicOrganization.objects.get(users__id=user.id)
-    group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
-    login_url = org.reverse(request, 'foundation_auth_user_login')
-    if group in user.groups.all():
+    try:
+        org = PublicOrganization.objects.get(users__id=user.id)
+        group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
         login_url = org.reverse(request, 'foundation_auth_user_login')
+        if group in user.groups.all():
+            login_url = org.reverse(request, 'foundation_auth_user_login')
+    except PublicOrganization.DoesNotExist:
+        login_url = reverse('foundation_auth_user_login')
 
     return render(request, 'foundation_auth/user_activate_view.html',{
         'user': user,
@@ -75,6 +78,8 @@ def user_launchpad_page(request):
     # Fetch the organization that this User belongs to.
     # Note: This only works because the assumption is there is One-to-One
     #       relationship between Organization and Users.
+    org = PublicOrganization.objects.all()
+    print(org)
     org = get_object_or_404(PublicOrganization, users__id=request.user.id)
     url = org.reverse(request, 'tenant_dashboard')
     return HttpResponseRedirect(url)  # Go to our new URL.
