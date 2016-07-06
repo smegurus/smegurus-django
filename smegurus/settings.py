@@ -102,6 +102,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
     'smegurus.middleware.SMEGurusTokenMiddleware',                 # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
@@ -177,7 +178,7 @@ if env_var("IS_DEBUG"):
     PASSWORD_HASHERS = (
         'django.contrib.auth.hashers.MD5PasswordHasher',
     )
-    
+
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 
