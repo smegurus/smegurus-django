@@ -17,8 +17,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
+class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
     fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'  # Do not change.
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -40,17 +45,10 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
         user.is_active = True
         user.save()
 
-    def setup_tenant(self, tenant):
-        """
-        Add any additional setting to the tenant before it get saved. This is required if you have
-        required fields.
-        """
-        tenant.name = "SME Gurus"
-
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(FoundationAuthViewsTestCases, self).setUp()
+        super(FoundationAuthViewsWithPublicSchemaTestCases, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -66,13 +64,7 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
-        groups = Group.objects.all()
-        for group in groups.all():
-            group.delete()
-        super(FoundationAuthViewsTestCases, self).tearDown()
+        super(FoundationAuthViewsWithPublicSchemaTestCases, self).tearDown()
 
     @transaction.atomic
     def test_user_registration_page_view(self):
@@ -80,7 +72,7 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
         response = self.unauthorized_client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'ajax_new_user',response.content)
+        self.assertIn(b'ajax_new_user',response.content)
 
     @transaction.atomic
     def test_user_activation_required_page_view(self):
@@ -137,18 +129,16 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_org_successful_registration_view(self):
-        user = User.objects.get(email=TEST_USER_EMAIL)
-        with PublicOrganization(schema_name='public'):
-           # Create tenant in this block
-            org = PublicOrganization.objects.create(schema_name="test_mikasoftware", owner=user,)
+        # Assign User to Organization.
+        self.tenant.users.add(self.user)
+        self.tenant.owner = self.user
+        self.tenant.save()
 
-            # Test
-            response = self.authorized_client.get(reverse('foundation_auth_org_successful_registration'))
-
-            # Verify
-            self.assertEqual(response.status_code, 200)
-            self.assertTrue(len(response.content) > 1)
-            self.assertIn(b'test_mikasoftware',response.content)
+        # Run the test and verify.
+        response = self.authorized_client.get(reverse('foundation_auth_org_successful_registration'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Successful Registration',response.content)
 
     @transaction.atomic
     def test_user_launchpad_page_view_with_unauthorized(self):
@@ -162,29 +152,63 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_302_FOUND)
         self.assertRedirects(response, '/en/register/organization')
 
-    # @transaction.atomic
-    # def test_user_launchpad_page_view_with_redirect_to_dashboard(self):
-    #     with PublicOrganization(schema_name='public', owner=self.user):
-    #         new_tenant = PublicOrganization.objects.create(schema_name='mikasoftware', owner=self.user)
-    #         domain = Domain()
-    #         domain.domain = 'localhost' # don't add your port or www here! on a local server you'll want to use localhost here
-    #         domain.tenant = new_tenant
-    #         domain.is_primary = True
-    #         try:
-    #             domain.save()
-    #         except Exception as e:
-    #             print(e)
-    #
-    #         token = Token.objects.get(user__username=TEST_USER_USERNAME)
-    #         self.authorized_client = TenantClient(new_tenant, HTTP_AUTHORIZATION='Token ' + token.key)
-    #         self.authorized_client.login(
-    #             username=TEST_USER_USERNAME,
-    #             password=TEST_USER_PASSWORD
-    #         )
-    #
-    #         url = reverse('foundation_auth_user_launchpad')
-    #         # url = 'http://mikasoftware.localhost/en/launchpad'
-    #         print(url)
-    #         response = self.authorized_client.get(url)
-    #         self.assertEqual(response.status_code, status.HTTP_302_FOUND) #TODO: Figure out 404 error?
-    #         self.assertRedirects(response, 'http://mikasoftware.example.com/en/dashboard')
+
+class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
+    fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'galacticalliance'
+        tenant.name = "Galactic Alliance of Humankind"
+
+    @classmethod
+    def setUpTestData(cls):
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
+
+        user = User.objects.create_user(  # Create our User.
+            email=TEST_USER_EMAIL,
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        user.is_active = True
+        user.save()
+
+    @transaction.atomic
+    def setUp(self):
+        translation.activate('en')  # Set English
+        super(FoundationAuthViewsWithTenatSchemaTestCases, self).setUp()
+
+        # Initialize our test data.
+        self.user = User.objects.get()
+        token = Token.objects.get(user__username=TEST_USER_USERNAME)
+
+        # Setup.
+        self.unauthorized_client = TenantClient(self.tenant)
+        self.authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        self.authorized_client.login(
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+
+        # Update Organization.
+        self.tenant.users.add(self.user)
+        self.tenant.save()
+
+    @transaction.atomic
+    def tearDown(self):
+        super(FoundationAuthViewsWithTenatSchemaTestCases, self).tearDown()
+
+    @transaction.atomic
+    def test_user_launchpad_page_view_with_redirect_to_dashboard(self):
+        url = reverse('foundation_auth_user_launchpad')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+        self.assertRedirects(response, 'http://galacticalliance.example.com/en/dashboard')

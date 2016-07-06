@@ -20,8 +20,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class FoundationAuthSendActivationEmailTestCase(APITestCase, TenantTestCase):
+class FoundationAuthSendActivationEmailWithPublicSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'  # Do not change this!
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -36,7 +41,7 @@ class FoundationAuthSendActivationEmailTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(FoundationAuthSendActivationEmailTestCase, self).setUp()
+        super(FoundationAuthSendActivationEmailWithPublicSchemaTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -44,7 +49,7 @@ class FoundationAuthSendActivationEmailTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(FoundationAuthSendActivationEmailTestCase, self).tearDown()
+        super(FoundationAuthSendActivationEmailWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_send_public_activation_email(self):

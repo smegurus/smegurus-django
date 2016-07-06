@@ -14,8 +14,13 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class FoundationAuthModelsTestCases(APITestCase, TenantTestCase):
+class FoundationAuthModelsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
     fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
     def setUpTestData(cls):
@@ -24,7 +29,7 @@ class FoundationAuthModelsTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(FoundationAuthModelsTestCases, self).setUp()
+        super(FoundationAuthModelsWithPublicSchemaTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -32,7 +37,7 @@ class FoundationAuthModelsTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(FoundationAuthModelsTestCases, self).tearDown()
+        super(FoundationAuthModelsWithPublicSchemaTestCases, self).tearDown()
 
     @transaction.atomic
     def test_user_sends_activation_when_created_with_success(self):
