@@ -3,12 +3,12 @@
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/me/";
+        var url = "/api/publicme/";
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
         }
-        
+
         jQuery.ajax({
             url: url,
             headers: {
@@ -23,7 +23,7 @@
             error: function(xhr,status,error) {
                 // Print the error log to console.
                 console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
-                    
+
                 // Convert JSON string into javascript associative array.
                 var json = jQuery.parseJSON(xhr.responseText);
                 error_callback(json); // Return JSON
@@ -35,7 +35,7 @@
     }
 
     function get_me(id, success_callback, error_callback) {
-        var url = "/api/me/" + id + "/?format=json";
+        var url = "/api/publicme/" + id + "/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -59,7 +59,7 @@
     }
 
     function delete_me(id, success_callback, error_callback) {
-        var url = "/api/me/" + id + "/";
+        var url = "/api/publicme/" + id + "/";
         jQuery.ajax({
             url: url,
             headers: {
@@ -83,7 +83,7 @@
     }
 
     function evaluate_me(id, success_callback, error_callback) {
-        var url = "/api/me/" + id + "/evaluate_me/?format=json";
+        var url = "/api/publicme/" + id + "/evaluate_me/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
