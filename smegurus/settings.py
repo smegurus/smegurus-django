@@ -150,7 +150,7 @@ DATABASE_ROUTERS = (
 
 TENANT_MODEL = "foundation_public.PublicOrganization" # app.Model
 
-TENANT_DOMAIN_MODEL = "foundation_public.Domain"  # app.Model
+TENANT_DOMAIN_MODEL = "foundation_public.PublicDomain"  # app.Model
 
 TENANT_LIMIT_SET_CALLS = True
 

@@ -19,6 +19,7 @@ from api.views.foundation_public.geocoordinateviewset import PublicGeoCoordinate
 from api.views.foundation_public.brandviewset import PublicBrandViewSet
 from api.views.foundation_public.placeviewset import PublicPlaceViewSet
 from api.views.foundation_public.countryviewset import PublicCountryViewSet
+from api.views.foundation_public.meviewset import PublicMeViewSet
 from api.views.foundation_public.organizationviewset import PublicOrganizationViewSet
 
 from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
@@ -31,7 +32,6 @@ from api.views.foundation_tenant.geocoordinateviewset import GeoCoordinateViewSe
 from api.views.foundation_tenant.brandviewset import BrandViewSet
 from api.views.foundation_tenant.placeviewset import PlaceViewSet
 from api.views.foundation_tenant.countryviewset import CountryViewSet
-from api.views.foundation_tenant.meviewset import MeViewSet
 
 
 # URL Generator.
@@ -48,6 +48,7 @@ router.register(r'publicgeocoordinate', PublicGeoCoordinateViewSet)
 router.register(r'publicbrand', PublicBrandViewSet)
 router.register(r'publicplace', PublicPlaceViewSet)
 router.register(r'publiccountry', PublicCountryViewSet)
+router.register(r'publicme', PublicMeViewSet)
 router.register(r'publicorganization', PublicOrganizationViewSet)
 
 router.register(r'tenantfileupload', TenantFileUploadViewSet)
@@ -60,7 +61,6 @@ router.register(r'tenantgeocoordinate', GeoCoordinateViewSet)
 router.register(r'tenantbrand', BrandViewSet)
 router.register(r'tenantplace', PlaceViewSet)
 router.register(r'tenantcountry', CountryViewSet)
-router.register(r'tenantme', MeViewSet)
 
 
 # The API URLs are now determined automatically by the router.

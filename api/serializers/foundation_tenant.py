@@ -14,7 +14,6 @@ from foundation_tenant.models.geocoordinate import GeoCoordinate
 from foundation_tenant.models.country import Country
 from foundation_tenant.models.brand import Brand
 from foundation_tenant.models.place import Place
-from foundation_tenant.models.me import Me
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -75,9 +74,3 @@ class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'address', 'fax_number', 'geo', 'global_location_number', 'has_map', 'isic_v4', 'logo', 'opening_hours_specification', 'photo', 'telephone',)
-
-
-class MeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Me
-        fields = ('id', 'created', 'last_modified', 'owner', 'url')

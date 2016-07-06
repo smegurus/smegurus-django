@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import ugettext_lazy as _
 from django.core.management import call_command
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.models.organization import Domain
+from foundation_public.models.organization import PublicDomain
 from smegurus.settings import env_var
 
 
@@ -29,7 +29,7 @@ class Command(BaseCommand):
             print(e)
 
         # Add one or more domains for the tenant
-        domain = Domain()
+        domain = PublicDomain()
         domain.domain = 'smegurus.xyz' # don't add your port or www here! on a local server you'll want to use localhost here
         domain.tenant = public_tenant
         domain.is_primary = True
@@ -53,7 +53,7 @@ class Command(BaseCommand):
             print(e)
 
         # Add one or more domains for the tenant
-        domain = Domain()
+        domain = PublicDomain()
         domain.domain = 'demo.smegurus.xyz' # don't add your port or www here!
         domain.tenant = tenant
         domain.is_primary = True

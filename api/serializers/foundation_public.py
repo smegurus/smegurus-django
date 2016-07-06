@@ -15,6 +15,7 @@ from foundation_public.models.brand import PublicBrand
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.organization import PublicOrganization
+from foundation_public.models.me import PublicMe
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -89,6 +90,12 @@ class PublicPlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicPlace
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'address', 'fax_number', 'geo', 'global_location_number', 'has_map', 'isic_v4', 'logo', 'opening_hours_specification', 'photo', 'telephone',)
+
+
+class PublicMeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PublicMe
+        fields = ('id', 'created', 'last_modified', 'owner', 'url')
 
 
 class PublicCountrySerializer(serializers.ModelSerializer):

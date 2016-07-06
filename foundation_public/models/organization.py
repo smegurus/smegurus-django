@@ -22,6 +22,12 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
 
     https://schema.org/Organization
     """
+    class Meta:
+        app_label = 'foundation_public'
+        db_table = 'biz_organizations'
+        verbose_name = 'Organization'
+        verbose_name_plural = 'Organizations'
+
     # Payment Information.
     on_trial = models.BooleanField(default=False)
     paid_until =  models.DateField(
@@ -185,5 +191,11 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         return url
 
 
-class Domain(DomainMixin):
+class PublicDomain(DomainMixin):
+    class Meta:
+        app_label = 'foundation_public'
+        db_table = 'biz_domains'
+        verbose_name = 'Domain'
+        verbose_name_plural = 'Domains'
+
     pass

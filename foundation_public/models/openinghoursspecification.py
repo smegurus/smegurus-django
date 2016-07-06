@@ -48,3 +48,6 @@ class PublicOpeningHoursSpecification(AbstractPublicThing):
         blank=True,
         null=True
     )
+
+    def __str__(self):
+        return str(self.name)
