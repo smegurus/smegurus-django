@@ -1,5 +1,12 @@
 from django.utils.translation import ugettext_lazy as _
 
+HOW_DISCOVERED_OPTIONS = (
+    ("Google search", _("Google search")),
+    ("SMEgurus.com", _("SMEgurus.com")),
+    ("Social media", _("Social media")),
+    ("Other", _("Other")),
+)
+
 QUESTION_CATEGORY_OPTIONS = (
     (1, _('Pre-Intake Registration')),
     (2, _('Intake Registration')),

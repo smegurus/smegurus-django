@@ -78,7 +78,7 @@ def user_launchpad_page(request):
         return HttpResponseRedirect(url)  # Go to our new URL.
     except PublicOrganization.DoesNotExist:
         return HttpResponseRedirect(reverse('foundation_auth_org_registration'))
-        
+
 
 @login_required(login_url='/en/login')
 def organization_registration_page(request):
