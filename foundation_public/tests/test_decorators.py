@@ -4,20 +4,27 @@ from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from foundation_public.models.organization import PublicOrganization, Domain
+from foundation_public import constants
 
 
-class BaseTestCase(TenantTestCase):
+class FoundationPublicDecoratorWithPublicSchemaTestCase(TenantTestCase):
     fixtures = [
-        'banned_domains.json',
-        'banned_ips.json',
-        'banned_words.json',
-        'groups',
+        # 'banned_domains.json',
+        # 'banned_ips.json',
+        # 'banned_words.json',
+        # 'groups',
         # 'permissions',
     ]
 
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'
+        tenant.name = "Galactic Alliance of Humankind"
+
     @transaction.atomic
     def setUp(self):
-        super(BaseTestCase, self).setUp()
+        super(FoundationPublicDecoratorWithPublicSchemaTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -25,11 +32,43 @@ class BaseTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(BaseTestCase, self).tearDown()
+        super(FoundationPublicDecoratorWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
-    def test_landpage_view(self):
-        response = self.c.get(reverse('landpage'))
+    def test_tenant_required_decorator_with_access_denied(self):
+        response = self.c.get(reverse('tenant_is_valid'))
+        self.assertEqual(response.status_code, 403)
+
+
+class FoundationPublicDecoratorWithTenantSchemaTestCase(TenantTestCase):
+    fixtures = [
+        # 'banned_domains.json',
+        # 'banned_ips.json',
+        # 'banned_words.json',
+        # 'groups',
+        # 'permissions',
+    ]
+
+    def setup_tenant(self, tenant):
+        """Tenant Schema"""
+        tenant.schema_name = 'galactic'
+        tenant.name = "Galactic Alliance of Humankind"
+
+    @transaction.atomic
+    def setUp(self):
+        super(FoundationPublicDecoratorWithTenantSchemaTestCase, self).setUp()
+        self.c = TenantClient(self.tenant)
+
+    @transaction.atomic
+    def tearDown(self):
+        users = User.objects.all()
+        for user in users.all():
+            user.delete()
+        super(FoundationPublicDecoratorWithTenantSchemaTestCase, self).tearDown()
+
+    @transaction.atomic
+    def test_tenant_required_decorator_with_access_granted(self):
+        response = self.c.get(reverse('tenant_is_valid'))
         self.assertEqual(response.status_code, 200)
         self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'This is a land page.',response.content) #TODO: Change text
+        self.assertIn(b'access-granted',response.content)

@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbid
 def tenant_required(view_func):
     """Decorator ensures an subdomain is associated with the view request."""
     def wrapper(request, *args, **kwargs):
-        if request.tenant.schema_name != "public":
+        if request.tenant.schema_name != "public" and request.tenant.schema_name != "test":
             return view_func(request, *args, **kwargs)
         else:
             return HttpResponseForbidden("Missing tenant.")
