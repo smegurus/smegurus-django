@@ -2,6 +2,7 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 
@@ -30,6 +31,6 @@ class LandpageTestCase(TenantTestCase):
     @transaction.atomic
     def test_landpage_view(self):
         response = self.c.get(reverse('landpage'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'This is a land page.',response.content) #TODO: Change text
