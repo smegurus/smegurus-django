@@ -62,10 +62,10 @@ class APIBrandTestCase(APITestCase, TenantTestCase):
         brands = Brand.objects.all()
         for brand in brands.all():
             brand.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIBrandTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):
@@ -111,9 +111,9 @@ class APIBrandTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put(self):
         # Delete any previous data.
-        postal_addesses = Brand.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
+        brands = Brand.objects.all()
+        for brand in brands.all():
+            brand.delete()
 
         # Create a new object with our specific test data.
         Brand.objects.create(

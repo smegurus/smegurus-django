@@ -55,6 +55,7 @@ class APIRegistrationTestCase(APITestCase, TenantTestCase):
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
+        # super(APIRegistrationTestCase, self).tearDown()
 
     @transaction.atomic
     def test_api_registration_with_success_for_org_admin(self):

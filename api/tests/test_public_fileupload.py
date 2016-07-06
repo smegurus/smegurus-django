@@ -70,10 +70,10 @@ class APIPublicFileUploadTestCase(APITestCase, TenantTestCase):
         entries = PublicFileUpload.objects.all()
         for entry in entries.all():
             entry.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIPublicFileUploadTestCase, self).tearDown()
 
     def _create_test_file(self, path):
         """

@@ -44,6 +44,7 @@ class FoundationAuthSendActivationEmailTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        super(FoundationAuthSendActivationEmailTestCase, self).tearDown()
 
     @transaction.atomic
     def test_send_public_activation_email(self):

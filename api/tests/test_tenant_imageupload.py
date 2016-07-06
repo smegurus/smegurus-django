@@ -74,10 +74,10 @@ class APITenantImageUploadTestCase(APITestCase, TenantTestCase):
         image_uploads = TenantImageUpload.objects.all()
         for an_image in image_uploads.all():
             an_image.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APITenantImageUploadTestCase, self).tearDown()
 
     def _create_test_image(self, path):
         # Create the image.

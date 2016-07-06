@@ -63,10 +63,10 @@ class APIPlaceTestCase(APITestCase, TenantTestCase):
         places = Place.objects.all()
         for place in places.all():
             place.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIPlaceTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

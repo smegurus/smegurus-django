@@ -64,10 +64,10 @@ class APIGeoCoordinateTestCase(APITestCase, TenantTestCase):
         geo_codes = GeoCoordinate.objects.all()
         for geo_code in geo_codes.all():
             geo_code.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIGeoCoordinateTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

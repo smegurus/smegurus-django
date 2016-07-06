@@ -64,10 +64,10 @@ class APIPostalAdressTestCase(APITestCase, TenantTestCase):
         postal_addesses = PostalAddress.objects.all()
         for postal_address in postal_addesses.all():
             postal_address.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIPostalAdressTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

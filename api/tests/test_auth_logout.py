@@ -55,6 +55,7 @@ class APILogoutTestCase(APITestCase, TenantTestCase):
         for user in users.all():
             user.delete()
         tokens = Token.objects.all()
+        # super(APILogoutTestCase, self).tearDown()
 
     @transaction.atomic
     def test_api_logout_with_success(self):

@@ -63,10 +63,10 @@ class APIOpeningHoursSpecificationTestCase(APITestCase, TenantTestCase):
         objts = OpeningHoursSpecification.objects.all()
         for obj in objts.all():
             obj.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIOpeningHoursSpecificationTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list(self):

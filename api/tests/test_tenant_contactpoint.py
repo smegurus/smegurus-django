@@ -63,10 +63,10 @@ class APIContactPointTestCase(APITestCase, TenantTestCase):
         contact_points = ContactPoint.objects.all()
         for contact_point in contact_points.all():
             contact_point.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIContactPointTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

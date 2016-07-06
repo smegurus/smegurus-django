@@ -64,10 +64,10 @@ class APICountryTestCase(APITestCase, TenantTestCase):
         countrys = Country.objects.all()
         for country in countrys.all():
             country.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APICountryTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

@@ -69,10 +69,10 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
+        super(FoundationAuthViewsTestCases, self).tearDown()
 
     @transaction.atomic
     def test_user_registration_page_view(self):
@@ -149,7 +149,7 @@ class FoundationAuthViewsTestCases(APITestCase, TenantTestCase):
             self.assertEqual(response.status_code, 200)
             self.assertTrue(len(response.content) > 1)
             self.assertIn(b'test_mikasoftware',response.content)
-            
+
     @transaction.atomic
     def test_user_launchpad_page_view_with_unauthorized(self):
         response = self.unauthorized_client.get(reverse('foundation_auth_user_launchpad'))

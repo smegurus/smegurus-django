@@ -6,7 +6,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 
 
-class CustomMiddlewareTestCase(TenantTestCase):
+class CustomPublicMiddlewareTestCase(TenantTestCase):
     fixtures = [
         'banned_domains.json',
         'banned_ips.json',
@@ -17,7 +17,7 @@ class CustomMiddlewareTestCase(TenantTestCase):
 
     @transaction.atomic
     def setUp(self):
-        super(CustomMiddlewareTestCase, self).setUp()
+        super(CustomPublicMiddlewareTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -25,6 +25,7 @@ class CustomMiddlewareTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(CustomPublicMiddlewareTestCase, self).tearDown()
 
     @transaction.atomic
     def test_pass(self):

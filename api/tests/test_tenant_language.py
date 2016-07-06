@@ -64,10 +64,10 @@ class APILanguageTestCase(APITestCase, TenantTestCase):
         languages = Language.objects.all()
         for language in languages.all():
             language.delete()
-
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APILanguageTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):

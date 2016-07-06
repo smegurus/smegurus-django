@@ -32,6 +32,7 @@ class FoundationAuthModelsTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        super(FoundationAuthModelsTestCases, self).tearDown()
 
     @transaction.atomic
     def test_user_sends_activation_when_created_with_success(self):

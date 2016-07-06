@@ -49,6 +49,7 @@ class APIActivationTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        # super(APIActivationTestCase, self).tearDown()
 
     @transaction.atomic
     def test_api_activation_with_authentication_success(self):

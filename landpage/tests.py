@@ -25,7 +25,7 @@ class LandpageTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        self.tenant.delete()
+        # super(LandpageTestCase, self).tearDown()
 
     @transaction.atomic
     def test_landpage_view(self):
