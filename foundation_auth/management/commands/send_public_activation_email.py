@@ -4,6 +4,8 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from foundation_public import constants
+from foundation_public.models.organization import PublicOrganization
 from smegurus.settings import env_var
 
 
@@ -29,30 +31,27 @@ class Command(BaseCommand):
         id_sting = str(user.id).encode()
         value = signer.sign(id_sting)
 
-#         (for organizations):
-#
-# Subject - Account Activation - SME Gurus for your Organization
-#
-# Thank you for signing up your organization for SME Gurus! Please click the following link to validate your account.
-#
-# If you believe you have received this message in error, please contact support@smegurus.com
-#
-# Thank you!
-#
-# (for entrepreneurs):
-#
-# Subject - Account Activation - SME Gurus
-#
-# Thank you for signing up your SME Gurus account! Please click the following link to validate your account.
-#
-# If you believe you have received this message in error, please contact support@smegurus.com
-#
-# Thank you!
-
-        # Generate the message of the email and include the signed value
-        # along with the URL to go to to activate the user.
+        # Variables used to generate your output.
+        subject_text = ''
         html_text = 'Click the following link to activate your account: ';
         html_text += 'http://smegurus.xyz/en/activate/' + value + '/'
+
+        # Get the specific groups we will filter by.
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+
+        # Generate the message of the email and include the signed value
+        # along with the URL to go to to activate the user for the specific
+        # group User type.
+        url = 'http://smegurus.xyz/en/activate/' + value + '/'
+        if entrepreneur_group in user.groups.all():
+            print("Is Entreprenuer")
+            subject_text = _('Account Activation - SME Gurus')
+            html_text = _('Thank you for signing up your organization for SME Gurus! Please click the following link to validate your account.\n\n %(url)s \n\n If you believe you have received this message in error, please contact support@smegurus.com\n\nThank you!') % {'url': str(url)}
+        if org_admin_group in user.groups.all():
+            print("Is Org Admin")
+            subject_text = _('Account Activation - SME Gurus for your Organization')
+            html_text = _('Thank you for signing up your SME Gurus account! Please click the following link to validate your account.\n\n %(url)s \n\n If you believe you have received this message in error, please contact support@smegurus.com \n\n Thank you!') % {'url': str(url)}
 
         # Debugging purposes only.
         # print(html_text)
