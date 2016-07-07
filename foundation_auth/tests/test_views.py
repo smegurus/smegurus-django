@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public.models.organization import PublicOrganization, Domain
+from foundation_public.models.organization import PublicOrganization, PublicDomain
 from foundation_public import constants
 
 

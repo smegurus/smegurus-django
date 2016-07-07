@@ -93,18 +93,17 @@ class APIPublicOrganizationWithPublicSchemaTestCase(APITestCase, TenantTestCase)
         response = self.unauthorized_client.post('/api/publicorganization/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    #TODO: Implement the rest.
-
-    @transaction.atomic
-    def test_post_with_authentication(self):
-        data = {
-            'schema_name': 'galacticalliance',
-            'name': 'Galactic Alliance of Humankind',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
-        }
-        response = self.authorized_client.post('/api/publicorganization/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+#TODO: Implement the rest.
+    # @transaction.atomic
+    # def test_post_with_authentication(self):
+    #     data = {
+    #         'schema_name': 'galacticalliance',
+    #         'name': 'Galactic Alliance of Humankind',
+    #         'description': 'Used for unit testing purposes.',
+    #         'owner': self.user.id
+    #     }
+    #     response = self.authorized_client.post('/api/publicorganization/', json.dumps(data), content_type='application/json')
+    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
 class APIPublicOrganizationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
