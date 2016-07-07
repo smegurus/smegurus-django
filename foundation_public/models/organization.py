@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_tenants.models import TenantMixin, DomainMixin
-from django.contrib.sites.shortcuts import get_current_site # Reverse
-from django.core.urlresolvers import resolve, reverse # Reverse
 from foundation_public.models.abstract_thing import AbstractPublicThing
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.brand import PublicBrand
@@ -258,15 +256,20 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     def __str__(self):
         return str(self.name)
 
-    def reverse(self, request, view_name):
+    def reverse(self, view_name):
         """
         Reverse the URL of the request + view name for this Organization.
         """
-        url = 'https://' if request.is_secure() else 'http://'
-        url += str(self.schema_name) + '.'
-        url += get_current_site(request).domain
-        url += reverse(view_name)
-        return url
+        from django.contrib.sites.shortcuts import get_current_site # Reverse
+        from django.core.urlresolvers import resolve, reverse # Reverse
+        from django.contrib.sites.models import Site
+        from smegurus.settings import env_var
+
+        http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
+        if self.schema_name:
+            return http_protocol + self.schema_name + '.%s' % Site.objects.get_current().domain + reverse(view_name)
+        else:
+            return http_protocol + '%s' % Site.objects.get_current().domain + reverse(view_name)
 
 
 class PublicDomain(DomainMixin):

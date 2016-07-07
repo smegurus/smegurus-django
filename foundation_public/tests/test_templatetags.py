@@ -1,7 +1,6 @@
 from django.db import transaction
 from django.contrib.auth.models import User
 from django.utils import translation
-from django.core.urlresolvers import resolve, reverse
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain

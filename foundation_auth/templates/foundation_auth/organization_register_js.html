@@ -64,10 +64,28 @@
         ); // end Organization
     }
 
+    var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";
+    var check = function(string){
+        for(i = 0; i < specialChars.length;i++){
+            if(string.indexOf(specialChars[i]) > -1){
+                return true
+            }
+        }
+        return false;
+    };
+
     function ajax_save_org() {
-        // Defensive Code: Name handling.
+        // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
             alert("{% trans 'Missing Sub-Domain Name' %}");
+            return;
+        }
+        // Defensive Code: Protect against illegal characters.
+        if( check($('#id_schema_name').val()) == false){
+            // Code that needs to execute when none of the above is in the string.
+            // (Do nothing.)
+        } else {
+            alert("{% trans 'Your sub-domain string contains illegal characters.' %}");
             return;
         }
 

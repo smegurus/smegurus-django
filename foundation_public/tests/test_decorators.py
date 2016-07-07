@@ -9,13 +9,7 @@ from foundation_public import constants
 
 
 class FoundationPublicDecoratorWithPublicSchemaTestCase(TenantTestCase):
-    fixtures = [
-        # 'banned_domains.json',
-        # 'banned_ips.json',
-        # 'banned_words.json',
-        # 'groups',
-        # 'permissions',
-    ]
+    fixtures = []
 
     def setup_tenant(self, tenant):
         """Public Schema"""

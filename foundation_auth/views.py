@@ -49,9 +49,9 @@ def user_activate_page(request, signed_value):
     try:
         org = PublicOrganization.objects.get(users__id=user.id)
         group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
-        login_url = org.reverse(request, 'foundation_auth_user_login')
+        login_url = org.reverse('foundation_auth_user_login')
         if group in user.groups.all():
-            login_url = org.reverse(request, 'foundation_auth_user_login')
+            login_url = org.reverse('foundation_auth_user_login')
     except PublicOrganization.DoesNotExist:
         login_url = reverse('foundation_auth_user_login')
 
@@ -81,7 +81,7 @@ def user_launchpad_page(request):
     # the User does then go to that Organizations "Dashboard".
     try:
         organization = PublicOrganization.objects.get(users__id=request.user.id)
-        url = organization.reverse(request, 'tenant_dashboard')
+        url = organization.reverse('tenant_dashboard')
         return HttpResponseRedirect(url)  # Go to our new URL.
     except PublicOrganization.DoesNotExist:
         return HttpResponseRedirect(reverse('foundation_auth_org_registration'))
