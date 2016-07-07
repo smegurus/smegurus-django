@@ -1,10 +1,9 @@
 {% extends 'foundation_public/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress foundation_public_tags %}
 {% block content %}
 
 <h1>Successful Registration</h1>
 <p>You have successfully registered your Organization! Final step is to login and begin:</p>
-<a href="{{ tenant_login_url }}">Login My Organization</a>
-
+<a href="{{ tenant_url organization 'foundation_auth_user_login' }}">Login My Organization</a>
 
 {% endblock content %}

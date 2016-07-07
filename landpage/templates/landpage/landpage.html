@@ -1,5 +1,5 @@
 {% extends 'foundation_public/base.html' %}
-{% load staticfiles i18n %}
+{% load staticfiles i18n foundation_public_tags %}
 {% block content %}
     <h1>This is a land page.</h1>
     <p>Here are the URLS:</p>
@@ -19,4 +19,23 @@
             {% endif %}
         </ul>
     </p>
+    <h2>Entrepreneurs</h2>
+    <p>
+
+        <ul>
+        {% for org in organizations.all %}
+            {% if org.schema_name != 'public' %}
+            <li>
+                {{ org }}
+                <ul>
+                    <li><a href="{% tenant_url org.schema_name 'foundation_auth_user_registration' %}">Register</a></li>
+                    <li><a href="{% tenant_url org.schema_name 'foundation_auth_user_login' %}">Login</a></li>
+                </ul>
+            </li>
+            {% endif %}
+        {% empty %}
+            <li>No Organizations created,</li>
+        {% endfor %}
+        </ul>
+    <p>
 {% endblock content %}
