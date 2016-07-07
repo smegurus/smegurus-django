@@ -9,8 +9,11 @@
 <form style="width:280px;margin:auto;">
     <h1>Login</h1>
     <p>Login using your email and password.</p>
-    <input type="text" placeholder="{% trans 'Email' %}" name="email" id="id_email" />
-    <input type="password" placeholder="{% trans 'Password' %}" name="pass1" id="id_password" />
+    {% for field in form %}
+        {{ field.label_tag }} {{ field }}
+        {{ field.errors }}<br/>
+    {% endfor %}
+    {{ form.non_field_errors }}
     <input onclick="ajax_login();" type="button" value="{% trans 'Login' %}" class="ui-btn ui-corner-all" />
 </form>
 

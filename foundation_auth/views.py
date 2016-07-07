@@ -8,11 +8,11 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from smegurus.settings import env_var
-from foundation_public import constants
-from foundation_public.models.organization import PublicOrganization
-from foundation_public.constants import *
 from foundation_public.forms.userform import UserForm
+from foundation_public.forms.loginform import LoginForm
+from foundation_public.models.organization import PublicOrganization
+from foundation_public import constants
+from smegurus.settings import env_var
 
 
 def user_registration_page(request):
@@ -60,7 +60,9 @@ def user_activate_page(request, signed_value):
 
 
 def user_login_page(request):
-    return render(request, 'foundation_auth/user_login_view.html',{})
+    return render(request, 'foundation_auth/user_login_view.html',{
+        'form': LoginForm(),
+    })
 
 
 @login_required(login_url='/en/login')

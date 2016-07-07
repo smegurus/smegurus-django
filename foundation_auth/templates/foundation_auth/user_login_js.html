@@ -5,14 +5,10 @@
             username,
             password,
             function(json_result) {
-                console.log("ajax_login: SUCCESS");
-                console.log(json_result);
                 success_callback();
             },
             function(error_json_result) {
-                console.log("ajax_login: ERROR");
-                console.log(error_json_result);
-                // Do nothing.
+                error_callback();
             }
         ); // End Login
     }
@@ -21,14 +17,14 @@
         // Defensive Code: Name handling.
         if( $('#id_email').val() == "" ){
             alert("Missing Email");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter your first name." %}');
+            return;
+        }
+        if ( !is_email_valid( $('#id_email').val() ) ) {
+            alert("Email not valid.");
             return;
         }
         if( $('#id_password').val() == "" ){
             alert("Missing Password");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter your last name." %}');
             return;
         }
 
@@ -36,16 +32,12 @@
             $('#id_email').val(),
             $('#id_password').val(),
             function(login_json_result) {
-
                 console.log(login_json_result); // Debugging purposes only.
                 window.location = "{% url 'foundation_auth_user_launchpad' %}";
-
             },
             function(login_error_json_result) {
-
                 console.log(login_error_json_result);
                 alert("Wrong username or password.");
-
             }
         ); // end Login
     }
