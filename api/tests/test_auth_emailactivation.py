@@ -19,13 +19,7 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
 class APIEmailActivationTestCase(APITestCase, TenantTestCase):
-    fixtures = [
-        # 'banned_domains.json',
-        # 'banned_ips.json',
-        # 'banned_words.json',
-        # 'groups',
-        # 'permissions',
-    ]
+    fixtures = []
 
     def setup_tenant(self, tenant):
         """Public Schema"""

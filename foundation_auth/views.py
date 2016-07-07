@@ -12,6 +12,7 @@ from foundation_public.models.organization import PublicOrganization
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
 from foundation_public.forms.organizationform import PublicOrganizationForm
+from foundation_public.forms.postaladdressform import PublicPostalAddressForm
 from foundation_public import constants
 from smegurus.settings import env_var
 
@@ -96,7 +97,8 @@ def organization_registration_page(request):
         return HttpResponseBadRequest(_("User cannot own any organization when registering a new organization."))
     else:
         return render(request, 'foundation_auth/organization_register_view.html',{
-            'form': PublicOrganizationForm(),
+            'org_form': PublicOrganizationForm(),
+            'address_form': PublicPostalAddressForm(),
         })
 
 

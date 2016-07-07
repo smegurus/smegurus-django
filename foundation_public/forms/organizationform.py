@@ -28,14 +28,18 @@ class PublicOrganizationForm(forms.ModelForm):
             }),
             'name': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter name')
+                'placeholder': _('Enter name.')
             }),
-            # 'last_name': TextInput(attrs={
-            #     'class': u'form-control',
-            #     'placeholder': _('Enter Last Name')
-            # }),
-            # 'email': EmailInput(attrs={
-            #     'class': u'form-control',
-            #     'placeholder': _('Enter Email Address')
-            # }),
+            'url': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter website URL.')
+            }),
+            'facebook_url': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter Facebook URL.')
+            }),
+            'twitter_url': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter Twitter URL.')
+            }),
         }

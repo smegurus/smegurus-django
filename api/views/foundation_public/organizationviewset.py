@@ -33,19 +33,17 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
         """
         # Pre-save action: Include the owner attribute directly, rather
         # than from request data.
-        print("Creating Tenant")
         org = serializer.save(owner=self.request.user)
 
         # Perform a custom post-save action.
         if org:
             # Our tenant requires a domain so create it here.
             from foundation_public.models.organization import Domain
-            domain = Domain()
+            domain = PublicDomain()
             domain.domain = org.schema_name + '.smegurus.xyz'
             domain.tenant = org
             domain.is_primary = False
             try:
-                print("Creating Tenant Domain")
                 domain.save()
             except Exception as e:
                 print(e)

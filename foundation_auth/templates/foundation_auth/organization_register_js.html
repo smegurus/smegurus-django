@@ -42,7 +42,7 @@
             'facebook_url': $('#id_facebook_url').val(),
             'twitter_url': $('#id_twitter_url').val(),
             'how_many_served': $('#id_how_many_served').val(),
-            'is_tos_signed': $('#id_is_tos_signed').val(),
+            'is_tos_signed': $('#id_is_tos_signed').is(':checked'),
         };
 
         if ( $('#id_hidden_organization').val() ) {
@@ -67,7 +67,13 @@
     function ajax_save_org() {
         // Defensive Code: Name handling.
         if( $('#id_schema_name').val() == "" ){
-            alert("Missing Sub-Domain Name");
+            alert("{% trans 'Missing Sub-Domain Name' %}");
+            return;
+        }
+
+        // Defensive Code:
+        if ( $('#id_how_many_served').val() == '' ) {
+            alert("{% trans 'Please select how many entreprenuers are served' %}");
             return;
         }
 

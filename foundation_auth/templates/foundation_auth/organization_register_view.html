@@ -11,13 +11,25 @@
 <form style="width:280px;margin:auto;">
     <h1>Organization Registration</h1>
     <p>Fill in the following fields to register your business.</p>
-    <!-- Form -->
-    {% for field in form %}
-        {{ field.label_tag }} {{ field }}
-        {{ field.errors }}<br/>
+    <!-- Org Form -->
+    {% for org_field in org_form %}
+        {% if org_field.id_for_label != 'id_how_many_served' %}
+            {{ org_field.label_tag }} {{ org_field }}
+            {{ org_field.errors }}<br/>
+        {% else %}
+            <!-- Postal Form -->
+            {% for address_field in address_form %}
+                {{ address_field.label_tag }} {{ address_field }}
+                {{ address_field.errors }}<br/>
+            {% endfor %}
+            {{ address_field.non_field_errors }}
+            <!-- /.Postal Form -->
+            {{ org_field.label_tag }} {{ org_field }}
+            {{ org_field.errors }}<br/>
+        {% endif %}
     {% endfor %}
-    {{ form.non_field_errors }}
-    <!-- /.Form -->
+    {{ org_field.non_field_errors }}
+    <!-- /.Org Form -->
     <br/>
     <!-- Submit -->
     <input onclick="ajax_save_org();" type="button" value="{% trans 'Finalize' %}" class="ui-btn ui-corner-all" />
