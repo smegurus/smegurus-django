@@ -46,6 +46,7 @@ SECRET_KEY = env_var("SECRET_KEY")
 DEBUG = env_var("IS_DEBUG")
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# Note: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-USE_X_FORWARDED_HOST
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = [env_var("ALLOWED_HOSTS")]
@@ -55,7 +56,8 @@ ADMINS = [(env_var("ADMIN_NAME"), env_var("ADMIN_EMAIL")),]
 
 SITE_ID = 1
 
-# Automatically redirect to SSL. (https://docs.djangoproject.com/en/dev/ref/settings/#secure-ssl-redirect)
+# Automatically redirect to SSL.
+# Note: https://docs.djangoproject.com/en/dev/ref/settings/#secure-ssl-redirect
 SECURE_SSL_REDIRECT = env_var("SECURE_SSL_REDIRECT")
 
 

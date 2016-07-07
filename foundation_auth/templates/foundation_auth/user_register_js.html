@@ -7,14 +7,10 @@
         // Defensive Code: Name handling.
         if( $('#id_first_name').val() == "" ){
             alert("Missing First Name");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter your first name." %}');
             return;
         }
         if( $('#id_last_name').val() == "" ){
             alert("Missing Last Name");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter your last name." %}');
             return;
         }
 
@@ -22,44 +18,33 @@
         //                 validation occured on the inputted entries.
         if ($('#id_email').val() == '') {
             alert("Missing Email");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter a email address." %}');
             return;
         }
         if ( !is_email_valid( $('#id_email').val() ) ) {
             alert("Email not valid.");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter a valid email address." %}');
             return;
         }
 
         // Defensive Code: Password handling.
         if ( $('#id_password').val() == "" ){
             alert("Missing password");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter a password." %}');
             return;
         }
-        if ( $('#id_password2').val() == "" ){
+        if ( $('#id_password_repeated').val() == "" ){
             alert("Missing repeat password");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please confirm your password." %}');
             return;
         }
-        if ( $('#id_password').val() != $('#id_password2').val() ){
+        if ( $('#id_password').val() != $('#id_password_repeated').val() ){
             alert("password does not match");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Passwords do not match." %}');
             return;
         }
 
         // Defensive Code: Ensure that the user agrees to the terms before proceeding.
-        //var is_tsa_checked = $('#id_register_tos2').is(':checked');
-        //if (is_tsa_checked == false) {
-            //$('.alert-danger').text('{% trans "Please agree to the service agreement to continue." %}');
-            //$('.alert-danger').show();
-            //return;
-        //}
+        var is_tsa_checked = $('#id_is_tos_signed').is(':checked');
+        if (is_tsa_checked == false) {
+            alert("{% trans 'Please agree to the service agreement to continue.' %}");
+            return;
+        }
 
         api_register(
             function(json_result) {

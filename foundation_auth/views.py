@@ -12,10 +12,13 @@ from smegurus.settings import env_var
 from foundation_public import constants
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.constants import *
+from foundation_public.forms.userform import UserForm
 
 
 def user_registration_page(request):
-    return render(request, 'foundation_auth/user_register_view.html',{})
+    return render(request, 'foundation_auth/user_register_view.html',{
+        'form': UserForm(),
+    })
 
 
 def user_activation_required_page(request):

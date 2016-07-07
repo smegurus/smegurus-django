@@ -13,11 +13,15 @@
         <h1>User Registration</h1>
     {% endif %}
     <p>For Schema: {{ request.tenant.schema_name }}</p>
-    <input type="text" placeholder="{% trans 'Email Address' %}" name="email" id="id_email" />
-    <input type="text" placeholder="{% trans 'First Name' %}" name="fname" id="id_first_name" />
-    <input type="text" placeholder="{% trans 'Last Name' %}" name="lname" id="id_last_name" />
-    <input type="password" placeholder="{% trans 'Password' %}" name="pass1" id="id_password" />
-    <input type="password" placeholder="{% trans 'Confirm Password' %}" name="pass2" id="id_password2" />
+
+    {% for field in form %}
+        {% if field.label != 'Old Password' %}
+            {{ field.label_tag }} {{ field }}
+            {{ field.errors }}<br/>
+        {% endif %}
+    {% endfor %}
+    {{ form.non_field_errors }}
+    <br/>
     <input onclick="ajax_register();" type="button" value="{% trans 'Register' %}" class="ui-btn ui-corner-all" />
 </form>
 
