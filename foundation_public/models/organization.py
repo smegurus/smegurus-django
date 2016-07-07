@@ -195,7 +195,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),
-        default=True
+        default=False
     )
 
     # Social Media

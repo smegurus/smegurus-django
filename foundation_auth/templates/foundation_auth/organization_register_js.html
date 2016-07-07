@@ -37,10 +37,12 @@
         var data = {
             'schema_name': $('#id_schema_name').val(),
             'name': $('#id_name').val(),
-            'alternate_name': $('#id_alternative_name').val(),
-            'legal_name': $('#id_legalname').val(),
-            'email': $('#id_email').val(),
-            'telephone': $('#id_telephone').val(),
+            'alternate_name': $('#id_name').val(),
+            'legal_name': $('#id_name').val(),
+            'facebook_url': $('#id_facebook_url').val(),
+            'twitter_url': $('#id_twitter_url').val(),
+            'how_many_served': $('#id_how_many_served').val(),
+            'is_tos_signed': $('#id_is_tos_signed').val(),
         };
 
         if ( $('#id_hidden_organization').val() ) {
@@ -65,9 +67,14 @@
     function ajax_save_org() {
         // Defensive Code: Name handling.
         if( $('#id_schema_name').val() == "" ){
-            alert("Missing Schema Name");
-            //$('#login-popup').popup('open');
-            //$('#id_error').html('{% trans "Please enter your first name." %}');
+            alert("Missing Sub-Domain Name");
+            return;
+        }
+
+        // Defensive Code: Ensure that the user agrees to the terms before proceeding.
+        var is_tsa_checked = $('#id_is_tos_signed').is(':checked');
+        if (is_tsa_checked == false) {
+            alert("{% trans 'Please agree to the service agreement to continue.' %}");
             return;
         }
 

@@ -23,7 +23,7 @@ class PublicMe(AbstractPlacePerson):
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),
-        default=True
+        default=False
     )
 
     def __str__(self):

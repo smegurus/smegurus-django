@@ -244,7 +244,7 @@ class Migration(migrations.Migration):
                 ('telephone', models.CharField(blank=True, help_text='The telephone number.', max_length=31, null=True, verbose_name='Telephone')),
                 ('vat_id', models.CharField(blank=True, help_text='The Value-added Tax ID of the organization or person.', max_length=255, null=True, verbose_name='Tax ID')),
                 ('how_discovered', models.CharField(blank=True, choices=[('Google search', 'Google search'), ('SMEgurus.com', 'SMEgurus.com'), ('Social media', 'Social media'), ('Other', 'Other')], help_text='The details of how the User discovered our website.', max_length=127, null=True, verbose_name='How user discovered SMEGurus')),
-                ('is_tos_signed', models.BooleanField(default=True, verbose_name='Is terms of service signed')),
+                ('is_tos_signed', models.BooleanField(default=False, verbose_name='Is terms of service signed')),
                 ('PublicBrand', models.ForeignKey(blank=True, help_text='The PublicBrand(s) associated with a product or service, or the PublicBrand(s) maintained by an organization or business person.', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='abstract_person_organization_PublicBrand_foundation_public_publicme_related', to='foundation_public.PublicBrand')),
             ],
             options={
@@ -305,7 +305,7 @@ class Migration(migrations.Migration):
                 ('telephone', models.CharField(blank=True, help_text='The telephone number.', max_length=31, null=True, verbose_name='Telephone')),
                 ('vat_id', models.CharField(blank=True, help_text='The Value-added Tax ID of the organization or person.', max_length=255, null=True, verbose_name='Tax ID')),
                 ('how_many_served', models.PositiveSmallIntegerField(blank=True, choices=[(1, '1-10'), (2, '11-50'), (3, '50+')], default=0, help_text='Pick the choice which best describes how many entrepreneurs are served.', verbose_name='How many entrepreneurs served')),
-                ('is_tos_signed', models.BooleanField(default=True, verbose_name='Is terms of service signed')),
+                ('is_tos_signed', models.BooleanField(default=False, verbose_name='Is terms of service signed')),
                 ('twitter_url', models.URLField(blank=True, null=True, verbose_name='Twitter')),
                 ('facebook_url', models.URLField(blank=True, null=True, verbose_name='Facebook')),
                 ('instagram_url', models.URLField(blank=True, null=True, verbose_name='Instagram')),

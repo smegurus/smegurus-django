@@ -8,9 +8,10 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
+from foundation_public.models.organization import PublicOrganization
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
-from foundation_public.models.organization import PublicOrganization
+from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public import constants
 from smegurus.settings import env_var
 
@@ -94,7 +95,9 @@ def organization_registration_page(request):
     if org_membership_count >= 1:
         return HttpResponseBadRequest(_("User cannot own any organization when registering a new organization."))
     else:
-        return render(request, 'foundation_auth/organization_register_view.html',{})
+        return render(request, 'foundation_auth/organization_register_view.html',{
+            'form': PublicOrganizationForm(),
+        })
 
 
 @login_required(login_url='/en/login')

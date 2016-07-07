@@ -11,25 +11,14 @@
 <form style="width:280px;margin:auto;">
     <h1>Organization Registration</h1>
     <p>Fill in the following fields to register your business.</p>
-
-    <!-- Org -->
-    <input type="text" placeholder="{% trans 'Schema Name' %}" name="schema" id="id_schema_name" />
-    <input type="text" placeholder="{% trans 'Common Company Name' %}" name="fullname" id="id_name" />
-    <input type="text" placeholder="{% trans 'Alternative Company Name' %}" name="alternativename" id="id_alternative_name" />
-    <input type="text" placeholder="{% trans 'Full Legal Company Name' %}" name="legalname" id="id_legalname" />
-    <input type="text" placeholder="{% trans 'Email' %}" name="email" id="id_email" />
-    <input type="text" placeholder="{% trans 'Telephone' %}" name="telephone" id="id_telephone" />
-    <!-- /.Org -->
-
-    <!-- Address -->
-    <input type="text" placeholder="{% trans 'Country' %}" name="address_country" id="id_address_country" />
-    <input type="text" placeholder="{% trans 'Province' %}" name="address_region" id="id_address_region" />
-    <input type="text" placeholder="{% trans 'City' %}" name="address_locality" id="id_address_locality" />
-    <input type="text" placeholder="{% trans 'Postal Office Box Number' %}" name="post_office_box_number" id="id_post_office_box_number" />
-    <input type="text" placeholder="{% trans 'Postal Code' %}" name="postal_code" id="id_postal_code" />
-    <input type="text" placeholder="{% trans 'Address' %}" name="street_address" id="id_street_address" />
-    <!-- /.Address -->
-
+    <!-- Form -->
+    {% for field in form %}
+        {{ field.label_tag }} {{ field }}
+        {{ field.errors }}<br/>
+    {% endfor %}
+    {{ form.non_field_errors }}
+    <!-- /.Form -->
+    <br/>
     <!-- Submit -->
     <input onclick="ajax_save_org();" type="button" value="{% trans 'Finalize' %}" class="ui-btn ui-corner-all" />
     <!-- /.Submit -->

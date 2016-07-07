@@ -36,7 +36,10 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
         model = PublicOrganization
         fields = ('id', 'created', 'last_modified', 'owner', 'on_trial', 'paid_until', 'name', 'schema_name', 'address', 'brands',
          'contact_point', 'department', 'dissolution_date', 'duns', 'email', 'fax_number', 'founding_date', 'founding_location',
-         'global_location_number', 'isic_v4', 'legal_name', 'logo', 'naics', 'parent_organization', 'tax_id', 'telephone', 'vat_id', )
+         'global_location_number', 'isic_v4', 'legal_name', 'logo', 'naics', 'parent_organization', 'tax_id', 'telephone', 'vat_id',
+         'how_many_served', 'is_tos_signed', 'twitter_url', 'facebook_url', 'instagram_url', 'linkedin_url', 'github_url',
+         'google_plus_url', 'youtube_url', 'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url')
+
 
 class PublicImageUploadSerializer(serializers.ModelSerializer):
     class Meta:
