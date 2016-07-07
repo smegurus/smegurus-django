@@ -1,5 +1,5 @@
 <script>
-    function set_me(data, success_callback, error_callback)
+    function set_public_me(data, success_callback, error_callback)
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
@@ -34,7 +34,7 @@
         });
     }
 
-    function get_me(id, success_callback, error_callback) {
+    function get_public_me(id, success_callback, error_callback) {
         var url = "/api/publicme/" + id + "/?format=json";
         jQuery.ajax({
             url: url,
