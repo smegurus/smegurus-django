@@ -38,8 +38,7 @@ class FoundationPublicConfig(AppConfig):
 
             # Check 2: Make sure our fixtures have been imported.
             site = Site.objects.get_current().domain
-            if site.domain == 'example.com':
-                print(site.domain)
+            if str(site) == 'example.com':
                 errors.append(
                     Error(
                         'Sites not configured',
