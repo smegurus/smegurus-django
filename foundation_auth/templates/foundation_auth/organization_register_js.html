@@ -64,6 +64,35 @@
         ); // end Organization
     }
 
+    /**
+     *  Function will get the existing 'Me' object and update it.
+     */
+    function api_me(success_callback, error_callback) {
+        get_public_me(
+            {{ request.me.id }},
+            function(me) {
+                me['how_discovered'] = $('#id_how_discovered').val();
+                set_public_me(
+                    me,
+                    function(saved_me) {
+                        console.log(saved_me);
+                        success_callback(saved_me);
+                    },
+                    function(error2) {
+                        console.log(error2);
+                        error_callback(error2);
+                    }
+                ); // end "Save Me".
+            },
+            function(error) {
+                console.log(error);
+            }
+        ); // end "Get Me".
+    }
+
+    /**
+     *  Function will find special characters for jQuery.
+     */
     var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";
     var check = function(string){
         for(i = 0; i < specialChars.length;i++){
@@ -74,6 +103,9 @@
         return false;
     };
 
+    /**
+     *  Function will run the application logic.
+     */
     function ajax_save_org() {
         // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
@@ -95,6 +127,12 @@
             return;
         }
 
+        // Defensive Code: Prevent no answer for "How Discovered".
+        if ( $('#id_how_discovered').val() == '' ) {
+            alert("{% trans 'Please select how heared about us.' %}");
+            return;
+        }
+
         // Defensive Code: Ensure that the user agrees to the terms before proceeding.
         var is_tsa_checked = $('#id_is_tos_signed').is(':checked');
         if (is_tsa_checked == false) {
@@ -106,7 +144,8 @@
          *  Algorithm:
          *  1. Save the Postal Address.
          *  2. Save the Organization.
-         *  3. Load the dashboard page.
+         *  3. Save Me.
+         *  4. Load the dashboard page.
          */
         api_postal_address(
             function(pa_success_result) {
@@ -118,17 +157,29 @@
                     function(o_success_result) {
                         console.log("Successfully Created Organization");
                         console.log(o_success_result);
-                        window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+
+                        api_me(
+                            function(success_result) {
+                                console.log("Success");
+                                window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+                            },
+                            function(error_result) {
+                                console.log("Failed");
+                                alert(error_result); //TODO: Implement better error notification.
+                            }
+                        ); // end Me
                     },
                     function(o_error_result) {
                         console.log("BAD Organization");
                         console.log(o_error_result);
+                        alert(o_error_result); //TODO: Implement better error notification.
                     }
                 ); // end Organization
             },
             function(pa_error_result) {
                 console.log("BAD Postal Address");
                 console.log(pa_error_result);
+                alert(pa_error_result); //TODO: Implement better error notification.
             }
         ); // end Postal Address
     }

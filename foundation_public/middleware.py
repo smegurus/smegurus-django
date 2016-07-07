@@ -1,5 +1,6 @@
 from django.http import HttpResponseForbidden
 from foundation_public.models.banned import BannedIP
+from foundation_public.models.me import PublicMe
 
 
 class BanEnforcingMiddleware(object):
@@ -15,3 +16,18 @@ class BanEnforcingMiddleware(object):
             return HttpResponseForbidden('You are banned.')
         else:
             return None
+
+
+class PublicMeMiddleware(object):
+    def process_request(self, request):
+        """
+            The purpose of this middleware is to lookup the 'Me' object for
+            the authenticated user and attach it to the request. If the user
+            is authenticated and does not have a 'Me' object then it will be
+            created in this middleware.
+        """
+        if request.user.is_authenticated():
+            me, created = PublicMe.objects.get_or_create(owner=request.user)
+            request.me = me
+
+        return None  # Finish our middleware handler.

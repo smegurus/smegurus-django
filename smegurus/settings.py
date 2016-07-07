@@ -109,6 +109,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
+    'foundation_public.middleware.PublicMeMiddleware',             # Custom
     'smegurus.middleware.SMEGurusTokenMiddleware',                 # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
 ]

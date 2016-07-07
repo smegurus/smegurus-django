@@ -24,12 +24,28 @@
             {% endfor %}
             {{ address_field.non_field_errors }}
             <!-- /.Postal Form -->
+
+            <!-- Org Form -->
             {{ org_field.label_tag }} {{ org_field }}
             {{ org_field.errors }}<br/>
+            <!-- /.Org Form -->
+
+            <!-- Me Form -->
+            {% for me_field in me_form %}
+                {% if me_field.id_for_label == 'id_how_discovered' %}
+                    {{ me_field.label_tag }} {{ me_field }}
+                    {{ me_field.errors }}<br/>
+                {% endif %}
+            {% endfor %}
+            {{ me_field.non_field_errors }}
+            <!-- /.Me Form -->
         {% endif %}
     {% endfor %}
     {{ org_field.non_field_errors }}
     <!-- /.Org Form -->
+
+
+
     <br/>
     <!-- Submit -->
     <input onclick="ajax_save_org();" type="button" value="{% trans 'Finalize' %}" class="ui-btn ui-corner-all" />
