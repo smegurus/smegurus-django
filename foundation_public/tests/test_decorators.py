@@ -4,7 +4,7 @@ from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public.models.organization import PublicOrganization, Domain
+from foundation_public.models.organization import PublicOrganization, PublicDomain
 from foundation_public import constants
 
 
@@ -35,13 +35,7 @@ class FoundationPublicDecoratorWithPublicSchemaTestCase(TenantTestCase):
 
 
 class FoundationPublicDecoratorWithTenantSchemaTestCase(TenantTestCase):
-    fixtures = [
-        # 'banned_domains.json',
-        # 'banned_ips.json',
-        # 'banned_words.json',
-        # 'groups',
-        # 'permissions',
-    ]
+    fixtures = []
 
     def setup_tenant(self, tenant):
         """Tenant Schema"""
