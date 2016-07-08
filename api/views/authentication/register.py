@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+from django.core.management import call_command
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework.permissions import AllowAny
 from api.serializers.authentication import RegisterSerializer
@@ -35,3 +36,6 @@ class RegisterViewSet(generics.ListCreateAPIView):
             # print("Attaching to Organization:", self.request.tenant.schema_name)
             self.request.tenant.users.add(user)
             self.request.tenant.save()
+
+        # Send activation emails.
+        call_command('send_public_activation_email',str(user.email))

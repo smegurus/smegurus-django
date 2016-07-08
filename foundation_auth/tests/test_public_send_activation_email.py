@@ -80,7 +80,7 @@ class FoundationAuthSendActivationEmailWithPublicSchemaTestCase(APITestCase, Ten
         self.assertEqual(len(mail.outbox), 1)
 
         # Verify that the subject of the first message is correct.
-        self.assertEqual(mail.outbox[0].subject, 'Account Activation')
+        self.assertEqual(mail.outbox[0].subject, 'Account Activation - SME Gurus for your Organization')
 
     @transaction.atomic
     def test_send_public_activation_email_for_entrepreneur(self):
@@ -96,7 +96,8 @@ class FoundationAuthSendActivationEmailWithPublicSchemaTestCase(APITestCase, Ten
         self.assertEqual(len(mail.outbox), 1)
 
         # Verify that the subject of the first message is correct.
-        self.assertEqual(mail.outbox[0].subject, 'Account Activation')
+        print(mail.outbox[0].subject)
+        self.assertEqual(mail.outbox[0].subject, 'Account Activation - SME Gurus')
 
     @transaction.atomic
     def test_api_send_activation_with_no_email(self):
