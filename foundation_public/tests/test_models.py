@@ -1,7 +1,7 @@
 from django.core import mail
 from django.core.signing import Signer
 from django.db import transaction
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from rest_framework.test import APITestCase
