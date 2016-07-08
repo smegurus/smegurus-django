@@ -63,13 +63,13 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         related_name="organization_contact_point_%(app_label)s_%(class)s_related"
     )
-    department = models.ForeignKey(
-        'self',
-        help_text=_('A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe.'),
-        null=True,
-        blank=True,
-        related_name="organization_department_%(app_label)s_%(class)s_related"
-    )
+    # department = models.ForeignKey(
+    #     'self',
+    #     help_text=_('A relationship between an organization and a department of that organization, also described as an organization (allowing different urls, logos, opening hours). For example: a store with a pharmacy, or a bakery with a cafe.'),
+    #     null=True,
+    #     blank=True,
+    #     related_name="organization_department_%(app_label)s_%(class)s_related"
+    # )
     dissolution_date = models.DateField(
         _("Dissolution Date"),
         help_text=_('The date that this organization was dissolved.'),
@@ -144,13 +144,13 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         null=True,
     )
-    parent_organization = models.ForeignKey(
-        'self',
-        help_text=_('The larger organization that this organization is a branch of, if any. Supersedes branchOf.'),
-        null=True,
-        blank=True,
-        related_name="organization_parent_%(app_label)s_%(class)s_related"
-    )
+    # parent_organization = models.ForeignKey(
+    #     'self',
+    #     help_text=_('The larger organization that this organization is a branch of, if any. Supersedes branchOf.'),
+    #     null=True,
+    #     blank=True,
+    #     related_name="organization_parent_%(app_label)s_%(class)s_related"
+    # )
     tax_id = models.CharField(
         _("Tax ID"),
         max_length=255,

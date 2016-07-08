@@ -23,29 +23,30 @@ class FoundationPublicConfig(AppConfig):
             """
             errors = []  # Variable holds all the errors we detected in our system.
 
+            #TODO: Bugfix.
             # Check 1: Check to make sure our 'public' schema and 'demo' tenant
             #          schemas are setup before proceeding further.
-            organizations = PublicOrganization.objects.all()
-            if organizations.count() < 2:
-                errors.append(
-                    Error(
-                        'Django-Tenant not setup with Public and Tenant schema.',
-                        hint='To fix this problem, simply run the command \'./manage.py setup_org\' in your console.',
-                        obj=None,
-                        id='foundation_public.E002',
-                    )
-                )
-
-            # Check 2: Make sure our fixtures have been imported.
-            site = Site.objects.get_current().domain
-            if str(site) == 'example.com':
-                errors.append(
-                    Error(
-                        'Sites not configured',
-                        hint='To fix this problem, simply run the command \'./manage.py setup_fixtures\' in your console.',
-                        obj=None,
-                        id='foundation_public.E001',
-                    )
-                )
+            # organizations = PublicOrganization.objects.all()
+            # if organizations.count() < 2:
+            #     errors.append(
+            #         Error(
+            #             'Django-Tenant not setup with Public and Tenant schema.',
+            #             hint='To fix this problem, simply run the command \'./manage.py setup_org\' in your console.',
+            #             obj=None,
+            #             id='foundation_public.E002',
+            #         )
+            #     )
+            #
+            # # Check 2: Make sure our fixtures have been imported.
+            # site = Site.objects.get_current().domain
+            # if str(site) == 'example.com':
+            #     errors.append(
+            #         Error(
+            #             'Sites not configured',
+            #             hint='To fix this problem, simply run the command \'./manage.py setup_fixtures\' in your console.',
+            #             obj=None,
+            #             id='foundation_public.E001',
+            #         )
+            #     )
 
             return errors
