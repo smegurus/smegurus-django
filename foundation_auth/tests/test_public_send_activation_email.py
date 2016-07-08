@@ -41,7 +41,6 @@ class FoundationAuthSendActivationEmailWithPublicSchemaTestCase(APITestCase, Ten
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
-
         user = User.objects.create_user(  # Create our User.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,

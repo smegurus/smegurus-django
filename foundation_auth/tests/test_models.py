@@ -1,12 +1,13 @@
 from django.core import mail
 from django.core.signing import Signer
 from django.db import transaction
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -24,7 +25,15 @@ class FoundationAuthModelsWithPublicSchemaTestCases(APITestCase, TenantTestCase)
 
     @classmethod
     def setUpTestData(cls):
-        pass
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
 
     @transaction.atomic
     def setUp(self):

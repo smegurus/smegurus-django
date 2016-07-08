@@ -7,7 +7,7 @@ from django.http import QueryDict
 from django.test import TestCase
 from django.test import Client
 from django.utils import translation
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 from rest_framework import status
 from rest_framework.test import APIClient
@@ -18,6 +18,7 @@ from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_public.models.banned import BannedIP
 from foundation_tenant.models.imageupload import TenantImageUpload
+from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -35,7 +36,15 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # Initialize our test user.
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
         user = User.objects.create_user(  # Create our user.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,

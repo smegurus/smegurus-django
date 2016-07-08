@@ -25,6 +25,7 @@ from foundation_public.models.abstract_person import AbstractPlacePerson
 from foundation_public.models.me import PublicMe
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
+from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -44,7 +45,15 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
 
     @classmethod
     def setUpTestData(cls):
-        pass
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
 
     @transaction.atomic
     def setUp(self):

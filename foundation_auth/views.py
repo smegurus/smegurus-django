@@ -40,7 +40,7 @@ def user_activate_page(request, signed_value):
         signer = Signer()
         value = signer.unsign(signed_value)
     except Exception as e:
-        return HttpResponseBadRequest("Failed activating this account.")
+        return HttpResponseBadRequest(_("Failed activating this account."))
 
     # Get the user account and activate it.
     user = get_object_or_404(User, pk=value)
@@ -50,7 +50,7 @@ def user_activate_page(request, signed_value):
     # Get the domain URL.
     try:
         org = PublicOrganization.objects.get(users__id=user.id)
-        group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
+        group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         login_url = org.reverse('foundation_auth_user_login')
         if group in user.groups.all():
             login_url = org.reverse('foundation_auth_user_login')

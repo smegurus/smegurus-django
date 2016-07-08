@@ -36,7 +36,6 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
-
         user = User.objects.create_user(  # Create our User.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,
@@ -81,7 +80,7 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         self.assertTrue(len(response.content) > 1)
 
     @transaction.atomic
-    def test_user_activate_page_view_with_success(self):
+    def test_user_activate_page_view_with_success_for_entreprenuer(self):
         """
         Unit test will take a User account which hasen't been activated and
         run the URL where activation happens and verify the User has been
@@ -89,7 +88,9 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         """
         # Convert our User's ID into an encrypted value.
         user = User.objects.get(email=TEST_USER_EMAIL)
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         user.is_activet = False
+        user.groups.add(entrepreneur_group)
         user.save()
         signer = Signer()
         id_sting = str(user.id).encode()
@@ -108,10 +109,52 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         self.assertTrue(user.is_active)
 
     @transaction.atomic
-    def test_user_activate_page_view_with_failure(self):
-        # Run test & verify.
-        response = self.unauthorized_client.get(reverse('foundation_auth_user_activation', args=['bad-value'] ))
+    def test_user_activate_page_view_with_success_for_org_admin(self):
+        """
+        Unit test will take a User account which hasen't been activated and
+        run the URL where activation happens and verify the User has been
+        activated.
+        """
+        # Convert our User's ID into an encrypted value.
+        user = User.objects.get(email=TEST_USER_EMAIL)
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        user.is_activet = False
+        user.groups.add(org_admin_group)
+        user.save()
+        signer = Signer()
+        id_sting = str(user.id).encode()
+        value = signer.sign(id_sting)
+        self.tenant.users.add(user)
+        self.tenant.save()
+
+        # Run test.
+        url = reverse('foundation_auth_user_activation', args=[value])
+        response = self.unauthorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+
+        # Verify.
+        user = User.objects.get(email=TEST_USER_EMAIL)
+        self.assertTrue(user.is_active)
+
+    @transaction.atomic
+    def test_user_activate_page_view_with_failed_signiture(self):
+        # Run test & verify.
+        response = self.unauthorized_client.get(reverse('foundation_auth_user_activation', args=[666] ))
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Failed activating this account.', response.content)
+
+    @transaction.atomic
+    def test_user_activate_page_view_with_missing_user(self):
+        signer = Signer()
+        id_sting = str(666).encode()
+        value = signer.sign(id_sting)
+
+        # Run test & verify.
+        url = reverse('foundation_auth_user_activation', args=[value])
+        response = self.unauthorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(len(response.content) > 1)
 
     @transaction.atomic
@@ -119,7 +162,6 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         response = self.unauthorized_client.get(reverse('foundation_auth_user_login'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'This is a land page.',response.content) #TODO: Change text
 
     @transaction.atomic
     def test_org_reg_page_view(self):
