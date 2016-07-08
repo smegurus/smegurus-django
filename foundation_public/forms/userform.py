@@ -1,7 +1,7 @@
 from datetime import date
 from django import forms
 from django.db import models
-from django.forms import ModelForm, Textarea, TextInput, NumberInput, BooleanField
+from django.forms import ModelForm, Textarea, TextInput, NumberInput, BooleanField, EmailField
 from django.forms.widgets import EmailInput
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -26,12 +26,17 @@ class UserForm(forms.ModelForm):
                 'class': u'form-control',
                 'placeholder': _('Enter Last Name')
             }),
-            'email': EmailInput(attrs={
-                'class': u'form-control',
-                'placeholder': _('Enter Email Address')
-            }),
         }
-
+    email = forms.EmailField(
+        label='Email',
+        max_length=30, # NOTE: Must be limited to "Username" field's limit.
+        widget=forms.TextInput(attrs={
+            'type':'email',
+            'class':'form-control',
+            'placeholder': _('Enter Email')
+        }),
+        required=False,
+    )
     old_password = forms.CharField(
         label='Old Password',
         max_length=100,
