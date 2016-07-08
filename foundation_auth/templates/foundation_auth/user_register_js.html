@@ -55,6 +55,11 @@
                 // Convert the error json into string.
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
+                if (string.indexOf('A user with that username already exists.') > -1) {
+                    alert('A user with that username already exists.');
+                } else {
+                    alert('Unknown Error:' + string);
+                }
             }
         ); // end New User.
     }
