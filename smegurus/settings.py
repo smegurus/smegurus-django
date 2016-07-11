@@ -301,3 +301,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100
 }
+
+
+# Custom authentication
+# https://docs.djangoproject.com/en/dev/topics/auth/customizing/
+
+AUTHENTICATION_BACKENDS = (
+    'smegurus.backends.UserModelEmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+ )
