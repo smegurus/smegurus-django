@@ -1,0 +1,120 @@
+import base64
+import hashlib
+from django.core import mail
+from django.core.urlresolvers import resolve, reverse
+from django.db import transaction
+from django.test import TestCase
+from django.test import Client
+from django.utils import translation
+from django.contrib.auth.models import User, Group
+from django.contrib.auth import authenticate, login, logout
+from rest_framework import status
+from rest_framework.test import APIClient
+from rest_framework.test import APITestCase
+from rest_framework.authtoken.models import Token
+from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.client import TenantClient
+from django.core.management import call_command
+from foundation_public import constants
+from smegurus.settings import env_var
+
+
+TEST_USER_EMAIL = "ledo@gah.com"
+TEST_USER_USERNAME = "ledo"
+TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
+
+
+class SMEGurusBackendWithPublicSchemaTestCase(APITestCase, TenantTestCase):
+    fixtures = []
+
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'  # Do not change this!
+        tenant.name = "Galactic Alliance of Humankind"
+
+    @classmethod
+    def setUpTestData(cls):
+        Group.objects.bulk_create([
+            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
+            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
+            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
+            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
+            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
+            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
+            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
+        ])
+        user = User.objects.create_user(  # Create our User.
+            email=TEST_USER_EMAIL,
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        user.is_active = True
+        user.save()
+
+    @transaction.atomic
+    def setUp(self):
+        translation.activate('en')  # Set English
+        super(SMEGurusBackendWithPublicSchemaTestCase, self).setUp()
+        self.c = TenantClient(self.tenant)
+        self.user = User.objects.get()
+
+    @transaction.atomic
+    def tearDown(self):
+        users = User.objects.all()
+        for user in users.all():
+            user.delete()
+        groups = Group.objects.all()
+        for group in groups.all():
+            group.delete()
+        super(SMEGurusBackendWithPublicSchemaTestCase, self).tearDown()
+
+    @transaction.atomic
+    def test_authenticate_with_success(self):
+        # Setup
+        email = self.user.email.lower()  # Emails should be case-insensitive unique
+        converted = email.encode('utf8', 'ignore')  # Deal with internationalized email addresses
+        self.user.username = base64.urlsafe_b64encode(hashlib.sha256(converted).digest())[:30]
+        self.user.save()
+
+        # Test
+        token = Token.objects.get(user__email=TEST_USER_EMAIL)
+        authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        authenticated_user = authorized_client.login(
+            username=TEST_USER_EMAIL,
+            password=TEST_USER_PASSWORD
+        )
+        self.assertTrue(authenticated_user)
+
+    @transaction.atomic
+    def test_authenticate_with_failed_password(self):
+        # Setup
+        email = self.user.email.lower()  # Emails should be case-insensitive unique
+        converted = email.encode('utf8', 'ignore')  # Deal with internationalized email addresses
+        self.user.username = base64.urlsafe_b64encode(hashlib.sha256(converted).digest())[:30]
+        self.user.save()
+
+        # Test
+        token = Token.objects.get(user__email=TEST_USER_EMAIL)
+        authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        authenticated_user = authorized_client.login(
+            username=TEST_USER_EMAIL,
+            password='wrong password'
+        )
+        self.assertFalse(authenticated_user)
+
+    @transaction.atomic
+    def test_authenticate_with_missing_username(self):
+        # Setup
+        email = self.user.email.lower()  # Emails should be case-insensitive unique
+        converted = email.encode('utf8', 'ignore')  # Deal with internationalized email addresses
+        self.user.username = base64.urlsafe_b64encode(hashlib.sha256(converted).digest())[:30]
+        self.user.save()
+
+        # Test
+        token = Token.objects.get(user__email=TEST_USER_EMAIL)
+        authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        authenticated_user = authorized_client.login(
+            username='whalesquid@hideauze.com',
+            password=TEST_USER_PASSWORD
+        )
+        self.assertFalse(authenticated_user)
