@@ -25,8 +25,8 @@ class PublicMe(AbstractPlacePerson):
         _("Is terms of service signed"),
         default=False
     )
-    is_account_ready = models.BooleanField(
-        _("Is this account ready"),
+    is_setup = models.BooleanField(
+        _("Is this account setup and ready"),
         default=False,
         help_text=_('Variable controls whether the user profile has been setup.'),
     )
