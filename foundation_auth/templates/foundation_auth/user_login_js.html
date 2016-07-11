@@ -5,10 +5,10 @@
             username,
             password,
             function(json_result) {
-                success_callback();
+                success_callback(json_result);
             },
             function(error_json_result) {
-                error_callback();
+                error_callback(error_json_result);
             }
         ); // End Login
     }
@@ -36,8 +36,17 @@
                 window.location = "{% url 'foundation_auth_user_launchpad' %}";
             },
             function(login_error_json_result) {
-                console.log(login_error_json_result);
-                alert("Wrong username or password.");
+                var string = JSON.stringify( login_error_json_result );
+                console.log(string);
+                if (string.indexOf('username') > -1) {
+                    alert("Wrong username or password.");
+                } else if (string.indexOf('email') > -1) {
+                    alert("Wrong email or password.");
+                } else if (string.indexOf('disabled') > -1) {
+                    alert("User account is disabled.");
+                } else {
+                    alert('Unknown Error:' + string);
+                }
             }
         ); // end Login
     }

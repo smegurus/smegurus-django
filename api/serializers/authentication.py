@@ -37,9 +37,15 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username','email', 'password', 'first_name', 'last_name',)
 
+    def validate_email(self, value):
+        try:
+            User.objects.get(email=value)
+        except User.DoesNotExist:
+            return value
+        raise serializers.ValidationError({'email': 'Email already exists.',})
+
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)  # Create the user account.
-
         # Uniquely generate our 'username' by taking the email and create a hash.
         # Source: https://github.com/dabapps/django-email-as-username/blob/master/emailusernames/utils.py
         email = validated_data['email'].lower()  # Emails should be case-insensitive unique

@@ -252,6 +252,11 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         null=True,
         blank=True
     )
+    is_account_ready = models.BooleanField(
+        _("Is this account ready"),
+        default=False,
+        help_text=_('Variable controls whether the user profile has been setup.'),
+    )
 
     def __str__(self):
         return str(self.name)

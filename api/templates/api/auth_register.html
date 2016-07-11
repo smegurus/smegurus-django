@@ -18,9 +18,6 @@
                 success_callback(json_result); // Call back the function with the JSON results.
             },
             error: function(xhr,status,error) {
-                // Print the error log to console.
-                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
-
                 // Convert JSON string into javascript associative array.
                 var json = jQuery.parseJSON(xhr.responseText);
                 error_callback(json); // Return JSON
