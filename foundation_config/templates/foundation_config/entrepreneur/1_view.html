@@ -1,0 +1,18 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'foundation_config/entrepreneur/1_js.html' %}
+{% endcompress %}
+
+<form style="width:280px;margin:auto;">
+    <h1>Great! You're Almost There!</h1>
+    <p>We just need a few more details to finish setting up your profile. We need you to do this to get started, but don't worry, you can always change these settings later. Let's get started!</p>
+    <p>First, let's upload your profile pic. This will help you to interact with your advisor and colleagues. Be sure to use a nice looking, real headshot - please don't use a company logo, or a pic of a celebrity. If you don't have your profile pic handy, you can skip this step, but we highly recommended that you add one now.</p>
+    <br/>
+    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
+    <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
+</form>
+
+{% endblock content %}

@@ -52,3 +52,27 @@ def config_org_step_eight_page(request):
     return render(request, 'foundation_config/organization/8_view.html',{
 
     })
+
+
+def config_entr_step_one_page(request):
+    return render(request, 'foundation_config/entrepreneur/1_view.html',{
+
+    })
+
+
+def config_entr_step_two_page(request):
+    return render(request, 'foundation_config/entrepreneur/2_view.html',{
+
+    })
+
+
+def config_entr_step_three_page(request):
+    return render(request, 'foundation_config/entrepreneur/3_view.html',{
+
+    })
+
+
+def config_entr_step_four_page(request):
+    return render(request, 'foundation_config/entrepreneur/4_view.html',{
+
+    })

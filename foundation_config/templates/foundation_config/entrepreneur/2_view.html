@@ -1,0 +1,17 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'foundation_config/entrepreneur/2_js.html' %}
+{% endcompress %}
+
+<form style="width:280px;margin:auto;">
+    <h1>Your Business</h1>
+    <p></p>
+    <br/>
+    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
+    <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
+</form>
+
+{% endblock content %}

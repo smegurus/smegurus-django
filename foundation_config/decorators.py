@@ -24,8 +24,9 @@ def foundation_config_required(view_func):
                     return HttpResponseRedirect(reverse('foundation_auth_config_org_step_one'))
 
         # Check to see if the Me object is setup.
-        elif org_admin_group in request.user.groups.all():
-            pass #TODO: Implement.
+        elif entrepreneur_group in request.user.groups.all():
+            if not request.me.is_setup:
+                return HttpResponseRedirect(reverse('foundation_auth_config_entr_step_one'))
 
         # Check to see if the current entrepreneur is setup.
         return view_func(request, *args, **kwargs)
