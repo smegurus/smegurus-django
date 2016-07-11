@@ -199,7 +199,7 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
-        """Public Schema"""
+        """Tenant Schema"""
         tenant.schema_name = 'galacticalliance'
         tenant.name = "Galactic Alliance of Humankind"
 
