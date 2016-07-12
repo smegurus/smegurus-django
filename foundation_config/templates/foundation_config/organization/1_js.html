@@ -5,7 +5,31 @@
     }
 
     function ajax_save_and_continue() {
-        window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+        get_public_organization(  // Fetch our organization.
+            {{ request.tenant.id }},
+            function(organization) {
+                var logo = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
+                if (logo > 0) {
+                   organization['logo'] = logo;
+                }
+                set_public_organization(  // Save our organization.
+                    organization,
+                    function(error) {
+                        console.log(error);
+                    },
+                    function(json_result) {
+                        console.log(json_result);
+                        window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                    },
+                    function(json_error_result) {
+                        console.log(json_error_result);
+                    }
+                ); // end Get Organization
+            },
+            function(error_result) {
+                console.log(error_result);
+            }
+        );  // end Set Organization
     }
 
     /**

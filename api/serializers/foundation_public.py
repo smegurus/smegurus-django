@@ -30,17 +30,6 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'name')
 
 
-class PublicOrganizationSerializer(serializers.ModelSerializer):
-    schema_name = serializers.CharField(required=True)
-    class Meta:
-        model = PublicOrganization
-        fields = ('id', 'created', 'last_modified', 'owner', 'on_trial', 'paid_until', 'name', 'schema_name', 'address', 'brands',
-         'contact_point', 'dissolution_date', 'duns', 'email', 'fax_number', 'founding_date', 'founding_location',
-         'global_location_number', 'isic_v4', 'legal_name', 'logo', 'naics', 'tax_id', 'telephone', 'vat_id',
-         'how_many_served', 'is_tos_signed', 'twitter_url', 'facebook_url', 'instagram_url', 'linkedin_url', 'github_url',
-         'google_plus_url', 'youtube_url', 'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url')
-
-
 class PublicImageUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicImageUpload
@@ -105,3 +94,20 @@ class PublicCountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicCountry
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'how_many_served', 'is_tos_signed', 'twitter_url', 'facebook_url',)
+
+
+class PublicOrganizationSerializer(serializers.ModelSerializer):
+    schema_name = serializers.CharField(required=True)
+    owner = UserSerializer(many=False, required=False, read_only=False)
+    address = PublicPostalAddressSerializer(many=False, required=False, read_only=False)
+    class Meta:
+        model = PublicOrganization
+        fields = ('id', 'created', 'last_modified', 'owner', 'on_trial',
+                  'paid_until', 'name', 'schema_name', 'address', 'brands',
+                  'contact_point', 'dissolution_date', 'duns', 'email',
+                  'fax_number', 'founding_date', 'founding_location',
+                  'global_location_number', 'isic_v4', 'legal_name', 'logo',
+                  'naics', 'tax_id', 'telephone', 'vat_id', 'how_many_served',
+                  'is_tos_signed', 'twitter_url', 'facebook_url', 'instagram_url',
+                   'linkedin_url', 'github_url', 'google_plus_url', 'youtube_url',
+                   'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url')

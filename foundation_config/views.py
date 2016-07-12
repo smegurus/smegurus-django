@@ -9,11 +9,20 @@ from foundation_public.decorators import group_required
 from foundation_public import constants
 
 
+from foundation_public.forms.userform import UserForm
+from foundation_public.forms.loginform import LoginForm
+from foundation_public.forms.organizationform import PublicOrganizationForm
+from foundation_public.forms.postaladdressform import PublicPostalAddressForm
+from foundation_public.forms.meform import PublicMeForm
+
+# from smegurus.settings import env_var
+
+
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_one_page(request):
     return render(request, 'foundation_config/organization/1_view.html',{
-
+        'org_form': PublicOrganizationForm(request.tenant),
     })
 
 
