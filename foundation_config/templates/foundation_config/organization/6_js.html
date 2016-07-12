@@ -4,11 +4,11 @@
     }
 
     function ajax_save_and_continue() {
-        var allow_mentors = $("input:radio[name=allow_mentors]:checked").val()
+        var has_mentors = $("input:radio[name=has_mentors]:checked").val()
         get_public_organization(  // Fetch our organization.
             {{ request.tenant.id }},
             function(organization) {
-                organization['allow_mentors'] = allow_mentors;
+                organization['has_mentors'] = has_mentors;
                 set_public_organization(  // Save our organization.
                     organization,
                     function(error) {

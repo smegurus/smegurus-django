@@ -273,12 +273,12 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         choices=constants.CHALLENGE_OPTIONS,
     )
-    allow_mentors = models.BooleanField(
+    has_mentors = models.BooleanField(
         _("Enable mentors."),
         default=False,
         help_text=_('Variable controls whether external mentors are allowed in our system.'),
     )
-    allow_perks = models.BooleanField(
+    has_perks = models.BooleanField(
         _("Enable perks."),
         default=False,
         help_text=_('Variable controls whether perks are allowed in our system.'),
