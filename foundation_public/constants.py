@@ -38,12 +38,20 @@ ORGANIZATION_ADMIN_GROUP_ID = 5
 CLIENT_MANAGER_GROUP_ID = 6
 SYSTEM_ADMIN_GROUP_ID = 7
 
+ENTREPRENEUR_GROUP = _("Entrepreneur")
+MENTOR_GROUP = _("Mentor")
+ADVISOR_GROUP = _("Advisor")
+ORGANIZATION_MANAGER_GROUP = _("Organization Manager")
+ORGANIZATION_ADMIN_GROUP = _("Organization Administrator")
+CLIENT_MANAGER_GROUP = _("Client Manager")
+SYSTEM_ADMIN_GROUP = _("System Administrator")
+
 # Constant lists all the roles belonging to the employee system of the
 # application.
 EMPLOYEE_GROUPS = [
-    _("Advisor"),
-    _("Organization Manager"),
-    _("Organization Administrator"),
-    _("Client Manager"),
-    _("System Administrator")
+    ADVISOR_GROUP,
+    ORGANIZATION_MANAGER_GROUP,
+    ORGANIZATION_ADMIN_GROUP,
+    CLIENT_MANAGER_GROUP,
+    SYSTEM_ADMIN_GROUP
 ]

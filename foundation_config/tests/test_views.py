@@ -136,7 +136,13 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
-    def test_config_two_step_one_page_view_with_success(self):
+    def test_config_org_step_one_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_one')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
+    def test_config_org_step_two_page_view_with_success(self):
         # Setup our User.
         org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(org_admin_group)
@@ -146,6 +152,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_org_step_two')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_org_step_two_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_two')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_config_org_step_three_page_view_with_success(self):
@@ -160,6 +172,13 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
+    def test_config_org_step_three_page_view_with_failure(self):
+        # Test & verify.
+        url = reverse('foundation_auth_config_org_step_three')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
     def test_config_org_step_four_page_view_with_success(self):
         # Setup our User.
         org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
@@ -170,6 +189,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_org_step_four')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_org_step_four_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_four')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_config_org_step_five_page_view_with_success(self):
@@ -184,6 +209,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
+    def test_config_org_step_five_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_five')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
     def test_config_org_step_six_page_view_with_success(self):
         # Setup our User.
         org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
@@ -194,6 +225,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_org_step_six')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_org_step_six_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_six')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_config_org_step_seven_page_view_with_success(self):
@@ -208,6 +245,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
+    def test_config_org_step_seven_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_seven')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
     def test_config_org_step_eight_page_view_with_success(self):
         # Setup our User.
         org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
@@ -218,6 +261,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_org_step_eight')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_org_step_eight_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_eight')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_config_entr_step_one_page_view_with_success(self):
@@ -232,6 +281,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
+    def test_config_entr_step_one_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_entr_step_one')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
     def test_config_entr_step_two_page_view_with_success(self):
         # Setup our User.
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
@@ -242,6 +297,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_entr_step_two')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_entr_step_two_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_entr_step_two')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_config_entr_step_three_page_view_with_success(self):
@@ -256,6 +317,12 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
+    def test_config_entr_step_three_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_entr_step_three')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
     def test_config_entr_step_four_page_view_with_success(self):
         # Setup our User.
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
@@ -266,3 +333,9 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_entr_step_four')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_entr_step_four_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_entr_step_four')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

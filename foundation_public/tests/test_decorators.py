@@ -45,6 +45,8 @@ class FoundationPublicDecoratorWithPublicSchemaTestCase(TenantTestCase):
         response = self.c.get(reverse('tenant_is_valid'))
         self.assertEqual(response.status_code, 403)
 
+    #TODO: Write unit tests for the "group_required" decorator.
+
 
 class FoundationPublicDecoratorWithTenantSchemaTestCase(TenantTestCase):
     fixtures = []
