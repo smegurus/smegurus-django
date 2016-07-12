@@ -266,6 +266,13 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         choices=constants.LEARNING_PREFERENCE_OPTIONS,
     )
+    challenge = models.PositiveSmallIntegerField(
+        _("Challenge"),
+        help_text=_('Indicates what world challenge to use.'),
+        default=constants.TRADITIONAL_CHALLENGE,
+        blank=True,
+        choices=constants.CHALLENGE_OPTIONS,
+    )
 
     def __str__(self):
         return str(self.name)

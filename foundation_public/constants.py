@@ -62,3 +62,11 @@ LEARNING_PREFERENCE_OPTIONS = (
     (TRADITIONAL_LEARNING_PREFERENCE, _('Traditional Learning Preference')),
     (BLENDED_LEARNING_PREFERENCE, _('Blended Learning Preference')),
 )
+
+
+TRADITIONAL_CHALLENGE = 1
+REAL_WORLD_CHALLENGE = 2
+CHALLENGE_OPTIONS = (
+    (TRADITIONAL_CHALLENGE, _('Traditional Challenge')),
+    (REAL_WORLD_CHALLENGE, _('Real World Challenge')),
+)

@@ -6,9 +6,19 @@
     {% include 'foundation_config/organization/5_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Real World Challenges </h1>
-    <p>TODO: Fill in</p>
+    <p>We believe that a large part of the learning process is to blend real world experience and mentorship with great instruction and resources. A key part of our program is to assign real world challenges to an entrepreneur. For example, 'call up someone in your industry and get them to have a cup of coffee with you' or 'survey 5 random strangers about your product and get some feedback.' While the majority of our clients use our Real World Challenges, your program or setting may not allow for these, so pick what best suits your organization.</p>
+    <br/>
+    <br/>
+    <input type="radio" name="challenge" value="2" {% if request.tenant.challenge == 2 %}checked{% endif %}>
+    Real World Challenges: Your entrepreneurs will be assigned tasks where they have to interact with real people, often over the phone or face-to-face, in order to further their learning.
+    <br>
+    <br/>
+    <input type="radio" name="challenge" value="1" {% if request.tenant.challenge == 1 %}checked{% endif %}>
+    Traditional (not recommended): If you don't want your entrepreneurs to interact with others as part of their learning process, then select this option.
+    <br>
+    <br/>
     <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
