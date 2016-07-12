@@ -1,10 +1,32 @@
 <script>
+    $(document).ready(function () {
+        // Customize the call to tagsInput to match your code.
+        // Include all the parameters you are calling, and any other code
+        // necessary to demonstrate the problem you are having.
+        // The docs are here: http://xoxco.com/projects/code/tagsinput
+        //
+        // If you can't recreate the problem here, check your original code for issues.
+
+        $('#tags').tagsInput({
+            // my parameters here
+        });
+    });
+
     function ajax_cancel_and_continue() {
         window.location = "{% url 'foundation_auth_config_org_step_three' %}";
     }
 
     function ajax_save_and_continue() {
-        window.location = "{% url 'foundation_auth_config_org_step_three' %}";
+        // Get all the Tag Items in the #tags input and iterate through
+        // all the items and save them to our database.
+        var tag_items = $('#tags').val();
+        var arr = tag_items.split(',');
+        arr.forEach(function(value, index) {
+            console.log(value);
+            //TODO: Implement load/save.
+        });
+
+        //window.location = "{% url 'foundation_auth_config_org_step_three' %}";
     }
 
 </script>

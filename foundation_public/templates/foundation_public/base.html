@@ -11,12 +11,13 @@
 
     {% compress css %}
         <link rel="stylesheet" href="{% static 'js/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'js/jquery-tag/jquery.tagsinput.min.css' %}"><!-- https://github.com/xoxco/jQuery-Tags-Input -->
     {% endcompress %}
 
     {% compress js %}
         <script src="{% static 'js/jquery/jquery-1.10.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap-tags/bootstrap-tagsinput.min.js' %}"></script>
+        <script src="{% static 'js/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
     {% endcompress %}
 </head>
 <body>
