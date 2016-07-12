@@ -8,10 +8,10 @@
 
 <form style="width:280px;margin:auto;">
     <h1>You're Ready To Start</h1>
-    <p>TODO: Fill in</p>
+    <p>Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.</p>
     <br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
+    <input onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
+    <input onclick="ajax_add_advisors();" type="button" value="{% trans 'Add Advisors &amp; Continue' %}" class="ui-btn ui-corner-all" />
 </form>
 
 {% endblock content %}
