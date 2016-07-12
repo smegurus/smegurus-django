@@ -6,9 +6,19 @@
     {% include 'foundation_config/organization/6_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Mentors and External Advisors</h1>
-    <p>TODO: Fill in</p>
+    <p>The most successful entrepreneurs have a mentor or advisor that they can go to. For these reasons, SME Gurus allows entrerepenrus to email compelted documents such as their Business Model Canvas, to an external advisor or mentor. While most of our clients use this feature, you may wish to disable it because of privacy or security concerns. If you do enable this option, externals will only see completed documents - they won't be able to view any other data.</p>
+    <br/>
+    <br/>
+    <input type="radio" name="allow_mentors" value=true {% if request.tenant.allow_mentors == True %}checked{% endif %}>
+    Enable External Advisors: Your entrepreneurs will be able to easily share documents with external advisors - such as a mentor or lender.
+    <br>
+    <br/>
+    <input type="radio" name="allow_mentors" value=false {% if request.tenant.allow_mentors == False %}checked{% endif %}>
+    Traditional (not recommended): If you don't want your entrepreneurs to interact with external advisors, then select this option.
+    <br>
+    <br/>
     <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />

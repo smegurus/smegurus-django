@@ -111,4 +111,4 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
                   'is_tos_signed', 'twitter_url', 'facebook_url', 'instagram_url',
                    'linkedin_url', 'github_url', 'google_plus_url', 'youtube_url',
                    'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url',
-                   'learning_preference', 'challenge',)
+                   'learning_preference', 'challenge', 'allow_mentors',)
