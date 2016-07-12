@@ -4,7 +4,31 @@
     }
 
     function ajax_save_and_continue() {
-        window.location = "{% url 'foundation_auth_config_org_step_eight' %}";
+        var allow_perks = $("input:radio[name=allow_perks]:checked").val()
+        get_public_organization(  // Fetch our organization.
+            {{ request.tenant.id }},
+            function(organization) {
+                organization['allow_perks'] = allow_perks;
+                set_public_organization(  // Save our organization.
+                    organization,
+                    function(error) {
+                        console.log(error);
+                    },
+                    function(json_result) {
+                        console.log(json_result);
+                        window.location = "{% url 'foundation_auth_config_org_step_eight' %}";
+                    },
+                    function(json_error_result) {
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Organization
+            },
+            function(error_result) {
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Organization
     }
 
 </script>

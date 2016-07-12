@@ -278,6 +278,11 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         default=False,
         help_text=_('Variable controls whether external mentors are allowed in our system.'),
     )
+    allow_perks = models.BooleanField(
+        _("Enable perks."),
+        default=False,
+        help_text=_('Variable controls whether perks are allowed in our system.'),
+    )
 
     def __str__(self):
         return str(self.name)

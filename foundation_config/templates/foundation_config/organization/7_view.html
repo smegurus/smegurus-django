@@ -6,9 +6,18 @@
     {% include 'foundation_config/organization/7_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Perks and Rewards</h1>
-    <p>TODO: Fill in</p>
+    <p>To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.</p>
+    <br/>
+    <input type="radio" name="allow_perks" value=true {% if request.tenant.allow_perks == True %}checked{% endif %}>
+    Activate Perks & Rewards: Your entrepreneurs will receive access to special offers.
+    <br>
+    <br/>
+    <input type="radio" name="allow_perks" value=false {% if request.tenant.allow_perks == False %}checked{% endif %}>
+    No Perks (not recommended): If you don't want to offer perks to your clients, then select this option.
+    <br>
+    <br/>
     <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
