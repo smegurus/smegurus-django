@@ -6,10 +6,10 @@
     {% include 'foundation_config/entrepreneur/2_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Your Business</h1>
-    <p></p>
-    <br/>
+    <p>If you have a business idea already, then go ahead and tell us a bit about it. If you don't have your business idea yet, don't worry. Don't worry, you can skip this for now if you are just getting started.</p>
+    <br/><!-- TODO: Finish -->
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
 </form>
