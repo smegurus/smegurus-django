@@ -6,9 +6,19 @@
     {% include 'foundation_config/organization/4_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Learning Preferences</h1>
-    <p>TODO: Fill in</p>
+    <p>Now we need to setup how your entrepreneurs will receive instruction. You can choose from the following:</p>
+    <br/>
+    <br/>
+    <input type="radio" name="learning_preference" value="2" {% if request.tenant.learning_preference == 2 %}checked{% endif %}>
+    Blended: Your entrepreneurs will go through our custom education modules and then complete an exercise to generate key documents such as their Business Model Canvas. This is the option that the majority of our clients use, and remember, you can always blend this will real world instruction.
+    <br>
+    <br/>
+    <input type="radio" name="learning_preference" value="1" {% if request.tenant.learning_preference == 1 %}checked{% endif %}>
+    Traditional: If you want to rely solely on classroom instruction, then select this option and your clients will only go through activities to generate key documents
+    <br>
+    <br/>
     <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />

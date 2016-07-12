@@ -4,7 +4,33 @@
     }
 
     function ajax_save_and_continue() {
-        window.location = "{% url 'foundation_auth_config_org_step_five' %}";
+        var learning_preference = $("input:radio[name=learning_preference]:checked").val()
+        if (learning_preference > 0) {
+            get_public_organization(  // Fetch our organization.
+                {{ request.tenant.id }},
+                function(organization) {
+                    organization['learning_preference'] = learning_preference;
+                    set_public_organization(  // Save our organization.
+                        organization,
+                        function(error) {
+                            console.log(error);
+                        },
+                        function(json_result) {
+                            console.log(json_result);
+                            window.location = "{% url 'foundation_auth_config_org_step_five' %}";
+                        },
+                        function(json_error_result) {
+                            console.log(json_error_result);
+                            alert(json_error_result);
+                        }
+                    ); // end Get Organization
+                },
+                function(error_result) {
+                    console.log(error_result);
+                    alert(json_error_result);
+                }
+            );  // end Set Organization
+        }
     }
 
 </script>

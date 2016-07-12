@@ -187,7 +187,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     how_many_served = models.PositiveSmallIntegerField(
         _("How many entrepreneurs served"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
-        default=0,
+        default=1,
         blank=True,
         choices=constants.HOW_MANY_SERVED_OPTIONS,
     )
@@ -252,10 +252,19 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         null=True,
         blank=True
     )
+
+    #  Application
     is_setup = models.BooleanField(
         _("Is this account setup and ready"),
         default=False,
         help_text=_('Variable controls whether the user profile has been setup.'),
+    )
+    learning_preference = models.PositiveSmallIntegerField(
+        _("Learning Preference"),
+        help_text=_('Indicates what learning preference to use.'),
+        default=constants.TRADITIONAL_LEARNING_PREFERENCE,
+        blank=True,
+        choices=constants.LEARNING_PREFERENCE_OPTIONS,
     )
 
     def __str__(self):

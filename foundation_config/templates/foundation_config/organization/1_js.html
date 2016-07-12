@@ -23,11 +23,13 @@
                     },
                     function(json_error_result) {
                         console.log(json_error_result);
+                        alert(json_error_result);
                     }
                 ); // end Get Organization
             },
             function(error_result) {
                 console.log(error_result);
+                alert(json_error_result);
             }
         );  // end Set Organization
     }
