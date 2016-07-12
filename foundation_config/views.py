@@ -15,6 +15,8 @@ from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
 from foundation_public.forms.meform import PublicMeForm
 
+from foundation_tenant.models.tag import Tag
+
 # from smegurus.settings import env_var
 
 
@@ -38,7 +40,7 @@ def config_org_step_two_page(request):
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_three_page(request):
     return render(request, 'foundation_config/organization/3_view.html',{
-
+        'tags': Tag.objects.all(),
     })
 
 

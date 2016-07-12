@@ -1,4 +1,35 @@
 <script>
+    function filter_tenant_tags(criteria, callback)
+    {
+        var url = "/api/tenanttag/?format=json";
+        for (var i = 0; i < criteria.length; i++) {
+            url += "&";
+
+            // Build our search criteria in the URL based on the results.
+            for(var index in criteria[i]) {
+                url += index + "=" + criteria[i][index];
+            }
+        }
+
+        jQuery.ajax({
+            url: url,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'GET',
+            success: function(json_results){
+                callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                alert(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
     function set_tenant_tag(data, func_callback, func_error_callback)
     {
         // Setup depending on whether we are inserting or updating.

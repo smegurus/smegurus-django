@@ -12,7 +12,7 @@ from foundation_tenant.models.tag import Tag
 class TagFilter(django_filters.FilterSet):
     class Meta:
         model = Tag
-        fields = ['name',]
+        fields = ['name', 'is_program',]
 
 
 class TagViewSet(viewsets.ModelViewSet):

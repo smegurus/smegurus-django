@@ -16,6 +16,12 @@ class Tag(models.Model):
         help_text=_('The name of the Tag item.'),
         unique=True,
     )
+    is_program = models.BooleanField(
+        _("Is program"),
+        help_text=_('Indicates if this Tag is to be used for programs.'),
+        default=False,
+        blank=True,
+    )
 
     def __str__(self):
         return str(self.name)

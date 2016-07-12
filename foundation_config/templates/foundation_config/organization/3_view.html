@@ -6,9 +6,11 @@
     {% include 'foundation_config/organization/3_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Program Setup</h1>
-    <p>TODO: Fill in</p>
+    <p>Now, we need to identify which of your tags are programs that run or plan to offer in the short-term - this will help clients filling out an online intake form, and will make them available for signup. If you do not set any tags as programs, then the system will create a 'General intake' option for your clients.</p>
+    <br/>
+    <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
     <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
