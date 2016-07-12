@@ -6,9 +6,14 @@
     {% include 'foundation_config/organization/2_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Set Your Tags</h1>
-    <p>TODO: Fill in</p>
+    <p>Now, we are going to set up tags to help you categorize your clients. These help you group your clients by a characteristic or program that you may offer. Tags will be a great help when it comes to searching for clients, analzying your data, and creating reports. The best part is that clients can have multiple tags, and tags can also be added or removed as often as needed. Not sure where to start? For example, you can use:</p>
+    <p>newcomers - this could help to designate clients that are new to the country and may require additional supports or services</p>
+    <p>spanish language - you could use any language as a tag here to indicate that the client (in this case) speaks Spanish</p>
+    <p>entrepreneurship 101 - if you were running a program called Entrepreneurship 101, then you could create this tag to designate someone as being part of a program.</p>
+    <p>Now, why don't you go ahead and create a few tags. You should add tags for any programs that you currently offer, or plan to offer in the next 3 months. We recommend that you choose 3 from the list below or create at least 3 to start. If you don't create any, the system autocreates a 'general intake' tag that you can use. </p>
+    <br/>
     <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
