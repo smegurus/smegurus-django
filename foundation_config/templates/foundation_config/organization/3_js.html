@@ -35,12 +35,16 @@
         arr.forEach(function(value, index) {
             api_search(
                 value,
-                function(tag_list){
-                    tag_list['results'].forEach(function(tag, index) { // Iterate through all the search results.
-                        tag['is_program'] = true; // Update.
-                        console.log(tag);
+                function(tag_list) {
+
+                    // CASE 1 of 2: No Results.
+                    if (parseInt(tag_list['count']) == 0) {
+
                         set_tenant_tag(
-                            tag,
+                            {
+                                 'name': value,
+                                 'is_program': true,
+                            },
                             function(json_result) {
                                 console.log(json_result);
                             },
@@ -48,9 +52,28 @@
                                 console.log(json_error_result);
                             }
                         ); // end Set Tag.
-                    }); // end Array
-                }
-            ); // end Search Tag
+                    } // end CASE 1
+
+                    else { // CASE 2 of 2: Has Results.
+
+                        tag_list['results'].forEach(function(tag, index) { // Iterate through all the search results.
+                            tag['is_program'] = true; // Update.
+                            console.log(tag);
+                            set_tenant_tag(
+                                tag,
+                                function(json_result) {
+                                    console.log(json_result);
+                                },
+                                function(json_error_result) {
+                                    console.log(json_error_result);
+                                }
+                            ); // end Set Tag.
+                        }); // end Array
+
+                    } // end CASE 2
+
+                }   // end Search List
+            );   // end Search Tag
         });
 
         // Wait until all the items get updated.
