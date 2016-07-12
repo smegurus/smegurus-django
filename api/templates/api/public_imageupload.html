@@ -1,0 +1,75 @@
+<script>
+    /**
+     *  Function will create a new image upload and return the inserted
+     *  results through the callback.
+     */
+    function set_public_imageupload(upload_id, image, callback)
+    {
+        var data = new FormData();
+        data.append('format', 'json');
+        if (image != null)
+        {
+            data.append('imagefile', image);
+        }
+
+        var url = "/api/publicimageupload/";
+        var type = "POST";
+        if (upload_id > 0)
+        {
+            url += upload_id + "/";
+            type = "PUT";
+            data.append('upload_id', upload_id);
+        }
+
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: type,
+            success: function(json_result){
+                // Debugging code
+                var json_text = JSON.stringify(json_result, null, 2);
+                console.log(json_text);
+
+                // Call back the function with the JSON results.
+                callback(json_result);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                alert(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    function delete_imageupload(upload_id, callback) {
+        var url = "/api/publicimageupload/" + upload_id + "/";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'DELETE',
+            success: function(json_results){
+                callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                alert(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+</script>

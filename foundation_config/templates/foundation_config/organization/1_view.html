@@ -11,6 +11,33 @@
     <p>We just need a few more details to finish setting up your profile. We need you to do this to get started, but don't worry, you can always change these settings later. Let's get started!</p>
     <p>First, let's upload your logo. This will help you to brand and customize SME Gurus for your clients. If you don't have your logo handy, you can skip this step, but we highly recommended that you add one now.</p>
     <br/>
+    <!-- Upload ID -->
+    <input type="hidden" id="id_hidden_upload_id" value="0"/>
+    <input type="hidden" id="id_hidden_url" value=""/>
+    <!-- /.Upload ID -->
+
+    <!-- Image Placeholder -->
+    <img id="id_image_placeholder"
+        src=""
+      style="height:200px;width:200px;"
+        alt=""
+      class="img-thumbnail center-block mb0 add-cover-image"
+       name="product-image" />
+    <!-- /.Image Placeholder -->
+
+    <!-- Image Upload Button -->
+    <label class="form-control btn btn-success mt10 curp" >
+        <em class="fa fa-upload"></em>&nbsp;&nbsp; Upload Logo Image...
+            <input id="id_image"
+             onchange="ajax_upload_image();"
+                 type="file"
+                class="form-control mb10 hide"
+                 name="product-image" />
+    </label>
+    <!-- /.Image Upload Button -->
+
+    <br/><br/><br/>
+
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
 </form>
