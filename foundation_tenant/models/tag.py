@@ -10,14 +10,11 @@ class Tag(models.Model):
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
 
-    created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
     name = models.CharField(
         _("Name"),
-        max_length=255,
-        help_text=_('The name of the item.'),
-        blank=True,
-        null=True,
+        max_length=127,
+        help_text=_('The name of the Tag item.'),
+        unique=True,
     )
 
     def __str__(self):

@@ -80,4 +80,4 @@ class PlaceSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('id', 'created', 'last_modified', 'name',)
+        fields = ('id', 'name',)

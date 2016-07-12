@@ -22,11 +22,22 @@
         var tag_items = $('#tags').val();
         var arr = tag_items.split(',');
         arr.forEach(function(value, index) {
-            console.log(value);
-            //TODO: Implement load/save.
+            set_tenant_tag(
+                {
+                     'name': value,
+                },
+                function(json_result) {
+                    console.log(json_result);
+                },
+                function(json_error_result) {
+                    console.log(json_error_result);
+                }
+            );
         });
 
-        //window.location = "{% url 'foundation_auth_config_org_step_three' %}";
+        setTimeout(function() {
+            window.location = "{% url 'foundation_auth_config_org_step_three' %}";
+        }, 1000);
     }
 
 </script>
