@@ -114,10 +114,3 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
                    'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url',
                    'is_setup', 'learning_preference', 'challenge', 'has_mentors',
                    'has_perks', )
-
-    def validate_schema_name(self, value):
-        try:
-            PublicOrganization.objects.get(schema_name=value)
-        except PublicOrganization.DoesNotExist:
-            return value
-        raise serializers.ValidationError(_('The entered "schema name" already exist in the system.'))

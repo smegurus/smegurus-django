@@ -216,7 +216,7 @@
                         enable_btn(); // Allow the user to press the button again.
                         var string = JSON.stringify( o_error_result );
                         console.log(string);
-                        if (string.indexOf('schema name') > -1) {
+                        if (string.indexOf('schema') > -1) {
                             alert("The sub-domain you entered already exists.");
                         } else {
                             alert(o_error_result);
