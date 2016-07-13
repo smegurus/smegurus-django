@@ -1,9 +1,33 @@
 <script>
-    function ajax_cancel_and_continue() {
-        window.location = "{% url 'tenant_dashboard' %}";
+    $(document).ready(function () {
+        // get_public_me(  // start Get Me
+        //     {{ request.me.owner.id }},
+        //     function(me) {
+        //         me['is_setup'] = true;
+        //         set_public_me(  // start Set Me
+        //             me,
+        //             function(json_result) {
+        //                 console.log(json_result);
+        //                 window.location = "{% url 'foundation_auth_config_entr_step_two' %}";
+        //             },
+        //             function(json_error_result) {
+        //                 console.log(json_error_result);
+        //                 alert(json_error_result);
+        //             }
+        //         ); // end Get Me
+        //     },
+        //     function(error_result) {
+        //         console.log(error_result);
+        //         alert(json_error_result);
+        //     }
+        // );  // end Set Me
+    }); // end Ready
+
+    function ajax_back() {
+        window.location = "{% url 'foundation_auth_config_entr_step_three' %}";
     }
 
-    function ajax_save_and_continue() {
+    function ajax_dashboard() {
         window.location = "{% url 'tenant_dashboard' %}";
     }
 

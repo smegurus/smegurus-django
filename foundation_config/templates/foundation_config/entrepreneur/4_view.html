@@ -6,12 +6,12 @@
     {% include 'foundation_config/entrepreneur/4_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
+<form style="width:480px;margin:auto;">
     <h1>Let's Get Started!</h1>
-    <p></p>
+    <p>Now you are all set. Click Continue to go to your dashboard.</p>
     <br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
+    <input onclick="ajax_back();" type="button" value="{% trans 'Back' %}" class="ui-btn ui-corner-all" />
+    <input onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
 </form>
 
 {% endblock content %}
