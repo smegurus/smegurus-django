@@ -96,7 +96,7 @@ def organization_registration_page(request):
     """
     org_membership_count = PublicOrganization.objects.filter(owner_id=request.user.id).count()
     if org_membership_count >= 1:
-        return HttpResponseBadRequest(_("User cannot own any organization when registering a new organization."))
+        return HttpResponseRedirect(reverse('foundation_auth_org_successful_registration'))
     else:
         return render(request, 'foundation_auth/organization_register_view.html',{
             'org_form': PublicOrganizationForm(),
