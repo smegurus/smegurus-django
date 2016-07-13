@@ -48,7 +48,11 @@
 
     <br/>
     <!-- Submit -->
-    <input id="id_save_org_btn" onclick="ajax_save_org();" type="button" value="{% trans 'Finalize' %}" class="ui-btn ui-corner-all" />
+    <input id="id_save_org_btn"
+      onclick="disable_btn(); ajax_save_org();"
+         type="button"
+        value="{% trans 'Finalize' %}"
+        class="ui-btn ui-corner-all" />
     <!-- /.Submit -->
 </form>
 

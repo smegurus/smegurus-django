@@ -117,8 +117,6 @@
      *  Function will run the application logic.
      */
     function ajax_save_org() {
-        disable_btn(); // Disable the button so no multiple presses happen.
-
         // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
             alert("{% trans 'Missing Sub-Domain Name' %}");
