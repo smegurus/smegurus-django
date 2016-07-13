@@ -17,4 +17,3 @@ from foundation_public.models.abstract_person import AbstractPlacePerson
 from foundation_public.models.me import PublicMe
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
-from foundation_public.models.businessidea import BusinessIdea

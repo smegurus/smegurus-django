@@ -15,6 +15,7 @@ from foundation_tenant.models.country import Country
 from foundation_tenant.models.brand import Brand
 from foundation_tenant.models.place import Place
 from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.businessidea import BusinessIdea
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -81,3 +82,9 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = ('id', 'name', 'is_program',)
+
+
+class BusinessIdeaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BusinessIdea
+        fields = ('id', 'name', 'industry', 'image', 'owner',)

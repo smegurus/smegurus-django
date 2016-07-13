@@ -1,10 +1,95 @@
 <script>
+    /**
+     *  Function will asynchronously upload the cover image.
+     */
+    function ajax_upload_image() {
+        if ($('#id_image').val() == "") {
+            alert(_("Please select an image to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var image = document.getElementById('id_image').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+
+        // Insert or Update.
+        set_tenant_imageupload(upload_id, image, function(json_result) {
+            $('#id_hidden_url').attr('src', json_result['imagefile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['imagefile']);
+        });
+    }
+
     function ajax_cancel_and_continue() {
         window.location = "{% url 'foundation_auth_config_entr_step_three' %}";
     }
 
     function ajax_save_and_continue() {
-        window.location = "{% url 'foundation_auth_config_entr_step_three' %}";
+        var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
+        var businessidea_id = parseInt("{{ businessidea.id }}");
+
+        if (isNaN(businessidea_id)) { // CASE 1 of 2: If we haven't created our object.
+
+            // Generate our BusinessIdea object.
+            var businessidea = {
+                'name': $('#id_name').val(),
+                'industry': parseInt( $('#id_industry').val() )
+            };
+            if (image > 0) {
+                businessidea['image'] = image;
+            }
+
+            // Save our BusinessIdea object.
+            set_tenant_businessidea(
+                businessidea,
+                function(json_result) {
+                    console.log(json_result);
+                    window.location = "{% url 'foundation_auth_config_entr_step_three' %}";
+                },
+                function(json_error_result) {
+                    console.log(json_error_result);
+                    alert(json_error_result);
+                }
+            ); // end Set BusinessIdea
+
+        } // end Case 1
+
+        else {                      // CASE 2 of 2: If we created our object.
+
+            get_tenant_businessidea(
+                businessidea_id,
+                function(businessidea) {
+
+                    // Update object.
+                    if (image > 0) {
+                        businessidea['image'] = image;
+                    }
+                    businessidea['name'] = $('#id_name').val();
+                    businessidea['industry'] = parseInt( $('#id_industry').val() );
+                    console.log(businessidea);
+
+                    // Save object.
+                    set_tenant_businessidea(
+                        businessidea,
+                        function(json_result) {
+                            console.log(json_result);
+                            window.location = "{% url 'foundation_auth_config_entr_step_three' %}";
+                        },
+                        function(json_error_result) {
+                            console.log(json_error_result);
+                            alert(json_error_result);
+                        }
+                    ); // end Set BusinessIdea
+
+                },
+                function(error_json_result) {
+                    console.log(error_json_result);
+                    alert(error_json_result);
+                }
+            ); // end Get BusinessIdea
+
+        } // end Case 2
     }
 
 </script>

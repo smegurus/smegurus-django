@@ -8,14 +8,15 @@ from foundation_public.models.organization import PublicOrganization
 from foundation_public.decorators import group_required
 from foundation_public import constants
 
-
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
 from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
 from foundation_public.forms.meform import PublicMeForm
+from foundation_tenant.forms.businessideaform import BusinessIdeaForm
 
 from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.businessidea import BusinessIdea
 
 # from smegurus.settings import env_var
 
@@ -95,8 +96,14 @@ def config_entr_step_one_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_two_page(request):
-    return render(request, 'foundation_config/entrepreneur/2_view.html',{
+    try:
+        businessidea = BusinessIdea.objects.get(owner=request.user)
+    except BusinessIdea.DoesNotExist:
+        businessidea = None
 
+    return render(request, 'foundation_config/entrepreneur/2_view.html',{
+        'businessidea': businessidea,
+        'form': BusinessIdeaForm(instance=businessidea),
     })
 
 
