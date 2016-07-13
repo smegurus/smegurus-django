@@ -3,7 +3,19 @@
         window.location = "{% url 'foundation_auth_config_org_step_five' %}";
     }
 
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+    }
+
     function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+
         var learning_preference = $("input:radio[name=learning_preference]:checked").val()
         if (learning_preference > 0) {
             get_public_organization(  // Fetch our organization.
@@ -13,19 +25,23 @@
                     set_public_organization(  // Save our organization.
                         organization,
                         function(error) {
+                            enable_btn();
                             console.log(error);
                         },
                         function(json_result) {
+                            enable_btn();
                             console.log(json_result);
                             window.location = "{% url 'foundation_auth_config_org_step_five' %}";
                         },
                         function(json_error_result) {
+                            enable_btn();
                             console.log(json_error_result);
                             alert(json_error_result);
                         }
                     ); // end Get Organization
                 },
                 function(error_result) {
+                    enable_btn();
                     console.log(error_result);
                     alert(json_error_result);
                 }

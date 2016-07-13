@@ -33,7 +33,8 @@ class UserForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'type':'email',
             'class':'form-control',
-            'placeholder': _('Enter Email')
+            'placeholder': _('Enter Email'),
+            'spellcheck':'false',
         }),
         required=False,
     )
@@ -43,7 +44,9 @@ class UserForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'type':'password',
             'class':'form-control',
-            'placeholder': _('Enter Old Password')
+            'placeholder': _('Enter Old Password'),
+            'autocomplete':'off',
+            'spellcheck':'false',
         }),
         required=False,
     )
@@ -54,7 +57,9 @@ class UserForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'type':'password',
             'class':'form-control',
-            'placeholder': _('Enter New Password')
+            'placeholder': _('Enter New Password'),
+            'autocomplete':'off',
+            'spellcheck':'false',
         }),
         required=False,
     )
@@ -65,7 +70,9 @@ class UserForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             'type':'password',
             'class':'form-control',
-            'placeholder': _('Enter Password Again')
+            'placeholder': _('Enter Password Again'),
+            'autocomplete':'off',
+            'spellcheck':'false',
         }),
         required=False,
     )

@@ -13,17 +13,32 @@
         ); // End Login
     }
 
+    function disable_btn() {
+        $('#id_login_btn').prop("disabled", true);
+        $('#id_login_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_login_btn').prop("disabled", false);
+        $('#id_login_btn').val("{% trans 'Finalize' %}");
+    }
+
     function ajax_login() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+
         // Defensive Code: Name handling.
         if( $('#id_email').val() == "" ){
+            enable_btn();
             alert("Missing Email");
             return;
         }
         if ( !is_email_valid( $('#id_email').val() ) ) {
+            enable_btn();
             alert("Email not valid.");
             return;
         }
         if( $('#id_password').val() == "" ){
+            enable_btn();
             alert("Missing Password");
             return;
         }
@@ -32,10 +47,12 @@
             $('#id_email').val(),
             $('#id_password').val(),
             function(login_json_result) {
+                enable_btn();
                 console.log(login_json_result); // Debugging purposes only.
                 window.location = "{% url 'foundation_auth_user_launchpad' %}";
             },
             function(login_error_json_result) {
+                enable_btn();
                 var string = JSON.stringify( login_error_json_result );
                 console.log(string);
                 if (string.indexOf('username') > -1) {

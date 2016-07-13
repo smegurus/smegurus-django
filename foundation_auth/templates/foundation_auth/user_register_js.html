@@ -1,15 +1,29 @@
 {% load i18n %}
 <script>
+    function disable_btn() {
+        $('#id_register_btn').prop("disabled", true);
+        $('#id_register_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_register_btn').prop("disabled", false);
+        $('#id_register_btn').val("{% trans 'Finalize' %}");
+    }
+
     /**
      *  Function registers the organization user.
      */
     function ajax_register() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+
         // Defensive Code: Name handling.
         if( $('#id_first_name').val() == "" ){
+            enable_btn();
             alert("Missing First Name");
             return;
         }
         if( $('#id_last_name').val() == "" ){
+            enable_btn();
             alert("Missing Last Name");
             return;
         }
@@ -17,24 +31,29 @@
         // Defensive Code: The following code will ensure the proper
         //                 validation occured on the inputted entries.
         if ($('#id_email').val() == '') {
+            enable_btn();
             alert("Missing Email");
             return;
         }
         if ( !is_email_valid( $('#id_email').val() ) ) {
+            enable_btn();
             alert("Email not valid.");
             return;
         }
 
         // Defensive Code: Password handling.
         if ( $('#id_password').val() == "" ){
+            enable_btn();
             alert("Missing password");
             return;
         }
         if ( $('#id_password_repeated').val() == "" ){
+            enable_btn();
             alert("Missing repeat password");
             return;
         }
         if ( $('#id_password').val() != $('#id_password_repeated').val() ){
+            enable_btn();
             alert("password does not match");
             return;
         }
@@ -42,16 +61,19 @@
         // Defensive Code: Ensure that the user agrees to the terms before proceeding.
         var is_tsa_checked = $('#id_is_tos_signed').is(':checked');
         if (is_tsa_checked == false) {
+            enable_btn();
             alert("{% trans 'Please agree to the service agreement to continue.' %}");
             return;
         }
 
         api_register(
             function(json_result) {
+                enable_btn();
                 // Redirect to the page where the user sends a activation email.
                 window.location = "{% url 'foundation_auth_user_activation_required' %}";
             },
             function(error_json_result) {
+                enable_btn();
                 // Convert the error json into string.
                 var string = JSON.stringify( error_json_result );
                 console.log(string);

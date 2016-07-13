@@ -11,7 +11,7 @@
     <p>Now you are all set. Click Continue to go to your dashboard.</p>
     <br/>
     <input onclick="ajax_back();" type="button" value="{% trans 'Back' %}" class="ui-btn ui-corner-all" />
-    <input onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
+    <input id="id_continue_btn" onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
 </form>
 
 {% endblock content %}

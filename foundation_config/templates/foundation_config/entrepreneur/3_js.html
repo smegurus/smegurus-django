@@ -1,9 +1,20 @@
 <script>
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+    }
+
     function ajax_cancel_and_continue() {
         window.location = "{% url 'foundation_auth_config_entr_step_four' %}";
     }
 
     function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_tellusyourneed(
             {{ tellusyourneed.id }},
             function(tellusyourneed) {
@@ -16,16 +27,19 @@
                 set_tenant_tellusyourneed(
                     tellusyourneed,
                     function(json_result) {
+                        enable_btn();
                         console.log(json_result);
                         window.location = "{% url 'foundation_auth_config_entr_step_four' %}";
                     },
                     function(error_json_result) {
+                        enable_btn();
                         console.log(error_json_result);
                         alert(error_json_result);
                     }
                 ); // end Set TellUsYourNeed
             },
             function(error_json_result) {
+                enable_btn();
                 console.log(error_json_result);
                 alert(error_json_result);
             }

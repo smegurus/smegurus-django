@@ -187,9 +187,9 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     how_many_served = models.PositiveSmallIntegerField(
         _("How many entrepreneurs served"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
+        choices=constants.HOW_MANY_SERVED_OPTIONS,
         default=1,
         blank=True,
-        choices=constants.HOW_MANY_SERVED_OPTIONS,
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),

@@ -11,7 +11,7 @@
     <p>Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.</p>
     <br/>
     <input onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
-    <input onclick="ajax_add_advisors();" type="button" value="{% trans 'Add Advisors &amp; Continue' %}" class="ui-btn ui-corner-all" />
+    <input id="id_continue_btn" onclick="ajax_add_advisors();" type="button" value="{% trans 'Add Advisors &amp; Continue' %}" class="ui-btn ui-corner-all" />
 </form>
 
 {% endblock content %}

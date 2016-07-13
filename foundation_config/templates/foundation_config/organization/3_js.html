@@ -12,6 +12,16 @@
         });
     });
 
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+    }
+
     function api_search(name, callback)
     {
         var search_criteria = Array(); // Variable used to store the search criteria.
@@ -28,6 +38,8 @@
     }
 
     function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+
         // Get all the Tag Items in the #tags input and iterate through
         // all the items and save them to our database.
         var tag_items = $('#tags').val();
@@ -80,6 +92,7 @@
 
         // Wait until all the items get updated.
         setTimeout(function() {
+            enable_btn();
             window.location = "{% url 'foundation_auth_config_org_step_four' %}";
         }, 1000);
     }

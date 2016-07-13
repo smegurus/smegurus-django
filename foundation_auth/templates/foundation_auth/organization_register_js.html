@@ -103,13 +103,26 @@
         return false;
     };
 
+    function disable_btn() {
+        $('#id_save_org_btn').prop("disabled", true);
+        $('#id_save_org_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_save_org_btn').prop("disabled", false);
+        $('#id_save_org_btn').val("{% trans 'Finalize' %}");
+    }
+
     /**
      *  Function will run the application logic.
      */
     function ajax_save_org() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+
         // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
             alert("{% trans 'Missing Sub-Domain Name' %}");
+            enable_btn();
             return;
         }
         // Defensive Code: Protect against illegal characters.
@@ -118,18 +131,21 @@
             // (Do nothing.)
         } else {
             alert("{% trans 'Your sub-domain string contains illegal characters.' %}");
+            enable_btn();
             return;
         }
 
         // Defensive Code:
         if ( $('#id_how_many_served').val() == '' ) {
             alert("{% trans 'Please select how many entreprenuers are served' %}");
+            enable_btn();
             return;
         }
 
         // Defensive Code: Prevent no answer for "How Discovered".
         if ( $('#id_how_discovered').val() == '' ) {
             alert("{% trans 'Please select how heared about us.' %}");
+            enable_btn();
             return;
         }
 
@@ -137,6 +153,7 @@
         var is_tsa_checked = $('#id_is_tos_signed').is(':checked');
         if (is_tsa_checked == false) {
             alert("{% trans 'Please agree to the service agreement to continue.' %}");
+            enable_btn();
             return;
         }
 
@@ -161,25 +178,34 @@
                         api_me(
                             function(success_result) {
                                 console.log("Success");
+                                enable_btn(); // Allow the user to press the button again.
                                 window.location = "{% url 'foundation_auth_org_successful_registration' %}";
                             },
                             function(error_result) {
                                 console.log("Failed");
+                                enable_btn(); // Allow the user to press the button again.
                                 alert(error_result); //TODO: Implement better error notification.
                             }
                         ); // end Me
                     },
                     function(o_error_result) {
-                        console.log("BAD Organization");
-                        console.log(o_error_result);
-                        alert(o_error_result); //TODO: Implement better error notification.
+                        console.log("Failed Set Organization");
+                        enable_btn(); // Allow the user to press the button again.
+                        var string = JSON.stringify( o_error_result );
+                        console.log(string);
+                        if (string.indexOf('schema name') > -1) {
+                            alert("The sub-domain you entered already exists.");
+                        } else {
+                            alert(o_error_result);
+                        }
                     }
                 ); // end Organization
             },
             function(pa_error_result) {
-                console.log("BAD Postal Address");
+                console.log("Failed Set Postal Address");
                 console.log(pa_error_result);
-                alert(pa_error_result); //TODO: Implement better error notification.
+                enable_btn(); // Allow the user to press the button again.
+                alert(pa_error_result);
             }
         ); // end Postal Address
     }

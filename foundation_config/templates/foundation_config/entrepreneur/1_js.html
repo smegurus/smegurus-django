@@ -1,10 +1,21 @@
 {% load i18n %}
 <script>
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+    }
+
     function ajax_cancel_and_continue() {
         window.location = "{% url 'foundation_auth_config_entr_step_two' %}";
     }
 
     function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
         get_public_me(  // Fetch our Me.
             {{ request.me.owner.id }},
             function(me) {
@@ -15,16 +26,19 @@
                 set_public_me(  // Save our Me
                     me,
                     function(json_result) {
+                        enable_btn();
                         console.log(json_result);
                         window.location = "{% url 'foundation_auth_config_entr_step_two' %}";
                     },
                     function(json_error_result) {
+                        enable_btn();
                         console.log(json_error_result);
                         alert(json_error_result);
                     }
                 ); // end Get Me
             },
             function(error_result) {
+                enable_btn();
                 console.log(error_result);
                 alert(json_error_result);
             }

@@ -24,11 +24,14 @@ class PublicOrganizationForm(forms.ModelForm):
         widgets = {
             'schema_name': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter sub-domain of this Organization.')
+                'placeholder': _('Enter sub-domain of this Organization.'),
+                'autocomplete':'off',
+                'spellcheck':'false',
             }),
             'name': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter name.')
+                'placeholder': _('Enter name.'),
+                'spellcheck':'false',
             }),
             'url': TextInput(attrs={
                 'class': u'form-control',

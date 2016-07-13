@@ -17,6 +17,7 @@ class LoginForm(forms.Form):
             'autocomplete':'off',
             'data-parsley-id':'7556',
             'required':'',
+            'spellcheck':'false',
         }),
     )
     password = forms.CharField(
@@ -29,5 +30,6 @@ class LoginForm(forms.Form):
             'autocomplete':'off',
             'data-parsley-id':'0276',
             'required':'',
+            'spellcheck':'false',
         }),
     )

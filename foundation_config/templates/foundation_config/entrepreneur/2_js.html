@@ -1,4 +1,14 @@
 <script>
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+    }
+
     /**
      *  Function will asynchronously upload the cover image.
      */
@@ -26,6 +36,7 @@
     }
 
     function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
         var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
         var businessidea_id = parseInt("{{ businessidea.id }}");
         get_tenant_businessidea(
@@ -44,10 +55,12 @@
                 set_tenant_businessidea(
                     businessidea,
                     function(json_result) {
+                        enable_btn();
                         console.log(json_result);
                         window.location = "{% url 'foundation_auth_config_entr_step_three' %}";
                     },
                     function(json_error_result) {
+                        enable_btn();
                         console.log(json_error_result);
                         alert(json_error_result);
                     }
@@ -55,6 +68,7 @@
 
             },
             function(error_json_result) {
+                enable_btn();
                 console.log(error_json_result);
                 alert(error_json_result);
             }

@@ -14,7 +14,7 @@
         {{ field.errors }}<br/>
     {% endfor %}
     {{ form.non_field_errors }}
-    <input onclick="ajax_login();" type="button" value="{% trans 'Login' %}" class="ui-btn ui-corner-all" />
+    <input id="id_login_btn" onclick="ajax_login();" type="button" value="{% trans 'Login' %}" class="ui-btn ui-corner-all" />
 </form>
 
 {% endblock content %}
