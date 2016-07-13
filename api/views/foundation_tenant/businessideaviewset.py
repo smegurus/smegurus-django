@@ -12,7 +12,7 @@ from foundation_tenant.models.businessidea import BusinessIdea
 class BusinessIdeaFilter(django_filters.FilterSet):
     class Meta:
         model = BusinessIdea
-        fields = ['name', 'industry',]
+        fields = ['owner', 'name', 'industry',]
 
 
 class BusinessIdeaViewSet(viewsets.ModelViewSet):

@@ -34,6 +34,7 @@ from api.views.foundation_tenant.placeviewset import PlaceViewSet
 from api.views.foundation_tenant.countryviewset import CountryViewSet
 from api.views.foundation_tenant.tagviewset import TagViewSet
 from api.views.foundation_tenant.businessideaviewset import BusinessIdeaViewSet
+from api.views.foundation_tenant.tellusyourneedviewset import TellUsYourNeedViewSet
 
 # URL Generator.
 router = routers.DefaultRouter()
@@ -64,6 +65,7 @@ router.register(r'tenantplace', PlaceViewSet)
 router.register(r'tenantcountry', CountryViewSet)
 router.register(r'tenanttag', TagViewSet)
 router.register(r'tenantbusinessidea', BusinessIdeaViewSet)
+router.register(r'tenanttellusyourneed', TellUsYourNeedViewSet)
 
 
 # The API URLs are now determined automatically by the router.
