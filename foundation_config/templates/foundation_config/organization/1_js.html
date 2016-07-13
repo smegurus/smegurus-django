@@ -39,7 +39,7 @@
                     },
                     function(json_error_result) {
                         enable_btn();
-                        var string = JSON.stringify( login_error_json_result );
+                        var string = JSON.stringify( json_error_result );
                         console.log(json_error_result);
                         alert(string);
                     }
@@ -47,7 +47,7 @@
             },
             function(error_result) {
                 enable_btn();
-                var string = JSON.stringify( login_error_json_result );
+                var string = JSON.stringify( error_result );
                 console.log(error_result);
                 alert(string);
             }

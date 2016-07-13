@@ -198,8 +198,11 @@
                         api_me(
                             function(success_result) {
                                 console.log("Success");
-                                enable_btn(); // Allow the user to press the button again.
-                                window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+                                setTimeout(function() {
+                                    enable_btn(); // Allow the user to press the button again.
+                                    window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+                                }, 2000);
+
                             },
                             function(error_result) {
                                 console.log("Failed");
