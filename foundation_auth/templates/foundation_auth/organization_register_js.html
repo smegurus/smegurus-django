@@ -4,15 +4,16 @@
         // Special thanks: http://stackoverflow.com/a/4898449
 
         $("#id_save_org_btn").ajaxStart(function(){
-              $(this).attr("disabled","disabled");
+              $(this).attr("disabled",true);
         });
 
 
         $("#id_save_org_btn").ajaxStop(function(){
-              $(this).attr("disabled","");
+              $(this).attr("disabled",false);
         });
 
         $('#id_save_org_btn').on('click', function(){
+            disable_btn();
             ajax_save_org();
         });
     });
@@ -136,6 +137,8 @@
      *  Function will run the application logic.
      */
     function ajax_save_org() {
+        disable_btn();
+
         // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
             alert("{% trans 'Missing Sub-Domain Name' %}");
