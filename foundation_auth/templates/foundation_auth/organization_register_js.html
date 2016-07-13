@@ -1,5 +1,24 @@
 {% load i18n %}
 <script>
+    $(document).ready(function () {
+        // Special thanks: http://stackoverflow.com/a/4898449
+
+        $("#id_save_org_btn").ajaxStart(function(){
+              $(this).attr("disabled","disabled");
+        });
+
+
+        $("#id_save_org_btn").ajaxStop(function(){
+              $(this).attr("disabled","");
+        });
+
+        $('#id_save_org_btn').on('click', function(){
+            ajax_save_org();
+        });
+    });
+
+
+
     /**
      *  Function creates an Postal Address.
      */
