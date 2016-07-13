@@ -10,6 +10,18 @@
     <h1>Tell Us About Yourself</h1>
     <p>SME Gurus is all about making business easier through tools and education. Help us make your experience better by letting us know which areas you would like to improve in - you can choose up to three:</p>
     <br/>
+
+    <!-- Name & Industry -->
+    {% for field in form %}
+        {% if field.label != 'Image' %}
+            {{ field.label_tag }} {{ field }}
+            {{ field.errors }}<br/>
+        {% endif %}
+    {% endfor %}
+    {{ form.non_field_errors }}
+    <!-- end Name & Industry -->
+
+    <br/>
     <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
     <input onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
 </form>
