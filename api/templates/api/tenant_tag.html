@@ -47,7 +47,6 @@
             },
             data: data,
             type: type,
-            async: false,
             traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
             success: function(json_result){
                 func_callback(json_result); // Call back the function with the JSON results.
@@ -77,7 +76,6 @@
             contentType: false,
             processData: false,
             type: 'GET',
-            async: false,
             success: function(json_results){
                 func_callback(json_results);
             },
@@ -102,7 +100,6 @@
             contentType: false,
             processData: false,
             type: 'DELETE',
-            async: false,
             success: function(json_results){
                 func_callback(json_results);
             },

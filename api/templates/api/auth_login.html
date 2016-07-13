@@ -11,7 +11,6 @@
             url: url,
             data: data,
             type: type,
-            async: false,
             traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
             success: function(json_result){
                 success_callback(json_result); // Call back the function with the JSON results.
@@ -38,7 +37,6 @@
         },
         data: {},
         type: "POST",
-        async: true,
         traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
         success: function(json_result) {
             success_callback(json_result);  // Call back the function with the JSON results.
