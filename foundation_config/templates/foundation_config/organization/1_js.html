@@ -16,7 +16,7 @@
 
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
-        
+
         get_public_organization(  // Fetch our organization.
             {{ request.tenant.id }},
             function(organization) {
@@ -28,7 +28,9 @@
                     organization,
                     function(error) {
                         enable_btn();
+                        var string = JSON.stringify( login_error_json_result );
                         console.log(error);
+                        alert(string);
                     },
                     function(json_result) {
                         enable_btn();
@@ -37,15 +39,17 @@
                     },
                     function(json_error_result) {
                         enable_btn();
+                        var string = JSON.stringify( login_error_json_result );
                         console.log(json_error_result);
-                        alert(json_error_result);
+                        alert(string);
                     }
                 ); // end Get Organization
             },
             function(error_result) {
                 enable_btn();
+                var string = JSON.stringify( login_error_json_result );
                 console.log(error_result);
-                alert(json_error_result);
+                alert(string);
             }
         );  // end Set Organization
     }
