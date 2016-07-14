@@ -1,17 +1,23 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/organization/8_js.html' %}
+    {% endcompress %}
+    <h2 class="text-center pv">{% trans 'You\'re Ready To Start' %}</h2>
+    <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
 
-{% compress js inline %}
-    {% include 'foundation_config/organization/8_js.html' %}
-{% endcompress %}
-
-<form style="width:280px;margin:auto;">
-    <h1>You're Ready To Start</h1>
-    <p>Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.</p>
     <br/>
-    <input onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_add_advisors();" type="button" value="{% trans 'Add Advisors &amp; Continue' %}" class="ui-btn ui-corner-all" />
-</form>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <button onclick="ajax_dashboard();"
+                     id="id_login_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Dashboard' %}</button>
+    </form>
+
+    <a onclick="ajax_add_advisors();"
+            id="id_continue_btn"
+         class="btn btn-block btn-default">{% trans 'Add Advisors &amp; Continue' %}</a>
 
 {% endblock content %}
