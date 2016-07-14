@@ -1,9 +1,11 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress foundation_public_tags %}
 {% block content %}
-
-<h1>Successful Registration</h1>
-<p>You have successfully registered your Organization! Final step is to login and begin:</p>
-<a href="{% tenant_url organization.schema_name 'foundation_auth_user_login' %}">Login My Organization</a>
-
+    <h2 class="text-center pv">{% trans 'Successful Registration' %}</h2>
+    <p class="text-center pv">
+        {% trans 'You have successfully registered your Organization! Final step is to login and begin:' %}
+        <a href="{% tenant_url organization.schema_name 'foundation_auth_user_login' %}">
+        {% trans 'Login My Organization' %}
+        </a>
+    </p>
 {% endblock content %}
