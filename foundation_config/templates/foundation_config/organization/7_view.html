@@ -1,26 +1,34 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/organization/7_js.html' %}
+    {% endcompress %}
+    <h2 class="text-center pv">{% trans 'Perks and Rewards' %}</h2>
+    <p class="text-center pv">{% trans 'To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.' %}</p>
 
-{% compress js inline %}
-    {% include 'foundation_config/organization/7_js.html' %}
-{% endcompress %}
+    <br/>
 
-<form style="width:480px;margin:auto;">
-    <h1>Perks and Rewards</h1>
-    <p>To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.</p>
-    <br/>
-    <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
-    Activate Perks & Rewards: Your entrepreneurs will receive access to special offers.
-    <br>
-    <br/>
-    <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
-    No Perks (not recommended): If you don't want to offer perks to your clients, then select this option.
-    <br>
-    <br/>
-    <br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
-</form>
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
+        {% trans 'Activate Perks & Rewards: Your entrepreneurs will receive access to special offers.' %}
+        <br>
+        <br/>
+
+        <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
+        {% trans 'No Perks (not recommended): If you don\'t want to offer perks to your clients, then select this option.' %}
+        <br>
+        <br/>
+
+        <button onclick="ajax_save_and_continue();"
+                     id="id_login_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_cancel_and_continue();"
+            id="id_continue_btn"
+         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+
 
 {% endblock content %}
