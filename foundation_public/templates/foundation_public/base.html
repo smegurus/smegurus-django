@@ -6,8 +6,8 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="description" content="">
-   <meta name="keywords" content="entrepreneurship, financial, literacy, youth, app, saving money, money, learning, teaching,">
-   <link type="text/plain" rel="author" href="https://www.smegurus.com/humans.txt" />
+   <meta name="keywords" content="">
+   <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
    <title>SME Gurus</title>
    {% compress css %}
        <!-- =============== VENDOR STYLES ===============-->
@@ -39,10 +39,10 @@
             <div class="navbar-header">
                <a href="#/" class="navbar-brand">
                   <div class="brand-logo">
-                     <img src="img/logo.png" alt="App Logo" class="img-responsive">
+                     <img src="{% static 'app/img/logo.png' %}" alt="App Logo" class="img-responsive">
                   </div>
                   <div class="brand-logo-collapsed">
-                     <img src="img/logo-single.png" alt="App Logo" class="img-responsive">
+                     <img src="{% static 'app/img/logo-single.png' %}" alt="App Logo" class="img-responsive">
                   </div>
                </a>
             </div>
@@ -222,7 +222,7 @@
        <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
        <!-- LOCALIZE-->
        <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
-       
+
        <!-- =============== PAGE VENDOR SCRIPTS ===============-->
 
        <!-- =============== EXTRA SCRIPTS ===============-->
