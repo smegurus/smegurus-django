@@ -1,7 +1,7 @@
 {% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-    <h2 class="text-center pv">Activation Successful</h2>
+    <h2 class="text-center pv">{% trans 'Activation Successful' %}</h2>
     <p class="text-center pv">{% trans 'You have successfully activated your account! Next step is signup with your new account.' %}</p>
     <a href="{{ login_url }}" class="btn btn-block btn-default">{% trans 'Signup' %}</a>
 {% endblock content %}
