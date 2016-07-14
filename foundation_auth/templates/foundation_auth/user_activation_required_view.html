@@ -1,8 +1,6 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-
-    <h1>Activation Is Required</h1>
-    <p>Please wait and you will receive an activation email.</p>
-
+    <h2 class="text-center pv">Activation Required</h2>
+    <p class="text-center pv">{% trans 'Please wait and check your email, you will receive an activation email to activate your account.' %}</p>
 {% endblock content %}
