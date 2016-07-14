@@ -1,0 +1,21 @@
+{% load staticfiles compress i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="entrepreneurship, financial, literacy, youth, app, saving money, money, learning, teaching,">
+    <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
+    <title>{% trans "SME Gurus" %}</title>
+</head>
+<body>
+    <!-- CSRF Token -->
+    {% csrf_token %}
+
+    <!-- CONTENT -->
+    {% block content %}
+    {% endblock %}
+    <!-- /.CONTENT -->
+</body>
+</html>

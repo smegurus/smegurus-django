@@ -1,4 +1,4 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
 
@@ -7,12 +7,13 @@
 {% endcompress %}
 
 <form style="width:280px;margin:auto;">
-    {% if request.tenant.schema_name == 'public' %}
-        <h1>Org Admin Registration</h1>
-    {% else %}
-        <h1>User Registration</h1>
-    {% endif %}
-    <p>For Schema: {{ request.tenant.schema_name }}</p>
+    <p class="text-center pv">
+        {% if request.tenant.schema_name == 'public' %}
+            {% trans 'ORGANIZATION ADMIN REGISTRATION' %}
+        {% else %}
+            {% trans 'ENTREPRENEUR REGISTRATION' %}
+        {% endif %}
+    </p>
 
     {% for field in form %}
         {% if field.label != 'Old Password' %}
