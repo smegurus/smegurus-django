@@ -25,6 +25,7 @@ class PublicOrganizationForm(forms.ModelForm):
             'schema_name': TextInput(attrs={
                 'class': u'form-control',
                 'placeholder': _('Enter sub-domain of this Organization.'),
+                'autocapitalize':'off',
                 'autocomplete':'off',
                 'spellcheck':'false',
             }),
@@ -35,14 +36,20 @@ class PublicOrganizationForm(forms.ModelForm):
             }),
             'url': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter website URL.')
+                'placeholder': _('Enter website URL.'),
+                'autocapitalize':'off',
+                'autocomplete':'off',
             }),
             'facebook_url': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter Facebook URL.')
+                'placeholder': _('Enter Facebook URL.'),
+                'autocapitalize':'off',
+                'autocomplete':'off',
             }),
             'twitter_url': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter Twitter URL.')
+                'placeholder': _('Enter Twitter URL.'),
+                'autocapitalize':'off',
+                'autocomplete':'off',
             }),
         }

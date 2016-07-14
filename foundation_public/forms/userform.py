@@ -35,6 +35,8 @@ class UserForm(forms.ModelForm):
             'class':'form-control',
             'placeholder': _('Enter Email'),
             'spellcheck':'false',
+            'autocapitalize':'off',
+            'autocomplete':'off',
         }),
         required=False,
     )
@@ -45,8 +47,9 @@ class UserForm(forms.ModelForm):
             'type':'password',
             'class':'form-control',
             'placeholder': _('Enter Old Password'),
-            'autocomplete':'off',
             'spellcheck':'false',
+            'autocapitalize':'off',
+            'autocomplete':'off',
         }),
         required=False,
     )
@@ -58,8 +61,9 @@ class UserForm(forms.ModelForm):
             'type':'password',
             'class':'form-control',
             'placeholder': _('Enter New Password'),
-            'autocomplete':'off',
             'spellcheck':'false',
+            'autocapitalize':'off',
+            'autocomplete':'off',
         }),
         required=False,
     )
@@ -71,8 +75,9 @@ class UserForm(forms.ModelForm):
             'type':'password',
             'class':'form-control',
             'placeholder': _('Enter Password Again'),
-            'autocomplete':'off',
             'spellcheck':'false',
+            'autocapitalize':'off',
+            'autocomplete':'off',
         }),
         required=False,
     )
@@ -81,10 +86,3 @@ class UserForm(forms.ModelForm):
         label=_('I agree to terms'),
         required=True
     )
-
-    # def clean_password_repeated(self):
-    #     password = self.cleaned_data['password']
-    #     password_repeated = self.cleaned_data['password_repeated']
-    #     if password != password_repeated:
-    #         raise forms.ValidationError("Passwords do not match.")
-    #     return password_repeated

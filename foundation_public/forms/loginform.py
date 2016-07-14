@@ -12,8 +12,10 @@ class LoginForm(forms.Form):
         label=_('Email'),
         max_length=100,
         widget=forms.TextInput(attrs={
+            'type':'email',
             'class':'form-control',
             'placeholder':_('Enter Email'),
+            'autocapitalize':'off',
             'autocomplete':'off',
             'data-parsley-id':'7556',
             'required':'',
@@ -27,6 +29,7 @@ class LoginForm(forms.Form):
             'type':'password',
             'class':'form-control',
             'placeholder':_('Enter Password'),
+            'autocapitalize':'off',
             'autocomplete':'off',
             'data-parsley-id':'0276',
             'required':'',
