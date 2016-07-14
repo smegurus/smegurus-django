@@ -9,3 +9,11 @@ def land_page(request):
     return render(request, 'landpage/landpage.html',{
         'organizations': PublicOrganization.objects.all(),
     })
+
+
+def term_page(request):
+    print("TENANT", request.tenant.schema_name)
+    print("USER", request.user)
+    return render(request, 'landpage/landpage.html',{
+        'organizations': PublicOrganization.objects.all(),
+    })

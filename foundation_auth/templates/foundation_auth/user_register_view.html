@@ -6,24 +6,50 @@
     {% include 'foundation_auth/user_register_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
-    <p class="text-center pv">
-        {% if request.tenant.schema_name == 'public' %}
-            {% trans 'ORGANIZATION ADMIN REGISTRATION' %}
-        {% else %}
-            {% trans 'ENTREPRENEUR REGISTRATION' %}
-        {% endif %}
-    </p>
+<p class="text-center pv">
+    {% if request.tenant.schema_name == 'public' %}
+        {% trans 'ORGANIZATION ADMIN REGISTRATION' %}
+    {% else %}
+        {% trans 'ENTREPRENEUR REGISTRATION' %}
+    {% endif %}
+</p>
 
-    {% for field in form %}
-        {% if field.label != 'Old Password' %}
-            {{ field.label_tag }} {{ field }}
-            {{ field.errors }}<br/>
-        {% endif %}
-    {% endfor %}
-    {{ form.non_field_errors }}
-    <br/>
-    <input id="id_register_btn" onclick="ajax_register();" type="button" value="{% trans 'Register' %}" class="ui-btn ui-corner-all" />
+<form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'First Name' %}</label>
+       <input id="id_first_name" type="text" placeholder="{% trans 'Enter first name' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-user form-control-feedback text-muted"></span>
+    </div>
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Last Name' %}</label>
+       <input id="id_last_name" type="text" placeholder="{% trans 'Enter last name' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-user form-control-feedback text-muted"></span>
+    </div>
+   <div class="form-group has-feedback">
+      <label for="signupInputEmail1" class="text-muted">{% trans 'Email address' %}</label>
+      <input id="id_email" type="email" placeholder="{% trans 'Enter email' %}" autocomplete="off" required class="form-control">
+      <span class="fa fa-envelope form-control-feedback text-muted"></span>
+   </div>
+   <div class="form-group has-feedback">
+      <label for="signupInputPassword1" class="text-muted">Password</label>
+      <input id="id_password" type="password" placeholder="{% trans 'Password' %}" autocomplete="off" required class="form-control">
+      <span class="fa fa-lock form-control-feedback text-muted"></span>
+   </div>
+   <div class="form-group has-feedback">
+      <label for="signupInputRePassword1" class="text-muted">Retype Password</label>
+      <input id="id_password_repeated" type="password" placeholder="{% trans 'Retype Password' %}" autocomplete="off" required data-parsley-equalto="#signupInputPassword1" class="form-control">
+      <span class="fa fa-lock form-control-feedback text-muted"></span>
+   </div>
+   <div class="clearfix">
+      <div class="checkbox c-checkbox pull-left mt0">
+         <label>
+            <input id="id_is_tos_signed" type="checkbox" value="" required name="agreed">
+            <span class="fa fa-check"></span>I agree with the <a href="{% url 'terms' %}">terms</a>
+         </label>
+      </div>
+   </div>
+   <button id="id_register_btn" onclick="ajax_register();" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Create account' %}</button>
 </form>
-
+<p class="pt-lg text-center">Have an account?</p>
+<a href="{% url 'foundation_auth_user_login' %}" class="btn btn-block btn-default">{% trans 'Signup' %}</a>
 {% endblock content %}
