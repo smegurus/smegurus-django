@@ -1,27 +1,32 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/organization/6_js.html' %}
+    {% endcompress %}
+    <h2 class="text-center pv">{% trans 'Mentors and External Advisors' %}</h2>
+    <p class="text-center pv">{% trans 'The most successful entrepreneurs have a mentor or advisor that they can go to. For these reasons, SME Gurus allows entrerepenrus to email compelted documents such as their Business Model Canvas, to an external advisor or mentor. While most of our clients use this feature, you may wish to disable it because of privacy or security concerns. If you do enable this option, externals will only see completed documents - they won\'t be able to view any other data.' %}</p>
 
-{% compress js inline %}
-    {% include 'foundation_config/organization/6_js.html' %}
-{% endcompress %}
+    <br/>
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <input type="radio" name="has_mentors" value=true {% if request.tenant.has_mentors == True %}checked{% endif %}>
+        Enable External Advisors: Your entrepreneurs will be able to easily share documents with external advisors - such as a mentor or lender.
+        <br>
+        <br/>
 
-<form style="width:480px;margin:auto;">
-    <h1>Mentors and External Advisors</h1>
-    <p>The most successful entrepreneurs have a mentor or advisor that they can go to. For these reasons, SME Gurus allows entrerepenrus to email compelted documents such as their Business Model Canvas, to an external advisor or mentor. While most of our clients use this feature, you may wish to disable it because of privacy or security concerns. If you do enable this option, externals will only see completed documents - they won't be able to view any other data.</p>
-    <br/>
-    <br/>
-    <input type="radio" name="has_mentors" value=true {% if request.tenant.has_mentors == True %}checked{% endif %}>
-    Enable External Advisors: Your entrepreneurs will be able to easily share documents with external advisors - such as a mentor or lender.
-    <br>
-    <br/>
-    <input type="radio" name="has_mentors" value=false {% if request.tenant.has_mentors == False %}checked{% endif %}>
-    Traditional (not recommended): If you don't want your entrepreneurs to interact with external advisors, then select this option.
-    <br>
-    <br/>
-    <br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
-</form>
+        <input type="radio" name="has_mentors" value=false {% if request.tenant.has_mentors == False %}checked{% endif %}>
+        Traditional (not recommended): If you don't want your entrepreneurs to interact with external advisors, then select this option.
+        <br>
+        <br/>
+
+        <button onclick="ajax_save_and_continue();"
+                     id="id_login_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_cancel_and_continue();"
+            id="id_continue_btn"
+         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
