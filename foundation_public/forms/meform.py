@@ -2,7 +2,7 @@ from datetime import date
 from django import forms
 from django.db import models
 from django.forms import ModelForm, Textarea, TextInput, NumberInput, BooleanField
-from django.forms.widgets import EmailInput
+from django.forms.widgets import Select
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -19,10 +19,10 @@ class PublicMeForm(forms.ModelForm):
             'url': _('Website'),
         }
         widgets = {
-        #     'schema_name': TextInput(attrs={
-        #         'class': u'form-control',
-        #         'placeholder': _('Enter sub-domain of this Organization.')
-        #     }),
+            'how_discovered': Select(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter sub-domain of this Organization.')
+            }),
         #     'name': TextInput(attrs={
         #         'class': u'form-control',
         #         'placeholder': _('Enter name.')
