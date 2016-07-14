@@ -7,17 +7,22 @@
 
     <h2 class="text-center pv">{% trans 'Program Setup' %}</h2>
     <p class="text-center pv">Now, we need to identify which of your tags are programs that run or plan to offer in the short-term - this will help clients filling out an online intake form, and will make them available for signup. If you do not set any tags as programs, then the system will create a 'General intake' option for your clients.</p>
-    <br/>
-    <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
-    <br/>
-    <button onclick="ajax_save_and_continue();"
-                 id="id_login_btn"
-               type="button"
-              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
-</form>
 
-<a onclick="ajax_cancel_and_continue();"
-        id="id_continue_btn"
-     class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+    <br/>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
+
+        <br/>
+
+        <button onclick="ajax_save_and_continue();"
+                     id="id_login_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_cancel_and_continue();"
+            id="id_continue_btn"
+         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}

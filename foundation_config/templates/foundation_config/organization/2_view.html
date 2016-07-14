@@ -12,17 +12,22 @@
     <p class="text-center pv">spanish language - you could use any language as a tag here to indicate that the client (in this case) speaks Spanish</p>
     <p class="text-center pv">entrepreneurship 101 - if you were running a program called Entrepreneurship 101, then you could create this tag to designate someone as being part of a program.</p>
     <p class="text-center pv">Now, why don't you go ahead and create a few tags. You should add tags for any programs that you currently offer, or plan to offer in the next 3 months. We recommend that you choose 3 from the list below or create at least 3 to start. If you don't create any, the system autocreates a 'general intake' tag that you can use. </p>
-    <br/>
-    <input id="tags" value="newcomer, youth, social entrepreneur, food, technology, retail, spanish language, french language, female, accessibility needs  " />
-    <br/>
-    <button onclick="ajax_save_and_continue();"
-                 id="id_login_btn"
-               type="button"
-              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
-</form>
 
-<a onclick="ajax_cancel_and_continue();"
-        id="id_continue_btn"
-     class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+    <br/>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <input id="tags" value="newcomer, youth, social entrepreneur, food, technology, retail, spanish language, french language, female, accessibility needs  " />
+
+        <br/>
+
+        <button onclick="ajax_save_and_continue();"
+                     id="id_login_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_cancel_and_continue();"
+            id="id_continue_btn"
+         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
