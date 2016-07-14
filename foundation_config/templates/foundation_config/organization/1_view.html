@@ -1,4 +1,4 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
 
@@ -6,12 +6,13 @@
     {% include 'foundation_config/organization/1_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
-    <h1>Great! You're Almost There!</h1>
-    <p>We just need a few more details to finish setting up your profile. We need you to do this to get started, but don't worry, you can always change these settings later. Let's get started!</p>
-    <p>First, let's upload your logo. This will help you to brand and customize SME Gurus for your clients. If you don't have your logo handy, you can skip this step, but we highly recommended that you add one now.</p>
-    <br/>
+<h2 class="text-center pv">{% trans 'Great! You\'re Almost There!' %}</h2>
+<p class="text-center pv">We just need a few more details to finish setting up your profile. We need you to do this to get started, but don't worry, you can always change these settings later. Let's get started!</p>
+<p class="text-center pv">First, let's upload your logo. This will help you to brand and customize SME Gurus for your clients. If you don't have your logo handy, you can skip this step, but we highly recommended that you add one now.</p>
 
+<br/>
+
+<form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
     <!-- Upload ID -->
     <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant.logo.id }}"/>
     <input type="hidden" id="id_hidden_url" value="{{ request.tenant.logo.imagefile.url }}"/>
@@ -26,20 +27,28 @@
        name="product-image" />
     <!-- /.Image Placeholder -->
 
+    <br/>
+
     <!-- Image Upload Button -->
     <label class="form-control btn btn-success mt10 curp" >
-        <em class="fa fa-upload"></em>&nbsp;&nbsp; Upload Logo Image...
-            <input id="id_image"
-             onchange="ajax_upload_image();"
-                 type="file"
-                class="form-control mb10 hide"
-                 name="product-image" />
+        <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Logo Image...' %}
+        <input onchange="ajax_upload_image();"
+                     id="id_image"
+                   type="file"
+                  class="form-control mb10 hide"
+                   name="product-image" />
     </label>
     <!-- /.Image Upload Button -->
 
-    <br/><br/><br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
+    <br/>
+
+    <button onclick="ajax_save_and_continue();"
+                 id="id_login_btn"
+               type="button"
+              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
 </form>
 
+<a onclick="ajax_cancel_and_continue();"
+        id="id_continue_btn"
+     class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 {% endblock content %}
