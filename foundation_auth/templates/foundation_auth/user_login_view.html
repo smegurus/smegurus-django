@@ -1,4 +1,4 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
 
@@ -6,15 +6,27 @@
     {% include 'foundation_auth/user_login_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
-    <h1>Login</h1>
-    <p>Login using your email and password.</p>
-    {% for field in form %}
-        {{ field.label_tag }} {{ field }}
-        {{ field.errors }}<br/>
-    {% endfor %}
-    {{ form.non_field_errors }}
-    <input id="id_login_btn" onclick="ajax_login();" type="button" value="{% trans 'Login' %}" class="ui-btn ui-corner-all" />
+<p class="text-center pv">{% trans 'SIGN IN TO CONTINUE.' %}</p>
+<form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+   <div class="form-group has-feedback">
+      <input id="id_email" type="email" placeholder="{% trans 'Enter email' %}" autocomplete="off" required class="form-control">
+      <span class="fa fa-envelope form-control-feedback text-muted"></span>
+   </div>
+   <div class="form-group has-feedback">
+      <input id="id_password" type="password" placeholder="{% trans 'Password' %}" required class="form-control">
+      <span class="fa fa-lock form-control-feedback text-muted"></span>
+   </div>
+   <div class="clearfix">
+      <div class="checkbox c-checkbox pull-left mt0">
+         <label>
+            <input type="checkbox" value="" name="remember">
+            <span class="fa fa-check"></span>{% trans 'Remember Me' %}</label>
+      </div>
+      <div class="pull-right"><a href="{% url 'landpage' %}" class="text-muted">{% trans 'Forgot your password?' %}</a>
+      </div>
+   </div>
+   <button id="id_login_btn" onclick="ajax_login();" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Login' %}</button>
 </form>
-
+<p class="pt-lg text-center">{% trans 'Need to Signup?' %}</p>
+<a href="{% url 'foundation_auth_user_registration' %}" class="btn btn-block btn-default">{% trans 'Register Now' %}</a>
 {% endblock content %}
