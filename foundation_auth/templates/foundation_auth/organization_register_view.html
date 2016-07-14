@@ -1,4 +1,4 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
 
@@ -8,51 +8,104 @@
     {% include 'foundation_auth/organization_register_js.html' %}
 {% endcompress %}
 
-<form style="width:280px;margin:auto;">
-    <h1>Organization Registration</h1>
-    <p>Fill in the following fields to register your business.</p>
+<p class="text-center pv">
+    {% trans 'ORGANIZATION REGISTRATION' %}
+</p>
+
+
+<form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Sub-domain' %}</label>
+       <input id="id_schema_name" type="text" placeholder="{% trans 'Enter first name' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-link form-control-feedback text-muted"></span>
+       .smegurus.com
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Company Name' %}</label>
+       <input id="id_name" type="text" placeholder="{% trans 'Enter company name' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-building form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Website' %}</label>
+       <input id="id_url" type="text" placeholder="{% trans 'Enter website' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-external-link form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Facebook' %}</label>
+       <input id="id_facebook_url" type="text" placeholder="{% trans 'Enter Facebook' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-facebook form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Twitter' %}</label>
+       <input id="id_twitter_url" type="text" placeholder="{% trans 'Enter Twitter' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-twitter form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Street Address' %}</label>
+       <input id="id_street_address" type="text" placeholder="{% trans 'Enter street address' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Postal/Zip' %}</label>
+       <input id="id_postal_code" type="text" placeholder="{% trans 'Enter postal/zip' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'City' %}</label>
+       <input id="id_address_locality" type="text" placeholder="{% trans 'Enter city' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Province/State' %}</label>
+       <input id="id_address_region" type="text" placeholder="{% trans 'Enter province/state' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Country' %}</label>
+       <input id="id_address_country" type="text" placeholder="{% trans 'Enter country' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <br/>
     <!-- Org Form -->
     {% for org_field in org_form %}
-        {% if org_field.id_for_label != 'id_how_many_served' %}
+        {% if org_field.id_for_label == 'id_how_many_served' %}
             {{ org_field.label_tag }} {{ org_field }}
             {{ org_field.errors }}<br/>
-        {% else %}
-            <!-- Postal Form -->
-            {% for address_field in address_form %}
-                {{ address_field.label_tag }} {{ address_field }}
-                {{ address_field.errors }}<br/>
-            {% endfor %}
-            {{ address_field.non_field_errors }}
-            <!-- /.Postal Form -->
-
-            <!-- Org Form -->
+        {% endif %}
+    {% endfor %}
+    {{ org_field.non_field_errors }}
+    <!-- /.Org Form -->
+    <br/>
+    <!-- Me Form -->
+    {% for me_field in me_form %}
+        {% if me_field.id_for_label == 'id_how_discovered' %}
+            {{ me_field.label_tag }} {{ me_field }}
+            {{ me_field.errors }}<br/>
+        {% endif %}
+    {% endfor %}
+    {{ me_field.non_field_errors }}
+    <!-- /.Me Form -->
+    <br/>
+    <!-- Org Form -->
+    {% for org_field in org_form %}
+        {% if org_field.id_for_label == 'id_is_tos_signed' %}
             {{ org_field.label_tag }} {{ org_field }}
             {{ org_field.errors }}<br/>
-            <!-- /.Org Form -->
-
-            <!-- Me Form -->
-            {% for me_field in me_form %}
-                {% if me_field.id_for_label == 'id_how_discovered' %}
-                    {{ me_field.label_tag }} {{ me_field }}
-                    {{ me_field.errors }}<br/>
-                {% endif %}
-            {% endfor %}
-            {{ me_field.non_field_errors }}
-            <!-- /.Me Form -->
         {% endif %}
     {% endfor %}
     {{ org_field.non_field_errors }}
     <!-- /.Org Form -->
 
-
-
-    <br/>
-    <!-- Submit -->
-    <input id="id_save_org_btn"
-         type="button"
-        value="{% trans 'Finalize' %}"
-        class="ui-btn ui-corner-all" />
-    <!-- /.Submit -->
-</form>
-
+    <button id="id_save_org_btn" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Create Organization' %}</button>
+ </form>
 {% endblock content %}
