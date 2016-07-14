@@ -2,7 +2,7 @@ from datetime import date
 from django import forms
 from django.db import models
 from django.forms import ModelForm, Textarea, TextInput, NumberInput, BooleanField
-from django.forms.widgets import EmailInput
+from django.forms.widgets import EmailInput, Select
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -18,11 +18,10 @@ class BusinessIdeaForm(forms.ModelForm):
             'industry': _('Industry'),
             'image': _('Image'),
         }
-        # widgets = {
-        #     'schema_name': TextInput(attrs={
-        #         'class': u'form-control',
-        #         'placeholder': _('Enter sub-domain of this Organization.')
-        #     }),
+        widgets = {
+            'industry': Select(attrs={
+                'class': u'form-control',
+            }),
         #     'name': TextInput(attrs={
         #         'class': u'form-control',
         #         'placeholder': _('Enter name.')
@@ -39,4 +38,4 @@ class BusinessIdeaForm(forms.ModelForm):
         #         'class': u'form-control',
         #         'placeholder': _('Enter Twitter URL.')
         #     }),
-        # }
+        }
