@@ -1,17 +1,23 @@
 {% extends 'foundation_config/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/entrepreneur/4_js.html' %}
+    {% endcompress %}
+    <h2 class="text-center pv">{% trans 'Let\'s Get Started!' %}</h2>
+    <p class="text-center pv">{% trans 'Now you are all set. Click Continue to go to your dashboard.' %}</p>
 
-{% compress js inline %}
-    {% include 'foundation_config/entrepreneur/4_js.html' %}
-{% endcompress %}
-
-<form style="width:480px;margin:auto;">
-    <h1>Let's Get Started!</h1>
-    <p>Now you are all set. Click Continue to go to your dashboard.</p>
     <br/>
-    <input onclick="ajax_back();" type="button" value="{% trans 'Back' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_dashboard();" type="button" value="{% trans 'Dashboard' %}" class="ui-btn ui-corner-all" />
-</form>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <button onclick="ajax_dashboard();"
+                     id="id_continue_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Dashboard' %}</button>
+    </form>
+
+    <a onclick="ajax_back();"
+            id="id_skip_btn"
+         class="btn btn-block btn-default">{% trans 'Back' %}</a>
 
 {% endblock content %}
