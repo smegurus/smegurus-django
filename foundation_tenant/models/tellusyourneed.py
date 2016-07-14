@@ -42,6 +42,7 @@ class TellUsYourNeed(models.Model):
         help_text=_('The text field for other.'),
         blank=True,
         null=True,
+        default='',
     )
 
     def __str__(self):

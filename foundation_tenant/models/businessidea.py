@@ -33,6 +33,7 @@ class BusinessIdea(models.Model):
         help_text=_('The name of the item.'),
         blank=True,
         null=True,
+        default='',
     )
     industry = models.PositiveSmallIntegerField(
         _("Name"),
