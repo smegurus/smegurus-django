@@ -1,29 +1,66 @@
 {% extends 'foundation_config/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/entrepreneur/3_js.html' %}
+    {% endcompress %}
 
-{% compress js inline %}
-    {% include 'foundation_config/entrepreneur/3_js.html' %}
-{% endcompress %}
-
-<form style="width:480px;margin:auto;">
-    <h1>Tell Us About Yourself</h1>
-    <p>SME Gurus is all about making business easier through tools and education. Help us make your experience better by letting us know which areas you would like to improve in - you can choose up to three:</p>
-    <br/>
-
-    <!-- Name & Industry -->
-    {% for field in form %}
-        {% if field.label != 'Image' %}
-            {{ field.label_tag }} {{ field }}
-            {{ field.errors }}<br/>
-        {% endif %}
-    {% endfor %}
-    {{ form.non_field_errors }}
-    <!-- end Name & Industry -->
+    <h2 class="text-center pv">{% trans 'Tell Us About Yourself' %}</h2>
+    <p class="text-center pv">{% trans 'SME Gurus is all about making business easier through tools and education. Help us make your experience better by letting us know which areas you would like to improve in - you can choose up to three:' %}</p>
 
     <br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
-</form>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <div class="clearfix">
+           <div class="checkbox c-checkbox pull-left mt0">
+              <label>
+                 <input id="id_needs_financial_management" type="checkbox" name="Financial Management" {% if tellusyourneed.needs_financial_management %}checked{% endif %}>&nbsp;&nbsp;
+                 <span class="fa fa-check"></span>Financial Management
+              </label>
+           </div>
+        </div>
+
+        <div class="clearfix">
+           <div class="checkbox c-checkbox pull-left mt0">
+              <label>
+                 <input id="id_needs_sales" type="checkbox" name="Sales" {% if tellusyourneed.needs_sales %}checked{% endif %}>&nbsp;&nbsp;
+                 <span class="fa fa-check"></span>Sales
+              </label>
+           </div>
+        </div>
+
+        <div class="clearfix">
+           <div class="checkbox c-checkbox pull-left mt0">
+              <label>
+                 <input id="id_needs_social_media" type="checkbox" name="Social Media" {% if tellusyourneed.needs_social_media %}checked{% endif %}>&nbsp;&nbsp;
+                 <span class="fa fa-check"></span>Social Media
+              </label>
+           </div>
+        </div>
+
+        <div class="clearfix">
+           <div class="checkbox c-checkbox pull-left mt0">
+              <label>
+                 <input id="id_needs_other" type="checkbox" name="Other" {% if tellusyourneed.needs_other %}checked{% endif %}>&nbsp;&nbsp;
+                 <span class="fa fa-check"></span>Other
+              </label>
+           </div>
+        </div>
+        <div class="form-group has-feedback">
+           <input id="id_other" type="text" placeholder="{% trans 'Enter other' %}" autocomplete="off" required class="form-control" value="{{ tellusyourneed.other }}">
+           <span class="fa fa-bold form-control-feedback text-muted"></span>
+        </div>
+
+        <br/>
+
+        <button onclick="ajax_save_and_continue();"
+                     id="id_continue_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_cancel_and_continue();"
+            id="id_skip_btn"
+         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}

@@ -20,7 +20,7 @@ class TellUsYourNeedForm(forms.ModelForm):
             'needs_other': _('Other'),
             'other': _('Other Text'),
         }
-        # widgets = {
+        widgets = {
         #     'schema_name': TextInput(attrs={
         #         'class': u'form-control',
         #         'placeholder': _('Enter sub-domain of this Organization.')
@@ -41,4 +41,4 @@ class TellUsYourNeedForm(forms.ModelForm):
         #         'class': u'form-control',
         #         'placeholder': _('Enter Twitter URL.')
         #     }),
-        # }
+        }
