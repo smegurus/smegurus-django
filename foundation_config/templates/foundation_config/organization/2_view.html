@@ -1,23 +1,28 @@
-{% extends 'foundation_public/base.html' %}
+{% extends 'foundation_public/base_auth.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
 
-{% compress js inline %}
-    {% include 'foundation_config/organization/2_js.html' %}
-{% endcompress %}
+    {% compress js inline %}
+        {% include 'foundation_config/organization/2_js.html' %}
+    {% endcompress %}
 
-<form style="width:480px;margin:auto;">
-    <h1>Set Your Tags</h1>
-    <p>Now, we are going to set up tags to help you categorize your clients. These help you group your clients by a characteristic or program that you may offer. Tags will be a great help when it comes to searching for clients, analzying your data, and creating reports. The best part is that clients can have multiple tags, and tags can also be added or removed as often as needed. Not sure where to start? For example, you can use:</p>
-    <p>newcomers - this could help to designate clients that are new to the country and may require additional supports or services</p>
-    <p>spanish language - you could use any language as a tag here to indicate that the client (in this case) speaks Spanish</p>
-    <p>entrepreneurship 101 - if you were running a program called Entrepreneurship 101, then you could create this tag to designate someone as being part of a program.</p>
-    <p>Now, why don't you go ahead and create a few tags. You should add tags for any programs that you currently offer, or plan to offer in the next 3 months. We recommend that you choose 3 from the list below or create at least 3 to start. If you don't create any, the system autocreates a 'general intake' tag that you can use. </p>
+    <h2 class="text-center pv">{% trans 'Set Your Tags' %}</h2>
+    <p class="text-center pv">Now, we are going to set up tags to help you categorize your clients. These help you group your clients by a characteristic or program that you may offer. Tags will be a great help when it comes to searching for clients, analzying your data, and creating reports. The best part is that clients can have multiple tags, and tags can also be added or removed as often as needed. Not sure where to start? For example, you can use:</p>
+    <p class="text-center pv">newcomers - this could help to designate clients that are new to the country and may require additional supports or services</p>
+    <p class="text-center pv">spanish language - you could use any language as a tag here to indicate that the client (in this case) speaks Spanish</p>
+    <p class="text-center pv">entrepreneurship 101 - if you were running a program called Entrepreneurship 101, then you could create this tag to designate someone as being part of a program.</p>
+    <p class="text-center pv">Now, why don't you go ahead and create a few tags. You should add tags for any programs that you currently offer, or plan to offer in the next 3 months. We recommend that you choose 3 from the list below or create at least 3 to start. If you don't create any, the system autocreates a 'general intake' tag that you can use. </p>
     <br/>
-     <input id="tags" value="newcomer, youth, social entrepreneur, food, technology, retail, spanish language, french language, female, accessibility needs  " />
+    <input id="tags" value="newcomer, youth, social entrepreneur, food, technology, retail, spanish language, french language, female, accessibility needs  " />
     <br/>
-    <input onclick="ajax_cancel_and_continue();" type="button" value="{% trans 'Skip (Not Recommended)' %}" class="ui-btn ui-corner-all" />
-    <input id="id_continue_btn" onclick="ajax_save_and_continue();" type="button" value="{% trans 'Save &amp; Continue' %}" class="ui-btn ui-corner-all" />
+    <button onclick="ajax_save_and_continue();"
+                 id="id_login_btn"
+               type="button"
+              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
 </form>
+
+<a onclick="ajax_cancel_and_continue();"
+        id="id_continue_btn"
+     class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
