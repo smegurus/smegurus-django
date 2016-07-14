@@ -16,13 +16,13 @@
         <br/>
 
         <button onclick="ajax_save_and_continue();"
-                     id="id_login_btn"
+                     id="id_continue_btn"
                    type="button"
                   class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
     </form>
 
     <a onclick="ajax_cancel_and_continue();"
-            id="id_continue_btn"
+            id="id_skip_btn"
          class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
