@@ -110,7 +110,7 @@ class APIContactPointWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.post('/api/tenantcontactpoint/')
+        response = self.unauthorized_client.post('/api/tenantcontactpoint/', data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic

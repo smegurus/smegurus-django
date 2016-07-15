@@ -116,7 +116,7 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'name': 'Unit Test',
         }
-        response = self.unauthorized_client.post('/api/tenanttag/')
+        response = self.unauthorized_client.post('/api/tenanttag/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -130,9 +130,9 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put(self):
         # Delete any previous data.
-        postal_addesses = Tag.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
+        items = Tag.objects.all()
+        for item in items.all():
+            item.delete()
 
         # Create a new object with our specific test data.
         Tag.objects.create(
@@ -151,9 +151,9 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_authorization(self):
         # Delete any previous data.
-        postal_addesses = Tag.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
+        items = Tag.objects.all()
+        for item in items.all():
+            item.delete()
 
         # Create a new object with our specific test data.
         Tag.objects.create(

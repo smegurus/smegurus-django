@@ -13,8 +13,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from api.views import authentication
-from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.tellusyourneed import TellUsYourNeed
 from foundation_public import constants
 
 
@@ -23,12 +22,12 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase):
+class APITellUsYourNeedWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
-        """Public Schema"""
-        tenant.schema_name = 'test'
+        """Tenant Schema"""
+        tenant.schema_name = 'galacticalliance'
         tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
@@ -42,18 +41,21 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         user = User.objects.create_user(  # Create our user.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,
             password=TEST_USER_PASSWORD
         )
+        user.is_superuser = True
         user.is_active = True
+        user.groups.add(org_admin_group)
         user.save()
 
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APIPublicPostalAdressWithPublicSchemaTestCase, self).setUp()
+        super(APITellUsYourNeedWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -62,139 +64,129 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
         # Setup.
         self.unauthorized_client = TenantClient(self.tenant)
         self.authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        self.authorized_client.login(
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        self.tenant.owner = self.user
+        self.tenant.save()
 
         # Above taken from:
         # http://www.django-rest-framework.org/api-guide/testing/#authenticating
 
-        # Initialize our test data.
-        PostalAddress.objects.bulk_create([
-            PostalAddress(owner=self.user),
-            PostalAddress(owner=self.user),
-            PostalAddress(owner=self.user),
-        ])
-
     @transaction.atomic
     def tearDown(self):
-        postal_addesses = PostalAddress.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_address.delete()
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
-        # super(APIPublicPostalAdressWithPublicSchemaTestCase, self).tearDown()
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
+        # super(APITellUsYourNeedWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):
         # Create a new object with our specific test data.
-        postal_address = PostalAddress.objects.create(
+        tellusyourneed = TellUsYourNeed.objects.create(
             id=2030,
-            name="Unit Test",
-            description="Used for unit testing purposes."
+            owner=self.user
         )
-        postal_address.save()
-        self.assertEqual(str(postal_address), "Unit Test")
+        tellusyourneed.save()
+        self.assertEqual(str(tellusyourneed), "2030")
 
     @transaction.atomic
     def test_list(self):
-        response = self.unauthorized_client.get(reverse('publicpostaladdress-list'))
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        response = self.unauthorized_client.get('/api/tenanttellusyourneed/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_list_with_authentication(self):
-        response = self.authorized_client.get(reverse('publicpostaladdress-list'))
+        response = self.authorized_client.get('/api/tenanttellusyourneed/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_post(self):
         data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
+            'needs_sales': True,
             'owner': self.user.id
         }
-        response = self.unauthorized_client.post(
-            reverse('publicpostaladdress-list'),
-            json.dumps(data),
-            content_type='application/json'
-            )
+        response = self.unauthorized_client.post('/api/tenanttellusyourneed/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_post_with_authentication(self):
         data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
+            'needs_sales': True,
             'owner': self.user.id
         }
-        response = self.authorized_client.post(
-            reverse('publicpostaladdress-list'),
-            json.dumps(data),
-            content_type='application/json'
-        )
+        response = self.authorized_client.post('/api/tenanttellusyourneed/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
     def test_put(self):
         # Delete any previous data.
-        postal_addesses = PostalAddress.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
 
         # Create a new object with our specific test data.
-        PostalAddress.objects.create(
+        TellUsYourNeed.objects.create(
             id=1,
-            name="Unit Test",
-            description="Used for unit testing purposes."
+            needs_sales=True,
+            owner=self.user
         )
 
         # Run the test.
         data = {
             'id': 1,
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
+            'needs_sales': True,
             'owner': self.user.id
         }
-        response = self.unauthorized_client.put(
-            '/api/publicpostaladdress/1/',
-            json.dumps(data),
-            content_type='application/json'
-        )
+        response = self.unauthorized_client.put('/api/tenanttellusyourneed/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_put_with_authorization(self):
         # Delete any previous data.
-        postal_addesses = PostalAddress.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
 
         # Create a new object with our specific test data.
-        PostalAddress.objects.create(
+        TellUsYourNeed.objects.create(
             id=1,
-            name="Unit Test",
-            description="Used for unit testing purposes.",
-            owner_id=self.user.id
+            needs_sales=True,
+            owner=self.user
         )
 
         # Run the test.
         data = {
             'id': 1,
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
+            'needs_sales': True,
             'owner': self.user.id
         }
-        response = self.authorized_client.put(
-            '/api/publicpostaladdress/1/',
-            json.dumps(data),
-            content_type='application/json'
-        )
+        response = self.authorized_client.put('/api/tenanttellusyourneed/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_delete(self):
-        response = self.unauthorized_client.delete('/api/publicpostaladdress/1/')
+        response = self.unauthorized_client.delete('/api/tenanttellusyourneed/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authentication(self):
-        response = self.authorized_client.delete('/api/publicpostaladdress/1/')
+        # Delete any previous data.
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create our object to delete.
+        tellusyourneed = TellUsYourNeed.objects.create(
+            id=2030,
+            owner=self.user
+        )
+        tellusyourneed.save()
+
+        # Run our test and verify.
+        response = self.authorized_client.delete('/api/tenanttellusyourneed/2030/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

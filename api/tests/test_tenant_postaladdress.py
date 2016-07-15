@@ -111,7 +111,7 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.post('/api/tenantpostaladdress/')
+        response = self.unauthorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
