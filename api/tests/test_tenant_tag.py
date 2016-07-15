@@ -83,23 +83,11 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        tags = Tag.objects.all()
-        for tag in tags.all():
-            tag.delete()
+        tags = Tag.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
         super(APITagWithTenantSchemaTestCase, self).tearDown()
-
-    @transaction.atomic
-    def test_to_string(self):
-        # Create a new object with our specific test data.
-        tag = Tag.objects.create(
-            id=2030,
-            name="Unit Test",
-        )
-        tag.save()
-        self.assertEqual(str(tag), "Unit Test")
 
     @transaction.atomic
     def test_list_with_anonymous_user(self):

@@ -83,23 +83,11 @@ class APIBusinessIdeaWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        items = BusinessIdea.objects.all()
-        for item in items.all():
-            item.delete()
+        BusinessIdea.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
         #super(APIBusinessIdeaWithTenantSchemaTestCase, self).tearDown()
-
-    @transaction.atomic
-    def test_to_string(self):
-        # Create a new object with our specific test data.
-        businessideas = BusinessIdea.objects.create(
-            id=2030,
-            name="Unit Test",
-        )
-        businessideas.save()
-        self.assertEqual(str(businessideas), "Unit Test")
 
     @transaction.atomic
     def test_list(self):

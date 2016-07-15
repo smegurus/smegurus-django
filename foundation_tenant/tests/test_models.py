@@ -25,7 +25,6 @@ from foundation_tenant.models.abstract_person import AbstractPerson
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tellusyourneed import TellUsYourNeed
-
 from foundation_public import constants
 
 
@@ -55,6 +54,13 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
+        User.objects.bulk_create([
+            User(email='1@1.com', username='1',password='1',is_active=True,),
+            User(email='2@2.com', username='2',password='2',is_active=True,),
+            User(email='3@3.com', username='3',password='3',is_active=True,),
+            User(email='4@4.com', username='4',password='4',is_active=True,),
+            User(email='5@5.com', username='5',password='5',is_active=True,),
+        ])
 
     @transaction.atomic
     def setUp(self):
@@ -67,6 +73,15 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        items = BusinessIdea.objects.all()
+        for item in items.all():
+            item.delete()
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
+        items = Tag.objects.all()
+        for item in items.all():
+            item.delete()
         # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
 
     @transaction.atomic
@@ -88,7 +103,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             BusinessIdea(name='Defend hive',),
         ])
         count = BusinessIdea.objects.all().count()
-        self.assertEqual(count, 3)
+        self.assertEqual(count, 4)
 
         # Run our test and verify.
         BusinessIdea.objects.delete_all()
@@ -99,6 +114,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     def test_tellusyourneed_to_string(self):
         obj = TellUsYourNeed.objects.create(
             id=2030,
+            owner=User.objects.get(username='1')
         )
         self.assertIn(str(obj), '2030')
 
@@ -108,15 +124,43 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = TellUsYourNeed.objects.all().count()
         self.assertEqual(count, 0)
         TellUsYourNeed.objects.bulk_create([
-            BusinessIdea(id=1,),
-            BusinessIdea(id=2,),
-            BusinessIdea(id=3,),
-            BusinessIdea(id=4,),
+            TellUsYourNeed(id=1, owner=User.objects.get(username='1')),
+            TellUsYourNeed(id=2, owner=User.objects.get(username='2')),
+            TellUsYourNeed(id=3, owner=User.objects.get(username='3')),
+            TellUsYourNeed(id=4, owner=User.objects.get(username='4')),
+            TellUsYourNeed(id=5, owner=User.objects.get(username='5')),
         ])
         count = TellUsYourNeed.objects.all().count()
-        self.assertEqual(count, 4)
+        self.assertEqual(count, 5)
 
         # Run our test and verify.
         TellUsYourNeed.objects.delete_all()
         count = TellUsYourNeed.objects.all().count()
+        self.assertEqual(count, 0)
+
+    @transaction.atomic
+    def test_tag_to_string(self):
+        obj = Tag.objects.create(
+            name='Testing',
+        )
+        self.assertIn(str(obj), 'Testing')
+
+    @transaction.atomic
+    def test_tag_delete_all(self):
+        # Setup our unit test.
+        count = Tag.objects.all().count()
+        self.assertEqual(count, 0)
+        Tag.objects.bulk_create([
+            Tag(id=1, name='1'),
+            Tag(id=2, name='2'),
+            Tag(id=3, name='3'),
+            Tag(id=4, name='4'),
+            Tag(id=5, name='5'),
+        ])
+        count = Tag.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        Tag.objects.delete_all()
+        count = Tag.objects.all().count()
         self.assertEqual(count, 0)

@@ -76,23 +76,11 @@ class APITellUsYourNeedWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        items = TellUsYourNeed.objects.all()
-        for item in items.all():
-            item.delete()
+        TellUsYourNeed.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
         # super(APITellUsYourNeedWithTenantSchemaTestCase, self).tearDown()
-
-    @transaction.atomic
-    def test_to_string(self):
-        # Create a new object with our specific test data.
-        tellusyourneed = TellUsYourNeed.objects.create(
-            id=2030,
-            owner=self.user
-        )
-        tellusyourneed.save()
-        self.assertEqual(str(tellusyourneed), "2030")
 
     @transaction.atomic
     def test_list(self):

@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
+class TellUsYourNeedManager(models.Manager):
+    def delete_all(self):
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class TellUsYourNeed(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
@@ -10,6 +17,7 @@ class TellUsYourNeed(models.Model):
         verbose_name = 'Tell Us Your Need'
         verbose_name_plural = 'Tell Us Your Needs'
 
+    objects = TellUsYourNeedManager()
     owner = models.OneToOneField(
         User,
         help_text=_('The user whom owns this thing.'),
