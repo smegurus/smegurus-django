@@ -94,3 +94,29 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         BusinessIdea.objects.delete_all()
         count = BusinessIdea.objects.all().count()
         self.assertEqual(count, 0)
+
+    @transaction.atomic
+    def test_tellusyourneed_to_string(self):
+        obj = TellUsYourNeed.objects.create(
+            id=2030,
+        )
+        self.assertIn(str(obj), '2030')
+
+    @transaction.atomic
+    def test_tellusyourneed_delete_all(self):
+        # Setup our unit test.
+        count = TellUsYourNeed.objects.all().count()
+        self.assertEqual(count, 0)
+        TellUsYourNeed.objects.bulk_create([
+            BusinessIdea(id=1,),
+            BusinessIdea(id=2,),
+            BusinessIdea(id=3,),
+            BusinessIdea(id=4,),
+        ])
+        count = TellUsYourNeed.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        TellUsYourNeed.objects.delete_all()
+        count = TellUsYourNeed.objects.all().count()
+        self.assertEqual(count, 0)
