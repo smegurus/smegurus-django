@@ -9,6 +9,8 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
+from foundation_tenant.models.businessidea import BusinessIdea
+from foundation_tenant.models.tag import Tag
 from foundation_public import constants
 
 
@@ -121,7 +123,19 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
 
     @transaction.atomic
     def tearDown(self):
-        super(FoundationConfigViewsWithTenatSchemaTestCases, self).tearDown()
+        users = User.objects.all()
+        for user in users.all():
+            user.delete()
+        groups = Group.objects.all()
+        for group in groups.all():
+            group.delete()
+        items = BusinessIdea.objects.all()
+        for item in items.all():
+            item.delete()
+        items = Tag.objects.all()
+        for item in items.all():
+            item.delete()
+        # super(FoundationConfigViewsWithTenatSchemaTestCases, self).tearDown()
 
     @transaction.atomic
     def test_config_org_step_one_page_view_with_success(self):
