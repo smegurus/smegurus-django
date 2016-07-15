@@ -4,6 +4,19 @@ from foundation_public.models.banned import BannedIP
 from foundation_public import constants
 
 
+class IsOwner(permissions.BasePermission):
+    """
+    Object-level permission to only allow owners of an object to read/edit it.
+    Assumes the model instance has an `owner` attribute.
+    """
+    message = 'Only owners of the object are allowed to read/write.'
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_anonymous():
+            return False
+        else:
+            return obj.owner == request.user  # Instance must have an attribute named `owner`.
+
+
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     Object-level permission to only allow owners of an object to edit it.
