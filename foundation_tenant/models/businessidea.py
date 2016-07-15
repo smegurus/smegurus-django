@@ -11,6 +11,13 @@ INDUSTRY_OPTIONS = (
     (3, _('Other')),
 )
 
+class BusinessIdeaManager(models.Manager):
+    def delete_all(self):
+        items = BusinessIdea.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class BusinessIdea(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
@@ -18,6 +25,7 @@ class BusinessIdea(models.Model):
         verbose_name = 'Business Idea'
         verbose_name_plural = 'Business Ideas'
 
+    objects = BusinessIdeaManager()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(
