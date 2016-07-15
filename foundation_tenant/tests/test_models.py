@@ -83,7 +83,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertIn(str(obj), 'hideauze.com')
         obj.delete();  # Cleanup
 
-
     @transaction.atomic
     def test_place_delete_all(self):
         # Setup our unit test.
@@ -229,5 +228,38 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Cleanup
         items = Tag.objects.all()
+        for item in items.all():
+            item.delete()
+
+    @transaction.atomic
+    def test_openinghoursspecification_to_string(self):
+        obj = OpeningHoursSpecification.objects.create(
+            name='Testing',
+        )
+        self.assertIn(str(obj), 'Testing')
+        obj.delete()
+
+    @transaction.atomic
+    def test_openinghoursspecification_delete_all(self):
+        # Setup our unit test.
+        count = OpeningHoursSpecification.objects.all().count()
+        self.assertEqual(count, 0)
+        OpeningHoursSpecification.objects.bulk_create([
+            Tag(id=1, name='1'),
+            Tag(id=2, name='2'),
+            Tag(id=3, name='3'),
+            Tag(id=4, name='4'),
+            Tag(id=5, name='5'),
+        ])
+        count = OpeningHoursSpecification.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        OpeningHoursSpecification.objects.delete_all()
+        count = OpeningHoursSpecification.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = OpeningHoursSpecification.objects.all()
         for item in items.all():
             item.delete()

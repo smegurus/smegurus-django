@@ -4,6 +4,13 @@ from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.imageupload import TenantImageUpload
 
 
+class BrandManager(models.Manager):
+    def delete_all(self):
+        items = Brand.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class Brand(AbstractThing):
     """
     A brand is a name used by an organization or business person for labeling a product, product group, or similar.
@@ -16,6 +23,7 @@ class Brand(AbstractThing):
         verbose_name = 'Brand'
         verbose_name_plural = 'Brands'
 
+    objects = BrandManager()
     logo = models.ForeignKey(
         TenantImageUpload,
         help_text=_('An associated logo.'),

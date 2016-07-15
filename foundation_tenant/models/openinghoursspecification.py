@@ -3,6 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.abstract_thing import AbstractThing
 
 
+class OpeningHoursSpecificationManager(models.Manager):
+    def delete_all(self):
+        items = OpeningHoursSpecification.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class OpeningHoursSpecification(AbstractThing):
     """
     A structured value providing information about the opening hours of a place or a certain service inside a place.
@@ -15,6 +22,7 @@ class OpeningHoursSpecification(AbstractThing):
         verbose_name = 'Opening Hours Specification'
         verbose_name_plural = 'Opening Hours Specifications'
 
+    objects = OpeningHoursSpecificationManager()
     closes = models.CharField(
         _("Closes"),
         max_length=5,

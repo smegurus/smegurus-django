@@ -5,6 +5,13 @@ from foundation_tenant.models.language import Language
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
 
 
+class ContactPointManager(models.Manager):
+    def delete_all(self):
+        items = ContactPoint.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class ContactPoint(AbstractThing):
     """
     A contact point—for example, a Customer Complaints department.
@@ -17,6 +24,7 @@ class ContactPoint(AbstractThing):
         verbose_name = 'Contact Point'
         verbose_name_plural = 'Contact Points'
 
+    objects = ContactPointManager()
     area_served = models.CharField(
         _("Area Served"),
         max_length=127,

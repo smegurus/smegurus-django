@@ -3,6 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.abstract_thing import AbstractThing
 
 
+class GeoCoordinateManager(models.Manager):
+    def delete_all(self):
+        items = GeoCoordinate.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class GeoCoordinate(AbstractThing):
     """
     The geographic coordinates of a place or event.
@@ -15,6 +22,7 @@ class GeoCoordinate(AbstractThing):
         verbose_name = 'GeoCoordinate'
         verbose_name_plural = 'GeoCoordinates'
 
+    objects = GeoCoordinateManager()
     address = models.CharField(
         _("Address"),
         max_length=255,

@@ -4,6 +4,13 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
+class TenantFileUploadManager(models.Manager):
+    def delete_all(self):
+        items = TenantFileUpload.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class TenantFileUpload(models.Model):
     """A file uploaded object restricted to specific tenants only."""
     class Meta:
@@ -12,6 +19,7 @@ class TenantFileUpload(models.Model):
         verbose_name = 'File Upload'
         verbose_name_plural = 'File Uploads'
 
+    objects = TenantFileUploadManager()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     datafile = models.FileField(
