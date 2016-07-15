@@ -112,11 +112,6 @@ class APITellUsYourNeedWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put(self):
-        # Delete any previous data.
-        items = TellUsYourNeed.objects.all()
-        for item in items.all():
-            item.delete()
-
         # Create a new object with our specific test data.
         TellUsYourNeed.objects.create(
             id=1,
@@ -135,11 +130,6 @@ class APITellUsYourNeedWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_authorization(self):
-        # Delete any previous data.
-        items = TellUsYourNeed.objects.all()
-        for item in items.all():
-            item.delete()
-
         # Create a new object with our specific test data.
         TellUsYourNeed.objects.create(
             id=1,
@@ -163,11 +153,6 @@ class APITellUsYourNeedWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authentication(self):
-        # Delete any previous data.
-        items = TellUsYourNeed.objects.all()
-        for item in items.all():
-            item.delete()
-
         # Create our object to delete.
         tellusyourneed = TellUsYourNeed.objects.create(
             id=2030,
