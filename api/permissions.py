@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, AnonymousUser
 from rest_framework import permissions
 from foundation_public.models.banned import BannedIP
-from api.constants import *
+from foundation_public import constants
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -32,6 +32,39 @@ class IsAdminUserOrReadOnly(permissions.BasePermission):
                 return request.user.is_superuser
 
 
+class ManagementOrAuthenticatedReadOnlyPermission(permissions.BasePermission):
+    """
+    Global permission check for authenticated User only:
+
+    1. Users belonging to a Management Group will be granted WRITE functions.
+    2. All other users will be granted READ functions.
+    3. Non-authenticated Users will be denied all functionality.
+    """
+    message = 'You must be in a Management Group to write data, else you \
+               must be authenticated in our system to read the data.'
+
+    def has_permission(self, request, view):
+        # CASE 1: Restrict non authenticated users.
+        if request.user.is_anonymous():
+            #print("ManagementOrAuthenticatedReadOnlyPermission: Is AnonymousUser")
+            return False
+
+        # CASE 2: Allow authenticated users.
+        else:
+            # CASE 2a: Allow "Read" functions.
+            if request.method in permissions.SAFE_METHODS:
+                #print("ManagementOrAuthenticatedReadOnlyPermission: Is Safe Function")
+                return True
+
+            # CASE 2b: Restrict "Write" functions.
+            for group in request.user.groups.all():
+                if group.id in constants.MANAGEMENT_EMPLOYEE_GROUP_IDS:
+                    #print("ManagementOrAuthenticatedReadOnlyPermission: Is Management")
+                    return True
+            #print("ManagementOrAuthenticatedReadOnlyPermission: Is Not in Management:", request.user.groups.all())
+            return False
+
+
 # class EmployeePermission(permissions.BasePermission):
 #     """
 #     Global permission check for authenticated User to see if they are an
@@ -43,11 +76,11 @@ class IsAdminUserOrReadOnly(permissions.BasePermission):
 #             return False
 #         else:
 #             for group in request.user.groups.all():
-#                 if group.name in EMPLOYEE_GROUPS:
+#                 if group.name in constants.EMPLOYEE_GROUPS:
 #                     return True
 #             return False
-#
-#
+
+
 # class IsOwnerOrIsAnEmployee(permissions.BasePermission):
 #     """
 #     Object-level permission to only allow owners of an object to view/edit it.

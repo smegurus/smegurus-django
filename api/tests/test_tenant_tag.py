@@ -102,17 +102,30 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(str(tag), "Unit Test")
 
     @transaction.atomic
-    def test_list(self):
+    def test_list_with_anonymous_user(self):
         response = self.unauthorized_client.get('/api/tenanttag/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_list_with_authentication(self):
+    def test_list_with_authenticated_management_group_user(self):
         response = self.authorized_client.get('/api/tenanttag/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
-    def test_post(self):
+    def test_list_with_authenticated_advisor_group_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Test and verify.
+        response = self.authorized_client.get('/api/tenanttag/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_post_with_anonymous_user(self):
         data = {
             'name': 'Unit Test',
         }
@@ -120,7 +133,8 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_post_with_authentication(self):
+    def test_post_with_authenticated_management_group_user(self):
+        # Run the test and verify.
         data = {
             'name': 'Unit Test',
         }
@@ -128,7 +142,23 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
-    def test_put(self):
+    def test_post_with_authenticated_advisor_group_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Test and verify.
+        data = {
+            'name': 'Unit Test',
+        }
+        response = self.authorized_client.post('/api/tenanttag/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
+    def test_put_with_anonymous_user(self):
         # Delete any previous data.
         items = Tag.objects.all()
         for item in items.all():
@@ -149,7 +179,7 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_put_with_authorization(self):
+    def test_put_with_authenticated_management_user(self):
         # Delete any previous data.
         items = Tag.objects.all()
         for item in items.all():
@@ -170,11 +200,52 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
-    def test_delete(self):
+    def test_put_with_authenticated_advisor_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Delete any previous data.
+        items = Tag.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        Tag.objects.create(
+            id=1,
+            name="Unit Test",
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'name': 'Unit Test',
+        }
+        response = self.authorized_client.put('/api/tenanttag/1/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
+    def test_delete_with_anonymous_user(self):
         response = self.unauthorized_client.delete('/api/tenanttag/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_delete_with_authentication(self):
+    def test_delete_with_authenticated_management_user(self):
         response = self.authorized_client.delete('/api/tenanttag/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_delete_with_authenticated_advisor_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Run test and verify.
+        response = self.authorized_client.delete('/api/tenanttag/1/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
