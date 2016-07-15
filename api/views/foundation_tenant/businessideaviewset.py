@@ -29,4 +29,3 @@ class BusinessIdeaViewSet(viewsets.ModelViewSet):
         instance = serializer.save(
             owner=self.request.user,
         )
-        print(instance)
