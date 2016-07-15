@@ -8,10 +8,8 @@ from foundation_config.decorators import foundation_config_required
 @foundation_config_required
 @login_required(login_url='/en/login')
 def dashboard_page(request):
-
-    print("TENANT", request.tenant.schema_name)
-    print("USER", request.token)
-
+    # print("TENANT", request.tenant.schema_name)
+    # print("USER", request.token)
     return render(request, 'dashboard/view.html',{
 
     })

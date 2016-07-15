@@ -50,10 +50,6 @@ class Command(BaseCommand):
             subject_text = _('Account Activation - SME Gurus for your Organization')
             html_text = _('Thank you for signing up your organization for SME Gurus! Please click the following link to validate your account.\n\n %(url)s \n\n If you believe you have received this message in error, please contact support@smegurus.com\n\nThank you!') % {'url': str(url)}
 
-
-        # Debugging purposes only.
-        # print(html_text)
-
         # Send the email.
         send_mail(
             subject_text,

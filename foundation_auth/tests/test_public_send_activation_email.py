@@ -96,7 +96,6 @@ class FoundationAuthSendActivationEmailWithPublicSchemaTestCase(APITestCase, Ten
         self.assertEqual(len(mail.outbox), 1)
 
         # Verify that the subject of the first message is correct.
-        print(mail.outbox[0].subject)
         self.assertEqual(mail.outbox[0].subject, 'Account Activation - SME Gurus')
 
     @transaction.atomic

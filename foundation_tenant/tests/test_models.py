@@ -40,7 +40,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     def setup_tenant(self, tenant):
         """Public Schema"""
-        tenant.schema_name = 'test'
+        tenant.schema_name = 'galacticalliance'
         tenant.name = "Galactic Alliance of Humankind"
 
     @classmethod
@@ -245,11 +245,11 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = OpeningHoursSpecification.objects.all().count()
         self.assertEqual(count, 0)
         OpeningHoursSpecification.objects.bulk_create([
-            Tag(id=1, name='1'),
-            Tag(id=2, name='2'),
-            Tag(id=3, name='3'),
-            Tag(id=4, name='4'),
-            Tag(id=5, name='5'),
+            OpeningHoursSpecification(id=1, name='1', owner=User.objects.get(username='1')),
+            OpeningHoursSpecification(id=2, name='2', owner=User.objects.get(username='2')),
+            OpeningHoursSpecification(id=3, name='3', owner=User.objects.get(username='3')),
+            OpeningHoursSpecification(id=4, name='4', owner=User.objects.get(username='4')),
+            OpeningHoursSpecification(id=5, name='5', owner=User.objects.get(username='5')),
         ])
         count = OpeningHoursSpecification.objects.all().count()
         self.assertEqual(count, 5)
