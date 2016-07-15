@@ -83,13 +83,13 @@ class APIBusinessIdeaWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        businessideas = BusinessIdea.objects.all()
-        for businessidea in businessideas.all():
-            businessidea.delete()
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
-        # super(APIBusinessIdeaWithTenantSchemaTestCase, self).tearDown()
+        items = BusinessIdea.objects.all()
+        for item in items.all():
+            item.delete()
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
+        #super(APIBusinessIdeaWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_to_string(self):
@@ -159,12 +159,14 @@ class APIBusinessIdeaWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         BusinessIdea.objects.create(
             id=1,
             name="Unit Test",
+            owner=self.user,
         )
 
         # Run the test.
         data = {
             'id': 1,
             'name': 'Unit Test',
+            'owner': self.user.id,
         }
         response = self.authorized_client.put('/api/tenantbusinessidea/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -176,5 +178,18 @@ class APIBusinessIdeaWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authentication(self):
+        # Delete any previous data.
+        items = BusinessIdea.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create object.
+        BusinessIdea.objects.create(
+            id=1,
+            name="Test",
+            owner=self.user,
+        );
+
+        # Test and verify.
         response = self.authorized_client.delete('/api/tenantbusinessidea/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
