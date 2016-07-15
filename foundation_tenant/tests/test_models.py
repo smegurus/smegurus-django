@@ -73,16 +73,65 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        items = BusinessIdea.objects.all()
-        for item in items.all():
-            item.delete()
-        items = TellUsYourNeed.objects.all()
-        for item in items.all():
-            item.delete()
-        items = Tag.objects.all()
-        for item in items.all():
-            item.delete()
         # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
+
+    @transaction.atomic
+    def test_place_to_string(self):
+        obj = Place.objects.create(
+            name='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete();  # Cleanup
+
+
+    @transaction.atomic
+    def test_place_delete_all(self):
+        # Setup our unit test.
+        count = Place.objects.all().count()
+        self.assertEqual(count, 0)
+        Place.objects.bulk_create([
+            Place(name='Transhumanism',),
+            Place(name='Space exploration',),
+            Place(name='Unlimited energy',),
+            Place(name='Defend hive',),
+        ])
+        count = Place.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        Place.objects.delete_all()
+        count = Place.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        for item in Place.objects.all():
+            item.delete()
+
+    @transaction.atomic
+    def test_postaladdress_to_string(self):
+        obj = PostalAddress.objects.create(
+            name='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+
+    @transaction.atomic
+    def test_postaladdress_delete_all(self):
+        # Setup our unit test.
+        count = PostalAddress.objects.all().count()
+        self.assertEqual(count, 0)
+        PostalAddress.objects.bulk_create([
+            PostalAddress(name='Transhumanism',),
+            PostalAddress(name='Space exploration',),
+            PostalAddress(name='Unlimited energy',),
+            PostalAddress(name='Defend hive',),
+        ])
+        count = PostalAddress.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        PostalAddress.objects.delete_all()
+        count = PostalAddress.objects.all().count()
+        self.assertEqual(count, 0)
 
     @transaction.atomic
     def test_businessidea_to_string(self):
@@ -90,6 +139,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             name='hideauze.com',
         )
         self.assertIn(str(obj), 'hideauze.com')
+        obj.delete()
 
     @transaction.atomic
     def test_businessidea_delete_all(self):
@@ -110,6 +160,11 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = BusinessIdea.objects.all().count()
         self.assertEqual(count, 0)
 
+        # Cleanup
+        items = BusinessIdea.objects.all()
+        for item in items.all():
+            item.delete()
+
     @transaction.atomic
     def test_tellusyourneed_to_string(self):
         obj = TellUsYourNeed.objects.create(
@@ -117,6 +172,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             owner=User.objects.get(username='1')
         )
         self.assertIn(str(obj), '2030')
+        obj.delete()
 
     @transaction.atomic
     def test_tellusyourneed_delete_all(self):
@@ -138,12 +194,18 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = TellUsYourNeed.objects.all().count()
         self.assertEqual(count, 0)
 
+        # Cleanup
+        items = TellUsYourNeed.objects.all()
+        for item in items.all():
+            item.delete()
+
     @transaction.atomic
     def test_tag_to_string(self):
         obj = Tag.objects.create(
             name='Testing',
         )
         self.assertIn(str(obj), 'Testing')
+        obj.delete()
 
     @transaction.atomic
     def test_tag_delete_all(self):
@@ -164,3 +226,8 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Tag.objects.delete_all()
         count = Tag.objects.all().count()
         self.assertEqual(count, 0)
+
+        # Cleanup
+        items = Tag.objects.all()
+        for item in items.all():
+            item.delete()

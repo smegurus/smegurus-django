@@ -3,6 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.abstract_thing import AbstractThing
 
 
+class PostalAddressManager(models.Manager):
+    def delete_all(self):
+        items = PostalAddress.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class PostalAddress(AbstractThing):
     """
     The mailing address.
@@ -15,6 +22,7 @@ class PostalAddress(AbstractThing):
         verbose_name = 'Postal Address'
         verbose_name_plural = 'Postal Addresses'
 
+    objects = PostalAddressManager()
     address_country = models.CharField(
         _("Address Country"),
         max_length=127,
