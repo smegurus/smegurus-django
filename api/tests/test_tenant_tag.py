@@ -41,6 +41,7 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         user = User.objects.create_user(  # Create our user.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,
@@ -48,6 +49,7 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         user.is_superuser = True
         user.is_active = True
+        user.groups.add(org_admin_group)
         user.save()
 
     @transaction.atomic
@@ -62,22 +64,28 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Setup.
         self.unauthorized_client = TenantClient(self.tenant)
         self.authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        self.authorized_client.login(
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        self.tenant.owner = self.user
+        self.tenant.save()
 
         # Above taken from:
         # http://www.django-rest-framework.org/api-guide/testing/#authenticating
 
         # Initialize our test data.
         Tag.objects.bulk_create([
-            Tag(owner=self.user),
-            Tag(owner=self.user),
-            Tag(owner=self.user),
+            Tag(name='1'),
+            Tag(name='2'),
+            Tag(name='3'),
         ])
 
     @transaction.atomic
     def tearDown(self):
-        Tags = Tag.objects.all()
-        for Tag in Tags.all():
-            Tag.delete()
+        tags = Tag.objects.all()
+        for tag in tags.all():
+            tag.delete()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -86,42 +94,37 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_to_string(self):
         # Create a new object with our specific test data.
-        Tag = Tag.objects.create(
+        tag = Tag.objects.create(
             id=2030,
             name="Unit Test",
-            description="Used for unit testing purposes."
         )
-        Tag.save()
-        self.assertEqual(str(Tag), "Unit Test")
+        tag.save()
+        self.assertEqual(str(tag), "Unit Test")
 
     @transaction.atomic
     def test_list(self):
-        response = self.unauthorized_client.get('/api/tenantTag/')
+        response = self.unauthorized_client.get('/api/tenanttag/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_list_with_authentication(self):
-        response = self.authorized_client.get('/api/tenantTag/')
+        response = self.authorized_client.get('/api/tenanttag/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_post(self):
         data = {
             'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
         }
-        response = self.unauthorized_client.post('/api/tenantTag/')
+        response = self.unauthorized_client.post('/api/tenanttag/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_post_with_authentication(self):
         data = {
             'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
         }
-        response = self.authorized_client.post('/api/tenantTag/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post('/api/tenanttag/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -135,17 +138,14 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Tag.objects.create(
             id=1,
             name="Unit Test",
-            description="Used for unit testing purposes."
         )
 
         # Run the test.
         data = {
             'id': 1,
             'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
         }
-        response = self.unauthorized_client.put('/api/tenantTag/1/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.put('/api/tenanttag/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -159,26 +159,22 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Tag.objects.create(
             id=1,
             name="Unit Test",
-            description="Used for unit testing purposes.",
-            owner_id=self.user.id
         )
 
         # Run the test.
         data = {
             'id': 1,
             'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
         }
-        response = self.authorized_client.put('/api/tenantTag/1/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put('/api/tenanttag/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_delete(self):
-        response = self.unauthorized_client.delete('/api/tenantTag/1/')
+        response = self.unauthorized_client.delete('/api/tenanttag/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authentication(self):
-        response = self.authorized_client.delete('/api/tenantTag/1/')
+        response = self.authorized_client.delete('/api/tenanttag/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
