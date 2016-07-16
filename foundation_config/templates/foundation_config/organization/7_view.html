@@ -10,13 +10,13 @@
     <br/>
 
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
-        {% trans 'Activate Perks & Rewards: Your entrepreneurs will receive access to special offers.' %}
+        <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
+        {% trans '<b>No Perks (not recommended):</b> If you don\'t want to offer perks to your clients, then select this option.' %}
         <br>
         <br/>
 
-        <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
-        {% trans 'No Perks (not recommended): If you don\'t want to offer perks to your clients, then select this option.' %}
+        <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
+        {% trans '<b>Activate Perks & Rewards:</b> Your entrepreneurs will receive access to special offers.' %}
         <br>
         <br/>
 

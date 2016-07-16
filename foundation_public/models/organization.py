@@ -279,7 +279,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     )
     has_perks = models.BooleanField(
         _("Has perks."),
-        default=False,
+        default=True,
         help_text=_('Variable controls whether perks are allowed in our system.'),
     )
 
