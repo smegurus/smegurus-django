@@ -11,13 +11,13 @@
     <br/>
 
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        <input type="radio" name="learning_preference" value="2" {% if request.tenant.learning_preference == 2 %}checked{% endif %}>
-        {% trans 'Blended: Your entrepreneurs will go through our custom education modules and then complete an exercise to generate key documents such as their Business Model Canvas. This is the option that the majority of our clients use, and remember, you can always blend this will real world instruction.' %}
+        <input type="radio" name="learning_preference" value="1" {% if request.tenant.learning_preference == 1 %}checked{% endif %}>
+        {% trans '<b>Traditional (not recommended):</b> If you want to rely solely on classroom instruction, then select this option and your clients will only go through activities to generate key documents' %}
         <br>
         <br/>
 
-        <input type="radio" name="learning_preference" value="1" {% if request.tenant.learning_preference == 1 %}checked{% endif %}>
-        {% trans 'Traditional: If you want to rely solely on classroom instruction, then select this option and your clients will only go through activities to generate key documents' %}
+        <input type="radio" name="learning_preference" value="2" {% if request.tenant.learning_preference == 2 %}checked{% endif %}>
+        {% trans '<b>Blended:</b> Your entrepreneurs will go through our custom education modules and then complete an exercise to generate key documents such as their Business Model Canvas. This is the option that the majority of our clients use, and remember, you can always blend this will real world instruction.' %}
         <br>
         <br/>
 

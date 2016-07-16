@@ -262,7 +262,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     learning_preference = models.PositiveSmallIntegerField(
         _("Learning Preference"),
         help_text=_('Indicates what learning preference to use.'),
-        default=constants.TRADITIONAL_LEARNING_PREFERENCE,
+        default=constants.BLENDED_LEARNING_PREFERENCE,
         blank=True,
         choices=constants.LEARNING_PREFERENCE_OPTIONS,
     )
