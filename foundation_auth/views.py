@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
+from rest_framework.authtoken.models import Token
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.me import PublicMe
 from foundation_public.forms.userform import UserForm
@@ -118,4 +119,15 @@ def password_reset_page(request):
 
 
 def password_change_page(request, signed_value):
-    return render(request, 'foundation_auth/user_password_change_view.html',{})
+    try:
+        # Convert our signed value into a text.
+        signer = Signer()
+        value = signer.unsign(signed_value)
+    except Exception as e:
+        return HttpResponseBadRequest(_("Failed activating this account."))
+
+    token, created = Token.objects.get_or_create(user_id=value)
+    return render(request, 'foundation_auth/user_password_change_view.html',{
+        'uid': value,
+        'token': token,
+    })

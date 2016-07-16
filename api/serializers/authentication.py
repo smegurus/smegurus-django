@@ -151,3 +151,18 @@ class ActivationSerializer(UidAndTokenSerializer):
         if self.user.is_active:
             raise exceptions.PermissionDenied(self.error_messages['stale_token'])
         return attrs
+
+
+class ChangePasswordSerializer(UidAndTokenSerializer):
+    password = serializers.CharField()
+
+    default_error_messages = {
+        'stale_token': STALE_TOKEN_ERROR,
+    }
+
+    def validate(self, attrs):
+        attrs = super(ChangePasswordSerializer, self).validate(attrs)
+        print("HIHIHIH", attrs)
+        if not self.user.is_active:
+            raise exceptions.PermissionDenied(self.error_messages['stale_token'])
+        return attrs
