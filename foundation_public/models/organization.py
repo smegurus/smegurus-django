@@ -274,7 +274,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     )
     has_mentors = models.BooleanField(
         _("Has mentors."),
-        default=False,
+        default=True,
         help_text=_('Variable controls whether external mentors are allowed in our system.'),
     )
     has_perks = models.BooleanField(
