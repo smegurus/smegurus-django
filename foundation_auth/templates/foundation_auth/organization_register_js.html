@@ -54,13 +54,49 @@
      *  Function creates an Organization.
      */
     function api_organization(success_callback, error_callback) {
+        // Fetch the inputted URLs.
+        var website_url = $('#id_url').val();
+        var facebook_url = $('#id_facebook_url').val();
+        var twitter_url = $('#id_twitter_url').val();
+
+        // Defensive Code: If the user doesn't include 'http' then automatically
+        //                 include it into the URL. Also handle situations where
+        //                 Twitter username is entered and replace it with the
+        //                 full Twitter URL.
+        if (website_url.indexOf("http") < 0) {
+            website_url = 'http://' + website_url;
+        }
+        if (website_url.length < 8) {
+            website_url = "";
+        }
+
+        if (facebook_url.indexOf("http") < 0) {
+            facebook_url = 'http://' + facebook_url;
+        }
+        if (facebook_url.length < 8) {
+            facebook_url = "";
+        }
+
+        if (twitter_url.indexOf("@") == 0) {
+            twitter_url = 'http://twitter.com/' + twitter_url.replace("@", "");;
+        } else {
+            if (twitter_url.indexOf("http") < 0) {
+                twitter_url = 'http://' + twitter_url;
+            }
+        }
+        if (twitter_url.length < 8) {
+            twitter_url = "";
+        }
+
+        // Generate the Organization object from User input.
         var data = {
             'schema_name': $('#id_schema_name').val(),
             'name': $('#id_name').val(),
             'alternate_name': $('#id_name').val(),
             'legal_name': $('#id_name').val(),
-            'facebook_url': $('#id_facebook_url').val(),
-            'twitter_url': $('#id_twitter_url').val(),
+            'url': website_url,
+            'facebook_url': facebook_url,
+            'twitter_url': twitter_url,
             'how_many_served': $('#id_how_many_served').val(),
             'is_tos_signed': $('#id_is_tos_signed').is(':checked'),
         };
