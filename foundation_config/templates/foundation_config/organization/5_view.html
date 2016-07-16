@@ -12,13 +12,13 @@
     <br/>
 
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        <input type="radio" name="challenge" value="2" {% if request.tenant.challenge == 2 %}checked{% endif %}>
-        Real World Challenges: Your entrepreneurs will be assigned tasks where they have to interact with real people, often over the phone or face-to-face, in order to further their learning.
+        <input type="radio" name="challenge" value="1" {% if request.tenant.challenge == 1 %}checked{% endif %}>
+        {% trans '<b>Traditional (not recommended):</b> If you don\'t want your entrepreneurs to interact with others as part of their learning process, then select this option.' %}
         <br>
         <br/>
 
-        <input type="radio" name="challenge" value="1" {% if request.tenant.challenge == 1 %}checked{% endif %}>
-        Traditional (not recommended): If you don't want your entrepreneurs to interact with others as part of their learning process, then select this option.
+        <input type="radio" name="challenge" value="2" {% if request.tenant.challenge == 2 %}checked{% endif %}>
+        {% trans '<b>Real World Challenges:</b> Your entrepreneurs will be assigned tasks where they have to interact with real people, often over the phone or face-to-face, in order to further their learning.' %}
         <br>
         <br/>
 

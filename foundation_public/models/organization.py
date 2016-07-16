@@ -269,7 +269,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     challenge = models.PositiveSmallIntegerField(
         _("Challenge"),
         help_text=_('Indicates what world challenge to use.'),
-        default=constants.TRADITIONAL_CHALLENGE,
+        default=constants.REAL_WORLD_CHALLENGE,
         choices=constants.CHALLENGE_OPTIONS,
     )
     has_mentors = models.BooleanField(
