@@ -13,6 +13,9 @@
 
         jQuery.ajax({
             url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
             cache: false,
             contentType: false,
             processData: false,
