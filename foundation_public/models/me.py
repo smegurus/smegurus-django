@@ -19,7 +19,6 @@ class PublicMe(AbstractPlacePerson):
         max_length=127,
         help_text=_('The details of how the User discovered our website.'),
         default="Google search",
-        blank=True,
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),
