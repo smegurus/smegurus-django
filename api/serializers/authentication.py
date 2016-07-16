@@ -3,6 +3,8 @@ import hashlib # (Used in RegisterSerializer:Create)
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate
+from django.core import exceptions
+import django.contrib.auth.password_validation as validators
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -43,6 +45,29 @@ class RegisterSerializer(serializers.ModelSerializer):
         except User.DoesNotExist:
             return value
         raise serializers.ValidationError({'email': 'Email already exists.',})
+
+    def validate(self, data):
+        """
+        Source: http://stackoverflow.com/a/36419160
+        """
+        # here data has all the fields which have validated values
+        # so we can create a User instance out of it
+        user = User(**data)
+        password = data.get('password') # get the password from the data
+
+        errors = dict()
+        try:
+            # validate the password and catch the exception
+            validators.validate_password(password=password, user=User)
+
+        # the exception raised here is different than serializers.ValidationError
+        except exceptions.ValidationError as e:
+            errors['password'] = list(e.messages)
+
+        if errors:
+            raise serializers.ValidationError(errors)
+
+        return super(RegisterSerializer, self).validate(data)
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)  # Create the user account.
