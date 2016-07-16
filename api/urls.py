@@ -6,6 +6,7 @@ from api.views.authentication.logout import LogoutViewSet
 from api.views.authentication.register import RegisterViewSet
 from api.views.authentication.emailactivation import EmailActivationView
 from api.views.authentication.activation import ActivationView
+from api.views.authentication.emailpasswordreset import EmailPasswordResetViewSet
 
 from api.views.foundation_public.userviewset import UserViewSet
 from api.views.foundation_public.userviewset import GroupViewSet
@@ -79,6 +80,7 @@ urlpatterns = (
     url(r'^api/logout/$', LogoutViewSet.as_view(), name='api_logout'),
     url(r'^api/emailactivation/$', EmailActivationView.as_view(), name='api_emailactivation'),
     url(r'^api/activate/$', ActivationView.as_view(), name='api_activate'),
+    url(r'^api/emailpasswordreset/$', EmailPasswordResetViewSet.as_view(), name='api_emailpasswordreset'),
 
     # Provide authentication for this API login app.
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

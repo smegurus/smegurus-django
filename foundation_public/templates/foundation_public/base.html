@@ -236,6 +236,7 @@
        {% include "api/auth_activation.html" %}
        {% include "api/auth_login.html" %}
        {% include "api/auth_register.html" %}
+       {% include "api/auth_password_reset.html" %}
 
        {% if request.user.is_authenticated %}
            {% include "api/auth_user.html" %}
