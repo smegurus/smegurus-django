@@ -113,8 +113,9 @@ def organization_successful_registration_page(request):
     })
 
 
-
 def password_reset_page(request):
-    return render(request, 'foundation_auth/user_password_reset_view.html',{
-        # 'organization': organization
-    })
+    return render(request, 'foundation_auth/user_password_reset_view.html',{})
+
+
+def password_change_page(request, signed_value):
+    return render(request, 'foundation_auth/user_password_change_view.html',{})
