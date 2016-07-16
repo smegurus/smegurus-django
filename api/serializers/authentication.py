@@ -157,12 +157,11 @@ class ChangePasswordSerializer(UidAndTokenSerializer):
     password = serializers.CharField()
 
     default_error_messages = {
-        'stale_token': STALE_TOKEN_ERROR,
+        'inactive_account': INACTIVE_ACCOUNT_ERROR,
     }
 
     def validate(self, attrs):
         attrs = super(ChangePasswordSerializer, self).validate(attrs)
-        print("HIHIHIH", attrs)
         if not self.user.is_active:
-            raise exceptions.PermissionDenied(self.error_messages['stale_token'])
+            raise exceptions.PermissionDenied(self.error_messages['inactive_account'])
         return attrs
