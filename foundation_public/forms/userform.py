@@ -29,7 +29,7 @@ class UserForm(forms.ModelForm):
         }
     email = forms.EmailField(
         label='Email',
-        max_length=30, # NOTE: Must be limited to "Username" field's limit.
+        max_length=75, 
         widget=forms.TextInput(attrs={
             'type':'email',
             'class':'form-control',
