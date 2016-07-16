@@ -106,8 +106,15 @@ def organization_registration_page(request):
 
 
 @login_required(login_url='/en/login')
-def organization_successful_registration(request):
+def organization_successful_registration_page(request):
     organization = get_object_or_404(PublicOrganization, owner_id=request.user.id)
     return render(request, 'foundation_auth/organization_success_register_view.html',{
         'organization': organization
+    })
+
+
+
+def password_reset_page(request):
+    return render(request, 'foundation_auth/user_password_reset_view.html',{
+        # 'organization': organization
     })

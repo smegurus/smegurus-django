@@ -9,5 +9,6 @@ urlpatterns = (
     url(r'^login$', views.user_login_page, name='foundation_auth_user_login'),
     url(r'^launchpad$', views.user_launchpad_page, name='foundation_auth_user_launchpad'),
     url(r'^register/organization$', views.organization_registration_page, name='foundation_auth_org_registration'),
-    url(r'^register/success$', views.organization_successful_registration, name='foundation_auth_org_successful_registration'),
+    url(r'^register/success$', views.organization_successful_registration_page, name='foundation_auth_org_successful_registration'),
+    url(r'^password_reset$', views.password_reset_page, name='foundation_auth_password_reset'),
 )

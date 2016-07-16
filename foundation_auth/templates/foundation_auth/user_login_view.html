@@ -22,7 +22,7 @@
             <input type="checkbox" value="" name="remember">
             <span class="fa fa-check"></span>{% trans 'Remember Me' %}</label>
       </div>
-      <div class="pull-right"><a href="{% url 'landpage' %}" class="text-muted">{% trans 'Forgot your password?' %}</a>
+      <div class="pull-right"><a href="{% url 'foundation_auth_password_reset' %}" class="text-muted">{% trans 'Forgot your password?' %}</a>
       </div>
    </div>
    <button id="id_login_btn" onclick="ajax_login();" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Login' %}</button>
