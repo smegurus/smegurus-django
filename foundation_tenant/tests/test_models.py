@@ -25,6 +25,7 @@ from foundation_tenant.models.abstract_person import AbstractPerson
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tellusyourneed import TellUsYourNeed
+from foundation_tenant.models.me import TenantMe
 from foundation_public import constants
 
 
@@ -74,6 +75,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         for user in users.all():
             user.delete()
         # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
+
 
     @transaction.atomic
     def test_place_to_string(self):
@@ -261,5 +263,39 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Cleanup
         items = OpeningHoursSpecification.objects.all()
+        for item in items.all():
+            item.delete()
+
+    @transaction.atomic
+    def test_tenant_me_to_string(self):
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+        )
+        self.assertIn(str(obj), '1')
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_delete_all(self):
+        # Setup our unit test.
+        count = TenantMe.objects.all().count()
+        self.assertEqual(count, 0)
+        TenantMe.objects.bulk_create([
+            TenantMe(id=1, owner=User.objects.get(username='1')),
+            TenantMe(id=2, owner=User.objects.get(username='2')),
+            TenantMe(id=3, owner=User.objects.get(username='3')),
+            TenantMe(id=4, owner=User.objects.get(username='4')),
+            TenantMe(id=5, owner=User.objects.get(username='5')),
+        ])
+        count = TenantMe.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        TenantMe.objects.delete_all()
+        count = TenantMe.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = TenantMe.objects.all()
         for item in items.all():
             item.delete()
