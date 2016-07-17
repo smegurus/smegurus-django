@@ -175,6 +175,25 @@
     function ajax_save_org() {
         disable_btn();
 
+        // Defensive Code: If Country and Postal/Zip codes have inputted then
+        //                 ensure the appropriate formatting was used.
+        var postal = $('#id_postal_code').val();
+        var country = $('#id_address_country').val().toLowerCase();
+        if (country == 'united states') {
+            if (check_unitedstates_zip(postal) == false) {
+                alert("{% trans 'The entered ZIP code was formatted wrong, please try again.' %}");
+                enable_btn();
+                return;
+            }
+        }
+        if (country == 'canada') {
+            if (check_canadian_postal(postal) == false) {
+                alert("{% trans 'The entered postal code was formatted wrong, please try again.' %}");
+                enable_btn();
+                return;
+            }
+        }
+
         // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
             alert("{% trans 'Missing Sub-Domain Name' %}");

@@ -41,4 +41,25 @@
         var now = yyyy+"-"+mm+"-"+dd+"T"+hh+":"+m+":"+secs;
         return now;
     }
+
+    /**
+     *  Source: http://stackoverflow.com/a/12773665
+     */
+    function check_canadian_postal(postal_code) {
+        var regex = new RegExp(/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]( )?\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i);
+        if (regex.test(postal_code)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function check_unitedstates_zip(zip_code) {
+        var regex = new RegExp(/(^\d{5}$)|(^\d{5}-\d{4}$)/);
+        if (regex.test(zip_code)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 </script>
