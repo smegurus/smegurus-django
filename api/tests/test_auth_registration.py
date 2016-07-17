@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
+from foundation_public.models.banned import BannedDomain
 from foundation_public import constants
 
 
@@ -75,9 +76,9 @@ class APIRegistrationWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         # Perform the Unit-Tests
         url = reverse('api_register')
         data = {
-            'username': 'whalesquid@hideauze.com',
+            'username': 'xyz',
             'email': 'whalesquid@hideauze.com',
-            'password': 'test',
+            'password': TEST_USER_PASSWORD,
             'first_name': 'Transhumanist',
             'last_name': '#1'
         }
@@ -111,6 +112,35 @@ class APIRegistrationWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(User.objects.get().email, TEST_USER_EMAIL)
+
+    @transaction.atomic
+    def test_api_registration_with_banned_domain(self):
+        # Create our Banned Domain
+        BannedDomain.objects.create(
+            name='hideauze.com',
+            reason='They are enemies of humankind!',
+        )
+
+        # Remove the existing user(s) before continuing.
+        self.assertEqual(User.objects.count(), 1)
+        for user in User.objects.all():
+            user.delete()
+        self.assertEqual(User.objects.count(), 0)
+
+        # Perform the Unit-Tests
+        url = reverse('api_register')
+        data = {
+            'username': 'xyz',
+            'email': 'whalesquid@hideauze.com',
+            'password': TEST_USER_PASSWORD,
+            'first_name': 'Transhumanist',
+            'last_name': '#1'
+        }
+        response = self.c.post(url, data, format='json')
+
+        # Verify general info.
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(User.objects.count(), 0)
 
 
 class APIRegistrationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
@@ -171,7 +201,7 @@ class APIRegistrationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'username': 'whalesquid@hideauze.com',
             'email': 'whalesquid@hideauze.com',
-            'password': 'test',
+            'password': TEST_USER_PASSWORD,
             'first_name': 'Transhumanist',
             'last_name': '#1'
         }

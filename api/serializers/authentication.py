@@ -8,6 +8,7 @@ import django.contrib.auth.password_validation as validators
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from foundation_public.models.banned import BannedDomain
 
 
 INVALID_CREDENTIALS_ERROR = _('Unable to login with provided credentials.')
@@ -41,8 +42,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def validate_email(self, value):
         try:
+            # Defensive Code 1: Prevent duplicate emails.
             User.objects.get(email=value)
         except User.DoesNotExist:
+            # Defensive Code 2: Prevent using banned domains.
+            banned_domains = BannedDomain.objects.all()
+            for banned_domain in banned_domains.all():
+                if str(banned_domain) in value:
+                    raise serializers.ValidationError({'email': 'Email domain is banned.',})
+
             return value
         raise serializers.ValidationError({'email': 'Email already exists.',})
 
