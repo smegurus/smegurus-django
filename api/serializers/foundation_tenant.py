@@ -17,6 +17,7 @@ from foundation_tenant.models.place import Place
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tellusyourneed import TellUsYourNeed
+from foundation_tenant.models.me import TenantMe
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
@@ -95,3 +96,9 @@ class TellUsYourNeedSerializer(serializers.ModelSerializer):
     class Meta:
         model = TellUsYourNeed
         fields = ('id', 'owner', 'needs_financial_management', 'needs_sales', 'needs_social_media', 'needs_other', 'other',)
+
+
+class TenantMeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TenantMe
+        fields = ('id', 'owner', 'tags',)
