@@ -88,6 +88,7 @@
         <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
 
         <!-- =============== API SCRIPTS ===============-->
+        {% include 'foundation_public/autocomplete_js.html' %}
         {% include "foundation_public/common_js.html" %}
         {% include "api/auth_activation.html" %}
         {% include "api/auth_login.html" %}
