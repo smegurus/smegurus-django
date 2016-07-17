@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from foundation_public.models.banned import BannedDomain, BannedWord
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.language import PublicLanguage
@@ -115,13 +116,18 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
                    'is_setup', 'learning_preference', 'challenge', 'has_mentors',
                    'has_perks', )
 
-    def validate_schema_name(self, value):
+    def validate(self, data):
+        """
+        Perform our own custom validation.
+        """
+        schema_name = data.get('schema_name')
+
         # Validate to ensure there are not capitals.
-        if not value.islower():
+        if not schema_name.islower():
             raise serializers.ValidationError("Your subdomain can only contain lowercase letters.")
 
         # Validate to ensure there are no special characters (including whitespace).
-        if not value.isalpha():
+        if not schema_name.isalpha():
             raise serializers.ValidationError("Your subdomain cannot have special characters.")
 
         # Validate to ensure the user doesn't take a valuable sub-domain name
@@ -146,13 +152,13 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
             'checkout', 'pos', 'api', 'ssh', 'buy', 'learn', 'discover',
             'discovery',
         ]
-        if value in reserved_words:
-            raise serializers.ValidationError("Cannot us a reserved name")
+        if schema_name in reserved_words:
+            raise serializers.ValidationError("Cannot us a reserved word!")
 
         # Validate to ensure the domain name isn't using a 'bad word'.
         bad_words = BannedWord.objects.all()
-        if value in bad_words:
-            raise serializers.ValidationError("Cannot us that word!")
+        for bad_word in bad_words.all():
+            if str(bad_word) in schema_name:
+                raise serializers.ValidationError("Cannot us a banned word!")
 
-        # Return the successfully validated value.
-        return super(PublicOrganizationSerializer, self).validate_schema_name(value)
+        return super(PublicOrganizationSerializer, self).validate(data)

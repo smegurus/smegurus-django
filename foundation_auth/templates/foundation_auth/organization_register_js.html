@@ -253,9 +253,13 @@
                         var string = JSON.stringify( o_error_result );
                         console.log(string);
                         if (string.indexOf('schema') > -1) {
-                            alert("The sub-domain you entered already exists.");
+                            alert("{% trans 'The sub-domain you entered already exists.' %}");
+                        } else if (string.indexOf('reserved word') > -1) {
+                            alert("{% trans 'The sub-domain is using a word which is reserved by our system.' %}");
+                        } else if (string.indexOf('banned word') > -1) {
+                            alert("{% trans 'The sub-domain is using a word which is banned by our system.' %}");
                         } else {
-                            alert(o_error_result);
+                            alert(string);
                         }
                     }
                 ); // end Organization
@@ -264,7 +268,8 @@
                 console.log("Failed Set Postal Address");
                 console.log(pa_error_result);
                 enable_btn(); // Allow the user to press the button again.
-                alert(pa_error_result);
+                var string = JSON.stringify( pa_error_result );
+                alert(string);
             }
         ); // end Postal Address
     }
