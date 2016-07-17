@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
-    <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
-    <link type="text/plain" rel="author" href="https://www.smegurus.com/humans.txt" />
+    <meta name="keywords" content="">
+    <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
     <title>{% trans 'SME Gurus' %}</title>
 
     {% compress css %}
@@ -21,6 +21,13 @@
         <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
         <!-- =============== CUSTOM STYLES ===============-->
         <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}">
+        <!-- JQUERY AUTOCOMPLETE https://github.com/devbridge/jQuery-Autocomplete -->
+        <style>
+            .autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+            .autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+            .autocomplete-selected { background: #f0f0f0; }
+            .autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+        </style>
     {% endcompress %}
 
     {% compress js %}
@@ -28,6 +35,8 @@
         <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
         <!-- JQUERY TAGS INPUT https://github.com/xoxco/jQuery-Tags-Input -->
         <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script>
+        <!-- JQUERY AUTOCOMPLETE https://github.com/devbridge/jQuery-Autocomplete -->
+        <script type="text/javascript" src="{% static 'vendor/jQuery-Autocomplete/dist/jquery.autocomplete.min.js' %}"></script>
     {% endcompress %}
 </head>
 <body>
