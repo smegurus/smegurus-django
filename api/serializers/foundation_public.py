@@ -155,4 +155,4 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Cannot us that word!")
 
         # Return the successfully validated value.
-        return value
+        return super(PublicOrganizationSerializer, self).validate_schema_name(value)

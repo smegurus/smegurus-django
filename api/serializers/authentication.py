@@ -49,10 +49,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             banned_domains = BannedDomain.objects.all()
             for banned_domain in banned_domains.all():
                 if str(banned_domain) in value:
-                    raise serializers.ValidationError({'email': 'Email domain is banned.',})
+                    raise serializers.ValidationError('Email domain is banned.')
 
             return value
-        raise serializers.ValidationError({'email': 'Email already exists.',})
+        raise serializers.ValidationError('Email already exists.')
 
     def validate(self, data):
         """

@@ -78,9 +78,11 @@
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
                 if (string.indexOf('A user with that username already exists.') > -1) {
-                    alert('A user with that username already exists.');
+                    alert("{% trans 'A user with that username already exists.'%} ");
+                } else if (string.indexOf('banned') > -1) {
+                    alert("{% trans 'The email you are using has a domain name that is banned by our system. Please choose another email.' %}");
                 } else {
-                    alert('Unknown Error:' + string);
+                    alert("{% trans 'Unknown Error:' %}" + string);
                 }
             }
         ); // end New User.
