@@ -6,6 +6,12 @@ from foundation_tenant.models.abstract_thing import AbstractThing
 
 
 class TenantMeManager(models.Manager):
+    def get_by_owner_or_none(self, owner):
+        try:
+            return TenantMe.objects.get(owner=owner)
+        except TenantMe.DoesNotExist:
+            return None
+
     def delete_all(self):
         items = TenantMe.objects.all()
         for item in items.all():

@@ -276,6 +276,27 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         obj.delete()
 
     @transaction.atomic
+    def test_tenant_get_by_owner_or_none_with_success(self):
+        user = User.objects.get(username='1')
+        TenantMe.objects.create(
+            id=999,
+            owner=user,
+        )
+        me = TenantMe.objects.get_by_owner_or_none(owner=user)
+        self.assertIsNotNone(me)
+        me.delete()
+
+    @transaction.atomic
+    def test_tenant_get_by_owner_or_none_with_none(self):
+        target_me = TenantMe.objects.create(
+            id=666,
+            owner=User.objects.get(username='1'),
+        )
+        search_me = TenantMe.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
+        self.assertIsNone(search_me)
+        target_me.delete()
+
+    @transaction.atomic
     def test_tenant_me_delete_all(self):
         # Setup our unit test.
         count = TenantMe.objects.all().count()

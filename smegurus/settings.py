@@ -111,6 +111,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.locale.LocaleMiddleware',
     'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
     'foundation_public.middleware.PublicMeMiddleware',             # Custom
+    'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
     'smegurus.middleware.SMEGurusTokenMiddleware',                 # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
 ]
