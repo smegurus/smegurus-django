@@ -11,5 +11,5 @@ def dashboard_page(request):
     # print("TENANT", request.tenant.schema_name)
     # print("USER", request.token)
     return render(request, 'dashboard/view.html',{
-
+        'page': 'dashboard',
     })

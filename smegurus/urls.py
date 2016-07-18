@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
@@ -29,5 +30,6 @@ urlpatterns += i18n_patterns(
     url(r'^', include('landpage.urls')),
     url(r'^', include('foundation_auth.urls')),
     url(r'^', include('foundation_config.urls')),
+    url(r'^', include('message.urls')),
     url(r'^', include('dashboard.urls')),
 )

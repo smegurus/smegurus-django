@@ -92,6 +92,7 @@ TENANT_APPS = (
   'api',
   'foundation_auth',
   'foundation_config',
+  'message',
   'dashboard',
 )
 
