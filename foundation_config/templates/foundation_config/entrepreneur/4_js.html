@@ -2,7 +2,7 @@
 <script>
     $(document).ready(function () {
         get_public_me(  // start Get Me
-            {{ request.me.owner.id }},
+            {{ request.public_me.owner.id }},
             function(me) {
                 me['is_setup'] = true;
                 set_public_me(  // start Set Me

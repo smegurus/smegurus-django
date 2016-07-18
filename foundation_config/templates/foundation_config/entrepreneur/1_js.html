@@ -17,7 +17,7 @@
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
         get_public_me(  // Fetch our Me.
-            {{ request.me.owner.id }},
+            {{ request.public_me.owner.id }},
             function(me) {
                 var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
                 if (image > 0) {

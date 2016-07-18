@@ -125,7 +125,7 @@
      */
     function api_me(success_callback, error_callback) {
         get_public_me(
-            {{ request.me.id }},
+            {{ request.public_me.id }},
             function(me) {
                 me['how_discovered'] = $('#id_how_discovered').val();
                 set_public_me(
