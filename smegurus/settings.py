@@ -92,8 +92,10 @@ TENANT_APPS = (
   'api',
   'foundation_auth',
   'foundation_config',
-  'message',
-  'dashboard',
+  'tenant_message',
+  'tenant_calendar',
+  'tenant_community',
+  'tenant_dashboard',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]

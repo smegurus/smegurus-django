@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from message import views
+from tenant_message import views
 
 
 urlpatterns = (

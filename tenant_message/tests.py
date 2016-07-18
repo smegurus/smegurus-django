@@ -15,11 +15,11 @@ TEST_USER_FIRST_NAME = "Ledo"
 TEST_USER_LAST_NAME = ""
 
 
-class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCase):
+class TenantMessageTestCases(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
-        """Public Schema"""
+        """Tenant Schema"""
         tenant.schema_name = 'galacticalliance'
         tenant.name = "Galactic Alliance of Humankind"
 
@@ -50,7 +50,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(FoundationTenantModelsWithTenantSchemaTestCases, self).setUp()
+        super(TenantMessageTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -58,8 +58,18 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
+        # super(TenantMessageTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_pass(self):
-        pass
+    def test_inbox_page_view(self):
+        response = self.c.get(reverse('tenant_message_inbox'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'Mailbox',response.content)
+
+    @transaction.atomic
+    def test_composer_page_view(self):
+        response = self.c.get(reverse('tenant_message_composer'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'Mailbox',response.content)

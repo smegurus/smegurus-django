@@ -15,7 +15,7 @@ TEST_USER_FIRST_NAME = "Ledo"
 TEST_USER_LAST_NAME = ""
 
 
-class MessageWithTenantSchemaTestCases(APITestCase, TenantTestCase):
+class TenantDashboardTestCases(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -50,7 +50,7 @@ class MessageWithTenantSchemaTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(MessageWithTenantSchemaTestCases, self).setUp()
+        super(TenantDashboardTestCases, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -58,18 +58,8 @@ class MessageWithTenantSchemaTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(MessageWithTenantSchemaTestCases, self).tearDown()
+        # super(TenantDashboardTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_inbox_page_view(self):
-        response = self.c.get(reverse('tenant_message_inbox'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Mailbox',response.content)
-
-    @transaction.atomic
-    def test_composer_page_view(self):
-        response = self.c.get(reverse('tenant_message_composer'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Mailbox',response.content)
+    def test_pass(self):
+        pass
