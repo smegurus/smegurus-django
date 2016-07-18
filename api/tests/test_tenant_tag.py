@@ -87,7 +87,7 @@ class APITagWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(APITagWithTenantSchemaTestCase, self).tearDown()
+        # super(APITagWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list_with_anonymous_user(self):

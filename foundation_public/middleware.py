@@ -28,6 +28,6 @@ class PublicMeMiddleware(object):
         """
         if request.user.is_authenticated():
             me, created = PublicMe.objects.get_or_create(owner=request.user)
-            request.me = me
+            request.public_me = me
 
         return None  # Finish our middleware handler.
