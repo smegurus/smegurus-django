@@ -117,10 +117,8 @@ def config_entr_step_three_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_four_page(request):
-    tags = Tag.objects.all()
-    print(tags)
     return render(request, 'foundation_config/entrepreneur/4_view.html',{
-        'tags': tags,
+        'tags': Tag.objects.all(),
     })
 
 

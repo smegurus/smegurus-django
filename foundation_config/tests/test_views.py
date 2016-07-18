@@ -353,3 +353,21 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         url = reverse('foundation_auth_config_entr_step_four')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
+    def test_config_entr_step_five_page_view_with_success(self):
+        # Setup our User.
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+
+        # Test & verify.
+        url = reverse('foundation_auth_config_entr_step_five')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_entr_step_five_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_entr_step_five')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
