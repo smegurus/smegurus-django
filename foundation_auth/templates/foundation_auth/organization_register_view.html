@@ -5,6 +5,7 @@
 <input id="id_hidden_postaladdress" type="hidden" />
 <input id="id_hidden_organization" type="hidden" />
 {% compress js inline %}
+    {% include 'foundation_public/autocomplete_js.html' %}
     {% include 'foundation_auth/organization_register_js.html' %}
 {% endcompress %}
 
