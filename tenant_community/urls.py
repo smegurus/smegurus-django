@@ -3,6 +3,5 @@ from tenant_community import views
 
 
 urlpatterns = (
-    # url(r'^dashboard$', views.dashboard_page, name='tenant_dashboard'),
-    # url(r'^activate/(.*)/(.*)/$', views.activation_page, name='activation'),
+    url(r'^community$', views.community_page, name='tenant_community'),
 )

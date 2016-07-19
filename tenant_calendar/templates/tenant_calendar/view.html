@@ -1,0 +1,30 @@
+{% extends 'foundation_public/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+    <script>
+    function ajax_logout()
+    {
+        sign_off(
+            function(ok) {
+                console.log(ok);
+                window.location = "{% url 'foundation_auth_user_login' %}";
+            },
+            function(bad) {
+                console.log(bad);
+            }
+        );
+    }
+    </script>
+
+    <h1>Dashboard</h1>
+    <p>TODO</p>
+    <ul>
+        <li>
+            {% if user.is_authenticated %}
+                <input onclick="ajax_logout();" type="button" value="{% trans 'Logout' %}" class="ui-btn ui-corner-all" />
+            {% endif %}
+        </li>
+    </ul>
+
+{% endblock content %}

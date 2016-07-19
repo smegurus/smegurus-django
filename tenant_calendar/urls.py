@@ -3,6 +3,5 @@ from tenant_calendar import views
 
 
 urlpatterns = (
-    # url(r'^dashboard$', views.dashboard_page, name='tenant_dashboard'),
-    # url(r'^activate/(.*)/(.*)/$', views.activation_page, name='activation'),
+    url(r'^calendar$', views.calendar_page, name='tenant_calendar'),
 )

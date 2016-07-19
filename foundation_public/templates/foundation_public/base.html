@@ -117,6 +117,21 @@
                         <span data-localize="sidebar.nav.SINGLEVIEW">Messages</span>
                      </a>
                   </li>
+
+                  <li {% if page == 'calendar' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_calendar' %}" title="Single View">
+                        <em class="fa fa-calendar"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Calendar</span>
+                     </a>
+                  </li>
+
+                  <li {% if page == 'community' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_community' %}" title="Single View">
+                        <em class="fa fa-feed"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Calendar</span>
+                     </a>
+                  </li>
+
                   {% comment %}
                   <li class=" ">
                      <a href="#menuid" title="Menu" data-toggle="collapse">

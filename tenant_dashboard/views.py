@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from foundation_config.decorators import foundation_config_required
 
+
 @foundation_config_required
 @login_required(login_url='/en/login')
 def dashboard_page(request):
