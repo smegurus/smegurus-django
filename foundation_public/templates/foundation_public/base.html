@@ -1,34 +1,34 @@
 {% load staticfiles compress %}
 <!DOCTYPE html>
 <html lang="{{ request.language }}">
-
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="">
-   <meta name="keywords" content="">
-   <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
-   <title>SME Gurus</title>
-   {% compress css %}
-       <!-- =============== VENDOR STYLES ===============-->
-       <!-- FONT AWESOME-->
-       <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
-       <!-- SIMPLE LINE ICONS-->
-       <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}">
-       <!-- ANIMATE.CSS-->
-       <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.min.css' %}">
-       <!-- WHIRL (spinners)-->
-       <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
-       <!-- =============== PAGE VENDOR STYLES ===============-->
-       <!-- FULLCALENDAR-->
-       <link rel="stylesheet" href="{% static 'vendor/fullcalendar/dist/fullcalendar.css' %}">
-       <!-- =============== BOOTSTRAP STYLES ===============-->
-       <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
-       <!-- =============== APP STYLES ===============-->
-       <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
-       <!-- =============== CUSTOM STYLES ===============-->
-       <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}"><!-- https://github.com/xoxco/jQuery-Tags-Input -->
-   {% endcompress %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
+    <title>SME Gurus</title>
+    {% compress css %}
+        <!-- =============== VENDOR STYLES ===============-->
+        <!-- FONT AWESOME-->
+        <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
+        <!-- SIMPLE LINE ICONS-->
+        <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}">
+        <!-- ANIMATE.CSS-->
+        <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.min.css' %}">
+        <!-- WHIRL (spinners)-->
+        <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
+        <!-- =============== PAGE VENDOR STYLES ===============-->
+        <!-- FULLCALENDAR-->
+        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.print.css' %}" media='print' />
+        <!-- =============== BOOTSTRAP STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
+        <!-- =============== APP STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
+        <!-- =============== CUSTOM STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}"><!-- https://github.com/xoxco/jQuery-Tags-Input -->
+    {% endcompress %}
 </head>
 
 <body>
@@ -189,6 +189,73 @@
       </aside>
       <!-- Main section-->
       <section>
+          {% compress js %}
+              <!-- =============== VENDOR SCRIPTS ===============-->
+              <!-- MODERNIZR-->
+              <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
+              <!-- MATCHMEDIA POLYFILL-->
+              <script src="{% static 'vendor/matchMedia/matchMedia.js' %}"></script>
+              <!-- JQUERY-->
+              <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+              <!-- BOOTSTRAP-->
+              <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
+               <!-- STORAGE API-->
+              <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
+              <!-- JQUERY EASING-->
+              <script src="{% static 'vendor/jquery.easing/js/jquery.easing.js' %}"></script>
+              <!-- ANIMO-->
+              <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
+              <!-- SLIMSCROLL-->
+              <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+              <!-- SCREENFULL-->
+              <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script>
+              {% comment %}
+              <!-- LOCALIZE-->
+              <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
+              {% endcomment %}
+              <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+              <!-- JQUERY UI-->
+              <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
+              <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
+              <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
+              <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
+              <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
+              <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
+              <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+              <!-- MOMENT JS-->
+              <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
+              <!-- FULLCALENDAR-->
+              <script src="{% static 'vendor/fullcalendar/fullcalendar.min.js' %}"></script>
+              <script src="{% static 'vendor/fullcalendar/gcal.js' %}"></script>
+
+              <!-- =============== EXTRA SCRIPTS ===============-->
+              <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
+
+              <!-- =============== APP SCRIPTS ===============-->
+              <script src="{% static 'app/js/app.js' %}"></script>
+
+              <!-- =============== API SCRIPTS ===============-->
+              {% include "foundation_public/common_js.html" %}
+              {% include "api/auth_activation.html" %}
+              {% include "api/auth_login.html" %}
+              {% include "api/auth_register.html" %}
+              {% include "api/auth_password_reset.html" %}
+
+              {% if request.user.is_authenticated %}
+                  {% include "api/auth_user.html" %}
+                  {% include "api/auth_group.html" %}
+                  {% include "api/public_me.html" %}
+                  {% include "api/public_organization.html" %}
+                  {% include "api/public_postaladdress.html" %}
+                  {% include "api/public_imageupload.html" %}
+                  {% include "api/tenant_tag.html" %}
+                  {% include "api/tenant_imageupload.html" %}
+                  {% include "api/tenant_businessidea.html" %}
+                  {% include "api/tenant_tellusyourneed.html" %}
+                  {% include "api/tenant_me.html" %}
+              {% endif %}
+           {% endcompress %}
+
         <!-- CSRF Token -->
         {% csrf_token %}
 
@@ -202,74 +269,7 @@
          <span>&copy; 2016 - Angle</span>
       </footer>
    </div>
-   {% compress js %}
-       <!-- =============== VENDOR SCRIPTS ===============-->
-       <!-- MODERNIZR-->
-       <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
-       <!-- MATCHMEDIA POLYFILL-->
-       <script src="{% static 'vendor/matchMedia/matchMedia.js' %}"></script>
-       <!-- JQUERY-->
-       <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
-       <!-- BOOTSTRAP-->
-       <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
-        <!-- STORAGE API-->
-       <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
-       <!-- JQUERY EASING-->
-       <script src="{% static 'vendor/jquery.easing/js/jquery.easing.js' %}"></script>
-       <!-- ANIMO-->
-       <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
-       <!-- SLIMSCROLL-->
-       <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
-       <!-- SCREENFULL-->
-       <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script>
-       {% comment %}
-       <!-- LOCALIZE-->
-       <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
-       {% endcomment %}
-       <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-       <!-- JQUERY UI-->
-       <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
-       <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
-       <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
-       <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
-       <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
-       <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
-       <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
-       <!-- MOMENT JS-->
-       <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
-       <!-- MOMENT JS-->
-       <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
-       <!-- FULLCALENDAR-->
-       <script src="{% static 'vendor/fullcalendar/dist/fullcalendar.min.js' %}"></script>
-       <script src="{% static 'vendor/fullcalendar/dist/gcal.js' %}"></script>
 
-       <!-- =============== EXTRA SCRIPTS ===============-->
-       <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
-
-       <!-- =============== APP SCRIPTS ===============-->
-       <script src="{% static 'app/js/app.js' %}"></script>
-
-       <!-- =============== API SCRIPTS ===============-->
-       {% include "foundation_public/common_js.html" %}
-       {% include "api/auth_activation.html" %}
-       {% include "api/auth_login.html" %}
-       {% include "api/auth_register.html" %}
-       {% include "api/auth_password_reset.html" %}
-
-       {% if request.user.is_authenticated %}
-           {% include "api/auth_user.html" %}
-           {% include "api/auth_group.html" %}
-           {% include "api/public_me.html" %}
-           {% include "api/public_organization.html" %}
-           {% include "api/public_postaladdress.html" %}
-           {% include "api/public_imageupload.html" %}
-           {% include "api/tenant_tag.html" %}
-           {% include "api/tenant_imageupload.html" %}
-           {% include "api/tenant_businessidea.html" %}
-           {% include "api/tenant_tellusyourneed.html" %}
-           {% include "api/tenant_me.html" %}
-       {% endif %}
-    {% endcompress %}
 </body>
 
 </html>
