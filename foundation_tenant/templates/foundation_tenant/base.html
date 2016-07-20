@@ -107,12 +107,49 @@
                   <li class="nav-heading ">
                      <span data-localize="sidebar.heading.HEADER">Menu Navigation</span>
                   </li>
+
                   <li {% if page == 'dashboard' %}class=" active"{% endif %}>
                      <a href="{% url 'tenant_dashboard' %}" title="Single View">
                         <em class="fa fa-dashboard"></em>
                         <span data-localize="sidebar.nav.SINGLEVIEW">Dashboard</span>
                      </a>
                   </li>
+
+                  <li {% if page == 'progress' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_progress' %}" title="Single View">
+                        <em class="fa fa-line-chart"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Progress</span>
+                     </a>
+                  </li>
+
+                  <li {% if page == 'goal' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_goal' %}" title="Single View">
+                        <em class="fa fa-check-circle"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Goals</span>
+                     </a>
+                  </li>
+
+                  <li {% if page == 'learning' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_learning' %}" title="Single View">
+                        <em class="fa fa-graduation-cap"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Learning</span>
+                     </a>
+                  </li>
+
+                  <li {% if page == 'resource' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_resource' %}" title="Single View">
+                        <em class="fa fa-sticky-note"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Resources</span>
+                     </a>
+                  </li>
+
+                  <li {% if page == 'reward' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_reward' %}" title="Single View">
+                        <em class="fa fa-trophy"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">Rewards</span>
+                     </a>
+                  </li>
+
                   <li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
                      <a href="{% url 'tenant_message_inbox' %}" title="Single View">
                         <em class="fa fa-envelope"></em>
@@ -131,6 +168,13 @@
                      <a href="{% url 'tenant_community' %}" title="Single View">
                         <em class="fa fa-feed"></em>
                         <span data-localize="sidebar.nav.SINGLEVIEW">Community</span>
+                     </a>
+                  </li>
+
+                  <li {% if page == 'mywork' %}class=" active"{% endif %}>
+                     <a href="{% url 'tenant_mywork' %}" title="Single View">
+                        <em class="fa fa-file-o"></em>
+                        <span data-localize="sidebar.nav.SINGLEVIEW">My Work</span>
                      </a>
                   </li>
 

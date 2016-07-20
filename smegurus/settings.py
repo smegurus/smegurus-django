@@ -95,6 +95,12 @@ TENANT_APPS = (
   'tenant_message',
   'tenant_calendar',
   'tenant_community',
+  'tenant_goal',
+  'tenant_learning',
+  'tenant_mywork',
+  'tenant_progress',
+  'tenant_resource',
+  'tenant_reward',
   'tenant_dashboard',
 )
 
