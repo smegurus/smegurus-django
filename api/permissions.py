@@ -94,24 +94,25 @@ class ManagementOrAuthenticatedReadOnlyPermission(permissions.BasePermission):
 #             return False
 
 
-# class IsOwnerOrIsAnEmployee(permissions.BasePermission):
-#     """
-#     Object-level permission to only allow owners of an object to view/edit it.
-#     However, if the authenticated User is an Employee then they also get
-#     automatic read/write privilledges.
-#     Assumes the model instance has an `owner` attribute.
-#     """
-#     message = 'Only owners are allowed to write data.'
-#     def has_object_permission(self, request, view, obj):
-#         # Step 1: Reject access to non-authenticated users.
-#         if request.user.is_anonymous():
-#             return False
-#         else:
-#             # Step 2: Allow access to Employees
-#             for group in request.user.groups.all():
-#                 if group.name in EMPLOYEE_GROUPS:
-#                     return True
-#
-#             # Step 3: Allow accesss to the owners of the object.
-#             # Instance must have an attribute named `owner`.
-#             return obj.owner == request.user
+class IsOwnerOrIsAnEmployee(permissions.BasePermission):
+    """
+    Object-level permission to only allow owners of an object to view/edit it.
+    However, if the authenticated User is an Employee then they also get
+    automatic read/write privilledges.
+
+    Assumes the model instance has an `owner` attribute.
+    """
+    message = 'Only owners are allowed to write data.'
+    def has_object_permission(self, request, view, obj):
+        # Step 1: Reject access to non-authenticated users.
+        if request.user.is_anonymous():
+            return False
+        else:
+            # Step 2: Allow access to Employees
+            for group in request.user.groups.all():
+                if group.id in constants.EMPLOYEE_GROUP_IDS:
+                    return True
+
+            # Step 3: Allow accesss to the owners of the object.
+            # Instance must have an attribute named `owner`.
+            return obj.owner == request.user

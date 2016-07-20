@@ -7,8 +7,8 @@
 
 <!-- Page content-->
 <div class="content-wrapper">
-   <h3>Full Calendar
-      <small>Drag and Drop events and tasks</small>
+   <h3>{% trans 'Full Calendar' %}
+      <small>{% trans 'Drag and Drop events and tasks' %}</small>
    </h3>
    <!-- START row-->
    <div class="calendar-app">
@@ -19,23 +19,28 @@
                   <!-- START panel-->
                   <div class="panel panel-default">
                      <div class="panel-heading">
-                        <h4 class="panel-title">Draggable Events</h4>
+                        <h4 class="panel-title">{% trans 'Draggable Events' %}</h4>
                      </div>
                      <!-- Default external events list-->
                      <div class="external-events-trash">
                         <div class="panel-body">
                            <div class="external-events">
-                              <div class="bg-green">Lunch</div>
-                              <div class="bg-danger">Go home</div>
-                              <div class="bg-info">Do homework</div>
-                              <div class="bg-warning">Work on UI design</div>
-                              <div class="bg-inverse">Sleep tight</div>
+                               {% comment %}
+                               {% for item in calendar_items.all %}
+                                   <div class="bg-green">{{ item.name|escape|safe }}</div>
+                               {% endfor %}
+
+                                  <div class="bg-danger">Go home</div>
+                                  <div class="bg-info">Do homework</div>
+                                  <div class="bg-warning">Work on UI design</div>
+                                  <div class="bg-inverse">Sleep tight</div>
+                              {% endcomment %}
                            </div>
                            <p>
                               <span class="checkbox c-checkbox">
                                  <label>
                                     <input id="remove-after-drop" type="checkbox">
-                                    <span class="fa fa-check"></span>Remove after Drop</label>
+                                    <span class="fa fa-check"></span>{% trans 'Remove after Drop' %}</label>
                               </span>
                            </p>
                         </div>
@@ -47,7 +52,7 @@
                   <!-- START panel-->
                   <div class="panel panel-default">
                      <div class="panel-heading">
-                        <h3 class="panel-title">Create Event</h3>
+                        <h3 class="panel-title">{% trans 'Create Event' %}</h3>
                      </div>
                      <div class="panel-body">
                         <div class="input-group mb">

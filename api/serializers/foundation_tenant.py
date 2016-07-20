@@ -108,4 +108,4 @@ class TenantMeSerializer(serializers.ModelSerializer):
 class CalendarEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = CalendarEvent
-        fields = ('id', 'name', 'start', 'finish',)
+        fields = ('id', 'name', 'colour', 'start', 'finish',)

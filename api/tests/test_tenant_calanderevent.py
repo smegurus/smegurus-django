@@ -144,7 +144,7 @@ class APICalendarEventWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'name': 'Unit Test',
         }
         response = self.authorized_client.post('/api/tenantcalendarevent/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
     def test_put_with_anonymous_user(self):
@@ -214,7 +214,7 @@ class APICalendarEventWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'name': 'Unit Test',
         }
         response = self.authorized_client.put('/api/tenantcalendarevent/1/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_delete_with_anonymous_user(self):
@@ -242,6 +242,12 @@ class APICalendarEventWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.groups.add(advisor_group)
         self.user.save()
 
+        # Create a new object with our specific test data.
+        CalendarEvent.objects.create(
+            id=1,
+            name="Unit Test",
+        )
+
         # Run test and verify.
         response = self.authorized_client.delete('/api/tenantcalendarevent/1/')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

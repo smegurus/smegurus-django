@@ -30,14 +30,16 @@ class CalendarEvent(models.Model):
     name = models.CharField(
         _("Name"),
         max_length=127,
-        help_text=_('The name of the Tag item.'),
-        unique=True,
+        help_text=_('The name of the item.'),
+        blank=True,
+        null=True,
     )
-    status = models.CharField(
-        _("status"),
-        max_length=63,
-        help_text=_('The name of the Tag item.'),
-        unique=True,
+    colour = models.CharField(
+        _("Colour"),
+        max_length=31,
+        help_text=_('The colour of the item.'),
+        blank=True,
+        null=True,
     )
     start = models.DateTimeField(
         blank=True,
