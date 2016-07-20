@@ -17,6 +17,7 @@ from foundation_tenant.models.place import Place
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tellusyourneed import TellUsYourNeed
+from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.me import TenantMe
 
 
@@ -102,3 +103,9 @@ class TenantMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TenantMe
         fields = ('id', 'owner', 'tags',)
+
+
+class CalendarEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CalendarEvent
+        fields = ('id', 'name', 'start', 'finish',)
