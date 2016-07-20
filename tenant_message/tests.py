@@ -2,10 +2,14 @@ from django.db import transaction
 from django.contrib.auth.models import User, Group
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from rest_framework import status
+from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from foundation_public.models.me import PublicMe
 from foundation_public import constants
+from foundation_tenant.models.me import TenantMe
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -22,6 +26,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         """Tenant Schema"""
         tenant.schema_name = 'galacticalliance'
         tenant.name = "Galactic Alliance of Humankind"
+        tenant.is_setup = True
 
     @classmethod
     def setUpTestData(cls):
@@ -35,7 +40,6 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
         User.objects.bulk_create([
-            User(email=TEST_USER_EMAIL, username=TEST_USER_USERNAME,password=TEST_USER_PASSWORD,is_active=True,),
             User(email='1@1.com', username='1',password='1',is_active=True,),
             User(email='2@2.com', username='2',password='2',is_active=True,),
             User(email='3@3.com', username='3',password='3',is_active=True,),
@@ -46,30 +50,64 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
             User(email='8@8.com', username='8',password='8',is_active=True,),
             User(email='9@9.com', username='9',password='9',is_active=True,),
         ])
+        user = User.objects.create_user(  # Create our User.
+            email=TEST_USER_EMAIL,
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        user.is_active = True
+        user.save()
 
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
         super(TenantMessageTestCases, self).setUp()
-        self.c = TenantClient(self.tenant)
+        # Initialize our test data.
+        self.user = User.objects.get(username=TEST_USER_USERNAME)
+        token = Token.objects.get(user=self.user)
+
+        # Setup.
+        self.unauthorized_client = TenantClient(self.tenant)
+        self.authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        self.authorized_client.login(
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+
+        # Update Organization.
+        self.tenant.users.add(self.user)
+        self.tenant.save()
+
+        # Setup User.
+        me = PublicMe.objects.get(owner=self.user)
+        me.is_setup = True
+        me.save()
+        TenantMe.objects.create(
+            owner=self.user,
+        )
 
     @transaction.atomic
     def tearDown(self):
         users = User.objects.all()
         for user in users.all():
             user.delete()
+        items = Token.objects.all()
+        for item in items.all():
+            item.delete()
         # super(TenantMessageTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_inbox_page_view(self):
-        response = self.c.get(reverse('tenant_message_inbox'))
+    def test_inbox_page(self):
+        url = reverse('tenant_message_inbox')
+        response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Mailbox',response.content)
+        # self.assertIn(b'Rewards',response.content)
 
     @transaction.atomic
-    def test_composer_page_view(self):
-        response = self.c.get(reverse('tenant_message_composer'))
+    def test_composer_page(self):
+        url = reverse('tenant_message_composer')
+        response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Mailbox',response.content)
+        # self.assertIn(b'Rewards',response.content)
