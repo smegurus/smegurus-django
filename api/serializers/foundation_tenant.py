@@ -102,9 +102,10 @@ class TellUsYourNeedSerializer(serializers.ModelSerializer):
 
 
 class TenantMeSerializer(serializers.ModelSerializer):
+    is_admitted = serializers.BooleanField(read_only=True)
     class Meta:
         model = TenantMe
-        fields = ('id', 'owner', 'tags',)
+        fields = ('id', 'owner', 'is_admitted', 'tags',)
 
 
 class CalendarEventSerializer(serializers.ModelSerializer):

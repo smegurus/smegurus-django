@@ -29,10 +29,15 @@ class TenantMe(models.Model):
         verbose_name_plural = 'Tenant Mes'
 
     objects = TenantMeManager()
-    owner = models.OneToOneField(
+    owner = models.ForeignKey(
         User,
         help_text=_('The user whom owns this thing.'),
         on_delete=models.CASCADE,
+    )
+    is_admitted = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
+        _("Is Admitted"),
+        default=False,
+        help_text=_('Variable controls whether the user has been accepted into our Organization for any number of programs.'),
     )
     tags = models.ManyToManyField(
         Tag,

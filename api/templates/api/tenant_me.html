@@ -115,4 +115,58 @@
             }
         });
     }
+
+    /**
+     *  Function will allow the Employee to enroll the User into the Organization.
+     */
+    function admit_tenant_me(id, success_callback, error_callback) {
+        var url = "/api/tenantme/" + id + "/admit_me/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    /**
+     *  Function will allow the Employee to de-enroll the User into the Organization.
+     */
+    function expel_tenant_me(id, success_callback, error_callback) {
+        var url = "/api/tenantme/" + id + "/expel_me/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>

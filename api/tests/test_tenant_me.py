@@ -20,6 +20,8 @@ from foundation_public import constants
 TEST_USER_EMAIL = "ledo@gah.com"
 TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
+TEST_USER_FIRSTNAME = "Ledo"
+TEST_USER_LASTNAME = ""
 
 
 class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
@@ -61,6 +63,12 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Setup.
         self.unauthorized_client = TenantClient(self.tenant)
         self.authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
+        self.authorized_client.login(
+            username=TEST_USER_USERNAME,
+            password=TEST_USER_PASSWORD
+        )
+        self.tenant.owner = self.user
+        self.tenant.save()
 
         # Above taken from:
         # http://www.django-rest-framework.org/api-guide/testing/#authenticating
@@ -86,7 +94,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
-    def test_post(self):
+    def test_post_with_anonymous_user(self):
         data = {
             'owner': self.user.id
         }
@@ -94,11 +102,15 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_post_with_authentication(self):
+    def test_post_with_authenticated_owner(self):
         data = {
             'owner': self.user.id
         }
-        response = self.authorized_client.post('/api/tenantme/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post(
+            '/api/tenantme/',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -159,3 +171,85 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Run the test and verify.
         response = self.authorized_client.delete('/api/tenantme/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_admit_me_with_entrepreneur_user(self):
+        # Setup our object.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+            is_admitted=False,
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.post(
+            '/api/tenantme/1/admit_me/',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        me = TenantMe.objects.get(id=1)
+        self.assertFalse(me.is_admitted)
+
+    @transaction.atomic
+    def test_admit_me_with_org_manager_user(self):
+        # Setup our object.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+            is_admitted=False,
+        )
+        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(group)
+        self.user.save()
+
+        # Run the test and verify.
+        response = self.authorized_client.post(
+            '/api/tenantme/1/admit_me/',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        me = TenantMe.objects.get(id=1)
+        self.assertTrue(me.is_admitted)
+
+    @transaction.atomic
+    def test_expel_me_with_entrepreneur_user(self):
+        # Setup our object.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+            is_admitted=True,
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.post(
+            '/api/tenantme/1/expel_me/',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        me = TenantMe.objects.get(id=1)
+        self.assertTrue(me.is_admitted)
+
+    @transaction.atomic
+    def test_expel_me_with_org_manager_user(self):
+        # Setup our object.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+            is_admitted=True,
+        )
+        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(group)
+        self.user.save()
+
+        # Run the test and verify.
+        response = self.authorized_client.post(
+            '/api/tenantme/1/expel_me/',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        me = TenantMe.objects.get(id=1)
+        self.assertFalse(me.is_admitted)

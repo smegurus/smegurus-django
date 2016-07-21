@@ -78,20 +78,20 @@ class ManagementOrAuthenticatedReadOnlyPermission(permissions.BasePermission):
             return False
 
 
-# class EmployeePermission(permissions.BasePermission):
-#     """
-#     Global permission check for authenticated User to see if they are an
-#     Employee of this organization.
-#     """
-#     message = 'You are not an Employee!'
-#     def has_permission(self, request, view):
-#         if request.user.is_anonymous():
-#             return False
-#         else:
-#             for group in request.user.groups.all():
-#                 if group.name in constants.EMPLOYEE_GROUPS:
-#                     return True
-#             return False
+class EmployeePermission(permissions.BasePermission):
+    """
+    Global permission check for authenticated User to see if they are an
+    Employee of this organization.
+    """
+    message = 'You are not an Employee!'
+    def has_permission(self, request, view):
+        if request.user.is_anonymous():
+            return False
+        else:
+            for group in request.user.groups.all():
+                if group.id in constants.EMPLOYEE_GROUP_IDS:
+                    return True
+            return False
 
 
 class IsOwnerOrIsAnEmployee(permissions.BasePermission):
