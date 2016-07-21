@@ -58,7 +58,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     serializer_class = IntakeSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication, )
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrIsAnEmployee, )
+    permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
     filter_class = IntakeFilter
 
     @detail_route(methods=['post'], permission_classes=[IsOwnerOrIsAnEmployee,])

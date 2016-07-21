@@ -80,10 +80,47 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         items = User.objects.all()
         for item in items.all():
             item.delete()
+        items = Group.objects.all()
+        for item in items.all():
+            item.delete()
         # super(APIIntakeWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
-    def test_pass(self):
-        pass
+    def test_list_with_anonymous_user(self):
         response = self.unauthorized_client.get('/api/tenantintake/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_list_with_authenticated_entrepreneur_user(self):
+        # Change Group that the User belongs in.
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+
+        # Test and verify.
+        response = self.authorized_client.get('/api/tenantintake/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_list_with_authenticated_management_group_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.save()
+
+        # Test and verify.
+        response = self.authorized_client.get('/api/tenanttag/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_list_with_authenticated_advisor_group_user(self):
+        # Change Group that the User belongs in.
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Test and verify.
+        response = self.authorized_client.get('/api/tenanttag/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    #TODO: IMPLEMENT THE RESUT. SEE: "test_tenant_tag"
