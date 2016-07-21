@@ -37,6 +37,6 @@ def check_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def intake_entr_step_one_page(request):
-    return render(request, 'foundation_config/entrepreneur/1_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/1_view.html',{
 
     })
