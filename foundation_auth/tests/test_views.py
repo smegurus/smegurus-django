@@ -9,7 +9,9 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
+from foundation_public.models.me import PublicMe
 from foundation_public import constants
+from foundation_tenant.models.me import TenantMe
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -44,6 +46,14 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         user.is_active = True
         user.save()
 
+        # Setup Profiles
+        me = PublicMe.objects.get(owner=user)
+        me.is_setup=True
+        me.save()
+        # me = TenantMe.objects.get(owner=user)
+        # me.is_admitted=True
+        # me.save()
+
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
@@ -63,7 +73,16 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        super(FoundationAuthViewsWithPublicSchemaTestCases, self).tearDown()
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
+        item = Group.objects.all()
+        for item in items.all():
+            item.delete()
+        items = PublicMe.objects.all()
+        for item in items.all():
+            item.delete()
+        # super(FoundationAuthViewsWithPublicSchemaTestCases, self).tearDown()
 
     @transaction.atomic
     def test_user_registration_page_view(self):
@@ -204,11 +223,18 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_user_password_change_page_view(self):
-        url = reverse('foundation_auth_password_reset_and_change')  #TODO: IMPLEMENT.
-        # response = self.unauthorized_client.get(url)
-        # self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'ajax_password_reset',response.content)
+        # Convert our User's ID into an encrypted value.
+        user = User.objects.get(email=TEST_USER_EMAIL)
+        signer = Signer()
+        id_sting = str(user.id).encode()
+        value = signer.sign(id_sting)
+
+        # Run test.
+        url = reverse('foundation_auth_password_reset_and_change', args=[value])
+        response = self.unauthorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'ajax_login',response.content)
 
 
 class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
@@ -239,6 +265,14 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         user.is_active = True
         user.save()
 
+        # Setup Profiles
+        me = PublicMe.objects.get(owner=user)
+        me.is_setup=True
+        me.save()
+        # me = TenantMe.objects.get(owner=user)
+        # me.is_admitted=True
+        # me.save()
+
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
@@ -262,7 +296,16 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        super(FoundationAuthViewsWithTenatSchemaTestCases, self).tearDown()
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
+        item = Group.objects.all()
+        for item in items.all():
+            item.delete()
+        items = PublicMe.objects.all()
+        for item in items.all():
+            item.delete()
+        # super(FoundationAuthViewsWithTenatSchemaTestCases, self).tearDown()
 
     @transaction.atomic
     def test_user_launchpad_page_view_with_redirect_to_dashboard(self):
