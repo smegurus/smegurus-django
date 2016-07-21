@@ -97,7 +97,44 @@ class TenantDashboardTestCases(APITestCase, TenantTestCase):
         # super(TenantDashboardTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_dashboard_page(self):
+    def test_dashboard_page_with_anonymous_user(self):
+        url = reverse('tenant_dashboard')
+        response = self.unauthorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+
+    @transaction.atomic
+    def test_dashboard_page_with_organization_admin_user(self):
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(org_admin_group)
+        self.user.save()
+
+        url = reverse('tenant_dashboard')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Dashboard',response.content)
+
+    @transaction.atomic
+    def test_dashboard_page_with_entrepreneur_user_when_not_admitted(self):
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+
+        url = reverse('tenant_dashboard')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+
+    @transaction.atomic
+    def test_dashboard_page_with_entrepreneur_user_when_admitted(self):
+        # Pre-configure the unit test.
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+        me, created = TenantMe.objects.get_or_create(owner=self.user)
+        me.is_admitted=True
+        me.save()
+
+        # Run test and verify.
         url = reverse('tenant_dashboard')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
