@@ -1,27 +1,41 @@
 from django.utils.translation import ugettext_lazy as _
 
-QUESTION_CATEGORY_OPTIONS = (
-    (1, _('Pre-Intake Registration')),
-    (2, _('Intake Registration')),
-    #(3, _('All-or-None')),
+
+HOW_CAN_WE_HELP_OPTIONS = (
+    (1, _('I am interested in one of your programs')),
+    (2, _('I am interested in one of your services')),
+    (3, _('I want to find out how to start a business')),
+    (4, _('I have an existing business I need help with')),
+    (5, _('I want to find out about grants and loans')),
+    (6, _('Other')),
 )
 
-QUESTION_TYPE_OPTIONS = (
-    (1, _('Open Question')),
-    (2, _('Open Closed Question - Value')),
-    (2, _('Open Closed Question - Radio')),
-    (2, _('Open Closed Question - Checkbox')),
-    (2, _('Closed Question - Value')),
-    (2, _('Closed Question - Radio')),
-    (2, _('Closed Question - Checkbox')),
+
+HOW_DID_YOU_HEAR_OPTIONS = (
+    (1, _('Google Search')),
+    (2, _('Your Website')),
+    (3, _('Other')),
 )
 
-# Constant lists all the roles belonging to the employee system of the
-# application.
-EMPLOYEE_GROUPS = [
-    _("Advisor"),
-    _("Organization Manager"),
-    _("Organization Administrator"),
-    _("Client Manager"),
-    _("System Administrator")
-]
+
+DO_YOU_OWN_A_BIZ_OPTIONS = (
+    (1, _('Google Search')),
+    (2, _('Your Website')),
+    (3, _('Other')),
+    (4, _('Other')),
+    (5, _('Other')),
+)
+
+
+HOW_TO_CONTACT_OPTIONS = (
+    (1, _('Email')),
+    (2, _('Phone')),
+)
+
+
+HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS = (
+    (1, _('8:00 AM to 12:00 PM')),
+    (2, _('12:00 PM to 5:00 PM')),
+    (3, _('5:00 PM to 9:00 PM')),
+    (4, _('9:00 PM ++')),
+)

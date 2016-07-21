@@ -117,7 +117,11 @@ class CalendarEventSerializer(serializers.ModelSerializer):
 class IntakeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Intake
-        fields = ('id', 'owner',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'is_completed',
+                  'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
+                  'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
+                  'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',
+                  'how_to_contact_times', )
 
 
 class AdmissionSerializer(serializers.ModelSerializer):

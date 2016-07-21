@@ -1,0 +1,24 @@
+{% extends 'foundation_config/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+    {% compress js inline %}
+        {% include 'tenant_intake/entrepreneur/4_js.html' %}
+    {% endcompress %}
+
+    <h2 class="text-center pv">{% trans 'Great! You\'re Almost There!' %}</h2>
+    <p class="text-center pv">{% trans '' %}</p>
+
+    <br/>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <button onclick="ajax_save_and_continue();"
+                     id="id_continue_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_back();"
+            id="id_skip_btn"
+         class="btn btn-block btn-default">{% trans 'Back' %}</a>
+
+{% endblock content %}

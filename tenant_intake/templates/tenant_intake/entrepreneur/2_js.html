@@ -1,0 +1,22 @@
+{% load i18n %}
+<script>
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+    }
+
+    function ajax_back() {
+        window.location = "{% url 'tenant_intake_entr_step_one' %}";
+    }
+
+    function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+        window.location = "{% url 'tenant_intake_entr_step_three' %}";
+    }
+
+</script>
