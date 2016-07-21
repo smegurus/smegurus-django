@@ -12,7 +12,10 @@ from foundation_tenant.models.intake import Intake
 class IntakeForm(forms.ModelForm):
     class Meta:
         model = Intake
-        fields = ['how_can_we_help', 'how_can_we_help_other',]
+        fields = ['how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
+        'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
+        'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',
+        'how_to_contact_times',]
         labels = {
             # 'name': _('Name'),
             # 'industry': _('Industry'),
@@ -26,16 +29,34 @@ class IntakeForm(forms.ModelForm):
                 'class': u'form-control',
                 # 'placeholder': _('Enter name.')
             }),
-        #     'url': TextInput(attrs={
-        #         'class': u'form-control',
-        #         'placeholder': _('Enter website URL.')
-        #     }),
-        #     'facebook_url': TextInput(attrs={
-        #         'class': u'form-control',
-        #         'placeholder': _('Enter Facebook URL.')
-        #     }),
-        #     'twitter_url': TextInput(attrs={
-        #         'class': u'form-control',
-        #         'placeholder': _('Enter Twitter URL.')
-        #     }),
+            'how_can_we_help_tag': Select(attrs={
+                'class': u'form-control',
+                # 'placeholder': _('Enter name.')
+            }),
+            'how_did_you_hear': Select(attrs={
+                'class': u'form-control',
+            }),
+            'how_did_you_hear_other': TextInput(attrs={
+                'class': u'form-control',
+                # 'placeholder': _('Enter name.')
+            }),
+
+            'do_you_own_a_biz': Select(attrs={
+                'class': u'form-control',
+            }),
+            'do_you_own_a_biz_other': TextInput(attrs={
+                'class': u'form-control',
+                # 'placeholder': _('Enter name.')
+            }),
+
+            'how_to_contact': Select(attrs={
+                'class': u'form-control',
+            }),
+            'how_to_contact_telephone': TextInput(attrs={
+                'class': u'form-control',
+                # 'placeholder': _('Enter name.')
+            }),
+            'how_to_contact_times': Select(attrs={
+                'class': u'form-control',
+            }),
         }

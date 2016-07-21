@@ -19,11 +19,11 @@ HOW_DID_YOU_HEAR_OPTIONS = (
 
 
 DO_YOU_OWN_A_BIZ_OPTIONS = (
-    (1, _('Google Search')),
-    (2, _('Your Website')),
-    (3, _('Other')),
-    (4, _('Other')),
-    (5, _('Other')),
+    (1, _('Yes')),
+    (2, _('No')),
+    (3, _('In the process of starting')),
+    (4, _('I previously owned a business')),
+    (5, _('None of the above:')),
 )
 
 

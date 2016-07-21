@@ -5,7 +5,7 @@ from rest_framework import filters
 from rest_framework import permissions
 from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
-from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
+from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
 
@@ -25,5 +25,5 @@ class IntakeViewSet(viewsets.ModelViewSet):
     serializer_class = IntakeSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication, )
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, ManagementOrAuthenticatedReadOnlyPermission, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrIsAnEmployee, )
     filter_class = IntakeFilter
