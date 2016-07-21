@@ -115,6 +115,7 @@ class CalendarEventSerializer(serializers.ModelSerializer):
 
 
 class IntakeSerializer(serializers.ModelSerializer):
+    is_completed = serializers.BooleanField(read_only=True)
     class Meta:
         model = Intake
         fields = ('id', 'created', 'last_modified', 'owner', 'is_completed',

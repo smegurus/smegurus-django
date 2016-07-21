@@ -115,4 +115,28 @@
             }
         });
     }
+
+    function complete_tenant_intake(id, success_callback, error_callback) {
+        var url = "/api/tenantintake/" + id + "/complete_intake/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>

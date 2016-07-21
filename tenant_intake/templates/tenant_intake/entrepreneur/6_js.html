@@ -1,32 +1,15 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        get_tenant_intake(
+        complete_tenant_intake(
             {{ intake.id }},
-            function(intake) {
-                intake['is_completed'] = true;
-                set_tenant_intake(
-                    intake,
-                    function(json_result) {
-                        enable_btn();
-                        var string = JSON.stringify( json_result );
-                        console.log(string);
-                    },
-                    function(error_json_result) {
-                        enable_btn();
-                        var string = JSON.stringify( error_json_result );
-                        console.log(error_json_result);
-                        alert(string);
-                    }
-                ); // end Set Intake.
+            function(json_result){
+                console.log(json_result);
             },
-            function(error_json_result) {
-                enable_btn();
-                var string = JSON.stringify( error_json_result );
-                console.log(error_json_result);
-                alert(string);
+            function(error_result) {
+                console.log(error_result);
             }
-        ); // end Get Intake.
+        ); // end Complete Intake
     }); // end Ready
 
     function disable_btn() {
