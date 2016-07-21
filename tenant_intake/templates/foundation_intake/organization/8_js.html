@@ -1,0 +1,40 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // DEVELOPER NOTES:
+        // Automatically update Organization that we are setup.
+        //
+        get_public_organization(  // Fetch our organization.
+            {{ request.tenant.id }},
+            function(organization) {
+                organization['is_setup'] = true;
+                set_public_organization(  // Save our organization.
+                    organization,
+                    function(error) {
+                        console.log(error);
+                    },
+                    function(json_result) {
+                        console.log(json_result);
+                    },
+                    function(json_error_result) {
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Organization
+            },
+            function(error_result) {
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Organization
+    });
+
+    function ajax_dashboard() {
+        window.location = "{% url 'tenant_dashboard' %}";
+    }
+
+    function ajax_back() {
+        window.location = "{% url 'foundation_auth_config_org_step_seven' %}";
+    }
+
+</script>

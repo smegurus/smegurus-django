@@ -1,0 +1,33 @@
+{% extends 'foundation_config/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/organization/4_js.html' %}
+    {% endcompress %}
+
+    <h2 class="text-center pv">{% trans 'Learning Preferences' %}</h2>
+    <p class="text-center pv">{% trans 'Now we need to setup how your entrepreneurs will receive instruction. You can choose from the following:' %}</p>
+
+    <br/>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <input type="radio" name="learning_preference" value="1" {% if request.tenant.learning_preference == 1 %}checked{% endif %}>
+        {% trans '<b>Traditional (not recommended):</b> If you want to rely solely on classroom instruction, then select this option and your clients will only go through activities to generate key documents' %}
+        <br>
+        <br/>
+
+        <input type="radio" name="learning_preference" value="2" {% if request.tenant.learning_preference == 2 %}checked{% endif %}>
+        {% trans '<b>Blended:</b> Your entrepreneurs will go through our custom education modules and then complete an exercise to generate key documents such as their Business Model Canvas. This is the option that the majority of our clients use, and remember, you can always blend this will real world instruction.' %}
+        <br>
+        <br/>
+
+        <button onclick="ajax_save_and_continue();"
+                     id="id_continue_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+    </form>
+
+    <a onclick="ajax_back();"
+            id="id_skip_btn"
+         class="btn btn-block btn-default">{% trans 'Back' %}</a>
+{% endblock content %}

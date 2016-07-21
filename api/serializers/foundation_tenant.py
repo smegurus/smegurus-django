@@ -18,6 +18,8 @@ from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tellusyourneed import TellUsYourNeed
 from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.me import TenantMe
 
 
@@ -109,3 +111,15 @@ class CalendarEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = CalendarEvent
         fields = ('id', 'name', 'colour', 'start', 'finish',)
+
+
+class IntakeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Intake
+        fields = ('id', 'owner',)
+
+
+class AdmissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Admission
+        fields = ('id', 'owner',)

@@ -26,6 +26,8 @@ from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tellusyourneed import TellUsYourNeed
 from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.me import TenantMe
 from foundation_public import constants
 
@@ -76,6 +78,34 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         for user in users.all():
             user.delete()
         # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
+
+    @transaction.atomic
+    def test_intake_to_string(self):
+        obj = Intake.objects.create(
+            id=1, owner=User.objects.get(username='1')
+        )
+        self.assertIn(str(obj), '1@1.com')
+        obj.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_intake_delete_all(self):
+        # Setup our unit test.
+        count = Intake.objects.all().count()
+        self.assertEqual(count, 0)
+        Intake.objects.bulk_create([
+            Intake(id=1, owner=User.objects.get(username='1')),
+            Intake(id=2, owner=User.objects.get(username='2')),
+            Intake(id=3, owner=User.objects.get(username='3')),
+            Intake(id=4, owner=User.objects.get(username='4')),
+            Intake(id=5, owner=User.objects.get(username='5')),
+        ])
+        count = Intake.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        Intake.objects.delete_all()
+        count = Intake.objects.all().count()
+        self.assertEqual(count, 0)
 
     @transaction.atomic
     def test_place_to_string(self):
@@ -355,3 +385,40 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = TenantMe.objects.all()
         for item in items.all():
             item.delete()
+
+        @transaction.atomic
+        def test_admission_to_string(self):
+            tag = Tag.objects.create(
+                name='Testing',
+            )
+            self.assertIn(str(obj), 'Testing')
+            admission = Admission.objects.create(
+                tag=tag,
+            )
+            self.assertIn(str(obj), 'Testing')
+            admission.delete();  # Cleanup
+            tag.delete()
+
+        @transaction.atomic
+        def test_admission_delete_all(self):
+            # Setup our unit test.
+            count = Place.objects.all().count()
+            self.assertEqual(count, 0)
+            tag = Tag.objects.create(
+                name='Testing',
+            )
+            self.assertIn(str(obj), 'Testing')
+            admission = Admission.objects.create(
+                tag=tag,
+            )
+            count = Admission.objects.all().count()
+            self.assertEqual(count, 1)
+
+            # Run our test and verify.
+            Admission.objects.delete_all()
+            count = Admission.objects.all().count()
+            self.assertEqual(count, 0)
+
+            # Cleanup
+            for item in Admission.objects.all():
+                item.delete()

@@ -1,0 +1,23 @@
+{% extends 'foundation_config/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+    {% compress js inline %}
+        {% include 'foundation_config/organization/8_js.html' %}
+    {% endcompress %}
+    <h2 class="text-center pv">{% trans 'You\'re Ready To Start' %}</h2>
+    <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
+
+    <br/>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <button onclick="ajax_dashboard();"
+                     id="id_continue_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Dashboard' %}</button>
+    </form>
+
+    <a onclick="ajax_back();"
+            id="id_skip_btn"
+         class="btn btn-block btn-default">{% trans 'Back' %}</a>
+
+{% endblock content %}
