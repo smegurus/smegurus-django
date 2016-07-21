@@ -19,7 +19,35 @@
     }
 
     function ajax_save_and_continue() {
-        window.location = "{% url 'tenant_intake_entr_step_six' %}";
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_tenant_intake(
+            {{ intake.id }},
+            function(intake) {
+                intake['how_to_contact_telephone'] = $('#id_how_to_contact_telephone').val();
+                intake['how_to_contact_times'] = $('#id_how_to_contact_times').val();
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( json_result );
+                        console.log(string);
+                        window.location = "{% url 'tenant_intake_entr_step_six' %}";
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end Get Intake.
     }
 
 </script>

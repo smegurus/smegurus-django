@@ -16,7 +16,34 @@
 
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
-        window.location = "{% url 'tenant_intake_entr_step_three' %}";
+        get_tenant_intake(
+            {{ intake.id }},
+            function(intake) {
+                intake['how_did_you_hear'] = $('#id_how_did_you_hear').val();
+                intake['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( json_result );
+                        console.log(string);
+                        window.location = "{% url 'tenant_intake_entr_step_three' %}";
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end Get Intake.
     }
 
 </script>
