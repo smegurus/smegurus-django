@@ -11,13 +11,13 @@
     }
 
     function ajax_save_and_continue() {
-        //test
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_intake(
             {{ intake.id }},
             function(intake) {
                 intake['how_can_we_help'] = $('#id_how_can_we_help').val();
                 intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
                 set_tenant_intake(
                     intake,
                     function(json_result) {
