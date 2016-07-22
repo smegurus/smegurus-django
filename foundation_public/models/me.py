@@ -29,6 +29,11 @@ class PublicMe(AbstractPlacePerson):
         default=False,
         help_text=_('Variable controls whether the user profile has been setup.'),
     )
+    is_locked = models.BooleanField(
+        _("Is Locked"),
+        default=False,
+        help_text=_('Controls whether the screen is locked or not.'),
+    )
 
     def __str__(self):
         return str(self.name)

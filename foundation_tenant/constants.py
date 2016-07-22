@@ -23,7 +23,7 @@ DO_YOU_OWN_A_BIZ_OPTIONS = (
     (2, _('No')),
     (3, _('In the process of starting')),
     (4, _('I previously owned a business')),
-    (5, _('None of the above:')),
+    (5, _('None of the above')),
 )
 
 
