@@ -1,4 +1,4 @@
-{% load staticfiles compress %}
+{% load staticfiles i18n compress %}
 <!DOCTYPE html>
 <html lang="{{ request.language }}">
 <head>
@@ -26,213 +26,344 @@
         <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
         <!-- =============== APP STYLES ===============-->
         <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
+        <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
         <!-- =============== CUSTOM STYLES ===============-->
         <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}"><!-- https://github.com/xoxco/jQuery-Tags-Input -->
     {% endcompress %}
 </head>
 
 <body>
-   <div class="wrapper">
-      <!-- top navbar-->
-      <header class="topnavbar-wrapper">
-         <!-- START Top Navbar-->
-         <nav role="navigation" class="navbar topnavbar">
-            <!-- START navbar header-->
-            <div class="navbar-header">
-               <a href="#/" class="navbar-brand">
-                  <div class="brand-logo">
-                     <img src="{% static 'app/img/logo.png' %}" alt="App Logo" class="img-responsive">
-                  </div>
-                  <div class="brand-logo-collapsed">
-                     <img src="{% static 'app/img/logo-single.png' %}" alt="App Logo" class="img-responsive">
-                  </div>
-               </a>
-            </div>
-            <!-- END navbar header-->
-            <!-- START Nav wrapper-->
-            <div class="nav-wrapper">
-               <!-- START Left navbar-->
-               <ul class="nav navbar-nav">
-                  <li>
-                     <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
-                     <a href="#" data-toggle-state="aside-collapsed" class="hidden-xs">
+<div class="wrapper">
+<!-- top navbar-->
+<header class="topnavbar-wrapper">
+    <!-- START Top Navbar-->
+    <nav role="navigation" class="navbar topnavbar">
+        <!-- START navbar header-->
+        <div class="navbar-header">
+            <a href="#/" class="navbar-brand">
+                <div class="brand-logo">
+                    <!--<img src="img/logo.png" alt="App Logo" class="img-responsive">-->
+                    <h3 class="site-title-v2">SME Gurus</h3>
+                </div>
+                <div class="brand-logo-collapsed">
+                    <img src="{% static 'app/img/logo-single.png' %}" alt="SME Gurus" class="img-responsive">
+                </div>
+            </a>
+        </div>
+        <!-- END navbar header-->
+        <!-- START Nav wrapper-->
+        <div class="nav-wrapper">
+            <!-- START Left navbar-->
+            <ul class="nav navbar-nav">
+                <li>
+                    <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                    <a href="#" data-trigger-resize="" data-toggle-state="aside-collapsed" class="hidden-xs">
                         <em class="fa fa-navicon"></em>
-                     </a>
-                     <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
-                     <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                    </a>
+                    <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                    <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
                         <em class="fa fa-navicon"></em>
-                     </a>
-                  </li>
-               </ul>
-               <!-- END Left navbar-->
-               <!-- START Right Navbar-->
-               <ul class="nav navbar-nav navbar-right">
-                  <!-- Search icon-->
-                  <li>
-                     <a href="#" data-search-open="">
-                        <em class="icon-magnifier"></em>
-                     </a>
-                  </li>
-                  <!-- START Offsidebar button-->
-                  <li>
-                     <a href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
-                        <em class="icon-notebook"></em>
-                     </a>
-                  </li>
-                  <!-- END Offsidebar menu-->
-               </ul>
-               <!-- END Right Navbar-->
-            </div>
-            <!-- END Nav wrapper-->
-            <!-- START Search form-->
-            <form role="search" action="search.html" class="navbar-form">
-               <div class="form-group has-feedback">
-                  <input type="text" placeholder="Type and hit enter ..." class="form-control">
-                  <div data-search-dismiss="" class="fa fa-times form-control-feedback"></div>
-               </div>
-               <button type="submit" class="hidden btn btn-default">Submit</button>
-            </form>
-            <!-- END Search form-->
-         </nav>
-         <!-- END Top Navbar-->
-      </header>
-      <!-- sidebar-->
-      <aside class="aside">
-         <!-- START Sidebar (left)-->
-         <div class="aside-inner">
-            <nav data-sidebar-anyclick-close="" class="sidebar">
-               <!-- START sidebar nav-->
-               <ul class="nav">
-                  <!-- Iterates over all sidebar items-->
-                  <li class="nav-heading ">
-                     <span data-localize="sidebar.heading.HEADER">Menu Navigation</span>
-                  </li>
+                    </a>
+                </li>
 
-                  <li {% if page == 'dashboard' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_dashboard' %}" title="Single View">
-                        <em class="fa fa-dashboard"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Dashboard</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'progress' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_progress' %}" title="Single View">
-                        <em class="fa fa-line-chart"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Progress</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'goal' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_goal' %}" title="Single View">
-                        <em class="fa fa-check-circle"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Goals</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'learning' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_learning' %}" title="Single View">
-                        <em class="fa fa-graduation-cap"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Learning</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'resource' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_resource' %}" title="Single View">
-                        <em class="fa fa-sticky-note"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Resources</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'reward' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_reward' %}" title="Single View">
-                        <em class="fa fa-trophy"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Rewards</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_message_inbox' %}" title="Single View">
-                        <em class="fa fa-envelope"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Messages</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'calendar' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_calendar' %}" title="Single View">
-                        <em class="fa fa-calendar"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Calendar</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'community' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_community' %}" title="Single View">
-                        <em class="fa fa-feed"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">Community</span>
-                     </a>
-                  </li>
-
-                  <li {% if page == 'mywork' %}class=" active"{% endif %}>
-                     <a href="{% url 'tenant_mywork' %}" title="Single View">
-                        <em class="fa fa-file-o"></em>
-                        <span data-localize="sidebar.nav.SINGLEVIEW">My Work</span>
-                     </a>
-                  </li>
-
-                  {% comment %}
-                  <li class=" ">
-                     <a href="#menuid" title="Menu" data-toggle="collapse">
-                        <em class="icon-folder"></em>
-                        <span data-localize="sidebar.nav.menu.MENU">Menu</span>
-                     </a>
-                     <ul id="menuid" class="nav sidebar-subnav collapse">
-                        <li class="sidebar-subnav-header">Menu</li>
-                        <li class=" ">
-                           <a href="submenu.html" title="Sub Menu">
-                              <span data-localize="sidebar.nav.menu.SUBMENU">Sub Menu</span>
-                           </a>
+            </ul>
+            <!-- END Left navbar-->
+            <!-- START Right Navbar-->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- START Alert menu-->
+                <li class="dropdown dropdown-list">
+                    <a href="#" data-toggle="dropdown">
+                        <em class="icon-bell"></em>
+                        <div class="label label-danger">11</div>
+                    </a>
+                    <!-- START Dropdown menu-->
+                    <ul class="dropdown-menu animated flipInX">
+                        <li>
+                            <!-- START list group-->
+                            <div class="list-group">
+                                <!-- list item-->
+                                <a href="#" class="list-group-item">
+                                    <div class="media-box">
+                                        <div class="pull-left">
+                                            <em class="fa fa-twitter fa-2x text-info"></em>
+                                        </div>
+                                        <div class="media-box-body clearfix">
+                                            <p class="m0">New followers</p>
+                                            <p class="m0 text-muted">
+                                                <small>1 new follower</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- list item-->
+                                <a href="#" class="list-group-item">
+                                    <div class="media-box">
+                                        <div class="pull-left">
+                                            <em class="fa fa-envelope fa-2x text-warning"></em>
+                                        </div>
+                                        <div class="media-box-body clearfix">
+                                            <p class="m0">New e-mails</p>
+                                            <p class="m0 text-muted">
+                                                <small>You have 10 new emails</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- list item-->
+                                <a href="#" class="list-group-item">
+                                    <div class="media-box">
+                                        <div class="pull-left">
+                                            <em class="fa fa-tasks fa-2x text-success"></em>
+                                        </div>
+                                        <div class="media-box-body clearfix">
+                                            <p class="m0">Pending Tasks</p>
+                                            <p class="m0 text-muted">
+                                                <small>11 pending task</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- last list item-->
+                                <a href="#" class="list-group-item">
+                                    <small>More notifications</small>
+                                    <span class="label label-danger pull-right">14</span>
+                                </a>
+                            </div>
+                            <!-- END list group-->
                         </li>
-                     </ul>
-                  </li>
-                  {% endcomment %}
-               </ul>
-               <!-- END sidebar nav-->
-            </nav>
-         </div>
-         <!-- END Sidebar (left)-->
-      </aside>
-      <!-- offsidebar-->
-      <aside class="offsidebar hide">
-         <!-- START Off Sidebar (right)-->
-         <nav>
-            <div role="tabpanel">
-               <!-- Nav tabs-->
-               <ul role="tablist" class="nav nav-tabs nav-justified">
-                  <li role="presentation" class="active">
-                     <a href="#app-settings" aria-controls="app-settings" role="tab" data-toggle="tab">
-                        <em class="icon-equalizer fa-lg"></em>
-                     </a>
-                  </li>
-                  <li role="presentation">
-                     <a href="#app-chat" aria-controls="app-chat" role="tab" data-toggle="tab">
-                        <em class="icon-user fa-lg"></em>
-                     </a>
-                  </li>
-               </ul>
-               <!-- Tab panes-->
-               <div class="tab-content">
-                  <div id="app-settings" role="tabpanel" class="tab-pane fade in active">
-                     <h3 class="text-center text-thin">Tab 1</h3>
-                  </div>
-                  <div id="app-chat" role="tabpanel" class="tab-pane fade">
-                     <h3 class="text-center text-thin">Tab 2</h3>
-                  </div>
-               </div>
+                    </ul>
+                    <!-- END Dropdown menu-->
+                </li>
+                <!-- END Alert menu-->
+                <!-- START Offsidebar button-->
+                <li>
+                    <a href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
+                        <em class="icon-settings"></em>
+                    </a>
+                </li>
+                <!-- END Offsidebar menu-->
+            </ul>
+            <!-- END Right Navbar-->
+        </div>
+        <!-- END Nav wrapper-->
+    </nav>
+    <!-- END Top Navbar-->
+</header>
+<!-- sidebar-->
+<aside class="aside">
+<!-- START Sidebar (left)-->
+<div class="aside-inner">
+<nav data-sidebar-anyclick-close="" class="sidebar">
+<!-- START sidebar nav-->
+<ul class="nav">
+<!-- START user info-->
+<li class=" ">
+        <div class="item user-block">
+            <!-- User picture-->
+            <div class="user-block-picture">
+                <div class="user-block-status">
+                    {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
+                        <img src="{{ request.tenant_me.image.url }}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                    {% else %}
+                        <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                    {% endif %}
+                    <div class="circle circle-success circle-lg"></div>
+                </div>
             </div>
-         </nav>
-         <!-- END Off Sidebar (right)-->
-      </aside>
-      <!-- Main section-->
-      <section>
+            <!-- Name and Job-->
+            <div class="user-block-info">
+                <span class="user-block-name">Hello, {{ request.user.first_name }}</span>
+            </div>
+        </div>
+</li>
+<!-- END user info-->
+<!-- Iterates over all sidebar items-->
+
+<!-- DASHBOARD -->
+<li {% if page == 'dashboard' %}class=" active"{% endif %}>
+    <a href="{% url 'tenant_dashboard' %}" title="Dashboard">
+        <em class="icon-speedometer"></em>
+        <span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
+    </a>
+</li>
+<!-- end DASHBOARD -->
+
+
+<!-- PROGRESS -->
+<li class=" ">
+    <a href="#progress" title="Progress" data-toggle="collapse">
+        <div class="pull-right label label-info">1</div>
+        <em class="icon-graph"></em>
+        <span data-localize="sidebar.nav.PROGRESS">Progress</span>
+    </a>
+    <ul id="progress" class="nav sidebar-subnav collapse">
+        <li class="sidebar-subnav-header">Progress</li>
+        <li class=" ">
+            <a href="#" title="History">
+                <span>History</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<!-- end PROGRESS -->
+
+
+<!-- GOALS -->
+<li {% if page == 'goal' %}class=" active"{% endif %}>
+        <a href="{% url 'tenant_goal' %}" title="Goals">
+            <em class="icon-check"></em>
+            <span data-localize="sidebar.nav.GOALS">Goals</span>
+        </a>
+</li>
+<!-- end GOALS -->
+
+
+
+<!-- LEARNING -->
+<li class=" ">
+    <a href="#learning" title="Learning" data-toggle="collapse">
+        <div class="pull-right label label-success">2</div>
+        <em class="icon-graduation"></em>
+        <span>Learning</span>
+    </a>
+    <ul id="learning" class="nav sidebar-subnav collapse">
+        <li class="sidebar-subnav-header">Learning</li>
+        <li class=" ">
+            <a href="#" title="Modules">
+                <span>Modules</span>
+            </a>
+        </li>
+        <li class=" ">
+            <a href="#" title="Forms">
+                <span>Forms</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<!-- LEARNING -->
+
+
+<!-- RESOURCES -->
+<li {% if page == 'resource' %}class=" active"{% endif %}>
+     <a href="{% url 'tenant_resource' %}" title="Resources">
+         <em class="icon-notebook"></em>
+         <span data-localize="sidebar.nav.RESOURCES">Resources</span>
+     </a>
+</li>
+<!-- end RESOURCES -->
+
+
+<!-- REWARDS -->
+<li {% if page == 'reward' %}class=" active"{% endif %}>
+    <a href="{% url 'tenant_reward' %}" title="Rewards">
+        <em class="icon-trophy"></em>
+        <span data-localize="sidebar.nav.REWARDS">Rewards</span>
+    </a>
+</li>
+<!-- end REWARDS -->
+
+
+<!-- MESSAGE -->
+<li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
+    <a href="{% url 'tenant_message_inbox' %}" title="Messages">
+        <em class="icon-envelope"></em>
+        <span data-localize="sidebar.nav.MESSAGES">Messages</span>
+    </a>
+</li>
+<!-- end MESSAGE -->
+
+
+<!-- COMMUNITY -->
+<li {% if page == 'community' %}class=" active"{% endif %}>
+    <a href="{% url 'tenant_community' %}" title="Community">
+        <em class="icon-feed"></em>
+        <span data-localize="sidebar.nav.COMMUNITY">Community</span>
+    </a>
+</li>
+<!-- end COMMUNITY -->
+
+
+<!-- CALENDAR -->
+<li {% if page == 'calendar' %}class=" active"{% endif %}>
+    <a href="{% url 'tenant_calendar' %}" title="Calendar">
+        <em class="icon-calendar"></em>
+        <span data-localize="sidebar.nav.CALENDAR">Calendar</span>
+    </a>
+</li>
+<!-- end CALENDAR -->
+
+
+<!-- MY WORK -->
+<li {% if page == 'mywork' %}class=" active"{% endif %}>
+    <a href="{% url 'tenant_mywork' %}" title="My Work">
+        <em class="icon-docs"></em>
+        <span data-localize="sidebar.nav.DOCUMENTS">My Work</span>
+    </a>
+</li>
+<!-- end MY WORK -->
+
+
+</ul>
+<!-- END sidebar nav-->
+</nav>
+</div>
+<!-- END Sidebar (left)-->
+</aside>
+<!-- offsidebar-->
+<aside class="offsidebar hide">
+<!-- START Off Sidebar (right)-->
+<nav>
+<!-- Nav tabs-->
+<ul class="nav">
+    <li class=" ">
+        <a href="client_profile.html" title="My Profile" >
+            <em class="icon-user"></em>
+            <span data-localize="offsidebar.nav.PROFILE">My Profile</span>
+        </a>
+    </li>
+    <li class=" ">
+        <a href="client_settings.html" title="Settings" >
+            <em class="icon-settings"></em>
+            <span data-localize="offsidebar.nav.SETTINGS">Settings</span>
+        </a>
+    </li>
+    <li class=" ">
+        <a href="#" title="Go Full Screen" data-toggle-fullscreen="" style="cursor: pointer;">
+            <em class="fa fa-expand"></em>
+            <span data-localize="offsidebar.nav.FULLSCREEN">Go Full Screen</span>
+        </a>
+    </li>
+    <li class=" ">
+        <a href="lock.html" title="Lock Screen">
+            <em class="icon-lock"></em>
+            <span data-localize="offsidebar.nav.LOCK">Lock Screen</span>
+        </a>
+    </li>
+    <li class=" ">
+        <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="Logout" >
+            <em class="icon-logout"></em>
+            <span data-localize="offsidebar.nav.LOGOUT">Logout</span>
+        </a>
+    </li>
+    <li class="has-logout-block">
+        <div id="logout-block" class="collapse">
+            <div class="item logout-block">
+                    <p>Are you sure you want to log out?</p>
+                <button type="button" class="mb-sm btn label-green-v2 pull-left">YES</button>
+                <button type="button" class="mb-sm btn label-red-v2 pull-right">NO</button>
+                    <label class="checkbox-inline c-checkbox">
+                        <input id="inlineCheckbox10" type="checkbox" value="Do not ask me again">
+                        <span class="fa fa-check"></span>Don't ask me again</label>
+            </div>
+        </div>
+    </li>
+</ul>
+<!-- Tab panes-->
+</nav>
+<!-- END Off Sidebar (right)-->
+</aside>
+<!-- Main section-->
+<section>
           {% compress js %}
               <!-- =============== VENDOR SCRIPTS ===============-->
               <!-- MODERNIZR-->
