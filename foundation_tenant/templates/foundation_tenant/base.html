@@ -316,13 +316,13 @@
 <!-- Nav tabs-->
 <ul class="nav">
     <li class=" ">
-        <a href="client_profile.html" title="My Profile" >
+        <a href="{% url 'tenant_profile' %}" title="My Profile" >
             <em class="icon-user"></em>
             <span data-localize="offsidebar.nav.PROFILE">My Profile</span>
         </a>
     </li>
     <li class=" ">
-        <a href="client_settings.html" title="Settings" >
+        <a href="{% url 'tenant_profile_setting' %}" title="Settings" > 
             <em class="icon-settings"></em>
             <span data-localize="offsidebar.nav.SETTINGS">Settings</span>
         </a>
