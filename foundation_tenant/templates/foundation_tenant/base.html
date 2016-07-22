@@ -1,14 +1,14 @@
 {% load staticfiles i18n compress %}
 <!DOCTYPE html>
 <html lang="{{ request.language }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
-    <title>SME Gurus</title>
-    {% compress css %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
+        <title>SME Gurus</title>
+        {% compress css %}
         <!-- =============== VENDOR STYLES ===============-->
         <!-- FONT AWESOME-->
         <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
@@ -28,424 +28,396 @@
         <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
         <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
         <!-- =============== CUSTOM STYLES ===============-->
-        <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}"><!-- https://github.com/xoxco/jQuery-Tags-Input -->
-    {% endcompress %}
-</head>
-
-<body>
-<div class="wrapper">
-<!-- top navbar-->
-<header class="topnavbar-wrapper">
-    <!-- START Top Navbar-->
-    <nav role="navigation" class="navbar topnavbar">
-        <!-- START navbar header-->
-        <div class="navbar-header">
-            <a href="#/" class="navbar-brand">
-                <div class="brand-logo">
-                    <!--<img src="img/logo.png" alt="App Logo" class="img-responsive">-->
-                    <h3 class="site-title-v2">SME Gurus</h3>
-                </div>
-                <div class="brand-logo-collapsed">
-                    <img src="{% static 'app/img/logo-single.png' %}" alt="SME Gurus" class="img-responsive">
-                </div>
-            </a>
-        </div>
-        <!-- END navbar header-->
-        <!-- START Nav wrapper-->
-        <div class="nav-wrapper">
-            <!-- START Left navbar-->
-            <ul class="nav navbar-nav">
-                <li>
-                    <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
-                    <a href="#" data-trigger-resize="" data-toggle-state="aside-collapsed" class="hidden-xs">
-                        <em class="fa fa-navicon"></em>
-                    </a>
-                    <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
-                    <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
-                        <em class="fa fa-navicon"></em>
-                    </a>
-                </li>
-
-            </ul>
-            <!-- END Left navbar-->
-            <!-- START Right Navbar-->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- START Alert menu-->
-                <li class="dropdown dropdown-list">
-                    <a href="#" data-toggle="dropdown">
-                        <em class="icon-bell"></em>
-                        <div class="label label-danger">11</div>
-                    </a>
-                    <!-- START Dropdown menu-->
-                    <ul class="dropdown-menu animated flipInX">
-                        <li>
-                            <!-- START list group-->
-                            <div class="list-group">
-                                <!-- list item-->
-                                <a href="#" class="list-group-item">
-                                    <div class="media-box">
-                                        <div class="pull-left">
-                                            <em class="fa fa-twitter fa-2x text-info"></em>
-                                        </div>
-                                        <div class="media-box-body clearfix">
-                                            <p class="m0">New followers</p>
-                                            <p class="m0 text-muted">
-                                                <small>1 new follower</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- list item-->
-                                <a href="#" class="list-group-item">
-                                    <div class="media-box">
-                                        <div class="pull-left">
-                                            <em class="fa fa-envelope fa-2x text-warning"></em>
-                                        </div>
-                                        <div class="media-box-body clearfix">
-                                            <p class="m0">New e-mails</p>
-                                            <p class="m0 text-muted">
-                                                <small>You have 10 new emails</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- list item-->
-                                <a href="#" class="list-group-item">
-                                    <div class="media-box">
-                                        <div class="pull-left">
-                                            <em class="fa fa-tasks fa-2x text-success"></em>
-                                        </div>
-                                        <div class="media-box-body clearfix">
-                                            <p class="m0">Pending Tasks</p>
-                                            <p class="m0 text-muted">
-                                                <small>11 pending task</small>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- last list item-->
-                                <a href="#" class="list-group-item">
-                                    <small>More notifications</small>
-                                    <span class="label label-danger pull-right">14</span>
-                                </a>
+        <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}">
+        <!-- https://github.com/xoxco/jQuery-Tags-Input -->
+        {% endcompress %}
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- top navbar-->
+            <header class="topnavbar-wrapper">
+                <!-- START Top Navbar-->
+                <nav role="navigation" class="navbar topnavbar">
+                    <!-- START navbar header-->
+                    <div class="navbar-header">
+                        <a href="#/" class="navbar-brand">
+                            <div class="brand-logo">
+                                <!--<img src="img/logo.png" alt="App Logo" class="img-responsive">-->
+                                <h3 class="site-title-v2">SME Gurus</h3>
                             </div>
-                            <!-- END list group-->
+                            <div class="brand-logo-collapsed">
+                                <img src="{% static 'app/img/logo-single.png' %}" alt="SME Gurus" class="img-responsive">
+                            </div>
+                        </a>
+                    </div>
+                    <!-- END navbar header-->
+                    <!-- START Nav wrapper-->
+                    <div class="nav-wrapper">
+                        <!-- START Left navbar-->
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+                                <a href="#" data-trigger-resize="" data-toggle-state="aside-collapsed" class="hidden-xs">
+                                <em class="fa fa-navicon"></em>
+                                </a>
+                                <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+                                <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                                <em class="fa fa-navicon"></em>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- END Left navbar-->
+                        <!-- START Right Navbar-->
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- START Alert menu-->
+                            <li class="dropdown dropdown-list">
+                                <a href="#" data-toggle="dropdown">
+                                    <em class="icon-bell"></em>
+                                    <div class="label label-danger">11</div>
+                                </a>
+                                <!-- START Dropdown menu-->
+                                <ul class="dropdown-menu animated flipInX">
+                                    <li>
+                                        <!-- START list group-->
+                                        <div class="list-group">
+                                            <!-- list item-->
+                                            <a href="#" class="list-group-item">
+                                                <div class="media-box">
+                                                    <div class="pull-left">
+                                                        <em class="fa fa-twitter fa-2x text-info"></em>
+                                                    </div>
+                                                    <div class="media-box-body clearfix">
+                                                        <p class="m0">New followers</p>
+                                                        <p class="m0 text-muted">
+                                                            <small>1 new follower</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- list item-->
+                                            <a href="#" class="list-group-item">
+                                                <div class="media-box">
+                                                    <div class="pull-left">
+                                                        <em class="fa fa-envelope fa-2x text-warning"></em>
+                                                    </div>
+                                                    <div class="media-box-body clearfix">
+                                                        <p class="m0">New e-mails</p>
+                                                        <p class="m0 text-muted">
+                                                            <small>You have 10 new emails</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- list item-->
+                                            <a href="#" class="list-group-item">
+                                                <div class="media-box">
+                                                    <div class="pull-left">
+                                                        <em class="fa fa-tasks fa-2x text-success"></em>
+                                                    </div>
+                                                    <div class="media-box-body clearfix">
+                                                        <p class="m0">Pending Tasks</p>
+                                                        <p class="m0 text-muted">
+                                                            <small>11 pending task</small>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <!-- last list item-->
+                                            <a href="#" class="list-group-item">
+                                            <small>More notifications</small>
+                                            <span class="label label-danger pull-right">14</span>
+                                            </a>
+                                        </div>
+                                        <!-- END list group-->
+                                    </li>
+                                </ul>
+                                <!-- END Dropdown menu-->
+                            </li>
+                            <!-- END Alert menu-->
+                            <!-- START Offsidebar button-->
+                            <li>
+                                <a href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
+                                <em class="icon-settings"></em>
+                                </a>
+                            </li>
+                            <!-- END Offsidebar menu-->
+                        </ul>
+                        <!-- END Right Navbar-->
+                    </div>
+                    <!-- END Nav wrapper-->
+                </nav>
+                <!-- END Top Navbar-->
+            </header>
+            <!-- sidebar-->
+            <aside class="aside">
+                <!-- START Sidebar (left)-->
+                <div class="aside-inner">
+                    <nav data-sidebar-anyclick-close="" class="sidebar">
+                        <!-- START sidebar nav-->
+                        <ul class="nav">
+                            <!-- START user info-->
+                            <li class=" ">
+                                <div class="item user-block">
+                                    <!-- User picture-->
+                                    <div class="user-block-picture">
+                                        <div class="user-block-status">
+                                            {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
+                                            <img src="{{ request.tenant_me.image.url }}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                            {% else %}
+                                            <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                            {% endif %}
+                                            <div class="circle circle-success circle-lg"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Name and Job-->
+                                    <div class="user-block-info">
+                                        <span class="user-block-name">Hello, {{ request.user.first_name }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- END user info-->
+                            <!-- Iterates over all sidebar items-->
+                            <!-- DASHBOARD -->
+                            <li {% if page == 'dashboard' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_dashboard' %}" title="Dashboard">
+                            <em class="icon-speedometer"></em>
+                            <span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
+                            </a>
+                            </li>
+                            <!-- end DASHBOARD -->
+                            <!-- PROGRESS -->
+                            <li class=" ">
+                                <a href="#progress" title="Progress" data-toggle="collapse">
+                                    <div class="pull-right label label-info">1</div>
+                                    <em class="icon-graph"></em>
+                                    <span data-localize="sidebar.nav.PROGRESS">Progress</span>
+                                </a>
+                                <ul id="progress" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">Progress</li>
+                                    <li class=" ">
+                                        <a href="#" title="History">
+                                        <span>History</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- end PROGRESS -->
+                            <!-- GOALS -->
+                            <li {% if page == 'goal' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_goal' %}" title="Goals">
+                            <em class="icon-check"></em>
+                            <span data-localize="sidebar.nav.GOALS">Goals</span>
+                            </a>
+                            </li>
+                            <!-- end GOALS -->
+                            <!-- LEARNING -->
+                            <li class=" ">
+                                <a href="#learning" title="Learning" data-toggle="collapse">
+                                    <div class="pull-right label label-success">2</div>
+                                    <em class="icon-graduation"></em>
+                                    <span>Learning</span>
+                                </a>
+                                <ul id="learning" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">Learning</li>
+                                    <li class=" ">
+                                        <a href="#" title="Modules">
+                                        <span>Modules</span>
+                                        </a>
+                                    </li>
+                                    <li class=" ">
+                                        <a href="#" title="Forms">
+                                        <span>Forms</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- LEARNING -->
+                            <!-- RESOURCES -->
+                            <li {% if page == 'resource' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_resource' %}" title="Resources">
+                            <em class="icon-notebook"></em>
+                            <span data-localize="sidebar.nav.RESOURCES">Resources</span>
+                            </a>
+                            </li>
+                            <!-- end RESOURCES -->
+                            <!-- REWARDS -->
+                            <li {% if page == 'reward' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_reward' %}" title="Rewards">
+                            <em class="icon-trophy"></em>
+                            <span data-localize="sidebar.nav.REWARDS">Rewards</span>
+                            </a>
+                            </li>
+                            <!-- end REWARDS -->
+                            <!-- MESSAGE -->
+                            <li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_message_inbox' %}" title="Messages">
+                            <em class="icon-envelope"></em>
+                            <span data-localize="sidebar.nav.MESSAGES">Messages</span>
+                            </a>
+                            </li>
+                            <!-- end MESSAGE -->
+                            <!-- COMMUNITY -->
+                            <li {% if page == 'community' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_community' %}" title="Community">
+                            <em class="icon-feed"></em>
+                            <span data-localize="sidebar.nav.COMMUNITY">Community</span>
+                            </a>
+                            </li>
+                            <!-- end COMMUNITY -->
+                            <!-- CALENDAR -->
+                            <li {% if page == 'calendar' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_calendar' %}" title="Calendar">
+                            <em class="icon-calendar"></em>
+                            <span data-localize="sidebar.nav.CALENDAR">Calendar</span>
+                            </a>
+                            </li>
+                            <!-- end CALENDAR -->
+                            <!-- MY WORK -->
+                            <li {% if page == 'mywork' %}class=" active"{% endif %}>
+                            <a href="{% url 'tenant_mywork' %}" title="My Work">
+                            <em class="icon-docs"></em>
+                            <span data-localize="sidebar.nav.DOCUMENTS">My Work</span>
+                            </a>
+                            </li>
+                            <!-- end MY WORK -->
+                        </ul>
+                        <!-- END sidebar nav-->
+                    </nav>
+                </div>
+                <!-- END Sidebar (left)-->
+            </aside>
+            <!-- offsidebar-->
+            <aside class="offsidebar hide">
+                <!-- START Off Sidebar (right)-->
+                <nav>
+                    <!-- Nav tabs-->
+                    <ul class="nav">
+                        <li class=" ">
+                            <a href="{% url 'tenant_profile' %}" title="My Profile" >
+                            <em class="icon-user"></em>
+                            <span data-localize="offsidebar.nav.PROFILE">My Profile</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="{% url 'tenant_profile_setting' %}" title="Settings" >
+                            <em class="icon-settings"></em>
+                            <span data-localize="offsidebar.nav.SETTINGS">Settings</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="#" title="Go Full Screen" data-toggle-fullscreen="" style="cursor: pointer;">
+                            <em class="fa fa-expand"></em>
+                            <span data-localize="offsidebar.nav.FULLSCREEN">Go Full Screen</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="lock.html" title="Lock Screen">
+                            <em class="icon-lock"></em>
+                            <span data-localize="offsidebar.nav.LOCK">Lock Screen</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="Logout" >
+                            <em class="icon-logout"></em>
+                            <span data-localize="offsidebar.nav.LOGOUT">Logout</span>
+                            </a>
+                        </li>
+                        <li class="has-logout-block">
+                            <div id="logout-block" class="collapse">
+                                <div class="item logout-block">
+                                    <p>Are you sure you want to log out?</p>
+                                    <button type="button" class="mb-sm btn label-green-v2 pull-left">YES</button>
+                                    <button type="button" class="mb-sm btn label-red-v2 pull-right">NO</button>
+                                    <label class="checkbox-inline c-checkbox">
+                                    <input id="inlineCheckbox10" type="checkbox" value="Do not ask me again">
+                                    <span class="fa fa-check"></span>Don't ask me again</label>
+                                </div>
+                            </div>
                         </li>
                     </ul>
-                    <!-- END Dropdown menu-->
-                </li>
-                <!-- END Alert menu-->
-                <!-- START Offsidebar button-->
-                <li>
-                    <a href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
-                        <em class="icon-settings"></em>
-                    </a>
-                </li>
-                <!-- END Offsidebar menu-->
-            </ul>
-            <!-- END Right Navbar-->
+                    <!-- Tab panes-->
+                </nav>
+                <!-- END Off Sidebar (right)-->
+            </aside>
+            <!-- Main section-->
+            <section>
+                {% compress js %}
+                <!-- =============== VENDOR SCRIPTS ===============-->
+                <!-- MODERNIZR-->
+                <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
+                <!-- MATCHMEDIA POLYFILL-->
+                <script src="{% static 'vendor/matchMedia/matchMedia.js' %}"></script>
+                <!-- JQUERY-->
+                <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+                <!-- BOOTSTRAP-->
+                <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
+                <!-- STORAGE API-->
+                <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
+                <!-- JQUERY EASING-->
+                <script src="{% static 'vendor/jquery.easing/js/jquery.easing.js' %}"></script>
+                <!-- ANIMO-->
+                <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
+                <!-- SLIMSCROLL-->
+                <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+                <!-- SCREENFULL-->
+                <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script>
+                {% comment %}
+                <!-- LOCALIZE-->
+                <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
+                {% endcomment %}
+                <!-- =============== PAGE VENDOR SCRIPTS ===============-->
+                <!-- JQUERY UI-->
+                <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
+                <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
+                <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
+                <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
+                <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
+                <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
+                <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+                <!-- MOMENT JS-->
+                <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
+                <!-- FULLCALENDAR-->
+                <script src="{% static 'vendor/fullcalendar/fullcalendar.min.js' %}"></script>
+                <script src="{% static 'vendor/fullcalendar/gcal.js' %}"></script>
+                <!-- =============== EXTRA SCRIPTS ===============-->
+                <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
+                <!-- =============== APP SCRIPTS ===============-->
+                <script src="{% static 'app/js/app.js' %}"></script>
+                <!-- =============== API SCRIPTS ===============-->
+                {% include "foundation_public/common_js.html" %}
+                {% include "api/auth_activation.html" %}
+                {% include "api/auth_login.html" %}
+                {% include "api/auth_register.html" %}
+                {% include "api/auth_password_reset.html" %}
+                {% if request.user.is_authenticated %}
+                    {% include "api/auth_user.html" %}
+                    {% include "api/auth_group.html" %}
+                    {% include "api/public_me.html" %}
+                    {% include "api/public_organization.html" %}
+                    {% include "api/public_postaladdress.html" %}
+                    {% include "api/public_imageupload.html" %}
+                    {% include "api/tenant_tag.html" %}
+                    {% include "api/tenant_imageupload.html" %}
+                    {% include "api/tenant_businessidea.html" %}
+                    {% include "api/tenant_tellusyourneed.html" %}
+                    {% include "api/tenant_calendarevent.html" %}
+                    {% include "api/tenant_me.html" %}
+                {% endif %}
+                {% endcompress %}
+
+                <!-- CSRF Token -->
+                {% csrf_token %}
+
+                <!-- CONTENT -->
+                {% block content %}
+                {% endblock %}
+                <!-- /.CONTENT -->
+                
+            </section>
+            <!-- Page footer-->
+            <footer>
+                <span>&copy; 2016 - Angle</span>
+            </footer>
         </div>
-        <!-- END Nav wrapper-->
-    </nav>
-    <!-- END Top Navbar-->
-</header>
-<!-- sidebar-->
-<aside class="aside">
-<!-- START Sidebar (left)-->
-<div class="aside-inner">
-<nav data-sidebar-anyclick-close="" class="sidebar">
-<!-- START sidebar nav-->
-<ul class="nav">
-<!-- START user info-->
-<li class=" ">
-        <div class="item user-block">
-            <!-- User picture-->
-            <div class="user-block-picture">
-                <div class="user-block-status">
-                    {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
-                        <img src="{{ request.tenant_me.image.url }}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
-                    {% else %}
-                        <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
-                    {% endif %}
-                    <div class="circle circle-success circle-lg"></div>
-                </div>
-            </div>
-            <!-- Name and Job-->
-            <div class="user-block-info">
-                <span class="user-block-name">Hello, {{ request.user.first_name }}</span>
-            </div>
-        </div>
-</li>
-<!-- END user info-->
-<!-- Iterates over all sidebar items-->
-
-<!-- DASHBOARD -->
-<li {% if page == 'dashboard' %}class=" active"{% endif %}>
-    <a href="{% url 'tenant_dashboard' %}" title="Dashboard">
-        <em class="icon-speedometer"></em>
-        <span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
-    </a>
-</li>
-<!-- end DASHBOARD -->
-
-
-<!-- PROGRESS -->
-<li class=" ">
-    <a href="#progress" title="Progress" data-toggle="collapse">
-        <div class="pull-right label label-info">1</div>
-        <em class="icon-graph"></em>
-        <span data-localize="sidebar.nav.PROGRESS">Progress</span>
-    </a>
-    <ul id="progress" class="nav sidebar-subnav collapse">
-        <li class="sidebar-subnav-header">Progress</li>
-        <li class=" ">
-            <a href="#" title="History">
-                <span>History</span>
-            </a>
-        </li>
-    </ul>
-</li>
-<!-- end PROGRESS -->
-
-
-<!-- GOALS -->
-<li {% if page == 'goal' %}class=" active"{% endif %}>
-        <a href="{% url 'tenant_goal' %}" title="Goals">
-            <em class="icon-check"></em>
-            <span data-localize="sidebar.nav.GOALS">Goals</span>
-        </a>
-</li>
-<!-- end GOALS -->
-
-
-
-<!-- LEARNING -->
-<li class=" ">
-    <a href="#learning" title="Learning" data-toggle="collapse">
-        <div class="pull-right label label-success">2</div>
-        <em class="icon-graduation"></em>
-        <span>Learning</span>
-    </a>
-    <ul id="learning" class="nav sidebar-subnav collapse">
-        <li class="sidebar-subnav-header">Learning</li>
-        <li class=" ">
-            <a href="#" title="Modules">
-                <span>Modules</span>
-            </a>
-        </li>
-        <li class=" ">
-            <a href="#" title="Forms">
-                <span>Forms</span>
-            </a>
-        </li>
-    </ul>
-</li>
-<!-- LEARNING -->
-
-
-<!-- RESOURCES -->
-<li {% if page == 'resource' %}class=" active"{% endif %}>
-     <a href="{% url 'tenant_resource' %}" title="Resources">
-         <em class="icon-notebook"></em>
-         <span data-localize="sidebar.nav.RESOURCES">Resources</span>
-     </a>
-</li>
-<!-- end RESOURCES -->
-
-
-<!-- REWARDS -->
-<li {% if page == 'reward' %}class=" active"{% endif %}>
-    <a href="{% url 'tenant_reward' %}" title="Rewards">
-        <em class="icon-trophy"></em>
-        <span data-localize="sidebar.nav.REWARDS">Rewards</span>
-    </a>
-</li>
-<!-- end REWARDS -->
-
-
-<!-- MESSAGE -->
-<li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
-    <a href="{% url 'tenant_message_inbox' %}" title="Messages">
-        <em class="icon-envelope"></em>
-        <span data-localize="sidebar.nav.MESSAGES">Messages</span>
-    </a>
-</li>
-<!-- end MESSAGE -->
-
-
-<!-- COMMUNITY -->
-<li {% if page == 'community' %}class=" active"{% endif %}>
-    <a href="{% url 'tenant_community' %}" title="Community">
-        <em class="icon-feed"></em>
-        <span data-localize="sidebar.nav.COMMUNITY">Community</span>
-    </a>
-</li>
-<!-- end COMMUNITY -->
-
-
-<!-- CALENDAR -->
-<li {% if page == 'calendar' %}class=" active"{% endif %}>
-    <a href="{% url 'tenant_calendar' %}" title="Calendar">
-        <em class="icon-calendar"></em>
-        <span data-localize="sidebar.nav.CALENDAR">Calendar</span>
-    </a>
-</li>
-<!-- end CALENDAR -->
-
-
-<!-- MY WORK -->
-<li {% if page == 'mywork' %}class=" active"{% endif %}>
-    <a href="{% url 'tenant_mywork' %}" title="My Work">
-        <em class="icon-docs"></em>
-        <span data-localize="sidebar.nav.DOCUMENTS">My Work</span>
-    </a>
-</li>
-<!-- end MY WORK -->
-
-
-</ul>
-<!-- END sidebar nav-->
-</nav>
-</div>
-<!-- END Sidebar (left)-->
-</aside>
-<!-- offsidebar-->
-<aside class="offsidebar hide">
-<!-- START Off Sidebar (right)-->
-<nav>
-<!-- Nav tabs-->
-<ul class="nav">
-    <li class=" ">
-        <a href="{% url 'tenant_profile' %}" title="My Profile" >
-            <em class="icon-user"></em>
-            <span data-localize="offsidebar.nav.PROFILE">My Profile</span>
-        </a>
-    </li>
-    <li class=" ">
-        <a href="{% url 'tenant_profile_setting' %}" title="Settings" > 
-            <em class="icon-settings"></em>
-            <span data-localize="offsidebar.nav.SETTINGS">Settings</span>
-        </a>
-    </li>
-    <li class=" ">
-        <a href="#" title="Go Full Screen" data-toggle-fullscreen="" style="cursor: pointer;">
-            <em class="fa fa-expand"></em>
-            <span data-localize="offsidebar.nav.FULLSCREEN">Go Full Screen</span>
-        </a>
-    </li>
-    <li class=" ">
-        <a href="lock.html" title="Lock Screen">
-            <em class="icon-lock"></em>
-            <span data-localize="offsidebar.nav.LOCK">Lock Screen</span>
-        </a>
-    </li>
-    <li class=" ">
-        <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="Logout" >
-            <em class="icon-logout"></em>
-            <span data-localize="offsidebar.nav.LOGOUT">Logout</span>
-        </a>
-    </li>
-    <li class="has-logout-block">
-        <div id="logout-block" class="collapse">
-            <div class="item logout-block">
-                    <p>Are you sure you want to log out?</p>
-                <button type="button" class="mb-sm btn label-green-v2 pull-left">YES</button>
-                <button type="button" class="mb-sm btn label-red-v2 pull-right">NO</button>
-                    <label class="checkbox-inline c-checkbox">
-                        <input id="inlineCheckbox10" type="checkbox" value="Do not ask me again">
-                        <span class="fa fa-check"></span>Don't ask me again</label>
-            </div>
-        </div>
-    </li>
-</ul>
-<!-- Tab panes-->
-</nav>
-<!-- END Off Sidebar (right)-->
-</aside>
-<!-- Main section-->
-<section>
-          {% compress js %}
-              <!-- =============== VENDOR SCRIPTS ===============-->
-              <!-- MODERNIZR-->
-              <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
-              <!-- MATCHMEDIA POLYFILL-->
-              <script src="{% static 'vendor/matchMedia/matchMedia.js' %}"></script>
-              <!-- JQUERY-->
-              <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
-              <!-- BOOTSTRAP-->
-              <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
-               <!-- STORAGE API-->
-              <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
-              <!-- JQUERY EASING-->
-              <script src="{% static 'vendor/jquery.easing/js/jquery.easing.js' %}"></script>
-              <!-- ANIMO-->
-              <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
-              <!-- SLIMSCROLL-->
-              <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
-              <!-- SCREENFULL-->
-              <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script>
-              {% comment %}
-              <!-- LOCALIZE-->
-              <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
-              {% endcomment %}
-              <!-- =============== PAGE VENDOR SCRIPTS ===============-->
-              <!-- JQUERY UI-->
-              <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
-              <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
-              <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
-              <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
-              <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
-              <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
-              <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
-              <!-- MOMENT JS-->
-              <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
-              <!-- FULLCALENDAR-->
-              <script src="{% static 'vendor/fullcalendar/fullcalendar.min.js' %}"></script>
-              <script src="{% static 'vendor/fullcalendar/gcal.js' %}"></script>
-
-              <!-- =============== EXTRA SCRIPTS ===============-->
-              <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
-
-              <!-- =============== APP SCRIPTS ===============-->
-              <script src="{% static 'app/js/app.js' %}"></script>
-
-              <!-- =============== API SCRIPTS ===============-->
-              {% include "foundation_public/common_js.html" %}
-              {% include "api/auth_activation.html" %}
-              {% include "api/auth_login.html" %}
-              {% include "api/auth_register.html" %}
-              {% include "api/auth_password_reset.html" %}
-
-              {% if request.user.is_authenticated %}
-                  {% include "api/auth_user.html" %}
-                  {% include "api/auth_group.html" %}
-                  {% include "api/public_me.html" %}
-                  {% include "api/public_organization.html" %}
-                  {% include "api/public_postaladdress.html" %}
-                  {% include "api/public_imageupload.html" %}
-                  {% include "api/tenant_tag.html" %}
-                  {% include "api/tenant_imageupload.html" %}
-                  {% include "api/tenant_businessidea.html" %}
-                  {% include "api/tenant_tellusyourneed.html" %}
-                  {% include "api/tenant_calendarevent.html" %}
-                  {% include "api/tenant_me.html" %}
-              {% endif %}
-           {% endcompress %}
-
-        <!-- CSRF Token -->
-        {% csrf_token %}
-
-        <!-- CONTENT -->
-        {% block content %}
-        {% endblock %}
-        <!-- /.CONTENT -->
-      </section>
-      <!-- Page footer-->
-      <footer>
-         <span>&copy; 2016 - Angle</span>
-      </footer>
-   </div>
-
-</body>
-
+    </body>
 </html>
