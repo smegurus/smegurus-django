@@ -5,20 +5,15 @@
         {% include 'tenant_intake/entrepreneur/6_js.html' %}
     {% endcompress %}
 
-    <h2 class="text-center pv">{% trans 'Great! You\'re Almost There!' %}</h2>
-    <p class="text-center pv">{% trans '' %}</p>
+    <h2 class="text-center pv">{% trans 'Thank you!' %}</h2>
+    <p class="text-center pv">{% trans 'An advisor should contact you within 2 business days. If you don\'t hear from us, please feel free to give us a call at (123)555-5555 or Email us: info@smallbizcentre.com.' %}</p>
+    <p class="text-center pv">{% trans 'And don\'t forget to follow us!' %}</p>
 
     <br/>
 
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        <button onclick="ajax_dashboard();"
-                     id="id_continue_btn"
-                   type="button"
-                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+        
     </form>
 
-    <a onclick="ajax_back();"
-            id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Back' %}</a>
 
 {% endblock content %}
