@@ -1,6 +1,9 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'tenant_profile/profile_js.html' %}
+    {% endcompress %}
 
 <!-- Page content-->
 <div class="content-wrapper">
@@ -12,11 +15,19 @@
 
                             <div class="text-center">
                                 <div class="pv-lg">
-                                    <img src="img/user/02.jpg" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                                    {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
+                                        <img src="{{ request.tenant_me.image.url }}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                                    {% else %}
+                                        <img src="{% static 'app/img/dummy.png' %}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                                    {% endif %}
                                 </div>
-                                <h3 class="m0 text-bold">Audrey Hunt</h3>
+                                <h3 class="m0 text-bold">{{ request.user.first_name }} {{ request.user.last_name }}</h3>
                                 <div class="mv-lg">
-                                    <p>Hello, I'm a just a dummy contact in your contact list and this is my presentation text. Have fun!</p>
+                                    {% if request.public_me.description %}
+                                        <p>{{ request.public_me.description }}</p>
+                                    {% else %}
+                                        <p>{% trans 'No bio description made...' %}</p>
+                                    {% endif %}
                                 </div>
                                 <div class="text-center"><a href="#" class="btn btn-primary">Send message</a>
                                 </div>
@@ -24,47 +35,43 @@
 
                     </div>
                     <div class="col-md-8">
-                    <div class="h4 text-center">Contact Information</div>
+                    <div class="h4 text-center">{% trans 'Contact Information' %}</div>
                     <div class="row pv-lg">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-8">
                             <form class="form-horizontal">
                                 <div class="form-group">
-                                    <label for="inputContact1" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputContact1" class="col-sm-2 control-label">{% trans 'Name' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact1" type="text" placeholder="" value="Audrey Hunt" class="form-control" readonly>
+                                        <input id="inputContact1" type="text" placeholder="" value="{{ request.user.first_name }} {{ request.user.last_name }}" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputContact2" class="col-sm-2 control-label">Email</label>
+                                    <label for="inputContact2" class="col-sm-2 control-label">{% trans 'Email' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact2" type="email" value="mail@example.com" class="form-control" readonly>
+                                        <input id="inputContact2" type="email" value="{{ request.user.email }}" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputContact3" class="col-sm-2 control-label">Phone</label>
+                                    <label for="inputContact3" class="col-sm-2 control-label">{% trans 'Phone' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact3" type="text" value="(123) 465 789" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputContact5" class="col-sm-2 control-label">Website</label>
-                                    <div class="col-sm-10">
-                                        <input id="inputContact5" type="text" value="http://some.wesbite.com" class="form-control">
+                                        <input id="id_telephone" type="text" value="{{ request.public_me.telephone }}" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputContact8" class="col-sm-2 control-label">Company</label>
+                                    <label for="inputContact5" class="col-sm-2 control-label">{% trans 'Website' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact8" type="text" placeholder="No Company" class="form-control">
+                                        <input id="id_url" type="text" value="{{ request.public_me.url }}" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-info">Update</button>
+                                        <button id="id_update_btn"
+                                           onclick="ajax_update();"
+                                              type="button"
+                                             class="btn btn-info">{% trans 'Update' %}</button>
                                     </div>
                                 </div>
                             </form>

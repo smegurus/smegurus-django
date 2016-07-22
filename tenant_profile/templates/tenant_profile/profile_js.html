@@ -1,0 +1,59 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Nothing.
+    }); // end Ready
+
+    function disable_btn() {
+        $('#id_update_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_update_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        $('#id_update_btn').prop("disabled", false);
+        $('#id_update_btn').val("{% trans 'Update' %}");
+    }
+
+    function ajax_update() {
+        disable_btn();
+        var website_url = $('#id_url').val();
+        var telephone = $('#id_telephone').val();
+
+        if (website_url.indexOf("http") < 0) {
+            website_url = 'http://' + website_url;
+        }
+
+        if (!is_phone_valid(telephone)) {
+            enable_btn();
+            alert("{% trans 'Telephone number entered is invalid.' %}");
+            return;
+        }
+
+        get_public_me(  // start Get Me
+            {{ request.public_me.owner.id }},
+            function(me) {
+                me['telephone'] = telephone;
+                me['url'] = website_url;
+                set_public_me(  // start Set Me
+                    me,
+                    function(json_result) {
+                        console.log(json_result);
+                        enable_btn();
+                        window.location = "";
+                    },
+                    function(json_error_result) {
+                        console.log(json_error_result);
+                        enable_btn();
+                        alert(json_error_result);
+                    }
+                ); // end Get Me
+            },
+            function(error_result) {
+                console.log(error_result);
+                enable_btn();
+                alert(json_error_result);
+            }
+        );  // end Set Me
+    }
+
+</script>
