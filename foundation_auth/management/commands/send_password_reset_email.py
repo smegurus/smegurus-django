@@ -33,7 +33,7 @@ class Command(BaseCommand):
         # Variables used to generate your output.
         http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
         url = http_protocol + '%s' % Site.objects.get_current().domain + '/en/password_reset/' + value + '/'
-        subject_text = _('Account Password Reset')
+        subject_text = 'Account Password Reset'
         html_text = _('Click the following link to reset your password: %(url)s') % {'url': str(url)}
 
         # Send the email.

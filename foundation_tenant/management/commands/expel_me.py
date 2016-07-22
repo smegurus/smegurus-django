@@ -42,7 +42,7 @@ class Command(BaseCommand):
         # Variables used to generate your output.
         http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
         url = http_protocol + '%s' % Site.objects.get_current().domain + '/en/login/'
-        subject_text = _('You are enrolled!')
+        subject_text = 'You are enrolled!'
         html_text = _('Congradulations you have been enrolled! Click the link to get started: %(url)s') % {'url': str(url)}
 
         # Send the email.

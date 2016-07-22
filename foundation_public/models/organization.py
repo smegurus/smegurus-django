@@ -189,7 +189,6 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
         choices=constants.HOW_MANY_SERVED_OPTIONS,
         default=1,
-        blank=True,
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),
@@ -263,7 +262,6 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         _("Learning Preference"),
         help_text=_('Indicates what learning preference to use.'),
         default=constants.BLENDED_LEARNING_PREFERENCE,
-        blank=True,
         choices=constants.LEARNING_PREFERENCE_OPTIONS,
     )
     challenge = models.PositiveSmallIntegerField(
