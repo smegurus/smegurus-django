@@ -5,6 +5,7 @@ from tenant_intake import views
 urlpatterns = (
     # DECORATORS
     url(r'^intake/check$', views.check_page, name='tenant_intake_check'),
+    url(r'^intake/has_completed$', views.has_completed_intake_page, name='tenant_intake_has_completed'),
 
     # Entrepreneur
     url(r'^intake/entrepreneur/step/1$', views.intake_entr_step_one_page, name='tenant_intake_entr_step_one'),

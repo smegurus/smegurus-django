@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from rest_framework import status
 
 from foundation_public.forms.userform import UserForm
@@ -19,7 +20,7 @@ from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 
-from tenant_intake.decorators import tenant_intake_required
+from tenant_intake.decorators import tenant_intake_required, tenant_intake_has_completed_redirection_required
 
 
 @login_required(login_url='/en/login')
@@ -33,7 +34,18 @@ def check_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_has_completed_redirection_required
+def has_completed_intake_page(request):
+    """Function will return either True or False depending if it meets decorator criteria."""
+    from django.http import JsonResponse
+    return JsonResponse({
+        'access-granted':True
+    })
+
+
+@login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@tenant_intake_has_completed_redirection_required
 def intake_entr_step_one_page(request):
     intake, create = Intake.objects.get_or_create(owner=request.user)
     return render(request, 'tenant_intake/entrepreneur/1_view.html',{
@@ -45,6 +57,7 @@ def intake_entr_step_one_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@tenant_intake_has_completed_redirection_required
 def intake_entr_step_two_page(request):
     intake, create = Intake.objects.get_or_create(owner=request.user)
     return render(request, 'tenant_intake/entrepreneur/2_view.html',{
@@ -56,6 +69,7 @@ def intake_entr_step_two_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@tenant_intake_has_completed_redirection_required
 def intake_entr_step_three_page(request):
     intake, create = Intake.objects.get_or_create(owner=request.user)
     return render(request, 'tenant_intake/entrepreneur/3_view.html',{
@@ -67,6 +81,7 @@ def intake_entr_step_three_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@tenant_intake_has_completed_redirection_required
 def intake_entr_step_four_page(request):
     intake, create = Intake.objects.get_or_create(owner=request.user)
     return render(request, 'tenant_intake/entrepreneur/4_view.html',{
@@ -78,6 +93,7 @@ def intake_entr_step_four_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@tenant_intake_has_completed_redirection_required
 def intake_entr_step_five_page(request):
     intake, create = Intake.objects.get_or_create(owner=request.user)
     return render(request, 'tenant_intake/entrepreneur/5_view.html',{
