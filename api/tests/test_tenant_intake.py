@@ -109,7 +109,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Test and verify.
-        response = self.authorized_client.get('/api/tenanttag/')
+        response = self.authorized_client.get('/api/tenantintake/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -120,7 +120,145 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Test and verify.
-        response = self.authorized_client.get('/api/tenanttag/')
+        response = self.authorized_client.get('/api/tenantintake/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    #TODO: IMPLEMENT THE RESUT. SEE: "test_tenant_tag"
+    @transaction.atomic
+    def test_post_with_anonymous_user(self):
+        data = {
+            'owner': self.user.id,
+        }
+        response = self.unauthorized_client.post('/api/tenantintake/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_post_with_authenticated_management_group_user(self):
+        # Run the test and verify.
+        data = {
+            'owner': self.user.id,
+        }
+        response = self.authorized_client.post('/api/tenantintake/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    @transaction.atomic
+    def test_post_with_authenticated_advisor_group_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Test and verify.
+        data = {
+            'owner': self.user.id,
+        }
+        response = self.authorized_client.post('/api/tenantintake/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    @transaction.atomic
+    def test_put_with_anonymous_user(self):
+        # Delete any previous data.
+        items = Intake.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+        }
+        response = self.unauthorized_client.put('/api/tenantintake/1/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_put_with_authenticated_management_user(self):
+        # Delete any previous data.
+        items = Intake.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+        }
+        response = self.authorized_client.put('/api/tenantintake/1/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_put_with_authenticated_advisor_user(self):
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Delete any previous data.
+        items = Intake.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+        }
+        response = self.authorized_client.put('/api/tenantintake/1/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_delete_with_anonymous_user(self):
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        response = self.unauthorized_client.delete('/api/tenantintake/1/')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_delete_with_authenticated_management_user(self):
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        response = self.authorized_client.delete('/api/tenantintake/1/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_delete_with_authenticated_advisor_user(self):
+        # Create our object to be deleted.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Change Group that the User belongs in.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.remove(org_admin_group)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        # Run test and verify.
+        response = self.authorized_client.delete('/api/tenantintake/1/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
