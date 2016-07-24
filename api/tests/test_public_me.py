@@ -189,3 +189,69 @@ class APIPublicMeWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         # Run our test and verify.
         response = self.authorized_client.delete(reverse('publicme-list')+'2030/',)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_unlock_with_success(self):
+        # Delete any previous data.
+        items = PublicMe.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        PublicMe.objects.create(
+            id=1,
+            owner=self.user,
+            is_locked=False,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+            'password': TEST_USER_PASSWORD
+        }
+        response = self.authorized_client.put(reverse('publicme-list')+'1/unlock_me/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_unlock_with_missing_password(self):
+        # Delete any previous data.
+        items = PublicMe.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        PublicMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+        }
+        response = self.authorized_client.put(reverse('publicme-list')+'1/unlock_me/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_unlock_with_wrong_password(self):
+        # Delete any previous data.
+        items = PublicMe.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        PublicMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+            'password': 'ILoveHideauze',
+        }
+        response = self.authorized_client.put(reverse('publicme-list')+'1/unlock_me/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

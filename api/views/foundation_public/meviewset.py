@@ -6,8 +6,8 @@ from rest_framework import viewsets, mixins
 from rest_framework import filters
 from rest_framework import permissions
 from rest_framework import status
+from rest_framework import response
 from rest_framework.decorators import detail_route
-from rest_framework.response import Response
 from rest_framework.decorators import detail_route
 from rest_framework.authentication import TokenAuthentication
 from api.pagination import LargeResultsSetPagination
@@ -34,7 +34,13 @@ class PublicMeViewSet(viewsets.ModelViewSet):
     def unlock_me(self, request, pk=None):
         # Get our data.
         me = self.get_object()
-        password = request.data['password']
+        try:
+            password = request.data['password']
+        except Exception as e:
+            return response.Response(
+                data={'message': 'Missing password.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         # Test to see if the password entered works.
         authenticated_user = authenticate(
@@ -42,9 +48,14 @@ class PublicMeViewSet(viewsets.ModelViewSet):
             password=password
         )
         if authenticated_user:
-            print("Unlocking...")
             me.is_locked=False
             me.save()
-            return Response({'status': status.HTTP_200_OK, 'message': 'User has unlocked'})
+            return response.Response(
+                data={'message': 'User has unlocked'},
+                status=status.HTTP_200_OK
+            )
         else:
-            return Response({'status': status.HTTP_400_BAD_REQUEST, 'message': 'Failed authenticating'})
+            return response.Response(
+                data={'message': 'Failed authenticating'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
