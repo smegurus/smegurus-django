@@ -132,5 +132,32 @@
 
     function ajax_notification() {
         disable_btn(); // Disable the button so no multiple presses happen.
+        get_public_me(  // Fetch our Me.
+            {{ request.public_me.owner.id }},
+            function(me) {
+                me['notify_when_new_tasks'] = $('#id_notify_when_new_tasks').is(':checked');
+                me['notify_when_new_messages'] = $('#id_notify_when_due_tasks').is(':checked');
+                me['notify_when_due_tasks'] = $('#id_notify_when_due_tasks').is(':checked');
+
+                set_public_me(  // Save our Me
+                    me,
+                    function(json_result) {
+                        enable_btn();
+                        console.log(json_result);
+                        window.location = "";
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Me
+            },
+            function(error_result) {
+                enable_btn();
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Me
     }
 </script>

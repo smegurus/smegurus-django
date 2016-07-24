@@ -24,15 +24,34 @@ class PublicMe(AbstractPlacePerson):
         _("Is terms of service signed"),
         default=False
     )
+
+    # Controls whether the User has to go through a Profile Setup screens
+    # before being granted access to the main application (Dashboard, etc).
     is_setup = models.BooleanField(
         _("Is this account setup and ready"),
         default=False,
         help_text=_('Variable controls whether the user profile has been setup.'),
     )
+
+    # Controls whether the screen is locked or not.
     is_locked = models.BooleanField(
         _("Is Locked"),
         default=False,
         help_text=_('Controls whether the screen is locked or not.'),
+    )
+
+    # Notification Control Variables.
+    notify_when_new_tasks = models.BooleanField(
+        _("Alert me when I receive a new task"),
+        default=True
+    )
+    notify_when_new_messages = models.BooleanField(
+        _("Alert me when I receive a new message"),
+        default=True
+    )
+    notify_when_due_tasks = models.BooleanField(
+        _("Alert me when I have an item due within 2 days"),
+        default=True
     )
 
     def __str__(self):

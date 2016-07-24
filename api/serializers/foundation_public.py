@@ -88,13 +88,19 @@ class PublicPlaceSerializer(serializers.ModelSerializer):
 class PublicMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicMe
-        fields = ('id', 'created', 'last_modified', 'owner', 'image', 'name', 'description', 'url', 'telephone', 'how_discovered', 'is_tos_signed', 'is_setup', )
+        fields = ('id', 'created', 'last_modified', 'owner', 'image', 'name',
+                 'description', 'url', 'telephone', 'how_discovered',
+                 'is_tos_signed', 'is_setup', 'is_locked',
+                 'notify_when_new_tasks', 'notify_when_new_messages',
+                 'notify_when_due_tasks',)
 
 
 class PublicCountrySerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicCountry
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'how_many_served', 'is_tos_signed', 'twitter_url', 'facebook_url',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'alternate_name', 'description', 'url', 'how_many_served',
+                  'is_tos_signed', 'twitter_url', 'facebook_url',)
 
 
 class PublicOrganizationSerializer(serializers.ModelSerializer):
@@ -148,9 +154,9 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
             'samsung', 'mobile', 'tablet', '', 'iphone', 'reader', 'reading',
             'download', 'downloader', 'downloading', 'news', 'blogs', 'www',
             'tutorial', 'tutorials', 'edu', 'education', 'educational', 'link',
-            'article', 'www2', 'ww3', 'ww4', 'store', 'storing', 'start', 'begin',
-            'checkout', 'pos', 'api', 'ssh', 'buy', 'learn', 'discover',
-            'discovery',
+            'article', 'www2', 'ww3', 'ww4', 'store', 'storing', 'start',
+            'begin', 'checkout', 'pos', 'api', 'ssh', 'buy', 'learn',
+            'discover', 'discovery',
         ]
         if schema_name in reserved_words:
             raise serializers.ValidationError("Cannot us a reserved word!")
