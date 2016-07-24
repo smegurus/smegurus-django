@@ -22,19 +22,17 @@ function ajax_unlock() {
         password,
         function(json_result) {
             enable_btn();
-            if (json_result['status'] == 400) {
-                alert("{% trans 'Wrong Password' %}");
-            } else if (json_result['status'] == 200) {
-                window.location = "{% url 'tenant_dashboard' %}";
-            } else {
-                // Convert the error json into string.
-                var string = JSON.stringify( error_result );
-                alert("Unknown Error: "+string);
-            }
+            window.location = "{% url 'tenant_dashboard' %}";
         },
-        function(error_result) {
-            console.log(error_result);
-            enable_btn();
+        function(error_json_result) {
+            enable_btn(); // Allow the user to press the button again.
+            var string = JSON.stringify( error_json_result );
+            console.log(string);
+            if (string.indexOf('Failed authenticating') > -1) {
+                alert("{% trans 'Wrong password. Please try again.' %}");
+            } else {
+                alert(string);
+            }
         }
     );
 }
