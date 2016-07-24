@@ -82,27 +82,33 @@
         });
     }
 
-    // function evaluate_me(id, success_callback, error_callback) {
-    //     var url = "/api/publicme/" + id + "/evaluate_me/?format=json";
-    //     jQuery.ajax({
-    //         url: url,
-    //         headers: {
-    //             Authorization: 'Token ' + '{{ request.token }}'
-    //         },
-    //         cache: false,
-    //         contentType: false,
-    //         processData: false,
-    //         type: 'GET',
-    //         success: function(json_results){
-    //             success_callback(json_results);
-    //         },
-    //         error: function(xhr,status,error) {
-    //             console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
-    //             error_callback(xhr.responseText);
-    //         },
-    //         complete: function(xhr,status) {
-    //             // Do nothing.
-    //         }
-    //     });
-    // }
+    /**
+     *  Function will allow the User to unlock his account.
+     */
+    function unlock_me(id, password, success_callback, error_callback) {
+        var me = { 'password': password };
+        jQuery.ajax({
+            url: "/api/publicme/" + id + "/unlock_me/?format=json",
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            data: me,
+            type: "PUT",
+            traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
+            success: function(json_result){
+                success_callback(json_result); // Call back the function with the JSON results.
+            },
+            error: function(xhr,status,error) {
+                // Print the error log to console.
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+
+                // Convert JSON string into javascript associative array.
+                var json = jQuery.parseJSON(xhr.responseText);
+                error_callback(json); // Return JSON
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>

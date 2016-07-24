@@ -1,0 +1,42 @@
+{% load i18n %}
+<script>
+$(document).ready(function () {
+    // Nothing.
+}); // end Ready
+
+function disable_btn() {
+    $('#id_unlock_btn').val("{% trans 'Please Wait...' %}");
+    $('#id_unlock_btn').prop("disabled", true);
+}
+
+function enable_btn() {
+    $('#id_unlock_btn').prop("disabled", false);
+    $('#id_unlock_btn').val("{% trans 'Update' %}");
+}
+
+function ajax_unlock() {
+    disable_btn();
+    var password = $('#id_password').val();
+    unlock_me(
+        {{ request.public_me.id }},
+        password,
+        function(json_result) {
+            enable_btn();
+            if (json_result['status'] == 400) {
+                alert("{% trans 'Wrong Password' %}");
+            } else if (json_result['status'] == 200) {
+                window.location = "{% url 'tenant_dashboard' %}";
+            } else {
+                // Convert the error json into string.
+                var string = JSON.stringify( error_result );
+                alert("Unknown Error: "+string);
+            }
+        },
+        function(error_result) {
+            console.log(error_result);
+            enable_btn();
+        }
+    );
+}
+
+</script>

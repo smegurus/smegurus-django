@@ -86,6 +86,7 @@ class PublicPlaceSerializer(serializers.ModelSerializer):
 
 
 class PublicMeSerializer(serializers.ModelSerializer):
+    is_locked = serializers.CharField(read_only=True)
     class Meta:
         model = PublicMe
         fields = ('id', 'created', 'last_modified', 'owner', 'image', 'name',
