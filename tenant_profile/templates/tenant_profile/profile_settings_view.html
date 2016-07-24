@@ -12,7 +12,10 @@
             <div class="col-md-3">
                 <div class="panel b">
                     <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Personal Settings' %}</div>
-                    <div class="list-group"><a href="#tabSetting1" data-toggle="tab" class="list-group-item">Profile</a><a href="#tabSetting2" data-toggle="tab" class="list-group-item">Account</a><a href="#tabSetting3" data-toggle="tab" class="list-group-item">Notifications</a>
+                    <div class="list-group">
+                        <a href="#tabSetting1" data-toggle="tab" class="list-group-item">{% trans 'Profile' %}</a>
+                        <a href="#tabSetting2" data-toggle="tab" class="list-group-item">{% trans 'Password' %}</a>
+                        <a href="#tabSetting3" data-toggle="tab" class="list-group-item">{% trans 'Notifications' %}</a>
                     </div>
                 </div>
             </div>
@@ -73,9 +76,9 @@
                                     <button id="id_profile_btn"
                                        onclick="ajax_profile();"
                                           type="button"
-                                         class="btn btn-info">Update settings</button>
+                                         class="btn btn-info">{% trans 'Update settings' %}</button>
                                     <p>
-                                        <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
+                                        <small class="text-muted">{% trans '* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae' %}</small>
                                     </p>
                                 </form>
                                 <!-- end PROFILE -->
@@ -84,28 +87,30 @@
                     </div>
                     <div id="tabSetting2" class="tab-pane">
                         <div class="panel b">
-                            <div class="panel-heading bg-gray-lighter text-bold">Account</div>
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Password' %}</div>
                             <div class="panel-body">
                                 <!-- PASSWORD -->
                                 <form action="">
+                                    {% comment %}
                                     <div class="form-group">
-                                        <label>Current password</label>
+                                        <label>{% trans 'Current password' %}</label>
                                         <input type="password" class="form-control">
                                     </div>
+                                    {% endcomment %}
                                     <div class="form-group">
-                                        <label>New password</label>
-                                        <input type="password" class="form-control">
+                                        <label>{% trans 'New password' %}</label>
+                                        <input id="id_password" type="password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>Confirm new password</label>
-                                        <input type="password" class="form-control">
+                                        <label>{% trans 'Confirm new password' %}</label>
+                                        <input id="id_password_repeated" type="password" class="form-control">
                                     </div>
                                     <button id="id_password_btn"
                                        onclick="ajax_password();"
                                           type="button"
-                                         class="btn btn-info">Update password</button>
+                                         class="btn btn-info">{% trans 'Update password' %}</button>
                                     <p>
-                                        <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
+                                        <small class="text-muted">{% trans '* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae' %}</small>
                                     </p>
                                 </form>
                                 <!-- end PASSWORD -->
