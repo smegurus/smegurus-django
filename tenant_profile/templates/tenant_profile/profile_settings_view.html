@@ -1,9 +1,9 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-{% compress js inline %}
-{% include 'tenant_profile/profile_settings_js.html' %}
-{% endcompress %}
+    {% compress js inline %}
+        {% include 'tenant_profile/profile_settings_js.html' %}
+    {% endcompress %}
 
 <!-- Page content-->
 <div class="content-wrapper">
@@ -22,39 +22,63 @@
                         <div class="panel b">
                             <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Profile' %}</div>
                             <div class="panel-body">
+                                <!-- PROFILE -->
                                 <form action="">
                                     <div class="form-group">
-                                        <label>Picture</label>
+                                        <label>{% trans 'Picture' %}</label>
                                         <div class="clearfix"></div>
-                                        <div class="pull-left">
-                                            <input type="file" data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new profile pic" data-iconname="fa fa-upload mr" class="form-control filestyle">
-                                        </div>
-                                        <div class="pull-right">
-                                            <input type="file" data-input="false" data-classbutton="btn btn-default" data-classinput="form-control inline" data-buttontext="Upload new profile header" data-iconname="fa fa-upload mr" class="form-control filestyle">
-                                        </div>
+
+                                        <!-- Upload ID -->
+                                        <input type="hidden" id="id_hidden_upload_id" value="{{ request.public_me.image.id }}"/>
+                                        <input type="hidden" id="id_hidden_url" value="{{ request.public_me.image.imagefile.url }}"/>
+                                        <!-- /.Upload ID -->
+
+                                        <!-- Image Placeholder -->
+                                        <img id="id_image_placeholder"
+                                            src="{{ request.public_me.image.imagefile.url }}"
+                                          style="height:200px;width:200px;"
+                                            alt="{{ request.public_me.name }} {% trans 'Picture' %}"
+                                          class="img-thumbnail center-block mb0 add-cover-image"
+                                           name="product-image" />
+                                        <!-- /.Image Placeholder -->
+
+                                        <br/>
+
+                                        <!-- Image Upload Button -->
+                                        <label class="form-control btn btn-success mt10 curp" >
+                                            <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Picture...' %}
+                                            <input id="id_image"
+                                             onchange="ajax_upload_image();"
+                                                 type="file"
+                                                class="form-control mb10 hide"
+                                                 name="product-image" />
+                                        </label>
+                                        <!-- /.Image Upload Button -->
+
+                                        <br/>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control">
+                                        <label>{% trans 'Telephone' %}</label>
+                                        <input id="id_name" type="text" class="form-control" value="{{ request.public_me.telephone|escape|safe }}" />
                                     </div>
                                     <div class="form-group">
-                                        <label>Company</label>
-                                        <input type="text" class="form-control">
+                                        <label>{% trans 'Bio' %}</label>
+                                        <textarea id="id_description" rows="3" class="form-control">{{ request.public_me.description|escape|safe }}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Bio</label>
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <label>{% trans 'URL' %}</label>
+                                        <input id="id_url" type="text" class="form-control" value="{{ request.public_me.url }}">
                                     </div>
-                                    <div class="form-group">
-                                        <label>URL</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <button type="button" class="btn btn-info">Update settings</button>
+                                    <button id="id_profile_btn"
+                                       onclick="ajax_profile();"
+                                          type="button"
+                                         class="btn btn-info">Update settings</button>
                                     <p>
                                         <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
                                     </p>
                                 </form>
+                                <!-- end PROFILE -->
                             </div>
                         </div>
                     </div>
@@ -62,6 +86,7 @@
                         <div class="panel b">
                             <div class="panel-heading bg-gray-lighter text-bold">Account</div>
                             <div class="panel-body">
+                                <!-- PASSWORD -->
                                 <form action="">
                                     <div class="form-group">
                                         <label>Current password</label>
@@ -75,15 +100,20 @@
                                         <label>Confirm new password</label>
                                         <input type="password" class="form-control">
                                     </div>
-                                    <button type="button" class="btn btn-info">Update password</button>
+                                    <button id="id_password_btn"
+                                       onclick="ajax_password();"
+                                          type="button"
+                                         class="btn btn-info">Update password</button>
                                     <p>
                                         <small class="text-muted">* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae</small>
                                     </p>
                                 </form>
+                                <!-- end PASSWORD -->
                             </div>
                         </div>
                     </div>
                     <div id="tabSetting3" class="tab-pane">
+                        <!-- NOTIFICATION -->
                         <form action="">
                             <div class="panel b">
                                 <div class="panel-heading bg-gray-lighter text-bold">Notifications</div>
@@ -148,13 +178,17 @@
                                             <input type="checkbox" value="">Alert me when I have an item due within 2 days</label>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-info">Update notifications</button>
+                                    <button id="id_notification_btn"
+                                       onclick="ajax_notification();"
+                                          type="button"
+                                         class="btn btn-info">Update notifications</button>
                                     <p>
                                         <small class="text-muted">Mauris sodales accumsan erat, ut dapibus erat faucibus vitae.</small>
                                     </p>
                                 </div>
                             </div>
                         </form>
+                        <!-- end NOTIFICATION -->
                     </div>
                 </div>
             </div>

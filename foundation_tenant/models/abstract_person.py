@@ -48,12 +48,12 @@ class AbstractPerson(AbstractThing):
         blank=True,
         related_name="abstract_person_birth_place_%(app_label)s_%(class)s_related"
     )
-    brand = models.ForeignKey(
+    brands = models.ManyToManyField(
         Brand,
         help_text=_('The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.'),
         null=True,
         blank=True,
-        related_name="abstract_person_organization_brand_%(app_label)s_%(class)s_related"
+        related_name="abstract_person_brands_%(app_label)s_%(class)s_related"
     )
     children = models.ManyToManyField(
         'self',

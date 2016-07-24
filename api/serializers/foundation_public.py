@@ -88,7 +88,7 @@ class PublicPlaceSerializer(serializers.ModelSerializer):
 class PublicMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicMe
-        fields = ('id', 'created', 'last_modified', 'owner', 'image', 'url', 'telephone', 'how_discovered', 'is_tos_signed', 'is_setup', )
+        fields = ('id', 'created', 'last_modified', 'owner', 'image', 'name', 'url', 'telephone', 'how_discovered', 'is_tos_signed', 'is_setup', )
 
 
 class PublicCountrySerializer(serializers.ModelSerializer):

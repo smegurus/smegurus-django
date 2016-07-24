@@ -30,7 +30,7 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('Physical address of the item.'),
         null=True,
         blank=True,
-        related_name="abstract_person_address_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_address_%(app_label)s_%(class)s_related"
     )
     #affiliation - Organization - An organization that this person is affiliated with. For example, a school/university, a club, or a team.
     #alumniOf
@@ -41,38 +41,37 @@ class AbstractPlacePerson(AbstractPublicThing):
         blank=True,
         null=True
     )
-    birth_PublicPlace = models.ForeignKey(
+    birth_place = models.ForeignKey(
         PublicPlace,
-        help_text=_('The PublicPlace where the person was born.'),
+        help_text=_('The public place where the person was born.'),
         null=True,
         blank=True,
-        related_name="abstract_person_birth_PublicPlace_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_birth_place_%(app_label)s_%(class)s_related"
     )
-    PublicBrand = models.ForeignKey(
+    brand = models.ManyToManyField(
         PublicBrand,
-        help_text=_('The PublicBrand(s) associated with a product or service, or the PublicBrand(s) maintained by an organization or business person.'),
-        null=True,
+        help_text=_('The public brand(s) associated with this business person.'),
         blank=True,
-        related_name="abstract_person_organization_PublicBrand_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_brands_%(app_label)s_%(class)s_related"
     )
     children = models.ManyToManyField(
         'self',
         help_text=_('A child of the person. Supersedes colleagues.'),
         blank=True,
-        related_name="abstract_person_children_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_children_%(app_label)s_%(class)s_related"
     )
     colleagues = models.ManyToManyField(
         'self',
         help_text=_('A colleague of the person. Supersedes colleagues.'),
         blank=True,
-        related_name="abstract_person_colleagues_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_colleagues_%(app_label)s_%(class)s_related"
     )
     contact_point = models.ForeignKey(
         PublicContactPoint,
         help_text=_('A contact point for a person or organization'),
         null=True,
         blank=True,
-        related_name="abstract_person_contact_point_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_contact_point_%(app_label)s_%(class)s_related"
     )
     death_date = models.DateField(
         _("Death Date"),
@@ -80,12 +79,12 @@ class AbstractPlacePerson(AbstractPublicThing):
         blank=True,
         null=True
     )
-    death_PublicPlace = models.ForeignKey(
+    death_place = models.ForeignKey(
         PublicPlace,
-        help_text=_('The PublicPlace where the person died.'),
+        help_text=_('The place where the person died.'),
         null=True,
         blank=True,
-        related_name="abstract_person_death_PublicPlace_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_death_place_%(app_label)s_%(class)s_related"
     )
     duns = models.CharField(
         _("Additional Name"),
@@ -118,7 +117,7 @@ class AbstractPlacePerson(AbstractPublicThing):
         'self',
         help_text=_('The most generic uni-directional social relation.'),
         blank=True,
-        related_name="abstract_person_follows_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_follows_%(app_label)s_%(class)s_related"
     )
     gender = models.CharField(
         _("Gender"),
@@ -150,7 +149,7 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('A contact location for a person\'s residence.'),
         null=True,
         blank=True,
-        related_name="abstract_person_death_PublicPlace_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_home_location_%(app_label)s_%(class)s_related"
     )
     honorific_prefix = models.CharField(
         _("Honorific Prefix"),
@@ -184,7 +183,7 @@ class AbstractPlacePerson(AbstractPublicThing):
         'self',
         help_text=_('The most generic bi-directional social/work relation.'),
         blank=True,
-        related_name="abstract_person_knows_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_knows_%(app_label)s_%(class)s_related"
     )
     # makesOffer	Offer 	A pointer to products or services offered by the organization or person.
     # Inverse property: offeredBy.
@@ -202,7 +201,7 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('Nationality of the person.'),
         null=True,
         blank=True,
-        related_name="abstract_person_nationality_PublicPlace_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_nationality_%(app_label)s_%(class)s_related"
     )
     # netWorth	PriceSpecification 	The total financial value of the person as calculated by subtracting assets from liabilities.
     # owns - Product or OwnershipInfo - Products owned by the organization or person.
@@ -210,28 +209,28 @@ class AbstractPlacePerson(AbstractPublicThing):
         'self',
         help_text=_('A parent of this person. Supersedes parents'),
         blank=True,
-        related_name="abstract_person_parents_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_parents_%(app_label)s_%(class)s_related"
     )
     # performerIn	Event 	Event that this person is a performer or participant in.
     related_to = models.ManyToManyField(
         'self',
         help_text=_('The most generic familial relation.'),
         blank=True,
-        related_name="person_related_to_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_related_to_%(app_label)s_%(class)s_related"
     )
     # seeks	Demand 	A pointer to products or services sought by the organization or person (demand).
     siblings = models.ManyToManyField(
         'self',
         help_text=_('A sibling of the person. Supersedes siblings.'),
         blank=True,
-        related_name="abstract_person_siblings_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_siblings_%(app_label)s_%(class)s_related"
     )
     spouse = models.ForeignKey(
         'self',
         help_text=_('The person\'s spouse.'),
         null=True,
         blank=True,
-        related_name="abstract_person_nationality_PublicPlace_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_spouse_%(app_label)s_%(class)s_related"
     )
     tax_id = models.CharField(
         _("Tax ID"),
@@ -260,6 +259,6 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('A contact location for a person\'s PublicPlace of work.'),
         null=True,
         blank=True,
-        related_name="abstract_person_work_location_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_work_location_%(app_label)s_%(class)s_related"
     )
     # worksFor	Organization 	Organizations that the person works for.

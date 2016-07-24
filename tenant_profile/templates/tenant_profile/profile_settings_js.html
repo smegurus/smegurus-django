@@ -1,0 +1,98 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Nothing.
+    }); // end Ready
+
+    function disable_btn() {
+        // Profile
+        $('#id_profile_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_profile_btn').prop("disabled", true);
+
+        // Account.
+        $('#id_password_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_password_btn').prop("disabled", true);
+
+        // Notification
+        $('#id_notification_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_notification_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        // Profile.
+        $('#id_profile_btn').prop("disabled", false);
+        $('#id_profile_btn').val("{% trans 'Update' %}");
+
+        // Account.
+        $('#id_password_btn').prop("disabled", false);
+        $('#id_password_btn').val("{% trans 'Update' %}");
+
+        // Notification.
+        $('#id_notification_btn').prop("disabled", false);
+        $('#id_notification_btn').val("{% trans 'Update' %}");
+    }
+
+    /**
+     *  Function will asynchronously upload the cover image.
+     */
+    function ajax_upload_image() {
+        if ($('#id_image').val() == "") {
+            alert(_("Please select an image to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var image = document.getElementById('id_image').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+
+        // Insert or Update.
+        set_public_imageupload(upload_id, image, function(json_result) {
+            $('#id_hidden_url').attr('src', json_result['imagefile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['imagefile']);
+        });
+    }
+
+    function ajax_profile() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_public_me(  // Fetch our Me.
+            {{ request.public_me.owner.id }},
+            function(me) {
+                var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
+                if (image > 0) {
+                   me['image'] = image;
+                }
+                me['telephone'] = $('#id_telephone').val();
+                me['description'] = $('#id_description').val();
+                me['url'] = $('#id_url').val();
+                set_public_me(  // Save our Me
+                    me,
+                    function(json_result) {
+                        enable_btn();
+                        console.log(json_result);
+                        window.location = "";
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Me
+            },
+            function(error_result) {
+                enable_btn();
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Me
+    }
+
+    function ajax_password() {
+
+    }
+
+    function ajax_notification() {
+
+    }
+</script>
