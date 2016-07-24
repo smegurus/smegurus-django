@@ -8,9 +8,9 @@ from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.calendarevent import CalendarEvent
 
 
+@login_required(login_url='/en/login')
 @foundation_config_required
 @tenant_profile_required
-@login_required(login_url='/en/login')
 def calendar_page(request):
     return render(request, 'tenant_calendar/view.html',{
         'page': 'calendar',

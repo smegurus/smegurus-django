@@ -402,6 +402,20 @@
                     {% include "api/tenant_tellusyourneed.html" %}
                     {% include "api/tenant_calendarevent.html" %}
                     {% include "api/tenant_me.html" %}
+                    <script>
+                        function ajax_logout()
+                        {
+                            sign_off(
+                                function(success_result) {
+                                    console.log(success_result);
+                                    window.location = "{% url 'foundation_auth_user_login' %}";
+                                },
+                                function(error_result) {
+                                    console.log(error_result);
+                                }
+                            );
+                        }
+                    </script>
                 {% endif %}
                 {% endcompress %}
 

@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from foundation_public.models.organization import PublicOrganization
 # from foundation.decorators import tenant_required
 from tenant_profile.decorators import tenant_profile_required
 
 
+@login_required(login_url='/en/login')
 @tenant_profile_required
 def message_inbox_page(request):
     # print("TENANT", request.tenant.schema_name)
@@ -14,6 +16,7 @@ def message_inbox_page(request):
     })
 
 
+@login_required(login_url='/en/login')
 @tenant_profile_required
 def message_compose_page(request):
     # print("TENANT", request.tenant.schema_name)

@@ -7,9 +7,9 @@ from foundation_config.decorators import foundation_config_required
 from tenant_profile.decorators import tenant_profile_required
 
 
+@login_required(login_url='/en/login')
 @foundation_config_required
 @tenant_profile_required
-@login_required(login_url='/en/login')
 def learning_page(request):
     # print("TENANT", request.tenant.schema_name)
     # print("USER", request.token)
