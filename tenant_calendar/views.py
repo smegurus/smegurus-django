@@ -4,10 +4,12 @@ from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from foundation_config.decorators import foundation_config_required
+from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.calendarevent import CalendarEvent
 
 
 @foundation_config_required
+@tenant_profile_required
 @login_required(login_url='/en/login')
 def calendar_page(request):
     return render(request, 'tenant_calendar/view.html',{

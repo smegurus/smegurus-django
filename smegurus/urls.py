@@ -30,6 +30,7 @@ urlpatterns += i18n_patterns(
     url(r'^', include('landpage.urls')),
     url(r'^', include('foundation_auth.urls')),
     url(r'^', include('foundation_config.urls')),
+    url(r'^', include('tenant_profile.urls')),
     url(r'^', include('tenant_message.urls')),
     url(r'^', include('tenant_calendar.urls')),
     url(r'^', include('tenant_community.urls')),
@@ -40,6 +41,5 @@ urlpatterns += i18n_patterns(
     url(r'^', include('tenant_resource.urls')),
     url(r'^', include('tenant_reward.urls')),
     url(r'^', include('tenant_intake.urls')),
-    url(r'^', include('tenant_profile.urls')),
     url(r'^', include('tenant_dashboard.urls')),
 )

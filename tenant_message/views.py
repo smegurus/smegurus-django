@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from foundation_public.models.organization import PublicOrganization
 # from foundation.decorators import tenant_required
+from tenant_profile.decorators import tenant_profile_required
 
 
+@tenant_profile_required
 def message_inbox_page(request):
     # print("TENANT", request.tenant.schema_name)
     # print("USER", request.user)
@@ -12,6 +14,7 @@ def message_inbox_page(request):
     })
 
 
+@tenant_profile_required
 def message_compose_page(request):
     # print("TENANT", request.tenant.schema_name)
     # print("USER", request.user)
