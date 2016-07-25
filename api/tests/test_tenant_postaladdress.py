@@ -165,6 +165,30 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     @transaction.atomic
+    def test_post_with_authentication_but_wrong_cn_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'China',
+            'address_region': 'Michigan',
+        }
+        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_br_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'Brazil',
+            'address_region': 'Michigan',
+        }
+        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
     def test_put(self):
         # Delete any previous data.
         postal_addesses = PostalAddress.objects.all()

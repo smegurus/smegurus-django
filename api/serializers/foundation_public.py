@@ -75,6 +75,14 @@ class PublicPostalAddressSerializer(serializers.ModelSerializer):
             if not address_region in constants.MX_ADDRESS_REGIONS:
                 raise serializers.ValidationError(message)
 
+        if address_country == _("China"):
+            if not address_region in constants.CN_ADDRESS_REGIONS:
+                raise serializers.ValidationError(message)
+
+        if address_country == _("Brazil"):
+            if not address_region in constants.BR_ADDRESS_REGIONS:
+                raise serializers.ValidationError(message)
+
         return super(PublicPostalAddressSerializer, self).validate(data)
 
 
