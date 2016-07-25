@@ -109,7 +109,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.unauthorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -119,10 +121,48 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_us_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'United States',
+            'address_region': 'Ontario',
+        }
+        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_ca_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Michigan',
+        }
+        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_mx_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'Mexico',
+            'address_region': 'Michigan',
+        }
+        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     @transaction.atomic
     def test_put(self):
@@ -143,7 +183,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 1,
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.unauthorized_client.put('/api/tenantpostaladdress/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -168,7 +210,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 1,
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.authorized_client.put('/api/tenantpostaladdress/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)

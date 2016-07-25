@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from foundation_public import constants
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.language import Language
@@ -45,6 +46,28 @@ class PostalAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostalAddress
         fields = ('id', 'name', 'alternate_name', 'description', 'address_country', 'address_locality', 'address_region', 'post_office_box_number', 'postal_code', 'street_address', 'owner', 'url')
+
+    def validate(self, data):
+        """
+        Perform our own custom validation.
+        """
+        address_country = data.get('address_country')
+        address_region = data.get('address_region')
+        message = _("Province/State does not exist for specified Country.")
+
+        if address_country == _("United States"):
+            if not address_region in constants.US_ADDRESS_REGIONS:
+                raise serializers.ValidationError(message)
+
+        if address_country == _("Canada"):
+            if not address_region in constants.CA_ADDRESS_REGIONS:
+                raise serializers.ValidationError(message)
+
+        if address_country == _("Mexico"):
+            if not address_region in constants.MX_ADDRESS_REGIONS:
+                raise serializers.ValidationError(message)
+
+        return super(PostalAddressSerializer, self).validate(data)
 
 
 class OpeningHoursSpecificationSerializer(serializers.ModelSerializer):
