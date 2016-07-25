@@ -109,7 +109,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.unauthorized_client.post(
             reverse('publicpostaladdress-list'),
@@ -123,7 +125,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.authorized_client.post(
             reverse('publicpostaladdress-list'),
@@ -131,6 +135,54 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_us_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'United States',
+            'address_region': 'Ontario',
+        }
+        response = self.authorized_client.post(
+            reverse('publicpostaladdress-list'),
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_ca_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'New York',
+        }
+        response = self.authorized_client.post(
+            reverse('publicpostaladdress-list'),
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_post_with_authentication_but_wrong_mx_state(self):
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'address_country': 'Mexico',
+            'address_region': 'New York',
+        }
+        response = self.authorized_client.post(
+            reverse('publicpostaladdress-list'),
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     @transaction.atomic
     def test_put(self):
@@ -151,7 +203,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             'id': 1,
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.unauthorized_client.put(
             '/api/publicpostaladdress/1/',
@@ -180,7 +234,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             'id': 1,
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address_country': 'Canada',
+            'address_region': 'Ontario',
         }
         response = self.authorized_client.put(
             '/api/publicpostaladdress/1/',
