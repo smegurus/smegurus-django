@@ -8,7 +8,7 @@ from django_tenants.test.client import TenantClient
 from foundation_public import constants
 
 
-class LandpageTestCase(TenantTestCase):
+class PublicIndexTestCase(TenantTestCase):
     fixtures = [
         # 'banned_domains.json',
         # 'banned_ips.json',
@@ -31,7 +31,7 @@ class LandpageTestCase(TenantTestCase):
 
     @transaction.atomic
     def setUp(self):
-        super(LandpageTestCase, self).setUp()
+        super(PublicIndexTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -39,11 +39,11 @@ class LandpageTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(LandpageTestCase, self).tearDown()
+        super(PublicIndexTestCase, self).tearDown()
 
     @transaction.atomic
-    def test_landpage_view(self):
-        response = self.c.get(reverse('landpage'))
+    def test_index_page_view(self):
+        response = self.c.get(reverse('public_index'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'This is a land page.',response.content) #TODO: Change text

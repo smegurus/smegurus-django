@@ -70,7 +70,7 @@ SHARED_APPS = (
   'foundation_public', # you must list the app where your tenant model resides in
 
   # everything below is custom made by us.
-  'landpage',
+  'public_index',
   'foundation_auth',
 
   # everything below here is optional
