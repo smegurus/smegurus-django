@@ -83,6 +83,10 @@ class PublicPostalAddressSerializer(serializers.ModelSerializer):
             if not address_region in constants.BR_ADDRESS_REGIONS:
                 raise serializers.ValidationError(message)
 
+        if address_country == _("Russia"):
+            if not address_region in constants.RU_ADDRESS_REGIONS:
+                raise serializers.ValidationError(message)
+
         return super(PublicPostalAddressSerializer, self).validate(data)
 
 
