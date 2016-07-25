@@ -288,7 +288,11 @@
                 console.log(pa_error_result);
                 enable_btn(); // Allow the user to press the button again.
                 var string = JSON.stringify( pa_error_result );
-                alert(string);
+                if (string.indexOf('Province/State does not exist') > -1) {
+                    alert("{% trans 'Province/State does not exist for specified Country.' %}");
+                } else {
+                    alert(string);
+                }
             }
         ); // end Postal Address
     }
