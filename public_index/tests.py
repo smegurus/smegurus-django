@@ -46,4 +46,32 @@ class PublicIndexTestCase(TenantTestCase):
         response = self.c.get(reverse('public_index'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'This is a land page.',response.content) #TODO: Change text
+        self.assertIn(b'This is a land page.',response.content)
+
+    @transaction.atomic
+    def test_403_page_view(self):
+        response = self.c.get(reverse('public_403_error'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'403',response.content)
+
+    @transaction.atomic
+    def test_404_page_view(self):
+        response = self.c.get(reverse('public_404_error'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'404',response.content)
+
+    @transaction.atomic
+    def test_500_page_view(self):
+        response = self.c.get(reverse('public_500_error'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'500',response.content)
+
+    @transaction.atomic
+    def test_terms_page_view(self):
+        response = self.c.get(reverse('public_terms'))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Terms',response.content)

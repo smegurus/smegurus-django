@@ -77,6 +77,7 @@ SHARED_APPS = (
   'django.contrib.auth',
   'django.contrib.sessions',
   'django.contrib.sites',
+  'django.contrib.sitemaps',
   'django.contrib.messages',
   'django.contrib.admin',
   'django.contrib.staticfiles',

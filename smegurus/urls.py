@@ -16,6 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
+from django.contrib.sitemaps.views import sitemap
+from smegurus.sitemaps import StaticViewSitemap
+# from smegurus.sitemaps import OrganizationSitemap
+
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    # 'organization': OrganizationSitemap,
+}
 
 
 urlpatterns = [
@@ -23,6 +32,9 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url('^', include('django.contrib.auth.urls')),
     url(r'^', include('api.urls')),
+
+     # Sitemap
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 urlpatterns += i18n_patterns(
@@ -43,3 +55,8 @@ urlpatterns += i18n_patterns(
     url(r'^', include('tenant_intake.urls')),
     url(r'^', include('tenant_dashboard.urls')),
 )
+
+# # Custom errors.
+handler403 = "public_index.views.http_403_page"
+handler404 = "public_index.views.http_404_page"
+handler500 = "public_index.views.http_500_page"
