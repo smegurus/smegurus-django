@@ -8,10 +8,10 @@ from rest_framework import filters
 from rest_framework import permissions
 from rest_framework import authentication
 from rest_framework import status
-from rest_framework.response import Response
+from rest_framework import response
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
-from api.permissions import IsOwnerOrIsAnEmployee
+from api.permissions import IsOwnerOrIsAnEmployee, IsOwner
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
 from foundation_public import constants
@@ -27,12 +27,12 @@ class SendEmailViewMixin(object):
         url += "/en/login/"
         return url
 
-    def send_activation(self, schema_name, email):
+    def send_activation(self, schema_name, contact_list):
         """Function will send to the inputted email the URL that needs to be accessed to activate the account."""
-        contact_list = [env_var('DEFAULT_TO_EMAIL')]
+        # contact_list = [env_var('DEFAULT_TO_EMAIL')]
         subject = "New Entrepreneur Application!"
         url = self.login_url(schema_name)
-        message = _('Login and checkout a new application at: : %(url)s') % {'url': str(url)}
+        message = _('A new Entrepreneur has completed the intake application. Login and checkout the new application at: : %(url)s') % {'url': str(url)}
 
         send_mail(
             subject,
@@ -61,31 +61,49 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
     filter_class = IntakeFilter
 
-    @detail_route(methods=['post'], permission_classes=[IsOwnerOrIsAnEmployee,])
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
     def complete_intake(self, request, pk=None):
         try:
             # Attempt to fetch the Object by the unique identifier.
             intake = Intake.objects.get(pk=pk)
 
+            # Security: Only the owner can modify this object.
+            if intake.owner != request.user:
+                return response.Response(
+                    data={'message': 'You are not the owner of this object.'},
+                    status=status.HTTP_401_UNAUTHORIZED
+                )
+
             # Send a notification to the staff when the Intake was completed.
             # Send a notification to the Organization staff.
             if not intake.is_completed:
+                # Generate our email list.
+                contact_list = []
                 users = User.objects.filter(groups__id=constants.ADVISOR_GROUP_ID)
                 for user in users.all():
-                    self.send_activation(request.tenant.schema_name, user.email)
+                    contact_list.append(user.email)
                 users = User.objects.filter(groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
                 for user in users.all():
-                    self.send_activation(request.tenant.schema_name, user.email)
+                    contact_list.append(user.email)
                 users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
                 for user in users.all():
-                    self.send_activation(request.tenant.schema_name, user.email)
+                    contact_list.append(user.email)
+
+                # Send the email to our group.
+                self.send_activation(request.tenant.schema_name, contact_list)
 
                 # Mark the Intake object as complete after sending notification.
                 intake.is_completed = True
                 intake.save()
 
             # Return a sucess message.
-            return Response({'status': status.HTTP_200_OK, 'message': 'Intake has been completed.'})
+            return response.Response(
+                data={'message': 'Intake has been completed.'},
+                status=status.HTTP_200_OK
+            )
         except Intake.DoesNotExist:
             # Return an error message.
-            return Response({'status': status.HTTP_404_NOT_FOUND, 'message': 'Pk not found.'})
+            return response.Response(
+                data={'message': 'Pk not found.'},
+                status=status.HTTP_404_NOT_FOUND
+            )

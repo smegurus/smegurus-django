@@ -87,7 +87,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_list_with_anonymous_user(self):
-        response = self.unauthorized_client.get('/api/tenantintake/')
+        response = self.unauthorized_client.get('/api/tenantintake/?format=json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -98,7 +98,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Test and verify.
-        response = self.authorized_client.get('/api/tenantintake/')
+        response = self.authorized_client.get('/api/tenantintake/?format=json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -109,7 +109,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Test and verify.
-        response = self.authorized_client.get('/api/tenantintake/')
+        response = self.authorized_client.get('/api/tenantintake/?format=json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -120,7 +120,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Test and verify.
-        response = self.authorized_client.get('/api/tenantintake/')
+        response = self.authorized_client.get('/api/tenantintake/?format=json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -128,7 +128,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'owner': self.user.id,
         }
-        response = self.unauthorized_client.post('/api/tenantintake/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.post('/api/tenantintake/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -137,7 +137,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'owner': self.user.id,
         }
-        response = self.authorized_client.post('/api/tenantintake/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post('/api/tenantintake/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -153,7 +153,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'owner': self.user.id,
         }
-        response = self.authorized_client.post('/api/tenantintake/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post('/api/tenantintake/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -174,7 +174,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 1,
             'owner': self.user.id,
         }
-        response = self.unauthorized_client.put('/api/tenantintake/1/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.put('/api/tenantintake/1/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -195,7 +195,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 1,
             'owner': self.user.id,
         }
-        response = self.authorized_client.put('/api/tenantintake/1/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put('/api/tenantintake/1/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -223,7 +223,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 1,
             'owner': self.user.id,
         }
-        response = self.authorized_client.put('/api/tenantintake/1/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put('/api/tenantintake/1/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -232,7 +232,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             owner=self.user,
         )
-        response = self.unauthorized_client.delete('/api/tenantintake/1/')
+        response = self.unauthorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -241,7 +241,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             owner=self.user,
         )
-        response = self.authorized_client.delete('/api/tenantintake/1/')
+        response = self.authorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     @transaction.atomic
@@ -260,5 +260,91 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Run test and verify.
-        response = self.authorized_client.delete('/api/tenantintake/1/')
+        response = self.authorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+
+    @transaction.atomic
+    def test_complete_intake_with_anonymous_user(self):
+        # Setup our object.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+            is_completed=False,
+        )
+
+        # Run the test and verify.
+        response = self.unauthorized_client.put(
+            '/api/tenantintake/1/complete_intake/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        me = Intake.objects.get(id=1)
+        self.assertFalse(me.is_completed)
+
+    @transaction.atomic
+    def test_complete_intake_with_owner_user(self):
+        # Setup our object.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+            is_completed=False,
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/1/complete_intake/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        me = Intake.objects.get(id=1)
+        self.assertTrue(me.is_completed)
+
+    @transaction.atomic
+    def test_complete_intake_with_different_owner_user(self):
+        # Setup our objects.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        new_user = User.objects.create_user(  # Create our user.
+            email='chambers@gah.com',
+            username='Chambers',
+            password='I do not like Stryker',
+        )
+        new_user.is_active = True
+        new_user.groups.add(org_admin_group)
+        new_user.save()
+        Intake.objects.create(
+            id=1,
+            owner=new_user,
+            is_completed=False,
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/1/complete_intake/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        me = Intake.objects.get(id=1)
+        self.assertFalse(me.is_completed)
+
+    @transaction.atomic
+    def test_complete_intake_with_owner_user_with_404(self):
+        # Setup our object.
+        Intake.objects.create(
+            id=1,
+            owner=self.user,
+            is_completed=False,
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/6666/complete_intake/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        me = Intake.objects.get(id=1)
+        self.assertFalse(me.is_completed)
