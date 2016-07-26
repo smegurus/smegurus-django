@@ -23,4 +23,8 @@ def create_me(sender, instance=None, created=False, **kwargs):
         PublicMe.objects.create(
             name=instance.first_name+' '+instance.last_name,
             owner=instance,
+            email=instance.email,
+            given_name=instance.first_name,
+            family_name=instance.last_name,
+            is_tos_signed=True, # Javascript forces this terms of agreement.
         )
