@@ -14,6 +14,5 @@ from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.abstract_person import AbstractPlacePerson
-from foundation_public.models.me import PublicMe
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain

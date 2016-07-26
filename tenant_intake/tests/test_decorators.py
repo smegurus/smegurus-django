@@ -8,7 +8,6 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
-from foundation_public.models.me import PublicMe
 from foundation_public import constants
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
@@ -166,9 +165,6 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
             user.delete()
         for group in groups.all():
             group.delete()
-        items = PublicMe.objects.all()
-        for item in items.all():
-            item.delete()
         Intake.objects.delete_all()
         # super(TenantIntakeDecoratorWithTenantSchemaTestCase, self).tearDown()
 

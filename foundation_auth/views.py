@@ -10,12 +10,10 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.models.me import PublicMe
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
 from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
-from foundation_public.forms.meform import PublicMeForm
 from foundation_public import constants
 from smegurus.settings import env_var
 
@@ -102,7 +100,6 @@ def organization_registration_page(request):
         return render(request, 'foundation_auth/organization_register_view.html',{
             'org_form': PublicOrganizationForm(),
             'address_form': PublicPostalAddressForm(),
-            'me_form': PublicMeForm(),
         })
 
 

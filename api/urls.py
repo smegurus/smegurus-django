@@ -21,7 +21,6 @@ from api.views.foundation_public.geocoordinateviewset import PublicGeoCoordinate
 from api.views.foundation_public.brandviewset import PublicBrandViewSet
 from api.views.foundation_public.placeviewset import PublicPlaceViewSet
 from api.views.foundation_public.countryviewset import PublicCountryViewSet
-from api.views.foundation_public.meviewset import PublicMeViewSet
 from api.views.foundation_public.organizationviewset import PublicOrganizationViewSet
 
 from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
@@ -56,7 +55,6 @@ router.register(r'publicgeocoordinate', PublicGeoCoordinateViewSet)
 router.register(r'publicbrand', PublicBrandViewSet)
 router.register(r'publicplace', PublicPlaceViewSet)
 router.register(r'publiccountry', PublicCountryViewSet)
-router.register(r'publicme', PublicMeViewSet)
 router.register(r'publicorganization', PublicOrganizationViewSet)
 
 router.register(r'tenantfileupload', TenantFileUploadViewSet)

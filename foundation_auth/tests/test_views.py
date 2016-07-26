@@ -9,7 +9,6 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
-from foundation_public.models.me import PublicMe
 from foundation_public import constants
 from foundation_tenant.models.me import TenantMe
 
@@ -47,9 +46,6 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         user.save()
 
         # Setup Profiles
-        me = PublicMe.objects.get(owner=user)
-        me.is_setup=True
-        me.save()
         # me = TenantMe.objects.get(owner=user)
         # me.is_admitted=True
         # me.save()
@@ -77,9 +73,6 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         for item in items.all():
             item.delete()
         item = Group.objects.all()
-        for item in items.all():
-            item.delete()
-        items = PublicMe.objects.all()
         for item in items.all():
             item.delete()
         # super(FoundationAuthViewsWithPublicSchemaTestCases, self).tearDown()
@@ -266,9 +259,6 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         user.save()
 
         # Setup Profiles
-        me = PublicMe.objects.get(owner=user)
-        me.is_setup=True
-        me.save()
         # me = TenantMe.objects.get(owner=user)
         # me.is_admitted=True
         # me.save()
@@ -300,9 +290,6 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         for item in items.all():
             item.delete()
         item = Group.objects.all()
-        for item in items.all():
-            item.delete()
-        items = PublicMe.objects.all()
         for item in items.all():
             item.delete()
         # super(FoundationAuthViewsWithTenatSchemaTestCases, self).tearDown()

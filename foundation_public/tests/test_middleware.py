@@ -7,7 +7,6 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
-from foundation_public.models.me import PublicMe
 from foundation_public import constants
 
 
@@ -55,43 +54,5 @@ class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
         super(FoundationPublicMiddlewareWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
-    def test_publicmemiddleware_with_unauthenticated_user(self):
-        # Verify that no "Me" objects are created.
-        self.assertEqual(PublicMe.objects.all().count(), 0)
-
-        # Run the test.
-        client = TenantClient(self.tenant)
-        response = client.get(reverse('public_index'))
-        self.assertEqual(response.status_code, 200)
-
-        # Verify that no "Me" objects are created.
-        self.assertEqual(PublicMe.objects.all().count(), 0)
-
-
-    @transaction.atomic
-    def test_publicmemiddleware_with_authenticated_user(self):
-        # Verify that no "Me" objects are created.
-        self.assertEqual(PublicMe.objects.all().count(), 0)
-
-        # Create our User and run our test.
-        user = User.objects.create_user(  # Create our User.
-            email=TEST_USER_EMAIL,
-            username=TEST_USER_USERNAME,
-            password=TEST_USER_PASSWORD,
-            first_name=TEST_USER_FIRSTNAME,
-            last_name=TEST_USER_LASTNAME,
-        )
-        user.is_active = True
-        user.save()
-        token = Token.objects.get(user=user)
-        client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
-        client.login(
-            username=TEST_USER_USERNAME,
-            password=TEST_USER_PASSWORD
-        )
-        response = client.get(reverse('public_index'))
-        self.assertEqual(response.status_code, 200)
-
-        # Verify
-        me = PublicMe.objects.get(owner=user)
-        self.assertIsNotNone(me)
+    def test_ppass(self):
+        pass

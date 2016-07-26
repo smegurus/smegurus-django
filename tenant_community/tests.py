@@ -7,7 +7,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public.models.me import PublicMe
 from foundation_public import constants
 from foundation_tenant.models.me import TenantMe
 
@@ -77,14 +76,6 @@ class TenantCommunityTestCases(APITestCase, TenantTestCase):
         # Update Organization.
         self.tenant.users.add(self.user)
         self.tenant.save()
-
-        # Setup User.
-        me = PublicMe.objects.get(owner=self.user)
-        me.is_setup = True
-        me.save()
-        TenantMe.objects.create(
-            owner=self.user,
-        )
 
     @transaction.atomic
     def tearDown(self):

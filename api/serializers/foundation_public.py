@@ -16,7 +16,6 @@ from foundation_public.models.brand import PublicBrand
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.models.me import PublicMe
 from foundation_public import constants
 
 
@@ -119,16 +118,6 @@ class PublicPlaceSerializer(serializers.ModelSerializer):
         model = PublicPlace
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'address', 'fax_number', 'geo', 'global_location_number', 'has_map', 'isic_v4', 'logo', 'opening_hours_specification', 'photo', 'telephone',)
 
-
-class PublicMeSerializer(serializers.ModelSerializer):
-    is_locked = serializers.CharField(read_only=True)
-    class Meta:
-        model = PublicMe
-        fields = ('id', 'created', 'last_modified', 'owner', 'image', 'name',
-                 'description', 'url', 'telephone', 'how_discovered',
-                 'is_tos_signed', 'is_setup', 'is_locked',
-                 'notify_when_new_tasks', 'notify_when_new_messages',
-                 'notify_when_due_tasks', 'address',)
 
 
 class PublicCountrySerializer(serializers.ModelSerializer):

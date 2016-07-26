@@ -20,7 +20,7 @@ class TenantMeManager(models.Manager):
 
 class TenantMe(models.Model):
     """
-    The object to represent the "PublicMe" object for all the tenanted objects.
+    The object to represent the "TenantMe" object for all the tenanted objects.
     """
     class Meta:
         app_label = 'foundation_tenant'

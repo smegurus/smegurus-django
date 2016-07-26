@@ -22,7 +22,6 @@ from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.abstract_person import AbstractPlacePerson
-from foundation_public.models.me import PublicMe
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
 from foundation_public import constants
@@ -152,28 +151,3 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_organization_to_string(self):
         self.assertIn(str(self.tenant), "Galactic Alliance of Humankind")
-
-    @transaction.atomic
-    def test_user_to_string(self):
-        # Create a new object with our specific test data and verify.
-        user = User.objects.create_user(  # Create our User.
-            email=TEST_USER_EMAIL,
-            username=TEST_USER_USERNAME,
-            password=TEST_USER_PASSWORD,
-            first_name=TEST_USER_FIRST_NAME,
-            last_name=TEST_USER_LAST_NAME,
-        )
-        me = PublicMe.objects.get()
-        self.assertIn(str(me), TEST_USER_FIRST_NAME+' '+TEST_USER_LAST_NAME)
-
-    @transaction.atomic
-    def test_user_create_me_when_created_with_success(self):
-        user = User.objects.create_user(  # Create our User.
-            email=TEST_USER_EMAIL,
-            username=TEST_USER_USERNAME,
-            password=TEST_USER_PASSWORD,
-            first_name=TEST_USER_FIRST_NAME,
-            last_name=TEST_USER_LAST_NAME,
-        )
-        me_count = PublicMe.objects.all().count()
-        self.assertEqual(me_count, 1)
