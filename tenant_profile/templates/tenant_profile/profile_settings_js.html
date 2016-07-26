@@ -9,7 +9,11 @@
         $('#id_profile_btn').val("{% trans 'Please Wait...' %}");
         $('#id_profile_btn').prop("disabled", true);
 
-        // Account.
+        // Address.
+        $('#id_location_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_location_btn').prop("disabled", true);
+
+        // Password.
         $('#id_password_btn').val("{% trans 'Please Wait...' %}");
         $('#id_password_btn').prop("disabled", true);
 
@@ -23,7 +27,11 @@
         $('#id_profile_btn').prop("disabled", false);
         $('#id_profile_btn').val("{% trans 'Update' %}");
 
-        // Account.
+        // Address.
+        $('#id_location_btn').prop("disabled", false);
+        $('#id_location_btn').val("{% trans 'Update' %}");
+
+        // Password.
         $('#id_password_btn').prop("disabled", false);
         $('#id_password_btn').val("{% trans 'Update' %}");
 
@@ -96,6 +104,37 @@
                 alert(json_error_result);
             }
         );  // end Set Me
+    }
+
+    function ajax_location() {
+        console.log("{{ request.public_me.address }}");
+        // get_public_postaladdress(
+        //     {{ request.public_me.address.id }},
+        //     function(postaladdress) {
+        //         me['address_country'] = $('#id_address_country').val();
+        //         me['address_locality'] = $('#id_address_locality').val();
+        //         me['address_region'] = $('#id_address_region').val();
+        //         me['postal_code'] = $('#id_postal_code').val();
+        //         me['post_office_box_number'] = $('#id_post_office_box_number').val();
+        //         me['street_address'] = $('#id_street_address').val();
+        //         set_public_postaladdress(
+        //             data,
+        //             function(json_result) {
+        //                 //success_callback(json_result); // Call back the function.
+        //             },
+        //             function(error_json_result) {
+        //                 //error_callback(error_json_result); // Return JSON
+        //             }
+        //         ); // end Set Postal Address
+        //     },
+        //     function(error_result) {
+        //         console.log(error_result);
+        //         enable_btn();
+        //         // Convert the error json into string.
+        //         var string = JSON.stringify( error_result );
+        //         alert("Unknown Error: "+string);
+        //     }
+        // ); // end Get Postal Address
     }
 
     function ajax_password() {
