@@ -9,13 +9,13 @@
 
     <br/>
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        <input type="radio" name="has_mentors" value=false {% if request.tenant.has_mentors == False %}checked{% endif %}>
-        {% trans '<b>Traditional (not recommended):</b> If you don\'t want your entrepreneurs to interact with external advisors, then select this option.' %}
-        <br>
-        <br/>
-
         <input type="radio" name="has_mentors" value=true {% if request.tenant.has_mentors == True %}checked{% endif %}>
         {% trans '<b>Enable External Advisors:</b> Your entrepreneurs will be able to easily share documents with external advisors - such as a mentor or lender.' %}
+        <br>
+        <br/>
+        
+        <input type="radio" name="has_mentors" value=false {% if request.tenant.has_mentors == False %}checked{% endif %}>
+        {% trans '<b>Traditional (not recommended):</b> If you don\'t want your entrepreneurs to interact with external advisors, then select this option.' %}
         <br>
         <br/>
 
