@@ -34,8 +34,7 @@ HOW_TO_CONTACT_OPTIONS = (
 
 
 HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS = (
-    (1, _('8:00 AM to 12:00 PM')),
-    (2, _('12:00 PM to 5:00 PM')),
-    (3, _('5:00 PM to 9:00 PM')),
-    (4, _('9:00 PM ++')),
+    (1, _('Morning')),
+    (2, _('Afternoon')),
+    (3, _('Evening')),
 )
