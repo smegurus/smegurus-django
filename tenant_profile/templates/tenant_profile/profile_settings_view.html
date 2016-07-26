@@ -62,10 +62,6 @@
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label>{% trans 'Telephone' %}</label>
-                                        <input id="id_name" type="text" class="form-control" value="{{ request.public_me.telephone|escape|safe }}" />
-                                    </div>
-                                    <div class="form-group">
                                         <label>{% trans 'Bio' %}</label>
                                         <textarea id="id_description" rows="3" class="form-control">{{ request.public_me.description|escape|safe }}</textarea>
                                     </div>
@@ -73,12 +69,16 @@
                                         <label>{% trans 'URL' %}</label>
                                         <input id="id_url" type="text" class="form-control" value="{{ request.public_me.url }}">
                                     </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'Telephone*' %}</label>
+                                        <input id="id_name" type="text" class="form-control" value="{{ request.public_me.telephone|escape|safe }}" />
+                                    </div>
                                     <button id="id_profile_btn"
                                        onclick="ajax_profile();"
                                           type="button"
                                          class="btn btn-info">{% trans 'Update settings' %}</button>
                                     <p>
-                                        <small class="text-muted">{% trans '* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae' %}</small>
+                                        <small class="text-muted">{% trans '* Your telephone and address are private, and can only be viewed by your host organization and advisors.' %}</small>
                                     </p>
                                 </form>
                                 <!-- end PROFILE -->
