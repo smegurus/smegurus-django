@@ -107,10 +107,33 @@
     }
 
     function ajax_location() {
-        get_public_postaladdress(
+        get_tenant_postaladdress(
             {{ request.tenant_me.address.id }},
-            function(result) {
-                console.log(result);
+            function(postaladdress) {
+
+                postaladdress['address_country'] = $('#id_address_country').val()
+                postaladdress['address_region'] = $('#id_address_region').val()
+                postaladdress['address_locality'] = $('#id_address_locality').val()
+                postaladdress['postal_code'] = $('#id_postal_code').val()
+                postaladdress['post_office_box_number'] = $('#id_post_office_box_number').val()
+                postaladdress['street_address'] = $('#id_street_address').val()
+
+                set_tenant_postaladdress(
+                    postaladdress,
+                    function(result) {
+                        console.log(result);
+                        enable_btn();
+                        window.location = "";
+                    },
+                    function(error_result) {
+                        console.log(error_result);
+                        enable_btn();
+                        // Convert the error json into string.
+                        var string = JSON.stringify( error_result );
+                        alert("Unknown Error: "+string);
+                    }
+                ); // end Set Tenant Postal Address
+
             },
             function(error_result) {
                 console.log(error_result);
