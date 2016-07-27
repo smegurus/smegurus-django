@@ -86,9 +86,6 @@ class TenantCalendarTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        items = Token.objects.all()
-        for item in items.all():
-            item.delete()
         # super(TenantCalendarTestCases, self).tearDown()
 
     @transaction.atomic

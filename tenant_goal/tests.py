@@ -87,9 +87,6 @@ class TenantGoalTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        items = Token.objects.all()
-        for item in items.all():
-            item.delete()
         # super(TenantGoalTestCases, self).tearDown()
 
     @transaction.atomic
