@@ -51,7 +51,6 @@ class AbstractPerson(AbstractThing):
     brands = models.ManyToManyField(
         Brand,
         help_text=_('The brand(s) associated with a product or service, or the brand(s) maintained by an organization or business person.'),
-        null=True,
         blank=True,
         related_name="abstract_person_brands_%(app_label)s_%(class)s_related"
     )

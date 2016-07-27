@@ -184,6 +184,13 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     # ------------------
 
     # Metric
+    how_discovered = models.CharField(
+        _("How this Organization officially discovered SMEGurus"),
+        choices=constants.HOW_DISCOVERED_OPTIONS,
+        max_length=127,
+        help_text=_('The details of how the User discovered our website.'),
+        null=True,
+    )
     how_many_served = models.PositiveSmallIntegerField(
         _("How many entrepreneurs served"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),

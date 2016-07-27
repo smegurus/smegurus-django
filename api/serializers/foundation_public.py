@@ -144,7 +144,7 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
                    'linkedin_url', 'github_url', 'google_plus_url', 'youtube_url',
                    'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url',
                    'is_setup', 'learning_preference', 'challenge', 'has_mentors',
-                   'has_perks', )
+                   'has_perks', 'how_discovered',)
 
     def validate(self, data):
         """

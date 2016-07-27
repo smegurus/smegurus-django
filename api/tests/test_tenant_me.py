@@ -75,9 +75,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
+        items = TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
@@ -116,9 +114,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put(self):
         # Delete any previous data.
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
+        items = TenantMe.objects.delete_all()
 
         # Create a new object with our specific test data.
         TenantMe.objects.create(
@@ -137,9 +133,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_authorization(self):
         # Delete any previous data.
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
+        items = TenantMe.objects.delete_all()
 
         # Create a new object with our specific test data.
         TenantMe.objects.create(
@@ -257,9 +251,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_unlock_with_success(self):
         # Delete any previous data.
-        items = tenantme.objects.all()
-        for item in items.all():
-            item.delete()
+        items = TenantMe.objects.delete_all()
 
         # Create a new object with our specific test data.
         TenantMe.objects.create(
@@ -284,9 +276,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_unlock_with_missing_password(self):
         # Delete any previous data.
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
+        items = TenantMe.objects.delete_all()
 
         # Create a new object with our specific test data.
         TenantMe.objects.create(
@@ -309,9 +299,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_unlock_with_wrong_password(self):
         # Delete any previous data.
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
+        items = TenantMe.objects.delete_all()
 
         # Create a new object with our specific test data.
         TenantMe.objects.create(

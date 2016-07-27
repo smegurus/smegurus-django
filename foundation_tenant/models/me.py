@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.abstract_thing import AbstractThing
-from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.abstract_person import AbstractPerson
 
 
 class TenantMeManager(models.Manager):
@@ -19,7 +18,7 @@ class TenantMeManager(models.Manager):
             item.delete()
 
 
-class TenantMe(AbstractThing):
+class TenantMe(AbstractPerson):
     """
     The object to represent the "TenantMe" object for all the tenanted objects.
     """
@@ -30,13 +29,6 @@ class TenantMe(AbstractThing):
         verbose_name_plural = 'Tenant Mes'
 
     objects = TenantMeManager()
-    address = models.ForeignKey(
-        PostalAddress,
-        help_text=_('Physical address of the item.'),
-        null=True,
-        blank=True,
-        related_name="tenant_me_address_%(app_label)s_%(class)s_related"
-    )
     is_admitted = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
         _("Is Admitted"),
         default=False,

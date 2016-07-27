@@ -16,12 +16,11 @@ class TenantMeMiddleware(object):
             if request.user.is_authenticated():
                 tenant_me, created = TenantMe.objects.get_or_create(owner=request.user)
                 request.tenant_me = tenant_me
-    
+
                 if created:
-                    print("CREATING TENANT_ME")
                     tenant_me.address = PostalAddress.objects.create(
                         owner=request.user,
-                        name='User #' + (strequest.user.id) + ' Address',
+                        name='User #' + str(request.user.id) + ' Address',
                     )
                     tenant_me.save()
 

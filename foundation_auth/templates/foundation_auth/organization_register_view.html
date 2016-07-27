@@ -82,22 +82,16 @@
             {{ org_field.label_tag }} {{ org_field }}
             {{ org_field.errors }}<br/>
         {% endif %}
-    {% endfor %}
-    {{ org_field.non_field_errors }}
-    <!-- /.Org Form -->
-
-    <!-- Me Form -->
-    {% for me_field in me_form %}
-        {% if me_field.id_for_label == 'id_how_discovered' %}
+        {% if org_field.id_for_label == 'id_how_discovered' %}
             <div class="form-group has-feedback">
                 <label for="signupInputText1" class="text-muted">{{ field.label_tag }}</label>
-                {{ me_field.label_tag }} {{ me_field }}
-                {{ me_field.errors }}<br/>
+                {{ org_field.label_tag }} {{ me_field }}
+                {{ org_field.errors }}<br/>
             </div>
         {% endif %}
     {% endfor %}
-    {{ me_field.non_field_errors }}
-    <!-- /.Me Form -->
+    {{ org_field.non_field_errors }}
+    <!-- /.Org Form -->
 
     <div class="clearfix">
        <div class="checkbox c-checkbox pull-left mt0">

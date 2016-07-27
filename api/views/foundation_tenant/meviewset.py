@@ -30,7 +30,7 @@ class TenantMeViewSet(viewsets.ModelViewSet):
     filter_class = TenantMeFilter
 
     @detail_route(methods=['put'], permission_classes=[EmployeePermission])
-    def admit_tenant_me(self, request, pk=None):
+    def admit_me(self, request, pk=None):
         call_command('admit_me',str(pk))
         return response.Response(
             data={'message': 'User has been admitted.'},
@@ -38,7 +38,7 @@ class TenantMeViewSet(viewsets.ModelViewSet):
         )
 
     @detail_route(methods=['put'], permission_classes=[EmployeePermission])
-    def expel_tenant_me(self, request, pk=None):
+    def expel_me(self, request, pk=None):
         call_command('expel_me',str(pk))
         return response.Response(
             data={'message': 'User has been expelled.'},
