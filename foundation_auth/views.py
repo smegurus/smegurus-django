@@ -128,3 +128,7 @@ def password_change_page(request, signed_value):
         'uid': value,
         'token': token,
     })
+
+
+def password_reset_sent_page(request):
+    return render(request, 'foundation_auth/user_password_sent_reset_vieww.html',{})

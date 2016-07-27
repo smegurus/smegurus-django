@@ -226,6 +226,14 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         self.assertIn(b'ajax_password_reset',response.content)
 
     @transaction.atomic
+    def test_user_password_reset_sent_page_view(self):
+        url = reverse('foundation_auth_password_reset_sent')
+        response = self.unauthorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'ajax_login',response.content)
+
+    @transaction.atomic
     def test_user_password_change_page_view(self):
         # Convert our User's ID into an encrypted value.
         user = User.objects.get(email=TEST_USER_EMAIL)
