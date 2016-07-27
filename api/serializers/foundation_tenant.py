@@ -21,6 +21,8 @@ from foundation_tenant.models.tellusyourneed import TellUsYourNeed
 from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.admission import Admission
+from foundation_tenant.models.faqitem import FAQItem
+from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.me import TenantMe
 
 
@@ -168,3 +170,15 @@ class AdmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Admission
         fields = ('id', 'owner',)
+
+
+class FAQGroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FAQGroup
+        fields = ('id', 'created', 'last_modified', 'text', 'items',)
+
+
+class FAQItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FAQItem
+        fields = ('id', 'created', 'last_modified', 'question_text', 'answer_text', 'likers', 'dislikers',)

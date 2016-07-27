@@ -39,6 +39,8 @@ from api.views.foundation_tenant.tellusyourneedviewset import TellUsYourNeedView
 from api.views.foundation_tenant.calendareventviewset import CalendarEventViewSet
 from api.views.foundation_tenant.intakeviewset import IntakeViewSet
 from api.views.foundation_tenant.admissionviewset import AdmissionViewSet
+from api.views.foundation_tenant.faqgroupviewset import FAQGroupViewSet
+from api.views.foundation_tenant.faqitemviewset import FAQItemViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
 
 # URL Generator.
@@ -74,6 +76,8 @@ router.register(r'tenantcalendarevent', CalendarEventViewSet)
 router.register(r'tenantcalendarevent', CalendarEventViewSet)
 router.register(r'tenantintake', IntakeViewSet)
 router.register(r'tenantadmission', AdmissionViewSet)
+router.register(r'tenantfaqgroup', FAQGroupViewSet)
+router.register(r'tenantfaqitem', FAQItemViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 
 
