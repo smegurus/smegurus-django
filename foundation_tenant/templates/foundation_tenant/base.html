@@ -162,9 +162,9 @@
                                     <div class="user-block-picture">
                                         <div class="user-block-status">
                                             {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
-                                            <img src="{{ request.tenant_me.image.url }}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                                <img src="{{ request.tenant_me.image.imagefile.url }}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
                                             {% else %}
-                                            <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                                <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
                                             {% endif %}
                                             <div class="circle circle-success circle-lg"></div>
                                         </div>

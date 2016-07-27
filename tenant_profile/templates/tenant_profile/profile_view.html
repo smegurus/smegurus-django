@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 {% compress js inline %}
-{% include 'tenant_profile/profile_js.html' %}
+    {% include 'tenant_profile/profile_js.html' %}
 {% endcompress %}
 <!-- Page content-->
 <div class="content-wrapper">
@@ -14,7 +14,7 @@
                         <div class="text-center">
                             <div class="pv-lg">
                                 {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
-                                <img src="{{ request.tenant_me.image.url }}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                                <img src="{{ request.tenant_me.image.imagefile.url }}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
                                 {% else %}
                                 <img src="{% static 'app/img/dummy.png' %}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
                                 {% endif %}

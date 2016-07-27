@@ -2,6 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
+        {% include 'foundation_public/autocomplete_js.html' %}
         {% include 'tenant_profile/profile_settings_js.html' %}
     {% endcompress %}
 
