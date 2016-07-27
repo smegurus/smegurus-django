@@ -13,8 +13,6 @@ from tenant_profile.decorators import tenant_profile_required
 @tenant_profile_required
 @foundation_config_required
 def dashboard_page(request):
-    # print("TENANT", request.tenant.schema_name)
-    # print("USER", request.token)
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
     })

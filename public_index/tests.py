@@ -17,6 +17,15 @@ class PublicIndexTestCase(TenantTestCase):
         # 'permissions',
     ]
 
+    def setup_tenant(self, tenant):
+        """Public Schema"""
+        tenant.schema_name = 'test'  # Do not change this!
+        tenant.name = "Galactic Alliance of Humankind"
+        tenant.has_perks=True
+        tenant.has_mentors=True
+        tenant.how_discovered = "Command HQ"
+        tenant.how_many_served = 1
+
     @classmethod
     def setUpTestData(cls):
         Group.objects.bulk_create([

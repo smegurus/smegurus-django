@@ -26,6 +26,11 @@ class TenantGoalTestCases(APITestCase, TenantTestCase):
         tenant.schema_name = 'galacticalliance'
         tenant.name = "Galactic Alliance of Humankind"
         tenant.is_setup = True
+        tenant.is_setup = True
+        tenant.has_perks=True
+        tenant.has_mentors=True
+        tenant.how_discovered = "Command HQ"
+        tenant.how_many_served = 1
 
     @classmethod
     def setUpTestData(cls):
