@@ -129,7 +129,7 @@
             cache: false,
             contentType: false,
             processData: false,
-            type: 'POST',
+            type: 'PUT',
             success: function(json_results){
                 success_callback(json_results);
             },
@@ -156,7 +156,7 @@
             cache: false,
             contentType: false,
             processData: false,
-            type: 'POST',
+            type: 'PUT',
             success: function(json_results){
                 success_callback(json_results);
             },
@@ -169,4 +169,28 @@
             }
         });
     }
+   /*
+    *  Function will allow the User to unlock his account.
+    */
+   function unlock_tenant_me(id, password, success_callback, error_callback) {
+       var me = { 'password': password };
+       jQuery.ajax({
+           url: "/api/tenantme/" + id + "/unlock_me/?format=json",
+           headers: {
+               Authorization: 'Token ' + '{{ request.token }}'
+           },
+           data: me,
+           type: "PUT",
+           traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
+           success: function(json_result){
+               success_callback(json_result); // Call back the function with the JSON results.
+           },
+           error: function(error_json_result) {
+               error_callback(error_json_result);
+           },
+           complete: function(xhr,status) {
+               // Do nothing.
+           }
+       });
+   }
 </script>

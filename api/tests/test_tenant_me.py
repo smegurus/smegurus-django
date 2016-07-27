@@ -182,7 +182,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
 
         # Run the test and verify.
-        response = self.authorized_client.post(
+        response = self.authorized_client.put(
             '/api/tenantme/1/admit_me/',
             json.dumps({}),
             content_type='application/json'
@@ -204,7 +204,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Run the test and verify.
-        response = self.authorized_client.post(
+        response = self.authorized_client.put(
             '/api/tenantme/1/admit_me/',
             json.dumps({}),
             content_type='application/json'
@@ -223,7 +223,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
 
         # Run the test and verify.
-        response = self.authorized_client.post(
+        response = self.authorized_client.put(
             '/api/tenantme/1/expel_me/',
             json.dumps({}),
             content_type='application/json'
@@ -245,7 +245,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Run the test and verify.
-        response = self.authorized_client.post(
+        response = self.authorized_client.put(
             '/api/tenantme/1/expel_me/',
             json.dumps({}),
             content_type='application/json'
@@ -253,3 +253,81 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         me = TenantMe.objects.get(id=1)
         self.assertFalse(me.is_admitted)
+
+    @transaction.atomic
+    def test_unlock_with_success(self):
+        # Delete any previous data.
+        items = tenantme.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+            is_locked=False,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+            'password': TEST_USER_PASSWORD
+        }
+        response = self.authorized_client.put(
+            '/api/tenantme/1/unlock_me/',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_unlock_with_missing_password(self):
+        # Delete any previous data.
+        items = TenantMe.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenantme/1/unlock_me/',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    @transaction.atomic
+    def test_unlock_with_wrong_password(self):
+        # Delete any previous data.
+        items = TenantMe.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Create a new object with our specific test data.
+        TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+
+        # Run the test.
+        data = {
+            'id': 1,
+            'owner': self.user.id,
+            'password': 'ILoveHideauze',
+        }
+        response = self.authorized_client.put(
+            '/api/tenantme/1/unlock_me/',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
