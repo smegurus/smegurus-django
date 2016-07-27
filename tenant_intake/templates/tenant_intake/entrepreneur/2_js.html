@@ -1,13 +1,34 @@
 {% load i18n %}
 <script>
-    function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true);
-        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
-    }
+    $(document).ready(function () {
+        // Initial setup.
+        {% if intake.how_did_you_hear != 3 %}
+            $('#id_how_did_you_hear_other_div').hide();
+        {% endif %}
+
+        // Page functions.
+        $("#id_how_did_you_hear").change(function () {
+            var end = this.value;
+            var firstDropVal = $('#id_how_did_you_hear').val();
+            console.log(firstDropVal);
+
+            if (firstDropVal == 3) {
+                $('#id_how_did_you_hear_other_div').show();
+            } else {
+                $('#id_how_did_you_hear_other_div').hide();
+            }
+
+        });
+    });
 
     function enable_btn() {
         $('#id_continue_btn').prop("disabled", false);
         $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+    }
+
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
     }
 
     function ajax_back() {
