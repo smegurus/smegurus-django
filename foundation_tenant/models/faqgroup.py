@@ -15,6 +15,7 @@ class FAQGroupManager(models.Manager):
 class FAQGroup(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
+        ordering = ('created',)
         db_table = 'biz_faq_groups'
         verbose_name = 'FAQ Group'
         verbose_name_plural = 'FAQ Groups'

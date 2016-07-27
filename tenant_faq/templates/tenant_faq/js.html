@@ -1,0 +1,69 @@
+<script>
+    $(document).ready(function () {
+        {% for faq_group in faq_groups.all %}
+            {% for faq_item in faq_group.items.all %}
+                {% for the_user in faq_item.likers.all %}
+
+                    {% if the_user.email == request.user.email %}
+                        var item_id = {{ faq_item.id }};
+                        console.log("Liked item at ID# "+ item_id);
+                        //$('#thumbs-up-'+item_id).removeClass('fa-thumbs-up text-muted').addClass('fa-thumbs-up');
+
+                        $('#thumbs-up-'+item_id).attr('class','fa fa-thumbs-up');
+                        $('#thumbs-down-'+item_id).attr('class','fa fa-thumbs-down text-muted');
+                    {% endif %}
+
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for faq_group in faq_groups.all %}
+            {% for faq_item in faq_group.items.all %}
+                {% for the_user in faq_item.dislikers.all %}
+
+                    {% if the_user.email == request.user.email %}
+                        var item_id = {{ faq_item.id }};
+                        console.log("Disliked item at ID# "+ item_id);
+                        //$('#thumbs-down-'+item_id).removeClass('fa-thumbs-down text-muted').addClass('fa-thumbs-down');
+
+                        $('#thumbs-up-'+item_id).attr('class','fa fa-thumbs-up text-muted');
+                        $('#thumbs-down-'+item_id).attr('class','fa fa-thumbs-down');
+                    {% endif %}
+
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    });
+
+    function ajax_like(item_id) {
+        like_tenant_faqitem(
+            item_id,
+            function(json_result) {
+                $('#thumbs-up-'+item_id).attr('class','fa fa-thumbs-up');
+                $('#thumbs-down-'+item_id).attr('class','fa fa-thumbs-down text-muted');
+            },
+            function(error_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end LIKE
+    }
+
+    function ajax_dislike(item_id) {
+        dislike_tenant_faqitem(
+            item_id,
+            function(json_result) {
+                $('#thumbs-up-'+item_id).attr('class','fa fa-thumbs-up text-muted');
+                $('#thumbs-down-'+item_id).attr('class','fa fa-thumbs-down');
+            },
+            function(error_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end DISLIKE
+    }
+</script>

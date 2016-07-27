@@ -1,6 +1,9 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    {% compress js inline %}
+        {% include 'tenant_faq/js.html' %}
+    {% endcompress %}
 
 <!-- Page content-->
 <div class="content-wrapper">
@@ -44,17 +47,23 @@
                         <div id="acc1collapse_{{ faq_item.id }}" class="panel-collapse collapse">
                             <div class="panel-body">
                                 {{ faq_item.answer_text|escape|safe }}
-                                {% comment %}
+
+                                <!-- LIKE / DISLIKE -->
                                 <div class="pull-right">
                                     <small class="text-muted mr">{% trans 'Was this information useful?' %}</small>
-                                    <button type="button" class="btn btn-default btn-xs">
-                                        <em class="fa fa-thumbs-up text-muted"></em>
+                                    <button onclick="ajax_like({{ faq_item.id }});"
+                                               type="button"
+                                               class="btn btn-default btn-xs">
+                                        <em id="thumbs-up-{{ faq_item.id }}" class="fa fa-thumbs-up text-muted"></em>
                                     </button>
-                                    <button type="button" class="btn btn-default btn-xs">
-                                        <em class="fa fa-thumbs-down text-muted"></em>
+                                    <button onclick="ajax_dislike({{ faq_item.id }});"
+                                               type="button"
+                                              class="btn btn-default btn-xs">
+                                        <em id="thumbs-down-{{ faq_item.id }}" class="fa fa-thumbs-down text-muted"></em>
                                     </button>
                                 </div>
-                                {% endcomment %}
+                                <!-- end LIKE / DISLIKE -->
+
                             </div>
                         </div>
                     </div>
