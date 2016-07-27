@@ -292,30 +292,66 @@
                 <nav>
                     <!-- Nav tabs-->
                     <ul class="nav">
+                        <!-- PROFILE -->
                         <li class=" ">
                             <a href="{% url 'tenant_profile' %}" title="My Profile" >
                             <em class="icon-user"></em>
                             <span data-localize="offsidebar.nav.PROFILE">My Profile</span>
                             </a>
                         </li>
+                        <!-- end PROFILE -->
+
+                        <!-- SETTINGS -->
                         <li class=" ">
                             <a href="{% url 'tenant_profile_setting' %}" title="Settings" >
                             <em class="icon-settings"></em>
                             <span data-localize="offsidebar.nav.SETTINGS">Settings</span>
                             </a>
                         </li>
+                        <!-- end SETTINGS -->
+
+                        <!-- FULLSCREEN -->
                         <li class=" ">
                             <a href="#" title="Go Full Screen" data-toggle-fullscreen="" style="cursor: pointer;">
                             <em class="fa fa-expand"></em>
                             <span data-localize="offsidebar.nav.FULLSCREEN">Go Full Screen</span>
                             </a>
                         </li>
+                        <!-- end FULLSCREEN -->
+
+                        <!-- LOCK -->
                         <li class=" ">
                             <a href="{% url 'tenant_profile_lock' %}" title="Lock Screen">
                             <em class="icon-lock"></em>
                             <span data-localize="offsidebar.nav.LOCK">Lock Screen</span>
                             </a>
                         </li>
+                        <!-- end LOCK -->
+
+                        <!-- HELP -->
+                        <li class=" ">
+                            <a id="help-block-toggle" href="#help-block" data-toggle="collapse" title="Help" >
+                            <em class="icon-question"></em>
+                            <span data-localize="offsidebar.nav.HELP">Help</span>
+                            </a>
+                        </li>
+                        <li class="has-help-block">
+                            <div id="help-block" class="collapse">
+                                <div class="item logout-block">
+                                    <p>{% trans 'What can we help you with?' %}</p>
+                                    <button onclick="ajax_load_faq_page();"
+                                               type="button"
+                                              class="mb-sm btn label-green-v2 pull-left">FAQ</button>
+                                    <button onclick="ajax_load_help_page();"
+                                               type="button"
+                                              class="mb-sm btn label-red-v2 pull-right">QUESTION</button>
+                                    <br /><br />
+                                </div>
+                            </div>
+                        </li>
+                        <!-- end HELP -->
+
+                        <!-- LOGOUT -->
                         <li class=" ">
                             <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="Logout" >
                             <em class="icon-logout"></em>
@@ -334,6 +370,8 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- end LOGOUT -->
+
                     </ul>
                     <!-- Tab panes-->
                 </nav>
@@ -405,8 +443,7 @@
                     {% include "api/tenant_faqitem.html" %}
                     {% include "api/tenant_me.html" %}
                     <script>
-                        function ajax_logout()
-                        {
+                        function ajax_logout() {
                             sign_off(
                                 function(success_result) {
                                     console.log(success_result);
@@ -416,6 +453,14 @@
                                     console.log(error_result);
                                 }
                             );
+                        }
+
+                        function ajax_load_faq_page() {
+                            window.location = "{% url 'tenant_faq' %}";
+                        }
+
+                        function ajax_load_help_page() {
+                            // window.location = "{% url 'foundation_auth_user_login' %}";
                         }
                     </script>
                 {% endif %}

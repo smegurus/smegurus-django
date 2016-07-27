@@ -25,7 +25,7 @@
                 <!-- START panel-->
                 <div class="p">
                     {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
-                        <img src="{{ request.tenant_me.image.url }}" alt="Contact" width="60" height="60" class="img-thumbnail img-circle center-block">
+                        <img src="{{ request.tenant_me.image.imagefile.url }}" alt="Contact" width="60" height="60" class="img-thumbnail img-circle center-block">
                     {% else %}
                         <img src="{% static 'app/img/dummy.png' %}" alt="Contact" width="60" height="60" class="img-thumbnail img-circle center-block">
                     {% endif %}

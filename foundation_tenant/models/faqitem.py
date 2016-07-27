@@ -48,4 +48,4 @@ class FAQItem(models.Model):
     )
 
     def __str__(self):
-        return str(self.owner.email)
+        return str(self.question_text)

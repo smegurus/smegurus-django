@@ -28,6 +28,8 @@ from foundation_tenant.models.tellusyourneed import TellUsYourNeed
 from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.admission import Admission
+from foundation_tenant.models.faqitem import FAQItem
+from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.me import TenantMe
 from foundation_public import constants
 
@@ -426,3 +428,19 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             # Cleanup
             for item in Admission.objects.all():
                 item.delete()
+
+        @transaction.atomic
+        def test_faqgroup_to_string(self):
+            obj = FAQGroup.objects.create(
+                text='hideauze.com',
+            )
+            self.assertIn(str(obj), 'hideauze.com')
+            obj.delete();  # Cleanup
+
+        @transaction.atomic
+        def test_faqitem_to_string(self):
+            obj = FAQItem.objects.create(
+                question_text='hideauze.com',
+            )
+            self.assertIn(str(obj), 'hideauze.com')
+            obj.delete();  # Cleanup

@@ -1,0 +1,71 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+<!-- Page content-->
+<div class="content-wrapper">
+    <div class="container container-md">
+        <div class="row mb-lg">
+            <div class="col-md-8">
+                <div class="h1 text-bold">{% trans 'FAQs' %}</div>
+                <p class="text-muted">{% trans 'Praesent id mauris urna, et tristique lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.' %}</p>
+            </div>
+            <div class="col-md-4">
+                <div class="panel">
+                    <div class="panel-body text-center">
+                        <p class="mb-lg">{% trans 'We are here to help!' %}'</p>
+                        <p class="mb-lg"><em class="fa fa-envelope"></em>
+                            <span style="margin-left: 10px;margin-top: -3px">support@smegurus.com</span>
+                        </p>
+                        <p class="mb-lg"><em class="fa fa-phone"></em>
+                            <span style="margin-left: 10px;">(519)520-3443</span>
+                        </p>
+                        <button onclick="" type="button" class="btn btn-info">{% trans 'Contact support' %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% for faq_group in faq_groups.all %}
+            <h4 class="mv-lg pv-lg text-dark">{{ faq_group.text }}</h4>
+            <div id="accordion1" class="panel-group">
+                {% for faq_item in faq_group.items.all %}
+                    <div class="panel panel-default b0">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion1" href="#acc1collapse_{{ faq_item.id }}">
+                                    <small>
+                                    <em class="fa fa-plus text-primary mr"></em>
+                                    </small>
+                                    <span>{{ faq_item.question_text|escape|safe }}</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="acc1collapse_{{ faq_item.id }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                {{ faq_item.answer_text|escape|safe }}
+                                {% comment %}
+                                <div class="pull-right">
+                                    <small class="text-muted mr">{% trans 'Was this information useful?' %}</small>
+                                    <button type="button" class="btn btn-default btn-xs">
+                                        <em class="fa fa-thumbs-up text-muted"></em>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs">
+                                        <em class="fa fa-thumbs-down text-muted"></em>
+                                    </button>
+                                </div>
+                                {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <h4 class="mv-lg pv-lg text-dark">{% trans 'NO FAQ ITEMS' %}</h4>
+                {% endfor %}
+            </div>
+        {% empty %}
+            <h4 class="mv-lg pv-lg text-dark">{% trans 'NO FAQ' %}</h4>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
