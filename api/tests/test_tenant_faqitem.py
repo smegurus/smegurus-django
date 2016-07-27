@@ -93,7 +93,7 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_list_with_anonymous_user(self):
-        response = self.unauthorized_client.get('/api/tenantfaqitem/')
+        response = self.unauthorized_client.get('/api/tenantfaqitem/?format=json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -101,7 +101,7 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(org_admin_group)
 
-        response = self.authorized_client.get('/api/tenantFAQItem/')
+        response = self.authorized_client.get('/api/tenantfaqitem/?format=json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -112,7 +112,7 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Test and verify.
-        response = self.authorized_client.get('/api/tenantfaqitem/')
+        response = self.authorized_client.get('/api/tenantfaqitem/?format=json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -120,7 +120,11 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'question_text': 'Unit Test',
         }
-        response = self.unauthorized_client.post('/api/tenantfaqitem/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.post(
+            '/api/tenantfaqitem/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -133,7 +137,11 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'question_text': 'Unit Test',
         }
-        response = self.authorized_client.post('/api/tenantfaqitem/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post(
+            '/api/tenantfaqitem/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
@@ -147,7 +155,11 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         data = {
             'question_text': 'Unit Test',
         }
-        response = self.authorized_client.post('/api/tenantfaqitem/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.post(
+            '/api/tenantfaqitem/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
@@ -163,7 +175,11 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 666,
             'question_text': 'Unit Test',
         }
-        response = self.unauthorized_client.put('/api/tenantfaqitem/666/', json.dumps(data), content_type='application/json')
+        response = self.unauthorized_client.put(
+            '/api/tenantfaqitem/666/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -183,7 +199,11 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 666,
             'question_text': 'Unit Test',
         }
-        response = self.authorized_client.put('/api/tenantfaqitem/666/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put(
+            '/api/tenantfaqitem/666/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -204,12 +224,16 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'id': 666,
             'question_text': 'Unit Test',
         }
-        response = self.authorized_client.put('/api/tenantfaqitem/666/', json.dumps(data), content_type='application/json')
+        response = self.authorized_client.put(
+            '/api/tenantfaqitem/666/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_delete_with_anonymous_user(self):
-        response = self.unauthorized_client.delete('/api/tenantfaqitem/1/')
+        response = self.unauthorized_client.delete('/api/tenantfaqitem/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -217,7 +241,7 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(org_admin_group)
         self.user.save()
-        response = self.authorized_client.delete('/api/tenantfaqitem/1/')
+        response = self.authorized_client.delete('/api/tenantfaqitem/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     @transaction.atomic
@@ -228,5 +252,71 @@ class APIFAQItemWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.save()
 
         # Run test and verify.
-        response = self.authorized_client.delete('/api/tenantfaqitem/1/')
+        response = self.authorized_client.delete('/api/tenantfaqitem/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
+    def test_like_with_anonymous_user(self):
+        response = self.unauthorized_client.put('/api/tenantfaqitem/1/like/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_like_with_authenticated_entrepreneur_user(self):
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+
+        response = self.authorized_client.put('/api/tenantfaqitem/1/like/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_like_with_authenticated_management_user(self):
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(org_admin_group)
+        self.user.save()
+
+        response = self.authorized_client.put('/api/tenantfaqitem/1/like/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_like_with_authenticated_advisor_user(self):
+        # Change Group that the User belongs in.
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        response = self.authorized_client.put('/api/tenantfaqitem/1/like/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_dislike_with_anonymous_user(self):
+        response = self.unauthorized_client.put('/api/tenantfaqitem/1/dislike/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_dislike_with_authenticated_entrepreneur_user(self):
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+
+        response = self.authorized_client.put('/api/tenantfaqitem/1/dislike/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_dislike_with_authenticated_management_user(self):
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(org_admin_group)
+        self.user.save()
+
+        response = self.authorized_client.put('/api/tenantfaqitem/1/dislike/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_dislike_with_authenticated_advisor_user(self):
+        # Change Group that the User belongs in.
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
+        self.user.save()
+
+        response = self.authorized_client.put('/api/tenantfaqitem/1/dislike/?format=json', json.dumps({}), content_type='application/json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
