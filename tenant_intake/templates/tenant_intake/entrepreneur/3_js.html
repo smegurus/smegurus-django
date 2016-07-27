@@ -1,5 +1,25 @@
 {% load i18n %}
 <script>
+    $(document).ready(function () {
+        // Initial setup.
+        {% if intake.do_you_own_a_biz != 5 %}
+            $('#id_do_you_own_a_biz_other_div').hide();
+        {% endif %}
+
+        // Page functions.
+        $("#id_do_you_own_a_biz").change(function () {
+            var end = this.value;
+            var firstDropVal = $('#id_do_you_own_a_biz').val();
+            console.log(firstDropVal);
+
+            if (firstDropVal == 5) {
+                $('#id_do_you_own_a_biz_other_div').show();
+            } else {
+                $('#id_do_you_own_a_biz_other_div').hide();
+            }
+        });
+    });
+
     function disable_btn() {
         $('#id_continue_btn').prop("disabled", true);
         $('#id_continue_btn').val("{% trans 'Please Wait...' %}");

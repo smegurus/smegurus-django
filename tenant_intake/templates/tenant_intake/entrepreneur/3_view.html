@@ -13,16 +13,15 @@
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
         {% for field in form %}
             {% if field.id_for_label == 'id_do_you_own_a_biz' or field.id_for_label == 'id_do_you_own_a_biz_other' %}
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback" id="{{ field.id_for_label }}_div">
                     <label for="signupInputText1" class="text-muted">{{ field.label_tag }}</label>
                      {{ field }}
                     {{ field.errors }}<br/>
-                    <br/>
                 </div>
             {% endif %}
         {% endfor %}
         {{ form.non_field_errors }}
-        
+
         <button onclick="ajax_save_and_continue();"
                      id="id_continue_btn"
                    type="button"
