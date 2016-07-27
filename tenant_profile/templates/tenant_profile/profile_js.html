@@ -22,6 +22,9 @@
         if (website_url.indexOf("http") < 0) {
             website_url = 'http://' + website_url;
         }
+        if (website_url.indexOf("None") >= 0) {
+            website_url = '';
+        }
 
         if (!is_phone_valid(telephone)) {
             enable_btn();
