@@ -1,5 +1,34 @@
 {% load i18n %}
 <script>
+    $(document).ready(function () {
+        // Initial setup.
+        {% if intake.how_can_we_help != 6 %}
+            $('#id_how_can_we_help_other_div').hide();
+        {% endif %}
+
+        {% if intake.how_can_we_help != 2 %}
+            $('#id_how_can_we_help_tag_div').hide();
+        {% endif %}
+
+        // Page functions.
+        $("#id_how_can_we_help").change(function () {
+            var end = this.value;
+            var firstDropVal = $('#id_how_can_we_help').val();
+            if (firstDropVal == 2) {
+                $('#id_how_can_we_help_tag_div').show();
+            } else {
+                $('#id_how_can_we_help_tag_div').hide();
+            }
+
+            if (firstDropVal == 6) {
+                $('#id_how_can_we_help_other_div').show();
+            } else {
+                $('#id_how_can_we_help_other_div').hide();
+            }
+
+        });
+    });
+
     function disable_btn() {
         $('#id_continue_btn').prop("disabled", true);
         $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
