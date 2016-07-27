@@ -159,15 +159,22 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_user_activate_page_view_with_missing_user(self):
+        # Pre-configure unit test: Delete previous users.
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
+
+        # Generate a string value.
         signer = Signer()
         id_sting = str(666).encode()
         value = signer.sign(id_sting)
 
         # Run test & verify.
         url = reverse('foundation_auth_user_activation', args=[value])
-        response = self.unauthorized_client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'The page you are looking for does not exists.', response.content)
 
     @transaction.atomic
     def test_user_login_page_view(self):
