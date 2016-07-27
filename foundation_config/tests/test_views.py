@@ -137,12 +137,8 @@ class FoundationConfigViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase)
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        items = BusinessIdea.objects.all()
-        for item in items.all():
-            item.delete()
-        items = Tag.objects.all()
-        for item in items.all():
-            item.delete()
+        BusinessIdea.objects.delete_all()
+        Tag.objects.delete_all()
         # super(FoundationConfigViewsWithTenatSchemaTestCases, self).tearDown()
 
     @transaction.atomic

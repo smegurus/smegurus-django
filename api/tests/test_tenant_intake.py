@@ -33,7 +33,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         tenant.has_mentors=True
         tenant.how_discovered = "Command HQ"
         tenant.how_many_served = 1
-        
+
     @classmethod
     def setUpTestData(cls):
         Group.objects.bulk_create([
@@ -162,11 +162,6 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_anonymous_user(self):
-        # Delete any previous data.
-        items = Intake.objects.all()
-        for item in items.all():
-            item.delete()
-
         # Create a new object with our specific test data.
         Intake.objects.create(
             id=1,
@@ -183,11 +178,6 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_authenticated_management_user(self):
-        # Delete any previous data.
-        items = Intake.objects.all()
-        for item in items.all():
-            item.delete()
-
         # Create a new object with our specific test data.
         Intake.objects.create(
             id=1,
@@ -210,11 +200,6 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.user.groups.remove(org_admin_group)
         self.user.groups.add(advisor_group)
         self.user.save()
-
-        # Delete any previous data.
-        items = Intake.objects.all()
-        for item in items.all():
-            item.delete()
 
         # Create a new object with our specific test data.
         Intake.objects.create(

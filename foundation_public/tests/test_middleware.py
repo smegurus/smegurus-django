@@ -52,9 +52,9 @@ class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
 
     @transaction.atomic
     def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
+        # users = User.objects.all()
+        # for user in users.all():
+        #     user.delete()
         super(FoundationPublicMiddlewareWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic

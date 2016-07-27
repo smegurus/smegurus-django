@@ -76,7 +76,7 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         items = User.objects.all()
         for item in items.all():
             item.delete()
-        item = Group.objects.all()
+        items = Group.objects.all()
         for item in items.all():
             item.delete()
         # super(FoundationAuthViewsWithPublicSchemaTestCases, self).tearDown()
@@ -304,7 +304,7 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         items = User.objects.all()
         for item in items.all():
             item.delete()
-        item = Group.objects.all()
+        items = Group.objects.all()
         for item in items.all():
             item.delete()
         # super(FoundationAuthViewsWithTenatSchemaTestCases, self).tearDown()

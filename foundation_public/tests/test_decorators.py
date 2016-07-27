@@ -129,9 +129,9 @@ class FoundationPublicDecoratorWithTenantSchemaTestCase(TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
+        # users = User.objects.all()
+        # for user in users.all():
+        #     user.delete()
         super(FoundationPublicDecoratorWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic

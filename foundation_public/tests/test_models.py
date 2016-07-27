@@ -66,9 +66,10 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
+        pass
+        # users = User.objects.all()
+        # for user in users.all():
+        #     user.delete()
         # super(FoundationPublicModelsWithPublicSchemaTestCases, self).tearDown()
 
     @transaction.atomic
@@ -94,6 +95,13 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
             reason='Lowers moral of soldiers',
         )
         self.assertIn(str(obj), 'Ghost')
+
+    @transaction.atomic
+    def test_country_to_string(self):
+        obj = PublicCountry.objects.create(
+            name='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
 
     # @transaction.atomic
     # def test_fileupload_to_string(self):
