@@ -121,32 +121,6 @@
     }
 
     /**
-     *  Function will get the existing 'Me' object and update it.
-     */
-    function api_me(success_callback, error_callback) {
-        get_public_me(
-            {{ request.public_me.id }},
-            function(me) {
-                me['how_discovered'] = $('#id_how_discovered').val();
-                set_public_me(
-                    me,
-                    function(saved_me) {
-                        console.log(saved_me);
-                        success_callback(saved_me);
-                    },
-                    function(error2) {
-                        console.log(error2);
-                        error_callback(error2);
-                    }
-                ); // end "Save Me".
-            },
-            function(error) {
-                console.log(error);
-            }
-        ); // end "Get Me".
-    }
-
-    /**
      *  Function will find special characters for jQuery.
      */
     var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";
@@ -236,8 +210,7 @@
          *  Algorithm:
          *  1. Save the Postal Address.
          *  2. Save the Organization.
-         *  3. Save Me.
-         *  4. Load the dashboard page.
+         *  3. Load the dashboard page.
          */
         api_postal_address(
             function(pa_success_result) {
@@ -250,21 +223,11 @@
                         console.log("Successfully Created Organization");
                         console.log(o_success_result);
 
-                        api_me(
-                            function(success_result) {
-                                console.log("Success");
-                                setTimeout(function() {
-                                    enable_btn(); // Allow the user to press the button again.
-                                    window.location = "{% url 'foundation_auth_org_successful_registration' %}";
-                                }, 2000);
+                        setTimeout(function() {
+                            enable_btn(); // Allow the user to press the button again.
+                            window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+                        }, 2000);
 
-                            },
-                            function(error_result) {
-                                console.log("Failed");
-                                enable_btn(); // Allow the user to press the button again.
-                                alert(error_result); //TODO: Implement better error notification.
-                            }
-                        ); // end Me
                     },
                     function(o_error_result) {
                         console.log("Failed Set Organization");

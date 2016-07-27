@@ -29,12 +29,12 @@
             return;
         }
 
-        get_public_me(  // start Get Me
-            {{ request.public_me.owner.id }},
+        get_tenant_me(  // start Get Me
+            {{ request.tenant_me.owner.id }},
             function(me) {
                 me['telephone'] = telephone;
                 me['url'] = website_url;
-                set_public_me(  // start Set Me
+                set_tenant_me(  // start Set Me
                     me,
                     function(json_result) {
                         console.log(json_result);

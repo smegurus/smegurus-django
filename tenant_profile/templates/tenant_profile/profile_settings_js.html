@@ -74,8 +74,8 @@
             website_url = "";
         }
 
-        get_public_me(  // Fetch our Me.
-            {{ request.public_me.owner.id }},
+        get_tenant_me(  // Fetch our Me.
+            {{ request.tenant_me.owner.id }},
             function(me) {
                 var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
                 if (image > 0) {
@@ -84,7 +84,7 @@
                 me['telephone'] = $('#id_telephone').val();
                 me['description'] = $('#id_description').val();
                 me['url'] = website_url;
-                set_public_me(  // Save our Me
+                set_tenant_me(  // Save our Me
                     me,
                     function(json_result) {
                         enable_btn();
@@ -108,7 +108,7 @@
 
     function ajax_location() {
         get_public_postaladdress(
-            {{ request.public_me.address.id }},
+            {{ request.tenant_me.address.id }},
             function(result) {
                 console.log(result);
             },
@@ -172,14 +172,14 @@
 
     function ajax_notification() {
         disable_btn(); // Disable the button so no multiple presses happen.
-        get_public_me(  // Fetch our Me.
-            {{ request.public_me.owner.id }},
+        get_tenant_me(  // Fetch our Me.
+            {{ request.tenant_me.owner.id }},
             function(me) {
                 me['notify_when_new_tasks'] = $('#id_notify_when_new_tasks').is(':checked');
                 me['notify_when_new_messages'] = $('#id_notify_when_due_tasks').is(':checked');
                 me['notify_when_due_tasks'] = $('#id_notify_when_due_tasks').is(':checked');
 
-                set_public_me(  // Save our Me
+                set_tenant_me(  // Save our Me
                     me,
                     function(json_result) {
                         enable_btn();

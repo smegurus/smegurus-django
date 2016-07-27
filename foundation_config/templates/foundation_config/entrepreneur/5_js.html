@@ -1,11 +1,11 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        get_public_me(  // start Get Me
-            {{ request.public_me.owner.id }},
+        get_tenant_me(  // start Get Me
+            {{ request.tenant_me.owner.id }},
             function(me) {
                 me['is_setup'] = true;
-                set_public_me(  // start Set Me
+                set_tenant_me(  // start Set Me
                     me,
                     function(json_result) {
                         console.log(json_result);

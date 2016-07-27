@@ -18,7 +18,7 @@ function ajax_unlock() {
     disable_btn();
     var password = $('#id_password').val();
     unlock_me(
-        {{ request.public_me.id }},
+        {{ request.tenant_me.id }},
         password,
         function(json_result) {
             enable_btn();

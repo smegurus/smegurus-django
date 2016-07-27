@@ -13,15 +13,15 @@
 
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
         <!-- Upload ID -->
-        <input type="hidden" id="id_hidden_upload_id" value="{{ request.public_me.image.id }}"/>
-        <input type="hidden" id="id_hidden_url" value="{{ request.public_me.image.imagefile.url }}"/>
+        <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant_me.image.id }}"/>
+        <input type="hidden" id="id_hidden_url" value="{{ request.tenant_me.image.imagefile.url }}"/>
         <!-- /.Upload ID -->
 
         <!-- Image Placeholder -->
         <img id="id_image_placeholder"
-            src="{{ request.public_me.image.imagefile.url }}"
+            src="{{ request.tenant_me.image.imagefile.url }}"
           style="height:200px;width:200px;"
-            alt="{{ request.public_me.name }} Picture"
+            alt="{{ request.tenant_me.name }} Picture"
           class="img-thumbnail center-block mb0 add-cover-image"
            name="product-image" />
         <!-- /.Image Placeholder -->

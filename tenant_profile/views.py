@@ -25,8 +25,8 @@ def profile_settings_page(request):
 @login_required(login_url='/en/login')
 def locked_page(request):
     """Function will lock the User out of our system and will require a password authentication to be let back in."""
-    request.public_me.is_locked=True
-    request.public_me.save()
+    request.tenant_me.is_locked=True
+    request.tenant_me.save()
     return render(request, 'tenant_profile/is_locked_view.html',{
         'page': 'profile',
     })

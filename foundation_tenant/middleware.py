@@ -1,6 +1,7 @@
 from django.http import HttpResponseForbidden
 from foundation_public.models.banned import BannedIP
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
 
 
 class TenantMeMiddleware(object):
@@ -15,5 +16,13 @@ class TenantMeMiddleware(object):
             if request.user.is_authenticated():
                 tenant_me, created = TenantMe.objects.get_or_create(owner=request.user)
                 request.tenant_me = tenant_me
+    
+                if created:
+                    print("CREATING TENANT_ME")
+                    tenant_me.address = PostalAddress.objects.create(
+                        owner=request.user,
+                        name='User #' + (strequest.user.id) + ' Address',
+                    )
+                    tenant_me.save()
 
         return None  # Finish our middleware handler.

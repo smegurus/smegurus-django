@@ -9,7 +9,7 @@ def tenant_profile_required(view_func):
     app setup to take precedence over the current view loaded up.
     """
     def wrapper(request, *args, **kwargs):
-        if request.public_me.is_locked:
+        if request.tenant_me.is_locked:
             return HttpResponseRedirect(reverse('tenant_profile_lock'))
         else:
             return view_func(request, *args, **kwargs)

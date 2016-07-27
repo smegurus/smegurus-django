@@ -33,15 +33,15 @@
                                         <div class="clearfix"></div>
 
                                         <!-- Upload ID -->
-                                        <input type="hidden" id="id_hidden_upload_id" value="{{ request.public_me.image.id }}"/>
-                                        <input type="hidden" id="id_hidden_url" value="{{ request.public_me.image.imagefile.url }}"/>
+                                        <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant_me.image.id }}"/>
+                                        <input type="hidden" id="id_hidden_url" value="{{ request.tenant_me.image.imagefile.url }}"/>
                                         <!-- /.Upload ID -->
 
                                         <!-- Image Placeholder -->
                                         <img id="id_image_placeholder"
-                                            src="{{ request.public_me.image.imagefile.url }}"
+                                            src="{{ request.tenant_me.image.imagefile.url }}"
                                           style="height:200px;width:200px;"
-                                            alt="{{ request.public_me.name }} {% trans 'Picture' %}"
+                                            alt="{{ request.tenant_me.name }} {% trans 'Picture' %}"
                                           class="img-thumbnail center-block mb0 add-cover-image"
                                            name="product-image" />
                                         <!-- /.Image Placeholder -->
@@ -64,15 +64,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label>{% trans 'Bio' %}</label>
-                                        <textarea id="id_description" rows="3" class="form-control">{{ request.public_me.description|escape|safe }}</textarea>
+                                        <textarea id="id_description" rows="3" class="form-control">{{ request.tenant_me.description|escape|safe }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>{% trans 'URL' %}</label>
-                                        <input id="id_url" type="text" class="form-control" value="{{ request.public_me.url }}">
+                                        <input id="id_url" type="text" class="form-control" value="{{ request.tenant_me.url }}">
                                     </div>
                                     <div class="form-group">
                                         <label>{% trans 'Telephone*' %}</label>
-                                        <input id="id_name" type="text" class="form-control" value="{{ request.public_me.telephone|escape|safe }}" />
+                                        <input id="id_name" type="text" class="form-control" value="{{ request.tenant_me.telephone|escape|safe }}" />
                                     </div>
                                     <button id="id_profile_btn"
                                        onclick="ajax_profile();"
@@ -184,7 +184,7 @@
                                             <label>
                                                 <input id="id_notify_when_new_tasks"
                                                      type="checkbox"
-                                                    value="" {% if request.public_me.notify_when_new_tasks %}checked{% endif %} />
+                                                    value="" {% if request.tenant_me.notify_when_new_tasks %}checked{% endif %} />
                                                 {% trans 'Alert me when I receive a new task' %}
                                             </label>
                                         </div>
@@ -194,7 +194,7 @@
                                             <label>
                                                 <input id="id_notify_when_new_messages"
                                                      type="checkbox"
-                                                    value="" {% if request.public_me.notify_when_new_messages %}checked{% endif %} />
+                                                    value="" {% if request.tenant_me.notify_when_new_messages %}checked{% endif %} />
                                                 {% trans 'Alert me when I receive a new message' %}
                                             </label>
                                         </div>
@@ -204,7 +204,7 @@
                                             <label>
                                                 <input id="id_notify_when_due_tasks"
                                                      type="checkbox"
-                                                    value="" {% if request.public_me.notify_when_due_tasks %}checked{% endif %} />
+                                                    value="" {% if request.tenant_me.notify_when_due_tasks %}checked{% endif %} />
                                                 {% trans 'Alert me when I have an item due within 2 days' %}
                                             </label>
                                         </div>

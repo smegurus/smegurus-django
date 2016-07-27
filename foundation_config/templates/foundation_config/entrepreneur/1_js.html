@@ -16,14 +16,14 @@
 
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
-        get_public_me(  // Fetch our Me.
-            {{ request.public_me.owner.id }},
+        get_tenant_me(  // Fetch our Me.
+            {{ request.tenant_me.owner.id }},
             function(me) {
                 var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
                 if (image > 0) {
                    me['image'] = image;
                 }
-                set_public_me(  // Save our Me
+                set_tenant_me(  // Save our Me
                     me,
                     function(json_result) {
                         enable_btn();

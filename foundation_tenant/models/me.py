@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.abstract_thing import AbstractThing
+from foundation_tenant.models.postaladdress import PostalAddress
 
 
 class TenantMeManager(models.Manager):
@@ -18,7 +19,7 @@ class TenantMeManager(models.Manager):
             item.delete()
 
 
-class TenantMe(models.Model):
+class TenantMe(AbstractThing):
     """
     The object to represent the "TenantMe" object for all the tenanted objects.
     """
@@ -29,10 +30,12 @@ class TenantMe(models.Model):
         verbose_name_plural = 'Tenant Mes'
 
     objects = TenantMeManager()
-    owner = models.ForeignKey(
-        User,
-        help_text=_('The user whom owns this thing.'),
-        on_delete=models.CASCADE,
+    address = models.ForeignKey(
+        PostalAddress,
+        help_text=_('Physical address of the item.'),
+        null=True,
+        blank=True,
+        related_name="tenant_me_address_%(app_label)s_%(class)s_related"
     )
     is_admitted = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
         _("Is Admitted"),
@@ -45,6 +48,41 @@ class TenantMe(models.Model):
         blank=True,
         related_name="tenant_me_tags_%(app_label)s_%(class)s_related"
     )
+
+    is_tos_signed = models.BooleanField(
+        _("Is terms of service signed"),
+        default=True, # Assume user agrees through forced Javascript code.
+    )
+
+    # Controls whether the User has to go through a Profile Setup screens
+    # before being granted access to the main application (Dashboard, etc).
+    is_setup = models.BooleanField(
+        _("Is this account setup and ready"),
+        default=False,
+        help_text=_('Variable controls whether the user profile has been setup.'),
+    )
+
+    # Controls whether the screen is locked or not.
+    is_locked = models.BooleanField(
+        _("Is Locked"),
+        default=False,
+        help_text=_('Controls whether the screen is locked or not.'),
+    )
+
+    # Notification Control Variables.
+    notify_when_new_tasks = models.BooleanField(
+        _("Alert me when I receive a new task"),
+        default=True
+    )
+    notify_when_new_messages = models.BooleanField(
+        _("Alert me when I receive a new message"),
+        default=True
+    )
+    notify_when_due_tasks = models.BooleanField(
+        _("Alert me when I have an item due within 2 days"),
+        default=True
+    )
+
 
     def __str__(self):
         return str(self.id)
