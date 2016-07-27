@@ -185,7 +185,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
 
     # Metric
     how_discovered = models.CharField(
-        _("How this Organization officially discovered SMEGurus"),
+        _("How did you hear about SME Gurus?"),
         choices=constants.HOW_DISCOVERED_OPTIONS,
         max_length=127,
         help_text=_('The details of how the User discovered our website.'),
@@ -195,7 +195,6 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         _("How many entrepreneurs served"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
         choices=constants.HOW_MANY_SERVED_OPTIONS,
-        default=0,
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),

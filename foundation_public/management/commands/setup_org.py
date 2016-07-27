@@ -20,7 +20,10 @@ class Command(BaseCommand):
             schema_name='public',
             name='SMEGurus',
             paid_until='2016-12-05',
-            on_trial=False
+            on_trial=False,
+            has_perks=False,
+            has_mentors=False,
+            how_many_served=1,
         )
         try:
             print("Creating Public")
@@ -44,7 +47,10 @@ class Command(BaseCommand):
             schema_name='demo',
             name='SMEGurus Demo',
             paid_until='2016-12-05',
-            on_trial=True
+            on_trial=True,
+            has_perks=False,
+            has_mentors=False,
+            how_many_served=1,
         )
         try:
             print("Creating Tenant")

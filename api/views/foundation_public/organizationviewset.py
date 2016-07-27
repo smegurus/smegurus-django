@@ -48,6 +48,11 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
                 domain.save()
             except Exception as e:
                 print(e)
+            
+            # Override custom default values.
+            org.has_mentors = True
+            org.has_perks = True
+            org.is_setup = False
 
             # Attach our current logged in User for our Organization.
             org.users.add(self.request.user)

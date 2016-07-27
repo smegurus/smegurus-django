@@ -12,7 +12,7 @@ from foundation_public.models.organization import PublicOrganization
 class PublicOrganizationForm(forms.ModelForm):
     class Meta:
         model = PublicOrganization
-        fields = ['schema_name', 'name', 'url', 'facebook_url', 'twitter_url', 'how_many_served', 'is_tos_signed',]
+        fields = ['schema_name', 'name', 'url', 'facebook_url', 'twitter_url', 'how_many_served', 'how_discovered', 'is_tos_signed',]
         labels = {
             'schema_name': _('Sub-Domain'),
             'name': _('Name'),
@@ -54,7 +54,13 @@ class PublicOrganizationForm(forms.ModelForm):
             }),
             'how_many_served': Select(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter Twitter URL.'),
+                'placeholder': _('Enter how many entrepreneurs served.'),
+                'autocapitalize':'off',
+                'autocomplete':'off',
+            }),
+            'how_discovered': Select(attrs={
+                'class': u'form-control',
+                'placeholder': _('How did you hear about SME Gurus?'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
             }),

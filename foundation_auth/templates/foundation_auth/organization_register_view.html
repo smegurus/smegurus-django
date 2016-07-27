@@ -83,11 +83,8 @@
             {{ org_field.errors }}<br/>
         {% endif %}
         {% if org_field.id_for_label == 'id_how_discovered' %}
-            <div class="form-group has-feedback">
-                <label for="signupInputText1" class="text-muted">{{ field.label_tag }}</label>
-                {{ org_field.label_tag }} {{ me_field }}
-                {{ org_field.errors }}<br/>
-            </div>
+        {{ org_field.label_tag }} {{ org_field }}
+        {{ org_field.errors }}<br/>
         {% endif %}
     {% endfor %}
     {{ org_field.non_field_errors }}
