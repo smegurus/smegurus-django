@@ -1,0 +1,100 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        {% for post in posts.all %}
+            {% for the_user in post.likers.all %}
+                {% if the_user.email == request.user.email %}
+                    var post_id = {{ post.id }};
+                    $('#id_like_'+post_id).attr('class','');
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    }); // end Ready
+
+    function disable_btn() {
+        // Profile
+        $('#id_post_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_post_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        // Profile.
+        $('#id_post_btn').prop("disabled", false);
+        $('#id_post_btn').val("{% trans 'Update' %}");
+    }
+
+    function ajax_like(post_id) {
+        if ($('#id_like_'+post_id).hasClass("text-muted")) { // IS DESELECTED
+            like_tenant_communitypost(
+                post_id,
+                function(json_result) {
+                    // SELECT
+                    //-----------------
+                    $('#id_like_'+post_id).attr('class','');
+
+                    // INCREMENT COUNT
+                    //-----------------
+                    var count =  $('#id_liked_count_'+post_id).text();
+                    count = count.replace('(', '');
+                    count = count.replace(')', '');
+                    count = parseInt(count); // Convert to integer
+                    count++;
+                    $('#id_liked_count_'+post_id).text('('+count+')');
+                },
+                function(error_result) {
+                    enable_btn();
+                    var string = JSON.stringify( error_json_result );
+                    console.log(error_json_result);
+                    alert(string);
+                }
+            ); // end LIKE
+        } else {
+            unlike_tenant_communitypost(
+                post_id,
+                function(json_result) {
+                    // DESELECT
+                    //-----------------
+                    $('#id_like_'+post_id).attr('class','text-muted');
+
+                    // DECREMENT COUNT
+                    //-----------------
+                    var count =  $('#id_liked_count_'+post_id).text();
+                    count = count.replace('(', '');
+                    count = count.replace(')', '');
+                    count = parseInt(count); // Convert to integer
+                    count--;
+                    $('#id_liked_count_'+post_id).text('('+count+')');
+                },
+                function(error_result) {
+                    enable_btn();
+                    var string = JSON.stringify( error_json_result );
+                    console.log(error_json_result);
+                    alert(string);
+                }
+            ); // end LIKE
+        }
+    }
+
+    function ajax_post() {
+        disable_btn();
+        var data = {
+            'name': $('#id_post_title').val(),
+            'description': $('#id_post_description').val(),
+        };
+        set_tenant_communitypost(
+            data,
+            function(communitypost) {
+                console.log(communitypost);
+                enable_btn();
+                window.location = "";
+            },
+            function(error_result) {
+                console.log(error_result);
+                enable_btn();
+                // Convert the error json into string.
+                var string = JSON.stringify( error_result );
+                alert("Unknown Error: "+string);
+            }
+        ); // end Set Community
+    }
+</script>

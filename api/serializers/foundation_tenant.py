@@ -27,6 +27,12 @@ from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.me import TenantMe
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'groups')
+
+
 class TenantImageUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = TenantImageUpload
@@ -186,6 +192,8 @@ class FAQItemSerializer(serializers.ModelSerializer):
 
 
 class CommunityPostSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
+    me = TenantMeSerializer(many=False, required=False, read_only=True)
     class Meta:
         model = CommunityPost
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me')

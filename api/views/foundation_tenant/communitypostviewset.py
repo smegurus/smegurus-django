@@ -26,6 +26,14 @@ class CommunityPostViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
     filter_class = CommunityPostFilter
 
+    def perform_create(self, serializer):
+        """Add owner to this model when being created for the first time"""
+        # Include the owner attribute directly, rather than from request data.
+        instance = serializer.save(
+            owner=self.request.user,
+            me=self.request.tenant_me,
+        )
+
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, IsOwner])
     def like(self, request, pk=None):
         post = self.get_object()
