@@ -30,6 +30,7 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.faqitem import FAQItem
 from foundation_tenant.models.faqgroup import FAQGroup
+from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.me import TenantMe
 from foundation_public import constants
 
@@ -387,60 +388,109 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = TenantMe.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
+    @transaction.atomic
+    def test_admission_to_string(self):
+        tag = Tag.objects.create(
+            name='Testing',
+        )
+        self.assertIn(str(tag), 'Testing')
+        admission = Admission.objects.create(
+            tag=tag,
+        )
+        self.assertIn(str(admission), 'Testing')
+        admission.delete();  # Cleanup
+        tag.delete()
 
-        @transaction.atomic
-        def test_admission_to_string(self):
-            tag = Tag.objects.create(
-                name='Testing',
-            )
-            self.assertIn(str(obj), 'Testing')
-            admission = Admission.objects.create(
-                tag=tag,
-            )
-            self.assertIn(str(obj), 'Testing')
-            admission.delete();  # Cleanup
-            tag.delete()
+    @transaction.atomic
+    def test_admission_delete_all(self):
+        # Setup our unit test.
+        count = Place.objects.all().count()
+        self.assertEqual(count, 0)
+        tag = Tag.objects.create(
+            name='Testing',
+        )
+        self.assertIn(str(tag), 'Testing')
+        admission = Admission.objects.create(
+            tag=tag,
+        )
+        count = Admission.objects.all().count()
+        self.assertEqual(count, 1)
 
-        @transaction.atomic
-        def test_admission_delete_all(self):
-            # Setup our unit test.
-            count = Place.objects.all().count()
-            self.assertEqual(count, 0)
-            tag = Tag.objects.create(
-                name='Testing',
-            )
-            self.assertIn(str(obj), 'Testing')
-            admission = Admission.objects.create(
-                tag=tag,
-            )
-            count = Admission.objects.all().count()
-            self.assertEqual(count, 1)
+        # Run our test and verify.
+        Admission.objects.delete_all()
+        count = Admission.objects.all().count()
+        self.assertEqual(count, 0)
 
-            # Run our test and verify.
-            Admission.objects.delete_all()
-            count = Admission.objects.all().count()
-            self.assertEqual(count, 0)
+    @transaction.atomic
+    def test_faqgroup_to_string(self):
+        obj = FAQGroup.objects.create(
+            text='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete();  # Cleanup
 
-            # Cleanup
-            for item in Admission.objects.all():
-                item.delete()
+    @transaction.atomic
+    def test_faqgroup_delete_all(self):
+        # Setup our unit test.
+        count = FAQGroup.objects.all().count()
+        self.assertEqual(count, 0)
+        FAQGroup.objects.create(
+            text='hideauze.com',
+        )
+        count = FAQGroup.objects.all().count()
+        self.assertEqual(count, 1)
 
-        @transaction.atomic
-        def test_faqgroup_to_string(self):
-            obj = FAQGroup.objects.create(
-                text='hideauze.com',
-            )
-            self.assertIn(str(obj), 'hideauze.com')
-            obj.delete();  # Cleanup
+        # Run our test and verify.
+        FAQGroup.objects.delete_all()
+        count = FAQItem.objects.all().count()
+        self.assertEqual(count, 0)
 
-        @transaction.atomic
-        def test_faqitem_to_string(self):
-            obj = FAQItem.objects.create(
-                question_text='hideauze.com',
-            )
-            self.assertIn(str(obj), 'hideauze.com')
-            obj.delete();  # Cleanup
+    @transaction.atomic
+    def test_faqitem_to_string(self):
+        obj = FAQItem.objects.create(
+            question_text='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_faqitem_delete_all(self):
+        # Setup our unit test.
+        count = FAQItem.objects.all().count()
+        self.assertEqual(count, 0)
+        FAQItem.objects.create(
+            question_text='hideauze.com',
+        )
+        count = FAQItem.objects.all().count()
+        self.assertEqual(count, 1)
+
+        # Run our test and verify.
+        FAQItem.objects.delete_all()
+        count = FAQItem.objects.all().count()
+        self.assertEqual(count, 0)
+
+    @transaction.atomic
+    def test_communitypost_to_string(self):
+        obj = CommunityPost.objects.create(
+            name='hideauze.com',
+            owner=User.objects.get(username='1')
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_communitypost_delete_all(self):
+        # Setup our unit test.
+        count = CommunityPost.objects.all().count()
+        self.assertEqual(count, 0)
+        CommunityPost.objects.create(
+            name='Testing',
+            owner=User.objects.get(username='1'),
+        )
+        count = CommunityPost.objects.all().count()
+        self.assertEqual(count, 1)
+
+        # Run our test and verify.
+        CommunityPost.objects.delete_all()
+        count = CommunityPost.objects.all().count()
+        self.assertEqual(count, 0)

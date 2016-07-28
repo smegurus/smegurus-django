@@ -23,6 +23,7 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.faqitem import FAQItem
 from foundation_tenant.models.faqgroup import FAQGroup
+from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.me import TenantMe
 
 
@@ -182,3 +183,9 @@ class FAQItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQItem
         fields = ('id', 'created', 'last_modified', 'question_text', 'answer_text', 'likers', 'dislikers',)
+
+
+class CommunityPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CommunityPost
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags',)

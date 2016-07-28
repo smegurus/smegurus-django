@@ -21,4 +21,5 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.faqitem import FAQItem
 from foundation_tenant.models.faqgroup import FAQGroup
+from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.me import TenantMe
