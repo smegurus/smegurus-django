@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 {% compress js inline %}
-{% include 'tenant_community/js.html' %}
+    {% include 'tenant_community/list/js.html' %}
 {% endcompress %}
 <!-- Page content-->
 <div class="content-wrapper">
@@ -89,16 +89,17 @@
                 </div>
             </div>
             <!-- end Ads-->
+            {% endcomment %}
             <!-- Search-->
             <div class="panel panel-default">
-                <div class="panel-heading">Search</div>
+                <div class="panel-heading">{% trans 'Search' %}</div>
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <div class="input-group">
-                            <input type="text" placeholder="Search for..." class="form-control">
+                            <input id="id_search" type="text" placeholder="{% trans 'Search for...' %}" class="form-control" />
                             <span class="input-group-btn">
-                            <button type="button" class="btn btn-default">
-                            <em class="fa fa-search"></em>
+                            <button id="id_search_btn" onclick="ajax_search();" type="button" class="btn btn-default">
+                                <em class="fa fa-search"></em>
                             </button>
                             </span>
                         </div>
@@ -106,6 +107,8 @@
                 </div>
             </div>
             <!-- end Search-->
+
+            {% comment %}
             <!-- Categories-->
             <div class="panel panel-default">
                 <div class="panel-heading">Categories</div>

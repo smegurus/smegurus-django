@@ -1,0 +1,77 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        search_tenant_communityposts("{{ keyword }}", function(json_objects) {
+            generate_ui_from_json_objects(json_objects);
+        }); // end Search Community Post
+    }); // end Ready
+
+    function ajax_search() {
+        var keyword =  $('#id_search').val();
+        search_tenant_communityposts(keyword, function(json_objects) {
+            generate_ui_from_json_objects(json_objects);
+        }); // end Search Community Post
+    }
+
+    function generate_ui_from_json_objects(json_objects) {
+        html = "";
+        $(json_objects).each(function(iter, json_result){
+            if (json_result['count'] == 0) {
+                html += "<tr>";
+
+                html += "<td>";
+                html += "<div class=\"checkbox c-checkbox\">";
+                html += "<label>";
+                html += "<input type=\"checkbox\">";
+                html += "<span class=\"fa fa-check\"></span>";
+                html += "</label>";
+                html += "</div>";
+                html += "</td>";
+
+                html += "<td>";
+                html += "<h1>No results</p>";
+                html += "</td>";
+
+                html += "</tr>";
+            } else {
+                $(json_result['results']).each(function(index, column) {
+                    html += "<tr>";
+                    html += "<td>";
+
+                    html += "<div class=\"checkbox c-checkbox\">";
+                    html += "<label>";
+                    html += "<input type=\"checkbox\">";
+                    html += "<span class=\"fa fa-check\"></span>";
+                    html += "</label>";
+                    html += "</div>";
+
+                    html += "</td>";
+                    html += "<td>";
+
+                    html += "<div class=\"media-box\">";
+                    html += "<a href=\"#\" class=\"pull-left\">";
+                    if (column['image_url']) {
+                        html += "<img src=\"" + column['image_url'] + "\" alt=\"\" class=\"media-box-object img-responsive img-rounded thumb64\">";
+                    }
+                    html += "</a>";
+                    html += "<div class=\"media-box-body\">";
+                    // html += "<div class=\"pull-right btn btn-info btn-sm\">View</div>";
+                    html += "<h4 class=\"media-box-heading\">" + column['name'] + "</h4>";
+                    html += "<small class=\"text-muted\">Category1, Category2</small>";
+                    html += "<p>" + column['description'] + "</p>";
+                    html += "</div>";
+                    html += "</div>";
+
+                    html += "</td>";
+                    html += "</tr>";
+                }); // end ITERATE.
+
+            } // end COUNT==0
+
+
+            console.log(html);
+            $('#id_search_results').html('');       // Clear
+            $(html).appendTo('#id_search_results'); // Load
+        }); // end Iterate Provinces
+    }
+</script>

@@ -15,6 +15,15 @@
         $('#id_upload_div').hide();
     }); // end Ready
 
+    function ajax_search() {
+        var keyword =  $('#id_search').val();
+        window.location = "{% url 'tenant_community_search' %}?keyword="+keyword;
+
+        // search_tenant_communityposts(keyword, function(json_objects) {
+        //     console.log(json_objects);
+        // }); // end Search Community Post
+    }
+
     function disable_btn() {
         // Profile
         $('#id_post_btn').val("{% trans 'Please Wait...' %}");

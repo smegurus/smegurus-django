@@ -12,19 +12,14 @@ from api.serializers.foundation_tenant import CommunityPostSerializer
 from foundation_tenant.models.communitypost import CommunityPost
 
 
-class CommunityPostFilter(django_filters.FilterSet):
-    class Meta:
-        model = CommunityPost
-        fields = ['created','last_modified',]
-
-
 class CommunityPostViewSet(viewsets.ModelViewSet):
     queryset = CommunityPost.objects.all()
     serializer_class = CommunityPostSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly)
-    filter_class = CommunityPostFilter
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'description',)
 
     def perform_create(self, serializer):
         """Add owner to this model when being created for the first time"""

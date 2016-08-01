@@ -194,6 +194,7 @@ class FAQItemSerializer(serializers.ModelSerializer):
 class CommunityPostSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
     me = TenantMeSerializer(many=False, required=False, read_only=True)
+    image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
         model = CommunityPost
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me', 'image',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me', 'image', 'image_url',)

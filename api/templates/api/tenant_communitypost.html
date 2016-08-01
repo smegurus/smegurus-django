@@ -33,6 +33,31 @@
         });
     }
 
+    function search_tenant_communityposts(keyword, callback)
+    {
+        var url = "/api/tenantcommunitypost/?format=json&search=" + keyword;
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'GET',
+            success: function(json_results){
+                callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                alert(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
     function set_tenant_communitypost(data, func_callback, func_error_callback)
     {
         // Setup depending on whether we are inserting or updating.

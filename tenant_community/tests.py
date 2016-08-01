@@ -90,9 +90,17 @@ class TenantCommunityTestCases(APITestCase, TenantTestCase):
         # super(TenantCommunityTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_reward_page(self):
+    def test_community_page(self):
         url = reverse('tenant_community')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'Community',response.content)
+
+    @transaction.atomic
+    def test_community_search_page(self):
+        url = reverse('tenant_community_search')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Search',response.content)

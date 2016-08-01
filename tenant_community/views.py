@@ -28,8 +28,19 @@ def community_page(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, 'tenant_community/view.html',{
+    return render(request, 'tenant_community/list/view.html',{
         'page': 'community',
         'posts': posts,
+        'tags': Tag.objects.all(),
+    })
+
+
+@login_required(login_url='/en/login')
+@foundation_config_required
+@tenant_profile_required
+def community_search_page(request):
+    return render(request, 'tenant_community/search/view.html',{
+        'page': 'community',
+        'keyword': request.GET.get('keyword'),
         'tags': Tag.objects.all(),
     })
