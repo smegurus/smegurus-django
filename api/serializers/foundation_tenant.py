@@ -196,4 +196,4 @@ class CommunityPostSerializer(serializers.ModelSerializer):
     me = TenantMeSerializer(many=False, required=False, read_only=True)
     class Meta:
         model = CommunityPost
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me')
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me', 'image',)

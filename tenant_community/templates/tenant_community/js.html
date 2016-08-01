@@ -1,6 +1,7 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        // Thumb-up any posts who've already been liked.
         {% for post in posts.all %}
             {% for the_user in post.likers.all %}
                 {% if the_user.email == request.user.email %}
@@ -9,6 +10,9 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+
+        // Hide the upload UI until something has been uploaded.
+        $('#id_upload_div').hide();
     }); // end Ready
 
     function disable_btn() {
@@ -75,14 +79,36 @@
         }
     }
 
+    function ajax_enable_picture_upload() {
+        $('#id_upload_div').show();
+    }
+
+    function ajax_upload_image() {
+        // Extract the information.
+        var image = document.getElementById('id_image').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+
+        // Insert or Update.
+        set_tenant_imageupload(upload_id, image, function(json_result) {
+            $('#id_hidden_url').attr('src', json_result['imagefile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['imagefile']);
+        });
+    }
+
     function ajax_post() {
         disable_btn();
-        var data = {
+        var communitypost = {
             'name': $('#id_post_title').val(),
             'description': $('#id_post_description').val(),
         };
+        var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
+        if (image > 0) {
+           communitypost['image'] = image;
+        }
+        console.log(communitypost);
         set_tenant_communitypost(
-            data,
+            communitypost,
             function(communitypost) {
                 console.log(communitypost);
                 enable_btn();

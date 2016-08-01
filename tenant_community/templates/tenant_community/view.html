@@ -22,9 +22,9 @@
                                         <div class="media-left">
                                             <a href="#">
                                             {% if post.me.image != None and post.me.image != '' %}
-                                            <img src="{{ post.me.image.imagefile.url }}" alt="Contact" class="media-object img-thumbnail img-circle thumb32">
+                                                <img src="{{ post.me.image.imagefile.url }}" alt="{% trans 'Contact' %}" class="media-object img-thumbnail img-circle thumb32" />
                                             {% else %}
-                                            <img src="{% static 'app/img/dummy.png' %}" alt="Contact" class="media-object img-thumbnail img-circle thumb32">
+                                                <img src="{% static 'app/img/dummy.png' %}" alt="{% trans 'Contact' %}" class="media-object img-thumbnail img-circle thumb32" />
                                             {% endif %}
                                             </a>
                                         </div>
@@ -36,8 +36,9 @@
                                 </div>
                                 <div class="panel-body">
                                     {% if post.image != None and post.image != '' %}
-                                    <p><a href="#">
-                                        <img src="{{ post.me.image.imagefile.url }}" alt="Contact" class="img-responsive img-thumbnail">
+                                    <p>
+                                        <a href="#">
+                                            <img src="{{ post.image.imagefile.url }}" alt="{% trans 'Contact' %}" class="img-responsive img-thumbnail" />
                                         </a>
                                     </p>
                                     {% endif %}
@@ -73,7 +74,7 @@
                 <div class="panel-heading">Ads</div>
                 <div class="panel-body">
                     <a href="">
-                    <img src="img/mockup.png" class="img-responsive img-thumbnail">
+                    <img src="img/mockup.png" class="img-responsive img-thumbnail" />
                     </a>
                 </div>
             </div>
@@ -135,37 +136,69 @@
             {% endcomment %}
             <!-- POST -->
             <div class="panel panel-default">
-                <div class="panel-heading">Post to Community</div>
+                <div class="panel-heading">{% trans 'Post to Community' %}</div>
                 <div class="panel-body">
+                    <form id="id_upload_div" class="form-horizontal">
+                         <!-- Upload ID -->
+                         <input type="hidden" id="id_hidden_upload_id" />
+                         <input type="hidden" id="id_hidden_url" />
+                         <!-- end Upload ID -->
+
+                         <!-- Image Placeholder -->
+                         <img id="id_image_placeholder" src="{% static 'app/img/dummy.png' %}" alt="Contact" class="center-block img-responsive img-thumbnail thumb96" />
+                         <!-- end Image Placeholder -->
+
+                         <br />
+
+                         <label class="form-control btn btn-success mt10 curp" >
+                             <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Picture...' %}
+                         <input id="id_image"
+                          onchange="ajax_upload_image();"
+                              type="file"
+                             class="form-control mb10 hide"
+                              name="product-image" />
+                          </label>
+
+                        <br />
+                        <br />
+
+                    </form>
+
                     <form class="form-horizontal">
                         <input id="id_post_title" type="text" placeholder="Title" class="form-control">
                     </form>
+
                     <form method="post" action="" class="mb mt">
                         <textarea id="id_post_description" rows="4" placeholder="Post a new comment.." class="form-control"></textarea>
                     </form>
+
                     <div class="clearfix">
                         <div class="pull-left">
                             <ul class="nav nav-pills">
+                                {% comment %}
                                 <li>
                                     <a href="#">
-                                    <em class="fa fa-location-arrow"></em>
+                                        <em class="fa fa-location-arrow"></em>
                                     </a>
                                 </li>
+                                {% endcomment %}
+                                <li>
+                                    <a onclick="ajax_enable_picture_upload();">
+                                        <em class="fa fa-photo"></em>
+                                    </a>
+                                </li>
+                                {% comment %}
                                 <li>
                                     <a href="#">
-                                    <em class="fa fa-photo"></em>
+                                        <em class="fa fa-video-camera"></em>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                    <em class="fa fa-video-camera"></em>
-                                    </a>
-                                </li>
+                                {% endcomment %}
                             </ul>
                         </div>
                         <div class="pull-right">
                             <button id="id_post_btn"
-                                onclick="ajax_post();" type="button" class="btn btn-success">Post</button>
+                                onclick="ajax_post();" type="button" class="btn btn-success">{% trans 'Post' %}</button>
                         </div>
                     </div>
                 </div>
