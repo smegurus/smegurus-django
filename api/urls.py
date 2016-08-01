@@ -42,6 +42,7 @@ from api.views.foundation_tenant.admissionviewset import AdmissionViewSet
 from api.views.foundation_tenant.faqgroupviewset import FAQGroupViewSet
 from api.views.foundation_tenant.faqitemviewset import FAQItemViewSet
 from api.views.foundation_tenant.communitypostviewset import CommunityPostViewSet
+from api.views.foundation_tenant.communityadvertisementviewset import CommunityAdvertisementViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
 
 # URL Generator.
@@ -80,6 +81,7 @@ router.register(r'tenantadmission', AdmissionViewSet)
 router.register(r'tenantfaqgroup', FAQGroupViewSet)
 router.register(r'tenantfaqitem', FAQItemViewSet)
 router.register(r'tenantcommunitypost', CommunityPostViewSet)
+router.register(r'tenantcommunityadvertisement', CommunityAdvertisementViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 
 

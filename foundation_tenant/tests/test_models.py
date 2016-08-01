@@ -31,6 +31,7 @@ from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.faqitem import FAQItem
 from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
+from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.me import TenantMe
 from foundation_public import constants
 
@@ -493,4 +494,30 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         # Run our test and verify.
         CommunityPost.objects.delete_all()
         count = CommunityPost.objects.all().count()
+        self.assertEqual(count, 0)
+
+    @transaction.atomic
+    def test_communityadvertisement_to_string(self):
+        obj = CommunityAdvertisement.objects.create(
+            name='hideauze.com',
+            owner=User.objects.get(username='1')
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_communityadvertisement_delete_all(self):
+        # Setup our unit test.
+        count = CommunityAdvertisement.objects.all().count()
+        self.assertEqual(count, 0)
+        CommunityAdvertisement.objects.create(
+            name='Testing',
+            owner=User.objects.get(username='1'),
+        )
+        count = CommunityAdvertisement.objects.all().count()
+        self.assertEqual(count, 1)
+
+        # Run our test and verify.
+        CommunityAdvertisement.objects.delete_all()
+        count = CommunityAdvertisement.objects.all().count()
         self.assertEqual(count, 0)

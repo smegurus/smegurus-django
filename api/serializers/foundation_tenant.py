@@ -24,6 +24,7 @@ from foundation_tenant.models.admission import Admission
 from foundation_tenant.models.faqitem import FAQItem
 from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
+from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.me import TenantMe
 
 
@@ -198,3 +199,11 @@ class CommunityPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommunityPost
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me', 'image', 'image_url',)
+
+
+class CommunityAdvertisementSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
+    image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
+    class Meta:
+        model = CommunityAdvertisement
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url',)

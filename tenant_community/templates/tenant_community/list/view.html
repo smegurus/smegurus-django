@@ -78,18 +78,26 @@
         <!-- end Blog Content-->
         <!-- Blog Sidebar column -->
         <div class="col-lg-3">
-            {% comment %}
+
             <!-- Ads-->
+            {% if ads.count %}
             <div class="panel panel-default">
-                <div class="panel-heading">Ads</div>
+                <div class="panel-heading">{% trans 'Ads' %}</div>
                 <div class="panel-body">
-                    <a href="">
-                    <img src="img/mockup.png" class="img-responsive img-thumbnail" />
+                    {% for ad in ads.all %}
+                    <a href="{{ ad.url }}">
+                        {% if ad.image != None and ad.image != '' %}
+                            <img src="{{ ad.image.imagefile.url }}" class="img-responsive img-thumbnail" />
+                        {% else %}
+                            <img src="{% static 'app/img/dummy.png' %}" class="img-responsive img-thumbnail" />
+                        {% endif %}
                     </a>
+                    {% endfor %}
                 </div>
             </div>
+            {% endif %}
             <!-- end Ads-->
-            {% endcomment %}
+
             <!-- Search-->
             <div class="panel panel-default">
                 <div class="panel-heading">{% trans 'Search' %}</div>

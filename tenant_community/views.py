@@ -7,6 +7,7 @@ from rest_framework.authtoken.models import Token
 from foundation_config.decorators import foundation_config_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.communitypost import CommunityPost
+from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.tag import Tag
 
 
@@ -33,6 +34,7 @@ def community_page(request):
         'page': 'community',
         'filter_tag_id': 0 if filter_tag_id == None else int(filter_tag_id),
         'posts': posts,
+        'ads': CommunityAdvertisement.objects.all(),
         'tags': Tag.objects.all(),
     })
 
