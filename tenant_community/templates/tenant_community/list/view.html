@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress template_community_tags %}
 {% block content %}
 {% compress js inline %}
     {% include 'tenant_community/list/js.html' %}
@@ -42,8 +42,8 @@
                                         </a>
                                     </p>
                                     {% endif %}
-                                    <h4>{{ post.name }}</h4>
-                                    <p>{{ post.description }}</p>
+                                    <h4>{{ post.name|urlify_external_links|escape|safe }}</h4>
+                                    <p>{{ post.description|urlify_external_links|escape|safe }}</p>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="pull-right">
