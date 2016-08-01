@@ -15,7 +15,8 @@ from foundation_tenant.models.tag import Tag
 @tenant_profile_required
 def community_page(request):
     """List of all the community posts in a paginated mannor."""
-    posts_list = CommunityPost.objects.all()
+    filter_tag_id = request.GET.get('tag')
+    posts_list = CommunityPost.objects.all() if filter_tag_id == None else CommunityPost.objects.filter(tags__id=filter_tag_id)
     paginator = Paginator(posts_list, 25) # Show 25 contacts per page
     page = request.GET.get('page')
 
@@ -30,6 +31,7 @@ def community_page(request):
 
     return render(request, 'tenant_community/list/view.html',{
         'page': 'community',
+        'filter_tag_id': 0 if filter_tag_id == None else int(filter_tag_id),
         'posts': posts,
         'tags': Tag.objects.all(),
     })

@@ -108,36 +108,36 @@
             </div>
             <!-- end Search-->
 
-            {% comment %}
+
             <!-- Categories-->
             <div class="panel panel-default">
-                <div class="panel-heading">Categories</div>
+                <div class="panel-heading">{% trans 'Tags' %}</div>
                 <div class="panel-body">
                     <ul class="list-unstyled">
                         <li>
-                            <a href="">
-                            <em class="fa fa-angle-right fa-fw"></em>Smartphones</a>
+                            <a href="{% url 'tenant_community' %}">
+                                <em class="fa fa-angle-right fa-fw"></em>
+                                all
+                            </a>
                         </li>
-                        <li>
-                            <a href="">
-                            <em class="fa fa-angle-right fa-fw"></em>Mobiles</a>
-                        </li>
-                        <li>
-                            <a href="">
-                            <em class="fa fa-angle-right fa-fw"></em>Tech</a>
-                        </li>
-                        <li>
-                            <a href="">
-                            <em class="fa fa-angle-right fa-fw"></em>Inpiration</a>
-                        </li>
-                        <li>
-                            <a href="">
-                            <em class="fa fa-angle-right fa-fw"></em>Workspace</a>
-                        </li>
+                        {% for tag in tags.all %}
+                            <li>
+                                <a href="{% url 'tenant_community' %}?tag={{ tag.id }}">
+                                    <em class="fa fa-angle-right fa-fw"></em>
+                                    {% if tag.id == filter_tag_id %}
+                                        <b>{{ tag.name }}</b>
+                                    {% else %}
+                                        {{ tag.name }}
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
             <!-- end Categories-->
+
+            {% comment %}
             <!-- Tag Cloud-->
             <div class="panel panel-default">
                 <div class="panel-heading">Tag Cloud</div>
