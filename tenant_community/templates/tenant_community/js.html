@@ -98,15 +98,26 @@
 
     function ajax_post() {
         disable_btn();
+
+        // Populate our CommunityPost.
         var communitypost = {
             'name': $('#id_post_title').val(),
             'description': $('#id_post_description').val(),
         };
+
+        // Populate the Image if it was set.
         var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
         if (image > 0) {
            communitypost['image'] = image;
         }
-        console.log(communitypost);
+
+        // Populate the Tags if they where set.
+        var tags = $('#select2-1').val()
+        if (tags) {
+            communitypost['tags'] = tags;
+        }
+
+        // Create our new CommunityPost.
         set_tenant_communitypost(
             communitypost,
             function(communitypost) {

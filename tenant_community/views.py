@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 from foundation_config.decorators import foundation_config_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.communitypost import CommunityPost
+from foundation_tenant.models.tag import Tag
 
 
 @login_required(login_url='/en/login')
@@ -17,4 +18,5 @@ def community_page(request):
     return render(request, 'tenant_community/view.html',{
         'page': 'community',
         'posts': CommunityPost.objects.all(),
+        'tags': Tag.objects.all(),
     })
