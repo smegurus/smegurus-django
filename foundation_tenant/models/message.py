@@ -20,7 +20,7 @@ class Message(AbstractCreativeWork):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_Messages'
+        db_table = 'biz_messages'
         verbose_name = 'Message'
         verbose_name_plural = 'Messages'
 
@@ -35,13 +35,15 @@ class Message(AbstractCreativeWork):
         _('Date Received'),
         help_text=_('The date/time the message was received if a single recipient exists.'),
         blank=True,
-        null=True
+        null=True,
+        auto_now_add=True
     )
     date_sent = models.DateTimeField(
         _('Date Sent'),
         help_text=_('The date/time at which the message was sent.'),
         blank=True,
-        null=True
+        null=True,
+        auto_now_add=True
     )
     recipient = models.ForeignKey(
         TenantMe,

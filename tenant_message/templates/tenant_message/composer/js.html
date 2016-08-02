@@ -1,0 +1,44 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Do nothing.
+    });
+
+    function ajax_cancel() {
+        window.location = "{% url 'tenant_message_inbox' %}";
+    }
+
+    function disable_btn() {
+        // Profile
+        $('#id_post_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_post_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        // Profile.
+        $('#id_post_btn').prop("disabled", false);
+        $('#id_post_btn').val("{% trans 'Update' %}");
+    }
+
+    function ajax_create_message() {
+        var recipient =  $('#id_user').val();
+        var text =  $('#id_description').val();
+        var message = {
+            'recipient': recipient,
+            'description': text,
+        };
+        set_tenant_message(
+            message,
+            function(json_result) {
+                enable_btn();
+                window.location = "{% url 'tenant_message_inbox' %}";
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        );
+    }
+</script>

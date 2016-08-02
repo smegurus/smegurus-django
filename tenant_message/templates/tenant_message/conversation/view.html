@@ -1,0 +1,92 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+{% compress js inline %}
+    {% include 'tenant_message/conversation/js.html' %}
+{% endcompress %}
+<!-- Page content-->
+<div class="content-wrapper">
+    <!-- CONVERSATION LOG -->
+    <div class="panel panel-default">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
+            <div data-height="450" data-scrollable="" class="panel-body" style="overflow: hidden; width: auto; height: auto;">
+                <div class="conversation-wrapper">
+                    <div class="conversation-content">
+                        <div class="conversation-inner">
+                            {% for message in messages.all %}
+
+                            {% if message.recipient == request.tenant_me %}
+                                <div class="conversation-item item-left clearfix">
+                            {% else %}
+                                <div class="conversation-item item-right clearfix">
+                            {% endif %}
+
+                                <div class="conversation-user">
+                                    {% if message.sender.image != None and message.sender.image != '' %}
+                                        <img src="{{ message.sender.image.imagefile.url }}"
+                                            alt="{% trans 'Mail Avatar' %}"
+                                          class="img-circle thumb64" />
+                                    {% else %}
+                                        <img src="{% static 'app/img/dummy.png' %}"
+                                             alt="{% trans 'Mail Avatar' %}"
+                                           class="img-circle thumb64" />
+                                    {% endif %}
+                                </div>
+                                <div class="conversation-body">
+                                    <div class="name">
+                                        {% if message.recipient == request.tenant_me %}
+                                            {{ message.recipient.owner.first_name }} {{ message.recipient.owner.last_name }}
+                                        {% else %}
+                                            {{ message.sender.owner.first_name }} {{ message.sender.owner.last_name }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="time">
+                                        <em>{{ message.date_received }}</em>
+                                    </div>
+                                    <div class="text">
+                                        <p>{{ message.description }}</p>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 450px; background-position: initial initial; background-repeat: initial initial;"></div>
+            <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+        </div>
+    </div>
+    <!-- end CONVERSATION LOG -->
+
+    <!-- COMMUNICATOR -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label">{% trans 'Message' %}</label>
+                    <div class="col-sm-10">
+                        <textarea id="id_description" type="text" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <button id="id_cancel_btn" onclick="ajax_cancel();" type="button" class="btn btn-default">{% trans 'Cancel' %}</button>
+                        <button id="id_post_btn" onclick="ajax_create_message();" type="button" class="btn btn-primary">{% trans 'Send' %}</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        </dvi>
+    </div>
+    <!-- end COMMUNICATOR -->
+
+</div>
+{% endblock content %}

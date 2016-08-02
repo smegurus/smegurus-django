@@ -2,14 +2,28 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
+{% compress js inline %}
+    <script>
+    $(document).ready(function () {
+        // Detect table click and the row index clicked then run the code.
+        $(document).on("click", '#id_table tr', function(){
+            var sender_id = $(this).attr("id");
+            window.location = sender_id;
+        });
+    });
+    </script>
+{% endcompress %}
+
 <!-- Page content-->
 <div class="content-wrapper">
     <h3>Messages</h3>
     <div class="table-grid table-grid-desktop">
-        
+
         <div class="col">
+
             <!-- START action buttons-->
             <div class="clearfix mb">
+                {% comment %}
                 <div class="btn-group pull-left">
                     <button type="button" class="btn btn-default btn-sm">
                     <em class="fa fa-mail-reply text-gray-dark"></em>
@@ -29,10 +43,11 @@
                     <em class="fa fa-times text-gray-dark"></em>
                     </button>
                 </div>
+                {% endcomment %}
                 <div style="max-width: 200px;text-align: center;margin: auto">
                     <a href="{% url 'tenant_message_composer' %}" class="btn btn-purple btn-sm mb-compose-button">
                         <em class="fa fa-pencil"></em>
-                        <span>Compose</span>
+                        <span>{% trans 'Compose' %}</span>
                     </a>
                 </div>
             </div>
@@ -40,10 +55,12 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <!-- p.lead.text-centerNo mails here-->
-                    <table class="table table-hover mb-mails">
+                    <table id="id_table" class="table table-hover mb-mails">
                         <tbody>
                             <!-- ngRepeat: mail in mails | filter:folder-->
-                            <tr>
+                            {% for message in messages.all %}
+                            <tr id="{% url 'tenant_conversation' message.sender.id %}">
+                                {% comment %}
                                 <td>
                                     <div class="checkbox c-checkbox">
                                         <label>
@@ -52,21 +69,34 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td class="text-center">
-                                    <em class="fa fa-lg fa-star-o text-muted"></em>
-                                </td>
+                                {% endcomment %}
+
                                 <td>
-                                    <img alt="Mail Avatar" src="img/user/01.jpg" class="mb-mail-avatar pull-left">
-                                    <div class="mb-mail-date pull-right">10 minutes ago</div>
+                                    {% if message.sender.image != None and message.sender.image != '' %}
+                                        <img src="{{ message.sender.image.imagefile.url }}"
+                                            alt="{% trans 'Mail Avatar' %}"
+                                          class="mb-mail-avatar pull-left" />
+                                    {% else %}
+                                        <img src="{% static 'app/img/dummy.png' %}"
+                                             alt="{% trans 'Mail Avatar' %}"
+                                           class="mb-mail-avatar pull-left" />
+                                    {% endif %}
+                                    <div class="mb-mail-date pull-right">
+                                        {{ message.date_received }}
+                                    </div>
                                     <div class="mb-mail-meta">
                                         <div class="pull-left">
-                                            <div class="mb-mail-subject">Admin web application</div>
-                                            <div class="mb-mail-from">Evelyn Holmes</div>
+                                            <!-- <div class="mb-mail-subject">Admin web application</div> -->
+                                            <div class="mb-mail-from">
+                                                {{ message.sender.owner.first_name }} {{ message.sender.owner.last_name }}
+                                            </div>
                                         </div>
-                                        <div class="mb-mail-preview">Fusce gravida, diam ac adipiscing pretium, sem nibh bibendum diam, non consequat quam metus non nunc</div>
+                                        <div class="mb-mail-preview">{{ message.description|truncatechars:64 }}</div>
                                     </div>
                                 </td>
+
                             </tr>
+                            {% endfor %}
                             <!-- end ngRepeat: mail in mails | filter:folder-->
                         </tbody>
                     </table>
