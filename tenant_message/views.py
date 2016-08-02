@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from foundation_public.models.organization import PublicOrganization
-# from foundation.decorators import tenant_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.models.message import Message
 
 
 @login_required(login_url='/en/login')

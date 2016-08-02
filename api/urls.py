@@ -43,7 +43,9 @@ from api.views.foundation_tenant.faqgroupviewset import FAQGroupViewSet
 from api.views.foundation_tenant.faqitemviewset import FAQItemViewSet
 from api.views.foundation_tenant.communitypostviewset import CommunityPostViewSet
 from api.views.foundation_tenant.communityadvertisementviewset import CommunityAdvertisementViewSet
+from api.views.foundation_tenant.messageviewset import MessageViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
+
 
 # URL Generator.
 router = routers.DefaultRouter()
@@ -82,6 +84,7 @@ router.register(r'tenantfaqgroup', FAQGroupViewSet)
 router.register(r'tenantfaqitem', FAQItemViewSet)
 router.register(r'tenantcommunitypost', CommunityPostViewSet)
 router.register(r'tenantcommunityadvertisement', CommunityAdvertisementViewSet)
+router.register(r'tenantmessage', MessageViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 
 

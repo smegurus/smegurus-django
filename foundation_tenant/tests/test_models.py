@@ -32,6 +32,7 @@ from foundation_tenant.models.faqitem import FAQItem
 from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
+from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_public import constants
 
@@ -520,4 +521,30 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         # Run our test and verify.
         CommunityAdvertisement.objects.delete_all()
         count = CommunityAdvertisement.objects.all().count()
+        self.assertEqual(count, 0)
+
+    @transaction.atomic
+    def test_message_to_string(self):
+        obj = Message.objects.create(
+            name='hideauze.com',
+            owner=User.objects.get(username='1')
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_message_delete_all(self):
+        # Setup our unit test.
+        count = Message.objects.all().count()
+        self.assertEqual(count, 0)
+        Message.objects.create(
+            name='Testing',
+            owner=User.objects.get(username='1'),
+        )
+        count = Message.objects.all().count()
+        self.assertEqual(count, 1)
+
+        # Run our test and verify.
+        Message.objects.delete_all()
+        count = Message.objects.all().count()
         self.assertEqual(count, 0)
