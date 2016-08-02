@@ -57,6 +57,11 @@ class Message(AbstractCreativeWork):
         null=True,
         related_name="message_sender_%(app_label)s_%(class)s_related"
     )
+    is_archived = models.BooleanField(
+        _("Is archived"),
+        default=False,
+        help_text=_('Variable controls whether this message been archived or not.'),
+    )
 
     def __str__(self):
         return str(self.name)

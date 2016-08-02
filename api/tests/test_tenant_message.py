@@ -271,6 +271,9 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Run our test and verify.
         response = self.unauthorized_client.delete('/api/tenantmessage/666/?format=json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(Message.objects.all().count(), 1)
+        message = Message.objects.get(id=666)
+        self.assertFalse(message.is_archived)
 
     @transaction.atomic
     def test_delete_with_sender(self):
@@ -289,6 +292,9 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Run our test and verify.
         response = self.authorized_client.delete('/api/tenantmessage/666/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Message.objects.all().count(), 1) # Check message has not been deleted
+        message = Message.objects.get(id=666)
+        self.assertTrue(message.is_archived)
 
     @transaction.atomic
     def test_delete_with_different_sender(self):
@@ -332,3 +338,6 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Run our test and verify.
         response = self.authorized_client.delete('/api/tenantmessage/666/?format=json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Message.objects.all().count(), 1)
+        message = Message.objects.get(id=666)
+        self.assertFalse(message.is_archived)

@@ -19,7 +19,7 @@ class MessageFilter(django_filters.FilterSet):
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
+    queryset = Message.objects.filter(is_archived=False)
     serializer_class = MessageSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
@@ -33,3 +33,8 @@ class MessageViewSet(viewsets.ModelViewSet):
             owner=self.request.user,
             sender=self.request.tenant_me,
         )
+
+    def perform_destroy(self, instance):
+        """Override the deletion function to archive the message instead of deleting it."""
+        instance.is_archived = True
+        instance.save()
