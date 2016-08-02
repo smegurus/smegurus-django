@@ -1,5 +1,19 @@
 {% load i18n %}
 <script>
+    $(document).ready(function () {
+        // Detect "Enter" button clicked and then auto-click on our submit button.
+        $("#id_password").keyup(function(event){
+            if(event.keyCode == 13){
+                $("#id_login_btn").click();
+            }
+        });
+        $("#id_email").keyup(function(event){
+            if(event.keyCode == 13){
+                $("#id_login_btn").click();
+            }
+        });
+    }); // end Document Start
+
     function ajax_api_login(username, password, success_callback, error_callback) {
         sign_in(
             username,
