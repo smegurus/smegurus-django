@@ -1,5 +1,13 @@
 {% load i18n %}
 <script>
+    $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_register_btn").click();
+            }
+        });
+    }); // end Document Start
+
     function disable_btn() {
         $('#id_register_btn').prop("disabled", true);
         $('#id_register_btn').val("{% trans 'Please Wait...' %}");

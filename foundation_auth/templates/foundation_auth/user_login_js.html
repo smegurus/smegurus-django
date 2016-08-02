@@ -2,12 +2,7 @@
 <script>
     $(document).ready(function () {
         // Detect "Enter" button clicked and then auto-click on our submit button.
-        $("#id_password").keyup(function(event){
-            if(event.keyCode == 13){
-                $("#id_login_btn").click();
-            }
-        });
-        $("#id_email").keyup(function(event){
+        $(document).keypress(function(event){
             if(event.keyCode == 13){
                 $("#id_login_btn").click();
             }
