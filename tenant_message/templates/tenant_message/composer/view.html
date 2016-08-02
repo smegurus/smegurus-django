@@ -20,37 +20,47 @@
                         <select id="id_user" class="chosen-select input-md form-control">
                             <optgroup label="Administrators">
                                 {% for admin in admins.all %}
-                                    <option value="{{ admin.id }}">
-                                        {{ admin.owner.first_name }} {{ admin.owner.last_name }}
-                                    </option>
+                                    {% if admin != request.tenant_me %}
+                                        <option value="{{ admin.id }}">
+                                           {{ admin.owner.first_name }} {{ admin.owner.last_name }}
+                                        </option>
+                                    {% endif %}
                                 {% endfor %}
                             </optgroup>
                             <optgroup label="Managers">
                                 {% for manager in managers.all %}
-                                    <option value="{{ manager.id }}">
-                                        {{ manager.owner.first_name }} {{ manager.owner.last_name }}
-                                    </option>
+                                    {% if manager != request.tenant_me %}
+                                        <option value="{{ manager.id }}">
+                                            {{ manager.owner.first_name }} {{ manager.owner.last_name }}
+                                        </option>
+                                    {% endif %}
                                 {% endfor %}
                             </optgroup>
                             <optgroup label="Advisors">
                                 {% for advisor in advisors.all %}
-                                    <option value="{{ advisor.id }}">
-                                        {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
-                                    </option>
+                                    {% if advisor != request.tenant_me %}
+                                        <option value="{{ advisor.id }}">
+                                            {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
+                                        </option>
+                                    {% endif %}
                                 {% endfor %}
                             </optgroup>
                             <optgroup label="Mentors">
                                 {% for mentor in mentors.all %}
-                                    <option value="{{ mentor.id }}">
-                                        {{ mentor.owner.first_name }} {{ mentor.owner.last_name }}
-                                    </option>
+                                    {% if mentor != request.tenant_me %}
+                                        <option value="{{ mentor.id }}">
+                                            {{ mentor.owner.first_name }} {{ mentor.owner.last_name }}
+                                        </option>
+                                    {% endif %}
                                 {% endfor %}
                             </optgroup>
                             <optgroup label="Entreprenuers">
                                 {% for entrepreneur in entrepreneurs.all %}
-                                    <option value="{{ entrepreneur.id }}">
-                                        {{ entrepreneur.owner.first_name }} {{ entrepreneur.owner.last_name }}
-                                    </option>
+                                    {% if entrepreneur != request.tenant_me %}
+                                        <option value="{{ entrepreneur.id }}">
+                                            {{ entrepreneur.owner.first_name }} {{ entrepreneur.owner.last_name }}
+                                        </option>
+                                    {% endif %}
                                 {% endfor %}
                             </optgroup>
                         </select>
