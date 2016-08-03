@@ -55,7 +55,7 @@ def conversation_page(request, sender_id):
             sender_id=request.tenant_me,
             participants=request.tenant_me
         )
-    )
+    ).order_by("created")
 
     # Recipients have the ability to update the 'date_read'.
     for message in messages.all():
@@ -83,7 +83,7 @@ def archive_conversation_page(request, sender_id):
             sender_id=request.tenant_me,
             participants=request.tenant_me
         )
-    )
+    ).order_by("created")
 
     # Iterate through all the messages and removes the person from the conversation. (A.k.a.: archived)
     for message in messages.all():
