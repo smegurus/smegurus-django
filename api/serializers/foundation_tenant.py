@@ -214,8 +214,7 @@ class MessageSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
     sender = TenantMeSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
-    is_archived_by_sender = serializers.BooleanField(read_only=True)
-    is_archived_by_recipient = serializers.BooleanField(read_only=True)
+    participants = TenantMeSerializer(many=True, required=False, read_only=True)
     class Meta:
         model = Message
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url', 'sender', 'recipient', 'date_read', 'date_received', 'date_sent', 'is_archived_by_sender', 'is_archived_by_recipient',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url', 'sender', 'recipient', 'date_read', 'date_received', 'date_sent', 'participants',)

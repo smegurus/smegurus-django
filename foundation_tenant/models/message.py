@@ -59,15 +59,11 @@ class Message(AbstractCreativeWork):
         null=True,
         related_name="message_sender_%(app_label)s_%(class)s_related"
     )
-    is_archived_by_recipient = models.BooleanField(
-        _("Is archived by recipient"),
-        default=False,
-        help_text=_('Variable controls whether this message been archived by the recipient or not.'),
-    )
-    is_archived_by_sender = models.BooleanField(
-        _("Is archived by sender"),
-        default=False,
-        help_text=_('Variable controls whether this message been archived by the sender or not.'),
+    participants = models.ManyToManyField(
+        TenantMe,
+        help_text=_('The users who are participating in this message.'),
+        blank=True,
+        related_name="message_participants_%(app_label)s_%(class)s_related"
     )
 
     def __str__(self):

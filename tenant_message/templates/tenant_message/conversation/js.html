@@ -4,6 +4,10 @@
         // Do nothing.
     });
 
+    function ajax_archive(id) {
+        window.location = "{% url 'tenant_archive_conversation' sender_id %}";
+    }
+
     function ajax_cancel() {
         window.location = "{% url 'tenant_message_inbox' %}";
     }

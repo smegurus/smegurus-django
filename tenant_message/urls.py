@@ -5,8 +5,6 @@ from tenant_message import views
 urlpatterns = (
     url(r'^message/inbox$', views.message_inbox_page, name='tenant_message_inbox'),
     url(r'^message/composer$', views.message_compose_page, name='tenant_message_composer'),
+    url(r'^message/archive/(.*)/$', views.archive_conversation_page, name='tenant_archive_conversation'),
     url(r'^message/(.*)/$', views.conversation_page, name='tenant_conversation'),
-    # url(r'^tenant/is_valid$', decoratorsview.tenant_is_valid, name='tenant_is_valid'),
-    # url(r'^group/is_entrepreneur$', decoratorsview.group_is_entrepreneur, name='group_is_entrepreneur'),
-    # url(r'^group/is_org_admin$', decoratorsview.group_is_org_admin, name='group_is_org_admin'),
 )

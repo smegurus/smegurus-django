@@ -16,8 +16,7 @@ class MessageFilter(django_filters.FilterSet):
     class Meta:
         model = Message
         fields = ['created', 'last_modified', 'owner', 'name', 'alternate_name',
-                  'description', 'url', 'sender', 'recipient',
-                  'is_archived_by_sender', 'is_archived_by_recipient',]
+                  'description', 'url', 'sender', 'recipient', 'participants',]
 
 
 class MessageViewSet(viewsets.ModelViewSet):
@@ -36,11 +35,13 @@ class MessageViewSet(viewsets.ModelViewSet):
             sender=self.request.tenant_me,
         )
 
+        # Add the sender and recipient to the participants in this conversation.
+        # participants
+        instance.participants.add(instance.sender, instance.recipient)
+        instance.save()
+
     def perform_destroy(self, instance):
         """Override the deletion function to archive the message instead of deleting it."""
         if self.request.user.is_authenticated():
-            if self.request.tenant_me == instance.sender:
-                instance.is_archived_by_sender = True
-            if self.request.tenant_me == instance.recipient:
-                instance.is_archived_by_recipient = True
+            instance.participants.remove(self.request.tenant_me)
             instance.save()

@@ -59,7 +59,11 @@
                         <tbody>
                             <!-- ngRepeat: mail in mails | filter:folder-->
                             {% for message in messages.all %}
-                            <tr id="{% url 'tenant_conversation' message.sender.id %}">
+                            <tr id="{% if message.sender == request.tenant_me %}
+                                        {% url 'tenant_conversation' message.recipient.id %}
+                                    {% else %}
+                                        {% url 'tenant_conversation' message.sender.id %}
+                                    {% endif %}">
                                 {% comment %}
                                 <td>
                                     <div class="checkbox c-checkbox">

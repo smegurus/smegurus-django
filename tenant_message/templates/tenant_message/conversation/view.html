@@ -16,9 +16,9 @@
                             {% for message in messages.all %}
 
                             {% if message.recipient == request.tenant_me %}
-                                <div class="conversation-item item-left clearfix">
+                                <div class="conversation-item item-left clearfix" id="{{ message.id }}">
                             {% else %}
-                                <div class="conversation-item item-right clearfix">
+                                <div class="conversation-item item-right clearfix" id="{{ message.id }}">
                             {% endif %}
 
                                 <div class="conversation-user">
@@ -34,14 +34,14 @@
                                 </div>
                                 <div class="conversation-body">
                                     <div class="name">
-                                        {% if message.recipient == request.tenant_me %}
-                                            {{ message.recipient.owner.first_name }} {{ message.recipient.owner.last_name }}
-                                        {% else %}
-                                            {{ message.sender.owner.first_name }} {{ message.sender.owner.last_name }}
-                                        {% endif %}
+                                        {{ message.sender.owner.first_name }} {{ message.sender.owner.last_name }}
                                     </div>
                                     <div class="time">
-                                        <em>{{ message.date_received }}</em>
+                                        {% if message.date_read %}
+                                            <em>{{ message.date_read }}</em>
+                                        {% else %}
+                                            <em>Not Read</em>
+                                        {% endif %}
                                     </div>
                                     <div class="text">
                                         <p>{{ message.description }}</p>
@@ -59,6 +59,13 @@
             </div>
             <div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 450px; background-position: initial initial; background-repeat: initial initial;"></div>
             <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+            <div style="max-width: 200px;text-align: center;margin: auto">
+                <a onclick="ajax_archive();" class="btn btn-purple btn-sm mb-compose-button">
+                    <em class="fa fa-archive"></em>
+                    <span>{% trans 'Archive Conversation' %}</span>
+                </a>
+            </div>
+            <br/>
         </div>
     </div>
     <!-- end CONVERSATION LOG -->
