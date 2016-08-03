@@ -18,7 +18,7 @@ def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
     messages = Message.objects.filter(participants=request.tenant_me,).distinct('participants')
-    return render(request, 'tenant_message/inbox/view.html',{
+    return render(request, 'tenant_message/message/master_view.html',{
         'page': 'inbox',
         'messages': messages,
     })
@@ -63,7 +63,7 @@ def conversation_page(request, sender_id):
             message.date_read = timezone.now()
             message.save()
 
-    return render(request, 'tenant_message/conversation/view.html',{
+    return render(request, 'tenant_message/message/details_view.html',{
         'page': 'inbox',
         'messages': messages,
         'sender_id': sender_id,
