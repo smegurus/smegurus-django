@@ -6,7 +6,7 @@ from rest_framework import filters
 from rest_framework import status
 from rest_framework import response
 from rest_framework.decorators import detail_route
-from api.permissions import IsSenderOrIsRecipientReadOnly
+from api.permissions import IsMessageObjectPermission
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import MessageSerializer
 from foundation_tenant.models.message import Message
@@ -15,15 +15,17 @@ from foundation_tenant.models.message import Message
 class MessageFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'sender', 'recipient',]
+        fields = ['created', 'last_modified', 'owner', 'name', 'alternate_name',
+                  'description', 'url', 'sender', 'recipient',
+                  'is_archived_by_sender', 'is_archived_by_recipient',]
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.filter(is_archived=False)
+    queryset = Message.objects.filter()
     serializer_class = MessageSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
-    permission_classes = (permissions.IsAuthenticated, IsSenderOrIsRecipientReadOnly)
+    permission_classes = (permissions.IsAuthenticated, IsMessageObjectPermission)
     filter_class = MessageFilter
 
     def perform_create(self, serializer):
@@ -36,5 +38,9 @@ class MessageViewSet(viewsets.ModelViewSet):
 
     def perform_destroy(self, instance):
         """Override the deletion function to archive the message instead of deleting it."""
-        instance.is_archived = True
-        instance.save()
+        if self.request.user.is_authenticated():
+            if self.request.tenant_me == instance.sender:
+                instance.is_archived_by_sender = True
+            if self.request.tenant_me == instance.recipient:
+                instance.is_archived_by_recipient = True
+            instance.save()

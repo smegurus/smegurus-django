@@ -273,7 +273,8 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(Message.objects.all().count(), 1)
         message = Message.objects.get(id=666)
-        self.assertFalse(message.is_archived)
+        self.assertFalse(message.is_archived_by_sender)
+        self.assertFalse(message.is_archived_by_recipient)
 
     @transaction.atomic
     def test_delete_with_sender(self):
@@ -294,7 +295,43 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Message.objects.all().count(), 1) # Check message has not been deleted
         message = Message.objects.get(id=666)
-        self.assertTrue(message.is_archived)
+        self.assertTrue(message.is_archived_by_sender)
+        self.assertFalse(message.is_archived_by_recipient)
+
+    @transaction.atomic
+    def test_delete_with_recipient(self):
+        # Create our CURRENT sender.
+        recipient = TenantMe.objects.create(
+            owner=self.user,
+        )
+
+        # Create our NEW recipient
+        sender_user = User.objects.create_user(  # Create our user.
+            email='chambers@gah.com',
+            username='chambers',
+            password='ILoveGAH'
+        )
+        sender_user.is_active = True
+        sender_user.save()
+        sender = TenantMe.objects.create(
+            owner=sender_user
+        )
+
+        # Create a new object with our specific test data.
+        Message.objects.create(
+            id=666,
+            name="Unit Test #666",
+            sender=sender,
+            recipient=recipient,
+        )
+
+        # Run our test and verify.
+        response = self.authorized_client.delete('/api/tenantmessage/666/?format=json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Message.objects.all().count(), 1) # Check message has not been deleted
+        message = Message.objects.get(id=666)
+        self.assertFalse(message.is_archived_by_sender)
+        self.assertTrue(message.is_archived_by_recipient)
 
     @transaction.atomic
     def test_delete_with_different_sender(self):
@@ -340,4 +377,5 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Message.objects.all().count(), 1)
         message = Message.objects.get(id=666)
-        self.assertFalse(message.is_archived)
+        self.assertFalse(message.is_archived_by_sender)
+        self.assertFalse(message.is_archived_by_recipient)

@@ -117,7 +117,7 @@ class IsOwnerOrIsAnEmployee(permissions.BasePermission):
             # Instance must have an attribute named `owner`.
             return obj.owner == request.user
 
-class IsSenderOrIsRecipientReadOnly(permissions.BasePermission):
+class IsMessageObjectPermission(permissions.BasePermission):
     """
     Object-level permission to only allow Sender read/edit it while the
     Recipient can only read the message.
@@ -131,10 +131,7 @@ class IsSenderOrIsRecipientReadOnly(permissions.BasePermission):
         if request.user.is_anonymous():
             return False
         else:
-            # Grant readonly only ability to recipient.
-            if request.method in permissions.SAFE_METHODS:
-                if obj.receipient == request.tenant_me:
-                    return True
+            if "PUT" in request.method:
+                return obj.sender == request.tenant_me
 
-            # Grant read & write ability to sender.
-            return obj.sender == request.tenant_me  # Instance must have an attribute named `owner`.
+            return obj.sender == request.tenant_me or obj.recipient == request.tenant_me
