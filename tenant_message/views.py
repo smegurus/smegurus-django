@@ -14,7 +14,7 @@ from foundation_public import constants
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-def message_inbox_page(request):
+def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
     messages = Message.objects.filter(participants=request.tenant_me,).distinct('participants')
@@ -26,7 +26,7 @@ def message_inbox_page(request):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-def message_compose_page(request):
+def compose_page(request):
     entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
     mentors = TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
     advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
@@ -92,3 +92,34 @@ def archive_conversation_page(request, sender_id):
 
     # Redirect his page.
     return HttpResponseRedirect(reverse('tenant_message_inbox'))
+
+
+@login_required(login_url='/en/login')
+@tenant_profile_required
+def archive_list_page(request):
+    # Fetch all the Messages and only get a single message per sender. Also ensure
+    # that deleted messages are not returned.
+    messages = Message.objects.filter(recipient=request.tenant_me,).distinct('participants')
+    return render(request, 'tenant_message/archive/master_view.html',{
+        'page': 'archive',
+        'messages': messages,
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_profile_required
+def archive_details_page(request, sender_id):
+    messages = Message.objects.filter(
+        Q(
+            recipient=request.tenant_me,
+            sender_id=int(sender_id),
+        ) | Q(
+            recipient_id=int(sender_id),
+            sender_id=request.tenant_me,
+        )
+    ).order_by("created")
+    return render(request, 'tenant_message/archive/details_view.html',{
+        'page': 'archive',
+        'messages': messages,
+        'sender_id': sender_id,
+    })

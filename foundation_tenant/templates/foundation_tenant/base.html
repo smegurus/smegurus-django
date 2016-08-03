@@ -180,6 +180,7 @@
                             </li>
                             <!-- END user info-->
                             <!-- Iterates over all sidebar items-->
+
                             <!-- DASHBOARD -->
                             <li {% if page == 'dashboard' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_dashboard' %}" title="Dashboard">
@@ -188,6 +189,7 @@
                             </a>
                             </li>
                             <!-- end DASHBOARD -->
+
                             <!-- PROGRESS -->
                             <li class=" ">
                                 <a href="#progress" title="Progress" data-toggle="collapse">
@@ -205,6 +207,7 @@
                                 </ul>
                             </li>
                             <!-- end PROGRESS -->
+
                             <!-- GOALS -->
                             <li {% if page == 'goal' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_goal' %}" title="Goals">
@@ -213,6 +216,7 @@
                             </a>
                             </li>
                             <!-- end GOALS -->
+
                             <!-- LEARNING -->
                             <li class=" ">
                                 <a href="#learning" title="Learning" data-toggle="collapse">
@@ -235,6 +239,7 @@
                                 </ul>
                             </li>
                             <!-- LEARNING -->
+
                             <!-- RESOURCES -->
                             <li {% if page == 'resource' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_resource' %}" title="Resources">
@@ -243,6 +248,7 @@
                             </a>
                             </li>
                             <!-- end RESOURCES -->
+
                             <!-- REWARDS -->
                             <li {% if page == 'reward' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_reward' %}" title="Rewards">
@@ -251,14 +257,39 @@
                             </a>
                             </li>
                             <!-- end REWARDS -->
+
                             <!-- MESSAGE -->
+                            <li class=" ">
+                                <a href="#inbox" title="Progress" data-toggle="collapse">
+                                    <div class="pull-right label label-info">1</div>
+                                    <em class="icon-envelope"></em>
+                                    <span data-localize="sidebar.nav.MESSAGES">Messages</span>
+                                </a>
+                                <ul id="inbox" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">Progress</li>
+                                    <li {% if page == 'inbox' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_message_inbox' %}" title="Inbox">
+                                        <span>Inbox</span>
+                                        </a>
+                                    </li>
+                                    <li {% if page == 'archive' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_archive_inbox' %}" title="Archive">
+                                        <span>Archive</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+{% comment %}
                             <li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_message_inbox' %}" title="Messages">
                             <em class="icon-envelope"></em>
                             <span data-localize="sidebar.nav.MESSAGES">Messages</span>
                             </a>
                             </li>
+{% endcomment %}
                             <!-- end MESSAGE -->
+
                             <!-- COMMUNITY -->
                             <li {% if page == 'community' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_community' %}" title="Community">
@@ -267,6 +298,7 @@
                             </a>
                             </li>
                             <!-- end COMMUNITY -->
+
                             <!-- CALENDAR -->
                             <li {% if page == 'calendar' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_calendar' %}" title="Calendar">
@@ -275,6 +307,7 @@
                             </a>
                             </li>
                             <!-- end CALENDAR -->
+
                             <!-- MY WORK -->
                             <li {% if page == 'mywork' %}class=" active"{% endif %}>
                             <a href="{% url 'tenant_mywork' %}" title="My Work">

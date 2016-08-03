@@ -176,3 +176,45 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         url = reverse('tenant_archive_conversation', args=[666,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_302_FOUND)  # Redirect happens.
+
+    @transaction.atomic
+    def test_archive_list_page(self):
+        url = reverse('tenant_archive_inbox')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_archive_details_page(self):
+        # Create our sender.
+        sender = TenantMe.objects.create(
+            owner=self.user,
+        )
+
+        # Create our recipient
+        recipient_user = User.objects.create_user(
+            email='chambers@gah.com',
+            username='chambers',
+            password='ILoveGAH'
+        )
+        recipient_user.is_active = True
+        recipient_user.save()
+        recipient = TenantMe.objects.create(
+            owner=recipient_user
+        )
+
+        # Create a new object with our specific test data.
+        Message.objects.create(
+            id=666,
+            name="Unit Test #666",
+            recipient=recipient,
+            sender=sender,
+        )
+
+        # Run the test and verify.
+        url = reverse('tenant_archive_details', args=[666,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'Rewards',response.content)
