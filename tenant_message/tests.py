@@ -7,8 +7,9 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public import constants
+from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
+from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -56,7 +57,9 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         user = User.objects.create_user(  # Create our User.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,
-            password=TEST_USER_PASSWORD
+            password=TEST_USER_PASSWORD,
+            first_name=TEST_USER_FIRST_NAME,
+            last_name=TEST_USER_LAST_NAME,
         )
         user.is_active = True
         user.save()
@@ -83,6 +86,8 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        Message.objects.delete_all()
+        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -103,3 +108,71 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         # self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_conversation_page(self):
+        # Create our sender.
+        sender = TenantMe.objects.create(
+            owner=self.user,
+        )
+
+        # Create our recipient
+        recipient_user = User.objects.create_user(
+            email='chambers@gah.com',
+            username='chambers',
+            password='ILoveGAH'
+        )
+        recipient_user.is_active = True
+        recipient_user.save()
+        recipient = TenantMe.objects.create(
+            owner=recipient_user
+        )
+
+        # Create a new object with our specific test data.
+        Message.objects.create(
+            id=666,
+            name="Unit Test #666",
+            recipient=recipient,
+            sender=sender,
+        )
+
+        # Run the test and verify.
+        url = reverse('tenant_conversation', args=[1,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'Rewards',response.content)
+
+
+    @transaction.atomic
+    def test_archive_conversation_page(self):
+        # Create our sender.
+        sender = TenantMe.objects.create(
+            owner=self.user,
+        )
+
+        # Create our recipient
+        recipient_user = User.objects.create_user(
+            email='chambers@gah.com',
+            username='chambers',
+            password='ILoveGAH'
+        )
+        recipient_user.is_active = True
+        recipient_user.save()
+        recipient = TenantMe.objects.create(
+            owner=recipient_user
+        )
+
+        # Create a new object with our specific test data.
+        Message.objects.create(
+            id=666,
+            name="Unit Test #666",
+            description="This is a test message.",
+            recipient=recipient,
+            sender=sender,
+        )
+
+        # Run the test and verify.
+        url = reverse('tenant_archive_conversation', args=[666,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)  # Redirect happens.

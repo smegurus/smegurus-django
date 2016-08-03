@@ -86,58 +86,58 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             user.delete()
         # super(APIMessageWithTenantSchemaTestCase, self).tearDown()
 
-    # @transaction.atomic
-    # def test_list_with_anonymous_user(self):
-    #     response = self.unauthorized_client.get('/api/tenantmessage/?format=json')
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    #
-    # @transaction.atomic
-    # def test_list_with_authenticated_user(self):
-    #     org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-    #     self.user.groups.add(org_admin_group)
-    #
-    #     response = self.authorized_client.get('/api/tenantmessage/?format=json')
-    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-    #
-    # @transaction.atomic
-    # def test_post_with_anonymous_user(self):
-    #     data = {
-    #         'name': 'Unit Test',
-    #         'owner': self.user.id,
-    #     }
-    #     response = self.unauthorized_client.post(
-    #         '/api/tenantmessage/?format=json',
-    #         json.dumps(data),
-    #         content_type='application/json'
-    #     )
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-    #
-    # @transaction.atomic
-    # def test_post_from_sender_to_recipient(self):
-    #     # Create our recipient
-    #     recipient_user = User.objects.create_user(  # Create our user.
-    #         email='chambers@gah.com',
-    #         username='chambers',
-    #         password='ILoveGAH'
-    #     )
-    #     recipient_user.is_active = True
-    #     recipient_user.save()
-    #     recipient = TenantMe.objects.create(
-    #         owner=recipient_user
-    #     )
-    #
-    #     # Run the test and verify.
-    #     data = {
-    #         'name': 'Unit Test',
-    #         'recipient': recipient.id,
-    #         'description': 'Glory to Galactic Alliance',
-    #     }
-    #     response = self.authorized_client.post(
-    #         '/api/tenantmessage/?format=json',
-    #         json.dumps(data),
-    #         content_type='application/json'
-    #     )
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    @transaction.atomic
+    def test_list_with_anonymous_user(self):
+        response = self.unauthorized_client.get('/api/tenantmessage/?format=json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_list_with_authenticated_user(self):
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(org_admin_group)
+
+        response = self.authorized_client.get('/api/tenantmessage/?format=json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_post_with_anonymous_user(self):
+        data = {
+            'name': 'Unit Test',
+            'owner': self.user.id,
+        }
+        response = self.unauthorized_client.post(
+            '/api/tenantmessage/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_post_from_sender_to_recipient(self):
+        # Create our recipient
+        recipient_user = User.objects.create_user(  # Create our user.
+            email='chambers@gah.com',
+            username='chambers',
+            password='ILoveGAH'
+        )
+        recipient_user.is_active = True
+        recipient_user.save()
+        recipient = TenantMe.objects.create(
+            owner=recipient_user
+        )
+
+        # Run the test and verify.
+        data = {
+            'name': 'Unit Test',
+            'recipient': recipient.id,
+            'description': 'Glory to Galactic Alliance',
+        }
+        response = self.authorized_client.post(
+            '/api/tenantmessage/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
     def test_put_with_anonymous_user(self):
