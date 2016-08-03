@@ -1,4 +1,5 @@
 import django_filters
+from django.core.management import call_command
 from rest_framework import viewsets
 from rest_framework import authentication
 from rest_framework import permissions
@@ -39,6 +40,9 @@ class MessageViewSet(viewsets.ModelViewSet):
         # participants
         instance.participants.add(instance.sender, instance.recipient)
         instance.save()
+
+        # Send an email notification to the recipient.
+        call_command('send_new_message_notification_email', str(instance.id))
 
     def perform_destroy(self, instance):
         """Override the deletion function to archive the message instead of deleting it."""
