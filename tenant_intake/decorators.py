@@ -5,6 +5,7 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from foundation_public import constants
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.me import TenantMe
 
 
 def tenant_intake_required(view_func):
@@ -33,7 +34,7 @@ def tenant_intake_has_completed_redirection_required(view_func):
 
         # Check to see if the Me object is setup.
         if entrepreneur_group in request.user.groups.all():
-            intake, created = Intake.objects.get_or_create(owner=request.user)
+            intake, created = Intake.objects.get_or_create(me=request.tenant_me)
             if intake.is_completed:
                 return HttpResponseRedirect(reverse('tenant_intake_entr_step_six'))
 

@@ -135,3 +135,40 @@ class IsMessageObjectPermission(permissions.BasePermission):
                 return obj.sender == request.tenant_me
 
             return obj.sender == request.tenant_me or obj.recipient == request.tenant_me
+
+
+class IsMe(permissions.BasePermission):
+    """
+    Object-level permission to only allow owners of an object to read/edit it.
+    Assumes the model instance has an `owner` attribute.
+    """
+    message = 'Only owners of the object are allowed to read/write.'
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_anonymous():
+            return False
+        else:
+            return obj.me == request.tenant_me
+            
+
+class IsMeOrIsAnEmployee(permissions.BasePermission):
+    """
+    Object-level permission to only allow owners of an object to view/edit it.
+    However, if the authenticated User is an Employee then they also get
+    automatic read/write privilledges.
+
+    Assumes the model instance has an `me` attribute.
+    """
+    message = 'Only owners are allowed to write data.'
+    def has_object_permission(self, request, view, obj):
+        # Step 1: Reject access to non-authenticated users.
+        if request.user.is_anonymous():
+            return False
+        else:
+            # Step 2: Allow access to Employees
+            for group in request.tenant_me.owner.groups.all():
+                if group.id in constants.EMPLOYEE_GROUP_IDS:
+                    return True
+
+            # Step 3: Allow accesss to the owners of the object.
+            # Instance must have an attribute named `owner`.
+            return obj.me == request.tenant_me

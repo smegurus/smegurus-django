@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.me import TenantMe
 from foundation_tenant import constants
 
 
@@ -22,8 +23,8 @@ class Intake(models.Model):
     objects = IntakeManager()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    owner = models.OneToOneField(
-        User,
+    me = models.OneToOneField(
+        TenantMe,
         help_text=_('The User that this Intake belongs to.'),
         on_delete=models.CASCADE,
     )

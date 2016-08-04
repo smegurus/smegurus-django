@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework import response
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
-from api.permissions import IsOwnerOrIsAnEmployee, IsOwner
+from api.permissions import IsMeOrIsAnEmployee, IsMe
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
 from foundation_public import constants
@@ -46,7 +46,7 @@ class SendEmailViewMixin(object):
 class IntakeFilter(django_filters.FilterSet):
     class Meta:
         model = Intake
-        fields = ['created', 'last_modified', 'owner', 'is_completed',
+        fields = ['created', 'last_modified', 'me', 'is_completed',
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',
@@ -58,7 +58,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     serializer_class = IntakeSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication, )
-    permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
+    permission_classes = (permissions.IsAuthenticated, IsMeOrIsAnEmployee, )
     filter_class = IntakeFilter
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
@@ -68,7 +68,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             intake = Intake.objects.get(pk=pk)
 
             # Security: Only the owner can modify this object.
-            if intake.owner != request.user:
+            if intake.me != request.tenant_me:
                 return response.Response(
                     data={'message': 'You are not the owner of this object.'},
                     status=status.HTTP_401_UNAUTHORIZED
