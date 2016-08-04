@@ -46,10 +46,10 @@
                         <a href="#/" class="navbar-brand">
                             <div class="brand-logo">
                                 <!--<img src="img/logo.png" alt="App Logo" class="img-responsive">-->
-                                <h3 class="site-title-v2">SME Gurus</h3>
+                                <h3 class="site-title-v2">{% trans 'SME Gurus' %}</h3>
                             </div>
                             <div class="brand-logo-collapsed">
-                                <img src="{% static 'app/img/logo-single.png' %}" alt="SME Gurus" class="img-responsive">
+                                <img src="{% static 'app/img/logo-single.png' %}" alt="{% trans 'SME Gurus' %}" class="img-responsive">
                             </div>
                         </a>
                     </div>
@@ -174,7 +174,7 @@
                                     </div>
                                     <!-- Name and Job-->
                                     <div class="user-block-info">
-                                        <span class="user-block-name">Hello, {{ request.user.first_name }}</span>
+                                        <span class="user-block-name">{% trans 'Hello,' %} {{ request.user.first_name }}</span>
                                     </div>
                                 </div>
                             </li>
@@ -183,22 +183,22 @@
 
                             <!-- DASHBOARD -->
                             <li {% if page == 'dashboard' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_dashboard' %}" title="Dashboard">
+                            <a href="{% url 'tenant_dashboard' %}" title="{% trans 'Dashboard' %}">
                             <em class="icon-speedometer"></em>
-                            <span data-localize="sidebar.nav.DASHBOARD">Dashboard</span>
+                            <span data-localize="sidebar.nav.DASHBOARD">{% trans 'Dashboard' %}</span>
                             </a>
                             </li>
                             <!-- end DASHBOARD -->
 
                             <!-- PROGRESS -->
                             <li class=" ">
-                                <a href="#progress" title="Progress" data-toggle="collapse">
+                                <a href="#progress" title="{% trans 'Progress' %}" data-toggle="collapse">
                                     <div class="pull-right label label-info">1</div>
                                     <em class="icon-graph"></em>
-                                    <span data-localize="sidebar.nav.PROGRESS">Progress</span>
+                                    <span data-localize="sidebar.nav.PROGRESS">{% trans 'Progress' %}</span>
                                 </a>
                                 <ul id="progress" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">Progress</li>
+                                    <li class="sidebar-subnav-header">{% trans 'Progress' %}</li>
                                     <li class=" ">
                                         <a href="#" title="History">
                                         <span>History</span>
@@ -210,29 +210,29 @@
 
                             <!-- GOALS -->
                             <li {% if page == 'goal' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_goal' %}" title="Goals">
+                            <a href="{% url 'tenant_goal' %}" title="{% trans 'Goals' %}">
                             <em class="icon-check"></em>
-                            <span data-localize="sidebar.nav.GOALS">Goals</span>
+                            <span data-localize="sidebar.nav.GOALS">{% trans 'Goals' %}</span>
                             </a>
                             </li>
                             <!-- end GOALS -->
 
                             <!-- LEARNING -->
                             <li class=" ">
-                                <a href="#learning" title="Learning" data-toggle="collapse">
+                                <a href="#learning" title="{% trans 'Learning' %}" data-toggle="collapse">
                                     <div class="pull-right label label-success">2</div>
                                     <em class="icon-graduation"></em>
                                     <span>Learning</span>
                                 </a>
                                 <ul id="learning" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">Learning</li>
+                                    <li class="sidebar-subnav-header">{% trans 'Learning' %}</li>
                                     <li class=" ">
-                                        <a href="#" title="Modules">
+                                        <a href="#" title="{% trans 'Modules' %}">
                                         <span>Modules</span>
                                         </a>
                                     </li>
                                     <li class=" ">
-                                        <a href="#" title="Forms">
+                                        <a href="#" title="{% trans 'Forms' %}">
                                         <span>Forms</span>
                                         </a>
                                     </li>
@@ -242,78 +242,69 @@
 
                             <!-- RESOURCES -->
                             <li {% if page == 'resource' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_resource' %}" title="Resources">
-                            <em class="icon-notebook"></em>
-                            <span data-localize="sidebar.nav.RESOURCES">Resources</span>
-                            </a>
+                                <a href="{% url 'tenant_resource' %}" title="{% trans 'Resources' %}">
+                                    <em class="icon-notebook"></em>
+                                    <span data-localize="sidebar.nav.RESOURCES">{% trans 'Resources' %}</span>
+                                </a>
                             </li>
                             <!-- end RESOURCES -->
 
                             <!-- REWARDS -->
                             <li {% if page == 'reward' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_reward' %}" title="Rewards">
-                            <em class="icon-trophy"></em>
-                            <span data-localize="sidebar.nav.REWARDS">Rewards</span>
-                            </a>
+                                <a href="{% url 'tenant_reward' %}" title="{% trans 'Rewards' %}">
+                                    <em class="icon-trophy"></em>
+                                    <span data-localize="sidebar.nav.REWARDS">{% trans 'Rewards' %}</span>
+                                </a>
                             </li>
                             <!-- end REWARDS -->
 
                             <!-- MESSAGE -->
                             <li class=" ">
-                                <a href="#inbox" title="Progress" data-toggle="collapse">
+                                <a href="#inbox" title="{% trans 'Progress' %}" data-toggle="collapse">
                                     <div class="pull-right label label-info">1</div>
                                     <em class="icon-envelope"></em>
-                                    <span data-localize="sidebar.nav.MESSAGES">Messages</span>
+                                    <span data-localize="sidebar.nav.MESSAGES">{% trans 'Messages' %}</span>
                                 </a>
                                 <ul id="inbox" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">Progress</li>
+                                    <li class="sidebar-subnav-header">{% trans 'Progress' %}</li>
                                     <li {% if page == 'inbox' %}class=" active"{% endif %}>
-                                        <a href="{% url 'tenant_message_inbox' %}" title="Inbox">
-                                        <span>Inbox</span>
+                                        <a href="{% url 'tenant_message_inbox' %}" title="{% trans 'Inbox' %}">
+                                        <span>{% trans 'Inbox' %}</span>
                                         </a>
                                     </li>
                                     <li {% if page == 'archive' %}class=" active"{% endif %}>
-                                        <a href="{% url 'tenant_archive_inbox' %}" title="Archive">
-                                        <span>Archive</span>
+                                        <a href="{% url 'tenant_archive_inbox' %}" title="{% trans 'Archive' %}">
+                                        <span>{% trans 'Archive' %}</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-
-{% comment %}
-                            <li {% if page == 'inbox' or page == 'composer' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_message_inbox' %}" title="Messages">
-                            <em class="icon-envelope"></em>
-                            <span data-localize="sidebar.nav.MESSAGES">Messages</span>
-                            </a>
-                            </li>
-{% endcomment %}
                             <!-- end MESSAGE -->
 
                             <!-- COMMUNITY -->
                             <li {% if page == 'community' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_community' %}" title="Community">
-                            <em class="icon-feed"></em>
-                            <span data-localize="sidebar.nav.COMMUNITY">Community</span>
-                            </a>
+                                <a href="{% url 'tenant_community' %}" title="{% trans 'Community' %}">
+                                    <em class="icon-feed"></em>
+                                    <span data-localize="sidebar.nav.COMMUNITY">{% trans 'Community' %}</span>
+                                </a>
                             </li>
                             <!-- end COMMUNITY -->
 
                             <!-- CALENDAR -->
                             <li {% if page == 'calendar' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_calendar' %}" title="Calendar">
-                            <em class="icon-calendar"></em>
-                            <span data-localize="sidebar.nav.CALENDAR">Calendar</span>
-                            </a>
+                                <a href="{% url 'tenant_calendar' %}" title="{% trans 'Calendar' %}">
+                                    <em class="icon-calendar"></em>
+                                    <span data-localize="sidebar.nav.CALENDAR">{% trans 'Calendar' %}</span>
+                                </a>
                             </li>
                             <!-- end CALENDAR -->
 
                             <!-- MY WORK -->
                             <li {% if page == 'mywork' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_mywork' %}" title="My Work">
-                            <em class="icon-docs"></em>
-                            <span data-localize="sidebar.nav.DOCUMENTS">My Work</span>
-                            </a>
+                                <a href="{% url 'tenant_mywork' %}" title="{% trans 'My Work' %}">
+                                    <em class="icon-docs"></em>
+                                    <span data-localize="sidebar.nav.DOCUMENTS">{% trans 'My Work' %}</span>
+                                </a>
                             </li>
                             <!-- end MY WORK -->
                         </ul>
@@ -330,45 +321,45 @@
                     <ul class="nav">
                         <!-- PROFILE -->
                         <li class=" ">
-                            <a href="{% url 'tenant_profile' %}" title="My Profile" >
-                            <em class="icon-user"></em>
-                            <span data-localize="offsidebar.nav.PROFILE">My Profile</span>
+                            <a href="{% url 'tenant_profile' %}" title="{% trans 'My Profile' %}" >
+                                <em class="icon-user"></em>
+                                <span data-localize="offsidebar.nav.PROFILE">{% trans 'My Profile' %}</span>
                             </a>
                         </li>
                         <!-- end PROFILE -->
 
                         <!-- SETTINGS -->
                         <li class=" ">
-                            <a href="{% url 'tenant_profile_setting' %}" title="Settings" >
-                            <em class="icon-settings"></em>
-                            <span data-localize="offsidebar.nav.SETTINGS">Settings</span>
+                            <a href="{% url 'tenant_profile_setting' %}" title="{% trans 'Settings' %}" >
+                                <em class="icon-settings"></em>
+                                <span data-localize="offsidebar.nav.SETTINGS">{% trans 'Settings' %}</span>
                             </a>
                         </li>
                         <!-- end SETTINGS -->
 
                         <!-- FULLSCREEN -->
                         <li class=" ">
-                            <a href="#" title="Go Full Screen" data-toggle-fullscreen="" style="cursor: pointer;">
-                            <em class="fa fa-expand"></em>
-                            <span data-localize="offsidebar.nav.FULLSCREEN">Go Full Screen</span>
+                            <a href="#" title="{% trans 'Go Full Screen' %}" data-toggle-fullscreen="" style="cursor: pointer;">
+                                <em class="fa fa-expand"></em>
+                                <span data-localize="offsidebar.nav.FULLSCREEN">{% trans 'Go Full Screen' %}</span>
                             </a>
                         </li>
                         <!-- end FULLSCREEN -->
 
                         <!-- LOCK -->
                         <li class=" ">
-                            <a href="{% url 'tenant_profile_lock' %}" title="Lock Screen">
-                            <em class="icon-lock"></em>
-                            <span data-localize="offsidebar.nav.LOCK">Lock Screen</span>
+                            <a href="{% url 'tenant_profile_lock' %}" title="{% trans 'Lock Screen' %}">
+                                <em class="icon-lock"></em>
+                                <span data-localize="offsidebar.nav.LOCK">{% trans 'Lock Screen' %}</span>
                             </a>
                         </li>
                         <!-- end LOCK -->
 
                         <!-- HELP -->
                         <li class=" ">
-                            <a id="help-block-toggle" href="#help-block" data-toggle="collapse" title="Help" >
-                            <em class="icon-question"></em>
-                            <span data-localize="offsidebar.nav.HELP">Help</span>
+                            <a id="help-block-toggle" href="#help-block" data-toggle="collapse" title="{% trans 'Help' %}" >
+                                <em class="icon-question"></em>
+                                <span data-localize="offsidebar.nav.HELP">{% trans 'Help' %}</span>
                             </a>
                         </li>
                         <li class="has-help-block">
@@ -377,10 +368,10 @@
                                     <p>{% trans 'What can we help you with?' %}</p>
                                     <button onclick="ajax_load_faq_page();"
                                                type="button"
-                                              class="mb-sm btn label-green-v2 pull-left">FAQ</button>
+                                              class="mb-sm btn label-green-v2 pull-left">{% trans 'FAQ' %}</button>
                                     <button onclick="ajax_load_help_page();"
                                                type="button"
-                                              class="mb-sm btn label-red-v2 pull-right">QUESTION</button>
+                                              class="mb-sm btn label-red-v2 pull-right">{% trans 'QUESTION' %}</button>
                                     <br /><br />
                                 </div>
                             </div>
@@ -389,20 +380,24 @@
 
                         <!-- LOGOUT -->
                         <li class=" ">
-                            <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="Logout" >
+                            <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="{% trans 'Logout' %}" >
                             <em class="icon-logout"></em>
-                            <span data-localize="offsidebar.nav.LOGOUT">Logout</span>
+                            <span data-localize="offsidebar.nav.LOGOUT">{% trans 'Logout' %}</span>
                             </a>
                         </li>
                         <li class="has-logout-block">
                             <div id="logout-block" class="collapse">
                                 <div class="item logout-block">
-                                    <p>Are you sure you want to log out?</p>
-                                    <button onclick="ajax_logout();" type="button" class="mb-sm btn label-green-v2 pull-left">YES</button>
-                                    <button type="button" class="mb-sm btn label-red-v2 pull-right">NO</button>
+                                    <p>{% trans 'Are you sure you want to log out?' %}</p>
+                                    <button onclick="ajax_logout();" type="button" class="mb-sm btn label-green-v2 pull-left">
+                                        {% trans 'YES' %}
+                                    </button>
+                                    <button type="button" class="mb-sm btn label-red-v2 pull-right">
+                                        {% trans 'NO' %}
+                                    </button>
                                     <label class="checkbox-inline c-checkbox">
-                                    <input id="inlineCheckbox10" type="checkbox" value="Do not ask me again">
-                                    <span class="fa fa-check"></span>Don't ask me again</label>
+                                    <input id="inlineCheckbox10" type="checkbox" value="{% trans 'Do not ask me again' %}">
+                                    <span class="fa fa-check"></span>{% trans 'Don\'t ask me again' %}</label>
                                 </div>
                             </div>
                         </li>
