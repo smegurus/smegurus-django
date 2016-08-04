@@ -194,14 +194,16 @@
                             </li>
                             <!-- end DASHBOARD -->
 
-                            <!-- GOALS -->
+                            {% if request.tenant_me.is_employee == True %}
+                            <!-- TASKS -->
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_task' %}" title="{% trans 'Tasks' %}">
                                     <em class="icon-notebook"></em>
                                     <span data-localize="sidebar.nav.TASKS">{% trans 'Tasks' %}</span>
                                 </a>
                             </li>
-                            <!-- end GOALS -->
+                            <!-- end TASKS -->
+                            {% endif %}
 
                             <!-- PROGRESS -->
                             <li class=" ">

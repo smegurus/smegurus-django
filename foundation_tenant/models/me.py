@@ -1,8 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.abstract_person import AbstractPerson
+from foundation_public import constants
 
 
 class TenantMeManager(models.Manager):
@@ -81,6 +82,26 @@ class TenantMe(AbstractPerson):
         blank=True,
         default=0,
     )
+
+    def is_entrepreneur(self):
+        for my_group in self.owner.groups.all():
+            if constants.ENTREPRENEUR_GROUP_ID == my_group.id:
+                return True
+        return False
+
+    def is_employee(self):
+        for my_group in self.owner.groups.all():
+            for employee_group_id in constants.EMPLOYEE_GROUP_IDS:
+                if employee_group_id == my_group.id:
+                    return True
+        return False
+
+    def is_manager(self):
+        for my_group in self.owner.groups.all():
+            for management_group_id in constants.MANAGEMENT_EMPLOYEE_GROUP_IDS:
+                if management_group_id == my_group.id:
+                    return True
+        return False
 
     def __str__(self):
         return str(self.id)

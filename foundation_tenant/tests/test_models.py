@@ -83,9 +83,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
+        items = Group.objects.all()
+        for item in items.all():
+            item.delete()
         # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
 
     @transaction.atomic
@@ -312,6 +315,96 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             owner=User.objects.get(username='1'),
         )
         self.assertIn(str(obj), '1')
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_is_entrepreneur_with_false(self):
+        # Attach non-entrepreneur group.
+        group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        user = User.objects.get(username='1')
+        user.groups.add(group)
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=user,
+        )
+
+        # Run the test and verify.
+        self.assertFalse(obj.is_entrepreneur())
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_is_entrepreneur_with_true(self):
+        # Attach entrepreneur group.
+        group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        user = User.objects.get(username='1')
+        user.groups.add(group)
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=user,
+        )
+
+        # Run the test and verify
+        self.assertTrue(obj.is_entrepreneur())
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_is_employee_with_true(self):
+        # Attach employee group.
+        group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        user = User.objects.get(username='1')
+        user.groups.add(group)
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=user,
+        )
+
+        # Run the test and verify
+        self.assertTrue(obj.is_employee())
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_is_employee_with_false(self):
+        # Attach non-employee group.
+        group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        user = User.objects.get(username='1')
+        user.groups.add(group)
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=user,
+        )
+
+        # Run the test and verify
+        self.assertFalse(obj.is_employee())
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_is_manager_with_true(self):
+        # Attach manager group.
+        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        user = User.objects.get(username='1')
+        user.groups.add(group)
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=user,
+        )
+
+        # Run the test and verify
+        self.assertTrue(obj.is_manager())
+        obj.delete()
+
+    @transaction.atomic
+    def test_tenant_me_is_manager_with_false(self):
+        # Attach non-manager group.
+        group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        user = User.objects.get(username='1')
+        user.groups.add(group)
+        obj = TenantMe.objects.create(
+            id=1,
+            owner=user,
+        )
+
+        # Run the test and verify
+        self.assertFalse(obj.is_manager())
         obj.delete()
 
     @transaction.atomic
