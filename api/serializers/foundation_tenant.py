@@ -155,7 +155,7 @@ class TenantMeSerializer(serializers.ModelSerializer):
                   'url', 'telephone', 'is_tos_signed',
                   'is_setup', 'is_locked', 'notify_when_new_tasks',
                   'notify_when_new_messages', 'notify_when_due_tasks',
-                  'address',)
+                  'address', 'unread_messages_count',)
 
 
 class CalendarEventSerializer(serializers.ModelSerializer):

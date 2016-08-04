@@ -75,6 +75,12 @@ class TenantMe(AbstractPerson):
         default=True
     )
 
+    unread_messages_count = models.PositiveSmallIntegerField(
+        _("Unread Messages Count"),
+        help_text=_('The count of how many new messages have been unread.'),
+        blank=True,
+        default=0,
+    )
 
     def __str__(self):
         return str(self.id)

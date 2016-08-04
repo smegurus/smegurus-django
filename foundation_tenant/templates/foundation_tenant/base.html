@@ -261,7 +261,7 @@
                             <!-- MESSAGE -->
                             <li class=" ">
                                 <a href="#inbox" title="{% trans 'Progress' %}" data-toggle="collapse">
-                                    <div class="pull-right label label-info">1</div>
+                                    <div class="pull-right label label-info">{{ request.tenant_me.unread_messages_count }}</div>
                                     <em class="icon-envelope"></em>
                                     <span data-localize="sidebar.nav.MESSAGES">{% trans 'Messages' %}</span>
                                 </a>
