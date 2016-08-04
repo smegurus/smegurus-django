@@ -19,6 +19,10 @@
         <!-- WHIRL (spinners)-->
         <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
         <!-- =============== PAGE VENDOR STYLES ===============-->
+        <!-- DATATABLES-->
+        <link rel="stylesheet" href="{% static 'vendor/datatables-colvis/css/dataTables.colVis.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/datatables/media/css/dataTables.bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/dataTables.fontAwesome/index.css' %}">
         <!-- FULLCALENDAR-->
         <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.print.css' %}" media='print' />
@@ -189,6 +193,15 @@
                             </a>
                             </li>
                             <!-- end DASHBOARD -->
+
+                            <!-- GOALS -->
+                            <li {% if page == 'tasks' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_task' %}" title="{% trans 'Tasks' %}">
+                                    <em class="icon-notebook"></em>
+                                    <span data-localize="sidebar.nav.TASKS">{% trans 'Tasks' %}</span>
+                                </a>
+                            </li>
+                            <!-- end GOALS -->
 
                             <!-- PROGRESS -->
                             <li class=" ">
@@ -450,6 +463,10 @@
                 <script src="{% static 'vendor/fullcalendar/gcal.js' %}"></script>
                 <!-- SELECT2-->
                 <script src="{% static 'vendor/select2/dist/js/select2.js' %}"></script>
+                <!-- DATATABLES-->
+                <script src="{% static 'vendor/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+                <script src="{% static 'vendor/datatables-colvis/js/dataTables.colVis.js' %}"></script>
+                <script src="{% static 'vendor/datatables/media/js/dataTables.bootstrap.js' %}"></script>
                 <!-- =============== EXTRA SCRIPTS ===============-->
                 <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
                 <!-- =============== APP SCRIPTS ===============-->

@@ -54,6 +54,7 @@ urlpatterns += i18n_patterns(
     url(r'^', include('tenant_reward.urls')),
     url(r'^', include('tenant_intake.urls')),
     url(r'^', include('tenant_faq.urls')),
+    url(r'^', include('tenant_task.urls')),
     url(r'^', include('tenant_dashboard.urls')),
 )
 
