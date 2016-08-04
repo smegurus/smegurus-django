@@ -17,7 +17,10 @@ from foundation_public import constants
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
-    messages = Message.objects.filter(participants=request.tenant_me,).distinct('participants')
+    messages = Message.objects.filter(
+        recipient=request.tenant_me,
+        participants=request.tenant_me
+    ).distinct('participants')
     return render(request, 'tenant_message/message/master_view.html',{
         'page': 'inbox',
         'messages': messages,
@@ -107,7 +110,14 @@ def archive_conversation_page(request, sender_id):
 def archive_list_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
-    messages = Message.objects.filter(recipient=request.tenant_me,).distinct('participants')
+    messages = Message.objects.filter(
+        Q(
+            recipient=request.tenant_me
+        ) &~  # and not
+        Q(
+            participants=request.tenant_me
+        )
+    ).distinct('participants')
     return render(request, 'tenant_message/archive/master_view.html',{
         'page': 'archive',
         'messages': messages,
@@ -119,11 +129,22 @@ def archive_list_page(request):
 def archive_details_page(request, sender_id):
     messages = Message.objects.filter(
         Q(
-            recipient=request.tenant_me,
-            sender_id=int(sender_id),
-        ) | Q(
-            recipient_id=int(sender_id),
-            sender_id=request.tenant_me,
+            Q(
+                recipient=request.tenant_me,
+                sender_id=int(sender_id),
+            ) &~  # and not
+            Q(
+                participants=request.tenant_me
+            )
+        ) |
+        Q(
+            Q(
+                recipient_id=int(sender_id),
+                sender_id=request.tenant_me,
+            ) &~  # and not
+            Q(
+                participants=request.tenant_me
+            )
         )
     ).order_by("created")
     return render(request, 'tenant_message/archive/details_view.html',{
