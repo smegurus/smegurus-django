@@ -73,7 +73,6 @@ def conversation_page(request, sender_id):
                 message.recipient.unread_messages_count = message.recipient.unread_messages_count - 1
                 message.recipient.save()
 
-
     return render(request, 'tenant_message/message/details_view.html',{
         'page': 'inbox',
         'messages': messages,

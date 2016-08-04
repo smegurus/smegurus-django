@@ -88,9 +88,12 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
     def tearDown(self):
         Message.objects.delete_all()
         TenantMe.objects.delete_all()
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
+        items = Group.objects.all()
+        for item in items.all():
+            item.delete()
+        items = User.objects.all()
+        for item in items.all():
+            item.delete()
         # super(TenantMessageTestCases, self).tearDown()
 
     @transaction.atomic
@@ -99,7 +102,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Rewards',response.content)
+        self.assertIn(b'id_table',response.content)
 
     @transaction.atomic
     def test_composer_page(self):
@@ -107,65 +110,66 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Rewards',response.content)
+        self.assertIn(b'ajax_create_message',response.content)
 
     @transaction.atomic
     def test_conversation_page(self):
         # Create our sender.
-        sender = TenantMe.objects.create(
-            owner=self.user,
-        )
+        recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
 
         # Create our recipient
-        recipient_user = User.objects.create_user(
+        sender_user = User.objects.create_user(
             email='chambers@gah.com',
             username='chambers',
             password='ILoveGAH'
         )
-        recipient_user.is_active = True
-        recipient_user.save()
-        recipient = TenantMe.objects.create(
-            owner=recipient_user
+        sender_user.is_active = True
+        sender_user.save()
+        sender = TenantMe.objects.create(
+            id=666,
+            owner=sender_user
         )
 
         # Create a new object with our specific test data.
-        Message.objects.create(
-            id=666,
-            name="Unit Test #666",
+        message = Message.objects.create(
+            name="Unit Test",
+            description="This is a unit test message.",
             recipient=recipient,
             sender=sender,
         )
+        message.participants.add(sender, recipient)
+        message.save()
 
         # Run the test and verify.
-        url = reverse('tenant_conversation', args=[1,])
+        url = reverse('tenant_conversation', args=[666,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Rewards',response.content)
-
+        self.assertIn(b'This is a unit test message.',response.content)
 
     @transaction.atomic
     def test_archive_conversation_page(self):
         # Create our sender.
-        sender = TenantMe.objects.create(
+        recipient = TenantMe.objects.create(
+            id=999,
             owner=self.user,
         )
 
         # Create our recipient
-        recipient_user = User.objects.create_user(
+        sender_user = User.objects.create_user(
             email='chambers@gah.com',
             username='chambers',
             password='ILoveGAH'
         )
-        recipient_user.is_active = True
-        recipient_user.save()
-        recipient = TenantMe.objects.create(
-            owner=recipient_user
+        sender_user.is_active = True
+        sender_user.save()
+        sender = TenantMe.objects.create(
+            id=666,
+            owner=sender_user
         )
 
         # Create a new object with our specific test data.
-        Message.objects.create(
-            id=666,
+        message = Message.objects.create(
             name="Unit Test #666",
             description="This is a test message.",
             recipient=recipient,
@@ -183,31 +187,33 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Rewards',response.content)
+        self.assertIn(b'Archive',response.content)
 
     @transaction.atomic
     def test_archive_details_page(self):
         # Create our sender.
-        sender = TenantMe.objects.create(
+        recipient = TenantMe.objects.create(
+            id=999,
             owner=self.user,
         )
 
         # Create our recipient
-        recipient_user = User.objects.create_user(
+        sender_user = User.objects.create_user(
             email='chambers@gah.com',
             username='chambers',
             password='ILoveGAH'
         )
-        recipient_user.is_active = True
-        recipient_user.save()
-        recipient = TenantMe.objects.create(
-            owner=recipient_user
+        sender_user.is_active = True
+        sender_user.save()
+        sender = TenantMe.objects.create(
+            id=666,
+            owner=sender_user
         )
 
         # Create a new object with our specific test data.
-        Message.objects.create(
-            id=666,
-            name="Unit Test #666",
+        message = Message.objects.create(
+            name="Test Message",
+            description="This is a test message.",
             recipient=recipient,
             sender=sender,
         )
@@ -217,4 +223,4 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        # self.assertIn(b'Rewards',response.content)
+        self.assertIn(b'This is a test message.',response.content)
