@@ -1,15 +1,7 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        complete_tenant_intake(
-            {{ intake.id }},
-            function(json_result){
-                console.log(json_result);
-            },
-            function(error_result) {
-                console.log(error_result);
-            }
-        ); // end Complete Intake
+
     }); // end Ready
 
     function disable_btn() {
@@ -23,11 +15,24 @@
     }
 
     function ajax_back() {
-        window.location = "{% url 'tenant_intake_entr_step_five' %}";
+        {% if intake.how_to_contact == 1 %}
+            window.location = "{% url 'tenant_intake_entr_step_four' %}";
+        {% else %}
+            window.location = "{% url 'tenant_intake_entr_step_five' %}";
+        {% endif %}
     }
 
-    function ajax_dashboard() {
-        window.location = "{% url 'tenant_dashboard' %}";
+    function ajax_save_and_continue() {
+        complete_tenant_intake(
+            {{ intake.id }},
+            function(json_result){
+                console.log(json_result);
+                window.location = "{% url 'tenant_intake_finished' %}";
+            },
+            function(error_result) {
+                console.log(error_result);
+            }
+        ); // end Complete Intake
     }
 
 </script>

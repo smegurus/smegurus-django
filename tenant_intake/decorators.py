@@ -36,7 +36,7 @@ def tenant_intake_has_completed_redirection_required(view_func):
         if entrepreneur_group in request.user.groups.all():
             intake, created = Intake.objects.get_or_create(me=request.tenant_me)
             if intake.is_completed:
-                return HttpResponseRedirect(reverse('tenant_intake_entr_step_six'))
+                return HttpResponseRedirect(reverse('tenant_intake_finished'))
 
         # Check to see if the current entrepreneur is setup.
         return view_func(request, *args, **kwargs)

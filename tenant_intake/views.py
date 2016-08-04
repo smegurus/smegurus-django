@@ -115,3 +115,14 @@ def intake_entr_step_six_page(request):
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
     })
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ENTREPRENEUR_GROUP_ID,])
+def intake_finished_page(request):
+    intake, create = Intake.objects.get_or_create(me=request.tenant_me)
+    return render(request, 'tenant_intake/entrepreneur/finished_view.html',{
+        'intake': intake,
+        'form': IntakeForm(instance=intake),
+        'tags': Tag.objects.filter(is_program=True)
+    })

@@ -159,3 +159,11 @@ class TenantIntakeTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_finished_page_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_finished')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)

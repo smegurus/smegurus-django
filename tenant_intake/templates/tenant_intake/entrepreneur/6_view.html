@@ -1,19 +1,63 @@
-{% extends 'foundation_config/base.html' %}
+{% extends 'tenant_intake/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
         {% include 'tenant_intake/entrepreneur/6_js.html' %}
     {% endcompress %}
-
-    <h2 class="text-center pv">{% trans 'Thank you!' %}</h2>
-    <p class="text-center pv">{% trans 'An advisor should contact you within 2 business days. If you don\'t hear from us, please feel free to give us a call at (123)555-5555 or Email us: info@smallbizcentre.com.' %}</p>
-    <p class="text-center pv">{% trans 'And don\'t forget to follow us!' %}</p>
-
-    <br/>
-
-    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        
-    </form>
-
-
+    <div class="content-wrapper">
+<div class="panel panel-default">
+    <div class="panel-heading">Entrepreneur Intake Form</div>
+    <div class="panel-body">
+        <div id="example-vertical" role="application" class="wizard clearfix vertical">
+            <div class="steps clearfix">
+                <ul role="tablist">
+                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                        <a id="example-vertical-t-0" href="#example-vertical-h-0" aria-controls="example-vertical-p-0">
+                        <span class="current-info audible">current step: </span><span class="number">1.</span> Help
+                        </a>
+                    </li>
+                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                        <a id="example-vertical-t-1" href="#example-vertical-h-1" aria-controls="example-vertical-p-1">
+                        <span class="number">2.</span> Discovery
+                        </a>
+                    </li>
+                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                        <a id="example-vertical-t-2" href="#example-vertical-h-2" aria-controls="example-vertical-p-2">
+                        <span class="number">3.</span> Business Ownership
+                        </a>
+                    </li>
+                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                        <a id="example-vertical-t-3" href="#example-vertical-h-3" aria-controls="example-vertical-p-3">
+                        <span class="number">4.</span> Contact
+                        </a>
+                    </li>
+                    <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
+                        <a id="example-vertical-t-4" href="#example-vertical-h-4" aria-controls="example-vertical-p-4">
+                        <span class="number">5.</span> Finish
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content clearfix">
+                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
+                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
+                    <fieldset id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
+                        <h2 class="text-center pv">{% trans 'Finish' %}</h2>
+                        <p class="text-center pv">{% trans 'When you feeel confident with your answers. Click "Finish".' %}</p>
+                    </fieldset>
+                </section>
+            </div>
+            <div class="actions clearfix">
+                <ul role="menu" aria-label="Pagination">
+                    <li class="disabled" aria-disabled="true">
+                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">Previous</a>
+                    </li>
+                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
+                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">Finish</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
