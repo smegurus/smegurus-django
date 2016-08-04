@@ -91,14 +91,11 @@ class TenantProgressTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        items = Token.objects.all()
-        for item in items.all():
-            item.delete()
         # super(TenantProgressTestCases, self).tearDown()
 
     @transaction.atomic
     def test_progress_page(self):
-        url = reverse('tenant_resource')
+        url = reverse('tenant_progress')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
