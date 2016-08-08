@@ -11,7 +11,7 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

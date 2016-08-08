@@ -14,7 +14,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.intake import Intake
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -239,6 +239,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Intake.objects.create(
             id=1,
             owner=self.user,
+            status=constants.CREATED_STATUS
         )
 
         # Change Group that the User belongs in.
@@ -259,7 +260,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Intake.objects.create(
             id=1,
             owner=self.user,
-            is_completed=False,
+            status=constants.PENDING_REVIEW_STATUS,
         )
 
         # Run the test and verify.
@@ -270,7 +271,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         me = Intake.objects.get(id=1)
-        self.assertFalse(me.is_completed)
+        self.assertEqual(me.status, constants.PENDING_REVIEW_STATUS)
 
     @transaction.atomic
     def test_complete_intake_with_owner_user(self):
@@ -278,7 +279,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Intake.objects.create(
             id=1,
             owner=self.user,
-            is_completed=False,
+            status=constants.CREATED_STATUS,
         )
 
         # Run the test and verify.
@@ -289,7 +290,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         me = Intake.objects.get(id=1)
-        self.assertTrue(me.is_completed)
+        self.assertEqual(me.status, constants.PENDING_REVIEW_STATUS)
 
     @transaction.atomic
     def test_complete_intake_with_different_owner_user(self):
@@ -306,7 +307,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Intake.objects.create(
             id=1,
             owner=new_user,
-            is_completed=False,
+            status=constants.CREATED_STATUS,
         )
 
         # Run the test and verify.
@@ -317,7 +318,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         me = Intake.objects.get(id=1)
-        self.assertFalse(me.is_completed)
+        self.assertEqual(me.status, constants.CREATED_STATUS)
 
     @transaction.atomic
     def test_complete_intake_with_owner_user_with_404(self):
@@ -325,7 +326,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Intake.objects.create(
             id=1,
             owner=self.user,
-            is_completed=False,
+            status=constants.CREATED_STATUS,
         )
 
         # Run the test and verify.
@@ -336,4 +337,4 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         me = Intake.objects.get(id=1)
-        self.assertFalse(me.is_completed)
+        self.assertEqual(me.status, constants.CREATED_STATUS)

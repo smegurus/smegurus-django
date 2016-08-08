@@ -2,7 +2,7 @@ from functools import wraps
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.utils.translation import ugettext_lazy as _
-from foundation_public import constants
+from smegurus import constants
 
 
 def tenant_required(view_func):

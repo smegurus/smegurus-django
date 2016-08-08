@@ -7,6 +7,7 @@ from django.core.urlresolvers import resolve, reverse
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from smegurus import constants
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.abstract_creativework import AbstractCreativeWork
@@ -34,7 +35,6 @@ from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
-from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

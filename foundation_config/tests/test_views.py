@@ -11,7 +11,7 @@ from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
 from foundation_tenant.models.businessidea import BusinessIdea
 from foundation_tenant.models.tag import Tag
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

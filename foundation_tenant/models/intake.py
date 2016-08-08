@@ -3,7 +3,55 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant import constants
+from smegurus import constants
+
+
+STATUS_OPTIONS = (
+    (constants.CREATED_STATUS, _('Created')),
+    (constants.PENDING_REVIEW_STATUS, _('Pending Review')),
+    (constants.IN_REVIEW_STATUS, _('In Review')),
+    (constants.REJECTED_STATUS, _('Rejected')),
+    (constants.APPROVED_STATUS, _('Approved')),
+)
+
+
+HOW_CAN_WE_HELP_OPTIONS = (
+    (1, _('I am interested in one of your programs')),
+    (2, _('I am interested in one of your services')),
+    (3, _('I want to find out how to start a business')),
+    (4, _('I have an existing business I need help with')),
+    (5, _('I want to find out about grants and loans')),
+    (6, _('Other')),
+)
+
+
+HOW_DID_YOU_HEAR_OPTIONS = (
+    (1, _('Google Search')),
+    (2, _('Your Website')),
+    (3, _('Other')),
+)
+
+
+DO_YOU_OWN_A_BIZ_OPTIONS = (
+    (1, _('Yes')),
+    (2, _('No')),
+    (3, _('In the process of starting')),
+    (4, _('I previously owned a business')),
+    (5, _('None of the above')),
+)
+
+
+HOW_TO_CONTACT_OPTIONS = (
+    (1, _('Email')),
+    (2, _('Phone')),
+)
+
+
+HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS = (
+    (1, _('Morning')),
+    (2, _('Afternoon')),
+    (3, _('Evening')),
+)
 
 
 class IntakeManager(models.Manager):
@@ -28,17 +76,17 @@ class Intake(models.Model):
         help_text=_('The User that this Intake belongs to.'),
         on_delete=models.CASCADE,
     )
-    is_completed = models.BooleanField(
-        _("Is completed"),
-        help_text=_('Indicates if the User completed Intake.'),
-        default=False,
-        blank=True,
+    status = models.PositiveSmallIntegerField(
+        _("Status"),
+        choices=STATUS_OPTIONS,
+        help_text=_('The state this intake application is in our application.'),
+        default=constants.CREATED_STATUS,
     )
 
     # "How Can We Help You" Section
     how_can_we_help = models.PositiveSmallIntegerField(
         _("How can we help you"),
-        choices=constants.HOW_CAN_WE_HELP_OPTIONS,
+        choices=HOW_CAN_WE_HELP_OPTIONS,
         help_text=_('The details of how we can help the User.'),
         default=1,
     )
@@ -60,7 +108,7 @@ class Intake(models.Model):
     # "How Did You Hear About Us" Section
     how_did_you_hear = models.PositiveSmallIntegerField(
         _("How did you hear about our services"),
-        choices=constants.HOW_DID_YOU_HEAR_OPTIONS,
+        choices=HOW_DID_YOU_HEAR_OPTIONS,
         help_text=_('The details of how we can help the User.'),
         default=1,
     )
@@ -76,7 +124,7 @@ class Intake(models.Model):
     # "Do You Own a Business" Section
     do_you_own_a_biz = models.PositiveSmallIntegerField(
         _("Do you currently own a business"),
-        choices=constants.DO_YOU_OWN_A_BIZ_OPTIONS,
+        choices=DO_YOU_OWN_A_BIZ_OPTIONS,
         help_text=_('User enters their current business owning status.'),
         default=1,
     )
@@ -92,7 +140,7 @@ class Intake(models.Model):
     # "How should we contact you" Section
     how_to_contact = models.PositiveSmallIntegerField(
         _("How should we contact you"),
-        choices=constants.HOW_TO_CONTACT_OPTIONS,
+        choices=HOW_TO_CONTACT_OPTIONS,
         help_text=_('User enters how they wish to be contacted by.'),
         default=1,
     )
@@ -106,7 +154,7 @@ class Intake(models.Model):
     )
     how_to_contact_times = models.PositiveSmallIntegerField(
         _("When is it best to call you"),
-        choices=constants.HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS,
+        choices=HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS,
         help_text=_('User best times to be contacted by.'),
         default=1,
     )

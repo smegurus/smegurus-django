@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import resolve, reverse
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from foundation_public import constants
+from smegurus import constants
 
 
 def foundation_config_required(view_func):

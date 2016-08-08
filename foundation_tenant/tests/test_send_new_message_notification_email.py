@@ -15,7 +15,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
-from foundation_public import constants
+from smegurus import constants
 from smegurus.settings import env_var
 
 

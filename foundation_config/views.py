@@ -5,13 +5,13 @@ from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from rest_framework import status
 
+from smegurus import constants
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
 from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.decorators import group_required
-from foundation_public import constants
 
 from foundation_tenant.forms.businessideaform import BusinessIdeaForm
 from foundation_tenant.forms.tellusyourneedform import TellUsYourNeedForm

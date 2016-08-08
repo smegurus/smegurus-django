@@ -14,7 +14,7 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsMeOrIsAnEmployee, IsMe
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
-from foundation_public import constants
+from smegurus import constants
 from smegurus.settings import env_var
 
 
@@ -46,7 +46,7 @@ class SendEmailViewMixin(object):
 class IntakeFilter(django_filters.FilterSet):
     class Meta:
         model = Intake
-        fields = ['created', 'last_modified', 'me', 'is_completed',
+        fields = ['created', 'last_modified', 'me', 'status',
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',
@@ -76,7 +76,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # Send a notification to the staff when the Intake was completed.
             # Send a notification to the Organization staff.
-            if not intake.is_completed:
+            if intake.status != constants.PENDING_REVIEW_STATUS:
                 # Generate our email list.
                 contact_list = []
                 users = User.objects.filter(groups__id=constants.ADVISOR_GROUP_ID)
@@ -93,7 +93,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 self.send_activation(request.tenant.schema_name, contact_list)
 
                 # Mark the Intake object as complete after sending notification.
-                intake.is_completed = True
+                intake.status = constants.PENDING_REVIEW_STATUS
                 intake.save()
 
             # Return a sucess message.

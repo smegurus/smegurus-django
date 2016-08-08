@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from smegurus import constants
 from foundation_tenant.models.imageupload import TenantImageUpload
-from foundation_public import constants
 
 
 INDUSTRY_OPTIONS = (

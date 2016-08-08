@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from foundation_public import constants
+from smegurus import constants
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.language import Language
@@ -165,10 +165,10 @@ class CalendarEventSerializer(serializers.ModelSerializer):
 
 
 class IntakeSerializer(serializers.ModelSerializer):
-    is_completed = serializers.BooleanField(read_only=True)
+    status = serializers.IntegerField(read_only=True)
     class Meta:
         model = Intake
-        fields = ('id', 'created', 'last_modified', 'me', 'is_completed',
+        fields = ('id', 'created', 'last_modified', 'me', 'status',
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',

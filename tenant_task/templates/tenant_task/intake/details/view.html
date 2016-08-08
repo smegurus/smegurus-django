@@ -1,0 +1,77 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'tenant_task/intake/details/js.html' %}
+{% endcompress %}
+
+<!-- Page content-->
+<div class="content-wrapper">
+    <h3>{% trans 'Intake Details' %}</h3>
+    <div class="table-grid table-grid-desktop">
+        <div class="col col-md">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!-- Form elements -->
+                </div>
+                <div class="panel-body">
+                    <form method="get" action="/" class="form-horizontal">
+                        <!-- CONTACT INFOMRATION -->
+                        <fieldset>
+                            <legend>{% trans 'Contact' %}</legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{% trans 'Full Name' %}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="{{ intake.me.name }}" disabled />
+                                    <!-- <span class="help-block m-b-none">A block of help text ... </span> -->
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{% trans 'Email' %}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" value="{{ intake.me.owner.email }}" disabled />
+                                    <!-- <span class="help-block m-b-none">A block of help text ... </span> -->
+                                </div>
+                            </div>
+                            <br />
+                        </fieldset>
+                        <!-- end CONTACT INFOMRATION -->
+
+                        <!-- INTAKE -->
+                        <fieldset>
+                            <legend>{% trans 'Submission' %}</legend>
+                            {% for field in form %}
+                            <div class="form-group" id="{{ field.id_for_label }}_div">
+                                <label class="col-sm-2 control-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {{ field }}
+                                    {{ field.errors }}<br/>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+                            {{ form.non_field_errors }}
+                        </fieldset>
+                        <!-- end INTAKE -->
+
+                        <!-- SUBMISSION -->
+                        <div style="float: right;">
+                            <button type="button" class="btn btn-danger btn-lg">{% trans 'Reject' %}</button>
+                            <button type="button" class="btn btn-success btn-lg">{% trans 'Accept' %}</button>
+                        </div>
+                        <!-- end SUBMISSION -->
+
+                    </form>
+                </div>
+            </div>
+            <!-- END panel-->
+        </div>
+    </div>
+</div>
+{% endblock content %}

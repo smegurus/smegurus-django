@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_tenants.models import TenantMixin, DomainMixin
+from smegurus import constants
 from foundation_public.models.abstract_thing import AbstractPublicThing
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.brand import PublicBrand
@@ -11,7 +12,36 @@ from foundation_public.models.language import PublicLanguage
 from foundation_public.models.openinghoursspecification import PublicOpeningHoursSpecification
 from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
-from foundation_public import constants
+
+
+HOW_DISCOVERED_OPTIONS = (
+    ("Google search", _("Google search")),
+    ("SMEgurus.com", _("SMEgurus.com")),
+    ("Social media", _("Social media")),
+    ("Other", _("Other")),
+)
+
+HOW_MANY_SERVED_OPTIONS = (
+    (1, _('1-10')),
+    (2, _('11-50')),
+    (3, _('50+')),
+)
+
+
+TRADITIONAL_LEARNING_PREFERENCE = 1
+BLENDED_LEARNING_PREFERENCE = 2
+LEARNING_PREFERENCE_OPTIONS = (
+    (TRADITIONAL_LEARNING_PREFERENCE, _('Traditional Learning Preference')),
+    (BLENDED_LEARNING_PREFERENCE, _('Blended Learning Preference')),
+)
+
+
+TRADITIONAL_CHALLENGE = 1
+REAL_WORLD_CHALLENGE = 2
+CHALLENGE_OPTIONS = (
+    (TRADITIONAL_CHALLENGE, _('Traditional Challenge')),
+    (REAL_WORLD_CHALLENGE, _('Real World Challenge')),
+)
 
 
 class PublicOrganization(TenantMixin, AbstractPublicThing):
@@ -186,7 +216,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     # Metric
     how_discovered = models.CharField(
         _("How did you hear about SME Gurus?"),
-        choices=constants.HOW_DISCOVERED_OPTIONS,
+        choices=HOW_DISCOVERED_OPTIONS,
         max_length=127,
         help_text=_('The details of how the User discovered our website.'),
         null=True,
@@ -194,7 +224,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     how_many_served = models.PositiveSmallIntegerField(
         _("How many entrepreneurs served"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
-        choices=constants.HOW_MANY_SERVED_OPTIONS,
+        choices=HOW_MANY_SERVED_OPTIONS,
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),
@@ -267,14 +297,14 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     learning_preference = models.PositiveSmallIntegerField(
         _("Learning Preference"),
         help_text=_('Indicates what learning preference to use.'),
-        default=constants.BLENDED_LEARNING_PREFERENCE,
-        choices=constants.LEARNING_PREFERENCE_OPTIONS,
+        default=BLENDED_LEARNING_PREFERENCE,
+        choices=LEARNING_PREFERENCE_OPTIONS,
     )
     challenge = models.PositiveSmallIntegerField(
         _("Challenge"),
         help_text=_('Indicates what world challenge to use.'),
-        default=constants.REAL_WORLD_CHALLENGE,
-        choices=constants.CHALLENGE_OPTIONS,
+        default=REAL_WORLD_CHALLENGE,
+        choices=CHALLENGE_OPTIONS,
     )
     has_mentors = models.BooleanField(
         _("Has mentors."),

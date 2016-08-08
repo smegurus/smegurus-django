@@ -14,7 +14,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.banned import BannedWord
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

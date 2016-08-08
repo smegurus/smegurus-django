@@ -4,10 +4,10 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
+from smegurus import constants
+from smegurus.settings import env_var
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
-from foundation_public import constants
-from smegurus.settings import env_var
 
 
 class Command(BaseCommand):

@@ -15,7 +15,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.calendarevent import CalendarEvent
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

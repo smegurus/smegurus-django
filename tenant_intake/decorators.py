@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import resolve, reverse
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
-from foundation_public import constants
+from smegurus import constants
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
 
@@ -35,7 +35,7 @@ def tenant_intake_has_completed_redirection_required(view_func):
         # Check to see if the Me object is setup.
         if entrepreneur_group in request.user.groups.all():
             intake, created = Intake.objects.get_or_create(me=request.tenant_me)
-            if intake.is_completed:
+            if intake.status == constants.PENDING_REVIEW_STATUS:
                 return HttpResponseRedirect(reverse('tenant_intake_finished'))
 
         # Check to see if the current entrepreneur is setup.

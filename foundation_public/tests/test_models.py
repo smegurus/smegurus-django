@@ -7,6 +7,7 @@ from django.core.urlresolvers import resolve, reverse
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from smegurus import constants
 from foundation_public.models.banned import BannedDomain
 from foundation_public.models.banned import BannedIP
 from foundation_public.models.banned import BannedWord
@@ -24,7 +25,6 @@ from foundation_public.models.country import PublicCountry
 from foundation_public.models.abstract_person import AbstractPlacePerson
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
-from foundation_public import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

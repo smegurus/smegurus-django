@@ -9,7 +9,7 @@ from foundation_public.models.organization import PublicOrganization
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
-from foundation_public import constants
+from smegurus import constants
 
 
 @login_required(login_url='/en/login')

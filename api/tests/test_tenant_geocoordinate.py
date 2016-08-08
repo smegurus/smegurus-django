@@ -15,7 +15,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_tenant.models.geocoordinate import GeoCoordinate
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

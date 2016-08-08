@@ -16,7 +16,7 @@ from foundation_public.models.banned import BannedIP
 from foundation_public.models.fileupload import PublicFileUpload
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

@@ -7,8 +7,8 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from smegurus import constants
 from foundation_public.models.organization import PublicOrganization, PublicDomain
-from foundation_public import constants
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 
@@ -132,7 +132,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 
         Intake.objects.create(
             me=me,
-            is_completed=False
+            status=constants.PENDING_REVIEW_STATUS
         )
 
         # Run our test.
@@ -153,7 +153,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 
         Intake.objects.create(
             me=me,
-            is_completed=True
+            status=constants.PENDING_REVIEW_STATUS
         )
 
         # Run our test and verify.

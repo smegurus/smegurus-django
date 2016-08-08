@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from foundation_public import constants
+from smegurus import constants
 from foundation_public.models.organization import PublicOrganization
 from smegurus.settings import env_var
 

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from smegurus import constants
 from foundation_public.models.banned import BannedDomain, BannedWord
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.fileupload import PublicFileUpload
@@ -16,7 +17,6 @@ from foundation_public.models.brand import PublicBrand
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.organization import PublicOrganization
-from foundation_public import constants
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

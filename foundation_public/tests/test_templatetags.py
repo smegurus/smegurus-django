@@ -5,7 +5,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
 from foundation_public.templatetags.foundation_public_tags import tenant_url
-from foundation_public import constants
+from smegurus import constants
 
 
 class FoundationPublicTagsWithPublicSchemaTestCase(TenantTestCase):

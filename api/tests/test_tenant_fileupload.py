@@ -16,7 +16,7 @@ from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_public.models.banned import BannedIP
 from foundation_tenant.models.fileupload import TenantFileUpload
-from foundation_public import constants
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

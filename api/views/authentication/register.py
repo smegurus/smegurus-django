@@ -3,8 +3,8 @@ from django.core.management import call_command
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework.permissions import AllowAny
 from api.serializers.authentication import RegisterSerializer
+from smegurus import constants
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.constants import *
 
 
 class RegisterViewSet(generics.ListCreateAPIView):
@@ -24,9 +24,9 @@ class RegisterViewSet(generics.ListCreateAPIView):
         # User was regisered from the Tenant or on the Public schema.
         group = None
         if self.request.tenant.schema_name == 'public' or self.request.tenant.schema_name == 'test':
-            group = Group.objects.get(id=ORGANIZATION_ADMIN_GROUP_ID)
+            group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         else:
-            group = Group.objects.get(id=ENTREPRENEUR_GROUP_ID)
+            group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         user.groups.add(group)
         user.save()
 

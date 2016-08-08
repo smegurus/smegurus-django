@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, AnonymousUser
 from rest_framework import permissions
+from smegurus import constants
 from foundation_public.models.banned import BannedIP
-from foundation_public import constants
 
 
 class IsOwner(permissions.BasePermission):

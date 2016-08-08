@@ -12,7 +12,7 @@ from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.decorators import group_required
-from foundation_public import constants
+from smegurus import constants
 
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm

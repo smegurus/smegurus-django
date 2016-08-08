@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import ugettext_lazy as _
 from django.core.management import call_command
-from foundation_public import constants
+from smegurus import constants
 from foundation_tenant.models.me import TenantMe
 from smegurus.settings import env_var
 

@@ -5,7 +5,7 @@ from django.core.urlresolvers import resolve, reverse
 from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_public import constants
+from smegurus import constants
 
 
 class PublicIndexTestCase(TenantTestCase):
