@@ -104,11 +104,3 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'Tasks',response.content)
-
-    @transaction.atomic
-    def test_intake_list_page(self):
-        url = reverse('tenant_task_intake')
-        response = self.authorized_client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'Intake',response.content)

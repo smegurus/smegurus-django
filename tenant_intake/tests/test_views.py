@@ -9,6 +9,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.intake import Intake
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -30,7 +31,6 @@ class TenantIntakeTestCases(APITestCase, TenantTestCase):
         tenant.has_mentors=True
         tenant.how_discovered = "Command HQ"
         tenant.how_many_served = 1
-
 
     @classmethod
     def setUpTestData(cls):
@@ -167,3 +167,69 @@ class TenantIntakeTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_employee_intake_master_page(self):
+        # Make employee
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.remove(entrepreneur_group)
+
+        # Make Me setup.
+        me = TenantMe.objects.get()
+        me.is_setup = True
+        me.save()
+
+        # Run test and verify.
+        url = reverse('tenant_intake_employee_master')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Intake',response.content)
+
+    @transaction.atomic
+    def test_employee_intake_details_page_with_200(self):
+        # Make employee
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.remove(entrepreneur_group)
+
+        # Make Me setup.
+        me = TenantMe.objects.get()
+        me.is_setup = True
+        me.save()
+
+        # Make Intake object.
+        intake = Intake.objects.create(
+            me=me,
+            status=constants.PENDING_REVIEW_STATUS,
+        )
+
+        # Run test and verify.
+        url = reverse('tenant_intake_employee_details', args=[intake.id,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Intake',response.content)
+
+    @transaction.atomic
+    def test_employee_intake_details_page_with_404(self):
+        # Make employee
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.remove(entrepreneur_group)
+
+        # Make Me setup.
+        me = TenantMe.objects.get()
+        me.is_setup = True
+        me.save()
+
+        # Run test and verify.
+        url = reverse('tenant_intake_employee_details', args=[666])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'404',response.content)

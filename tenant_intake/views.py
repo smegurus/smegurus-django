@@ -1,17 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from django.db.models import Q
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from rest_framework import status
 
-from foundation_public.forms.userform import UserForm
-from foundation_public.forms.loginform import LoginForm
-from foundation_public.forms.organizationform import PublicOrganizationForm
-from foundation_public.forms.postaladdressform import PublicPostalAddressForm
-from foundation_public.models.organization import PublicOrganization
 from foundation_public.decorators import group_required
+from foundation_config.decorators import foundation_config_required
 from smegurus import constants
 
 from foundation_tenant.forms.tagform import TagForm
@@ -125,4 +122,32 @@ def intake_finished_page(request):
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
+    })
+
+
+@login_required(login_url='/en/login')
+@foundation_config_required
+@tenant_intake_required
+@tenant_profile_required
+def intake_master_page(request):
+    intakes = Intake.objects.filter(
+        Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.REJECTED_STATUS)
+        # | Q(status=constants.APPROVED_STATUS)
+    )
+    return render(request, 'tenant_intake/employee/master/view.html',{
+        'page': 'tasks',
+        'intakes': intakes,
+    })
+
+
+@login_required(login_url='/en/login')
+@foundation_config_required
+@tenant_intake_required
+@tenant_profile_required
+def intake_details_page(request, id):
+    intake = get_object_or_404(Intake, pk=id)
+    return render(request, 'tenant_intake/employee/details/view.html',{
+        'page': 'tasks',
+        'intake': intake,
+        'form': IntakeForm(instance=intake),
     })

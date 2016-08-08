@@ -3,7 +3,7 @@ from tenant_intake import views
 
 
 urlpatterns = (
-    # DECORATORS
+    # Decorators
     url(r'^intake/check$', views.check_page, name='tenant_intake_check'),
     url(r'^intake/has_completed$', views.has_completed_intake_page, name='tenant_intake_has_completed'),
 
@@ -15,4 +15,8 @@ urlpatterns = (
     url(r'^intake/entrepreneur/step/5$', views.intake_entr_step_five_page, name='tenant_intake_entr_step_five'),
     url(r'^intake/entrepreneur/step/6$', views.intake_entr_step_six_page, name='tenant_intake_entr_step_six'),
     url(r'^intake/entrepreneur/finished$', views.intake_finished_page, name='tenant_intake_finished'),
+
+    # Employee
+    url(r'^intake$', views.intake_master_page, name='tenant_intake_employee_master'),
+    url(r'^intake/(.*)/$', views.intake_details_page, name='tenant_intake_employee_details'),
 )

@@ -5,7 +5,7 @@
         tenant_intake_review(
             {{ intake.id }}, 4, comment,  // 4 = REJECTED STATUS
             function(json_result) {
-                window.location = "{% url 'tenant_task_intake' %}";
+                window.location = "{% url 'tenant_intake_employee_master' %}";
             },
             function(error_json_result) {
                 var string = JSON.stringify( error_json_result );
@@ -20,7 +20,7 @@
         tenant_intake_review(
             {{ intake.id }}, 5, comment,  // 5 = APPROVED STATUS
             function(json_result) {
-                window.location = "{% url 'tenant_task_intake' %}";
+                window.location = "{% url 'tenant_intake_employee_master' %}";
             },
             function(error_json_result) {
                 var string = JSON.stringify( error_json_result );
