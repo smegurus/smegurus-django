@@ -13,6 +13,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 from smegurus import constants
 
@@ -74,6 +75,9 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.tenant.owner = self.user
         self.tenant.save()
+        self.me = TenantMe.objects.create(
+            owner=self.user,
+        )
 
         # Above taken from:
         # http://www.django-rest-framework.org/api-guide/testing/#authenticating
@@ -130,7 +134,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_post_with_anonymous_user(self):
         data = {
-            'owner': self.user.id,
+            'me': self.me.id,
         }
         response = self.unauthorized_client.post('/api/tenantintake/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -139,7 +143,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_post_with_authenticated_management_group_user(self):
         # Run the test and verify.
         data = {
-            'owner': self.user.id,
+            'me': self.me.id,
         }
         response = self.authorized_client.post('/api/tenantintake/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -155,7 +159,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
         # Test and verify.
         data = {
-            'owner': self.user.id,
+            'me': self.me.id,
         }
         response = self.authorized_client.post('/api/tenantintake/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -165,13 +169,13 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Create a new object with our specific test data.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
         )
 
         # Run the test.
         data = {
             'id': 1,
-            'owner': self.user.id,
+            'me': self.me.id,
         }
         response = self.unauthorized_client.put('/api/tenantintake/1/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -181,13 +185,13 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Create a new object with our specific test data.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
         )
 
         # Run the test.
         data = {
             'id': 1,
-            'owner': self.user.id,
+            'me': self.me.id,
         }
         response = self.authorized_client.put('/api/tenantintake/1/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -204,13 +208,13 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Create a new object with our specific test data.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
         )
 
         # Run the test.
         data = {
             'id': 1,
-            'owner': self.user.id,
+            'me': self.me.id,
         }
         response = self.authorized_client.put('/api/tenantintake/1/?format=json', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -219,7 +223,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_delete_with_anonymous_user(self):
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
         )
         response = self.unauthorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -228,7 +232,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_delete_with_authenticated_management_user(self):
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
         )
         response = self.authorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -238,7 +242,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Create our object to be deleted.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
             status=constants.CREATED_STATUS
         )
 
@@ -259,7 +263,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Setup our object.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
             status=constants.PENDING_REVIEW_STATUS,
         )
 
@@ -278,7 +282,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Setup our object.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
             status=constants.CREATED_STATUS,
         )
 
@@ -304,9 +308,12 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         new_user.is_active = True
         new_user.groups.add(org_admin_group)
         new_user.save()
+        new_me = TenantMe.objects.create(
+            owner=new_user
+        )
         Intake.objects.create(
             id=1,
-            owner=new_user,
+            me=new_me,
             status=constants.CREATED_STATUS,
         )
 
@@ -325,7 +332,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Setup our object.
         Intake.objects.create(
             id=1,
-            owner=self.user,
+            me=self.me,
             status=constants.CREATED_STATUS,
         )
 
