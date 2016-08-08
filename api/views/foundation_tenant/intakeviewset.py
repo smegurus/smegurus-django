@@ -2,6 +2,7 @@ import django_filters
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import viewsets
 from rest_framework import filters
@@ -24,7 +25,8 @@ class SendEmailViewMixin(object):
         url = 'https://' if self.request.is_secure() else 'http://'
         url += schema_name + "."
         url += get_current_site(self.request).domain
-        url += "/en/login/"
+        url += reverse('foundation_auth_user_login')
+        url = url.replace("None","en")
         return url
 
     def send_activation(self, schema_name, contact_list):
