@@ -82,6 +82,12 @@ class Intake(models.Model):
         help_text=_('The state this intake application is in our application.'),
         default=constants.CREATED_STATUS,
     )
+    comment = models.TextField(
+        _("Comment"),
+        help_text=_('A comment of this applicaitn.'),
+        blank=True,
+        null=True,
+    )
 
     # "How Can We Help You" Section
     how_can_we_help = models.PositiveSmallIntegerField(

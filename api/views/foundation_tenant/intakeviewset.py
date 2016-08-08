@@ -13,7 +13,7 @@ from rest_framework import response
 from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
-from api.permissions import IsMeOrIsAnEmployee, IsMe
+from api.permissions import IsMeOrIsAnEmployee, IsMe, EmployeePermission
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
 from smegurus import constants
@@ -116,7 +116,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission,])
     def review(self, request, pk=None):
         """
         Function will change the status to either 'Rejected' or 'Accepted' including
@@ -126,9 +126,9 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             serializer = IntakeReviewSerializer(data=request.data)
             if serializer.is_valid():
                 intake = self.get_object()
-                # organization.status = serializer.data['status']
-                # organization.admin_comment = serializer.data['comment']
-                # organization.save()
+                intake.status = serializer.data['status']
+                intake.comment = serializer.data['comment']
+                intake.save()
                 # call_command('send_was_reviewed_email_for_org',str(organization.id))
                 return response.Response(
                     status=status.HTTP_200_OK
@@ -139,7 +139,6 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     status=status.HTTP_400_BAD_REQUEST
                 )
         except Exception as e:
-            print(e)
             return response.Response(
                 data={'message': str(e) },
                 status=status.HTTP_400_BAD_REQUEST
