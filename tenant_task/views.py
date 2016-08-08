@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
+from django.db.models import Q
 from rest_framework.authtoken.models import Token
 from tenant_intake.decorators import tenant_intake_required
 from foundation_config.decorators import foundation_config_required
@@ -29,7 +30,10 @@ def tasks_list_page(request):
 @tenant_intake_required
 @tenant_profile_required
 def intake_master_page(request):
-    intakes = Intake.objects.filter(status=constants.PENDING_REVIEW_STATUS)
+    intakes = Intake.objects.filter(
+        Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.REJECTED_STATUS)
+        # | Q(status=constants.APPROVED_STATUS)
+    )
     return render(request, 'tenant_task/intake/master/view.html',{
         'page': 'tasks',
         'intakes': intakes,

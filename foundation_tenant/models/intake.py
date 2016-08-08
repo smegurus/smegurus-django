@@ -87,6 +87,7 @@ class Intake(models.Model):
         help_text=_('A comment of this applicaitn.'),
         blank=True,
         null=True,
+        default='',
     )
 
     # "How Can We Help You" Section

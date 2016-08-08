@@ -1,10 +1,32 @@
 {% load i18n %}
 <script type="text/javascript">
     function ajax_reject() {
-        console.log("Reject");
+        var comment = $.trim($('#id_review').val());
+        tenant_intake_review(
+            {{ intake.id }}, 4, comment,  // 4 = REJECTED STATUS
+            function(json_result) {
+                window.location = "{% url 'tenant_task_intake' %}";
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Review
     }
 
     function ajax_accept() {
-        console.log("Accept");
+        var comment = $.trim($('#id_review').val());
+        tenant_intake_review(
+            {{ intake.id }}, 5, comment,  // 5 = APPROVED STATUS
+            function(json_result) {
+                window.location = "{% url 'tenant_task_intake' %}";
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Review
     }
 </script>

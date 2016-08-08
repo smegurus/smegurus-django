@@ -25,6 +25,7 @@
                         <thead>
                             <tr>
                                 <th>{% trans 'Name' %}</th>
+                                <th style="width:20%">{% trans 'Status' %}</th>
                                 <!-- <th>Browser</th>
                                 <th>Platform(s)</th>
                                 <th class="sort-numeric">Engine version</th>
@@ -36,6 +37,17 @@
                             {% for intake in intakes.all %}
                                 <tr class="gradeA">
                                     <td>{{ intake.me.name }}</td>
+                                    <td>
+                                        {% if intake.status == 2 %}
+                                            {% trans 'Pending Review' %}
+                                        {% elif intake.status == 3 %}
+                                            {% trans 'In Review' %}
+                                        {% elif intake.status == 4 %}
+                                            {% trans 'Rejected' %}
+                                        {% elif intake.status == 5 %}
+                                            {% trans 'Approved' %}
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         <a href="{% url 'tenant_task_intake_details' intake.id %}">
                                             <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>

@@ -60,6 +60,19 @@
                         </fieldset>
                         <!-- end INTAKE -->
 
+                        <!-- CONTACT INFOMRATION -->
+                        <fieldset>
+                            <legend>{% trans 'Review' %}</legend>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{% trans 'Comment' %}</label>
+                                <div class="col-sm-10">
+                                    <textarea id="id_review" class="form-control" name="textarea" rows="6">{{ intake.comment }}</textarea>
+                                    <span class="help-block m-b-none">This is a private comment to associate with this intake. The Entrepreneur will not be able to read this comment. </span>
+                                </div>
+                            </div>
+                            <br />
+                        </fieldset>
+
                         <!-- SUBMISSION -->
                         <div style="float: right;">
                             <button onclick="ajax_reject();" type="button" class="btn btn-danger btn-lg">{% trans 'Reject' %}</button>
