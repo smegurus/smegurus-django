@@ -14,7 +14,7 @@ from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
 from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
-from foundation_public import constants
+from smegurus import constants
 from smegurus.settings import env_var
 
 

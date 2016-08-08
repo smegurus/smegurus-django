@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
-from foundation_public import constants
+from smegurus import constants
 from smegurus.settings import env_var
 
 
