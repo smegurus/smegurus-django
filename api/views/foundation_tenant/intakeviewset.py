@@ -10,6 +10,7 @@ from rest_framework import permissions
 from rest_framework import authentication
 from rest_framework import status
 from rest_framework import response
+from rest_framework import exceptions, serializers
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsMeOrIsAnEmployee, IsMe
@@ -17,6 +18,11 @@ from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
 from smegurus import constants
 from smegurus.settings import env_var
+
+
+class IntakeReviewSerializer(serializers.Serializer):
+    status = serializers.IntegerField()
+    comment = serializers.CharField(max_length=2055)
 
 
 class SendEmailViewMixin(object):
@@ -108,4 +114,33 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             return response.Response(
                 data={'message': 'Pk not found.'},
                 status=status.HTTP_404_NOT_FOUND
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
+    def review(self, request, pk=None):
+        """
+        Function will change the status to either 'Rejected' or 'Accepted' including
+        a comment from the employee.
+        """
+        try:
+            serializer = IntakeReviewSerializer(data=request.data)
+            if serializer.is_valid():
+                intake = self.get_object()
+                # organization.status = serializer.data['status']
+                # organization.admin_comment = serializer.data['comment']
+                # organization.save()
+                # call_command('send_was_reviewed_email_for_org',str(organization.id))
+                return response.Response(
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return response.Response(
+                    data={'message': str(serializer.errors)},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        except Exception as e:
+            print(e)
+            return response.Response(
+                data={'message': str(e) },
+                status=status.HTTP_400_BAD_REQUEST
             )

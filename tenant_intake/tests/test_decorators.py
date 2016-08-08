@@ -83,7 +83,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         for group in groups.all():
             group.delete()
         # super(TenantIntakeDecoratorWithTenantSchemaTestCase, self).tearDown()
-
+    
     @transaction.atomic
     def test_tenant_intake_required_decorator_with_access_granted(self):
         # Pre-configure.
@@ -132,7 +132,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 
         Intake.objects.create(
             me=me,
-            status=constants.PENDING_REVIEW_STATUS
+            status=constants.CREATED_STATUS
         )
 
         # Run our test.

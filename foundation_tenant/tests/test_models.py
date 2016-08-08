@@ -93,11 +93,18 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_intake_to_string(self):
-        obj = Intake.objects.create(
-            id=1, owner=User.objects.get(username='1')
+        me = TenantMe.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+            name='Ice Age',
         )
-        self.assertIn(str(obj), '1@1.com')
+        obj = Intake.objects.create(
+            id=1,
+            me=me
+        )
+        self.assertIn(str(obj), 'Ice Age')
         obj.delete();  # Cleanup
+        me.delete()
 
     @transaction.atomic
     def test_intake_delete_all(self):
@@ -105,11 +112,41 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = Intake.objects.all().count()
         self.assertEqual(count, 0)
         Intake.objects.bulk_create([
-            Intake(id=1, owner=User.objects.get(username='1')),
-            Intake(id=2, owner=User.objects.get(username='2')),
-            Intake(id=3, owner=User.objects.get(username='3')),
-            Intake(id=4, owner=User.objects.get(username='4')),
-            Intake(id=5, owner=User.objects.get(username='5')),
+            Intake(
+                id = 1111,
+                me=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                )
+            ),
+            Intake(
+                id = 2222,
+                me = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                )
+            ),
+            Intake(
+                id = 3333,
+                me = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                )
+            ),
+            Intake(
+                id = 4444,
+                me = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                )
+            ),
+            Intake(
+                id = 5555,
+                me = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                )
+            ),
         ])
         count = Intake.objects.all().count()
         self.assertEqual(count, 5)
@@ -118,6 +155,9 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Intake.objects.delete_all()
         count = Intake.objects.all().count()
         self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()
 
     @transaction.atomic
     def test_place_to_string(self):
