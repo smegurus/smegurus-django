@@ -279,9 +279,21 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_sender(self):
-        # Create our CURRENT sender.
+        # Create our SENDER user.
         sender = TenantMe.objects.create(
             owner=self.user,
+        )
+
+        # Create our RECIPIENT user.
+        recipient_user = User.objects.create_user(  # Create our user.
+            email='chambers@gah.com',
+            username='chambers',
+            password='ILoveGAH'
+        )
+        recipient_user.is_active = True
+        recipient_user.save()
+        recipient = TenantMe.objects.create(
+            owner=recipient_user
         )
 
         # Create a new object with our specific test data.
@@ -289,6 +301,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             name="Unit Test #666",
             sender=sender,
+            recipient=recipient,
         )
         message.participants.add(sender)
         message.save()
