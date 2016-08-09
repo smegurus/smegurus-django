@@ -9,8 +9,10 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
-from smegurus import constants
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -249,6 +251,7 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         self.assertIn(b'ajax_login',response.content)
 
 
+
 class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     fixtures = []
 
@@ -309,6 +312,9 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
