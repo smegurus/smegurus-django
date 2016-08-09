@@ -8,11 +8,12 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.templatetags.foundation_tenant_tags import count_unread_messages
+from foundation_tenant.templatetags.foundation_tenant_tags import count_unread_messages, count_new_intakes
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.intake import Intake
 from smegurus import constants
 
 
@@ -108,3 +109,25 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
         # Create our sender.
         recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
         self.assertEqual(count_unread_messages(recipient.id), 0)
+
+    @transaction.atomic
+    def test_count_new_intakes_with_zero_results(self):
+        self.assertEqual(count_new_intakes(), 0)
+
+    @transaction.atomic
+    def test_count_new_intakes_with_one_result(self):
+        # Make Me setup.
+        me = TenantMe.objects.create(
+            owner=self.user,
+        )
+        me.is_setup = True
+        me.save()
+
+        # Make Intake object.
+        intake = Intake.objects.create(
+            me=me,
+            status=constants.PENDING_REVIEW_STATUS,
+        )
+
+        # Run test and verify.
+        self.assertEqual(count_new_intakes(), 1)

@@ -282,6 +282,18 @@
                             </li>
                             <!-- end CLIENTS -->
 
+                            {% if request.tenant_me.is_employee == True %}
+                            <!-- INTAKE -->
+                            <li {% if page == 'intake' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_intake_employee_master' %}" title="{% trans 'Intake' %}">
+                                    <em class="fa fa-random"></em>
+                                    <div class="pull-right label label-success">{% count_new_intakes %}</div
+                                    <span data-localize="sidebar.nav.CLIENTS">{% trans 'Intake' %}</span>
+                                </a>
+                            </li>
+                            <!-- end INTAKE -->
+                            {% endif %}
+
                             <!-- MESSAGE -->
                             <li class=" ">
                                 <a href="#inbox" title="{% trans 'Progress' %}" data-toggle="collapse">

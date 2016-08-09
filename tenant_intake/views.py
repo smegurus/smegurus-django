@@ -135,7 +135,7 @@ def intake_master_page(request):
         # | Q(status=constants.APPROVED_STATUS)
     )
     return render(request, 'tenant_intake/employee/master/view.html',{
-        'page': 'tasks',
+        'page': 'intake',
         'intakes': intakes,
     })
 
@@ -147,7 +147,7 @@ def intake_master_page(request):
 def intake_details_page(request, id):
     intake = get_object_or_404(Intake, pk=id)
     return render(request, 'tenant_intake/employee/details/view.html',{
-        'page': 'tasks',
+        'page': 'intake',
         'intake': intake,
         'form': IntakeForm(instance=intake),
     })
