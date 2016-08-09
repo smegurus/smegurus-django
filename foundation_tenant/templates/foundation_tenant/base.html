@@ -273,6 +273,15 @@
                             </li>
                             <!-- end REWARDS -->
 
+                            <!-- CLIENTS -->
+                            <li {% if page == 'client' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_customer_master' %}" title="{% trans 'Clients' %}">
+                                    <em class="icon-people"></em>
+                                    <span data-localize="sidebar.nav.CLIENTS">{% trans 'Clients' %}</span>
+                                </a>
+                            </li>
+                            <!-- end CLIENTS -->
+
                             <!-- MESSAGE -->
                             <li class=" ">
                                 <a href="#inbox" title="{% trans 'Progress' %}" data-toggle="collapse">

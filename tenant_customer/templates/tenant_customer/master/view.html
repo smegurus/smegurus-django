@@ -1,0 +1,63 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- Page content-->
+<div class="content-wrapper">
+    <div class="pull-right">
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-link">
+            <em class="fa fa-ellipsis-v fa-lg"></em>
+            </button>
+            <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                <li>
+                    <a href="">
+                    <em class="fa fa-fw fa-plus mr"></em>
+                    <span>{% trans 'New contact' %}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h3>{% trans 'Clients' %}</h3>
+    <div class="row">
+        <!-- CLIENT -->
+        {% for intake in intakes.all %}
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="#" class="pull-right text-muted">
+                    <em class="fa"></em>
+                    </a>
+                </div>
+                <div class="panel-body text-center">
+                    {% if intake.me.image != None and intake.me.image != '' %}
+                        <img src="{{ intake.me.image.imagefile.url }}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle thumb64">
+                    {% else %}
+                        <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle thumb64">
+                    {% endif %}
+                    <h4>{{ intake.me.name }}</h4>
+                    <p>{% if intake.me.description %}{{ intake.me.description }}{% else %}{% trans 'No description' %}{% endif %}</p>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="text-center">
+                        <a href="{% url 'tenant_customer_details' intake.me.id %}" class="btn btn-xs btn-info">
+                            {% trans 'Details' %} <i class="fa fa-info-circle"></i>
+                        </a>
+                        <a href="#" class="btn btn-xs btn-danger">
+                            {% trans 'Assign task' %}
+                        </a>
+                        <a href="#" class="btn btn-xs btn-success">
+                            {% trans 'Add notes' %}
+                        </a>
+                        <a href="#" class="btn btn-xs btn-primary">
+                            {% trans 'Send message' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- end CLIENT -->
+    </div>
+</div>
+{% endblock content %}

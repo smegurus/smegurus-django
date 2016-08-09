@@ -81,6 +81,7 @@ class Intake(models.Model):
         choices=STATUS_OPTIONS,
         help_text=_('The state this intake application is in our application.'),
         default=constants.CREATED_STATUS,
+        db_index=True,
     )
     comment = models.TextField(
         _("Comment"),
