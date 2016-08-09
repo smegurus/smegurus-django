@@ -29,6 +29,7 @@ class PostalAddress(AbstractThing):
         help_text=_('The country. For example, USA. You can also provide the two-letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO 3166-1 alpha-2</a> country code.'),
         blank=True,
         null=True,
+        default='',
     )
     address_locality = models.CharField(
         _("Address Locality"),
@@ -36,6 +37,7 @@ class PostalAddress(AbstractThing):
         help_text=_('The locality. For example, Mountain View.'),
         blank=True,
         null=True,
+        default='',
     )
     address_region = models.CharField(
         _("Address Region"),
@@ -43,6 +45,7 @@ class PostalAddress(AbstractThing):
         help_text=_('The region. For example, CA.'),
         blank=True,
         null=True,
+        default='',
     )
     post_office_box_number = models.CharField(
         _("Post Office Box Number"),
@@ -50,6 +53,7 @@ class PostalAddress(AbstractThing):
         help_text=_('The post office box number for PO box addresses.'),
         blank=True,
         null=True,
+        default='',
     )
     postal_code = models.CharField(
         _("Postal Code"),
@@ -57,6 +61,7 @@ class PostalAddress(AbstractThing):
         help_text=_('The postal code. For example, 94043.'),
         blank=True,
         null=True,
+        default='',
     )
     street_address = models.CharField(
         _("Street Address"),
@@ -64,6 +69,7 @@ class PostalAddress(AbstractThing):
         help_text=_('The street address. For example, 1600 Amphitheatre Pkwy.'),
         blank=True,
         null=True,
+        default='',
     )
 
     def __str__(self):

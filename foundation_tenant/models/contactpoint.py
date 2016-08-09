@@ -31,6 +31,7 @@ class ContactPoint(AbstractThing):
         help_text=_('The geographic area where a service or offered item is provided.'),
         blank=True,
         null=True,
+        default='',
     )
     available_language = models.ForeignKey(
         Language,
@@ -46,12 +47,14 @@ class ContactPoint(AbstractThing):
         help_text=_('A person or organization can have different contact points, for different purposes. For example, a sales contact point, a PR contact point and so on. This property is used to specify the kind of contact point.'),
         blank=True,
         null=True,
+        default='',
     )
     email = models.EmailField(
         _("Email"),
         help_text=_('Email address.'),
         null=True,
-        blank=True
+        blank=True,
+        default='',
     )
     fax_number = models.CharField(
         _("Fax Number"),
@@ -59,6 +62,7 @@ class ContactPoint(AbstractThing):
         help_text=_('The fax number.'),
         blank=True,
         null=True,
+        default='',
     )
     hours_available = models.ManyToManyField(
         OpeningHoursSpecification,
@@ -72,6 +76,7 @@ class ContactPoint(AbstractThing):
         help_text=_('The product or service this support contact point is related to (such as product support for a particular product line). This can be a specific product or product line (e.g. "iPhone") or a general category of products or services (e.g. "smartphones").'),
         blank=True,
         null=True,
+        default='',
     )
     telephone = models.CharField(
         _("Telephone"),
@@ -79,6 +84,7 @@ class ContactPoint(AbstractThing):
         help_text=_('The telephone number.'),
         blank=True,
         null=True,
+        default='',
     )
 
     def __str__(self):

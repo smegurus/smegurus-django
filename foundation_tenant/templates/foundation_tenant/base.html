@@ -1,4 +1,4 @@
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress foundation_tenant_tags %}
 <!DOCTYPE html>
 <html lang="{{ request.language }}">
     <head>
@@ -285,7 +285,7 @@
                             <!-- MESSAGE -->
                             <li class=" ">
                                 <a href="#inbox" title="{% trans 'Progress' %}" data-toggle="collapse">
-                                    <div class="pull-right label label-info">{{ request.tenant_me.unread_messages_count }}</div>
+                                    <div class="pull-right label label-info">{% count_unread_messages request.tenant_me %}</div>
                                     <em class="icon-envelope"></em>
                                     <span data-localize="sidebar.nav.MESSAGES">{% trans 'Messages' %}</span>
                                 </a>

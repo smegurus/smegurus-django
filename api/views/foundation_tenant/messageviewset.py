@@ -41,11 +41,6 @@ class MessageViewSet(viewsets.ModelViewSet):
         instance.participants.add(instance.sender, instance.recipient)
         instance.save()
 
-        # Increment the message counter to indicate new messages are available.
-        instance.recipient.unread_messages_count = instance.recipient.unread_messages_count + 1
-        instance.recipient.save()
-
-
         # Send an email notification to the recipient only if the User
         # specified that they would like to receive new message notifications.
         if instance.recipient.notify_when_new_messages:
@@ -55,6 +50,4 @@ class MessageViewSet(viewsets.ModelViewSet):
         """Override the deletion function to archive the message instead of deleting it."""
         if self.request.user.is_authenticated():
             instance.participants.remove(self.request.tenant_me)
-            instance.sender.unread_messages_count = 0
-            instance.recipient.unread_messages_count = 0
             instance.save()

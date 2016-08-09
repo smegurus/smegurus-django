@@ -67,12 +67,6 @@ def conversation_page(request, sender_id):
             message.date_read = timezone.now()
             message.save()
 
-            # Decrement the new message counter to indicate User has read the
-            # message.
-            if message.recipient.unread_messages_count > 0:
-                message.recipient.unread_messages_count = message.recipient.unread_messages_count - 1
-                message.recipient.save()
-
     return render(request, 'tenant_message/message/details_view.html',{
         'page': 'inbox',
         'messages': messages,
