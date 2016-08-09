@@ -1,9 +1,9 @@
-{% extends 'foundation_config/base.html' %}
+{% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
 
     {% compress js inline %}
-        {% include 'foundation_config/organization/5_js.html' %}
+        {% include 'tenant_configuration/organization/5_js.html' %}
     {% endcompress %}
 
     <h2 class="text-center pv">{% trans 'Real World Challenges' %}</h2>

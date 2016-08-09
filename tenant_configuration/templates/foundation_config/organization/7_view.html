@@ -1,8 +1,8 @@
-{% extends 'foundation_config/base.html' %}
+{% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'foundation_config/organization/7_js.html' %}
+        {% include 'tenant_configuration/organization/7_js.html' %}
     {% endcompress %}
     <h2 class="text-center pv">{% trans 'Perks and Rewards' %}</h2>
     <p class="text-center pv">{% trans 'To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.' %}</p>

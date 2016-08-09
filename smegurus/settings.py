@@ -92,7 +92,7 @@ TENANT_APPS = (
   'foundation_tenant',
   'api',
   'foundation_auth',
-  'foundation_config',
+  'tenant_configuration',
   'tenant_profile',
   'tenant_message',
   'tenant_calendar',

@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from smegurus import constants
 
 
-def foundation_config_required(view_func):
+def tenant_configuration_required(view_func):
     """
     Decorator ensures Organization associated with the view request has been
     setup else redirect it to this application.

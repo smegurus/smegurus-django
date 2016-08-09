@@ -1,8 +1,8 @@
-{% extends 'foundation_config/base.html' %}
+{% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'foundation_config/organization/6_js.html' %}
+        {% include 'tenant_configuration/organization/6_js.html' %}
     {% endcompress %}
     <h2 class="text-center pv">{% trans 'Mentors and External Advisors' %}</h2>
     <p class="text-center pv">{% trans 'The most successful entrepreneurs have a mentor or advisor that they can go to. For these reasons, SME Gurus allows entrerepenrus to email compelted documents such as their Business Model Canvas, to an external advisor or mentor. While most of our clients use this feature, you may wish to disable it because of privacy or security concerns. If you do enable this option, externals will only see completed documents - they won\'t be able to view any other data.' %}</p>

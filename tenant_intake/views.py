@@ -8,7 +8,7 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from rest_framework import status
 
 from foundation_public.decorators import group_required
-from foundation_config.decorators import foundation_config_required
+from tenant_configuration.decorators import tenant_configuration_required
 from smegurus import constants
 
 from foundation_tenant.forms.tagform import TagForm
@@ -126,7 +126,7 @@ def intake_finished_page(request):
 
 
 @login_required(login_url='/en/login')
-@foundation_config_required
+@tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
 def intake_master_page(request):
@@ -141,7 +141,7 @@ def intake_master_page(request):
 
 
 @login_required(login_url='/en/login')
-@foundation_config_required
+@tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
 def intake_details_page(request, id):

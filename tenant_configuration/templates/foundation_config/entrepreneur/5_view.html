@@ -1,8 +1,8 @@
-{% extends 'foundation_config/base.html' %}
+{% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'foundation_config/entrepreneur/5_js.html' %}
+        {% include 'tenant_configuration/entrepreneur/5_js.html' %}
     {% endcompress %}
     <h2 class="text-center pv">{% trans 'Let\'s Get Started!' %}</h2>
     <p class="text-center pv">{% trans 'Now you are all set. Click Continue to go to your dashboard.' %}</p>
