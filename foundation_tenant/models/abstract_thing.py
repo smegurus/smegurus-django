@@ -20,7 +20,8 @@ class AbstractThing(models.Model):
         help_text=_('The user whom owns this thing.'),
         blank=True,
         null=True,
-        related_name="abstract_thing_owner_%(app_label)s_%(class)s_related"
+        related_name="abstract_thing_owner_%(app_label)s_%(class)s_related",
+        on_delete=models.CASCADE
     )
     alternate_name = models.CharField(
         _("Alternate Name"),
@@ -40,7 +41,8 @@ class AbstractThing(models.Model):
         help_text=_('An image of the item.'),
         null=True,
         blank=True,
-        related_name="abstract_thing_image_%(app_label)s_%(class)s_related"
+        related_name="abstract_thing_image_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     main_entity_of_page = models.URLField(
         _("Main Entity Of Page"),

@@ -110,7 +110,8 @@ class Intake(models.Model):
         Tag,
         help_text=_('The Tag the User is interested in.'),
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     # "How Did You Hear About Us" Section

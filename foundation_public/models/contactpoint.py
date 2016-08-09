@@ -29,7 +29,8 @@ class PublicContactPoint(AbstractPublicThing):
         help_text=_('A language someone may use with the item.'),
         null=True,
         blank=True,
-        related_name="public_contact_point_available_language_%(app_label)s_%(class)s_related"
+        related_name="public_contact_point_available_language_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     contact_type = models.CharField(
         _("Contact Type"),

@@ -18,6 +18,9 @@ from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_public.models.banned import BannedIP
 from foundation_tenant.models.imageupload import TenantImageUpload
+from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
 
@@ -37,7 +40,7 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         tenant.has_mentors=True
         tenant.how_discovered = "Command HQ"
         tenant.how_many_served = 1
-        
+
     @classmethod
     def setUpTestData(cls):
         Group.objects.bulk_create([
@@ -83,9 +86,10 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def tearDown(self):
         """Delete all the images we uploaded for this Test"""
-        image_uploads = TenantImageUpload.objects.all()
-        for an_image in image_uploads.all():
-            an_image.delete()
+        TenantImageUpload.objects.delete_all()
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()            
         users = User.objects.all()
         for user in users.all():
             user.delete()

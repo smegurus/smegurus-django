@@ -13,6 +13,8 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
@@ -33,7 +35,7 @@ class APIContactPointWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         tenant.has_mentors=True
         tenant.how_discovered = "Command HQ"
         tenant.how_many_served = 1
-        
+
     @classmethod
     def setUpTestData(cls):
         Group.objects.bulk_create([
@@ -78,9 +80,10 @@ class APIContactPointWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        contact_points = ContactPoint.objects.all()
-        for contact_point in contact_points.all():
-            contact_point.delete()
+        ContactPoint.objects.delete_all()
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

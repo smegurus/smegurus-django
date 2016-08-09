@@ -25,7 +25,8 @@ class CalendarEvent(models.Model):
         User,
         help_text=_('The user whom owns this thing.'),
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.CASCADE
     )
     name = models.CharField(
         _("Name"),

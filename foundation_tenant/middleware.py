@@ -27,10 +27,10 @@ class TenantMeMiddleware(object):
                         owner=request.user,
                         name='User #' + str(request.user.id) + ' Address',
                     )
-                    # tenant_me.contact_point = ContactPoint.objects.create(
-                    #     owner=request.user,
-                    #     name='User #' + str(request.user.id) + ' Contact Point',
-                    # )
+                    tenant_me.contact_point = ContactPoint.objects.create(
+                        owner=request.user,
+                        name='User #' + str(request.user.id) + ' Contact Point',
+                    )
                     tenant_me.save()
 
         return None  # Finish our middleware handler.

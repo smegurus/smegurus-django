@@ -14,6 +14,9 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.faqgroup import FAQGroup
+from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
 
@@ -86,6 +89,9 @@ class APIFAQGroupWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def tearDown(self):
         FAQGroups = FAQGroup.objects.delete_all()
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

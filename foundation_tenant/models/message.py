@@ -50,14 +50,16 @@ class Message(AbstractCreativeWork):
         help_text=_('The user whom this message is sent to.'),
         blank=True,
         null=True,
-        related_name="message_recipient_%(app_label)s_%(class)s_related"
+        related_name="message_recipient_%(app_label)s_%(class)s_related",
+        on_delete=models.CASCADE
     )
     sender = models.ForeignKey(
         TenantMe,
         help_text=_('The user whom this message originates from.'),
         blank=True,
         null=True,
-        related_name="message_sender_%(app_label)s_%(class)s_related"
+        related_name="message_sender_%(app_label)s_%(class)s_related",
+        on_delete=models.CASCADE
     )
     participants = models.ManyToManyField(
         TenantMe,

@@ -30,7 +30,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('Physical address of the item.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_address_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_address_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     #affiliation - Organization - An organization that this person is affiliated with. For example, a school/university, a club, or a team.
     #alumniOf
@@ -46,7 +47,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('The public place where the person was born.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_birth_place_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_birth_place_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     brand = models.ManyToManyField(
         PublicBrand,
@@ -71,7 +73,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('A contact point for a person or organization'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_contact_point_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_contact_point_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     death_date = models.DateField(
         _("Death Date"),
@@ -84,7 +87,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('The place where the person died.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_death_place_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_death_place_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     duns = models.CharField(
         _("Additional Name"),
@@ -149,7 +153,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('A contact location for a person\'s residence.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_home_location_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_home_location_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     honorific_prefix = models.CharField(
         _("Honorific Prefix"),
@@ -201,7 +206,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('Nationality of the person.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_nationality_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_nationality_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     # netWorth	PriceSpecification 	The total financial value of the person as calculated by subtracting assets from liabilities.
     # owns - Product or OwnershipInfo - Products owned by the organization or person.
@@ -230,7 +236,8 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('The person\'s spouse.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_spouse_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_spouse_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     tax_id = models.CharField(
         _("Tax ID"),
@@ -259,6 +266,7 @@ class AbstractPlacePerson(AbstractPublicThing):
         help_text=_('A contact location for a person\'s PublicPlace of work.'),
         null=True,
         blank=True,
-        related_name="abstract_public_person_work_location_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_person_work_location_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     # worksFor	Organization 	Organizations that the person works for.

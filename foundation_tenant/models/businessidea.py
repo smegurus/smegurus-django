@@ -31,9 +31,9 @@ class BusinessIdea(models.Model):
     owner = models.ForeignKey(
         User,
         help_text=_('The user whom owns this thing.'),
-        on_delete=models.CASCADE,
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.CASCADE
     )
     name = models.CharField(
         _("Name"),
@@ -55,7 +55,8 @@ class BusinessIdea(models.Model):
         help_text=_('An image of the item.'),
         null=True,
         blank=True,
-        related_name="business_idea_image_%(app_label)s_%(class)s_related"
+        related_name="business_idea_image_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
 
     def __str__(self):

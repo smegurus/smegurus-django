@@ -38,7 +38,8 @@ class CommunityPost(AbstractThing):
         TenantMe,
         help_text=_('The user whom owns this thing.'),
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

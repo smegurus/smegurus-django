@@ -33,7 +33,8 @@ class TenantFileUpload(models.Model):
         User,
         help_text=_('The user whom owns this object.'),
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.CASCADE
     )
 
     def __str__(self):

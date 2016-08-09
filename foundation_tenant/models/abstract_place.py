@@ -22,7 +22,8 @@ class AbstractPlace(AbstractThing):
         help_text=_('Physical address of the item.'),
         null=True,
         blank=True,
-        related_name="place_address_%(app_label)s_%(class)s_related"
+        related_name="place_address_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     # aggregateRating
     # branchCode
@@ -41,7 +42,8 @@ class AbstractPlace(AbstractThing):
         help_text=_('The geo coordinates of the place.'),
         null=True,
         blank=True,
-        related_name="place_geo_%(app_label)s_%(class)s_related"
+        related_name="place_geo_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     global_location_number = models.CharField(
         _("Global Location Number"),
@@ -68,7 +70,8 @@ class AbstractPlace(AbstractThing):
         help_text=_('An associated logo.'),
         null=True,
         blank=True,
-        related_name="place_logo_%(app_label)s_%(class)s_related"
+        related_name="place_logo_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     opening_hours_specification = models.ManyToManyField(
         OpeningHoursSpecification,
@@ -81,7 +84,8 @@ class AbstractPlace(AbstractThing):
         help_text=_('A photograph of this place.'),
         null=True,
         blank=True,
-        related_name="place_photo_%(app_label)s_%(class)s_related"
+        related_name="place_photo_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     # review
     telephone = models.CharField(

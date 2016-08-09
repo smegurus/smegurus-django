@@ -21,7 +21,8 @@ class PublicBrand(AbstractPublicThing):
         help_text=_('An associated logo.'),
         null=True,
         blank=True,
-        related_name="brand_logo"
+        related_name="brand_logo",
+        on_delete=models.SET_NULL
     )
 
     def __str__(self):

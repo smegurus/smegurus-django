@@ -78,7 +78,8 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         help_text=_('Physical address of the item.'),
         null=True,
         blank=True,
-        related_name="organization_address_%(app_label)s_%(class)s_related"
+        related_name="organization_address_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     brands = models.ManyToManyField(
         PublicBrand,
@@ -91,7 +92,8 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         help_text=_('A contact point for a person or organization'),
         null=True,
         blank=True,
-        related_name="organization_contact_point_%(app_label)s_%(class)s_related"
+        related_name="organization_contact_point_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     # department = models.ForeignKey(
     #     'self',
@@ -137,7 +139,8 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         help_text=_('The place where the Organization was founded.'),
         null=True,
         blank=True,
-        related_name="organization_founding_location_%(app_label)s_%(class)s_related"
+        related_name="organization_founding_location_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     global_location_number = models.CharField(
         _("Global Location Number"),
@@ -165,7 +168,8 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         help_text=_('An associated logo.'),
         null=True,
         blank=True,
-        related_name="organization_logo_%(app_label)s_%(class)s_related"
+        related_name="organization_logo_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
     )
     naics = models.CharField(
         _("NAICS"),

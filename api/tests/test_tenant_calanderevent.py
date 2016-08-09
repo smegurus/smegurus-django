@@ -15,6 +15,9 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
 
@@ -88,7 +91,10 @@ class APICalendarEventWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        tags = CalendarEvent.objects.delete_all()
+        CalendarEvent.objects.delete_all()
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
