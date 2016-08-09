@@ -29,7 +29,7 @@ class PublicContactPoint(AbstractPublicThing):
         help_text=_('A language someone may use with the item.'),
         null=True,
         blank=True,
-        related_name='contact_point_available_language',
+        related_name="public_contact_point_available_language_%(app_label)s_%(class)s_related"
     )
     contact_type = models.CharField(
         _("Contact Type"),
@@ -55,7 +55,7 @@ class PublicContactPoint(AbstractPublicThing):
         PublicOpeningHoursSpecification,
         help_text=_('The hours during which this service or contact is available.'),
         blank=True,
-        related_name='contact_point_hours_available',
+        related_name="public_contact_point_hours_available_%(app_label)s_%(class)s_related"
     )
     product_supported = models.CharField(
         _("Product Supported"),

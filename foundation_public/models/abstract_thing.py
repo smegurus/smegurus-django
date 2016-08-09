@@ -19,7 +19,8 @@ class AbstractPublicThing(models.Model):
         User,
         help_text=_('The user whom owns this thing.'),
         blank=True,
-        null=True
+        null=True,
+        related_name="abstract_public_thing_owner_%(app_label)s_%(class)s_related"
     )
     alternate_name = models.CharField(
         _("Alternate Name"),
@@ -39,7 +40,7 @@ class AbstractPublicThing(models.Model):
         help_text=_('An image of the item.'),
         null=True,
         blank=True,
-        related_name="thing_image_%(app_label)s_%(class)s_related"
+        related_name="abstract_public_thing_image_%(app_label)s_%(class)s_related"
     )
     main_entity_of_page = models.URLField(
         _("Main Entity Of Page"),
