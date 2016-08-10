@@ -12,6 +12,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.forms.intakeform import IntakeForm
 from smegurus import constants
 
 
@@ -86,5 +87,5 @@ def update_page(request, pk):
     return render(request, 'tenant_customer/update/view.html',{
         'page': 'client',
         'me': me,
-        'intake': intake,
+        'intake_form': IntakeForm(instance=intake),
     })

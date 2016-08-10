@@ -58,6 +58,11 @@
         }
     }
 
+    function ajax_finalize_submit() {
+        window.location = "";
+        // window.location = "{% url 'tenant_customer_master' %}";
+    }
+
     function ajax_protected_submit() {
         $('#id_address_locality').prop("disabled", true);
         get_tenant_me(
@@ -70,8 +75,7 @@
                 set_tenant_me(
                     me,
                     function(json_result) {
-                        window.location = "";
-                        // window.location = "{% url 'tenant_customer_master' %}";
+                        ajax_finalize_submit(); // Finalize the submission process.
                     },
                     function(error_json_result) {
                         $('#id_submit_btn').prop("disabled", false);

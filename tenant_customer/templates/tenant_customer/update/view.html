@@ -112,13 +112,16 @@
                         <em class="fa fa-random"></em>
                         {% trans 'Intake' %}
                     </legend>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_first_name" value="{{ me.given_name }}" />
-                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                    {% for field in intake_form %}
+                        <div class="form-group" id="{{ field.id_for_label }}_div">
+                            <label class="col-sm-2 control-label">{{ field.label_tag }}</label>
+                            <div class="col-sm-10">
+                                {{ field }}
+                                {{ field.errors }}<br/>
+                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
+                    {{ intake_form.non_field_errors }}
                     <br />
                     <!-- end INTAKE -->
 
