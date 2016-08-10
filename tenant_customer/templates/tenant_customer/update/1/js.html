@@ -29,11 +29,31 @@
         }); // end Email Keypress
     }); // end Document Start
 
-    function ajax_user() {
-
-    }
-
-    function ajax_submit() {
-        //TODO: Verification...
+    function ajax_save_and_continue() {
+        get_tenant_me(
+            {{ me.id }},
+            function(me) {
+                me['given_name'] = $('#id_first_name').val();
+                me['family_name'] = $('#id_last_name').val();
+                me['email'] = $('#id_email').val();
+                me['telephone'] = $('#id_telephone').val();
+                set_tenant_me(
+                    me,
+                    function(json_result) {
+                        window.location = "{% url 'tenant_customer_update_2' me.id %}";
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                );
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
     }
 </script>

@@ -29,6 +29,24 @@ class TenantMeViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
     filter_class = TenantMeFilter
 
+    def perform_update(self, serializer):
+        """Update "TenantMe" model and its associated models."""
+        # Update the 'TenantMe' model.
+        me = serializer.save()
+
+        # Update the "User" model.
+        me.owner.first_name = me.given_name
+        me.owner.last_name = me.family_name
+        me.owner.save()
+
+        # Update the "PostalAddress".
+        #TODO: Implement.
+
+        # Update the "ContactPoint" model.
+        me.contact_point.telephone = me.telephone
+        me.contact_point.email = me.email
+        me.contact_point.save()
+
     @detail_route(methods=['put'], permission_classes=[EmployeePermission])
     def admit_me(self, request, pk=None):
         call_command('admit_me',str(pk))

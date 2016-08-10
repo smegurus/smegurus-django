@@ -101,7 +101,8 @@ class AbstractPerson(AbstractThing):
         _("Email"),
         help_text=_('Email address.'),
         null=True,
-        blank=True
+        blank=True,
+        default='',
     )
     family_name = models.CharField(
         _("Family Name"),
@@ -109,6 +110,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('Family name. In the U.S., the last name of an Person. This can be used along with givenName instead of the name property.'),
         blank=True,
         null=True,
+        default='',
     )
     fax_number = models.CharField(
         _("Fax Number"),
@@ -136,6 +138,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('Given name. In the U.S., the first name of a Person. This can be used along with familyName instead of the name property.'),
         blank=True,
         null=True,
+        default='',
     )
     global_location_number = models.CharField(
         _("Global Location Number"),
@@ -245,6 +248,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('The Tax / Fiscal ID of the organization or person, e.g. the TIN in the US or the CIF/NIF in Spain.'),
         blank=True,
         null=True,
+        default='',
     )
     telephone = models.CharField(
         _("Telephone"),
@@ -252,6 +256,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('The telephone number.'),
         blank=True,
         null=True,
+        default='',
     )
     vat_id = models.CharField(
         _("Tax ID"),
@@ -259,6 +264,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('The Value-added Tax ID of the organization or person.'),
         blank=True,
         null=True,
+        default='',
     )
     # weight	QuantitativeValue 	The weight of the product or person.
     work_location = models.ForeignKey(

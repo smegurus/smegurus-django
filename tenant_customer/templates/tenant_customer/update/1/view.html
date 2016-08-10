@@ -1,0 +1,111 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+{% compress js inline %}
+{% include 'tenant_customer/update/1/js.html' %}
+{% endcompress %}
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <h3>{% trans 'New Client' %}</h3>
+<div class="panel panel-default">
+<!-- <div class="panel-heading">Entrepreneur Intake Form</div> -->
+<div class="panel-body">
+    <div id="example-vertical" role="application" class="wizard clearfix vertical">
+        <div class="steps clearfix">
+            <ul role="tablist">
+                <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
+                    <a id="example-vertical-t-0" href="#example-vertical-h-0" aria-controls="example-vertical-p-0">
+                    <span class="current-info audible">current step: </span><span class="number">1.</span> Contact
+                    </a>
+                </li>
+                <li role="tab" class="done" aria-disabled="false" aria-selected="false">
+                    <a id="example-vertical-t-1" href="#example-vertical-h-1" aria-controls="example-vertical-p-1">
+                    <span class="number">2.</span> Address
+                    </a>
+                </li>
+                <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                    <a id="example-vertical-t-2" href="#example-vertical-h-2" aria-controls="example-vertical-p-2">
+                    <span class="number">3.</span> Intake
+                    </a>
+                </li>
+                <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                    <a id="example-vertical-t-3" href="#example-vertical-h-3" aria-controls="example-vertical-p-3">
+                    <span class="number">4.</span> Needs
+                    </a>
+                </li>
+                <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
+                    <a id="example-vertical-t-4" href="#example-vertical-h-4" aria-controls="example-vertical-p-4">
+                    <span class="number">5.</span> Finish
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content clearfix">
+            <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
+            <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
+
+                <form method="get" action="/" class="form-horizontal">
+                    <!-- CONTACT INFORMATION -->
+                    <fieldset>
+                        <legend>{% trans 'Contact Information' %}</legend>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="id_first_name" value="{{ me.given_name }}" />
+                                <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{% trans 'Last Name' %}</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="id_last_name" value="{{ me.family_name }}" />
+                                <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                            </div>
+                        </div>
+                        <br />
+                        <div id="id_email_div" class="form-group">
+                            <label class="col-sm-2 control-label">{% trans 'Email' %}</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="id_email" value="{{ me.email }}" />
+                                <span id="id_email_span" class="help-block m-b-none"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{% trans 'Telephone' %}</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="id_telephone" value="{{ me.telephone }}" />
+                                <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!-- end CONTACT INFORMATION -->
+
+                    <!-- SUBMIT -->
+                    <div style="float: right;">
+                        <button id="id_submit_btn" onclick="ajax_submit();" type="button" class="btn btn-primary btn-lg">{% trans 'Submit' %}</button>
+                    </div>
+                    <!-- end SUBMIT -->
+                </form>
+
+            </section>
+        </div>
+        <div class="actions clearfix">
+            <ul role="menu" aria-label="Pagination">
+                <!-- <li class="disabled" aria-disabled="true">
+                    <a href="#previous" role="menuitem">Previous</a>
+                    </li> -->
+                <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
+                    <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
+                </li>
+                <!-- <li aria-hidden="true" style="display: none;">
+                    <a href="#finish" role="menuitem">Finish</a>
+                    </li> -->
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}
