@@ -74,29 +74,16 @@ def create_page(request):
         me=me,
         status=constants.CREATED_STATUS,
     )
-    return HttpResponseRedirect(reverse('tenant_customer_update_1', args=[me.id,]))
+    return HttpResponseRedirect(reverse('tenant_customer_update', args=[me.id,]))
 
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
-def update_1_page(request, pk):
+def update_page(request, pk):
     me = get_object_or_404(TenantMe, pk=pk)
     intake = get_object_or_404(Intake, me=me)
-    return render(request, 'tenant_customer/update/1/view.html',{
-        'page': 'client',
-        'me': me,
-        'intake': intake,
-    })
-
-
-@login_required(login_url='/en/login')
-@tenant_configuration_required
-@tenant_profile_required
-def update_2_page(request, pk):
-    me = get_object_or_404(TenantMe, pk=pk)
-    intake = get_object_or_404(Intake, me=me)
-    return render(request, 'tenant_customer/update/2/view.html',{
+    return render(request, 'tenant_customer/update/view.html',{
         'page': 'client',
         'me': me,
         'intake': intake,

@@ -1,0 +1,138 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+{% compress js inline %}
+    {% include 'tenant_customer/update/js.html' %}
+{% endcompress %}
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <h3>{% trans 'New Client' %}</h3>
+    <div class="panel panel-default">
+        <!-- <div class="panel-heading">Entrepreneur Intake Form</div> -->
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+
+                <fieldset>
+
+                    <!-- CONTACT INFORMATION -->
+                    <legend>
+                        <em class="fa icon-book-open"></em>
+                        {% trans 'Contact Information' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_first_name" value="{{ me.given_name }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Last Name' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_last_name" value="{{ me.family_name }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <div id="id_email_div" class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Email' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_email" value="{{ me.email }}" />
+                            <span id="id_email_span" class="help-block m-b-none"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Telephone' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_telephone" value="{{ me.telephone }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <!-- end CONTACT INFORMATION -->
+
+                    <br />
+
+                    <!-- ADDRESS -->
+                    <legend>
+                        <em class="fa icon-location-pin"></em> {% trans 'Address' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Country' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_address_country" value="{{ me.address.address_country }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Province' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_address_region" value="{{ me.address.address_region }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'City' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_address_locality" value="{{ me.address.address_locality }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Post Office Box' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_post_office_box_numbery" value="{{ me.address.post_office_box_number }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Postal Code' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_postal_code" value="{{ me.address.postal_code }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Street Address' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_street_address" value="{{ me.address.street_address }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <!-- end ADDRESS -->
+
+                    <!-- INTAKE -->
+                    <legend>
+                        <em class="fa fa-random"></em>
+                        {% trans 'Intake' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_first_name" value="{{ me.given_name }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <!-- end INTAKE -->
+
+                </fieldset>
+
+                <!-- SUBMIT -->
+                <div style="float: right;">
+                    <button id="id_submit_btn" onclick="ajax_unprotected_submit();" type="button" class="btn btn-primary btn-lg">{% trans 'Submit' %}</button>
+                </div>
+                <!-- end SUBMIT -->
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}

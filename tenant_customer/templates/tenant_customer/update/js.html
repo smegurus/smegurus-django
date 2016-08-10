@@ -1,6 +1,11 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        // Lock the Next button until the email has been properly set.
+        {% if not me.email %}
+            $('#id_submit_btn').prop("disabled", true);
+        {% endif %}
+
         // Call function when any keys are pressed for the 'email' field
         // and verify dynamically if the email is good.
         $( "#id_email" ).keypress(function() {
@@ -12,24 +17,49 @@
                 public_is_email_unique(
                     email,
                     function(is_unique) {
-                        if (is_unique) {
+                        if (is_unique || email == "{{ me.email }}") {
                             $('#id_email_div').attr('class','form-group has-success');
                             $("#id_email_span").text('');
+                            $('#id_submit_btn').prop("disabled", false);
                         } else {
                             $('#id_email_div').attr('class','form-group has-warning');
                             $("#id_email_span").text('Email is not unique! Please choose a different email.');
+                            $('#id_submit_btn').prop("disabled", true);
                         }
                     }
                 ); // end Is Email Uniue
             } else {
                 $('#id_email_div').attr('class','form-group has-error');
                 $("#id_email_span").text('Please enter a properly formatted email.');
+                $('#id_submit_btn').prop("disabled", true);
             }
 
         }); // end Email Keypress
     }); // end Document Start
 
-    function ajax_save_and_continue() {
+    function ajax_unprotected_submit() {
+        var email = $( "#id_email" ).val();
+
+        // Check to see if the email has been validated or else indicate
+        // that the text is bad.
+        if (is_email_valid(email)) {
+            public_is_email_unique(
+                email,
+                function(is_unique) {
+                    if (is_unique || email == "{{ me.email }}") {
+                        ajax_protected_submit();
+                    }
+                }
+            ); // end Is Email Uniue
+        } else {
+            $('#id_email_div').attr('class','form-group has-error');
+            $("#id_email_span").text('Please enter a properly formatted email.');
+            $('#id_submit_btn').prop("disabled", true);
+        }
+    }
+
+    function ajax_protected_submit() {
+        $('#id_address_locality').prop("disabled", true);
         get_tenant_me(
             {{ me.id }},
             function(me) {
@@ -40,20 +70,23 @@
                 set_tenant_me(
                     me,
                     function(json_result) {
-                        window.location = "{% url 'tenant_customer_update_2' me.id %}";
+                        window.location = "";
+                        // window.location = "{% url 'tenant_customer_master' %}";
                     },
                     function(error_json_result) {
+                        $('#id_submit_btn').prop("disabled", false);
                         var string = JSON.stringify( error_json_result );
                         console.log(string);
                         alert(string);
                     }
-                );
+                ); // end SET TenantMe
             },
             function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false);
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
                 alert(string);
             }
-        );
+        ); // end GET TenantMe
     }
 </script>
