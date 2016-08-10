@@ -7,6 +7,8 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
 
@@ -52,10 +54,12 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
-        TenantMe.objects.delete_all()
         super(FoundationTenantMiddlewareWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
