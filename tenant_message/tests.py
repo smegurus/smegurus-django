@@ -9,6 +9,8 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
 
@@ -87,6 +89,8 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def tearDown(self):
         Message.objects.delete_all()
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()
         items = Group.objects.all()
         for item in items.all():

@@ -75,6 +75,9 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()

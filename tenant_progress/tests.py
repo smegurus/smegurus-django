@@ -9,6 +9,8 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -88,6 +90,9 @@ class TenantProgressTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
