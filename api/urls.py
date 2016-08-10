@@ -20,6 +20,7 @@ from api.views.foundation_public.brandviewset import PublicBrandViewSet
 from api.views.foundation_public.placeviewset import PublicPlaceViewSet
 from api.views.foundation_public.countryviewset import PublicCountryViewSet
 from api.views.foundation_public.organizationviewset import PublicOrganizationViewSet
+from api.views.foundation_public.functionviewset import IsEmailUniqueViewSet
 
 from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
 from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUploadViewSet
@@ -97,6 +98,7 @@ urlpatterns = (
     url(r'^api/activate/$', ActivationView.as_view(), name='api_activate'),
     url(r'^api/emailpasswordreset/$', EmailPasswordResetViewSet.as_view(), name='api_emailpasswordreset'),
     url(r'^api/changepassword/$', ChangePasswordViewSet.as_view(), name='api_changepassword'),
+    url(r'^api/isemailunique/$', IsEmailUniqueViewSet.as_view(), name='api_function_isemailunique'),
 
     # Provide authentication for this API login app.
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

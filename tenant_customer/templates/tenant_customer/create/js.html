@@ -9,8 +9,18 @@
             // Check to see if the email has been validated or else indicate
             // that the text is bad.
             if (is_email_valid(email)) {
-                $('#id_email_div').attr('class','form-group has-success');
-                $("#id_email_span").text('');
+                public_is_email_unique(
+                    email,
+                    function(is_unique) {
+                        if (is_unique) {
+                            $('#id_email_div').attr('class','form-group has-success');
+                            $("#id_email_span").text('');
+                        } else {
+                            $('#id_email_div').attr('class','form-group has-warning');
+                            $("#id_email_span").text('Email is not unique! Please choose a different email.');
+                        }
+                    }
+                ); // end Is Email Uniue
             } else {
                 $('#id_email_div').attr('class','form-group has-error');
                 $("#id_email_span").text('Please enter a properly formatted email.');

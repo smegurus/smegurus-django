@@ -501,11 +501,10 @@
                 {% include "api/auth_register.html" %}
                 {% include "api/auth_password_reset.html" %}
                 {% if request.user.is_authenticated %}
-                    {% include "api/auth_user.html" %}
-                    {% include "api/auth_group.html" %}
                     {% include "api/public_organization.html" %}
                     {% include "api/public_postaladdress.html" %}
                     {% include "api/public_imageupload.html" %}
+                    {% include "api/public_function.html" %}
                     {% include "api/tenant_tag.html" %}
                     {% include "api/tenant_imageupload.html" %}
                     {% include "api/tenant_businessidea.html" %}
