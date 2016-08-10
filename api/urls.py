@@ -9,8 +9,6 @@ from api.views.authentication.activation import ActivationView
 from api.views.authentication.emailpasswordreset import EmailPasswordResetViewSet
 from api.views.authentication.changepassword import ChangePasswordViewSet
 
-from api.views.foundation_public.userviewset import UserViewSet
-from api.views.foundation_public.userviewset import GroupViewSet
 from api.views.foundation_public.publicfileuploadviewset import PublicFileUploadViewSet
 from api.views.foundation_public.publicimageuploadviewset import PublicImageUploadViewSet
 from api.views.foundation_public.languageviewset import PublicLanguageViewSet
@@ -49,8 +47,6 @@ from api.views.foundation_tenant.meviewset import TenantMeViewSet
 
 # URL Generator.
 router = routers.DefaultRouter()
-router.register(r'user', UserViewSet)
-router.register(r'group', GroupViewSet)
 router.register(r'publicfileupload', PublicFileUploadViewSet)
 router.register(r'publicimageupload', PublicImageUploadViewSet)
 router.register(r'publiclanguage', PublicLanguageViewSet)
