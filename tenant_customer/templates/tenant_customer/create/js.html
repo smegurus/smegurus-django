@@ -1,0 +1,29 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Call function when any keys are pressed for the 'email' field
+        // and verify dynamically if the email is good.
+        $( "#id_email" ).keypress(function() {
+            var email = $( "#id_email" ).val();
+
+            // Check to see if the email has been validated or else indicate
+            // that the text is bad.
+            if (is_email_valid(email)) {
+                $('#id_email_div').attr('class','form-group has-success');
+                $("#id_email_span").text('');
+            } else {
+                $('#id_email_div').attr('class','form-group has-error');
+                $("#id_email_span").text('Please enter a properly formatted email.');
+            }
+
+        }); // end Email Keypress
+    }); // end Document Start
+
+    function ajax_user() {
+
+    }
+
+    function ajax_submit() {
+        //TODO: Verification...
+    }
+</script>

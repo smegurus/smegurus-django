@@ -30,3 +30,12 @@ def details_page(request, id):
         'page': 'client',
         'customer': customer,
     })
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+@tenant_profile_required
+def create_page(request):
+    return render(request, 'tenant_customer/create/view.html',{
+        'page': 'client',
+    })
