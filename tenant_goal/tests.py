@@ -96,7 +96,7 @@ class TenantGoalTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_goal_page(self):
-        url = reverse('tenant_learning')
+        url = reverse('tenant_goal')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

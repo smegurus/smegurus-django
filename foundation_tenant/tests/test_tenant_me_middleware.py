@@ -141,6 +141,9 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all()
+        ContactPoint.objects.delete_all()
+        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

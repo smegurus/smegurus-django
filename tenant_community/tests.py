@@ -103,6 +103,14 @@ class TenantCommunityTestCases(APITestCase, TenantTestCase):
         self.assertIn(b'Community',response.content)
 
     @transaction.atomic
+    def test_community_page_with_last_page(self):
+        url = reverse('tenant_community')+'?page=666'
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Community',response.content)
+
+    @transaction.atomic
     def test_community_search_page(self):
         url = reverse('tenant_community_search')
         response = self.authorized_client.get(url)

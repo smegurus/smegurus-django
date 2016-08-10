@@ -207,7 +207,7 @@ if env_var("IS_DEBUG"):
 
 LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Toronto'
 
 USE_I18N = True
 

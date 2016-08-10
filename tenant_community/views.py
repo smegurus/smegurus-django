@@ -29,6 +29,7 @@ def community_page(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         posts = paginator.page(paginator.num_pages)
+        print("TESTETSTESTSFGSDFSDF")
 
     return render(request, 'tenant_community/list/view.html',{
         'page': 'community',

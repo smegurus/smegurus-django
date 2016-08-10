@@ -117,57 +117,57 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'Personal Settings',response.content)
 
-#    @transaction.atomic
-#    def test_locked_page(self):
-#        """Load up the lock page and verify User is locked afterwards"""
-#        # Pre-test to verify the User is NOT locked out.
-#        me = PublicMe.objects.get(owner=self.user)
-#        self.assertFalse(me.is_locked)
-#
-#        # Run our test.
-#        url = reverse('tenant_profile_lock')
-#        response = self.authorized_client.get(url)
-#        self.assertEqual(response.status_code, status.HTTP_200_OK)
-#        self.assertTrue(len(response.content) > 1)
-#        # self.assertIn(b'Profile Settings',response.content)
-#
-#        # Verfiy our User has been locked out.
-#        me = PublicMe.objects.get(owner=self.user)
-#        self.assertTrue(me.is_locked)
-#
-#    @transaction.atomic
-#    def test_tenant_profile_required_decorator_with_redirect(self):
-#        """Load up the lock page and verify User is locked afterwards"""
-#        # Pre-configure to lock the user out.
-#        me = PublicMe.objects.get(owner=self.user)
-#        me.is_locked = True
-#        me.save()
-#
-#        # Run our test.
-#        url = reverse('tenant_profile_is_locked')
-#        response = self.authorized_client.get(url)
-#        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-#        self.assertRedirects(response, reverse('tenant_profile_lock'))
-#
-#    @transaction.atomic
-#    def test_tenant_profile_required_decorator_without_redirect(self):
-#        """Load up the lock page and verify User is locked afterwards"""
-#        # Run our test.
-#        url = reverse('tenant_profile_is_locked')
-#        response = self.authorized_client.get(url)
-#        self.assertEqual(response.status_code, status.HTTP_200_OK)
-#        self.assertTrue(len(response.content) > 1)
-#        self.assertIn(b'access-granted',response.content)
-#
-#    @transaction.atomic
-#    def test_profile_page_with_redirect_on_lockout(self):
-#        # Pre-configure to lock the user out.
-#        me = PublicMe.objects.get(owner=self.user)
-#        me.is_locked = True
-#        me.save()
-#
-#        # Run our test and verify.
-#        url = reverse('tenant_profile')
-#        response = self.authorized_client.get(url)
-#        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-#        self.assertRedirects(response, reverse('tenant_profile_lock'))
+    @transaction.atomic
+    def test_locked_page(self):
+        """Load up the lock page and verify User is locked afterwards"""
+        # Pre-test to verify the User is NOT locked out.
+        me = TenantMe.objects.get(owner=self.user)
+        self.assertFalse(me.is_locked)
+
+        # Run our test.
+        url = reverse('tenant_profile_lock')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        # self.assertIn(b'Profile Settings',response.content)
+
+        # Verfiy our User has been locked out.
+        me = TenantMe.objects.get(owner=self.user)
+        self.assertTrue(me.is_locked)
+
+    @transaction.atomic
+    def test_tenant_profile_required_decorator_with_redirect(self):
+        """Load up the lock page and verify User is locked afterwards"""
+        # Pre-configure to lock the user out.
+        me = TenantMe.objects.get(owner=self.user)
+        me.is_locked = True
+        me.save()
+
+        # Run our test.
+        url = reverse('tenant_profile_is_locked')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+        self.assertRedirects(response, reverse('tenant_profile_lock'))
+
+    @transaction.atomic
+    def test_tenant_profile_required_decorator_without_redirect(self):
+        """Load up the lock page and verify User is locked afterwards"""
+        # Run our test.
+        url = reverse('tenant_profile_is_locked')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'access-granted',response.content)
+
+    @transaction.atomic
+    def test_profile_page_with_redirect_on_lockout(self):
+        # Pre-configure to lock the user out.
+        me = TenantMe.objects.get(owner=self.user)
+        me.is_locked = True
+        me.save()
+
+        # Run our test and verify.
+        url = reverse('tenant_profile')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+        self.assertRedirects(response, reverse('tenant_profile_lock'))
