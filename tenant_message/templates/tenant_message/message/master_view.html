@@ -100,6 +100,10 @@
                                 </td>
 
                             </tr>
+                            {% empty %}
+                            <tr>
+                                <p>{% trans 'No messages.' %}</p>
+                            </tr>
                             {% endfor %}
                             <!-- end ngRepeat: mail in mails | filter:folder-->
                         </tbody>

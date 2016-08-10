@@ -107,6 +107,7 @@ TENANT_APPS = (
   'tenant_faq',
   'tenant_task',
   'tenant_customer',
+  'tenant_help',
   'tenant_dashboard',
 )
 

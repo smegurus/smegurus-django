@@ -56,6 +56,28 @@
                 </div>
             </div>
         </div>
+        {% empty %}
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a href="#" class="pull-right text-muted">
+                    <em class="fa"></em>
+                    </a>
+                </div>
+                <div class="panel-body text-center">
+                    <div class="mb-lg">
+                        <em class="fa fa-exclamation-triangle fa-5x text-muted"></em>
+                    </div>
+                    <h4>{% trans 'No Clients' %}</h4>
+                    <p></p>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="text-center">
+                        <p>{% trans 'Are you having any problems?' %} <a href="{% url 'tenant_help_master' %}">{% trans 'Let us know!' %}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
         <!-- end CLIENT -->
     </div>

@@ -68,6 +68,10 @@
                                 </td>
 
                             </tr>
+                            {% empty %}
+                            <tr>
+                                <p>{% trans 'No archived messages.' %}</p>
+                            </tr>
                             {% endfor %}
                             <!-- end ngRepeat: mail in mails | filter:folder-->
                         </tbody>
