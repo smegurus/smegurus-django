@@ -7,6 +7,7 @@ from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.entrepreneur_note import EntrepreneurNote
 from smegurus import constants
 
 
@@ -20,7 +21,7 @@ from smegurus import constants
     constants.CLIENT_MANAGER_GROUP_ID,
     constants.SYSTEM_ADMIN_GROUP_ID,
 ])
-def master_page(request, id):
+def entrepreneur_master_page(request, id):
     me = get_object_or_404(TenantMe, pk=int(id))
     return render(request, 'tenant_note/master/view.html',{
         'page': 'note',
@@ -38,7 +39,7 @@ def master_page(request, id):
     constants.CLIENT_MANAGER_GROUP_ID,
     constants.SYSTEM_ADMIN_GROUP_ID,
 ])
-def details_page(request, me_id, note_id):
+def entrepreneur_details_page(request, me_id, note_id):
     me = get_object_or_404(TenantMe, pk=int(me_id))
     return render(request, 'tenant_note/details/view.html',{
         'page': 'note',

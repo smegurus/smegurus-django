@@ -3,6 +3,6 @@ from tenant_note import views
 
 
 urlpatterns = (
-    url(r'^client/(.*)/note/$', views.master_page, name='tenant_note_master'),
-    url(r'^client/(.*)/note/(.*)/$', views.details_page, name='tenant_note_details'),
+    url(r'^client/(.*)/note/$', views.entrepreneur_master_page, name='tenant_note_entrepreneur_master'),
+    url(r'^client/(.*)/note/(.*)/$', views.entrepreneur_details_page, name='tenant_note_entrepreneur_details'),
 )
