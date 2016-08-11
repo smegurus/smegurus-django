@@ -129,6 +129,13 @@ def intake_finished_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 def intake_master_page(request):
     intakes = Intake.objects.filter(
         Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.REJECTED_STATUS)
@@ -144,6 +151,13 @@ def intake_master_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 def intake_details_page(request, id):
     intake = get_object_or_404(Intake, pk=id)
     return render(request, 'tenant_intake/employee/details/view.html',{
