@@ -21,33 +21,25 @@
                     <div class="mv-lg">
                         <p>{{ me.description }}</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- OPTIONS -->
+            <div class="panel panel-default hidden-xs hidden-sm">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">{% trans 'Options' %}</div>
+                </div>
+                <div class="panel-body">
                     <div class="text-center">
                         <a href="#" class="btn btn-primary">{% trans 'Send message' %}</a>
                     </div>
-                </div>
-            </div>
-            <div class="panel panel-default hidden-xs hidden-sm">
-                <div class="panel-heading">
-                    <div class="panel-title text-center">{% trans 'Recent contacts' %}</div>
-                </div>
-                <div class="panel-body">
-                    {% comment %}
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <a href="#">
-                            <img src="img/user/04.jpg" alt="Contact" class="media-object img-circle img-thumbnail thumb48">
-                            </a>
-                        </div>
-                        <div class="media-body pt-sm">
-                            <div class="text-bold">
-                                Floyd Ortiz
-                                <div class="text-sm text-muted">12m ago</div>
-                            </div>
-                        </div>
+                    <br />
+                    <div class="text-center">
+                        <a href="{% url 'tenant_note_master' me.id %}" class="btn btn-success">{% trans 'View Notes' %}</a>
                     </div>
-                    {% endcomment %}
                 </div>
             </div>
+            <!-- end OPTIONS -->
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
