@@ -140,13 +140,14 @@
         });
     }
 
-    function tenant_intake_review(id, status, comment, success_callback, error_callback) {
+    function tenant_intake_review(id, status, comment, is_employee_created, success_callback, error_callback) {
         var url = "/api/tenantintake/" + id + "/review/?format=json";
         jQuery.ajax({
             url: url,
             data: JSON.stringify({
                 'status': status,
                 'comment': comment,
+                'is_employee_created': is_employee_created,
             }),
             dataType: 'text',
             headers: {

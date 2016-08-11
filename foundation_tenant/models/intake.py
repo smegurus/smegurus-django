@@ -76,19 +76,24 @@ class Intake(models.Model):
         help_text=_('The User that this Intake belongs to.'),
         on_delete=models.CASCADE,
     )
-    status = models.PositiveSmallIntegerField(
+    status = models.PositiveSmallIntegerField(    # CONTROLLED BY EMPLOYEES ONLY
         _("Status"),
         choices=STATUS_OPTIONS,
         help_text=_('The state this intake application is in our application.'),
         default=constants.CREATED_STATUS,
         db_index=True,
     )
-    comment = models.TextField(
+    comment = models.TextField(                   # CONTROLLED BY EMPLOYEES ONLY
         _("Comment"),
         help_text=_('A comment of this applicaitn.'),
         blank=True,
         null=True,
         default='',
+    )
+    is_employee_created = models.BooleanField(    # CONTROLLED BY EMPLOYEES ONLY
+        _("Is Employee Created"),
+        default=False,
+        help_text=_('Variable controls whether the intake was created by the Advisor or not.'),
     )
 
     # "How Can We Help You" Section

@@ -64,6 +64,7 @@
             {{ intake_form.instance.id }},
             5,  // contants.APPROVED_STATUS
             comment,
+            true,
             function() {
                 window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
             },

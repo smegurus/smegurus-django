@@ -3,7 +3,7 @@
     function ajax_reject() {
         var comment = $.trim($('#id_review').val());
         tenant_intake_review(
-            {{ intake.id }}, 4, comment,  // contants.REJECTED_STATUS
+            {{ intake.id }}, 4, comment, false, // contants.REJECTED_STATUS
             function(json_result) {
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },
@@ -18,7 +18,7 @@
     function ajax_accept() {
         var comment = $.trim($('#id_review').val());
         tenant_intake_review(
-            {{ intake.id }}, 5, comment,  // contants.APPROVED_STATUS
+            {{ intake.id }}, 5, comment, false,  // contants.APPROVED_STATUS
             function(json_result) {
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },

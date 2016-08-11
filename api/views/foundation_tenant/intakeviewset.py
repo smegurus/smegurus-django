@@ -21,8 +21,9 @@ from smegurus.settings import env_var
 
 
 class IntakeReviewSerializer(serializers.Serializer):
-    status = serializers.IntegerField()
-    comment = serializers.CharField(max_length=2055)
+    status = serializers.IntegerField(required=True,)
+    comment = serializers.CharField(max_length=2055, required=False,)
+    is_employee_created = serializers.BooleanField(default=False, required=False,)
 
 
 class SendEmailViewMixin(object):
@@ -125,11 +126,17 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         try:
             serializer = IntakeReviewSerializer(data=request.data)
             if serializer.is_valid():
+                # Updated the object.
                 intake = self.get_object()
                 intake.status = serializer.data['status']
                 intake.comment = serializer.data['comment']
+                intake.is_employee_created = serializer.data['is_employee_created']
                 intake.save()
-                # call_command('send_was_reviewed_email_for_org',str(organization.id))
+
+                # Send the email.
+                call_command('send_reviewed_email_for_intake', str(intake.id))
+
+                # Return a success response.
                 return response.Response(
                     status=status.HTTP_200_OK
                 )
