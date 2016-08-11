@@ -148,7 +148,7 @@ class IsMe(permissions.BasePermission):
             return False
         else:
             return obj.me == request.tenant_me
-            
+
 
 class IsMeOrIsAnEmployee(permissions.BasePermission):
     """

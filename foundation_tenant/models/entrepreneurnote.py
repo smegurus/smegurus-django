@@ -6,7 +6,7 @@ from foundation_tenant.models.me import TenantMe
 
 class EntrepreneurNoteManager(models.Manager):
     def delete_all(self):
-        items = Note.objects.all()
+        items = EntrepreneurNote.objects.all()
         for item in items.all():
             item.delete()
 

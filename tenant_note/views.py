@@ -7,7 +7,7 @@ from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.entrepreneur_note import EntrepreneurNote
+from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
 from smegurus import constants
 
 

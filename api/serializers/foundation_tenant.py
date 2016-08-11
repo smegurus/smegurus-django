@@ -26,6 +26,7 @@ from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.message import Message
+from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
 from foundation_tenant.models.me import TenantMe
 
 
@@ -220,3 +221,10 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url', 'sender', 'recipient', 'date_read', 'date_received', 'date_sent', 'participants',)
+
+
+class EntrepreneurNoteSerializer(serializers.ModelSerializer):
+    image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
+    class Meta:
+        model = EntrepreneurNote
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url', 'me',)
