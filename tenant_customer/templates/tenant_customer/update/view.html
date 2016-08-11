@@ -2,6 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 {% compress js inline %}
+    {% include "foundation_public/autocomplete_js.html" %}
     {% include 'tenant_customer/update/js.html' %}
 {% endcompress %}
 <!-- PAGE CONTENT -->
@@ -53,6 +54,7 @@
                     <!-- end CONTACT INFORMATION -->
 
                     <br />
+                    <br />
 
                     <!-- ADDRESS -->
                     <legend>
@@ -85,7 +87,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{% trans 'Post Office Box' %}</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_post_office_box_numbery" value="{{ me.address.post_office_box_number }}" />
+                            <input type="text" class="form-control" id="id_post_office_box_number" value="{{ me.address.post_office_box_number }}" />
                             <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
                         </div>
                     </div>
@@ -107,6 +109,9 @@
                     </div>
                     <!-- end ADDRESS -->
 
+                    <br />
+                    <br />
+
                     <!-- INTAKE -->
                     <legend>
                         <em class="fa fa-random"></em>
@@ -124,6 +129,22 @@
                     {{ intake_form.non_field_errors }}
                     <br />
                     <!-- end INTAKE -->
+
+                    <br />
+                    <br />
+
+                    <!-- ADDRESS -->
+                    <legend>
+                        <em class="fa fa-comment-o"></em> {% trans 'Review' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Comment' %}</label>
+                        <div class="col-sm-10">
+                            <textarea id="id_review" class="form-control" name="textarea" rows="6">{{ intake_form.instance.comment }}</textarea>
+                            <span class="help-block m-b-none">This is a private comment to associate with this intake. The Entrepreneur will not be able to read this comment. </span>
+                        </div>
+                    </div>
+                    <br />
 
                 </fieldset>
 

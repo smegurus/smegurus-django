@@ -33,14 +33,13 @@ class TenantMeViewSet(viewsets.ModelViewSet):
         """Update "TenantMe" model and its associated models."""
         # Update the 'TenantMe' model.
         me = serializer.save()
+        me.name = me.given_name + " " + me.family_name
+        me.save()
 
         # Update the "User" model.
         me.owner.first_name = me.given_name
         me.owner.last_name = me.family_name
         me.owner.save()
-
-        # Update the "PostalAddress".
-        #TODO: Implement.
 
         # Update the "ContactPoint" model.
         me.contact_point.telephone = me.telephone

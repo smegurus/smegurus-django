@@ -47,7 +47,7 @@
                 email,
                 function(is_unique) {
                     if (is_unique || email == "{{ me.email }}") {
-                        ajax_protected_submit();
+                        ajax_tenant_me_submit();
                     }
                 }
             ); // end Is Email Uniue
@@ -59,12 +59,93 @@
     }
 
     function ajax_finalize_submit() {
-        window.location = "";
-        // window.location = "{% url 'tenant_customer_master' %}";
+        var comment = $.trim($('#id_review').val());
+        tenant_intake_review(
+            {{ intake_form.instance.id }},
+            5,  // contants.APPROVED_STATUS
+            comment,
+            function() {
+                window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
+            },
+            function() {
+                $('#id_submit_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Tenant Intake Review
     }
 
-    function ajax_protected_submit() {
-        $('#id_address_locality').prop("disabled", true);
+    function ajax_contant_point_submit() {
+        get_tenant_contactpoint(
+            {{ me.contact_point.id }},
+            function(contact_point) {
+                contact_point['how_can_we_help'] = $('#id_how_can_we_help').val();
+                contact_point['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                contact_point['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                contact_point['how_did_you_hear'] = $('#id_how_did_you_hear').val();
+                contact_point['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
+                contact_point['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
+                contact_point['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
+                contact_point['how_to_contact'] = $('#id_how_to_contact').val();
+                contact_point['how_to_contact_telephone'] = $('#id_how_to_contact_telephone').val();
+                contact_point['how_to_contact_times'] = $('#id_how_to_contact_times').val();
+                set_tenant_contactpoint(
+                    contact_point,
+                    function(json_result) {
+                        ajax_finalize_submit(); // Finialize submission.
+                    },
+                    function(error_json_result) {
+                        $('#id_submit_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end Set Postal Address
+            },
+            function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Get Postal Address
+    }
+
+    function ajax_postal_address_submit() {
+        get_tenant_postaladdress(
+            {{ me.address.id }},
+            function(address) {
+                address['address_country'] = $('#id_address_country').val();
+                address['address_region'] = $('#id_address_region').val();
+                address['address_locality'] = $('#id_address_locality').val();
+                address['post_office_box_number'] = $('#id_post_office_box_number').val();
+                address['postal_code'] = $('#id_postal_code').val();
+                address['street_address'] = $('#id_street_address').val();
+                set_tenant_postaladdress(
+                    address,
+                    function(json_result) {
+                        ajax_contant_point_submit(); // Update CONTACT POINT.
+                    },
+                    function(error_json_result) {
+                        $('#id_submit_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end Set Postal Address
+            },
+            function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Get Postal Address
+    }
+
+    function ajax_tenant_me_submit() {
+        $('#id_submit_btn').prop("disabled", true);
         get_tenant_me(
             {{ me.id }},
             function(me) {
@@ -75,7 +156,7 @@
                 set_tenant_me(
                     me,
                     function(json_result) {
-                        ajax_finalize_submit(); // Finalize the submission process.
+                        ajax_postal_address_submit(); // Update TENANT ME.
                     },
                     function(error_json_result) {
                         $('#id_submit_btn').prop("disabled", false);
