@@ -1,6 +1,6 @@
 {% load i18n %}
 <script type="text/javascript">
-    function ajax_create() {
+    function ajax_update() {
         $('#id_submit_btn').prop("disabled", true);
         get_tenant_entrepreneurnote(
             {{ form.instance.id }},
