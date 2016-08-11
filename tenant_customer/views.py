@@ -31,10 +31,10 @@ def master_page(request):
 @tenant_configuration_required
 @tenant_profile_required
 def details_page(request, id):
-    customer = get_object_or_404(TenantMe, pk=id)
+    me = get_object_or_404(TenantMe, pk=id)
     return render(request, 'tenant_customer/details/view.html',{
         'page': 'client',
-        'customer': customer,
+        'me': me,
     })
 
 

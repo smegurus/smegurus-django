@@ -11,17 +11,18 @@
             <div class="panel panel-default">
                 <div class="panel-body text-center">
                     <div class="pv-lg">
-                        {% if customer.image != None and customer.image != '' %}
-                            <img src="{{ customer.image.imagefile.url }}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                        {% if me.image != None and me.image != '' %}
+                            <img src="{{ me.image.imagefile.url }}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle img-thumbnail thumb96">
                         {% else %}
                             <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle img-thumbnail thumb96">
                         {% endif %}
                     </div>
-                    <h3 class="m0 text-bold">{{ customer.name }}</h3>
+                    <h3 class="m0 text-bold">{{ me.name }}</h3>
                     <div class="mv-lg">
-                        <p>{% if intake.me.description %}{{ intake.me.description }}{% else %}{% trans 'No description' %}{% endif %}</p>
+                        <p>{{ me.description }}</p>
                     </div>
-                    <div class="text-center"><a href="#" class="btn btn-primary">{% trans 'Send message' %}</a>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">{% trans 'Send message' %}</a>
                     </div>
                 </div>
             </div>
@@ -88,38 +89,38 @@
                                 <div class="form-group">
                                     <label for="inputContact1" class="col-sm-2 control-label">{% trans 'First Name' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="id_name" type="text" placeholder="" value="{{ customer.owner.first_name }}" class="form-control" />
+                                        <input id="id_name" type="text" placeholder="" value="{{ me.owner.first_name }}" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputContact1" class="col-sm-2 control-label">{% trans 'Last Name' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="id_name" type="text" placeholder="" value="{{ customer.owner.last_name }}" class="form-control" />
+                                        <input id="id_name" type="text" placeholder="" value="{{ me.owner.last_name }}" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputContact2" class="col-sm-2 control-label">{% trans 'Email' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact2" type="email" value="{{ customer.owner.email }}" class="form-control">
+                                        <input id="inputContact2" type="email" value="{{ me.owner.email }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputContact3" class="col-sm-2 control-label">{% trans 'Phone' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact3" type="text" value="{{ customer.telephone }}" class="form-control">
+                                        <input id="inputContact3" type="text" value="{{ me.telephone }}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputContact5" class="col-sm-2 control-label">{% trans 'Website' %}</label>
                                     <div class="col-sm-10">
-                                        <input id="inputContact5" type="text" value="{{ customer.url }}" class="form-control">
+                                        <input id="inputContact5" type="text" value="{{ me.url }}" class="form-control">
                                     </div>
                                 </div>
                                 {% comment %}
                                 <div class="form-group">
                                     <label for="inputContact6" class="col-sm-2 control-label">{% trans 'Address' %}</label>
                                     <div class="col-sm-10">
-                                        <textarea id="inputContact6" row="4" class="form-control">{{ customer.description }}</textarea>
+                                        <textarea id="inputContact6" row="4" class="form-control">{{ me.description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
