@@ -1,8 +1,9 @@
 import django_filters
-from django.contrib.auth.models import User, Group
-from django.contrib.sites.shortcuts import get_current_site
+from django.core.management import call_command
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User, Group
+from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import viewsets
 from rest_framework import filters

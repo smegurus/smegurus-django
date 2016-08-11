@@ -15,6 +15,7 @@
     });
 
     function ajax_reject() {
+        $('#id_reject_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
         tenant_intake_review(
             {{ intake.id }}, 4, comment, false, // contants.REJECTED_STATUS
@@ -22,6 +23,7 @@
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },
             function(error_json_result) {
+                $('#id_how_can_we_help').prop("id_reject_btn", false);
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
                 alert(string);
@@ -30,6 +32,7 @@
     }
 
     function ajax_accept() {
+        $('#id_accept_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
         tenant_intake_review(
             {{ intake.id }}, 5, comment, false,  // contants.APPROVED_STATUS
@@ -37,6 +40,7 @@
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },
             function(error_json_result) {
+                $('#id_accept_btn').prop("disabled", false);
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
                 alert(string);
