@@ -76,6 +76,42 @@
         ); // end Tenant Intake Review
     }
 
+    function ajax_intake_submit() {
+        get_tenant_intake(
+            {{ intake_form.instance.id }},
+            function(intake) {
+                intake['how_can_we_help'] = $('#id_how_can_we_help').val();
+                intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                intake['how_did_you_hear'] = $('#id_how_did_you_hear').val();
+                intake['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
+                intake['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
+                intake['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
+                intake['how_to_contact'] = $('#id_how_to_contact').val();
+                intake['how_to_contact_telephone'] = $('#id_how_to_contact_telephone').val();
+                intake['how_to_contact_times'] = $('#id_how_to_contact_times').val();
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        ajax_finalize_submit(); // Finialize submission.
+                    },
+                    function(error_json_result) {
+                        $('#id_submit_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end Get Intake.
+    }
+
     function ajax_contant_point_submit() {
         get_tenant_contactpoint(
             {{ me.contact_point.id }},
@@ -93,7 +129,7 @@
                 set_tenant_contactpoint(
                     contact_point,
                     function(json_result) {
-                        ajax_finalize_submit(); // Finialize submission.
+                        ajax_intake_submit();
                     },
                     function(error_json_result) {
                         $('#id_submit_btn').prop("disabled", false);
