@@ -19,7 +19,7 @@ class EntrepreneurNote(AbstractThing):
         verbose_name_plural = _('Entrepreneur Notes')
 
     objects = EntrepreneurNoteManager()
-    me = models.OneToOneField(
+    me = models.ForeignKey(
         TenantMe,
         help_text=_('The entrepreneur that this Note belongs to.'),
         on_delete=models.CASCADE,

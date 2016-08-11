@@ -8,6 +8,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.forms.entrepreneurnoteform import EntrepreneurNoteForm
 from smegurus import constants
 
 
@@ -23,9 +24,11 @@ from smegurus import constants
 ])
 def entrepreneur_master_page(request, id):
     me = get_object_or_404(TenantMe, pk=int(id))
+    notes = EntrepreneurNote.objects.filter(me=me)
     return render(request, 'tenant_note/master/view.html',{
         'page': 'note',
         'me': me,
+        'notes': notes,
     })
 
 
@@ -41,7 +44,28 @@ def entrepreneur_master_page(request, id):
 ])
 def entrepreneur_details_page(request, me_id, note_id):
     me = get_object_or_404(TenantMe, pk=int(me_id))
+    note = get_object_or_404(EntrepreneurNote, pk=int(note_id))
     return render(request, 'tenant_note/details/view.html',{
         'page': 'note',
         'me': me,
+        'form': EntrepreneurNoteForm(instance=note)
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+@tenant_profile_required
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
+def entrepreneur_create_page(request, id):
+    me = get_object_or_404(TenantMe, pk=int(id))
+    return render(request, 'tenant_note/create/view.html',{
+        'page': 'note',
+        'me': me,
+        'form': EntrepreneurNoteForm()
     })
