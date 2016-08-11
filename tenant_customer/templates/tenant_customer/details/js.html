@@ -1,5 +1,103 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-    });
+        // Call function when any keys are pressed for the 'email' field
+        // and verify dynamically if the email is good.
+        $( "#id_email" ).keypress(function() {
+            var email = $( "#id_email" ).val();
+
+            // Check to see if the email has been validated or else indicate
+            // that the text is bad.
+            if (is_email_valid(email)) {
+                public_is_email_unique(
+                    email,
+                    function(is_unique) {
+                        if (is_unique || email == "{{ me.email }}") {
+                            $('#id_email_div').attr('class','form-group has-success');
+                            $("#id_email_span").text('');
+                            $('#id_update_btn').prop("disabled", false);
+                        } else {
+                            $('#id_email_div').attr('class','form-group has-warning');
+                            $("#id_email_span").text('Email is not unique! Please choose a different email.');
+                            $('#id_update_btn').prop("disabled", true);
+                        }
+                    }
+                ); // end Is Email Uniue
+            } else {
+                $('#id_email_div').attr('class','form-group has-error');
+                $("#id_email_span").text('Please enter a properly formatted email.');
+                $('#id_update_btn').prop("disabled", true);
+            }
+
+        }); // end Email Keypress
+    }); // end Document Start
+
+    function ajax_unprotected_submit() {
+        $('#id_update_btn').prop("disabled", true);
+        var email = $( "#id_email" ).val();
+
+        // Check to see if the email has been validated or else indicate
+        // that the text is bad.
+        if (is_email_valid(email)) {
+            public_is_email_unique(
+                email,
+                function(is_unique) {
+                    if (is_unique || email == "{{ me.email }}") {
+                        ajax_update();
+                    }
+                }
+            ); // end Is Email Uniue
+        } else {
+            $('#id_email_div').attr('class','form-group has-error');
+            $("#id_email_span").text('Please enter a properly formatted email.');
+            $('#id_update_btn').prop("disabled", true);
+        }
+    }
+
+    function ajax_update() {
+        // Defensive Code: If the user doesn't include 'http' then automatically
+        //                 include it into the URL. Also handle situations where
+        //                 Twitter username is entered and replace it with the
+        //                 full Twitter URL.
+        var website_url = $('#id_url').val();
+        if (website_url.indexOf("http") < 0) {
+            website_url = 'http://' + website_url;
+        }
+        if (website_url.length < 8) {
+            website_url = "";
+        }
+        if (website_url.indexOf("None") >= 0) {
+            website_url = "";
+        }
+
+        get_tenant_me(
+            {{ me.id }},
+            function(me) {
+                me['given_name'] = $('#id_given_name').val();
+                me['family_name'] = $('#id_family_name').val();
+                me['email'] = $('#id_email').val();
+                me['telephone'] = $('#id_telephone').val();
+                me['url'] = website_url;
+                me['description'] = $('#id_description').val();
+                set_tenant_me(
+                    me,
+                    function(json_result) {
+                        window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
+                    },
+                    function(error_json_result) {
+                        $('#id_update_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET TenantMe
+            },
+            function(error_json_result) {
+                $('#id_update_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET TenantMe
+    }
 </script>
