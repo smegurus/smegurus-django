@@ -39,6 +39,7 @@ class TenantMeViewSet(viewsets.ModelViewSet):
         # Update the "User" model.
         me.owner.first_name = me.given_name
         me.owner.last_name = me.family_name
+        me.owner.email = me.email
         me.owner.save()
 
         # Update the "ContactPoint" model.

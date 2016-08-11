@@ -2,7 +2,9 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 {% compress js inline %}
-    {% include "foundation_public/autocomplete_js.html" %}
+    {% comment %}
+        {% include "foundation_public/autocomplete_js.html" %}
+    {% endcomment %}
     {% include 'tenant_customer/update/js.html' %}
 {% endcompress %}
 <!-- PAGE CONTENT -->
@@ -15,10 +17,10 @@
 
                 <fieldset>
 
-                    <!-- CONTACT INFORMATION -->
+                    <!-- PROFILE -->
                     <legend>
-                        <em class="fa icon-book-open"></em>
-                        {% trans 'Contact Information' %}
+                        <em class="fa icon-user"></em>
+                        {% trans 'Profile' %}
                     </legend>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
@@ -36,6 +38,31 @@
                         </div>
                     </div>
                     <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_url" value="{{ me.url }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                        <div class="col-sm-10">
+                            <textarea id="id_description" class="form-control" name="textarea" rows="6">{{ me.description }}</textarea>
+                            <span class="help-block m-b-none">{% trans 'Give a quick summary of this entrepreneur.' %}</span>
+                        </div>
+                    </div>
+                    <!-- end PROFILE -->
+
+                    <br />
+                    <br />
+
+                    <!-- CONTACT INFORMATION -->
+                    <legend>
+                        <em class="fa icon-book-open"></em>
+                        {% trans 'Contact Information' %}
+                    </legend>
                     <div id="id_email_div" class="form-group">
                         <label class="col-sm-2 control-label">{% trans 'Email' %}</label>
                         <div class="col-sm-10">

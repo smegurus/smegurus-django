@@ -146,6 +146,19 @@
 
     function ajax_tenant_me_submit() {
         $('#id_submit_btn').prop("disabled", true);
+
+        // Defensive Code: If the user doesn't include 'http' then automatically
+        //                 include it into the URL. Also handle situations where
+        //                 Twitter username is entered and replace it with the
+        //                 full Twitter URL.
+        var website_url = $('#id_url').val();
+        if (website_url.indexOf("http") < 0) {
+            website_url = 'http://' + website_url;
+        }
+        if (website_url.length < 8) {
+            website_url = "";
+        }
+
         get_tenant_me(
             {{ me.id }},
             function(me) {
@@ -153,6 +166,8 @@
                 me['family_name'] = $('#id_last_name').val();
                 me['email'] = $('#id_email').val();
                 me['telephone'] = $('#id_telephone').val();
+                me['url'] = website_url;
+                me['description'] = $('#id_description').val();
                 set_tenant_me(
                     me,
                     function(json_result) {
