@@ -1,5 +1,19 @@
 {% load i18n %}
 <script type="text/javascript">
+    $(document).ready(function () {
+        // Prevent the Advisor from making any modifications on the Entrepreneur inputted data.
+        $('#id_how_can_we_help').prop("disabled", true);
+        $('#id_how_can_we_help_other').prop("disabled", true);
+        $('#id_how_can_we_help_tag').prop("disabled", true);
+        $('#id_how_did_you_hear').prop("disabled", true);
+        $('#id_how_did_you_hear_other').prop("disabled", true);
+        $('#id_do_you_own_a_biz').prop("disabled", true);
+        $('#id_do_you_own_a_biz_other').prop("disabled", true);
+        $('#id_how_to_contact').prop("disabled", true);
+        $('#id_how_to_contact_telephone').prop("disabled", true);
+        $('#id_how_to_contact_times').prop("disabled", true);
+    });
+
     function ajax_reject() {
         var comment = $.trim($('#id_review').val());
         tenant_intake_review(
