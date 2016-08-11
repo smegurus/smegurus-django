@@ -43,10 +43,10 @@
                         <a href="{% url 'tenant_customer_details' intake.me.id %}" class="btn btn-xs btn-info">
                             {% trans 'Details' %} <i class="fa fa-info-circle"></i>
                         </a>
-                        <a href="#" class="btn btn-xs btn-danger">
+                        <a href="#" class="btn btn-xs btn-danger" disabled>
                             {% trans 'Assign task' %}
                         </a>
-                        <a href="#" class="btn btn-xs btn-success">
+                        <a href="{% url 'tenant_note_entrepreneur_create' intake.me.id %}" class="btn btn-xs btn-success">
                             {% trans 'Add notes' %}
                         </a>
                         <a href="{% url 'tenant_message_specific_composer' intake.me.id %}" class="btn btn-xs btn-primary">
