@@ -117,6 +117,15 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         self.assertIn(b'ajax_create_message',response.content)
 
     @transaction.atomic
+    def test_specific_composer_page(self):
+        recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
+        url = reverse('tenant_message_specific_composer', args=[recipient.id,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'ajax_create_message',response.content)
+
+    @transaction.atomic
     def test_conversation_page(self):
         # Create our sender.
         recipient, created = TenantMe.objects.get_or_create(owner=self.user,)

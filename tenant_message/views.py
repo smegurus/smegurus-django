@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
@@ -35,13 +35,36 @@ def compose_page(request):
     advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
     managers = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
     admins = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-    return render(request, 'tenant_message/composer/view.html',{
+    return render(request, 'tenant_message/composer/generic_view.html',{
         'page': 'composer',
         'entrepreneurs': entrepreneurs,
         'mentors': mentors,
         'advisors': advisors,
         'managers': managers,
         'admins': admins,
+        'recipient_id': 0,
+    })
+
+
+
+
+@login_required(login_url='/en/login')
+@tenant_profile_required
+def specific_compose_page(request, id):
+    entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
+    mentors = TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
+    advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+    managers = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
+    admins = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+    recipient = get_object_or_404(TenantMe,pk=id)
+    return render(request, 'tenant_message/composer/specific_view.html',{
+        'page': 'composer',
+        'entrepreneurs': entrepreneurs,
+        'mentors': mentors,
+        'advisors': advisors,
+        'managers': managers,
+        'admins': admins,
+        'recipient': recipient,
     })
 
 

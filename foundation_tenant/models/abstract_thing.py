@@ -35,6 +35,7 @@ class AbstractThing(models.Model):
         help_text=_('A short description of the item.'),
         blank=True,
         null=True,
+        default='',
     )
     image = models.ForeignKey(
         TenantImageUpload,
@@ -56,6 +57,7 @@ class AbstractThing(models.Model):
         help_text=_('The name of the item.'),
         blank=True,
         null=True,
+        default='',
     )
     same_as = models.URLField(
         _("Same As"),

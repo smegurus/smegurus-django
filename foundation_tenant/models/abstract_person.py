@@ -96,6 +96,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('The Dun & Bradstreet DUNS number for identifying an organization or business person.'),
         blank=True,
         null=True,
+        default='',
     )
     email = models.EmailField(
         _("Email"),
@@ -131,6 +132,7 @@ class AbstractPerson(AbstractThing):
         help_text=_('Gender of the person.'),
         blank=True,
         null=True,
+        default='',
     )
     given_name = models.CharField(
         _("Given Name"),

@@ -36,6 +36,7 @@ class AbstractPlace(AbstractThing):
         help_text=_('The fax number.'),
         blank=True,
         null=True,
+        default='',
     )
     geo = models.ForeignKey(
         GeoCoordinate,
@@ -94,4 +95,5 @@ class AbstractPlace(AbstractThing):
         help_text=_('The telephone number.'),
         blank=True,
         null=True,
+        default='',
     )

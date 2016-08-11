@@ -33,7 +33,7 @@ from foundation_tenant.models.me import TenantMe
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('username', 'email', 'groups')
 
 
 class TenantImageUploadSerializer(serializers.ModelSerializer):
