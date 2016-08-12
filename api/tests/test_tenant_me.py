@@ -140,19 +140,28 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_authorization(self):
-        # Delete any previous data.
-        items = TenantMe.objects.delete_all()
-
         # Create a new object with our specific test data.
+        address = PostalAddress.objects.create(
+            owner=self.user,
+            name='User #' + str(self.user.id) + ' Address',
+        )
+        contact_point = ContactPoint.objects.create(
+            owner=self.user,
+            name='User #' + str(self.user.id) + ' Contact Point',
+        )
         TenantMe.objects.create(
             id=1,
-            owner_id=self.user.id
+            owner_id=self.user.id,
+            address=address,
+            contact_point=contact_point,
         )
 
         # Run the test.
         data = {
             'id': 1,
-            'owner': self.user.id
+            'owner': self.user.id,
+            'address': address.id,
+            'contact_point': contact_point.id
         }
         response = self.authorized_client.put('/api/tenantme/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
