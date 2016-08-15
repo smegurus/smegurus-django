@@ -1,10 +1,12 @@
 import random
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve, reverse
 from django.utils.translation import get_language
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
@@ -16,9 +18,24 @@ from foundation_tenant.forms.intakeform import IntakeForm
 from smegurus import constants
 
 
+def latest_client_master(request):
+    try:
+        return Intake.objects.filter(status=constants.APPROVED_STATUS).latest("last_modified").last_modified
+    except Intake.DoesNotExist:
+        return datetime.now()
+
+
+def latest_client_details(request, id):
+    try:
+        return TenantMe.objects.get(pk=int(id)).last_modified
+    except TenantMe.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
+@condition(last_modified_func=latest_client_master)
 def master_page(request):
     intakes = Intake.objects.filter(status=constants.APPROVED_STATUS)
     return render(request, 'tenant_customer/master/view.html',{
@@ -30,6 +47,7 @@ def master_page(request):
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
+@condition(last_modified_func=latest_client_details)
 def details_page(request, id):
     me = get_object_or_404(TenantMe, pk=id)
     return render(request, 'tenant_customer/details/view.html',{
@@ -81,6 +99,7 @@ def create_page(request):
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
+@condition(last_modified_func=latest_client_details)
 def update_page(request, pk):
     me = get_object_or_404(TenantMe, pk=pk)
     intake = get_object_or_404(Intake, me=me)

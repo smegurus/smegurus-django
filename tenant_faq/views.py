@@ -1,7 +1,9 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
+from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.faqitem import FAQItem
@@ -47,8 +49,16 @@ def generate_faqs():
     group2.items.add(qa_b3)
 
 
+def latest_faq_master(request):
+    try:
+        return FAQGroup.objects.latest("last_modified").last_modified
+    except FAQGroup.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
 @tenant_profile_required
+@condition(last_modified_func=latest_faq_master)
 def faq_page(request):
     # FAQItem.objects.delete_all()
     # FAQGroup.objects.delete_all() # For debugging purposes only!

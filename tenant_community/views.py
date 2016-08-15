@@ -1,8 +1,10 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
@@ -11,9 +13,17 @@ from foundation_tenant.models.communityadvertisement import CommunityAdvertiseme
 from foundation_tenant.models.tag import Tag
 
 
+def latest_community_master(request):
+    try:
+        return CommunityPost.objects.latest("last_modified").last_modified
+    except CommunityPost.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
+@condition(last_modified_func=latest_community_master)
 def community_page(request):
     """List of all the community posts in a paginated mannor."""
     filter_tag_id = request.GET.get('tag')

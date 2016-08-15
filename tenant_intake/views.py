@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
@@ -5,6 +6,7 @@ from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from django.db.models import Q
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from django.views.decorators.http import condition
 from rest_framework import status
 
 from foundation_public.decorators import group_required
@@ -125,7 +127,15 @@ def intake_finished_page(request):
     })
 
 
+def latest_intake_master(request):
+    try:
+        return Intake.objects.latest("last_modified").last_modified
+    except Intake.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
+@condition(last_modified_func=latest_intake_master)
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -148,7 +158,15 @@ def intake_master_page(request):
     })
 
 
+def latest_intake_details(request, id):
+    try:
+        return Intake.objects.filter(id=id).latest("last_modified").last_modified
+    except Intake.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
+@condition(last_modified_func=latest_intake_details)
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required

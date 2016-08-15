@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
@@ -5,6 +6,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from django.views.decorators.http import condition
 from foundation_public.models.organization import PublicOrganization
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.message import Message
@@ -12,8 +14,19 @@ from foundation_tenant.models.me import TenantMe
 from smegurus import constants
 
 
+def latest_message_master(request):
+    try:
+        return Message.objects.filter(
+            recipient=request.tenant_me,
+            participants=request.tenant_me
+        ).latest("last_modified").last_modified
+    except Message.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
 @tenant_profile_required
+@condition(last_modified_func=latest_message_master)
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
@@ -46,8 +59,6 @@ def compose_page(request):
     })
 
 
-
-
 @login_required(login_url='/en/login')
 @tenant_profile_required
 def specific_compose_page(request, id):
@@ -68,8 +79,23 @@ def specific_compose_page(request, id):
     })
 
 
+def latest_conversation_details(request, sender_id):
+    return Message.objects.filter(
+        Q(
+            recipient=request.tenant_me,
+            sender_id=int(sender_id),
+            participants=request.tenant_me
+        ) | Q(
+            recipient_id=int(sender_id),
+            sender_id=request.tenant_me,
+            participants=request.tenant_me
+        )
+    ).latest("last_modified").last_modified
+
+
 @login_required(login_url='/en/login')
 @tenant_profile_required
+@condition(last_modified_func=latest_conversation_details)
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(
@@ -121,8 +147,23 @@ def archive_conversation_page(request, sender_id):
     return HttpResponseRedirect(reverse('tenant_message_inbox'))
 
 
+def latest_archived_message_master(request):
+    try:
+        return Message.objects.filter(
+            Q(
+                recipient=request.tenant_me
+            ) &~  # and not
+            Q(
+                participants=request.tenant_me
+            )
+        ).latest("last_modified").last_modified
+    except Message.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
 @tenant_profile_required
+@condition(last_modified_func=latest_archived_message_master)
 def archive_list_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.

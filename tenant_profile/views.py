@@ -2,12 +2,19 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
+from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.models.me import TenantMe
+
+
+def latest_me_master(request):
+    return request.tenant_me.last_modified
 
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
+@condition(last_modified_func=latest_me_master)
 def profile_page(request):
     return render(request, 'tenant_profile/profile_view.html',{
         'page': 'profile',
@@ -16,6 +23,7 @@ def profile_page(request):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
+@condition(last_modified_func=latest_me_master)
 def profile_settings_page(request):
     return render(request, 'tenant_profile/profile_settings_view.html',{
         'page': 'profile',
@@ -23,6 +31,7 @@ def profile_settings_page(request):
 
 
 @login_required(login_url='/en/login')
+@condition(last_modified_func=latest_me_master)
 def locked_page(request):
     """Function will lock the User out of our system and will require a password authentication to be let back in."""
     request.tenant_me.is_locked=True
@@ -33,6 +42,7 @@ def locked_page(request):
 
 
 @tenant_profile_required
+@condition(last_modified_func=latest_me_master)
 def tenant_profile_is_locked_page(request):
     from django.http import JsonResponse
     """Function will return either True or False depending if a subdomain exists or not."""
