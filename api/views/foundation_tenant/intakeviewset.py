@@ -21,7 +21,7 @@ from smegurus import constants
 from smegurus.settings import env_var
 
 
-class IntakeReviewSerializer(serializers.Serializer):
+class JudgeIntakeSerializer(serializers.Serializer):
     status = serializers.IntegerField(required=True,)
     comment = serializers.CharField(max_length=2055, required=False,)
     is_employee_created = serializers.BooleanField(default=False, required=False,)
@@ -119,20 +119,24 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             )
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission,])
-    def review(self, request, pk=None):
+    def judge(self, request, pk=None):
         """
         Function will change the status to either 'Rejected' or 'Accepted' including
         a comment from the employee.
         """
         try:
-            serializer = IntakeReviewSerializer(data=request.data)
+            serializer = JudgeIntakeSerializer(data=request.data)
             if serializer.is_valid():
-                # Updated the object.
+                # Updated 'Intake' model.
                 intake = self.get_object()
                 intake.status = serializer.data['status']
                 intake.comment = serializer.data['comment']
                 intake.is_employee_created = serializer.data['is_employee_created']
                 intake.save()
+
+                # Update 'Me' model.
+                intake.me.is_admitted = (intake.status == constants.APPROVED_STATUS)
+                intake.me.save()
 
                 # Send the email.
                 call_command('send_reviewed_email_for_intake', str(intake.id))

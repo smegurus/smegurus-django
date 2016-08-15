@@ -17,8 +17,11 @@
     function ajax_reject() {
         $('#id_reject_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
-        tenant_intake_review(
-            {{ intake.id }}, 4, comment, false, // contants.REJECTED_STATUS
+        tenant_intake_judge(
+            {{ intake.id }},
+            4, // contants.REJECTED_STATUS
+            comment,
+            false,
             function(json_result) {
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },
@@ -34,8 +37,11 @@
     function ajax_accept() {
         $('#id_accept_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
-        tenant_intake_review(
-            {{ intake.id }}, 5, comment, false,  // contants.APPROVED_STATUS
+        tenant_intake_judge(
+            {{ intake.id }},
+            5, // contants.APPROVED_STATUS
+            comment,
+            false,
             function(json_result) {
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },
