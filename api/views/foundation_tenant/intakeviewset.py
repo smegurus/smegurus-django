@@ -149,11 +149,13 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 # Update or create 'EntrepreneurNote' model.
                 description = serializer.data['comment']
                 if intake.note:
+                    intake.note.name = _("Intake Note")
                     intake.note.description = description
                     intake.note.save()
                 else:
                     intake.note = EntrepreneurNote.objects.create(
                         me=intake.me,
+                        name = _("Intake Note"),
                         description = description,
                     )
                     intake.save()
