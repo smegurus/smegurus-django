@@ -55,7 +55,7 @@
         var upload_id = $('#id_hidden_upload_id').val();
 
         // Insert or Update.
-        set_public_imageupload(upload_id, image, function(json_result) {
+        set_tenant_imageupload(upload_id, image, function(json_result) {
             $('#id_hidden_url').attr('src', json_result['imagefile']);
             $('#id_hidden_upload_id').val(json_result['id']);
             $('#id_image_placeholder').attr('src', json_result['imagefile']);
