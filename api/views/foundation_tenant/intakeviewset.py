@@ -17,6 +17,7 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsMeOrIsAnEmployee, IsMe, EmployeePermission
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
 from smegurus import constants
 from smegurus.settings import env_var
 
@@ -70,6 +71,14 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     authentication_classes = (authentication.TokenAuthentication, )
     permission_classes = (permissions.IsAuthenticated, IsMeOrIsAnEmployee, )
     filter_class = IntakeFilter
+
+    def perform_destroy(self, instance):
+        """Override the deletion function to archive the message instead of deleting it."""
+        # Delete associated models with this model.
+        if instance.note:
+            instance.note.delete()
+
+        instance.delete()  # Default deletion function.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
     def complete_intake(self, request, pk=None):
@@ -130,13 +139,24 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 # Updated 'Intake' model.
                 intake = self.get_object()
                 intake.status = serializer.data['status']
-                intake.comment = serializer.data['comment']
                 intake.is_employee_created = serializer.data['is_employee_created']
                 intake.save()
 
                 # Update 'Me' model.
                 intake.me.is_admitted = (intake.status == constants.APPROVED_STATUS)
                 intake.me.save()
+
+                # Update or create 'EntrepreneurNote' model.
+                description = serializer.data['comment']
+                if intake.note:
+                    intake.note.description = description
+                    intake.note.save()
+                else:
+                    intake.note = EntrepreneurNote.objects.create(
+                        me=intake.me,
+                        description = description,
+                    )
+                    intake.save()
 
                 # Send the email.
                 call_command('send_reviewed_email_for_intake', str(intake.id))

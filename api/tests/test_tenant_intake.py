@@ -17,6 +17,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
 from smegurus import constants
 
 
@@ -86,6 +87,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        EntrepreneurNote.objects.delete_all()
         Intake.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
@@ -235,9 +237,14 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authenticated_management_user(self):
+        note = EntrepreneurNote.objects.create(
+            id=1,
+            me=self.me,
+        )
         Intake.objects.create(
             id=1,
             me=self.me,
+            note=note,
         )
         response = self.authorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -245,10 +252,15 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_authenticated_advisor_user(self):
         # Create our object to be deleted.
+        note = EntrepreneurNote.objects.create(
+            id=1,
+            me=self.me,
+        )
         Intake.objects.create(
             id=1,
             me=self.me,
-            status=constants.CREATED_STATUS
+            status=constants.CREATED_STATUS,
+            note=note,
         )
 
         # Change Group that the User belongs in.
@@ -266,10 +278,15 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_complete_intake_with_anonymous_user(self):
         # Setup our object.
+        note = EntrepreneurNote.objects.create(
+            id=1,
+            me=self.me,
+        )
         Intake.objects.create(
             id=1,
             me=self.me,
             status=constants.PENDING_REVIEW_STATUS,
+            note=note,
         )
 
         # Run the test and verify.
@@ -378,7 +395,37 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertFalse(intake.me.is_admitted)
 
     @transaction.atomic
-    def test_judge_with_employee_user_for_existing_intake(self):
+    def test_judge_with_employee_user_for_existing_intake_with_note(self):
+        # Setup our object.
+        note = EntrepreneurNote.objects.create(
+            me=self.me,
+        )
+        Intake.objects.create(
+            id=1,
+            me=self.me,
+            status=constants.CREATED_STATUS,
+            note=note,
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/1/judge/?format=json',
+            json.dumps({
+                'status': constants.APPROVED_STATUS,
+                'comment': 'This is a test comment.',
+                'is_employee_created': False,
+            }),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        intake = Intake.objects.get(id=1)
+        self.assertEqual(intake.status, constants.APPROVED_STATUS)
+        self.assertTrue(intake.me.is_admitted)
+        note = EntrepreneurNote.objects.get(id=1)
+        self.assertIn('This is a test comment.', note.description)
+
+    @transaction.atomic
+    def test_judge_with_employee_user_for_existing_intake_without_note(self):
         # Setup our object.
         Intake.objects.create(
             id=1,
@@ -400,6 +447,8 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
         self.assertTrue(intake.me.is_admitted)
+        note = EntrepreneurNote.objects.get(id=1)
+        self.assertIn('This is a test comment.', note.description)
 
     @transaction.atomic
     def test_judge_with_employee_user_for_manually_created_intake(self):
@@ -424,6 +473,8 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
         self.assertTrue(intake.me.is_admitted)
+        note = EntrepreneurNote.objects.get(id=1)
+        self.assertIn('This is a test comment.', note.description)
 
     @transaction.atomic
     def test_judge_with_non_employee_user(self):

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
 from smegurus import constants
 
 
@@ -83,12 +84,12 @@ class Intake(models.Model):
         default=constants.CREATED_STATUS,
         db_index=True,
     )
-    comment = models.TextField(                   # CONTROLLED BY EMPLOYEES ONLY
-        _("Comment"),
-        help_text=_('A comment of this applicaitn.'),
+    note = models.ForeignKey(
+        EntrepreneurNote,
+        help_text=_('The note associated with this intake.'),
         blank=True,
         null=True,
-        default='',
+        on_delete=models.SET_NULL
     )
     is_employee_created = models.BooleanField(    # CONTROLLED BY EMPLOYEES ONLY
         _("Is Employee Created"),
