@@ -16,7 +16,7 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
 from smegurus import constants
 
 
@@ -26,7 +26,7 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 TEST_USER_FIRSTNAME = ""
 TEST_USER_LASTNAME = ""
 
-class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -62,7 +62,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APIEntrepreneurNoteWithTenantSchemaTestCase, self).setUp()
+        super(APINoteWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -83,7 +83,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        EntrepreneurNote.objects.delete_all()
+        Note.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()
@@ -93,11 +93,11 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        # super(APIEntrepreneurNoteWithTenantSchemaTestCase, self).tearDown()
+        # super(APINoteWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list_with_anonymous_user(self):
-        response = self.unauthorized_client.get('/api/tenantentrepreneurnote/')
+        response = self.unauthorized_client.get('/api/tenantnote/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -105,7 +105,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(group)
 
-        response = self.authorized_client.get('/api/tenantentrepreneurnote/')
+        response = self.authorized_client.get('/api/tenantnote/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -113,7 +113,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
         self.user.groups.add(group)
 
-        response = self.authorized_client.get('/api/tenantentrepreneurnote/')
+        response = self.authorized_client.get('/api/tenantnote/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -121,7 +121,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(group)
 
-        response = self.authorized_client.get('/api/tenantentrepreneurnote/')
+        response = self.authorized_client.get('/api/tenantnote/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
@@ -131,7 +131,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'This is a test note',
         }
         response = self.unauthorized_client.post(
-            '/api/tenantentrepreneurnote/',
+            '/api/tenantnote/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -151,7 +151,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': me.id,
         }
         response = self.authorized_client.post(
-            '/api/tenantentrepreneurnote/',
+            '/api/tenantnote/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -171,7 +171,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': me.id,
         }
         response = self.authorized_client.post(
-            '/api/tenantentrepreneurnote/',
+            '/api/tenantnote/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -191,7 +191,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': me.id,
         }
         response = self.authorized_client.post(
-            '/api/tenantentrepreneurnote/',
+            '/api/tenantnote/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -199,7 +199,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_anonymous_user(self):
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -216,7 +216,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': 1,
         }
         response = self.unauthorized_client.put(
-            '/api/tenantentrepreneurnote/1/',
+            '/api/tenantnote/1/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -226,7 +226,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_put_with_authenticated_management_group_user(self):
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(group)
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -243,7 +243,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': 1,
         }
         response = self.authorized_client.put(
-            '/api/tenantentrepreneurnote/1/',
+            '/api/tenantnote/1/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -253,7 +253,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_put_with_authenticated_advisor_group_user(self):
         group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
         self.user.groups.add(group)
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -270,7 +270,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': 1,
         }
         response = self.authorized_client.put(
-            '/api/tenantentrepreneurnote/1/',
+            '/api/tenantnote/1/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -280,7 +280,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_put_with_authenticated_entrepreneur_group_user(self):
         group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(group)
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -297,7 +297,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'me': 1,
         }
         response = self.authorized_client.put(
-            '/api/tenantentrepreneurnote/1/',
+            '/api/tenantnote/1/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -305,14 +305,14 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_anonymous_user(self):
-        response = self.unauthorized_client.delete('/api/tenantentrepreneurnote/1/')
+        response = self.unauthorized_client.delete('/api/tenantnote/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authenticated_management_user(self):
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(group)
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -322,14 +322,14 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             ),
         )
 
-        response = self.authorized_client.delete('/api/tenantentrepreneurnote/1/')
+        response = self.authorized_client.delete('/api/tenantnote/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     @transaction.atomic
     def test_delete_with_authenticated_advisor_user(self):
         group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
         self.user.groups.add(group)
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -339,7 +339,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             ),
         )
 
-        response = self.authorized_client.delete('/api/tenantentrepreneurnote/1/')
+        response = self.authorized_client.delete('/api/tenantnote/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     @transaction.atomic
@@ -347,7 +347,7 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(group)
 
-        EntrepreneurNote.objects.create(
+        Note.objects.create(
             id=1,
             name='Test Note',
             description='This is a test note',
@@ -357,5 +357,5 @@ class APIEntrepreneurNoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             ),
         )
 
-        response = self.authorized_client.delete('/api/tenantentrepreneurnote/1/')
+        response = self.authorized_client.delete('/api/tenantnote/1/')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

@@ -13,7 +13,7 @@
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
                 <li>
-                    <a href="{% url 'tenant_note_entrepreneur_create' me.id %}">
+                    <a href="{% url 'tenant_note_create' me.id %}">
                         <em class="fa fa-fw fa-plus mr"></em>
                         <span>{% trans 'New Note' %}</span>
                     </a>
@@ -63,7 +63,7 @@
                                            onclick="ajax_delete({{ note.id }});"
                                               type="button"
                                              class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
-                                        <a href="{% url 'tenant_note_entrepreneur_details' me.id note.id %}">
+                                        <a href="{% url 'tenant_note_details' me.id note.id %}">
                                             <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
                                         </a>
                                     </div>

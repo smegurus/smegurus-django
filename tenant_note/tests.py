@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
@@ -97,39 +97,39 @@ class TenantNoteTestCase(APITestCase, TenantTestCase):
         # super(TenantNoteTestCase, self).tearDown()
 
     @transaction.atomic
-    def test_entrepreneur_master_page(self):
+    def test_master_page(self):
         me = TenantMe.objects.create(
             owner=self.user,
         )
 
-        url = reverse('tenant_note_entrepreneur_master', args=[me.id,])
+        url = reverse('tenant_note_master', args=[me.id,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'ajax_delete',response.content)
 
     @transaction.atomic
-    def test_entrepreneur_create_page(self):
+    def test_create_page(self):
         me = TenantMe.objects.create(
             owner=self.user,
         )
 
-        url = reverse('tenant_note_entrepreneur_create', args=[me.id,])
+        url = reverse('tenant_note_create', args=[me.id,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'ajax_create',response.content)
 
     @transaction.atomic
-    def test_entrepreneur_details_page(self):
+    def test_details_page(self):
         me = TenantMe.objects.create(
             owner=self.user,
         )
-        note = EntrepreneurNote.objects.create(
+        note = Note.objects.create(
             me=me
         )
 
-        url = reverse('tenant_note_entrepreneur_details', args=[me.id, note.id,])
+        url = reverse('tenant_note_details', args=[me.id, note.id,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

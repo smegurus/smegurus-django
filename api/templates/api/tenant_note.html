@@ -1,7 +1,7 @@
 <script>
-    function filter_tenant_entrepreneurnotes(criteria, callback)
+    function filter_tenant_notes(criteria, callback)
     {
-        var url = "/api/tenantentrepreneurnote/?format=json";
+        var url = "/api/tenantnote/?format=json";
         for (var i = 0; i < criteria.length; i++) {
             url += "&";
 
@@ -33,11 +33,11 @@
         });
     }
 
-    function set_tenant_entrepreneurnote(data, func_callback, func_error_callback)
+    function set_tenant_note(data, func_callback, func_error_callback)
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/tenantentrepreneurnote/";
+        var url = "/api/tenantnote/";
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -68,8 +68,8 @@
         });
     }
 
-    function get_tenant_entrepreneurnote(id, func_callback, func_error_callback) {
-        var url = "/api/tenantentrepreneurnote/" + id + "/?format=json";
+    function get_tenant_note(id, func_callback, func_error_callback) {
+        var url = "/api/tenantnote/" + id + "/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -92,8 +92,8 @@
         });
     }
 
-    function delete_tenant_entrepreneurnote(id, func_callback, func_error_callback) {
-        var url = "/api/tenantentrepreneurnote/" + id + "/";
+    function delete_tenant_note(id, func_callback, func_error_callback) {
+        var url = "/api/tenantnote/" + id + "/";
         jQuery.ajax({
             url: url,
             headers: {

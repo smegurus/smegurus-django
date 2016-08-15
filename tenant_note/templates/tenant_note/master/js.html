@@ -58,10 +58,11 @@
 
     function ajax_delete(id) {
         $('#id_delete_btn_'+id).prop("disabled", true);
-        delete_tenant_entrepreneurnote(
+        delete_tenant_note(
             id,
             function(json_result) {
-                window.location = "{% url 'tenant_note_entrepreneur_master' me.id %}";
+                console.log(json_result);
+                // window.location = "{% url 'tenant_note_master' me.id %}";
             },
             function(error_json_result) {
                 $('#id_delete_btn_'+id).prop("disabled", false);

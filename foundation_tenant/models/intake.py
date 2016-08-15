@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
 from smegurus import constants
 
 
@@ -85,11 +85,11 @@ class Intake(models.Model):
         db_index=True,
     )
     note = models.ForeignKey(
-        EntrepreneurNote,
+        Note,
         help_text=_('The note associated with this intake.'),
         blank=True,
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.PROTECT
     )
     is_employee_created = models.BooleanField(    # CONTROLLED BY EMPLOYEES ONLY
         _("Is Employee Created"),

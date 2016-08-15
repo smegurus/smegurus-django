@@ -17,7 +17,7 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsMeOrIsAnEmployee, IsMe, EmployeePermission
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
 from smegurus import constants
 from smegurus.settings import env_var
 
@@ -146,14 +146,14 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 intake.me.is_admitted = (intake.status == constants.APPROVED_STATUS)
                 intake.me.save()
 
-                # Update or create 'EntrepreneurNote' model.
+                # Update or create 'Note' model.
                 description = serializer.data['comment']
                 if intake.note:
                     intake.note.name = _("Intake Note")
                     intake.note.description = description
                     intake.note.save()
                 else:
-                    intake.note = EntrepreneurNote.objects.create(
+                    intake.note = Note.objects.create(
                         me=intake.me,
                         name = _("Intake Note"),
                         description = description,

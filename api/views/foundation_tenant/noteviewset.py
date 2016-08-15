@@ -6,20 +6,20 @@ from rest_framework import permissions
 from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import EmployeePermission
-from api.serializers.foundation_tenant import EntrepreneurNoteSerializer
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from api.serializers.foundation_tenant import NoteSerializer
+from foundation_tenant.models.note import Note
 
 
-class EntrepreneurNoteFilter(django_filters.FilterSet):
+class NoteFilter(django_filters.FilterSet):
     class Meta:
-        model = EntrepreneurNote
+        model = Note
         fields = ['name', 'description', 'me',]
 
 
-class EntrepreneurNoteViewSet(viewsets.ModelViewSet):
-    queryset = EntrepreneurNote.objects.all()
-    serializer_class = EntrepreneurNoteSerializer
+class NoteViewSet(viewsets.ModelViewSet):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication, )
     permission_classes = (permissions.IsAuthenticated, EmployeePermission, )
-    filter_class = EntrepreneurNoteFilter
+    filter_class = NoteFilter

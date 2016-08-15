@@ -57,6 +57,13 @@ REJECTED_STATUS = 4
 APPROVED_STATUS = 5
 
 
+# These constants are used for Task model.
+CREATED_TASK_STATUS = 1
+PENDING_TASK_STATUS = 2
+INCOMPLETE_TASK_STATUS = 3
+COMPLETE_TASK_STATUS = 4
+
+
 CA_ADDRESS_REGIONS = [
     _('Ontario'),
     _('Quebec'),

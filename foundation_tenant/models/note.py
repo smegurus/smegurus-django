@@ -4,24 +4,24 @@ from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.me import TenantMe
 
 
-class EntrepreneurNoteManager(models.Manager):
+class NoteManager(models.Manager):
     def delete_all(self):
-        items = EntrepreneurNote.objects.all()
+        items = Note.objects.all()
         for item in items.all():
             item.delete()
 
 
-class EntrepreneurNote(AbstractThing):
+class Note(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_entrepreneur_notes'
-        verbose_name = _('Entrepreneur Note')
-        verbose_name_plural = _('Entrepreneur Notes')
+        db_table = 'biz_notes'
+        verbose_name = _('Note')
+        verbose_name_plural = _('Notes')
 
-    objects = EntrepreneurNoteManager()
+    objects = NoteManager()
     me = models.ForeignKey(
         TenantMe,
-        help_text=_('The entrepreneur that this Note belongs to.'),
+        help_text=_('The user profile that this Note belongs to.'),
         on_delete=models.CASCADE,
     )
 

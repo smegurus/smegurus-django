@@ -24,5 +24,6 @@ from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.message import Message
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.note import Note
+from foundation_tenant.models.task import Task

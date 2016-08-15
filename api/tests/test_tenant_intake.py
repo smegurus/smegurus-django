@@ -17,7 +17,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
 from smegurus import constants
 
 
@@ -87,7 +87,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        EntrepreneurNote.objects.delete_all()
+        Note.objects.delete_all()
         Intake.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
@@ -106,7 +106,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_list_with_authenticated_entrepreneur_user(self):
+    def test_list_with_authenticated__user(self):
         # Change Group that the User belongs in.
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(entrepreneur_group)
@@ -237,7 +237,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authenticated_management_user(self):
-        note = EntrepreneurNote.objects.create(
+        note = Note.objects.create(
             id=1,
             me=self.me,
         )
@@ -252,7 +252,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_authenticated_advisor_user(self):
         # Create our object to be deleted.
-        note = EntrepreneurNote.objects.create(
+        note = Note.objects.create(
             id=1,
             me=self.me,
         )
@@ -278,7 +278,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_complete_intake_with_anonymous_user(self):
         # Setup our object.
-        note = EntrepreneurNote.objects.create(
+        note = Note.objects.create(
             id=1,
             me=self.me,
         )
@@ -397,7 +397,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_judge_with_employee_user_for_existing_intake_with_note(self):
         # Setup our object.
-        note = EntrepreneurNote.objects.create(
+        note = Note.objects.create(
             me=self.me,
         )
         Intake.objects.create(
@@ -421,7 +421,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
         self.assertTrue(intake.me.is_admitted)
-        note = EntrepreneurNote.objects.get(id=1)
+        note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
 
     @transaction.atomic
@@ -447,7 +447,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
         self.assertTrue(intake.me.is_admitted)
-        note = EntrepreneurNote.objects.get(id=1)
+        note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
 
     @transaction.atomic
@@ -473,7 +473,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
         self.assertTrue(intake.me.is_admitted)
-        note = EntrepreneurNote.objects.get(id=1)
+        note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
 
     @transaction.atomic

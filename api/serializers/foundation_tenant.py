@@ -26,7 +26,8 @@ from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.message import Message
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
+from foundation_tenant.models.task import Task
 from foundation_tenant.models.me import TenantMe
 
 
@@ -193,7 +194,8 @@ class FAQGroupSerializer(serializers.ModelSerializer):
 class FAQItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FAQItem
-        fields = ('id', 'created', 'last_modified', 'question_text', 'answer_text', 'likers', 'dislikers',)
+        fields = ('id', 'created', 'last_modified', 'question_text',
+                  'answer_text', 'likers', 'dislikers',)
 
 
 class CommunityPostSerializer(serializers.ModelSerializer):
@@ -202,7 +204,8 @@ class CommunityPostSerializer(serializers.ModelSerializer):
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
         model = CommunityPost
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'likers', 'tags', 'me', 'image', 'image_url',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'likers', 'tags', 'me', 'image', 'image_url',)
 
 
 class CommunityAdvertisementSerializer(serializers.ModelSerializer):
@@ -210,7 +213,8 @@ class CommunityAdvertisementSerializer(serializers.ModelSerializer):
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
         model = CommunityAdvertisement
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'image_url',)
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -220,11 +224,23 @@ class MessageSerializer(serializers.ModelSerializer):
     participants = TenantMeSerializer(many=True, required=False, read_only=True)
     class Meta:
         model = Message
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url', 'sender', 'recipient', 'date_read', 'date_received', 'date_sent', 'participants',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'image_url', 'sender', 'recipient',
+                  'date_read', 'date_received', 'date_sent', 'participants',)
 
 
-class EntrepreneurNoteSerializer(serializers.ModelSerializer):
+class NoteSerializer(serializers.ModelSerializer):
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
-        model = EntrepreneurNote
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'description', 'image', 'image_url', 'me',)
+        model = Note
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'image_url', 'me',)
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
+    class Meta:
+        model = Task
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'image_url', 'note', 'event',
+                  'assigned_by', 'assignee', 'status',)

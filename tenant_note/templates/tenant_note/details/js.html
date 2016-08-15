@@ -2,16 +2,16 @@
 <script type="text/javascript">
     function ajax_update() {
         $('#id_submit_btn').prop("disabled", true);
-        get_tenant_entrepreneurnote(
+        get_tenant_note(
             {{ form.instance.id }},
             function(note) {
                 note['name'] = $.trim($('#id_name').val());
                 note['description'] = $.trim($('#id_description').val());
-                set_tenant_entrepreneurnote(
+                set_tenant_note(
                     note,
                     function(json_result) {
                         // Return to the note's list page.
-                        window.location = "{% url 'tenant_note_entrepreneur_master' me.id %}";
+                        window.location = "{% url 'tenant_note_master' me.id %}";
                     },
                     function(error_json_result) {
                         $('#id_submit_btn').prop("disabled", false);
@@ -19,7 +19,7 @@
                         console.log(string);
                         alert(string);
                     }
-                ); // end Set Entrepreneur Note
+                ); // end Set Note
             },
             function(error_json_result) {
                 $('#id_submit_btn').prop("disabled", false);
@@ -27,6 +27,6 @@
                 console.log(string);
                 alert(string);
             }
-        ); // end Get EntrepreneurNote
+        ); // end Get Note
     }
 </script>

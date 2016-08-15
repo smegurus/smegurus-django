@@ -34,7 +34,7 @@ from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.message import Message
-from foundation_tenant.models.entrepreneurnote import EntrepreneurNote
+from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 
 
@@ -690,7 +690,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             owner=User.objects.get(username='1'),
             name='Ice Age',
         )
-        obj = EntrepreneurNote.objects.create(
+        obj = Note.objects.create(
             id=1,
             me=me
         )
@@ -701,38 +701,38 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_entrepreneur_note_delete_all(self):
         # Setup our unit test.
-        count = EntrepreneurNote.objects.all().count()
+        count = Note.objects.all().count()
         self.assertEqual(count, 0)
-        EntrepreneurNote.objects.bulk_create([
-            EntrepreneurNote(
+        Note.objects.bulk_create([
+            Note(
                 id = 1111,
                 me=TenantMe.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 )
             ),
-            EntrepreneurNote(
+            Note(
                 id = 2222,
                 me = TenantMe.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 )
             ),
-            EntrepreneurNote(
+            Note(
                 id = 3333,
                 me = TenantMe.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 )
             ),
-            EntrepreneurNote(
+            Note(
                 id = 4444,
                 me = TenantMe.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 )
             ),
-            EntrepreneurNote(
+            Note(
                 id = 5555,
                 me = TenantMe.objects.create(
                     id = 1115,
@@ -740,12 +740,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 )
             ),
         ])
-        count = EntrepreneurNote.objects.all().count()
+        count = Note.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        EntrepreneurNote.objects.delete_all()
-        count = EntrepreneurNote.objects.all().count()
+        Note.objects.delete_all()
+        count = Note.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup
