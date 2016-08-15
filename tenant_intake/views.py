@@ -138,8 +138,9 @@ def intake_finished_page(request):
 ])
 def intake_master_page(request):
     intakes = Intake.objects.filter(
-        Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.REJECTED_STATUS)
-        # | Q(status=constants.APPROVED_STATUS)
+        Q(status=constants.PENDING_REVIEW_STATUS) |
+        Q(status=constants.IN_REVIEW_STATUS) |
+        Q(status=constants.REJECTED_STATUS)
     )
     return render(request, 'tenant_intake/employee/master/view.html',{
         'page': 'intake',
