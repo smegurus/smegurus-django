@@ -1,6 +1,12 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Document Start
+
         get_tenant_me(  // start Get Me
             {{ request.tenant_me.owner.id }},
             function(me) {

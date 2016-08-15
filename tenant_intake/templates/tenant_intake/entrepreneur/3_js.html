@@ -1,6 +1,12 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        });
+        
         // Initial setup.
         {% if intake.do_you_own_a_biz != 5 %}
             $('#id_do_you_own_a_biz_other_div').hide();

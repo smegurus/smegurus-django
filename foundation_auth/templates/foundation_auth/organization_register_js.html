@@ -90,7 +90,7 @@
 
         // Generate the Organization object from User input.
         var data = {
-            'schema_name': $('#id_schema_name').val(),
+            'schema_name': $('#id_schema_name').val().toLowerCase(),
             'name': $('#id_name').val(),
             'alternate_name': $('#id_name').val(),
             'legal_name': $('#id_name').val(),

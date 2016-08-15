@@ -1,6 +1,12 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        });
+        
         // Customize the call to tagsInput to match your code.
         // Include all the parameters you are calling, and any other code
         // necessary to demonstrate the problem you are having.

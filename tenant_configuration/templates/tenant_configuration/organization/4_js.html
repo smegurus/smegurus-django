@@ -1,5 +1,13 @@
 {% load i18n %}
 <script>
+    $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        });
+    }); // end Ready
+
     function ajax_back() {
         window.location = "{% url 'foundation_auth_config_org_step_three' %}";
     }
