@@ -46,6 +46,8 @@
     }
 
     function ajax_do_daisy_chain_update_on_task(task) {
+        task['tags'] = $('#select2-1').val();
+
         set_tenant_tasks(
             task,
             function(json_result) {

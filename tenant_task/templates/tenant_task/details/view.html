@@ -381,9 +381,12 @@
                                 <strong>{% trans 'Tags' %}</strong>
                             </td>
                             <td>
+
                                 <select id="select2-1" multiple="multiple" class="form-control">
                                     {% for tag in tags.all %}
-                                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                        <option value="{{ tag.id }}" {% if tag in task.tags.all %}selected="true"{% endif %}>
+                                            {{ tag.name }}
+                                        </option>
                                     {% endfor %}
                                 </select>
                             </td>
