@@ -87,8 +87,8 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        Note.objects.delete_all()
         Intake.objects.delete_all()
+        Note.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()

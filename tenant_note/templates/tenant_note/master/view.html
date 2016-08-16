@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress foundation_tenant_tags %}
 {% block content %}
 {% compress js inline %}
 {% include 'tenant_note/master/js.html' %}
@@ -59,10 +59,12 @@
                                 </td>
                                 <td>
                                     <div align="center">
-                                        <button id="id_delete_btn_{{ note.id }}"
-                                           onclick="ajax_delete({{ note.id }});"
-                                              type="button"
-                                             class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
+                                        {% if note|is_note_protected == False %}
+                                            <button id="id_delete_btn_{{ note.id }}"
+                                               onclick="ajax_delete({{ note.id }});"
+                                                  type="button"
+                                                 class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
+                                        {% endif %}
                                         <a href="{% url 'tenant_note_details' me.id note.id %}">
                                             <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
                                         </a>

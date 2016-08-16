@@ -8,12 +8,16 @@ from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.templatetags.foundation_tenant_tags import count_unread_messages, count_new_intakes
+from foundation_tenant.templatetags.foundation_tenant_tags import count_unread_messages
+from foundation_tenant.templatetags.foundation_tenant_tags import count_new_intakes
+from foundation_tenant.templatetags.foundation_tenant_tags import is_note_protected
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.task import Task
+from foundation_tenant.models.note import Note
 from smegurus import constants
 
 
@@ -66,6 +70,9 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        Task.objects.delete_all()
+        Intake.objects.delete_all()
+        Note.objects.delete_all()
         Message.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
@@ -131,3 +138,58 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
 
         # Run test and verify.
         self.assertEqual(count_new_intakes(), 1)
+
+    @transaction.atomic
+    def test_is_note_protected_by_intake(self):
+        # Create our data.
+        me = TenantMe.objects.create(
+            owner=self.user,
+        )
+        note = Note.objects.create(
+            name='Test',
+            description='test',
+            me=me,
+        )
+        Intake.objects.create(
+            note=note,
+            me=me,
+            status=constants.PENDING_REVIEW_STATUS,
+        )
+
+        # Run our test and verify.
+        self.assertTrue(is_note_protected(note))
+
+    @transaction.atomic
+    def test_is_note_protected_by_task(self):
+        # Create our data.
+        me = TenantMe.objects.create(
+            owner=self.user,
+        )
+        note = Note.objects.create(
+            name='Test',
+            description='test',
+            me=me,
+        )
+        Task.objects.create(
+            note=note,
+            assigned_by=me,
+            assignee=me,
+        )
+
+        # Run our test and verify.
+        self.assertTrue(is_note_protected(note))
+
+    @transaction.atomic
+    def test_is_note_protected_by_nothing(self):
+        # Create our data.
+        me = TenantMe.objects.create(
+            owner=self.user,
+        )
+        note = Note.objects.create(
+            name='Test',
+            description='test',
+            me=me,
+        )
+
+        # Run our test and verify.
+        self.assertFalse(is_note_protected(note))
