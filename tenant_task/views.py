@@ -52,6 +52,15 @@ def task_master_page(request):
 @tenant_profile_required
 @condition(last_modified_func=latest_task_details)
 def task_details_page(request, id):
+    task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/view.html',{
+        # Required.
         'page': 'tasks',
+        'task': task,
+        # Members.
+        'entrepreneurs': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID),
+        'mentors': TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID),
+        'advisors': TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID),
+        'managers': TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID),
+        'admins': TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID),
     })

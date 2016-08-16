@@ -65,6 +65,7 @@
                         <button type="button" class="btn btn-default">View all documents</button>
                     </p>
                 </div>
+                {% comment %}
                 <div class="panel-body">
                     <p>
                         <small class="pull-left">Activity over time</small>
@@ -94,9 +95,12 @@
                         </div>
                     </div>
                 </div>
+                {% endcomment %}
             </div>
             <!-- End Main panel-->
+
             <!-- Team messages-->
+            {% comment %}
             <div class="panel b">
                 <div class="panel-heading">
                     <div class="pull-right label label-danger">5</div>
@@ -204,11 +208,13 @@
                 </div>
                 <!-- END panel-footer-->
             </div>
+            {% endcomment %}
             <!-- End Team messages-->
         </div>
         <div class="col-lg-4">
             <!-- Aside panel-->
             <div class="panel b">
+                {% comment %}
                 <div class="panel-body bb">
                     <div class="clearfix">
                         <div class="pull-left">
@@ -260,115 +266,104 @@
                         </li>
                     </ul>
                 </div>
+                {% endcomment %}
                 <table class="table bb">
                     <tbody>
                         <tr>
                             <td>
-                                <strong>Start date</strong>
+                                <strong>{% trans 'Start date' %}</strong>
                             </td>
-                            <td>02/01/2016</td>
+                            <td>
+                                <input type="text" id="id_task_event_start" value="{{ task.event.start }}" class="form-control" />
+                            </td>
                         </tr>
+
                         <tr>
                             <td>
-                                <strong>Estimated Hours</strong>
-                            </td>
-                            <td>122hs</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Time Consumed</strong>
-                            </td>
-                            <td>62hs</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Commits</strong>
-                            </td>
-                            <td>140</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Issues</strong>
-                            </td>
-                            <td>39</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Files</strong>
-                            </td>
-                            <td>87</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Members</strong>
+                                <strong>{% trans 'Due date' %}</strong>
                             </td>
                             <td>
-                                <p>Tara Sanders</p>
-                                <p>Alan Smith</p>
-                                <p>Priscilla Peters</p>
-                                <p>Madison Willis</p>
-                                <p>Lesa Marshall</p>
-                                <p>Kylie Freeman</p>
+                                <input type="text" id="id_task_event_finish" value="{{ task.event.finish }}" class="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <strong>Recent files</strong>
+                                <strong>{% trans 'Assigned by' %}</strong>
+                            </td>
+                            <td>{{ task.assigned_by.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Assignee' %}</strong>
                             </td>
                             <td>
-                                <div data-height="120" data-scrollable="" class="list-group">
-                                    <table class="table table-bordered bg-transparent">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <em class="fa fa-lg fa-file-code-o"></em>
-                                                </td>
-                                                <td><a href="#" class="text-muted">database.controller.js</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <em class="fa fa-lg fa-file-image-o"></em>
-                                                </td>
-                                                <td><a href="#" class="text-muted">baground-lg.png</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <em class="fa fa-lg fa-file-code-o"></em>
-                                                </td>
-                                                <td><a href="#" class="text-muted">picture.controller.js</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <em class="fa fa-lg fa-file-word-o"></em>
-                                                </td>
-                                                <td><a href="#" class="text-muted">applicat-diagrams.docx</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <em class="fa fa-lg fa-file-code-o"></em>
-                                                </td>
-                                                <td><a href="#" class="text-muted">database.controller.js</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <em class="fa fa-lg fa-file-code-o"></em>
-                                                </td>
-                                                <td><a href="#" class="text-muted">database.controller.js</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <!-- ASSIGNEE -->
+                                <select id="id_user" class="chosen-select form-control">
+                                    <optgroup label="Administrators">
+                                        {% for admin in admins.all %}
+                                            {% if admin != request.tenant_me %}
+                                                <option value="{{ admin.id }}">
+                                                   {{ admin.owner.first_name }} {{ admin.owner.last_name }}
+                                                </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Managers">
+                                        {% for manager in managers.all %}
+                                            {% if manager != request.tenant_me %}
+                                                <option value="{{ manager.id }}">
+                                                    {{ manager.owner.first_name }} {{ manager.owner.last_name }}
+                                                </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Advisors">
+                                        {% for advisor in advisors.all %}
+                                            {% if advisor != request.tenant_me %}
+                                                <option value="{{ advisor.id }}">
+                                                    {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
+                                                </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Mentors">
+                                        {% for mentor in mentors.all %}
+                                            {% if mentor != request.tenant_me %}
+                                                <option value="{{ mentor.id }}">
+                                                    {{ mentor.owner.first_name }} {{ mentor.owner.last_name }}
+                                                </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Entreprenuers">
+                                        {% for entrepreneur in entrepreneurs.all %}
+                                            {% if entrepreneur != request.tenant_me %}
+                                                <option value="{{ entrepreneur.id }}">
+                                                    {{ entrepreneur.owner.first_name }} {{ entrepreneur.owner.last_name }}
+                                                </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                                <!-- end ASSIGNEE -->
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Members' %}</strong>
+                            </td>
+                            <td>
+                                {% for member in task.participants.all %}
+                                    <p>{{ member.name }}</p>
+                                {% endfor %}
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <p class="text-right"><a href="#" class="btn btn-link">Open repository</a>
+                <p class="text-right">
+                    <a href="{% url 'tenant_task_master' %}" class="btn btn-link">{% trans 'Open repository' %}
+                    </a>
                 </p>
             </div>
             <!-- end Aside panel-->
