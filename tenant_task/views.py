@@ -21,9 +21,7 @@ from foundation_tenant.models.task import Task
 
 def latest_task_master(request):
     try:
-        return Task.objects.filter(
-            Q(assignee=request.tenant_me) | Q(assigned_by=request.tenant_me)
-        ).latest("last_modified").last_modified
+        return Task.objects.filter(participants=request.tenant_me).latest("last_modified").last_modified
     except Task.DoesNotExist:
         return datetime.now()
 
@@ -41,9 +39,7 @@ def latest_task_details(request, id):
 @tenant_profile_required
 @condition(last_modified_func=latest_task_master)
 def task_master_page(request):
-    tasks = Task.objects.filter(
-        Q(assignee=request.tenant_me) | Q(assigned_by=request.tenant_me)
-    )
+    tasks = Task.objects.filter(participants=request.tenant_me)
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
         'tasks': tasks,

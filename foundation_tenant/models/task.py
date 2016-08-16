@@ -51,7 +51,7 @@ class Task(AbstractThing):
         help_text=_('The user whom assigned this task.'),
         blank=True,
         null=True,
-        related_name="task_employee_%(app_label)s_%(class)s_related",
+        related_name="task_assigned_by_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
     assignee = models.ForeignKey(
@@ -59,7 +59,7 @@ class Task(AbstractThing):
         help_text=_('The user whom is the task assigned to.'),
         blank=True,
         null=True,
-        related_name="task_entrepreneur_%(app_label)s_%(class)s_related",
+        related_name="task_assignee_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
     status = models.PositiveSmallIntegerField(           # CONTROLLED BY SYSTEM
@@ -68,6 +68,12 @@ class Task(AbstractThing):
         help_text=_('The state this task.'),
         default=constants.CREATED_TASK_STATUS,
         db_index=True,
+    )
+    participants = models.ManyToManyField(
+        TenantMe,
+        help_text=_('The users participating in the conversation of this tasks.'),
+        blank=True,
+        related_name='task_participants_%(app_label)s_%(class)s_related',
     )
 
     def __str__(self):

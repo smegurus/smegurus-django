@@ -48,8 +48,9 @@ class TaskViewSet(viewsets.ModelViewSet):
                 owner=self.request.user,
             )
 
-
-        instance.save()  # Update 'Task' model.
+        # Update 'Task' model.
+        instance.participants.add(self.request.tenant_me)
+        instance.save()
 
     def perform_destroy(self, instance):
         """Override the deletion function to include deletion of associated models."""
