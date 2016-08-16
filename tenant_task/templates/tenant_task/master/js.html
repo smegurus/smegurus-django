@@ -1,0 +1,40 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Do nothing.
+    });
+
+    function ajax_create_task() {
+        var task = {};
+        set_tenant_tasks(
+            task,
+            function(json_result) {
+                var url = "{% url 'tenant_task_details' 'placeholder' %}";
+                var details_url = url.replace("placeholder", json_result['id']);
+                window.location = details_url;
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
+
+    function ajax_delete_task(id) {
+        var a_id = '#id_delete_task_'+id;
+        $(a_id).attr("disabled",true);
+        delete_tenant_task(
+            id,
+            function(json_result) {
+                location.reload(true);
+            },
+            function(error_json_result) {
+                $(a_id).attr("disabled",false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Delete Tenant Task.
+    }
+</script>

@@ -89,7 +89,7 @@
                     function(json_result) {
                         enable_btn();
                         console.log(json_result);
-                        window.location = "";
+                        location.reload(true);
                     },
                     function(json_error_result) {
                         enable_btn();
@@ -123,7 +123,7 @@
                     function(result) {
                         console.log(result);
                         enable_btn();
-                        window.location = "";
+                        location.reload(true);
                     },
                     function(error_result) {
                         console.log(error_result);
@@ -175,7 +175,7 @@
                 console.log(success_result);
                 enable_btn();
                 alert("Password has been changed! Please login using it now.");
-                window.location = "";
+                location.reload(true);
             },
             function(error_result) {
                 console.log(error_result);
@@ -207,7 +207,7 @@
                     function(json_result) {
                         enable_btn();
                         console.log(json_result);
-                        window.location = "";
+                        location.reload(true);
                     },
                     function(json_error_result) {
                         enable_btn();

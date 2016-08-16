@@ -197,7 +197,7 @@
                             {% if request.tenant_me.is_employee == True %}
                             <!-- TASKS -->
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_task' %}" title="{% trans 'Tasks' %}">
+                                <a href="{% url 'tenant_task_master' %}" title="{% trans 'Tasks' %}">
                                     <em class="icon-notebook"></em>
                                     <span data-localize="sidebar.nav.TASKS">{% trans 'Tasks' %}</span>
                                 </a>
@@ -518,6 +518,7 @@
                     {% include "api/tenant_message.html" %}
                     {% include "api/tenant_intake.html" %}
                     {% include "api/tenant_note.html" %}
+                    {% include "api/tenant_task.html" %}
                     {% include "api/tenant_me.html" %}
                     <script>
                         function ajax_logout() {

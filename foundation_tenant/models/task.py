@@ -36,7 +36,7 @@ class Task(AbstractThing):
         blank=True,
         null=True,
         related_name="task_note_%(app_label)s_%(class)s_related",
-        on_delete=models.PROTECT
+        on_delete=models.SET_NULL
     )
     event = models.ForeignKey(
         CalendarEvent,
@@ -44,7 +44,7 @@ class Task(AbstractThing):
         blank=True,
         null=True,
         related_name="task_event_%(app_label)s_%(class)s_related",
-        on_delete=models.PROTECT
+        on_delete=models.SET_NULL
     )
     assigned_by = models.ForeignKey(
         TenantMe,

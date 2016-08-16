@@ -44,6 +44,7 @@ from api.views.foundation_tenant.communitypostviewset import CommunityPostViewSe
 from api.views.foundation_tenant.communityadvertisementviewset import CommunityAdvertisementViewSet
 from api.views.foundation_tenant.messageviewset import MessageViewSet
 from api.views.foundation_tenant.noteviewset import NoteViewSet
+from api.views.foundation_tenant.taskviewset import TaskViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
 
 
@@ -84,6 +85,7 @@ router.register(r'tenantcommunitypost', CommunityPostViewSet)
 router.register(r'tenantcommunityadvertisement', CommunityAdvertisementViewSet)
 router.register(r'tenantmessage', MessageViewSet)
 router.register(r'tenantnote', NoteViewSet)
+router.register(r'tenanttask', TaskViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 
 

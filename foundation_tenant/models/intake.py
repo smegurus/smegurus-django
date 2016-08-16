@@ -89,7 +89,7 @@ class Intake(models.Model):
         help_text=_('The note associated with this intake.'),
         blank=True,
         null=True,
-        on_delete=models.PROTECT
+        on_delete=models.SET_NULL
     )
     is_employee_created = models.BooleanField(    # CONTROLLED BY EMPLOYEES ONLY
         _("Is Employee Created"),

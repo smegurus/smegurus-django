@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
@@ -9,36 +10,52 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_configuration.decorators import tenant_configuration_required
 from smegurus import constants
-from foundation_tenant.models.me import TenantMe
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.note import Note
+from foundation_tenant.models.task import Task
 
 
-# def latest_task_master(request):
-#     try:
-#         return Note.objects.latest("last_modified").last_modified
-#     except Note.DoesNotExist:
-#         return datetime.now()
+def latest_task_master(request):
+    try:
+        return Task.objects.filter(
+            Q(assignee=request.tenant_me) | Q(assigned_by=request.tenant_me)
+        ).latest("last_modified").last_modified
+    except Task.DoesNotExist:
+        return datetime.now()
 
 
-# def latest_note_details(request, me_id, note_id):
-#     try:
-#         return Note.objects.filter(
-#             me_id=int(me_id),
-#             id=int(note_id)
-#         ).latest("last_modified").last_modified
-#     except Note.DoesNotExist:
-#         return datetime.now()
+def latest_task_details(request, id):
+    try:
+        return Task.objects.get(id=int(id)).last_modified
+    except Task.DoesNotExist:
+        return datetime.now()
 
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=latest_note_master)
-def tasks_list_page(request):
-    return render(request, 'tenant_task/list/view.html',{
+@condition(last_modified_func=latest_task_master)
+def task_master_page(request):
+    tasks = Task.objects.filter(
+        Q(assignee=request.tenant_me) | Q(assigned_by=request.tenant_me)
+    )
+    return render(request, 'tenant_task/master/view.html',{
+        'page': 'tasks',
+        'tasks': tasks,
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+@tenant_intake_required
+@tenant_profile_required
+@condition(last_modified_func=latest_task_details)
+def task_details_page(request, id):
+    return render(request, 'tenant_task/details/view.html',{
         'page': 'tasks',
     })
