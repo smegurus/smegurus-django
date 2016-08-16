@@ -29,7 +29,6 @@
                     //e.preventDefault();
                     // Save our new title.
                     var value = $("#id_task_title_input").val();
-                    console.log(value);
 
                     // Replace <input element with <span> element.
                     var html = "<span id='id_task_title_span'>" + value + "</span>";
@@ -40,14 +39,33 @@
     }); // end Document Start
 
     function ajax_finish_daisy_chain(task) {
-        $('#id_save_btn').prop("disabled", false); // Debugging purposes only.
-        console.log(task); // Debugging purposes only.
-        // window.location = "{% url 'tenant_task_master' %}";
+        //$('#id_save_btn').prop("disabled", false); // Debugging purposes only.
+        //console.log(task);                         // Debugging purposes only.
+        window.location = "{% url 'tenant_task_master' %}";
     }
 
     function ajax_do_daisy_chain_update_on_task(task) {
+        // Extract the "title", process it, and save it.
+        var title = $.trim($('#id_task_title_span').text());
+        if (title) {
+            task['name']  = title;
+        } else {
+            title = $.trim($('#id_task_title_input').val());
+            if (title) {
+                task['name']  = title;
+            }
+        }
+
+        // Save all the selected 'Tag' objects.
         task['tags'] = $('#select2-1').val();
 
+        // Save our assignee.
+        var assignee = $('#id_assignee').val();
+        if (assignee) {
+            task['assignee'] = assignee;
+        }
+
+        // Update our 'Task' model.
         set_tenant_tasks(
             task,
             function(json_result) {
@@ -125,12 +143,18 @@
                         ajax_do_daisy_chain_update_on_note(task); // Run the next GET/SAVE prcoess in the daisy chain.
                     },
                     function(error_json_result) {
-                        console.log(error_json_result);
+                        $('#id_save_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
                     }
                 );
             },
-            function(error_result) {
-                console.log(error_result);
+            function(error_json_result) {
+                $('#id_save_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
             }
         );
     }

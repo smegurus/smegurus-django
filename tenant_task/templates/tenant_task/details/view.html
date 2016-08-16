@@ -24,7 +24,13 @@
 
                     <!-- TITLE -->
                     <h4 class="mv">
-                        <span id="id_task_title_span">Task #{{ task.id }}</span>
+                        <span id="id_task_title_span">
+                            {% if task.name %}
+                                {{ task.name }}
+                            {% else %}
+                                {% trans 'Task #' %}{{ task.id }}
+                            {% endif %}
+                        </span>
                     </h4>
                     <!-- end TITLE -->
 
@@ -315,7 +321,7 @@
                             </td>
                             <td>
                                 <!-- ASSIGNEE -->
-                                <select id="id_user" class="chosen-select form-control">
+                                <select id="id_assignee" class="chosen-select form-control">
                                     <optgroup label="Administrators">
                                         {% for admin in admins.all %}
                                             {% if admin != request.tenant_me %}
