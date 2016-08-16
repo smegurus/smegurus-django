@@ -16,86 +16,92 @@
             <!-- Main panel-->
             <div class="panel b">
                 <div class="panel-heading">
+                    {% comment %}
                     <div class="pull-right mt">
                         <div class="label label-info">started</div>
                     </div>
+                    {% endcomment %}
                     <h4 class="mv">
                         <span>Project #1</span>
                     </h4>
                 </div>
-                <div class="panel-body bb bt">
-                    {% comment %}
-                    <a href="#" data-toggle="tooltip" data-title="Team leader" class="inline">
-                    <img src="img/user/03.jpg" alt="project member" class="img-circle thumb48">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/02.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/04.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/05.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/06.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/07.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/08.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    <a href="#" class="inline">
-                    <img src="img/user/09.jpg" alt="project member" class="img-circle thumb24">
-                    </a>
-                    {% endcomment %}
-                    <div class="pull-right mt">
-                        <button type="button" class="btn btn-default">Add Member</button>
-                    </div>
-                </div>
                 <div class="panel-body">
-                    <h4>Description</h4>
-                    <p>Nam eget risus tellus. Vestibulum pretium mollis ligula, at ultrices quam egestas et. Sed mattis tincidunt ligula, ac porttitor lectus porttitor condimentum. Ut et ligula ante, nec mollis lacus. Aliquam erat volutpat. Aliquam auctor
-                        diam ut urna lacinia faucibus. Proin est sapien, convallis non hendrerit nec, laoreet ut ipsum. Aenean vehicula, nulla vel pharetra accumsan, elit risus pretium arcu, nec ultrices urna ligula vel nunc. Cras porttitor orci eget
-                        nibh pharetra mollis.
-                    </p>
-                    <p>Maecenas at porta purus. Ut eu aliquam orci. Praesent in libero at neque gravida venenatis auctor nec arcu.</p>
+                    <div class="form-group">
+
+                        <!-- EDITOR TOOLBAR -->
+                        <div data-role="editor-toolbar" data-target="#editor" class="btn-toolbar btn-editor">
+                           <div class="btn-group">
+                              <a data-edit="bold" data-toggle="tooltip" title="Bold (Ctrl/Cmd+B)" class="btn btn-default">
+                                 <em class="fa fa-bold"></em>
+                              </a>
+                              <a data-edit="italic" data-toggle="tooltip" title="Italic (Ctrl/Cmd+I)" class="btn btn-default">
+                                 <em class="fa fa-italic"></em>
+                              </a>
+                              <a data-edit="strikethrough" data-toggle="tooltip" title="Strikethrough" class="btn btn-default">
+                                 <em class="fa fa-strikethrough"></em>
+                              </a>
+                              <a data-edit="underline" data-toggle="tooltip" title="Underline (Ctrl/Cmd+U)" class="btn btn-default">
+                                 <em class="fa fa-underline"></em>
+                              </a>
+                           </div>
+                           <div class="btn-group">
+                              <a data-edit="insertunorderedlist" data-toggle="tooltip" title="Bullet list" class="btn btn-default">
+                                 <em class="fa fa-list-ul"></em>
+                              </a>
+                              <a data-edit="insertorderedlist" data-toggle="tooltip" title="Number list" class="btn btn-default">
+                                 <em class="fa fa-list-ol"></em>
+                              </a>
+                              <a data-edit="outdent" data-toggle="tooltip" title="Reduce indent (Shift+Tab)" class="btn btn-default">
+                                 <em class="fa fa-dedent"></em>
+                              </a>
+                              <a data-edit="indent" data-toggle="tooltip" title="Indent (Tab)" class="btn btn-default">
+                                 <em class="fa fa-indent"></em>
+                              </a>
+                           </div>
+                           <div class="btn-group">
+                              <a data-edit="justifyleft" data-toggle="tooltip" title="Align Left (Ctrl/Cmd+L)" class="btn btn-default">
+                                 <em class="fa fa-align-left"></em>
+                              </a>
+                              <a data-edit="justifycenter" data-toggle="tooltip" title="Center (Ctrl/Cmd+E)" class="btn btn-default">
+                                 <em class="fa fa-align-center"></em>
+                              </a>
+                              <a data-edit="justifyright" data-toggle="tooltip" title="Align Right (Ctrl/Cmd+R)" class="btn btn-default">
+                                 <em class="fa fa-align-right"></em>
+                              </a>
+                              <a data-edit="justifyfull" data-toggle="tooltip" title="Justify (Ctrl/Cmd+J)" class="btn btn-default">
+                                 <em class="fa fa-align-justify"></em>
+                              </a>
+                           </div>
+                           <div class="btn-group">
+                               <a data-toggle="dropdown" title="Hyperlink" class="btn btn-default">
+                                  <em class="fa fa-link"></em>
+                               </a>
+                               <div class="dropdown-menu">
+                                  <div class="input-group ml-xs mr-xs">
+                                     <input id="LinkInput" placeholder="URL" type="text" data-edit="createLink" class="form-control input-sm">
+                                     <div class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-default">Add</button>
+                                     </div>
+                                  </div>
+                               </div>
+                               <a data-edit="unlink" data-toggle="tooltip" title="Remove Hyperlink" class="btn btn-default">
+                                  <em class="fa fa-cut"></em>
+                               </a>
+                           </div>
+                        </div>
+                        <!-- end EDITOR TOOLBAR -->
+
+                        <!-- EDITOR CONTENT -->
+                        <div id="editor" contenteditable="true" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>
+                        <!-- end EDITOR CONTENT -->
+
+                    </div>
+
                     <p class="text-right">
-                        <button type="button" class="btn btn-default">View all documents</button>
+                        <button type="button" class="btn btn-primary">{% trans 'Save' %}</button>
                     </p>
+
                 </div>
-                {% comment %}
-                <div class="panel-body">
-                    <p>
-                        <small class="pull-left">Activity over time</small>
-                    <div data-sparkline="" data-type="line" data-height="100" data-width="100%" data-line-width="3" data-line-color="#23b7e5" data-chart-range-min="0" data-spot-color="#888" data-min-spot-color="#23b7e5"
-                        data-max-spot-color="#23b7e5" data-fill-color="#e5f2fa" data-highlight-line-color="#fff" data-spot-radius="5" values="2,4,5,6,10,7,8,5,7,7,11,8,6,9,11,9,13,14,12,16" data-resize="true" class="sparkline text-center"></div>
-                    </p>
-                </div>
-                <div class="panel-body">
-                    <div class="row text-center">
-                        <div class="col-xs-4">
-                            <div class="inline">
-                                <div data-sparkline="" values="20,80" data-type="pie" data-height="60" data-slice-colors="[&quot;#edf1f2&quot;, &quot;#23b7e5&quot;]" class="sparkline"></div>
-                            </div>
-                            <p class="mt-lg">Issues</p>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="inline">
-                                <div data-sparkline="" values="60,40" data-type="pie" data-height="60" data-slice-colors="[&quot;#edf1f2&quot;, &quot;#27c24c&quot;]" class="sparkline"></div>
-                            </div>
-                            <p class="mt-lg">Commits</p>
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="inline">
-                                <div data-sparkline="" values="90,10" data-type="pie" data-height="60" data-slice-colors="[&quot;#edf1f2&quot;, &quot;#ff902b&quot;]" class="sparkline"></div>
-                            </div>
-                            <p class="mt-lg">Files</p>
-                        </div>
-                    </div>
-                </div>
-                {% endcomment %}
             </div>
             <!-- End Main panel-->
 
@@ -357,6 +363,18 @@
                                 {% for member in task.participants.all %}
                                     <p>{{ member.name }}</p>
                                 {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Tags' %}</strong>
+                            </td>
+                            <td>
+                                <select id="select2-1" multiple="multiple" class="form-control">
+                                    {% for tag in tags.all %}
+                                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                    {% endfor %}
+                                </select>
                             </td>
                         </tr>
                     </tbody>

@@ -1,11 +1,12 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        // Do nothing.
-    });
+        // Required code to initialize the WYSIWYG editor.
+        $('#editor').wysiwyg();
+        $('#editor').cleanHtml();
 
-    $( function() {
+        // Required code to initialize the datepicker.
         $( "#id_task_event_start" ).datepicker();
         $( "#id_task_event_finish" ).datepicker();
-    });
+    }); // end Document Start
 </script>

@@ -57,6 +57,8 @@ def task_details_page(request, id):
         # Required.
         'page': 'tasks',
         'task': task,
+        # Tags.
+        'tags': Tag.objects.all(),
         # Members.
         'entrepreneurs': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID),
         'mentors': TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID),

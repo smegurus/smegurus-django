@@ -18,7 +18,7 @@ class TaskFilter(django_filters.FilterSet):
         model = Task
         fields = ['created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'note', 'event',
-                  'assigned_by', 'assignee', 'status',]
+                  'assigned_by', 'assignee', 'status', 'participants', 'tags',]
 
 
 class TaskViewSet(viewsets.ModelViewSet):
