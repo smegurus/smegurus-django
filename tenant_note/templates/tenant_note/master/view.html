@@ -43,6 +43,9 @@
                                 <th style="width:60%">
                                     {% trans 'Text' %}
                                 </th>
+                                <th style="width:10%">
+                                    {% trans 'Protected' %}
+                                </th>
                                 <th style="width:15%">
                                     <div align="center">
                                        {% trans 'Options' %}
@@ -58,13 +61,21 @@
                                     {{ note.description|truncatechars:64 }}
                                 </td>
                                 <td>
+                                {% if note|is_note_protected %}
+                                    {% trans 'Yes' %}
+                                {% else %}
+                                    {% trans 'No' %}
+                                {% endif %}
+                                </td>
+                                <td>
                                     <div align="center">
-                                        {% if note|is_note_protected == False %}
-                                            <button id="id_delete_btn_{{ note.id }}"
+                                        <button id="id_delete_btn_{{ note.id }}"
+                                        {% if note|is_note_protected %}
+                                           disabled="true"
+                                        {% endif %}
                                                onclick="ajax_delete({{ note.id }});"
                                                   type="button"
                                                  class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
-                                        {% endif %}
                                         <a href="{% url 'tenant_note_details' me.id note.id %}">
                                             <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
                                         </a>
