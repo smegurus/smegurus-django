@@ -273,6 +273,7 @@
                             </li>
                             <!-- end REWARDS -->
 
+                            {% if request.tenant_me.is_employee == True %}
                             <!-- CLIENTS -->
                             <li {% if page == 'client' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_customer_master' %}" title="{% trans 'Clients' %}">
@@ -282,7 +283,6 @@
                             </li>
                             <!-- end CLIENTS -->
 
-                            {% if request.tenant_me.is_employee == True %}
                             <!-- INTAKE -->
                             <li {% if page == 'intake' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_intake_employee_master' %}" title="{% trans 'Intake' %}">
