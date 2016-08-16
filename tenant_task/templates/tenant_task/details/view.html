@@ -96,14 +96,18 @@
                         <!-- end EDITOR TOOLBAR -->
 
                         <!-- EDITOR CONTENT -->
-                        <div id="editor" contenteditable="true" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">Type something ...</div>
+                        <div id="editor" contenteditable="true" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">
+                            {% if task.note.description %}
+                                {{ task.note.description|escape|safe }}
+                            {% endif %}
+                        </div>
                         <!-- end EDITOR CONTENT -->
 
                     </div>
 
                     <p class="text-right">
                         <button id="id_save_btn"
-                           onclick="ajax_save_task();"
+                           onclick="ajax_start_daisy_chain_update();"
                               type="button"
                              class="btn btn-primary">{% trans 'Save' %}</button>
                     </p>
@@ -287,7 +291,7 @@
                                 <strong>{% trans 'Start date' %}</strong>
                             </td>
                             <td>
-                                <input type="text" id="id_task_event_start" value="{{ task.event.start }}" class="form-control" />
+                                <input type="text" id="id_task_event_start" value="{{ task.event.start|date:"Y-m-d" }}" class="form-control" />
                             </td>
                         </tr>
 
@@ -296,7 +300,7 @@
                                 <strong>{% trans 'Due date' %}</strong>
                             </td>
                             <td>
-                                <input type="text" id="id_task_event_finish" value="{{ task.event.finish }}" class="form-control" />
+                                <input type="text" id="id_task_event_finish" value="{{ task.event.finish|date:"Y-m-d" }}" class="form-control" />
                             </td>
                         </tr>
                         <tr>
