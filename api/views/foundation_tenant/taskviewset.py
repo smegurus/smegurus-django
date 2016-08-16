@@ -40,11 +40,13 @@ class TaskViewSet(viewsets.ModelViewSet):
         # Create associated models.
         if not instance.note:
             instance.note = Note.objects.create(
+                name="Task #"+str(instance.id)+" Note",
                 owner=self.request.user,
                 me=self.request.tenant_me,
             )
         if not instance.event:
             instance.event = CalendarEvent.objects.create(
+                name="Task #"+str(instance.id)+" Event",
                 owner=self.request.user,
             )
 

@@ -8,5 +8,116 @@
         // Required code to initialize the datepicker.
         $( "#id_task_event_start" ).datepicker();
         $( "#id_task_event_finish" ).datepicker();
+
+        // If user clicks on the title, then give them the ability to enter their value.
+        $("#id_task_title_span").click(function () {
+            // Replace one <span> element with <input> element.
+            var html = "<input id='id_task_title_input' type='text' value='' class='form-control'>";
+            $(this).replaceWith( html );
+
+            // Focus on the the new <input> element.
+            $("#id_task_title_input").select();
+
+            // Initialize a event handler to detect 'Enter' button pressed
+            // on our newly created <input> element.
+            $("#id_task_title_input").keypress(function(e) {
+                if (e.which == 13) {
+                    //e.preventDefault();
+                    // Save our new title.
+                    var value = $("#id_task_title_input").val();
+                    console.log(value);
+
+                    // Replace <input element with <span> element.
+                    var html = "<span id='id_task_title_span'>" + value + "</span>";
+                    $(this).replaceWith( html );
+                }
+            }); // end Keypress
+        }); // end Click
     }); // end Document Start
+
+    function ajax_finish_daisy_chain(task) {
+        window.location = "{% url 'tenant_task_master' %}";
+    }
+
+    function ajax_do_daisy_chain_update_on_task(task) {
+        set_tenant_tasks(
+            task,
+            function(json_result) {
+                ajax_finish_daisy_chain(task);
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
+
+    function ajax_do_daisy_chain_update_on_note(task) {
+        get_tenant_note(
+            task['note'],
+            function(note) {
+                // note['name'] = $.trim($('#id_name').val());
+                // note['description'] = $.trim($('#id_description').val());
+                set_tenant_note(
+                    note,
+                    function(json_result) {
+                        console.log(json_result);
+                        ajax_do_daisy_chain_update_on_task(task);
+                    },
+                    function(error_json_result) {
+                        $('#id_submit_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end Set Note
+            },
+            function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Get Note
+    }
+
+    function ajax_do_daisy_chain_update_on_calendar_event(task) {
+        get_tenant_calendarevent(
+            task['event'],
+            function(calender_event) {
+                // calender_event['start'] = event.start.format() ;
+                set_tenant_calendarevent(
+                    calender_event,
+                    function(json_result) {
+                        console.log(json_result);
+                        ajax_do_daisy_chain_update_on_note(task);
+                    },
+                    function(error_json_result) {
+                        console.log(error_json_result);
+                    }
+                );
+            },
+            function(error_result) {
+                console.log(error_result);
+            }
+        );
+    }
+
+    function ajax_save_task() {
+        $('#id_save_btn').prop("disabled", true);
+        get_tenant_task(
+            {{ task.id }},
+            function(task) {
+                // Run the next GET/SAVE model in the daisy chain.
+                ajax_do_daisy_chain_update_on_calendar_event(task);
+            },
+            function(error_json_result) {
+                $('#id_save_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Get Task
+    }
 </script>

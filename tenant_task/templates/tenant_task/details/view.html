@@ -21,9 +21,13 @@
                         <div class="label label-info">started</div>
                     </div>
                     {% endcomment %}
+
+                    <!-- TITLE -->
                     <h4 class="mv">
-                        <span>Project #1</span>
+                        <span id="id_task_title_span">Task #{{ task.id }}</span>
                     </h4>
+                    <!-- end TITLE -->
+
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -98,7 +102,10 @@
                     </div>
 
                     <p class="text-right">
-                        <button type="button" class="btn btn-primary">{% trans 'Save' %}</button>
+                        <button id="id_save_btn"
+                           onclick="ajax_save_task();"
+                              type="button"
+                             class="btn btn-primary">{% trans 'Save' %}</button>
                     </p>
 
                 </div>
