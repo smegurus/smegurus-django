@@ -4,6 +4,10 @@ from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
 from rest_framework import authentication
+from rest_framework import status
+from rest_framework import response
+from rest_framework.decorators import detail_route
+from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant import TaskSerializer
@@ -11,6 +15,18 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+
+
+class DateTimeSerializer(serializers.Serializer):
+    date = serializers.DateTimeField(required=True,)
+    is_start = serializers.BooleanField(required=True,)
+
+
+# class DateTimeSerializer(serializers.Serializer):
+#     date = serializers.IntegerField(required=True,)
+#     comment = serializers.CharField(max_length=2055, required=False,)
+#     is_employee_created = serializers.BooleanField(default=False, required=False,)
+
 
 
 class TaskFilter(django_filters.FilterSet):
@@ -70,3 +86,36 @@ class TaskViewSet(viewsets.ModelViewSet):
         for log_event in instance.log_events.all():
             log_event.delete()
         instance.delete()  # Delete our model.
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def change_date(self, request, pk=None):
+        try:
+            serializer = DateTimeSerializer(data=request.data)
+            if serializer.is_valid():
+                task = self.get_object()
+                text = ""
+                is_start = serializer.data['is_start']
+                if is_start:
+                    text = "Change start date by " + str(request.tenant_me.name)
+                    task.start = serializer.data['date']
+                else:
+                    text = "Change due date by " + str(request.tenant_me.name)
+                    task.due = serializer.data['date']
+                task.save()
+
+                # Keep a log of change of date.
+                event = OrderedLogEvent.objects.create(
+                    me=self.request.tenant_me,
+                    text=text,
+                    ip_address = self.request.META.get('REMOTE_ADDR')
+                )
+                task.log_events.add(event)
+        except Exception as e:
+            print(e)
+
+
+
+        return response.Response(
+            data={'message': 'Task date has been changed.'},
+            status=status.HTTP_200_OK
+        )

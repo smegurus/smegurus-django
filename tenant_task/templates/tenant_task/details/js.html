@@ -9,7 +9,7 @@
         $( "#id_task_event_start" ).datepicker({
             dateFormat: "yy-mm-dd",
         });
-        $( "#id_task_event_finish" ).datepicker({
+        $( "#id_task_event_due" ).datepicker({
             dateFormat: "yy-mm-dd",
         });
 
@@ -17,7 +17,9 @@
 
 
 
-        // Update "Task" for start data.
+        /**
+         *  Function will automatically save the task "start_date".
+         */
         $( "#id_task_event_start" ).change(function(e) {
             // Extract the string.
             var raw_text_date = $('#id_task_event_start').val() ;
@@ -31,9 +33,62 @@
 
             // Format our "Date" object to a format django "DatetimeField"
             // to support.
-            var django_start_date = date_to_django_date(unprotected_date);
-            alert(django_start_date);
+            var django_date = date_to_django_date(unprotected_date);
+
+            $('#id_task_event_start').prop("disabled", true);
+            tenant_task_change_date(
+                {{ task.id }},
+                django_date,
+                true,
+                function(json_result) {
+                    $('#id_task_event_start').prop("disabled", false);
+                },
+                function(error_json_result) {
+                    $('#id_task_event_start').prop("disabled", false);
+                    var string = JSON.stringify( error_json_result );
+                    console.log(string);
+                    alert(string);
+                }
+            ); // end Change Date
         });
+
+        /**
+         *  Function will automatically save the task "due_date".
+         */
+        $( "#id_task_event_due" ).change(function(e) {
+            // Extract the string.
+            var raw_text_date = $('#id_task_event_due').val() ;
+
+            // Convert the string to a javascript "Date" object.
+            var unprotected_date = new Date(raw_text_date);
+
+            //BUGFIX: It appears when we converted our date, we lost a day.
+            //        Therefore, add a single day to our converted date.
+            unprotected_date.setDate(unprotected_date.getDate() + 1);
+
+            // Format our "Date" object to a format django "DatetimeField"
+            // to support.
+            var django_date = date_to_django_date(unprotected_date);
+
+            $('#id_task_event_start').prop("disabled", true);
+            tenant_task_change_date(
+                {{ task.id }},
+                django_date,
+                false,
+                function(json_result) {
+                    $('#id_task_event_start').prop("disabled", false);
+                },
+                function(error_json_result) {
+                    $('#id_task_event_start').prop("disabled", false);
+                    var string = JSON.stringify( error_json_result );
+                    console.log(string);
+                    alert(string);
+                }
+            ); // end Change Date
+        });
+
+
+        
 
 
 

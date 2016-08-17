@@ -297,7 +297,7 @@
                                 <strong>{% trans 'Start date' %}</strong>
                             </td>
                             <td>
-                                <input type="text" id="id_task_event_start" value="{{ task.event.start|date:"Y-m-d" }}" class="form-control" />
+                                <input type="text" id="id_task_event_start" value="{{ task.start|date:"Y-m-d" }}" class="form-control" />
                             </td>
                         </tr>
 
@@ -306,7 +306,7 @@
                                 <strong>{% trans 'Due date' %}</strong>
                             </td>
                             <td>
-                                <input type="text" id="id_task_event_finish" value="{{ task.event.finish|date:"Y-m-d" }}" class="form-control" />
+                                <input type="text" id="id_task_event_due" value="{{ task.due|date:"Y-m-d" }}" class="form-control" />
                             </td>
                         </tr>
                         <tr>

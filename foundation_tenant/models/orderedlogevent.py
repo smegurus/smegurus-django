@@ -36,8 +36,9 @@ class OrderedLogEvent(models.Model):
     text = models.CharField(
         _("text"),
         max_length=125,
-        help_text=_('The name of the TaskLog item.'),
-        unique=True,
+        help_text=_('The details.'),
+        blank=True,
+        null=True,
     )
     ip_address = models.GenericIPAddressField(
         _('IP Address'),
