@@ -9,12 +9,11 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.task import Task
+from foundation_tenant.models.orderedlogevent import OrderedLogEvent
+from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
-from foundation_tenant.forms.tagform import TagForm
-from foundation_tenant.forms.intakeform import IntakeForm
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.intake import Intake
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -87,24 +86,74 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         self.tenant.users.add(self.user)
         self.tenant.save()
 
-        # Setup User.
-        TenantMe.objects.create(
-            owner=self.user,
-        )
-
     @transaction.atomic
     def tearDown(self):
-        PostalAddress.objects.delete_all()
-        ContactPoint.objects.delete_all()
+        PostalAddress.objects.delete_all()  # Must be above Tasks.
+        ContactPoint.objects.delete_all()   # Must be above Tasks.
+        Task.objects.delete_all()
+        OrderedLogEvent.objects.delete_all()
+        OrderedCommentPost.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
         # super(TenantTaskTestCases, self).tearDown()
+    
+    @transaction.atomic
+    def test_task_master_page_with_empty(self):
+        url = reverse('tenant_task_master')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Tasks',response.content)
 
     @transaction.atomic
-    def test_task_list_page(self):
-        url = reverse('tenant_task')
+    def test_task_master_page_with_data(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        url = reverse('tenant_task_master')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Tasks',response.content)
+
+    @transaction.atomic
+    def test_task_details_page_with_404(self):
+        url = reverse('tenant_task_details', args=[666,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'404',response.content)
+
+    @transaction.atomic
+    def test_task_details_page(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        url = reverse('tenant_task_details', args=[666,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
