@@ -40,10 +40,4 @@ def is_note_protected(note):
     except Intake.DoesNotExist:
         pass
 
-    try:
-        Task.objects.get(note=note)
-        return True
-    except Task.DoesNotExist:
-        pass
-
     return False

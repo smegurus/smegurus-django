@@ -15,13 +15,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
-
-
-# class DateTimeSerializer(serializers.Serializer):
-#     date = serializers.IntegerField(required=True,)
-#     comment = serializers.CharField(max_length=2055, required=False,)
-#     is_employee_created = serializers.BooleanField(default=False, required=False,)
-
+from smegurus import constants
 
 
 class TaskFilter(django_filters.FilterSet):
@@ -119,5 +113,37 @@ class TaskViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return response.Response(
                 data={'message': str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def complete_task(self, request, pk=None):
+        """
+        Function will mark this Task as 'COMPLETED_TASK_STATUS'.
+        """
+        try:
+            task = self.get_object()
+            task.status = constants.COMPLETED_TASK_STATUS
+            task.save()
+            return response.Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def incomplete_task(self, request, pk=None):
+        """
+        Function will mark this Task as 'INCOMPLETE_TASK_STATUS'.
+        """
+        try:
+            task = self.get_object()
+            task.status = constants.INCOMPLETE_TASK_STATUS
+            task.save()
+            return response.Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            return response.Response(
+                data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )

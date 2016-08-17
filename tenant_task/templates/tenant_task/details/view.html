@@ -197,24 +197,25 @@
         <div class="col-lg-4">
             <!-- Aside panel-->
             <div class="panel b">
-                {% comment %}
+                {% if task.assignee == request.tenant_me %}
                 <div class="panel-body bb">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <button type="button" class="btn btn-default btn-oval">
-                            <em class="fa fa-play fa-fw text-muted"></em>
-                            <span>Start</span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-oval">
-                            <em class="fa fa-pause fa-fw text-muted"></em>
-                            <span>Pause</span>
+                            <button id="id_complete_btn" onclick="ajax_complete_task();" type="button" class="btn btn-success btn-oval">
+                                <em class="fa fa-check"></em>
+                                <span>Complete</span>
                             </button>
                         </div>
                         <div class="pull-right">
-                            <button type="button" class="btn btn-danger btn-oval">Cancel</button>
+                            <button id="id_incomplete_btn" onclick="ajax_incomplete_task();" type="button" class="btn btn-danger btn-oval">
+                                <em class="fa fa-close"></em>
+                                <span>Incomplete</span>
+                            </button>
                         </div>
                     </div>
                 </div>
+                {% endif %}
+                {% comment %}
                 <div class="panel-body bb">
                     <div class="table-grid table-grid-align-middle mv">
                         <div class="col">

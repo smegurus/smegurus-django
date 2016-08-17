@@ -160,26 +160,6 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
         self.assertTrue(is_note_protected(note))
 
     @transaction.atomic
-    def test_is_note_protected_by_task(self):
-        # Create our data.
-        me = TenantMe.objects.create(
-            owner=self.user,
-        )
-        note = Note.objects.create(
-            name='Test',
-            description='test',
-            me=me,
-        )
-        Task.objects.create(
-            note=note,
-            assigned_by=me,
-            assignee=me,
-        )
-
-        # Run our test and verify.
-        self.assertTrue(is_note_protected(note))
-
-    @transaction.atomic
     def test_is_note_protected_by_nothing(self):
         # Create our data.
         me = TenantMe.objects.create(

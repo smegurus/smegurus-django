@@ -61,7 +61,7 @@
                         </td>
                         <td>{% if task.assignee %}{{ task.assignee.name }}{% else %}{% trans 'Not Assigned' %}{% endif %}</td>
                         <td>{% if task.name %}{{ task.name }}{% else %}{% trans '-' %}{% endif %}</td>
-                        <td>{% if task.event.finish %}{{ task.event.finish }}{% else %}{% trans '-' %}{% endif %}</td>
+                        <td>{% if task.due %}{{ task.due }}{% else %}{% trans '-' %}{% endif %}</td>
                         <td>{{ task.last_modified }}</td>
                         <td>
                             <a onclick="ajax_delete_task({{ task.id }});" class="btn btn-xs btn-danger" id="id_delete_task_{{ task.id }}">
@@ -95,7 +95,7 @@
                         <button type="button" class="btn btn-sm btn-default">Search</button>
                         </span>
                     </div>
-                    
+
                 </div>
                 <div class="col-lg-8"></div>
                 <div class="col-lg-2">

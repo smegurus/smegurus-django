@@ -61,8 +61,7 @@
         delete_tenant_note(
             id,
             function(json_result) {
-                console.log(json_result);
-                // window.location = "{% url 'tenant_note_master' me.id %}";
+                location.reload(true);
             },
             function(error_json_result) {
                 $('#id_delete_btn_'+id).prop("disabled", false);
