@@ -25,9 +25,9 @@ class OrderedCommentPost(AbstractThing):
         help_text=_('The user whom this comment belongs to.'),
         blank=True,
         null=True,
-        related_name="ordered_log_event_me_%(app_label)s_%(class)s_related",
+        related_name="ordered_comment_post_me_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
-    
+
     def __str__(self):
         return str(self.description)

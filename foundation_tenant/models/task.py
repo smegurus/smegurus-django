@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
 from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
@@ -89,3 +90,8 @@ class Task(AbstractThing):
 
     def __str__(self):
         return str(self.name)
+
+    def get_absolute_url(self):
+        return reverse('tenant_task_details', args=[self.id])
+
+    # url(r'^task/(.*)/$', views.task_details_page, name=''),
