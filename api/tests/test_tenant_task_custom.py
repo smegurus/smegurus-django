@@ -110,6 +110,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             assigned_by=me,
             assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
         )
         data = {
             'id': task.id,
@@ -138,6 +139,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -176,6 +178,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=new_user,
             assigned_by=me,
             assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -194,6 +197,316 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(log_event_count, 1)
         self.assertEqual(len(mail.outbox), 1)
 
-# post_comment
-# complete_task
-# incomplete_task
+    @transaction.atomic
+    def test_post_comment_with_anonymous_user(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        task = Task.objects.create(
+            id=666,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.unauthorized_client.put(
+            '/api/tenanttask/666/post_comment/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        count = OrderedCommentPost.objects.count()
+        self.assertEqual(count, 0)
+        self.assertEqual(len(mail.outbox), 0)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 0)
+
+    @transaction.atomic
+    def test_post_comment_with_owner_user(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/post_comment/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        count = OrderedCommentPost.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(len(mail.outbox), 1)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 1)
+
+    @transaction.atomic
+    def test_post_comment_with_different_owner_user(self):
+        new_user = User.objects.create_user(  # Create our user.
+            email='hideauze@evolvers.com',
+            username='whalesquid',
+            password='evolve_or_die'
+        )
+        new_user.is_active = True
+        new_user.save()
+
+        me = TenantMe.objects.create(
+            id=666,
+            owner=new_user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=new_user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/post_comment/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        count = OrderedCommentPost.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(len(mail.outbox), 1)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 1)
+
+
+    @transaction.atomic
+    def test_complete_task_with_anonymous_user(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        task = Task.objects.create(
+            id=666,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.unauthorized_client.put(
+            '/api/tenanttask/666/complete_task/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        count = OrderedCommentPost.objects.count()
+        self.assertEqual(count, 0)
+        self.assertEqual(len(mail.outbox), 0)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 0)
+        task = Task.objects.get(pk=666)
+        self.assertEqual(task.status, constants.ASSIGNED_TASK_STATUS)
+
+    @transaction.atomic
+    def test_complete_task_with_owner_user(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+        task.participants.add(me)
+
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/complete_task/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(mail.outbox), 1)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 1)
+        task = Task.objects.get(pk=666)
+        self.assertEqual(task.status, constants.COMPLETED_TASK_STATUS)
+
+    @transaction.atomic
+    def test_complete_task_with_different_owner_user(self):
+        new_user = User.objects.create_user(  # Create our user.
+            email='hideauze@evolvers.com',
+            username='whalesquid',
+            password='evolve_or_die'
+        )
+        new_user.is_active = True
+        new_user.save()
+
+        me = TenantMe.objects.create(
+            id=666,
+            owner=new_user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=new_user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/complete_task/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(mail.outbox), 1)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 1)
+        task = Task.objects.get(pk=666)
+        self.assertEqual(task.status, constants.COMPLETED_TASK_STATUS)
+
+    @transaction.atomic
+    def test_incomplete_task_with_anonymous_user(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        task = Task.objects.create(
+            id=666,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.unauthorized_client.put(
+            '/api/tenanttask/666/incomplete_task/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        count = OrderedCommentPost.objects.count()
+        self.assertEqual(count, 0)
+        self.assertEqual(len(mail.outbox), 0)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 0)
+        task = Task.objects.get(pk=666)
+        self.assertEqual(task.status, constants.ASSIGNED_TASK_STATUS)
+
+    @transaction.atomic
+    def test_incomplete_task_with_owner_user(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+        task.participants.add(me)
+
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/incomplete_task/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(mail.outbox), 1)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 1)
+        task = Task.objects.get(pk=666)
+        self.assertEqual(task.status, constants.INCOMPLETE_TASK_STATUS)
+
+    @transaction.atomic
+    def test_incomplete_task_with_different_owner_user(self):
+        new_user = User.objects.create_user(  # Create our user.
+            email='hideauze@evolvers.com',
+            username='whalesquid',
+            password='evolve_or_die'
+        )
+        new_user.is_active = True
+        new_user.save()
+
+        me = TenantMe.objects.create(
+            id=666,
+            owner=new_user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=new_user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+        task.participants.add(me)
+
+        data = {
+            'id': task.id,
+            'text': 'Used for unit testing purposes.',
+            'me': me.id,
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/incomplete_task/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(mail.outbox), 1)
+        log_event_count = OrderedLogEvent.objects.count()
+        self.assertEqual(log_event_count, 1)
+        task = Task.objects.get(pk=666)
+        self.assertEqual(task.status, constants.INCOMPLETE_TASK_STATUS)
