@@ -1,5 +1,11 @@
 {% load i18n %}
 <script>
+    function print_error_handler(error_json_result) {
+        var string = JSON.stringify( error_json_result );
+        console.log(string);
+        alert(string);
+    }
+
     $(document).ready(function () {
         // Required code to initialize the WYSIWYG editor.
         $('#editor').wysiwyg();
@@ -12,10 +18,6 @@
         $( "#id_task_event_due" ).datepicker({
             dateFormat: "yy-mm-dd",
         });
-
-
-
-
 
         /**
          *  Function will automatically save the task "start_date".
@@ -36,21 +38,41 @@
             var django_date = date_to_django_date(unprotected_date);
 
             $('#id_task_event_start').prop("disabled", true);
-            tenant_task_change_date(
+            get_tenant_task(
                 {{ task.id }},
-                django_date,
-                true,
-                function(json_result) {
-                    $('#id_task_event_start').prop("disabled", false);
+                function(task) {
+                    task['start'] = django_date;
+                    set_tenant_tasks(
+                        task,
+                        function(json_result) {
+
+                            var text = "Changed start date to "+django_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            tenant_task_log_event(
+                                {{ task.id }},
+                                text,
+                                function(json_result) {
+                                    $('#id_task_event_start').prop("disabled", false);
+                                },
+                                function(error_json_result) {
+                                    $('#id_task_event_start').prop("disabled", false);
+                                    print_error_handler(error_json_result);
+                                }
+                            ); // end Change Date
+
+                        },
+                        function(error_json_result) {
+                            $('#id_task_event_start').prop("disabled", false);
+                            print_error_handler(error_json_result);
+                        }
+                    ); // end Set Task.
                 },
                 function(error_json_result) {
                     $('#id_task_event_start').prop("disabled", false);
-                    var string = JSON.stringify( error_json_result );
-                    console.log(string);
-                    alert(string);
+                    print_error_handler(error_json_result);
                 }
-            ); // end Change Date
-        });
+            ); // end Get Task
+
+        }); // end START DATE HANDLER.
 
         /**
          *  Function will automatically save the task "due_date".
@@ -70,25 +92,44 @@
             // to support.
             var django_date = date_to_django_date(unprotected_date);
 
-            $('#id_task_event_start').prop("disabled", true);
-            tenant_task_change_date(
+            $('#id_task_event_due').prop("disabled", true);
+            get_tenant_task(
                 {{ task.id }},
-                django_date,
-                false,
-                function(json_result) {
-                    $('#id_task_event_start').prop("disabled", false);
+                function(task) {
+                    task['due'] = django_date;
+                    set_tenant_tasks(
+                        task,
+                        function(json_result) {
+
+                            var text = "Changed due date to "+django_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            tenant_task_log_event(
+                                {{ task.id }},
+                                text,
+                                function(json_result) {
+                                    $('#id_task_event_due').prop("disabled", false);
+                                },
+                                function(error_json_result) {
+                                    $('#id_task_event_due').prop("disabled", false);
+                                    print_error_handler(error_json_result);
+                                }
+                            ); // end Change Date
+
+                        },
+                        function(error_json_result) {
+                            $('#id_task_event_due').prop("disabled", false);
+                            print_error_handler(error_json_result);
+                        }
+                    ); // end Set Task.
                 },
                 function(error_json_result) {
-                    $('#id_task_event_start').prop("disabled", false);
-                    var string = JSON.stringify( error_json_result );
-                    console.log(string);
-                    alert(string);
+                    $('#id_task_event_due').prop("disabled", false);
+                    print_error_handler(error_json_result);
                 }
-            ); // end Change Date
+            ); // end Get Task
         });
 
 
-        
+
 
 
 

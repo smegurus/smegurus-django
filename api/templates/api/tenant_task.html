@@ -82,13 +82,12 @@
         });
     }
 
-    function tenant_task_change_date(id, date, is_start, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/change_date/?format=json";
+    function tenant_task_log_event(id, text, success_callback, error_callback) {
+        var url = "/api/tenanttask/" + id + "/log_event/?format=json";
         jQuery.ajax({
             url: url,
             data: JSON.stringify({
-                'date': date,
-                'is_start': is_start,
+                'text': text,
             }),
             dataType: 'text',
             headers: {

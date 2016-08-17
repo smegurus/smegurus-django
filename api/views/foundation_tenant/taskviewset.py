@@ -10,16 +10,11 @@ from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
-from api.serializers.foundation_tenant import TaskSerializer
+from api.serializers.foundation_tenant import TaskSerializer, OrderedLogEventSerializer, OrderedCommentPostSerializer
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
-
-
-class DateTimeSerializer(serializers.Serializer):
-    date = serializers.DateTimeField(required=True,)
-    is_start = serializers.BooleanField(required=True,)
 
 
 # class DateTimeSerializer(serializers.Serializer):
@@ -88,34 +83,23 @@ class TaskViewSet(viewsets.ModelViewSet):
         instance.delete()  # Delete our model.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    def change_date(self, request, pk=None):
+    def log_event(self, request, pk=None):
         try:
-            serializer = DateTimeSerializer(data=request.data)
+            serializer = OrderedLogEventSerializer(data=request.data)
             if serializer.is_valid():
-                task = self.get_object()
-                text = ""
-                is_start = serializer.data['is_start']
-                if is_start:
-                    text = "Change start date by " + str(request.tenant_me.name)
-                    task.start = serializer.data['date']
-                else:
-                    text = "Change due date by " + str(request.tenant_me.name)
-                    task.due = serializer.data['date']
-                task.save()
-
-                # Keep a log of change of date.
-                event = OrderedLogEvent.objects.create(
+                log_event = serializer.save(
                     me=self.request.tenant_me,
-                    text=text,
                     ip_address = self.request.META.get('REMOTE_ADDR')
                 )
-                task.log_events.add(event)
+                task = self.get_object()
+                task.log_events.add(log_event)
+                return response.Response(status=status.HTTP_200_OK)
         except Exception as e:
-            print(e)
+            return response.Response(
+                data={'message': str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-
-
-        return response.Response(
-            data={'message': 'Task date has been changed.'},
-            status=status.HTTP_200_OK
-        )
+    # @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    # def post_comment(self, request, pk=None):
+    #     pass #TODO: IMplement.
