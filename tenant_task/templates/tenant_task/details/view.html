@@ -112,18 +112,38 @@
                     </div>
 
                     <p class="text-right">
-                        <button id="id_save_btn"
-                           onclick="ajax_start_daisy_chain_update();"
+                        <button id="id_update_btn"
                               type="button"
-                             class="btn btn-primary">{% trans 'Save' %}</button>
+                             class="btn btn-primary">{% trans 'Update' %}</button>
                     </p>
 
                 </div>
             </div>
             <!-- End Main panel-->
 
+            <!-- TASK LOG -->
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="panel-title">Task History</div>
+                </div>
+                <!-- START list group-->
+                <div data-height="180" data-scrollable="" class="list-group">
+
+                    {% for log_event in task.log_events.all %}
+                    <a href="#" class="list-group-item">
+                        <div class="media-box">
+                            <p class="mb-sm">
+                                <small>{{ log_event.text }}</small>
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <!-- end TASK LOG -->
+
             <!-- Team messages-->
-            {% comment %}
             <div class="panel b">
                 <div class="panel-heading">
                     <div class="pull-right label label-danger">5</div>
@@ -133,6 +153,7 @@
                 <!-- START list group-->
                 <div data-height="180" data-scrollable="" class="list-group">
                     <!-- START list group item-->
+                    {% comment %}
                     <a href="#" class="list-group-item">
                         <div class="media-box">
                             <div class="pull-left">
@@ -148,75 +169,9 @@
                             </div>
                         </div>
                     </a>
+                    {% endcomment %}
                     <!-- END list group item-->
-                    <!-- START list group item-->
-                    <a href="#" class="list-group-item">
-                        <div class="media-box">
-                            <div class="pull-left">
-                                <img src="img/user/03.jpg" alt="Image" class="media-box-object img-circle thumb32">
-                            </div>
-                            <div class="media-box-body clearfix">
-                                <small class="pull-right">3h</small>
-                                <strong class="media-box-heading text-primary">
-                                <span class="circle circle-success circle-lg text-left"></span>Jessica Silva</strong>
-                                <p class="mb-sm">
-                                    <small>Cras sit amet nibh libero, in gravida nulla. Nulla facilisi.</small>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- END list group item-->
-                    <!-- START list group item-->
-                    <a href="#" class="list-group-item">
-                        <div class="media-box">
-                            <div class="pull-left">
-                                <img src="img/user/09.jpg" alt="Image" class="media-box-object img-circle thumb32">
-                            </div>
-                            <div class="media-box-body clearfix">
-                                <small class="pull-right">4h</small>
-                                <strong class="media-box-heading text-primary">
-                                <span class="circle circle-danger circle-lg text-left"></span>Jessie Wells</strong>
-                                <p class="mb-sm">
-                                    <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- END list group item-->
-                    <!-- START list group item-->
-                    <a href="#" class="list-group-item">
-                        <div class="media-box">
-                            <div class="pull-left">
-                                <img src="img/user/12.jpg" alt="Image" class="media-box-object img-circle thumb32">
-                            </div>
-                            <div class="media-box-body clearfix">
-                                <small class="pull-right">1d</small>
-                                <strong class="media-box-heading text-primary">
-                                <span class="circle circle-danger circle-lg text-left"></span>Rosa Burke</strong>
-                                <p class="mb-sm">
-                                    <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- END list group item-->
-                    <!-- START list group item-->
-                    <a href="#" class="list-group-item">
-                        <div class="media-box">
-                            <div class="pull-left">
-                                <img src="img/user/10.jpg" alt="Image" class="media-box-object img-circle thumb32">
-                            </div>
-                            <div class="media-box-body clearfix">
-                                <small class="pull-right">2d</small>
-                                <strong class="media-box-heading text-primary">
-                                <span class="circle circle-danger circle-lg text-left"></span>Michelle Lane</strong>
-                                <p class="mb-sm">
-                                    <small>Mauris eleifend, libero nec cursus lacinia...</small>
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- END list group item-->
+
                 </div>
                 <!-- END list group-->
                 <!-- START panel footer-->
@@ -231,8 +186,8 @@
                 </div>
                 <!-- END panel-footer-->
             </div>
-            {% endcomment %}
             <!-- End Team messages-->
+
         </div>
         <div class="col-lg-4">
             <!-- Aside panel-->
@@ -324,47 +279,45 @@
                                 <select id="id_assignee" class="chosen-select form-control">
                                     <optgroup label="Administrators">
                                         {% for admin in admins.all %}
-                                            {% if admin != request.tenant_me %}
-                                                <option value="{{ admin.id }}">
-                                                   {{ admin.owner.first_name }} {{ admin.owner.last_name }}
-                                                </option>
-                                            {% endif %}
+                                            <option value="{{ admin.id }}" {% if task.assignee == admin %}selected="true"{% endif %}>
+                                            {{ admin.owner.first_name }} {{ admin.owner.last_name }}
+                                            </option>
                                         {% endfor %}
                                     </optgroup>
                                     <optgroup label="Managers">
                                         {% for manager in managers.all %}
-                                            {% if manager != request.tenant_me %}
-                                                <option value="{{ manager.id }}">
+
+                                            <option value="{{ manager.id }}" {% if task.assignee == manager %}selected="true"{% endif %}>
                                                     {{ manager.owner.first_name }} {{ manager.owner.last_name }}
-                                                </option>
-                                            {% endif %}
+                                            </option>
+
                                         {% endfor %}
                                     </optgroup>
                                     <optgroup label="Advisors">
                                         {% for advisor in advisors.all %}
-                                            {% if advisor != request.tenant_me %}
-                                                <option value="{{ advisor.id }}">
-                                                    {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
-                                                </option>
-                                            {% endif %}
+
+                                            <option value="{{ advisor.id }}" {% if task.assignee == advisor %}selected="true"{% endif %}>
+                                                {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
+                                            </option>
+
                                         {% endfor %}
                                     </optgroup>
                                     <optgroup label="Mentors">
                                         {% for mentor in mentors.all %}
-                                            {% if mentor != request.tenant_me %}
-                                                <option value="{{ mentor.id }}">
-                                                    {{ mentor.owner.first_name }} {{ mentor.owner.last_name }}
-                                                </option>
-                                            {% endif %}
+
+                                            <option value="{{ mentor.id }}" {% if task.assignee == mentor %}selected="true"{% endif %}>
+                                                {{ mentor.owner.first_name }} {{ mentor.owner.last_name }}
+                                            </option>
+
                                         {% endfor %}
                                     </optgroup>
                                     <optgroup label="Entreprenuers">
                                         {% for entrepreneur in entrepreneurs.all %}
-                                            {% if entrepreneur != request.tenant_me %}
-                                                <option value="{{ entrepreneur.id }}">
-                                                    {{ entrepreneur.owner.first_name }} {{ entrepreneur.owner.last_name }}
-                                                </option>
-                                            {% endif %}
+
+                                            <option value="{{ entrepreneur.id }}" {% if task.assignee == entrepreneur %}selected="true"{% endif %}>
+                                                {{ entrepreneur.owner.first_name }} {{ entrepreneur.owner.last_name }}
+                                            </option>
+
                                         {% endfor %}
                                     </optgroup>
                                 </select>

@@ -22,7 +22,7 @@
         /**
          *  Function will automatically save the task "start_date".
          */
-        $( "#id_task_event_start" ).change(function(e) {
+        $( "#id_task_event_start" ).change(function(e) {  //
             // Extract the string.
             var raw_text_date = $('#id_task_event_start').val() ;
 
@@ -46,12 +46,15 @@
                         task,
                         function(json_result) {
 
-                            var text = "Changed start date to "+django_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            var text = "Changed start date to "+raw_text_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
                             tenant_task_log_event(
                                 {{ task.id }},
                                 text,
                                 function(json_result) {
                                     $('#id_task_event_start').prop("disabled", false);
+                                    location.reload(true);
+
+                                    //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
                                 },
                                 function(error_json_result) {
                                     $('#id_task_event_start').prop("disabled", false);
@@ -77,7 +80,7 @@
         /**
          *  Function will automatically save the task "due_date".
          */
-        $( "#id_task_event_due" ).change(function(e) {
+        $( "#id_task_event_due" ).change(function(e) {  // DUE DATE HANDLER
             // Extract the string.
             var raw_text_date = $('#id_task_event_due').val() ;
 
@@ -101,12 +104,15 @@
                         task,
                         function(json_result) {
 
-                            var text = "Changed due date to "+django_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            var text = "Changed due date to "+raw_text_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
                             tenant_task_log_event(
                                 {{ task.id }},
                                 text,
                                 function(json_result) {
                                     $('#id_task_event_due').prop("disabled", false);
+                                    location.reload(true);
+
+                                    //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
                                 },
                                 function(error_json_result) {
                                     $('#id_task_event_due').prop("disabled", false);
@@ -126,7 +132,137 @@
                     print_error_handler(error_json_result);
                 }
             ); // end Get Task
-        });
+        }); // end DUE DATE HANDLER
+
+
+        $( "#id_assignee" ).change(function(e) {  // ASSIGNEE HANDLER
+            // Extract the string.
+            var assignee = $('#id_assignee').val() ;
+
+            $('#id_assignee').prop("disabled", true);
+            get_tenant_task(
+                {{ task.id }},
+                function(task) {
+                    task['assignee'] = assignee;
+                    set_tenant_tasks(
+                        task,
+                        function(json_result) {
+
+                            var text = "Re-assined task by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            tenant_task_log_event(
+                                {{ task.id }},
+                                text,
+                                function(json_result) {
+                                    location.reload(true);
+
+                                    //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                                },
+                                function(error_json_result) {
+                                    $('#id_assignee').prop("disabled", false);
+                                    print_error_handler(error_json_result);
+                                }
+                            ); // end Change Date
+
+                        },
+                        function(error_json_result) {
+                            $('#id_assignee').prop("disabled", false);
+                            print_error_handler(error_json_result);
+                        }
+                    ); // end Set Task.
+                },
+                function(error_json_result) {
+                    $('#id_assignee').prop("disabled", false);
+                    print_error_handler(error_json_result);
+                }
+            ); // end Get Task
+        }); // end ASSIGNEE HANDLER
+
+
+        $( "#select2-1" ).change(function(e) {  // TAGS HANDLER
+            // Extract the string.
+            var tags = $('#select2-1').val() ;
+
+            $('#id_assignee').prop("disabled", true);
+            get_tenant_task(
+                {{ task.id }},
+                function(task) {
+                    task['tags'] = tags;
+                    set_tenant_tasks(
+                        task,
+                        function(json_result) {
+
+                            var text = "Modified tags in task by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            tenant_task_log_event(
+                                {{ task.id }},
+                                text,
+                                function(json_result) {
+                                    location.reload(true);
+
+                                    //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                                },
+                                function(error_json_result) {
+                                    $('#select2-1').prop("disabled", false);
+                                    print_error_handler(error_json_result);
+                                }
+                            ); // end Change Date
+
+                        },
+                        function(error_json_result) {
+                            $('#select2-1').prop("disabled", false);
+                            print_error_handler(error_json_result);
+                        }
+                    ); // end Set Task.
+                },
+                function(error_json_result) {
+                    $('#select2-1').prop("disabled", false);
+                    print_error_handler(error_json_result);
+                }
+            ); // end Get Task
+        }); // end TAGS HANDLER
+
+
+        $( "#id_update_btn" ).click(function(e) {  // CLICK UPDATE HANDLER
+            // Extract the string.
+            var description = $('#editor').html();
+
+            $('#id_update_btn').prop("disabled", true);
+            get_tenant_task(
+                {{ task.id }},
+                function(task) {
+                    task['description'] = description;
+                    set_tenant_tasks(
+                        task,
+                        function(json_result) {
+
+                            var text = "Modified task description by {{ request.user.first_name }} {{ request.user.last_name }}";
+                            tenant_task_log_event(
+                                {{ task.id }},
+                                text,
+                                function(json_result) {
+                                    location.reload(true);
+
+                                    //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                                },
+                                function(error_json_result) {
+                                    $('#id_update_btn').prop("disabled", false);
+                                    print_error_handler(error_json_result);
+                                }
+                            ); // end Change Date
+
+                        },
+                        function(error_json_result) {
+                            $('#id_update_btn').prop("disabled", false);
+                            print_error_handler(error_json_result);
+                        }
+                    ); // end Set Task.
+                },
+                function(error_json_result) {
+                    $('#id_update_btn').prop("disabled", false);
+                    print_error_handler(error_json_result);
+                }
+            ); // end Get Task
+        }); // end CLICK UPDATE HANDLER
+
 
 
 

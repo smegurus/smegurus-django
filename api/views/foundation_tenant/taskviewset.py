@@ -47,6 +47,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         task = serializer.save(
             owner=self.request.user,
             assigned_by=self.request.tenant_me,
+            assignee=self.request.tenant_me,
         )
 
         # Update 'Task' model.
@@ -55,8 +56,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         # Create "Ticket created" log event and attach it this Task.
         event = OrderedLogEvent.objects.create(
             me=self.request.tenant_me,
-            text='Created Task #'+str(task.id),
-            ip_address = self.request.META.get('REMOTE_ADDR')
+            text='Created Task #'+str(task.id)
         )
         task.log_events.add(event)
 
@@ -69,17 +69,12 @@ class TaskViewSet(viewsets.ModelViewSet):
         if task.assignee:
             task.participants.add(task.assignee)
 
-        # event = OrderedLogEvent.objects.create(
-        #     me=self.request.tenant_me,
-        #     text='Updated task #'+str(task.id)+' by '+task.assigned_by.name,
-        #     ip_address = self.request.META.get('REMOTE_ADDR')
-        # )
-        # task.log_events.add(event)
-
     def perform_destroy(self, instance):
         """Override the deletion function to include deletion of associated models."""
-        for log_event in instance.log_events.all():
+        for log_event in instance.log_events.all():  # Delete associated models.
             log_event.delete()
+        for post in instance.comment_posts.all():
+            post.delete()
         instance.delete()  # Delete our model.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
@@ -87,10 +82,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         try:
             serializer = OrderedLogEventSerializer(data=request.data)
             if serializer.is_valid():
-                log_event = serializer.save(
-                    me=self.request.tenant_me,
-                    ip_address = self.request.META.get('REMOTE_ADDR')
-                )
+                log_event = serializer.save(me=self.request.tenant_me)
                 task = self.get_object()
                 task.log_events.add(log_event)
                 return response.Response(status=status.HTTP_200_OK)

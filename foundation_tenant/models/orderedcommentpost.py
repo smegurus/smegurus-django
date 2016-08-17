@@ -28,12 +28,6 @@ class OrderedCommentPost(AbstractThing):
         related_name="ordered_log_event_me_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
-    ip_address = models.GenericIPAddressField(
-        _('IP Address'),
-        help_text=_('The IP address that belongs to the User whom made this post.'),
-        blank=True,
-        null=True,
-    )
-
+    
     def __str__(self):
         return str(self.description)

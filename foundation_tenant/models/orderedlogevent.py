@@ -40,12 +40,6 @@ class OrderedLogEvent(models.Model):
         blank=True,
         null=True,
     )
-    ip_address = models.GenericIPAddressField(
-        _('IP Address'),
-        help_text=_('The IP address that belongs to the User associated with this event.'),
-        blank=True,
-        null=True,
-    )
 
     def __str__(self):
         return str(self.text)

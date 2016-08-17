@@ -253,7 +253,7 @@ class TaskSerializer(serializers.ModelSerializer):
 class OrderedLogEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderedLogEvent
-        fields = ('id', 'created', 'last_modified', 'me', 'text', 'ip_address',)
+        fields = ('id', 'created', 'last_modified', 'me', 'text',)
 
 
 class OrderedCommentPostSerializer(serializers.ModelSerializer):
@@ -261,4 +261,4 @@ class OrderedCommentPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderedCommentPost
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
-                  'description', 'image', 'image_url', 'me', 'ip_address',)
+                  'description', 'image', 'image_url', 'me',)
