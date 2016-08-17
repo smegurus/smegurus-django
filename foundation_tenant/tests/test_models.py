@@ -36,6 +36,8 @@ from foundation_tenant.models.communityadvertisement import CommunityAdvertiseme
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.orderedlogevent import OrderedLogEvent
+from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -746,6 +748,154 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         # Run our test and verify.
         Note.objects.delete_all()
         count = Note.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()
+
+    @transaction.atomic
+    def test_ordered_log_event_to_string(self):
+        me = TenantM.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+            name='Ice Age',
+        )
+        obj = OrderedLogEvent.objects.create(
+            id=1,
+            me=me,
+            text="Ice Age"
+        )
+        self.assertIn(str(obj), 'Ice Age')
+        obj.delete();  # Cleanup
+        me.delete()
+
+    @transaction.atomic
+    def test_ordered_log_event_delete_all(self):
+        # Setup our unit test.
+        count = OrderedLogEvent.objects.all().count()
+        self.assertEqual(count, 0)
+        OrderedLogEvent.objects.bulk_create([
+            OrderedLogEvent(
+                id = 1111,
+                me=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                ),
+                text="Ice Age"
+            ),
+            OrderedLogEvent(
+                id = 2222,
+                me = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                ),
+                text="Global Cooling"
+            ),
+            OrderedLogEvent(
+                id = 3333,
+                me = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                ),
+                text="Solar Hibernation"
+            ),
+            OrderedLogEvent(
+                id = 4444,
+                me = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                ),
+                text="Mini-Ice Age"
+            ),
+            OrderedLogEvent(
+                id = 5555,
+                me = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                ),
+                text="Solar Reflective Particles"
+            ),
+        ])
+        count = OrderedLogEvent.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        OrderedLogEvent.objects.delete_all()
+        count = OrderedLogEvent.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()
+
+    @transaction.atomic
+    def test_ordered_comment_post_to_string(self):
+        me = TenantM.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+            name='Ice Age',
+        )
+        obj = OrderedCommentPost.objects.create(
+            id=1,
+            me=me,
+            description="Ice Age"
+        )
+        self.assertIn(str(obj), 'Ice Age')
+        obj.delete();  # Cleanup
+        me.delete()
+
+    @transaction.atomic
+    def test_ordered_log_event_delete_all(self):
+        # Setup our unit test.
+        count = OrderedCommentPost.objects.all().count()
+        self.assertEqual(count, 0)
+        OrderedCommentPost.objects.bulk_create([
+            OrderedCommentPost(
+                id = 1111,
+                me=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                ),
+                description="Ice Age"
+            ),
+            OrderedCommentPost(
+                id = 2222,
+                me = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Global Cooling"
+            ),
+            OrderedCommentPost(
+                id = 3333,
+                me = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Hibernation"
+            ),
+            OrderedCommentPost(
+                id = 4444,
+                me = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Mini-Ice Age"
+            ),
+            OrderedCommentPost(
+                id = 5555,
+                me = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Reflective Particles"
+            ),
+        ])
+        count = OrderedCommentPost.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        OrderedCommentPost.objects.delete_all()
+        count = OrderedLogEvent.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup

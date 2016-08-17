@@ -103,8 +103,8 @@
 
                         <!-- EDITOR CONTENT -->
                         <div id="editor" contenteditable="true" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">
-                            {% if task.note.description %}
-                                {{ task.note.description|escape|safe }}
+                            {% if task.description %}
+                                {{ task.description|escape|safe }}
                             {% endif %}
                         </div>
                         <!-- end EDITOR CONTENT -->

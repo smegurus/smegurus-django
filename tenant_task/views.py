@@ -27,10 +27,11 @@ def latest_task_master(request):
 
 
 def latest_task_details(request, id):
-    try:
-        return Task.objects.get(id=int(id)).last_modified
-    except Task.DoesNotExist:
-        return datetime.now()
+    return datetime.now()
+    # try:
+    #     return Task.objects.get(id=int(id)).last_modified
+    # except Task.DoesNotExist:
+    #     return datetime.now()
 
 
 @login_required(login_url='/en/login')

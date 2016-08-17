@@ -2,9 +2,9 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.orderedlogevent import OrderedLogEvent
+from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from smegurus import constants
 
 
@@ -31,21 +31,13 @@ class Task(AbstractThing):
         verbose_name_plural = 'Tasks'
 
     objects = TaskManager()
-    note = models.ForeignKey(
-        Note,
-        help_text=_('The user whom this message originates from.'),
+    start = models.DateTimeField(
         blank=True,
         null=True,
-        related_name="task_note_%(app_label)s_%(class)s_related",
-        on_delete=models.SET_NULL
     )
-    event = models.ForeignKey(
-        CalendarEvent,
-        help_text=_('The calendar event.'),
+    due = models.DateTimeField(
         blank=True,
         null=True,
-        related_name="task_event_%(app_label)s_%(class)s_related",
-        on_delete=models.SET_NULL
     )
     assigned_by = models.ForeignKey(
         TenantMe,
@@ -63,14 +55,7 @@ class Task(AbstractThing):
         related_name="task_assignee_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
-    status = models.PositiveSmallIntegerField(           # CONTROLLED BY SYSTEM
-        _("Status"),
-        choices=TASK_STATUS_OPTIONS,
-        help_text=_('The state this task.'),
-        default=constants.CREATED_TASK_STATUS,
-        db_index=True,
-    )
-    participants = models.ManyToManyField(
+    participants = models.ManyToManyField(                # CONTROLLED BY SYSTEM
         TenantMe,
         help_text=_('The users participating in the conversation of this tasks.'),
         blank=True,
@@ -81,6 +66,25 @@ class Task(AbstractThing):
         help_text=_('The tags that this Task belongs to.'),
         blank=True,
         related_name="tasks_tags_%(app_label)s_%(class)s_related"
+    )
+    status = models.PositiveSmallIntegerField(            # CONTROLLED BY SYSTEM
+        _("Status"),
+        choices=TASK_STATUS_OPTIONS,
+        help_text=_('The state this task.'),
+        default=constants.CREATED_TASK_STATUS,
+        db_index=True,
+    )
+    comment_posts = models.ManyToManyField(                # CONTROLLED BY SYSTEM
+        OrderedCommentPost,
+        help_text=_('The community posts associated with this Task.'),
+        blank=True,
+        related_name='task_comment_posts_%(app_label)s_%(class)s_related',
+    )
+    log_events = models.ManyToManyField(                  # CONTROLLED BY SYSTEM & PRIVATE
+        OrderedLogEvent,
+        help_text=_('The log events associated with this Task.'),
+        blank=True,
+        related_name='task_log_events_%(app_label)s_%(class)s_related',
     )
 
     def __str__(self):

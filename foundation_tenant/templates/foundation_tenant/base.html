@@ -197,7 +197,6 @@
                             </li>
                             <!-- end DASHBOARD -->
 
-                            {% if request.tenant_me.is_employee == True %}
                             <!-- TASKS -->
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_task_master' %}" title="{% trans 'Tasks' %}">
@@ -206,7 +205,6 @@
                                 </a>
                             </li>
                             <!-- end TASKS -->
-                            {% endif %}
 
                             <!-- PROGRESS -->
                             <li class=" ">

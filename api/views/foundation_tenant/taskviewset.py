@@ -9,16 +9,17 @@ from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant import TaskSerializer
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.orderedlogevent import OrderedLogEvent
+from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 
 
 class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         fields = ['created', 'last_modified', 'owner', 'name',
-                  'description', 'image', 'note', 'event',
-                  'assigned_by', 'assignee', 'status', 'participants', 'tags',]
+                  'description', 'image', 'assigned_by',
+                  'assignee', 'status', 'participants', 'tags',
+                  'start', 'due', 'comment_posts',]
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -32,35 +33,40 @@ class TaskViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Override the creation function to include creation of associated models."""
         # Create 'Task' models.
-        instance = serializer.save(
+        task = serializer.save(
             owner=self.request.user,
             assigned_by=self.request.tenant_me,
         )
 
-        # Create associated models.
-        if not instance.note:
-            instance.note = Note.objects.create(
-                name="Task #"+str(instance.id)+" Note",
-                owner=self.request.user,
-                me=self.request.tenant_me,
-            )
-        if not instance.event:
-            instance.event = CalendarEvent.objects.create(
-                name="Task #"+str(instance.id)+" Event",
-                owner=self.request.user,
-            )
-
         # Update 'Task' model.
-        instance.participants.add(self.request.tenant_me)
-        instance.save()
+        task.participants.add(self.request.tenant_me)
+
+        # Create "Ticket created" log event and attach it this Task.
+        event = OrderedLogEvent.objects.create(
+            me=self.request.tenant_me,
+            text='Created Task #'+str(task.id),
+            ip_address = self.request.META.get('REMOTE_ADDR')
+        )
+        task.log_events.add(event)
+
+    def perform_update(self, serializer):
+        """Update "TenantMe" model and its associated models."""
+        # Update the 'Task' model.
+        task = serializer.save()
+
+        # Update associated models.
+        if task.assignee:
+            task.participants.add(task.assignee)
+
+        # event = OrderedLogEvent.objects.create(
+        #     me=self.request.tenant_me,
+        #     text='Updated task #'+str(task.id)+' by '+task.assigned_by.name,
+        #     ip_address = self.request.META.get('REMOTE_ADDR')
+        # )
+        # task.log_events.add(event)
 
     def perform_destroy(self, instance):
         """Override the deletion function to include deletion of associated models."""
-        # Delete associated models.
-        if instance.note:
-            instance.note.delete()
-
-        if instance.event:
-            instance.event.delete()
-
+        for log_event in instance.log_events.all():
+            log_event.delete()
         instance.delete()  # Delete our model.

@@ -230,6 +230,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
 
 class NoteSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
         model = Note
@@ -238,9 +239,11 @@ class NoteSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
         model = Task
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
-                  'description', 'image', 'image_url', 'note', 'event',
-                  'assigned_by', 'assignee', 'status', 'participants', 'tags',)
+                  'description', 'image', 'image_url', 'assigned_by',
+                  'assignee', 'status', 'participants', 'tags',
+                  'start', 'due', 'comment_posts', 'log_events',)

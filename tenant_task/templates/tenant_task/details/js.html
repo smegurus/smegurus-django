@@ -13,6 +13,31 @@
             dateFormat: "yy-mm-dd",
         });
 
+
+
+
+
+        // Update "Task" for start data.
+        $( "#id_task_event_start" ).change(function(e) {
+            // Extract the string.
+            var raw_text_date = $('#id_task_event_start').val() ;
+
+            // Convert the string to a javascript "Date" object.
+            var unprotected_date = new Date(raw_text_date);
+
+            //BUGFIX: It appears when we converted our date, we lost a day.
+            //        Therefore, add a single day to our converted date.
+            unprotected_date.setDate(unprotected_date.getDate() + 1);
+
+            // Format our "Date" object to a format django "DatetimeField"
+            // to support.
+            var django_start_date = date_to_django_date(unprotected_date);
+            alert(django_start_date);
+        });
+
+
+
+
         // If user clicks on the title, then give them the ability to enter their value.
         $("#id_task_title_span").click(function () {
             // Replace one <span> element with <input> element.
@@ -64,6 +89,12 @@
         if (assignee) {
             task['assignee'] = assignee;
         }
+
+        // Extract the "title", process it, and save it.
+        task['name'] = $.trim($('#id_task_title_span').text());
+
+        // Extract the "editor", process it, and save it.
+        task['description'] =  $('#editor').html();
 
         // Update our 'Task' model.
         set_tenant_tasks(
@@ -137,6 +168,7 @@
                 // Save our calendar item.
                 calender_event['start'] = django_start_date;
                 calender_event['finish'] = django_finish_date;
+                calender_event['colour'] = "rgb(240, 80, 80)";
                 set_tenant_calendarevent(
                     calender_event,
                     function(json_result) {
@@ -160,11 +192,16 @@
     }
 
     function ajax_start_daisy_chain_update() {
+        var assignee = $('#id_assignee').val();
+        if (assignee <= 0) {
+            alert("Please pick an assignee.")
+            return;
+        }
         $('#id_save_btn').prop("disabled", true);
         get_tenant_task(
             {{ task.id }},
             function(task) {
-                ajax_do_daisy_chain_update_on_calendar_event(task); // Run the next GET/SAVE prcoess in the daisy chain.
+                //ajax_do_daisy_chain_update_on_calendar_event(task); // Run the next GET/SAVE prcoess in the daisy chain.
             },
             function(error_json_result) {
                 $('#id_save_btn').prop("disabled", false);
