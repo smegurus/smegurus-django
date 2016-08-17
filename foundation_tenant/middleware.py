@@ -21,7 +21,7 @@ class TenantMeMiddleware(object):
                 if created:
                     tenant_me.name = request.user.first_name+' '+request.user.last_name
                     tenant_me.given_name = request.user.first_name
-                    tenant_me.last_name = request.user.last_name
+                    tenant_me.family_name = request.user.last_name
                     tenant_me.email = request.user.email
                     tenant_me.address = PostalAddress.objects.create(
                         owner=request.user,
