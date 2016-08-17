@@ -12,10 +12,10 @@ register = template.Library()
 
 
 @register.simple_tag
-def count_unread_messages(me_id):
+def count_unread_messages(me):
     return Message.objects.filter(
-        recipient=me_id,
-        participants=me_id,
+        recipient=me,
+        participants=me,
         date_read=None,
     ).distinct('participants').count()
 
@@ -24,7 +24,6 @@ def count_unread_messages(me_id):
 def count_new_intakes():
     return Intake.objects.filter(
         Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.REJECTED_STATUS)
-        # | Q(status=constants.APPROVED_STATUS)
     ).count()
 
 
@@ -41,3 +40,16 @@ def is_note_protected(note):
         pass
 
     return False
+
+
+@register.simple_tag
+def count_pending_tasks(me):
+    return Task.objects.filter(
+        Q(
+            participants=me,
+            status=constants.UNASSIGNED_TASK_STATUS,
+        ) | Q(
+            participants=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+    ).count()

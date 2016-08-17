@@ -11,6 +11,7 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.templatetags.foundation_tenant_tags import count_unread_messages
 from foundation_tenant.templatetags.foundation_tenant_tags import count_new_intakes
 from foundation_tenant.templatetags.foundation_tenant_tags import is_note_protected
+from foundation_tenant.templatetags.foundation_tenant_tags import count_pending_tasks
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
@@ -70,12 +71,12 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all() # Must be first.
+        ContactPoint.objects.delete_all()  # Must be second.
         Task.objects.delete_all()
         Intake.objects.delete_all()
         Note.objects.delete_all()
         Message.objects.delete_all()
-        PostalAddress.objects.delete_all()
-        ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
@@ -173,3 +174,23 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
 
         # Run our test and verify.
         self.assertFalse(is_note_protected(note))
+
+
+    @transaction.atomic
+    def test_count_pending_tasks(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        # Run our test and verify.
+        self.assertEqual(count_pending_tasks(me), 1)
