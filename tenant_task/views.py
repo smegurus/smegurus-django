@@ -39,10 +39,31 @@ def latest_task_details(request, id):
 @tenant_profile_required
 @condition(last_modified_func=latest_task_master)
 def task_master_page(request):
-    tasks = Task.objects.filter(participants=request.tenant_me)
+    pending_tasks = Task.objects.filter(
+        Q(
+            participants=request.tenant_me,
+            status=constants.UNASSIGNED_TASK_STATUS,
+        ) | Q(
+            participants=request.tenant_me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+    )
+
+    incomplete_tasks = Task.objects.filter(
+        participants=request.tenant_me,
+        status=constants.INCOMPLETE_TASK_STATUS,
+    )
+
+    completed_tasks = Task.objects.filter(
+        participants=request.tenant_me,
+        status=constants.COMPLETED_TASK_STATUS,
+    )
+
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
-        'tasks': tasks,
+        'pending_tasks': pending_tasks,
+        'incomplete_tasks': incomplete_tasks,
+        'completed_tasks': completed_tasks,
     })
 
 

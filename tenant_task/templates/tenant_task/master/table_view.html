@@ -1,0 +1,53 @@
+{% load staticfiles i18n %}
+<div class="table-responsive">
+    <table id="table-ext-1" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Assignee</th>
+                <th>Title</th>
+                <th>Due</th>
+                <th>Last Updated</th>
+                <th>Options</th>
+                <!-- <th>Last Name</th>
+                <th>Email</th>
+                <th>Profile</th>
+                <th>Last Login</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks.all %}
+            <tr>
+                <td>
+                    <div class="media">
+                        {% if task.assignee.image != None and task.assignee.image != '' %}
+                            <img src="{{ task.assignee.image.imagefile.url }}" alt="{{ task.assignee.name }} Avatar" width="60" height="60" class="img-responsive img-circle">
+                        {% else %}
+                            <img src="{% static 'app/img/dummy.png' %}" alt="{{ task.assignee.name }} Avatar" width="60" height="60" class="img-responsive img-circle">
+                        {% endif %}
+                    </div>
+                </td>
+                <td>{% if task.assignee %}{{ task.assignee.name }}{% else %}{% trans 'Not Assigned' %}{% endif %}</td>
+                <td>{% if task.name %}{{ task.name }}{% else %}{% trans '-' %}{% endif %}</td>
+                <td>{% if task.due %}{{ task.due }}{% else %}{% trans '-' %}{% endif %}</td>
+                <td>{{ task.last_modified }}</td>
+                <td>
+                    <a onclick="ajax_delete_task({{ task.id }});" class="btn btn-xs btn-danger" id="id_delete_task_{{ task.id }}">
+                        {% trans 'Delete' %} <i class="fa fa-remove"></i>
+                    </a>
+                    <a href="{% url 'tenant_task_details' task.id %}" class="btn btn-xs btn-info">
+                        {% trans 'Details' %} <i class="fa fa-info-circle"></i>
+                    </a>
+                </td>
+                <!-- <td>the Bird</td>
+                <td>mail@example.com</td>
+                <td class="text-center">
+                    <div data-label="25%" class="radial-bar radial-bar-25 radial-bar-xs"></div>
+                </td>
+                <td>1 week</td> -->
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
