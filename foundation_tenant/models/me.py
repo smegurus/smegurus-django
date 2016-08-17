@@ -6,6 +6,12 @@ from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.abstract_person import AbstractPerson
 
 
+TASK_EMAIL_FREQUENCY_OPTIONS = (
+    (constants.NO_EMAIL_FREQUENCY_STATUS, _('Do not send any emails')),
+    (constants.ESSENTIAL_EMAIL_FREQUENCY_STATUS, _('Send only essential emails')),
+    (constants.EXCESSIVE_EMAIL_FREQUENCY_STATUS, _('Send all emails')),
+)
+
 class TenantMeManager(models.Manager):
     def get_by_owner_or_none(self, owner):
         try:
@@ -63,8 +69,8 @@ class TenantMe(AbstractPerson):
     )
 
     # Notification Control Variables.
-    notify_when_new_tasks = models.BooleanField(
-        _("Alert me when I receive a new task"),
+    notify_when_task_had_an_interaction = models.BooleanField(
+        _("Alert me when a task, that I am a participant in, had an interaction"),
         default=True
     )
     notify_when_new_messages = models.BooleanField(

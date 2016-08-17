@@ -198,7 +198,7 @@
         get_tenant_me(  // Fetch our Me.
             {{ request.tenant_me.owner.id }},
             function(me) {
-                me['notify_when_new_tasks'] = $('#id_notify_when_new_tasks').is(':checked');
+                me['notify_when_task_had_an_interaction'] = $('#id_notify_when_task_had_an_interaction').is(':checked');
                 me['notify_when_new_messages'] = $('#id_notify_when_new_messages').is(':checked');
                 me['notify_when_due_tasks'] = $('#id_notify_when_due_tasks').is(':checked');
 

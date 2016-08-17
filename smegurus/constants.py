@@ -64,6 +64,13 @@ INCOMPLETE_TASK_STATUS = 3
 COMPLETED_TASK_STATUS = 4
 
 
+# Variables control the level of detail email notification the User will
+# receive when interacted by the platform.
+NO_EMAIL_FREQUENCY_STATUS = 0
+ESSENTIAL_EMAIL_FREQUENCY_STATUS = 1
+EXCESSIVE_EMAIL_FREQUENCY_STATUS = 3
+
+
 CA_ADDRESS_REGIONS = [
     _('Ontario'),
     _('Quebec'),

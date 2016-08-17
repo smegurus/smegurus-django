@@ -157,7 +157,7 @@ class TenantMeSerializer(serializers.ModelSerializer):
         model = TenantMe
         fields = ('id', 'owner', 'is_admitted', 'tags', 'image', 'description',
                   'url', 'telephone', 'is_tos_signed',
-                  'is_setup', 'is_locked', 'notify_when_new_tasks',
+                  'is_setup', 'is_locked', 'notify_when_task_had_an_interaction',
                   'notify_when_new_messages', 'notify_when_due_tasks',
                   'address', 'address', 'contact_point', 'given_name',
                   'family_name', 'email', 'telephone',)

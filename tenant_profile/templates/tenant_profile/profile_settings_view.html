@@ -185,10 +185,10 @@
                                     <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input id="id_notify_when_new_tasks"
+                                                <input id="id_notify_when_task_had_an_interaction"
                                                      type="checkbox"
-                                                    value="" {% if request.tenant_me.notify_when_new_tasks %}checked{% endif %} />
-                                                {% trans 'Alert me when I receive a new task' %}
+                                                    value="" {% if request.tenant_me.notify_when_task_had_an_interaction %}checked{% endif %} />
+                                                {% trans 'Alert me when a task, that I am a participant in, had an interaction' %}
                                             </label>
                                         </div>
                                     </div>
