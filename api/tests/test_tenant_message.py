@@ -1,5 +1,6 @@
 import json
 from django.db import transaction
+from django.core import mail
 from django.core.urlresolvers import resolve, reverse
 from django.http import HttpRequest
 from django.http import QueryDict
@@ -115,6 +116,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(len(mail.outbox), 0)
 
     @transaction.atomic
     def test_post_from_sender_to_recipient(self):
@@ -142,6 +144,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(len(mail.outbox), 1)
 
     @transaction.atomic
     def test_put_with_anonymous_user(self):
@@ -164,6 +167,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+        self.assertEqual(len(mail.outbox), 0)
 
     @transaction.atomic
     def test_put_with_original_sender(self):
@@ -204,6 +208,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(mail.outbox), 0) # Editing does not qualify for email notification.
 
 
     @transaction.atomic
@@ -257,6 +262,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(len(mail.outbox), 0)
 
     @transaction.atomic
     def test_delete_with_anonymous_user(self):

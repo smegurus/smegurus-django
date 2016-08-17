@@ -11,6 +11,14 @@ from smegurus.settings import env_var
 from smegurus import constants
 
 
+# NOTE: This call command is integrated with 'django-tenants' library and
+#       as a result you will have to use 'tenant_command' in your call. Here
+#       is an example of calling this function:
+#       - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#       python manage.py tenant_command send_reviewed_email_for_intake 2
+#       - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
 class Command(BaseCommand):
     help = 'Command will send an email for the inputted intake.'
 

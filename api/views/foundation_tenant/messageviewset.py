@@ -1,5 +1,10 @@
 import django_filters
-from django.core.management import call_command
+from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.translation import ugettext_lazy as _
+from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
 from rest_framework import viewsets
 from rest_framework import authentication
 from rest_framework import permissions
@@ -11,6 +16,34 @@ from api.permissions import IsMessageObjectPermission
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import MessageSerializer
 from foundation_tenant.models.message import Message
+from smegurus.settings import env_var
+from smegurus import constants
+
+
+class SendEmailViewMixin(object):
+    def login_url(self, schema_name):
+        """Function will return the URL to the task page through the sub-domain of the organization."""
+        url = 'https://' if self.request.is_secure() else 'http://'
+        url += schema_name + "."
+        url += get_current_site(self.request).domain
+        url += reverse('foundation_auth_user_login')
+        url = url.replace("None","en")
+        return url
+
+    def send_notification(self, schema_name, message):
+        # Generate our email body text.
+        url = self.login_url(schema_name)
+        subject_text = 'New Message'
+        html_text = _('You have received a new message. Please login to SME Gurus here to read it: %(url)s') % {'url': str(url)}
+
+        # Send the email.
+        send_mail(
+            subject_text,
+            html_text,
+            env_var('DEFAULT_FROM_EMAIL'),
+            [message.recipient.owner.email],
+            fail_silently=False
+        )
 
 
 class MessageFilter(django_filters.FilterSet):
@@ -20,7 +53,7 @@ class MessageFilter(django_filters.FilterSet):
                   'description', 'url', 'sender', 'recipient', 'participants',]
 
 
-class MessageViewSet(viewsets.ModelViewSet):
+class MessageViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     queryset = Message.objects.filter()
     serializer_class = MessageSerializer
     pagination_class = LargeResultsSetPagination
@@ -44,7 +77,7 @@ class MessageViewSet(viewsets.ModelViewSet):
         # Send an email notification to the recipient only if the User
         # specified that they would like to receive new message notifications.
         if instance.recipient.notify_when_new_messages:
-            call_command('send_new_message_notification_email', str(instance.id))
+            self.send_notification(self.request.tenant.schema_name, instance)
 
     def perform_destroy(self, instance):
         """Override the deletion function to archive the message instead of deleting it."""
