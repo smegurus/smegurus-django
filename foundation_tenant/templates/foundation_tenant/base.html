@@ -201,7 +201,7 @@
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_task_master' %}" title="{% trans 'Tasks' %}">
                                     <em class="icon-notebook"></em>
-                                    <div class="pull-right label label-primary">{% count_pending_tasks request.tenant_me %}</div
+                                    <div class="pull-right label label-info">{% count_pending_tasks request.tenant_me %}</div>
                                     <span data-localize="sidebar.nav.TASKS">{% trans 'Tasks' %}</span>
                                 </a>
                             </li>
@@ -210,7 +210,7 @@
                             <!-- PROGRESS -->
                             <li class=" ">
                                 <a href="#progress" title="{% trans 'Progress' %}" data-toggle="collapse">
-                                    <div class="pull-right label label-info">1</div>
+                                    <!-- <div class="pull-right label label-info">1</div> -->
                                     <em class="icon-graph"></em>
                                     <span data-localize="sidebar.nav.PROGRESS">{% trans 'Progress' %}</span>
                                 </a>
@@ -298,13 +298,13 @@
 
                             <!-- MESSAGE -->
                             <li class=" ">
-                                <a href="#inbox" title="{% trans 'Progress' %}" data-toggle="collapse">
+                                <a href="#inbox" title="{% trans 'Messages' %}" data-toggle="collapse">
                                     <div class="pull-right label label-info">{% count_unread_messages request.tenant_me %}</div>
                                     <em class="icon-envelope"></em>
                                     <span data-localize="sidebar.nav.MESSAGES">{% trans 'Messages' %}</span>
                                 </a>
                                 <ul id="inbox" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">{% trans 'Progress' %}</li>
+                                    <li class="sidebar-subnav-header">{% trans 'Messages' %}</li>
                                     <li {% if page == 'inbox' %}class=" active"{% endif %}>
                                         <a href="{% url 'tenant_message_inbox' %}" title="{% trans 'Inbox' %}">
                                         <span>{% trans 'Inbox' %}</span>
