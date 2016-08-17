@@ -200,8 +200,8 @@
                             <!-- TASKS -->
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_task_master' %}" title="{% trans 'Tasks' %}">
+                                    <div class="pull-right label label-primary">{% count_pending_tasks request.tenant_me %}</div>
                                     <em class="icon-notebook"></em>
-                                    <div class="pull-right label label-info">{% count_pending_tasks request.tenant_me %}</div>
                                     <span data-localize="sidebar.nav.TASKS">{% trans 'Tasks' %}</span>
                                 </a>
                             </li>
