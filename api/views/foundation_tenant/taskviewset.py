@@ -48,6 +48,7 @@ class TaskViewSet(viewsets.ModelViewSet):
             owner=self.request.user,
             assigned_by=self.request.tenant_me,
             assignee=self.request.tenant_me,
+            status=constants.ASSIGNED_TASK_STATUS,
         )
 
         # Update 'Task' model.

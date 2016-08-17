@@ -125,7 +125,7 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'assigned_by': me.id,
             'assignee': me.id,
-            'status': constants.CREATED_TASK_STATUS,
+            'status': constants.UNASSIGNED_TASK_STATUS,
         }
         response = self.unauthorized_client.post(
             '/api/tenanttask/',
@@ -145,7 +145,7 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'assigned_by': me.id,
             'assignee': me.id,
-            'status': constants.CREATED_TASK_STATUS,
+            'status': constants.UNASSIGNED_TASK_STATUS,
         }
         response = self.authorized_client.post(
             '/api/tenanttask/',
@@ -171,7 +171,7 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'assigned_by': me.id,
             'assignee': me.id,
-            'status': constants.CREATED_TASK_STATUS,
+            'status': constants.UNASSIGNED_TASK_STATUS,
         }
         response = self.authorized_client.put(
             '/api/tenanttask/',
@@ -203,7 +203,7 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'assigned_by': me.id,
             'assignee': me.id,
-            'status': constants.CREATED_TASK_STATUS,
+            'status': constants.UNASSIGNED_TASK_STATUS,
         }
         response = self.authorized_client.put(
             '/api/tenanttask/666/',

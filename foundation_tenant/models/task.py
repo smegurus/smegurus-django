@@ -9,10 +9,10 @@ from smegurus import constants
 
 
 TASK_STATUS_OPTIONS = (
-    (constants.CREATED_TASK_STATUS, _('Created')),
-    (constants.PENDING_TASK_STATUS, _('Pending')),
+    (constants.UNASSIGNED_TASK_STATUS, _('Unassigned')),
+    (constants.ASSIGNED_TASK_STATUS, _('Assigned')),
     (constants.INCOMPLETE_TASK_STATUS, _('Incomplete')),
-    (constants.COMPLETE_TASK_STATUS, _('Complete')),
+    (constants.COMPLETED_TASK_STATUS, _('Complete')),
 )
 
 
@@ -71,7 +71,7 @@ class Task(AbstractThing):
         _("Status"),
         choices=TASK_STATUS_OPTIONS,
         help_text=_('The state this task.'),
-        default=constants.CREATED_TASK_STATUS,
+        default=constants.UNASSIGNED_TASK_STATUS,
         db_index=True,
     )
     comment_posts = models.ManyToManyField(                # CONTROLLED BY SYSTEM
