@@ -6,6 +6,25 @@
         alert(string);
     }
 
+    function post_comment_handler() {
+        $('#id_comment_btn').prop("disabled", true);
+        $('#id_comment').prop("disabled", true);
+        tenant_task_post_comment(
+            {{ task.id }},
+            $("#id_comment").val(),
+            function(json_result) {
+                location.reload(true);
+
+                //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+            },
+            function(error_json_result) {
+                $('#id_comment_btn').prop("disabled", false);
+                $('#id_comment').prop("disabled", true);
+                print_error_handler(error_json_result);
+            }
+        ); // end POST COMMENT
+    }
+
     $(document).ready(function () {
         // Required code to initialize the WYSIWYG editor.
         $('#editor').wysiwyg();
@@ -221,7 +240,7 @@
         }); // end TAGS HANDLER
 
 
-        $( "#id_update_btn" ).click(function(e) {  // CLICK UPDATE HANDLER
+        $( "#id_update_btn" ).click(function(e) {  // CLICK UPDATE DESCRIPTION HANDLER
             // Extract the string.
             var description = $('#editor').html();
 
@@ -261,7 +280,19 @@
                     print_error_handler(error_json_result);
                 }
             ); // end Get Task
-        }); // end CLICK UPDATE HANDLER
+        }); // end CLICK UPDATE DESCRIPTION HANDLER
+
+
+        $("#id_comment").keypress(function(e) {  // POST COMMENT KEYPRESS HANDLER
+            if (e.which == 13) {
+                post_comment_handler();
+            }
+        });  // end POST COMMENT KEYPRESS HANDLER
+
+
+        $( "#id_comment_btn" ).click(function(e) {  // CLICK POST COMMENT BUTTON HANDLER
+            post_comment_handler();
+        }); // end CLICK POST COMMENT BUTTON HANDLER
 
 
 

@@ -133,6 +133,7 @@
                     <a href="#" class="list-group-item">
                         <div class="media-box">
                             <p class="mb-sm">
+                                <small class="pull-right">{{ log_event.created }}</small>
                                 <small>{{ log_event.text }}</small>
                             </p>
                         </div>
@@ -153,23 +154,26 @@
                 <!-- START list group-->
                 <div data-height="180" data-scrollable="" class="list-group">
                     <!-- START list group item-->
-                    {% comment %}
-                    <a href="#" class="list-group-item">
+                    {% for comment_post in task.comment_posts.all %}
+                    <a href="#messages" class="list-group-item">
                         <div class="media-box">
                             <div class="pull-left">
-                                <img src="img/user/02.jpg" alt="Image" class="media-box-object img-circle thumb32">
+                                {% if comment_post.me.image != None and comment_post.me.image != '' %}
+                                    <img src="{{ comment_post.me.image.imagefile.url }}" alt="{% trans 'Image' %}" class="media-box-object img-circle thumb32" />
+                                {% else %}
+                                    <img src="{% static 'app/img/dummy.png' %}" alt="{% trans 'Image' %}" class="media-box-object img-circle thumb32" />
+                                {% endif %}
                             </div>
                             <div class="media-box-body clearfix">
-                                <small class="pull-right">2h</small>
-                                <strong class="media-box-heading text-primary">
-                                <span class="circle circle-success circle-lg text-left"></span>Catherine Ellis</strong>
+                                <small class="pull-right">{{ comment_post.created }}</small>
+                                <strong class="media-box-heading text-primary"><span class="text-left"></span>{{ comment_post.me.name|escape|safe }}</strong>
                                 <p class="mb-sm">
-                                    <small>Cras sit amet nibh libero, in gravida nulla. Nulla...</small>
+                                    <small>{{ comment_post.description|escape|safe }}</small>
                                 </p>
                             </div>
                         </div>
                     </a>
-                    {% endcomment %}
+                    {% endfor %}
                     <!-- END list group item-->
 
                 </div>
@@ -177,9 +181,10 @@
                 <!-- START panel footer-->
                 <div class="panel-footer clearfix">
                     <div class="input-group">
-                        <input type="text" placeholder="Type message .." class="form-control input-sm">
+                        <input id="id_comment" type="text" placeholder="{% trans 'Type message ..' %}" class="form-control input-sm" />
                         <span class="input-group-btn">
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-paperclip"></i>
+                        <button id="id_comment_btn" onclick="" type="button" class="btn btn-default btn-sm">
+                            <i class="fa fa-mail-reply"></i>
                         </button>
                         </span>
                     </div>

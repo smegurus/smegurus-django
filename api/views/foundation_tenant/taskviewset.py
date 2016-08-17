@@ -93,6 +93,31 @@ class TaskViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-    # @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    # def post_comment(self, request, pk=None):
-    #     pass #TODO: IMplement.
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def post_comment(self, request, pk=None):
+        try:
+            serializer = OrderedCommentPostSerializer(data=request.data)
+            if serializer.is_valid():
+                # Save the comment.
+                comment_post = serializer.save(me=self.request.tenant_me)
+                task = self.get_object()
+                task.comment_posts.add(comment_post)
+
+                # Save an event log.
+                text = request.tenant_me.name + " has made a comment."
+                log_event = OrderedLogEvent.objects.create(
+                    me=request.tenant_me,
+                    text=text,
+                )
+                task.log_events.add(log_event)
+
+                # Add the user to the participants.
+                task.participants.add(request.tenant_me)
+
+                # Return the success indicator.
+                return response.Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            return response.Response(
+                data={'message': str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
