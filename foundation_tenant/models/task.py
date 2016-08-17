@@ -93,5 +93,3 @@ class Task(AbstractThing):
 
     def get_absolute_url(self):
         return reverse('tenant_task_details', args=[self.id])
-
-    # url(r'^task/(.*)/$', views.task_details_page, name=''),

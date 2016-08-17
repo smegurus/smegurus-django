@@ -38,6 +38,7 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.task import Task
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -900,3 +901,93 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Cleanup
         TenantMe.objects.delete_all()
+
+    @transaction.atomic
+    def test_task_to_string(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+            name='Ice Age',
+        )
+        obj = Task.objects.create(
+            id=1,
+            assigned_by=me,
+            description="Ice Age"
+        )
+        self.assertIn(str(obj), 'Ice Age')
+        obj.delete();  # Cleanup
+        me.delete()
+
+    @transaction.atomic
+    def test_task_delete_all(self):
+        # Setup our unit test.
+        count = Task.objects.all().count()
+        self.assertEqual(count, 0)
+        Task.objects.bulk_create([
+            Task(
+                id = 1111,
+                assigned_by=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                ),
+                description="Ice Age"
+            ),
+            Task(
+                id = 2222,
+                assigned_by = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Global Cooling"
+            ),
+            Task(
+                id = 3333,
+                assigned_by = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Hibernation"
+            ),
+            Task(
+                id = 4444,
+                assigned_by = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Mini-Ice Age"
+            ),
+            Task(
+                id = 5555,
+                assigned_by = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Reflective Particles"
+            ),
+        ])
+        count = Task.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        Task.objects.delete_all()
+        count = Task.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()
+
+    @transaction.atomic
+    def test_task_get_absolute_url(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+            name='Ice Age',
+        )
+        obj = Task.objects.create(
+            id=666,
+            assigned_by=me,
+            description="Ice Age"
+        )
+        self.assertIn(obj.get_absolute_url(), '/en/task/666/')
+        obj.delete();  # Cleanup
+        me.delete()
