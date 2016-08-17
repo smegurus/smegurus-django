@@ -34,7 +34,11 @@ class SendEmailViewMixin(object):
         # Generate our email body text.
         url = self.login_url(schema_name)
         subject_text = 'New Message'
-        html_text = _('You have received a new message. Please login to SME Gurus here to read it: %(url)s') % {'url': str(url)}
+        html_text = _('%(sender_name)s sent you a message:\n\n \"%(sender_text)s\" \n\nLogin here to reply. %(url)s') % {
+            'sender_name': message.sender.name,
+            'sender_text': message.description,
+            'url': str(url)
+        }
 
         # Send the email.
         send_mail(
