@@ -262,7 +262,7 @@
         tenant_task_complete_task(
             {{ task.id }},
             function(json_result) {
-                location.reload(true); //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                window.location = "{% url 'tenant_task_master' %}";
             },
             function(error_json_result) {
                 $('#id_complete_btn').prop("disabled", false);
@@ -276,7 +276,7 @@
         tenant_task_incomplete_task(
             {{ task.id }},
             function(json_result) {
-                location.reload(true); //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                window.location = "{% url 'tenant_task_master' %}";
             },
             function(error_json_result) {
                 $('#id_incomplete_btn').prop("disabled", false);
