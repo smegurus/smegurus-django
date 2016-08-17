@@ -16,8 +16,10 @@ from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.orderedlogevent import OrderedLogEvent
+from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
 
 
@@ -26,7 +28,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -60,7 +62,7 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APITaskWithTenantSchemaTestCase, self).setUp()
+        super(APITaskBaseWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -86,14 +88,16 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
+        PostalAddress.objects.delete_all()  # Must be above Tasks.
+        ContactPoint.objects.delete_all()   # Must be above Tasks.
         Task.objects.delete_all()
-        CalendarEvent.objects.delete_all()
-        Note.objects.delete_all()
+        OrderedLogEvent.objects.delete_all()
+        OrderedCommentPost.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APITaskWithTenantSchemaTestCase, self).tearDown()
+        # super(APITaskBaseWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list_with_anonymous_user(self):
@@ -173,11 +177,6 @@ class APITaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'assignee': me.id,
             'status': constants.UNASSIGNED_TASK_STATUS,
         }
-        response = self.authorized_client.put(
-            '/api/tenanttask/',
-            json.dumps(data),
-            content_type='application/json'
-        )
         response = self.unauthorized_client.put(
             '/api/tenanttask/666/',
             json.dumps(data),
