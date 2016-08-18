@@ -63,12 +63,21 @@ def get_login_url(request):
     return url
 
 
+def latest_intake_details(request, id):
+    try:
+        return Intake.objects.filter(id=id).latest("last_modified").last_modified
+    except Intake.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
-# @condition(last_modified_func=user_last_login)
-def pending_intake_page(request):
+# @condition(last_modified_func=latest_intake_details)
+def pending_intake_page(request, id):
     template_url = 'tenant_intake/pending_intake.html'
+    intake = get_object_or_404(Intake, pk=int(id))
     return render(request, template_url,{
         'user': request.user,
-        'url': get_login_url(request),
-        'web_view_url': reverse('foundation_email_pending_intake'),
+        'intake': intake,
+        'url': reverse('tenant_intake_employee_details', args=[intake.id,]),
+        'web_view_url': reverse('foundation_email_pending_intake', args=[intake.id,]),
     })

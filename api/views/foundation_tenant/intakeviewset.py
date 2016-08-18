@@ -96,18 +96,20 @@ class SendEmailViewMixin(object):
         msg.attach_alternative(html_content, "text/html")
         msg.send()
 
-    def send_intake_is_pending(self, contact_list):
+    def send_intake_is_pending(self, intake, contact_list):
         """Function will send pending new intake needs to be reviewed email."""
         # Generate the data.
         subject = "New Entrepreneur Application!"
         param = {
-            'url': self.get_login_url(),
-            'web_view_url': reverse('foundation_email_pending_intake'),
+            'user': self.user,
+            'url': reverse('tenant_intake_employee_details', args=[intake.id,]),
+            'intake': intake,
+            'web_view_url': reverse('foundation_email_pending_intake', args=[intake.id,]),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/intake_is_pending.txt', param)
-        html_content = render_to_string('api/email/intake_is_pending.html', param)
+        text_content = render_to_string('tenant_intake/pending_intake.txt', param)
+        html_content = render_to_string('tenant_intake/pending_intake.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
