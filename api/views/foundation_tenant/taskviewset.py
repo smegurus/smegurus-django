@@ -1,10 +1,10 @@
 import django_filters
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
+from django.template.loader import render_to_string    # HTML to TXT
 from django.core.urlresolvers import reverse
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives    # Emailer
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -25,16 +25,16 @@ from smegurus import constants
 
 
 class SendEmailViewMixin(object):
-    def task_url(self, schema_name, task):
+    def task_url(self, task):
         """Function will return the URL to the task page through the sub-domain of the organization."""
         url = 'https://' if self.request.is_secure() else 'http://'
-        url += schema_name + "."
+        url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
-        url += task.get_absolute_url()
+        url += reverse('foundation_auth_user_login')
         url = url.replace("None","en")
         return url
 
-    def send_notification(self, schema_name, task, log_event):
+    def send_notification(self, task, log_event):
         # Iterate through all the participants in the Task and get their
         # email only if they request email notification for taks.
         contact_list = []
@@ -42,19 +42,26 @@ class SendEmailViewMixin(object):
             if me.notify_when_task_had_an_interaction:
                 contact_list.append(me.owner.email)
 
-        # Generate our email body text.
-        subject = 'Task #'+str(task.id)
-        url = self.task_url(schema_name, task)
-        html_text = _('%(log_text)s.\n\n To see the Task, click here: %(url)s') % {'log_text':str(log_event.text), 'url': str(url)}
+        # Generate the data.
+        subject = "Task #" + str(task.id)
+        param = {
+            'url': self.task_url(task),
+            'task': task,
+            'log_event': log_event,
+        }
+
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('api/email/task.txt', param)
+        html_content = render_to_string('api/email/task.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+        to = contact_list
 
         # Send the email.
-        send_mail(
-            subject,
-            html_text,
-            env_var('DEFAULT_FROM_EMAIL'),
-            contact_list,
-            fail_silently=False
-        )
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
 
 class TaskFilter(django_filters.FilterSet):
@@ -95,16 +102,13 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         task.log_events.add(log_event)
 
         # Send email notification for 'OrderedLogEvent' model.
-        self.send_notification(self.request.tenant.schema_name, task, log_event)
+        self.send_notification(task, log_event)
 
     def perform_update(self, serializer):
         """Update "TenantMe" model and its associated models."""
-        # Update the 'Task' model.
-        task = serializer.save()
-
-        # Update associated models.
+        task = serializer.save()  # Update the 'Task' model.
         if task.assignee:
-            task.participants.add(task.assignee)
+            task.participants.add(task.assignee)  # Update associated models.
 
     def perform_destroy(self, instance):
         """Override the deletion function to include deletion of associated models."""
@@ -125,13 +129,13 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 task.log_events.add(log_event)
 
                 # Send email notification for event.
-                self.send_notification(request.tenant.schema_name, task, log_event)
+                self.send_notification(task, log_event)
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)
         except Exception as e:
             return response.Response(
-                data={'message': str(e)},
+                data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -157,13 +161,13 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 task.participants.add(request.tenant_me)
 
                 # Send email notification for log event.
-                self.send_notification(request.tenant.schema_name, task, log_event)
+                self.send_notification(task, log_event)
 
                 # Return the success indicator.
                 return response.Response(status=status.HTTP_200_OK)
         except Exception as e:
             return response.Response(
-                data={'message': str(e)},
+                data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -185,7 +189,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             task.log_events.add(log_event)
 
             # Send email notification for log event.
-            self.send_notification(request.tenant.schema_name, task, log_event)
+            self.send_notification(task, log_event)
 
             # Return the success indicator.
             return response.Response(status=status.HTTP_200_OK)
@@ -213,7 +217,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             task.log_events.add(log_event)
 
             # Send email notification for log event.
-            self.send_notification(request.tenant.schema_name, task, log_event)
+            self.send_notification(task, log_event)
 
             # Return the success indicator.
             return response.Response(status=status.HTTP_200_OK)

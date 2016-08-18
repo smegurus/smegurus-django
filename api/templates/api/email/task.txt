@@ -1,0 +1,1 @@
+Task #{{ task.id }}\n\n {{ log_event.text }}\n\n To see the Task, click here: {{ url }}
