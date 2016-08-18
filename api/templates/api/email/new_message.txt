@@ -1,1 +1,0 @@
-{{ sender_name }} sent you a message:\n\n \"{{ sender_text }}\" \n\nLogin here to reply. {{ url }}')

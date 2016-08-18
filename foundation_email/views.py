@@ -11,6 +11,9 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
+from foundation_tenant.models.task import Task
+from foundation_tenant.models.orderedlogevent import OrderedLogEvent
+from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -50,6 +53,15 @@ def get_message_url(request, message):
     url += request.tenant.schema_name + "."
     url += get_current_site(request).domain
     url += reverse('tenant_conversation', args=[message.sender.id,])
+    url = url.replace("None","en")
+    return url
+
+
+def get_task_url(request, task):
+    url = 'https://' if request.is_secure() else 'http://'
+    url += request.tenant.schema_name + "."
+    url += get_current_site(request).domain
+    url += reverse('tenant_task_details', args=[task.id,])
     url = url.replace("None","en")
     return url
 
@@ -153,7 +165,7 @@ def latest_message_details(request, id):
 
 
 @login_required(login_url='/en/login')
-# @condition(last_modified_func=latest_message_details)
+@condition(last_modified_func=latest_message_details)
 def message_page(request, id):
     # Fetch the data.
     template_url = 'tenant_message/message.html'
@@ -170,4 +182,34 @@ def message_page(request, id):
         'message': message,
         'url': get_message_url(request, message),
         'web_view_url': reverse('foundation_email_message', args=[message.id,]),
+    })
+
+
+def latest_task_details(request, id):
+    try:
+        return Message.objects.get(pk=int(id)).last_modified
+    except Message.DoesNotExist:
+        return datetime.now()
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_task_details)
+def task_page(request, task_id, log_event_id):
+    # Fetch the data.
+    template_url = 'tenant_task/task.html'
+    task = get_object_or_404(Task, pk=int(task_id))
+    log_event = get_object_or_404(OrderedLogEvent, pk=int(log_event_id))
+
+    # Run a security check to make sure the authenticated User is a
+    # participant in the conversation.
+    if request.tenant_me not in task.participants.all():
+        raise PermissionDenied
+
+    # Render our email templated message.
+    return render(request, template_url,{
+        'user': request.user,
+        'task': task,
+        'log_event': log_event,
+        'url': get_task_url(request, task),
+        'web_view_url': reverse('foundation_email_task', args=[task.id, log_event.id,]),
     })
