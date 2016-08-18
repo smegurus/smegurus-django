@@ -48,7 +48,7 @@ def user_last_login(request):
 
 
 @login_required(login_url='/en/login')
-# @condition(last_modified_func=user_last_login)
+@condition(last_modified_func=user_last_login)
 def activate_page(request):
     template_url = 'foundation_auth/activate_org_admin.html'
 
@@ -71,7 +71,7 @@ def latest_intake_details(request, id):
 
 
 @login_required(login_url='/en/login')
-# @condition(last_modified_func=latest_intake_details)
+@condition(last_modified_func=latest_intake_details)
 def pending_intake_page(request, id):
     template_url = 'tenant_intake/pending_intake.html'
     intake = get_object_or_404(Intake, pk=int(id))
@@ -84,7 +84,7 @@ def pending_intake_page(request, id):
 
 
 @login_required(login_url='/en/login')
-# @condition(last_modified_func=latest_intake_details)
+@condition(last_modified_func=latest_intake_details)
 def approved_intake_page(request, id):
     template_url = 'tenant_intake/approved_intake.html'
     intake = get_object_or_404(Intake, pk=int(id))
@@ -93,4 +93,17 @@ def approved_intake_page(request, id):
         'intake': intake,
         'url': get_login_url(request),
         'web_view_url': reverse('foundation_email_approved_intake', args=[intake.id,]),
+    })
+
+
+@login_required(login_url='/en/login')
+@condition(last_modified_func=latest_intake_details)
+def rejected_intake_page(request, id):
+    template_url = 'tenant_intake/rejected_intake.html'
+    intake = get_object_or_404(Intake, pk=int(id))
+    return render(request, template_url,{
+        'user': request.user,
+        'intake': intake,
+        'url': get_login_url(request),
+        'web_view_url': reverse('foundation_email_rejected_intake', args=[intake.id,]),
     })

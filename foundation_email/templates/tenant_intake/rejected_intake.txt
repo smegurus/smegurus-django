@@ -1,0 +1,5 @@
+You have been rejected! The reason is:
+
+"{{ reason }}"
+
+Please re-apply again.  {{ url }}

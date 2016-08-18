@@ -81,15 +81,15 @@ class SendEmailViewMixin(object):
         # Generate the data.
         subject = "Application Reviewed: Rejected"
         param = {
-            'user': self.user,
-            'url': self.get_password_reset_url(intake.me.owner),
+            'user': request.user,
             'intake': intake,
-            'reason': intake.note.description,
+            'url': get_login_url(request),
+            'web_view_url': reverse('foundation_email_rejected_intake', args=[intake.id,]),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/intake_was_rejected.txt', param)
-        html_content = render_to_string('api/email/intake_was_rejected.html', param)
+        text_content = render_to_string('tenant_intake/rejected_intake.txt', param)
+        html_content = render_to_string('tenant_intake/rejected_intake.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
