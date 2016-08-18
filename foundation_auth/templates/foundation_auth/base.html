@@ -92,19 +92,19 @@
 
         <!-- =============== API SCRIPTS ===============-->
         {% include "foundation_public/common_js.html" %}
-        {% include "api/auth_activation.html" %}
-        {% include "api/auth_login.html" %}
-        {% include "api/auth_register.html" %}
-        {% include "api/auth_password_reset.html" %}
+        {% include "api/js/auth_activation.html" %}
+        {% include "api/js/auth_login.html" %}
+        {% include "api/js/auth_register.html" %}
+        {% include "api/js/auth_password_reset.html" %}
 
         {% if request.user.is_authenticated %}
-            {% include "api/public_organization.html" %}
-            {% include "api/public_postaladdress.html" %}
-            {% include "api/public_imageupload.html" %}
-            {% include "api/tenant_tag.html" %}
-            {% include "api/tenant_imageupload.html" %}
-            {% include "api/tenant_businessidea.html" %}
-            {% include "api/tenant_me.html" %}
+            {% include "api/js/public_organization.html" %}
+            {% include "api/js/public_postaladdress.html" %}
+            {% include "api/js/public_imageupload.html" %}
+            {% include "api/js/tenant_tag.html" %}
+            {% include "api/js/tenant_imageupload.html" %}
+            {% include "api/js/tenant_businessidea.html" %}
+            {% include "api/js/tenant_me.html" %}
         {% endif %}
     {% endcompress %}
 </body>

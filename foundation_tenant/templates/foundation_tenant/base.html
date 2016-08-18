@@ -504,30 +504,30 @@
                 <script src="{% static 'app/js/app.js' %}"></script>
                 <!-- =============== API SCRIPTS ===============-->
                 {% include "foundation_public/common_js.html" %}
-                {% include "api/auth_activation.html" %}
-                {% include "api/auth_login.html" %}
-                {% include "api/auth_register.html" %}
-                {% include "api/auth_password_reset.html" %}
+                {% include "api/js/auth_activation.html" %}
+                {% include "api/js/auth_login.html" %}
+                {% include "api/js/auth_register.html" %}
+                {% include "api/js/auth_password_reset.html" %}
                 {% if request.user.is_authenticated %}
-                    {% include "api/public_organization.html" %}
-                    {% include "api/public_postaladdress.html" %}
-                    {% include "api/public_imageupload.html" %}
-                    {% include "api/public_function.html" %}
-                    {% include "api/tenant_tag.html" %}
-                    {% include "api/tenant_imageupload.html" %}
-                    {% include "api/tenant_businessidea.html" %}
-                    {% include "api/tenant_tellusyourneed.html" %}
-                    {% include "api/tenant_calendarevent.html" %}
-                    {% include "api/tenant_postaladdress.html" %}
-                    {% include "api/tenant_contantpoint.html" %}
-                    {% include "api/tenant_faqgroup.html" %}
-                    {% include "api/tenant_faqitem.html" %}
-                    {% include "api/tenant_communitypost.html" %}
-                    {% include "api/tenant_message.html" %}
-                    {% include "api/tenant_intake.html" %}
-                    {% include "api/tenant_note.html" %}
-                    {% include "api/tenant_task.html" %}
-                    {% include "api/tenant_me.html" %}
+                    {% include "api/js/public_organization.html" %}
+                    {% include "api/js/public_postaladdress.html" %}
+                    {% include "api/js/public_imageupload.html" %}
+                    {% include "api/js/public_function.html" %}
+                    {% include "api/js/tenant_tag.html" %}
+                    {% include "api/js/tenant_imageupload.html" %}
+                    {% include "api/js/tenant_businessidea.html" %}
+                    {% include "api/js/tenant_tellusyourneed.html" %}
+                    {% include "api/js/tenant_calendarevent.html" %}
+                    {% include "api/js/tenant_postaladdress.html" %}
+                    {% include "api/js/tenant_contantpoint.html" %}
+                    {% include "api/js/tenant_faqgroup.html" %}
+                    {% include "api/js/tenant_faqitem.html" %}
+                    {% include "api/js/tenant_communitypost.html" %}
+                    {% include "api/js/tenant_message.html" %}
+                    {% include "api/js/tenant_intake.html" %}
+                    {% include "api/js/tenant_note.html" %}
+                    {% include "api/js/tenant_task.html" %}
+                    {% include "api/js/tenant_me.html" %}
                     <script>
                         function ajax_logout() {
                             sign_off(
