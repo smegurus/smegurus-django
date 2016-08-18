@@ -58,13 +58,15 @@ class SendEmailViewMixin(object):
         # Generate the data.
         subject = "Application Reviewed: Accepted"
         param = {
+            'user': self.user,
             'url': self.get_login_url(),
-            'reason': intake.note.description,
+            'intake': intake,
+            'web_view_url': reverse('foundation_email_approved_intake', args=[intake.id,]),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/intake_was_accepted.txt', param)
-        html_content = render_to_string('api/email/intake_was_accepted.html', param)
+        text_content = render_to_string('tenant_intake/approved_intake.txt', param)
+        html_content = render_to_string('tenant_intake/approved_intake.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
@@ -79,7 +81,9 @@ class SendEmailViewMixin(object):
         # Generate the data.
         subject = "Application Reviewed: Rejected"
         param = {
+            'user': self.user,
             'url': self.get_password_reset_url(intake.me.owner),
+            'intake': intake,
             'reason': intake.note.description,
         }
 

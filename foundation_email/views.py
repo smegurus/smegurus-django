@@ -13,8 +13,14 @@ from smegurus.settings import env_var
 from smegurus import constants
 
 
-def user_last_login(request):
-    return request.user.last_login
+def get_login_url(request):
+    """Function will return the URL to the login page through the sub-domain of the organization."""
+    url = 'https://' if request.is_secure() else 'http://'
+    url += request.tenant.schema_name + "."
+    url += get_current_site(request).domain
+    url += reverse('foundation_auth_user_login')
+    url = url.replace("/None/","/en/")
+    return url
 
 
 def get_activation_url(request):
@@ -37,6 +43,10 @@ def get_activation_url(request):
     return url
 
 
+def user_last_login(request):
+    return request.user.last_login
+
+
 @login_required(login_url='/en/login')
 # @condition(last_modified_func=user_last_login)
 def activate_page(request):
@@ -51,16 +61,6 @@ def activate_page(request):
         'url': get_activation_url(request),
         'web_view_url': reverse('foundation_email_activate'),
     })
-
-
-def get_login_url(request):
-    """Function will return the URL to the login page through the sub-domain of the organization."""
-    url = 'https://' if request.is_secure() else 'http://'
-    url += request.tenant.schema_name + "."
-    url += get_current_site(request).domain
-    url += reverse('foundation_auth_user_login')
-    url = url.replace("/None/","/en/")
-    return url
 
 
 def latest_intake_details(request, id):
@@ -80,4 +80,17 @@ def pending_intake_page(request, id):
         'intake': intake,
         'url': reverse('tenant_intake_employee_details', args=[intake.id,]),
         'web_view_url': reverse('foundation_email_pending_intake', args=[intake.id,]),
+    })
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_intake_details)
+def approved_intake_page(request, id):
+    template_url = 'tenant_intake/approved_intake.html'
+    intake = get_object_or_404(Intake, pk=int(id))
+    return render(request, template_url,{
+        'user': request.user,
+        'intake': intake,
+        'url': get_login_url(request),
+        'web_view_url': reverse('foundation_email_approved_intake', args=[intake.id,]),
     })
