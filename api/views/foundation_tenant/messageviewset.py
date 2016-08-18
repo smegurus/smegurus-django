@@ -22,12 +22,11 @@ from smegurus import constants
 
 
 class SendEmailViewMixin(object):
-    def get_login_url(self):
-        """Function will return the URL to the task page through the sub-domain of the organization."""
+    def get_message_url(self, message):
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
-        url += reverse('foundation_auth_user_login')
+        url += reverse('tenant_conversation', args=[message.sender.id,])
         url = url.replace("None","en")
         return url
 
@@ -35,14 +34,15 @@ class SendEmailViewMixin(object):
         # Generate the data.
         subject = "New Message"
         param = {
-            'url': self.get_login_url(),
-            'sender_name': message.sender.name,
-            'sender_text': message.description,
+            'user': self.request.user,
+            'message': message,
+            'url': self.get_message_url(message),
+            'web_view_url': reverse('foundation_email_message', args=[message.id,]),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/new_message.txt', param)
-        html_content = render_to_string('api/email/new_message.html', param)
+        text_content = render_to_string('tenant_message/message.txt', param)
+        html_content = render_to_string('tenant_message/message.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')

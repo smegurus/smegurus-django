@@ -1,3 +1,0 @@
-A new Entrepreneur has completed the intake application.
-
-Login and checkout the new application at {{ url }}

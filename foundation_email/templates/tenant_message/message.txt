@@ -1,0 +1,10 @@
+{% load staticfiles i18n compress %}
+{% trans 'New Message' %}
+
+{{ message.sender.name }} {% trans 'sent you a message:' %}
+
+"{{ message.description|escape|safe }}"
+
+{% trans 'Login here to reply.' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

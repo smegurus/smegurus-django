@@ -1,1 +1,0 @@
-You have been accepted! Click the following link to begin: {{ url }}

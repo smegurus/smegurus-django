@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.core.signing import Signer
 from django.core.urlresolvers import reverse
+from django.core.exceptions import PermissionDenied
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
@@ -8,6 +9,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import condition
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
 from smegurus.settings import env_var
 from smegurus import constants
@@ -43,6 +45,15 @@ def get_activation_url(request):
     return url
 
 
+def get_message_url(request, message):
+    url = 'https://' if request.is_secure() else 'http://'
+    url += request.tenant.schema_name + "."
+    url += get_current_site(request).domain
+    url += reverse('tenant_conversation', args=[message.sender.id,])
+    url = url.replace("None","en")
+    return url
+
+
 def user_last_login(request):
     return request.user.last_login
 
@@ -50,12 +61,13 @@ def user_last_login(request):
 @login_required(login_url='/en/login')
 @condition(last_modified_func=user_last_login)
 def activate_page(request):
+    # Get our template url depending on whether User is admin or not.
     template_url = 'foundation_auth/activate_org_admin.html'
-
     for my_group in request.user.groups.all():
         if constants.ENTREPRENEUR_GROUP_ID == my_group.id:
             template_url = 'foundation_auth/activate_entrepreneur.html'
 
+    # Render our email templated message.
     return render(request, template_url,{
         'user': request.user,
         'url': get_activation_url(request),
@@ -73,8 +85,16 @@ def latest_intake_details(request, id):
 @login_required(login_url='/en/login')
 @condition(last_modified_func=latest_intake_details)
 def pending_intake_page(request, id):
+    # Fetch the data.
     template_url = 'tenant_intake/pending_intake.html'
     intake = get_object_or_404(Intake, pk=int(id))
+
+    # Run a security check to verify that the authenticated User is an employee
+    # of the Organization.
+    if not request.tenant_me.is_employee():
+        raise PermissionDenied
+
+    # Render our email templated message.
     return render(request, template_url,{
         'user': request.user,
         'intake': intake,
@@ -86,8 +106,16 @@ def pending_intake_page(request, id):
 @login_required(login_url='/en/login')
 @condition(last_modified_func=latest_intake_details)
 def approved_intake_page(request, id):
+    # Fetch the data.
     template_url = 'tenant_intake/approved_intake.html'
     intake = get_object_or_404(Intake, pk=int(id))
+
+    # Run a security check to verify that the authenticated User belongs to
+    # the the Intake.
+    if request.user != intake.me.owner:
+        raise PermissionDenied
+
+    # Render our email templated message.
     return render(request, template_url,{
         'user': request.user,
         'intake': intake,
@@ -99,11 +127,47 @@ def approved_intake_page(request, id):
 @login_required(login_url='/en/login')
 @condition(last_modified_func=latest_intake_details)
 def rejected_intake_page(request, id):
+    # Fetch the data.
     template_url = 'tenant_intake/rejected_intake.html'
     intake = get_object_or_404(Intake, pk=int(id))
+
+    # Run a security check to verify that the authenticated User belongs to
+    # the the Intake.
+    if request.user != intake.me.owner:
+        raise PermissionDenied
+
+    # Render our email templated message.
     return render(request, template_url,{
         'user': request.user,
         'intake': intake,
         'url': get_login_url(request),
         'web_view_url': reverse('foundation_email_rejected_intake', args=[intake.id,]),
+    })
+
+
+def latest_message_details(request, id):
+    try:
+        return Message.objects.get(pk=int(id)).last_modified
+    except Message.DoesNotExist:
+        return datetime.now()
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_message_details)
+def message_page(request, id):
+    # Fetch the data.
+    template_url = 'tenant_message/message.html'
+    message = get_object_or_404(Message, pk=int(id))
+
+    # Run a security check to make sure the authenticated User is a
+    # participant in the conversation.
+    if request.tenant_me not in message.participants.all():
+        raise PermissionDenied
+
+    # Render our email templated message.
+    return render(request, template_url,{
+        'user': request.user,
+        'message': message,
+        'url': get_message_url(request, message),
+        'web_view_url': reverse('foundation_email_message', args=[message.id,]),
     })
