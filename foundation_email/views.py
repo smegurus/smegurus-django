@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.core.signing import Signer
 from django.core.urlresolvers import reverse
 from django.core.exceptions import PermissionDenied
 from django.contrib.sites.shortcuts import get_current_site
@@ -39,26 +38,6 @@ def get_login_url(request):
     return url
 
 
-def get_activation_url(request):
-    # Convert our User's ID into an encrypted value.
-    # Note: https://docs.djangoproject.com/en/dev/topics/signing/
-    signer = Signer()
-    id_sting = str(request.user.id).encode()
-    value = signer.sign(id_sting)
-
-    # Generate our site's URL.
-    url = 'https://' if request.is_secure() else 'http://'
-    schema_name = request.tenant.schema_name
-    if schema_name == 'public' or schema_name == 'test':
-        url += "www."
-    else:
-        url += schema_name + "."
-    url += get_current_site(request).domain
-    url += reverse('foundation_auth_user_activation', args=[value,])
-    url = url.replace("None","en")
-    return url
-
-
 def get_message_url(request, message):
     url = 'https://' if request.is_secure() else 'http://'
     url += request.tenant.schema_name + "."
@@ -75,28 +54,6 @@ def get_task_url(request, task):
     url += reverse('tenant_task_details', args=[task.id,])
     url = url.replace("None","en")
     return url
-
-
-def user_last_login(request):
-    return request.user.last_login
-
-
-@login_required(login_url='/en/login')
-@condition(last_modified_func=user_last_login)
-def activate_page(request):
-    # Get our template url depending on whether User is admin or not.
-    template_url = 'foundation_auth/activate_org_admin.html'
-    web_view_extra_url = reverse('foundation_email_activate')
-    for my_group in request.user.groups.all():
-        if constants.ENTREPRENEUR_GROUP_ID == my_group.id:
-            template_url = 'foundation_auth/activate_entrepreneur.html'
-
-    # Render our email templated message.
-    return render(request, template_url,{
-        'user': request.user,
-        'url': get_activation_url(request),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
-    })
 
 
 def latest_intake_details(request, id):

@@ -7,4 +7,4 @@
 
 {% trans 'Thank you!' %}
 
-{% trans 'View in browser at' %} {{ web_view_url }}
+2013 - {% now "Y" %} by SME Gurus. {% trans 'All rights reserved.' %}

@@ -46,11 +46,9 @@ class SendEmailViewMixin(object):
     def send_org_admin_activation(self, user):
         # Generate the data.
         subject = 'Account Activation - SME Gurus for your Organization'
-        web_view_url = reverse('foundation_email_activate')
         param = {
             'user': user,
             'url': self.get_activation_url(user), # Generate our activation URL.
-            'web_view_url': self.get_url_with_subdomain(web_view_url),
         }
 
         # Plug-in the data into our templates and render the data.
@@ -72,7 +70,6 @@ class SendEmailViewMixin(object):
         param = {
             'user': user,
             'url': self.get_activation_url(user), # Generate our activation URL.
-            'web_view_url': reverse('foundation_email_activate'),
         }
 
         # Plug-in the data into our templates and render the data.

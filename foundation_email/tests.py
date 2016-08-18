@@ -90,33 +90,8 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 #         # super(FoundationEmailViewsWithPublicSchemaTestCases, self).tearDown()
 #
 #     @transaction.atomic
-#     def test_activation_page_with_anonymous_user(self):
-#         url = reverse('foundation_email_activate')
-#         response = self.unauthorized_client.get(url)
-#         self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-#         self.assertRedirects(response, 'http://galacticalliance.example.com/en/login?next=/en/email/auth/activate')
-#
-#     @transaction.atomic
-#     def test_activation_page_with_authenticated_user_for_org_admin(self):
-#         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-#         self.user.groups.add(target_group)
-#
-#         url = reverse('foundation_email_activate')
-#         response = self.authorized_client.get(url)
-#         self.assertEqual(response.status_code, status.HTTP_200_OK) # Redirect.
-#         self.assertTrue(len(response.content) > 1)
-#         self.assertIn(b'Thank you for signing up your organization for SME Gurus!',response.content)
-#
-#     @transaction.atomic
-#     def test_activation_page_with_authenticated_user_for_entrepreneur(self):
-#         target_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-#         self.user.groups.add(target_group)
-#
-#         url = reverse('foundation_email_activate')
-#         response = self.authorized_client.get(url)
-#         self.assertEqual(response.status_code, status.HTTP_200_OK) # Redirect.
-#         self.assertTrue(len(response.content) > 1)
-#         self.assertIn(b'Thank you for signing up your SME Gurus account!',response.content)
+#     def test_pass(self):
+#         pass
 
 
 class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
@@ -190,7 +165,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         for item in items.all():
             item.delete()
         # super(FoundationEmailViewsWithTenatSchemaTestCases, self).tearDown()
-    
+
     @transaction.atomic
     def test_pending_intake_with_anonymous_user(self):
         url = reverse('foundation_email_pending_intake', args=[666,])
