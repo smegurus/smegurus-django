@@ -1,0 +1,5 @@
+You have been rejected! The reason is:
+
+"{{ reason }}"
+
+Click the following link to read the reason {{ url }}

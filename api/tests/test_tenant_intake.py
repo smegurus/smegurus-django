@@ -403,6 +403,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.CREATED_STATUS)
         self.assertFalse(intake.me.is_admitted)
+        self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic
     def test_judge_with_employee_user_for_existing_intake_with_note(self):
@@ -433,6 +434,8 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertTrue(intake.me.is_admitted)
         note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
+        self.assertEqual(len(mail.outbox), 1)  # Test that one message has been sent.
+        self.assertIn('Accepted', mail.outbox[0].subject)
 
     @transaction.atomic
     def test_judge_with_employee_user_for_existing_intake_without_note(self):
@@ -447,7 +450,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         response = self.authorized_client.put(
             '/api/tenantintake/1/judge/?format=json',
             json.dumps({
-                'status': constants.APPROVED_STATUS,
+                'status': constants.REJECTED_STATUS,
                 'comment': 'This is a test comment.',
                 'is_employee_created': False,
             }),
@@ -455,10 +458,12 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         intake = Intake.objects.get(id=1)
-        self.assertEqual(intake.status, constants.APPROVED_STATUS)
-        self.assertTrue(intake.me.is_admitted)
+        self.assertEqual(intake.status, constants.REJECTED_STATUS)
+        self.assertFalse(intake.me.is_admitted)
         note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
+        self.assertEqual(len(mail.outbox), 1)  # Test that one message has been sent.
+        self.assertIn('Rejected', mail.outbox[0].subject)
 
     @transaction.atomic
     def test_judge_with_employee_user_for_manually_created_intake(self):
@@ -485,6 +490,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertTrue(intake.me.is_admitted)
         note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
+        self.assertEqual(len(mail.outbox), 1)  # Test that one message has been sent.
 
     @transaction.atomic
     def test_judge_with_non_employee_user(self):
@@ -512,6 +518,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.CREATED_STATUS)
         self.assertFalse(intake.me.is_admitted)
+        self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic
     def test_judge_with_owner_user_with_404(self):
@@ -531,3 +538,4 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn(b'No Intake matches the given query.', response.content)
+        self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.

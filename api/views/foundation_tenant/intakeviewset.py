@@ -1,5 +1,5 @@
 import django_filters
-from django.core.management import call_command
+from django.core.signing import Signer
 from django.core.mail import EmailMultiAlternatives    # Emailer
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
@@ -30,26 +30,82 @@ class JudgeIntakeSerializer(serializers.Serializer):
 
 
 class SendEmailViewMixin(object):
+    def get_password_reset_url(self, user):
+        # Convert our User's ID into an encrypted value.
+        # Note: https://docs.djangoproject.com/en/dev/topics/signing/
+        signer = Signer()
+        id_sting = str(user.id).encode()
+        value = signer.sign(id_sting)
+
+        # Variables used to generate your output.
+        url = 'https://' if self.request.is_secure() else 'http://'
+        url += self.request.tenant.schema_name + "."
+        url += get_current_site(self.request).domain
+        url += reverse('foundation_auth_password_reset_and_change', args=[value,])
+        url = url.replace("/None/","/en/")
+        return url
+
     def get_login_url(self):
         """Function will return the URL to the login page through the sub-domain of the organization."""
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
         url += reverse('foundation_auth_user_login')
-        url = url.replace("None","en")
+        url = url.replace("/None/","/en/")
         return url
 
-    def send_pending_intake(self, contact_list):
+    def send_intake_was_accepted(self, user):
+        # Generate the data.
+        subject = "Application Reviewed: Accepted"
+        param = {
+            'url': self.get_login_url(),
+        }
+
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('api/email/intake_was_accepted.txt', param)
+        html_content = render_to_string('api/email/intake_was_accepted.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+        to = [user.email,]
+
+        # Send the email.
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+    def send_intake_was_rejected(self, intake):
+        # Generate the data.
+        subject = "Application Reviewed: Rejected"
+        param = {
+            'url': self.get_password_reset_url(intake.me.owner),
+            'reason': intake.note.description
+        }
+
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('api/email/intake_was_rejected.txt', param)
+        html_content = render_to_string('api/email/intake_was_rejected.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+        to = [intake.me.owner.email,]
+
+        # Send the email.
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+    def send_intake_is_pending(self, contact_list):
         """Function will send pending new intake needs to be reviewed email."""
         # Generate the data.
         subject = "New Entrepreneur Application!"
         param = {
-            'url': self.get_login_url(), # Generate our activation URL.
+            'url': self.get_login_url(),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/pending_intake.txt', param)
-        html_content = render_to_string('api/email/pending_intake.html', param)
+        text_content = render_to_string('api/email/intake_is_pending.txt', param)
+        html_content = render_to_string('api/email/intake_is_pending.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
@@ -115,7 +171,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     contact_list.append(user.email)
 
                 # Send the email to our group.
-                self.send_pending_intake(contact_list)
+                self.send_intake_is_pending(contact_list)
 
                 # Mark the Intake object as complete after sending notification.
                 intake.status = constants.PENDING_REVIEW_STATUS
@@ -167,7 +223,10 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     intake.save()
 
                 # Send the email.
-                call_command('send_reviewed_email_for_intake', str(intake.id))
+                if intake.status == constants.APPROVED_STATUS:
+                    self.send_intake_was_accepted(intake.me.owner)
+                if intake.status == constants.REJECTED_STATUS:
+                    self.send_intake_was_rejected(intake)
 
                 # Return a success response.
                 return response.Response(
