@@ -1,3 +1,4 @@
+from django.core import mail
 from django.core.urlresolvers import resolve, reverse
 from django.db import transaction
 from django.test import TestCase
@@ -101,6 +102,12 @@ class APIRegistrationWithPublicSchemaTestCase(APITestCase, TenantTestCase):
                 is_org_admin = True
         self.assertEqual(is_org_admin, True)
 
+        # Test that one message has been sent.
+        self.assertEqual(len(mail.outbox), 1)
+
+        # Verify that the subject of the first message is correct.
+        self.assertEqual(mail.outbox[0].subject, 'Account Activation - SME Gurus for your Organization')
+
     @transaction.atomic
     def test_api_registration_with_failure(self):
         self.assertEqual(User.objects.count(), 1)
@@ -116,6 +123,7 @@ class APIRegistrationWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
         self.assertEqual(User.objects.get().email, TEST_USER_EMAIL)
+        self.assertEqual(len(mail.outbox), 0)
 
     @transaction.atomic
     def test_api_registration_with_banned_domain(self):
@@ -145,6 +153,7 @@ class APIRegistrationWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         # Verify general info.
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 0)
+        self.assertEqual(len(mail.outbox), 0)
 
 
 class APIRegistrationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
@@ -227,3 +236,9 @@ class APIRegistrationWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             if a_group == group:
                 is_entrepreneur = True
         self.assertEqual(is_entrepreneur, True)
+
+        # Test that one message has been sent.
+        self.assertEqual(len(mail.outbox), 1)
+
+        # Verify that the subject of the first message is correct.
+        self.assertEqual(mail.outbox[0].subject, 'Account Activation - SME Gurus')
