@@ -54,11 +54,12 @@ class SendEmailViewMixin(object):
         url = url.replace("/None/","/en/")
         return url
 
-    def send_intake_was_accepted(self, user):
+    def send_intake_was_accepted(self, intake):
         # Generate the data.
         subject = "Application Reviewed: Accepted"
         param = {
             'url': self.get_login_url(),
+            'reason': intake.note.description,
         }
 
         # Plug-in the data into our templates and render the data.
@@ -67,7 +68,7 @@ class SendEmailViewMixin(object):
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
-        to = [user.email,]
+        to = [intake.me.owner.email,]
 
         # Send the email.
         msg = EmailMultiAlternatives(subject, text_content, from_email, to)
@@ -79,7 +80,7 @@ class SendEmailViewMixin(object):
         subject = "Application Reviewed: Rejected"
         param = {
             'url': self.get_password_reset_url(intake.me.owner),
-            'reason': intake.note.description
+            'reason': intake.note.description,
         }
 
         # Plug-in the data into our templates and render the data.
@@ -224,7 +225,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                 # Send the email.
                 if intake.status == constants.APPROVED_STATUS:
-                    self.send_intake_was_accepted(intake.me.owner)
+                    self.send_intake_was_accepted(intake)
                 if intake.status == constants.REJECTED_STATUS:
                     self.send_intake_was_rejected(intake)
 
