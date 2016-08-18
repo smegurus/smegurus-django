@@ -1,1 +1,5 @@
-You have been accepted! Click the following link to begin: {{ url }}
+{% load staticfiles i18n compress %}
+
+{% trans 'You have been accepted! Click the following link to begin:' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

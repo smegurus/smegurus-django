@@ -1,5 +1,8 @@
-You have been rejected! The reason is:
+{% load staticfiles i18n compress %}
+{% trans 'You have been rejected! The reason is:' %}
 
 "{{ reason }}"
 
-Please re-apply again.  {{ url }}
+{% trans 'Please re-apply again.' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}
