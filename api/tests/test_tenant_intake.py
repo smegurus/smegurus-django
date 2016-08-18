@@ -1,4 +1,5 @@
 import json
+from django.core import mail
 from django.db import transaction
 from django.core.urlresolvers import resolve, reverse
 from django.http import HttpRequest
@@ -298,6 +299,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         me = Intake.objects.get(id=1)
         self.assertEqual(me.status, constants.PENDING_REVIEW_STATUS)
+        self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic
     def test_complete_intake_with_owner_user(self):
@@ -317,6 +319,12 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         me = Intake.objects.get(id=1)
         self.assertEqual(me.status, constants.PENDING_REVIEW_STATUS)
+
+        # Test that one email has been sent.
+        self.assertEqual(len(mail.outbox), 1)
+
+        # Verify that the subject of the first message is correct.
+        self.assertEqual(mail.outbox[0].subject, 'New Entrepreneur Application!')
 
     @transaction.atomic
     def test_complete_intake_with_different_owner_user(self):
@@ -348,6 +356,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         me = Intake.objects.get(id=1)
         self.assertEqual(me.status, constants.CREATED_STATUS)
+        self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic
     def test_complete_intake_with_owner_user_with_404(self):
@@ -367,6 +376,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         me = Intake.objects.get(id=1)
         self.assertEqual(me.status, constants.CREATED_STATUS)
+        self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic
     def test_judge_with_anonymous_user(self):

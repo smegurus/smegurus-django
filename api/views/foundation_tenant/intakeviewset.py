@@ -1,10 +1,11 @@
 import django_filters
 from django.core.management import call_command
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives    # Emailer
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
+from django.template.loader import render_to_string    # HTML to TXT
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -18,8 +19,8 @@ from api.permissions import IsMeOrIsAnEmployee, IsMe, EmployeePermission
 from api.serializers.foundation_tenant  import IntakeSerializer
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.note import Note
-from smegurus import constants
 from smegurus.settings import env_var
+from smegurus import constants
 
 
 class JudgeIntakeSerializer(serializers.Serializer):
@@ -29,29 +30,34 @@ class JudgeIntakeSerializer(serializers.Serializer):
 
 
 class SendEmailViewMixin(object):
-    def login_url(self, schema_name):
+    def get_login_url(self):
         """Function will return the URL to the login page through the sub-domain of the organization."""
         url = 'https://' if self.request.is_secure() else 'http://'
-        url += schema_name + "."
+        url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
         url += reverse('foundation_auth_user_login')
         url = url.replace("None","en")
         return url
 
-    def send_activation(self, schema_name, contact_list):
-        """Function will send to the inputted email the URL that needs to be accessed to activate the account."""
-        # contact_list = [env_var('DEFAULT_TO_EMAIL')]
+    def send_pending_intake(self, contact_list):
+        """Function will send pending new intake needs to be reviewed email."""
+        # Generate the data.
         subject = "New Entrepreneur Application!"
-        url = self.login_url(schema_name)
-        message = _('A new Entrepreneur has completed the intake application. Login and checkout the new application at: : %(url)s') % {'url': str(url)}
+        param = {
+            'url': self.get_login_url(), # Generate our activation URL.
+        }
 
-        send_mail(
-            subject,
-            message,
-            env_var('DEFAULT_FROM_EMAIL'),
-            contact_list,
-            fail_silently=False
-        )
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('api/email/pending_intake.txt', param)
+        html_content = render_to_string('api/email/pending_intake.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+
+        # Send the email.
+        msg = EmailMultiAlternatives(subject, text_content, from_email, contact_list)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
 
 class IntakeFilter(django_filters.FilterSet):
@@ -109,7 +115,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     contact_list.append(user.email)
 
                 # Send the email to our group.
-                self.send_activation(request.tenant.schema_name, contact_list)
+                self.send_pending_intake(contact_list)
 
                 # Mark the Intake object as complete after sending notification.
                 intake.status = constants.PENDING_REVIEW_STATUS
