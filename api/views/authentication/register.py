@@ -40,12 +40,14 @@ class SendEmailViewMixin(object):
         # Generate the data.
         subject = 'Account Activation - SME Gurus for your Organization'
         param = {
+            'user': user,
             'url': self.get_activation_url(user), # Generate our activation URL.
+            'web_view_url': reverse('foundation_email_activate'),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/activate_org_admin.txt', param)
-        html_content = render_to_string('api/email/activate_org_admin.html', param)
+        text_content = render_to_string('foundation_auth/activate_org_admin.txt', param)
+        html_content = render_to_string('foundation_auth/activate_org_admin.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
@@ -60,12 +62,14 @@ class SendEmailViewMixin(object):
         # Generate the data.
         subject = 'Account Activation - SME Gurus'
         param = {
+            'user': user,
             'url': self.get_activation_url(user), # Generate our activation URL.
+            'web_view_url': reverse('foundation_email_activate'),
         }
 
         # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('api/email/activate_entrepreneur.txt', param)
-        html_content = render_to_string('api/email/activate_entrepreneur.html', param)
+        text_content = render_to_string('foundation_auth/activate_entrepreneur.txt', param)
+        html_content = render_to_string('foundation_auth/activate_entrepreneur.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')

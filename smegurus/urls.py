@@ -41,6 +41,7 @@ urlpatterns += i18n_patterns(
     url(r'^', include('foundation_public.urls')),
     url(r'^', include('public_index.urls')),
     url(r'^', include('foundation_auth.urls')),
+    url(r'^', include('foundation_email.urls')),
     url(r'^', include('tenant_configuration.urls')),
     url(r'^', include('tenant_profile.urls')),
     url(r'^', include('tenant_message.urls')),

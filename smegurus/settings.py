@@ -72,6 +72,7 @@ SHARED_APPS = (
   # everything below is custom made by us.
   'public_index',
   'foundation_auth',
+  'foundation_email',
 
   # everything below here is optional
   'django.contrib.auth',
@@ -92,6 +93,7 @@ TENANT_APPS = (
   'foundation_tenant',
   'api',
   'foundation_auth',
+  'foundation_email',
   'tenant_configuration',
   'tenant_profile',
   'tenant_message',
