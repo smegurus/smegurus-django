@@ -7,6 +7,9 @@ from django.contrib.auth.models import User, Group
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import condition
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.note import Note
+from smegurus.settings import env_var
 from smegurus import constants
 
 
@@ -47,4 +50,25 @@ def activate_page(request):
         'user': request.user,
         'url': get_activation_url(request),
         'web_view_url': reverse('foundation_email_activate'),
+    })
+
+
+def get_login_url(request):
+    """Function will return the URL to the login page through the sub-domain of the organization."""
+    url = 'https://' if request.is_secure() else 'http://'
+    url += request.tenant.schema_name + "."
+    url += get_current_site(request).domain
+    url += reverse('foundation_auth_user_login')
+    url = url.replace("/None/","/en/")
+    return url
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=user_last_login)
+def pending_intake_page(request):
+    template_url = 'tenant_intake/pending_intake.html'
+    return render(request, template_url,{
+        'user': request.user,
+        'url': get_login_url(request),
+        'web_view_url': reverse('foundation_email_pending_intake'),
     })

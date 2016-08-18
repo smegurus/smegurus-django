@@ -1,0 +1,6 @@
+{% load staticfiles i18n compress %}
+{% trans 'A new Entrepreneur has completed the intake application.' %}
+
+{% trans 'Login and checkout the new application at' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

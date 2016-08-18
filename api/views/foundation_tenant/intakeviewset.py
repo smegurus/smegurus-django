@@ -102,6 +102,7 @@ class SendEmailViewMixin(object):
         subject = "New Entrepreneur Application!"
         param = {
             'url': self.get_login_url(),
+            'web_view_url': reverse('foundation_email_pending_intake'),
         }
 
         # Plug-in the data into our templates and render the data.

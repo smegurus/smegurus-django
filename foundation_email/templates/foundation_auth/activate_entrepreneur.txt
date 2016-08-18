@@ -1,9 +1,10 @@
-Thank you for signing up your SME Gurus account! Please click the following link to validate your account.
+{% load staticfiles i18n compress %}
+{% trans 'Thank you for signing up your SME Gurus account! Please click the following link to validate your account.' %}
 
 {{ url }}
 
-If you believe you have received this message in error, please contact support@smegurus.com
+{% trans 'If you believe you have received this message in error, please contact support@smegurus.com' %}
 
-Thank you!
+{% trans 'Thank you!' %}
 
 {% trans 'View in browser at' %} {{ web_view_url }}
