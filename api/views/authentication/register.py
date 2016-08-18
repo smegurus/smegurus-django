@@ -40,7 +40,7 @@ class SendEmailViewMixin(object):
 
         # Generate our site's URL.
         extra_url = reverse('foundation_auth_user_activation', args=[value,])
-        url = get_url_with_subdomain(extra_url)
+        url = self.get_url_with_subdomain(extra_url)
         return url
 
     def send_org_admin_activation(self, user):
@@ -50,7 +50,7 @@ class SendEmailViewMixin(object):
         param = {
             'user': user,
             'url': self.get_activation_url(user), # Generate our activation URL.
-            'web_view_url': get_url_with_subdomain(web_view_url),
+            'web_view_url': self.get_url_with_subdomain(web_view_url),
         }
 
         # Plug-in the data into our templates and render the data.
