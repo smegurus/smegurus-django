@@ -17,6 +17,20 @@ from django.template.loader import render_to_string    # HTML to TXT
 
 
 class SendEmailViewMixin(object):
+    def get_url_with_subdomain(self, additonal_url=None):
+        """Utility function to get the current url"""
+        url = 'https://' if self.request.is_secure() else 'http://'
+        schema_name = self.request.tenant.schema_name
+        if schema_name == 'public' or schema_name == 'test':
+            url += "www."
+        else:
+            url += schema_name + "."
+        url += get_current_site(self.request).domain
+        if additonal_url:
+            url += additonal_url
+            url = url.replace("/None/","/en/")
+        return url
+
     def get_activation_url(self, user):
         # Convert our User's ID into an encrypted value.
         # Note: https://docs.djangoproject.com/en/dev/topics/signing/
@@ -25,24 +39,18 @@ class SendEmailViewMixin(object):
         value = signer.sign(id_sting)
 
         # Generate our site's URL.
-        url = 'https://' if self.request.is_secure() else 'http://'
-        schema_name = self.request.tenant.schema_name
-        if schema_name == 'public' or schema_name == 'test':
-            url += "www."
-        else:
-            url += schema_name + "."
-        url += get_current_site(self.request).domain
-        url += reverse('foundation_auth_user_activation', args=[value,])
-        url = url.replace("None","en")
+        extra_url = reverse('foundation_auth_user_activation', args=[value,])
+        url = get_url_with_subdomain(extra_url)
         return url
 
     def send_org_admin_activation(self, user):
         # Generate the data.
         subject = 'Account Activation - SME Gurus for your Organization'
+        web_view_url = reverse('foundation_email_activate')
         param = {
             'user': user,
             'url': self.get_activation_url(user), # Generate our activation URL.
-            'web_view_url': reverse('foundation_email_activate'),
+            'web_view_url': get_url_with_subdomain(web_view_url),
         }
 
         # Plug-in the data into our templates and render the data.

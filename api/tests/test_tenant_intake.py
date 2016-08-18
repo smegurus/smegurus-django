@@ -275,7 +275,6 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         response = self.authorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-
     @transaction.atomic
     def test_complete_intake_with_anonymous_user(self):
         # Setup our object.

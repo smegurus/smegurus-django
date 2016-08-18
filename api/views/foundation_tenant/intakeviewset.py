@@ -30,6 +30,16 @@ class JudgeIntakeSerializer(serializers.Serializer):
 
 
 class SendEmailViewMixin(object):
+    def get_url_with_subdomain(self, additonal_url=None):
+        """Utility function to get the current url"""
+        url = 'https://' if self.request.is_secure() else 'http://'
+        url += self.request.tenant.schema_name + "."
+        url += get_current_site(self.request).domain
+        if additonal_url:
+            url += additonal_url
+            url = url.replace("/None/","/en/")
+        return url
+
     def get_password_reset_url(self, user):
         # Convert our User's ID into an encrypted value.
         # Note: https://docs.djangoproject.com/en/dev/topics/signing/
@@ -38,30 +48,23 @@ class SendEmailViewMixin(object):
         value = signer.sign(id_sting)
 
         # Variables used to generate your output.
-        url = 'https://' if self.request.is_secure() else 'http://'
-        url += self.request.tenant.schema_name + "."
-        url += get_current_site(self.request).domain
-        url += reverse('foundation_auth_password_reset_and_change', args=[value,])
-        url = url.replace("/None/","/en/")
-        return url
+        url = reverse('foundation_auth_password_reset_and_change', args=[value,])
+        return self.get_url_with_subdomain(url)
 
     def get_login_url(self):
         """Function will return the URL to the login page through the sub-domain of the organization."""
-        url = 'https://' if self.request.is_secure() else 'http://'
-        url += self.request.tenant.schema_name + "."
-        url += get_current_site(self.request).domain
-        url += reverse('foundation_auth_user_login')
-        url = url.replace("/None/","/en/")
-        return url
+        url = reverse('foundation_auth_user_login')
+        return self.get_url_with_subdomain(url)
 
     def send_intake_was_accepted(self, intake):
         # Generate the data.
         subject = "Application Reviewed: Accepted"
+        web_view_url = reverse('foundation_email_approved_intake', args=[intake.id,])
         param = {
-            'user': self.user,
+            'user': intake.me.owner,
             'url': self.get_login_url(),
             'intake': intake,
-            'web_view_url': reverse('foundation_email_approved_intake', args=[intake.id,]),
+            'web_view_url': self.get_url_with_subdomain(web_view_url),
         }
 
         # Plug-in the data into our templates and render the data.
@@ -80,11 +83,12 @@ class SendEmailViewMixin(object):
     def send_intake_was_rejected(self, intake):
         # Generate the data.
         subject = "Application Reviewed: Rejected"
+        web_view_url = reverse('foundation_email_rejected_intake', args=[intake.id,])
         param = {
-            'user': request.user,
+            'user': intake.me.owner,
             'intake': intake,
-            'url': get_login_url(request),
-            'web_view_url': reverse('foundation_email_rejected_intake', args=[intake.id,]),
+            'url': self.get_login_url(),
+            'web_view_url': self.get_url_with_subdomain(web_view_url),
         }
 
         # Plug-in the data into our templates and render the data.
@@ -104,11 +108,13 @@ class SendEmailViewMixin(object):
         """Function will send pending new intake needs to be reviewed email."""
         # Generate the data.
         subject = "New Entrepreneur Application!"
+        url = reverse('tenant_intake_employee_details', args=[intake.id,])
+        web_view_url = reverse('foundation_email_pending_intake', args=[intake.id,])
         param = {
-            'user': self.user,
-            'url': reverse('tenant_intake_employee_details', args=[intake.id,]),
+            'user': intake.me.owner,
+            'url': self.get_url_with_subdomain(url),
             'intake': intake,
-            'web_view_url': reverse('foundation_email_pending_intake', args=[intake.id,]),
+            'web_view_url': self.get_url_with_subdomain(web_view_url),
         }
 
         # Plug-in the data into our templates and render the data.
@@ -179,7 +185,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     contact_list.append(user.email)
 
                 # Send the email to our group.
-                self.send_intake_is_pending(contact_list)
+                self.send_intake_is_pending(intake, contact_list)
 
                 # Mark the Intake object as complete after sending notification.
                 intake.status = constants.PENDING_REVIEW_STATUS
@@ -187,13 +193,13 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # Return a sucess message.
             return response.Response(
-                data={'message': 'Intake has been completed.'},
+                data='Intake has been completed.',
                 status=status.HTTP_200_OK
             )
         except Intake.DoesNotExist:
             # Return an error message.
             return response.Response(
-                data={'message': 'Pk not found.'},
+                data='Pk not found.',
                 status=status.HTTP_404_NOT_FOUND
             )
 
@@ -242,11 +248,11 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 )
             else:
                 return response.Response(
-                    data={'message': str(serializer.errors)},
+                    data="judge " + str(serializer.errors),
                     status=status.HTTP_400_BAD_REQUEST
                 )
         except Exception as e:
             return response.Response(
-                data={'message': str(e) },
+                data="judge " + str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )

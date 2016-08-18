@@ -25,6 +25,13 @@ from smegurus import constants
 
 
 class SendEmailViewMixin(object):
+    def get_web_view(self, task, log_event):
+        url = 'https://' if self.request.is_secure() else 'http://'
+        url += self.request.tenant.schema_name + "."
+        url += get_current_site(self.request).domain
+        url += reverse('foundation_email_task', args=[task.id, log_event.id,])
+        return url
+
     def get_task_url(self, task):
         """Function will return the URL to the task page through the sub-domain of the organization."""
         url = 'https://' if self.request.is_secure() else 'http://'
@@ -49,7 +56,7 @@ class SendEmailViewMixin(object):
             'task': task,
             'log_event': log_event,
             'url': self.get_task_url(task),
-            'web_view_url': reverse('foundation_email_task', args=[task.id, log_event.id,]),
+            'web_view_url': self.get_web_view(task, log_event),
         }
 
         # Plug-in the data into our templates and render the data.
