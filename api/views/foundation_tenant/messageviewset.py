@@ -26,7 +26,7 @@ class SendEmailViewMixin(object):
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
-        url += reverse('foundation_email_message', args=[message.id,]),
+        url += reverse('foundation_email_message', args=[message.id,])
         return url
 
     def get_message_url(self, message):
