@@ -84,7 +84,7 @@ SHARED_APPS = (
   'django.contrib.staticfiles',
   'rest_framework',
   'rest_framework.authtoken',
-  # 'storages',
+  'storages',
   "compressor",
   'sorl.thumbnail',
 )

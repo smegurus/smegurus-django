@@ -19,7 +19,10 @@ class Command(BaseCommand):
             'banned_words.json',
             'sites.json',
             'groups',
-            # 'permissions'
+            # 'permissions',
+            'countryoption.json',
+            'provinceoption.json',
+            'cityoption.json',
         ]
 
         # Iterate through all the filenames and load them into database.

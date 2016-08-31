@@ -5,6 +5,9 @@ from foundation_public.models.banned import BannedWord
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.abstract_thing import AbstractPublicThing
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
+from foundation_public.models.cityoption import CityOption
 from foundation_public.models.brand import PublicBrand
 from foundation_public.models.contactpoint import PublicContactPoint
 from foundation_public.models.geocoordinate import PublicGeoCoordinate

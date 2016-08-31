@@ -11,6 +11,9 @@ from api.views.authentication.changepassword import ChangePasswordViewSet
 
 from api.views.foundation_public.publicfileuploadviewset import PublicFileUploadViewSet
 from api.views.foundation_public.publicimageuploadviewset import PublicImageUploadViewSet
+from api.views.foundation_public.countryoptionviewset import PublicCountryOptionViewSet
+from api.views.foundation_public.provinceoptionviewset import PublicProvinceOptionViewSet
+from api.views.foundation_public.cityoptionviewset import PublicCityOptionViewSet
 from api.views.foundation_public.languageviewset import PublicLanguageViewSet
 from api.views.foundation_public.postaladdressviewset import PublicPostalAddressViewSet
 from api.views.foundation_public.openinghoursspecificationviewset import PublicOpeningHoursSpecificationViewSet
@@ -52,6 +55,9 @@ from api.views.foundation_tenant.meviewset import TenantMeViewSet
 router = routers.DefaultRouter()
 router.register(r'publicfileupload', PublicFileUploadViewSet)
 router.register(r'publicimageupload', PublicImageUploadViewSet)
+router.register(r'publiccountryoption', PublicCountryOptionViewSet)
+router.register(r'publicprovinceoption', PublicProvinceOptionViewSet)
+router.register(r'publiccityoption', PublicCityOptionViewSet)
 router.register(r'publiclanguage', PublicLanguageViewSet)
 router.register(r'publicpostaladdress', PublicPostalAddressViewSet)
 router.register(r'publicopeninghoursspecification', PublicOpeningHoursSpecificationViewSet)

@@ -14,6 +14,9 @@ from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
 from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
+from foundation_public.models.cityoption import CityOption
 from smegurus import constants
 from smegurus.settings import env_var
 
@@ -100,6 +103,7 @@ def organization_registration_page(request):
         return render(request, 'foundation_auth/organization_register_view.html',{
             'org_form': PublicOrganizationForm(),
             'address_form': PublicPostalAddressForm(),
+            'countries': CountryOption.objects.all()
         })
 
 
@@ -107,7 +111,7 @@ def organization_registration_page(request):
 def organization_successful_registration_page(request):
     organization = get_object_or_404(PublicOrganization, owner_id=request.user.id)
     return render(request, 'foundation_auth/organization_success_register_view.html',{
-        'organization': organization
+        'organization': organization,
     })
 
 

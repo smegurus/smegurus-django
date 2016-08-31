@@ -1,6 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_public.models.abstract_thing import AbstractPublicThing
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
+from foundation_public.models.cityoption import CityOption
 
 
 class PublicPostalAddress(AbstractPublicThing):
@@ -15,26 +18,32 @@ class PublicPostalAddress(AbstractPublicThing):
         verbose_name = 'Postal Address'
         verbose_name_plural = 'Postal Addresses'
 
-    address_country = models.CharField(
-        _("Address Country"),
-        max_length=127,
+    address_country = models.ForeignKey(
+        CountryOption,
         help_text=_('The country. For example, USA. You can also provide the two-letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO 3166-1 alpha-2</a> country code.'),
-        blank=True,
         null=True,
+        blank=True,
+        related_name="postaladdress_country_%(app_label)s_%(class)s_related",
+        db_index=True,
+        on_delete=models.CASCADE
     )
-    address_locality = models.CharField(
-        _("Address Locality"),
-        max_length=127,
+    address_locality = models.ForeignKey(
+        CityOption,
         help_text=_('The locality. For example, Mountain View.'),
-        blank=True,
         null=True,
+        blank=True,
+        related_name="postaladdress_city_%(app_label)s_%(class)s_related",
+        db_index=True,
+        on_delete=models.CASCADE
     )
-    address_region = models.CharField(
-        _("Address Region"),
-        max_length=127,
+    address_region = models.ForeignKey(
+        ProvinceOption,
         help_text=_('The region. For example, CA.'),
-        blank=True,
         null=True,
+        blank=True,
+        related_name="postaladdress_province_%(app_label)s_%(class)s_related",
+        db_index=True,
+        on_delete=models.CASCADE
     )
     post_office_box_number = models.CharField(
         _("Post Office Box Number"),

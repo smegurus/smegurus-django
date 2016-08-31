@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from smegurus import constants
 from foundation_public.models.banned import BannedDomain, BannedWord
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
+from foundation_public.models.cityoption import CityOption
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.language import PublicLanguage
@@ -29,6 +32,24 @@ class PublicFileUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicFileUpload
         fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)
+
+
+class CountryOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CountryOption
+        fields = ('id', 'name',)
+
+
+class ProvinceOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProvinceOption
+        fields = ('id', 'name', 'country',)
+
+
+class CityOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CityOption
+        fields = ('id', 'name', 'country', 'province', 'time_zone',)
 
 
 class PublicLanguageSerializer(serializers.ModelSerializer):

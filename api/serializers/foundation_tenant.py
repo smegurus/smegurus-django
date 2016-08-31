@@ -5,6 +5,9 @@ from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from smegurus import constants
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.language import Language
@@ -57,49 +60,30 @@ class LanguageSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url')
 
 
+class CountryOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CountryOption
+        fields = ('id', 'name',)
+
+
+class ProvinceOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProvinceOption
+        fields = ('id', 'name', 'country',)
+
+
+class CityOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CityOption
+        fields = ('id', 'name', 'country', 'province', 'time_zone',)
+
+
 class PostalAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostalAddress
         fields = ('id', 'name', 'alternate_name', 'description', 'owner', 'url',
-                 'address_country', 'is_address_country_other',
-                 'address_locality', 'is_address_locality_other',
-                 'address_region', 'is_address_region_other',
+                 'address_country', 'address_locality', 'address_region',
                  'post_office_box_number', 'postal_code', 'street_address',)
-
-    def validate(self, data):
-        """
-        Perform our own custom validation.
-        """
-        address_country = data.get('address_country')
-        address_region = data.get('address_region')
-        message = _("Province/State does not exist for specified Country.")
-
-        if address_country == _("United States"):
-            if not address_region in constants.US_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Canada"):
-            if not address_region in constants.CA_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Mexico"):
-            if not address_region in constants.MX_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("China"):
-            if not address_region in constants.CN_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Brazil"):
-            if not address_region in constants.BR_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Russia"):
-            if not address_region in constants.RU_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        return super(PostalAddressSerializer, self).validate(data)
-
 
 class OpeningHoursSpecificationSerializer(serializers.ModelSerializer):
     class Meta:

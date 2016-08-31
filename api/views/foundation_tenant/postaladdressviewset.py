@@ -13,10 +13,8 @@ from foundation_tenant.models.postaladdress import PostalAddress
 class PostalAddressFilter(django_filters.FilterSet):
     class Meta:
         model = PostalAddress
-        fields = ['name', 'alternate_name', 'description', 'owner', 'url',
-                 'address_country', 'is_address_country_other',
-                 'address_locality', 'is_address_locality_other',
-                 'address_region', 'is_address_region_other',
+        fields = ['id', 'name', 'alternate_name', 'description', 'owner', 'url',
+                 'address_country', 'address_locality', 'address_region',
                  'post_office_box_number', 'postal_code', 'street_address',]
 
 

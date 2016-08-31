@@ -5,7 +5,6 @@
 <input id="id_hidden_postaladdress" type="hidden" />
 <input id="id_hidden_organization" type="hidden" />
 {% compress js inline %}
-    {% include 'foundation_public/autocomplete_js.html' %}
     {% include 'foundation_auth/organization_register_js.html' %}
 {% endcompress %}
 
@@ -47,32 +46,41 @@
     </div>
 
     <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Country' %}</label>
+       <select id="id_address_country" class="form-control">
+           <option value="">{% trans 'Please select your country' %}</option>
+           {% for country in countries.all %}
+               <option value="{{ country.id }}">{{ country.name }}</option>
+           {% endfor %}
+       </select>
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'Province/State' %}</label>
+       <select id="id_address_region" class="form-control" disabled>
+           <option value="0" selected="selected"> {% trans 'Please select a province/state' %}</option>
+       </select>
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
+       <label for="signupInputText1" class="text-muted">{% trans 'City' %}</label>
+       <select id="id_address_locality" class="form-control" disabled>
+           <option value="0" selected="selected"> {% trans 'Please select a city' %}</option>
+       </select>
+       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback">
        <label for="signupInputText1" class="text-muted">{% trans 'Street Address' %}</label>
        <input id="id_street_address" type="text" placeholder="{% trans 'Enter street address' %}" autocomplete="off" required class="form-control">
        <span class="fa fa-map-marker form-control-feedback text-muted"></span>
     </div>
 
     <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'City' %}</label>
-       <input id="id_address_locality" type="text" placeholder="{% trans 'Enter city' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
        <label for="signupInputText1" class="text-muted">{% trans 'Postal/Zip' %}</label>
        <input id="id_postal_code" type="text" placeholder="{% trans 'Enter postal/zip' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Province/State' %}</label>
-       <input id="id_address_region" type="text" placeholder="{% trans 'Enter province/state' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Country' %}</label>
-       <input id="id_address_country" type="text" placeholder="{% trans 'Enter country' %}" autocomplete="off" required class="form-control">
        <span class="fa fa-map-marker form-control-feedback text-muted"></span>
     </div>
 

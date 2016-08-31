@@ -2,8 +2,8 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
 
 
 class CityOptionManager(models.Manager):
@@ -15,7 +15,7 @@ class CityOptionManager(models.Manager):
 
 class CityOption(models.Model):
     class Meta:
-        app_label = 'foundation_tenant'
+        app_label = 'foundation_public'
         db_table = 'biz_city_options'
         verbose_name = 'City Option'
         verbose_name_plural = 'City Options'
