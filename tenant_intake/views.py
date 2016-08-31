@@ -9,16 +9,18 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.http import condition
 from rest_framework import status
 
-from foundation_public.decorators import group_required
-from tenant_configuration.decorators import tenant_configuration_required
-from smegurus import constants
-
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
+from smegurus import constants
 
+from foundation_public.decorators import group_required
+from tenant_configuration.decorators import tenant_configuration_required
 from tenant_intake.decorators import tenant_intake_required, tenant_intake_has_completed_redirection_required
 from tenant_profile.decorators import tenant_profile_required
 
@@ -101,7 +103,7 @@ def intake_entr_step_five_page(request):
     return render(request, 'tenant_intake/entrepreneur/5_view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
-        'tags': Tag.objects.filter(is_program=True)
+        'countries': CountryOption.objects.all()
     })
 
 

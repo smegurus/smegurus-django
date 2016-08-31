@@ -162,6 +162,10 @@
         </div>
         {% compress js %}
         <!-- =============== VENDOR SCRIPTS ===============-->
+        <!-- INPUT MASK-->
+        <script src="{% static 'vendor/jquery.inputmask/dist/jquery.inputmask.bundle.js' %}"></script>
+        <!-- CHOSEN-->
+        <script src="{% static 'vendor/chosen_v1.2.0/chosen.jquery.min.js' %}"></script>
         <!-- MODERNIZR-->
         <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
         <!-- BOOTSTRAP-->
@@ -171,7 +175,7 @@
         <!-- PARSLEY-->
         <script src="{% static 'vendor/parsleyjs/dist/parsley.min.js' %}"></script>
         <!-- =============== APP SCRIPTS ===============-->
-        <script src="{% static 'app/js/app.js' %}"></script>        
+        <script src="{% static 'app/js/app.js' %}"></script>
         <!-- =============== API SCRIPTS ===============-->
         {% include "foundation_public/common_js.html" %}
         {% include "api/js/auth_activation.html" %}
@@ -187,6 +191,7 @@
             {% include "api/js/tenant_businessidea.html" %}
             {% include "api/js/tenant_tellusyourneed.html" %}
             {% include "api/js/tenant_intake.html" %}
+            {% include "api/js/tenant_postaladdress.html" %}
             {% include "api/js/tenant_me.html" %}
         {% endif %}
         <script>

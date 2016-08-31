@@ -42,13 +42,30 @@
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
                     <fieldset id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
+
+                        <div class="form-group has-feedback">
+                            <label>{% trans 'Country*' %}</label>
+                            <select id="id_address_country" class="form-control">
+                                {% if request.tenant_me.address.address_country == None %}
+                                    <option value="0" selected="selected"> {% trans 'Please select a country' %}</option>
+                                {% endif %}
+                                {% for country in countries.all %}
+                                    <option value="{{ country.id }}" {% if request.tenant_me.address.address_country == country %}selected{% endif %}>
+                                        {{ country.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <br />
+
                         <div class="form-group has-feedback">
                             <label for="signupInputText1" class="text-muted">
                                 <label for="id_how_to_contact_telephone">
                                     {% trans 'Telephone' %}:
                                 </label>
                             </label>
-                            <input class="form-control" id="id_how_to_contact_telephone" maxlength="255" name="how_to_contact_telephone" type="text" value="{{ form.instance.how_to_contact_telephone }}" />
+                            <input class="form-control" id="id_how_to_contact_telephone" maxlength="255" name="how_to_contact_telephone" type="text" value="{{ form.instance.how_to_contact_telephone }}" {% if request.tenant_me.address.address_country == country %}disabled{% endif %} />
                             <br>
                         </div>
                         {% for field in form %}

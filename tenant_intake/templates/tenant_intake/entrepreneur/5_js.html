@@ -1,11 +1,46 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        {% if request.tenant_me.address.address_country.id == 1 %}
+            $("#id_how_to_contact_telephone").inputmask("(999) 999-9999");
+        {% endif %}
+
         $(document).keypress(function(event){
             if(event.keyCode == 13){
                 $("#id_continue_btn").click();
             }
-        });
+        }); // end Keypress
+
+        $("#id_address_country").change(function () {
+            var end = this.value;
+            var country_id = $('#id_address_country').val();
+
+            get_tenant_postaladdress(
+                {{ request.tenant_me.address.id }},
+                function(postaladdress) {
+                    postaladdress['address_country'] = $('#id_address_country').val()
+                    set_tenant_postaladdress(
+                        postaladdress,
+                        function(result) {
+                            location.reload(true);
+                        },
+                        function(error_result) {
+                            console.log(error_result);
+                            // Convert the error json into string.
+                            var string = JSON.stringify( error_result );
+                            alert("Unknown Error: "+string);
+                        }
+                    ); // end Set Tenant Postal Address
+
+                },
+                function(error_result) {
+                    console.log(error_result);
+                    // Convert the error json into string.
+                    var string = JSON.stringify( error_result );
+                    alert("Unknown Error: "+string);
+                }
+            ); // end Get Public Postal
+        }); // end Change Country
     }); // end Ready
 
     function disable_btn() {
