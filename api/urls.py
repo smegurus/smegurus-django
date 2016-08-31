@@ -27,6 +27,9 @@ from api.views.foundation_public.functionviewset import IsEmailUniqueViewSet
 
 from api.views.foundation_tenant.tenantfileuploadviewset import TenantFileUploadViewSet
 from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUploadViewSet
+from api.views.foundation_tenant.countryoptionviewset import TenantCountryOptionViewSet
+from api.views.foundation_tenant.provinceoptionviewset import TenantProvinceOptionViewSet
+from api.views.foundation_tenant.cityoptionviewset import TenantCityOptionViewSet
 from api.views.foundation_tenant.languageviewset import LanguageViewSet
 from api.views.foundation_tenant.postaladdressviewset import PostalAddressViewSet
 from api.views.foundation_tenant.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
@@ -70,6 +73,9 @@ router.register(r'publicorganization', PublicOrganizationViewSet)
 
 router.register(r'tenantfileupload', TenantFileUploadViewSet)
 router.register(r'tenantimageupload', TenantImageUploadViewSet)
+router.register(r'tenantcountryoption', TenantCountryOptionViewSet)
+router.register(r'tenantprovinceoption', TenantProvinceOptionViewSet)
+router.register(r'tenantcityoption', TenantCityOptionViewSet)
 router.register(r'tenantlanguage', LanguageViewSet)
 router.register(r'tenantpostaladdress', PostalAddressViewSet)
 router.register(r'tenantopeninghoursspecification', OpeningHoursSpecificationViewSet)

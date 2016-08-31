@@ -6,6 +6,9 @@ from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
 
 
 def latest_me_master(request):
@@ -25,8 +28,14 @@ def profile_page(request):
 @tenant_profile_required
 @condition(last_modified_func=latest_me_master)
 def profile_settings_page(request):
+    countries = CountryOption.objects.all()
+    provinces = [] if not request.tenant_me.address.address_country else ProvinceOption.objects.filter(country=request.tenant_me.address.address_country)
+    cities = [] if not request.tenant_me.address.address_region else CityOption.objects.filter(province=request.tenant_me.address.address_region)
     return render(request, 'tenant_profile/profile_settings_view.html',{
         'page': 'profile',
+        'countries': countries,
+        'provinces': provinces,
+        'cities': cities
     })
 
 
