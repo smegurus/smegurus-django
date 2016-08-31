@@ -417,10 +417,11 @@
                         <!-- end HELP -->
 
                         <!-- LOGOUT -->
+                        {% if request.tenant_me.has_logout_dialog %}
                         <li class=" ">
                             <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="{% trans 'Logout' %}" >
-                            <em class="icon-logout"></em>
-                            <span data-localize="offsidebar.nav.LOGOUT">{% trans 'Logout' %}</span>
+                                <em class="icon-logout"></em>
+                                <span data-localize="offsidebar.nav.LOGOUT">{% trans 'Logout' %}</span>
                             </a>
                         </li>
                         <li class="has-logout-block">
@@ -434,11 +435,23 @@
                                         {% trans 'NO' %}
                                     </button>
                                     <label class="checkbox-inline c-checkbox">
-                                    <input id="inlineCheckbox10" type="checkbox" value="{% trans 'Do not ask me again' %}">
-                                    <span class="fa fa-check"></span>{% trans 'Don\'t ask me again' %}</label>
+                                        <input id="inlineCheckbox10"
+                                          onclick="ajax_me_update_logout_dialog();"
+                                             type="checkbox"
+                                            value="{% trans 'Do not ask me again' %}" />
+                                        <span class="fa fa-check"></span>{% trans 'Don\'t ask me again' %}
+                                    </label>
                                 </div>
                             </div>
                         </li>
+                        {% else %}
+                        <li class=" ">
+                            <a href="#logout-block" onclick="ajax_logout();" title="{% trans 'Logout' %}" >
+                            <em class="icon-logout"></em>
+                            <span data-localize="offsidebar.nav.LOGOUT">{% trans 'Logout' %}</span>
+                            </a>
+                        </li>
+                        {% endif %}
                         <!-- end LOGOUT -->
 
                     </ul>
@@ -547,6 +560,27 @@
 
                         function ajax_load_help_page() {
                             window.location = "{% url 'tenant_help_master' %}";
+                        }
+
+                        function ajax_me_update_logout_dialog() {
+                            get_tenant_me(  // start Get Me
+                                {{ request.tenant_me.owner.id }},
+                                function(me) {
+                                    me['has_logout_dialog'] = false;
+                                    set_tenant_me(  // start Set Me
+                                        me,
+                                        function(json_result) {
+                                            console.log(json_result);
+                                        },
+                                        function(json_error_result) {
+                                            console.log(json_error_result);
+                                        }
+                                    ); // end Get Me
+                                },
+                                function(error_result) {
+                                    console.log(error_result);
+                                }
+                            );  // end Set Me
                         }
                     </script>
                 {% endif %}

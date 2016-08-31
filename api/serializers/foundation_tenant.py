@@ -160,7 +160,7 @@ class TenantMeSerializer(serializers.ModelSerializer):
                   'is_setup', 'is_locked', 'notify_when_task_had_an_interaction',
                   'notify_when_new_messages', 'notify_when_due_tasks',
                   'address', 'address', 'contact_point', 'given_name',
-                  'family_name', 'email', 'telephone',)
+                  'family_name', 'email', 'telephone', 'has_logout_dialog',)
 
 
 class CalendarEventSerializer(serializers.ModelSerializer):

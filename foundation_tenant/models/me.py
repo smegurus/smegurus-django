@@ -82,6 +82,12 @@ class TenantMe(AbstractPerson):
         default=True
     )
 
+    has_logout_dialog = models.BooleanField(
+        _("Has Logout Dialog"),
+        default=True,
+        help_text=_('Variable indicates whether Users are prompted with a dialog during logout.'),
+    )
+
     def is_entrepreneur(self):
         for my_group in self.owner.groups.all():
             if constants.ENTREPRENEUR_GROUP_ID == my_group.id:
