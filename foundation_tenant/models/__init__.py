@@ -2,6 +2,9 @@ from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.abstract_creativework import AbstractCreativeWork
 from foundation_tenant.models.abstract_mediaobject import AbstractMediaObject
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification

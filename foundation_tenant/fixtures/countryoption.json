@@ -1,0 +1,23 @@
+[
+{
+    "model": "foundation_tenant.countryoption",
+    "pk": 1,
+    "fields": {
+        "name": "Canada"
+    }
+},
+{
+    "model": "foundation_tenant.countryoption",
+    "pk": 2,
+    "fields": {
+        "name": "United States"
+    }
+},
+{
+    "model": "foundation_tenant.countryoption",
+    "pk": 3,
+    "fields": {
+        "name": "Mexico"
+    }
+}
+]

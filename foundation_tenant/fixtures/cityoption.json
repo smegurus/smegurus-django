@@ -1,0 +1,11 @@
+[
+{
+    "model": "foundation_tenant.cityoption",
+    "pk": 1,
+    "fields": {
+        "name": "London",
+        "country": 1,
+        "province": 1
+    }
+}
+]
