@@ -31,6 +31,11 @@ class PostalAddress(AbstractThing):
         null=True,
         default='',
     )
+    is_address_country_other = models.BooleanField( # NON-SCHEMA
+        _("Is Address Country Other"),
+        default=False,
+        help_text=_('Variable indicates whether choosen Country is not listed in SMEGurus database.'),
+    )
     address_locality = models.CharField(
         _("Address Locality"),
         max_length=127,
@@ -39,6 +44,11 @@ class PostalAddress(AbstractThing):
         null=True,
         default='',
     )
+    is_address_locality_other = models.BooleanField( # NON-SCHEMA
+        _("Is Address Locality Other"),
+        default=False,
+        help_text=_('Variable indicates whether choosen City is not listed in SMEGurus database.'),
+    )
     address_region = models.CharField(
         _("Address Region"),
         max_length=127,
@@ -46,6 +56,11 @@ class PostalAddress(AbstractThing):
         blank=True,
         null=True,
         default='',
+    )
+    is_address_region_other = models.BooleanField( # NON-SCHEMA
+        _("Is Address Region Other"),
+        default=False,
+        help_text=_('Variable indicates whether choosen Province is not listed in SMEGurus database.'),
     )
     post_office_box_number = models.CharField(
         _("Post Office Box Number"),
