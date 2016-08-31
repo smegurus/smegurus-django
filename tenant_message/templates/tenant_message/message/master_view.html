@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
 
 {% compress js inline %}
@@ -76,15 +76,11 @@
                                 {% endcomment %}
 
                                 <td>
-                                    {% if message.sender.image != None and message.sender.image != '' %}
-                                        <img src="{{ message.sender.image.imagefile.url }}"
-                                            alt="{% trans 'Mail Avatar' %}"
-                                          class="mb-mail-avatar pull-left" />
-                                    {% else %}
-                                        <img src="{% static 'app/img/dummy.png' %}"
-                                             alt="{% trans 'Mail Avatar' %}"
-                                           class="mb-mail-avatar pull-left" />
-                                    {% endif %}
+                                    {% thumbnail message.sender.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                        <img src="{{ im.url }}" alt="{% trans 'Mail Avatar' %}" width="{{ im.width }}" height="{{ im.height }}" class="mb-mail-avatar pull-left">
+                                    {% empty %}
+                                        <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ intake.me.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="mb-mail-avatar pull-left">
+                                    {% endthumbnail %}
                                     <div class="mb-mail-date pull-right">
                                         {{ message.date_received }}
                                     </div>

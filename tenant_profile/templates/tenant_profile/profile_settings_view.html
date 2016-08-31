@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
     {% compress js inline %}
         {% include 'foundation_public/autocomplete_js.html' %}
@@ -39,12 +39,23 @@
                                         <!-- /.Upload ID -->
 
                                         <!-- Image Placeholder -->
-                                        <img id="id_image_placeholder"
-                                            src="{{ request.tenant_me.image.imagefile.url }}"
-                                          style="height:200px;width:200px;"
-                                            alt="{{ request.tenant_me.name }} {% trans 'Picture' %}"
-                                          class="img-thumbnail center-block mb0 add-cover-image"
-                                           name="product-image" />
+                                        {% thumbnail request.tenant_me.image.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
+                                            <img src="{{ im.url }}"
+                                                  id="id_image_placeholder"
+                                                style="height:200px;width:200px;"
+                                                  alt="{{ request.tenant_me.name }} {% trans 'Picture' %}"
+                                               width="{{ im.width }}"
+                                              height="{{ im.height }}"
+                                               class="img-thumbnail center-block mb0 add-cover-image" />
+                                        {% empty %}
+                                            <img src="{% static 'app/img/dummy64x64.png' %}"
+                                                  id="id_image_placeholder"
+                                               style="height:200px;width:200px;"
+                                                 alt="{{ request.tenant_me.name }} {% trans 'Picture' %}"
+                                               width="{{ im.width }}"
+                                              height="{{ im.height }}"
+                                               class="img-thumbnail center-block mb0 add-cover-image" />
+                                        {% endthumbnail %}
                                         <!-- /.Image Placeholder -->
 
                                         <br/>

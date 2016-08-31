@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress tenant_community_tags %}
+{% load staticfiles i18n compress thumbnail tenant_community_tags %}
 {% block content %}
 {% compress js inline %}
     {% include 'tenant_community/list/js.html' %}
@@ -20,12 +20,18 @@
                                 <div class="panel-heading">
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#">
-                                            {% if post.me.image != None and post.me.image != '' %}
-                                                <img src="{{ post.me.image.imagefile.url }}" alt="{% trans 'Contact' %}" class="media-object img-thumbnail img-circle thumb32" />
-                                            {% else %}
-                                                <img src="{% static 'app/img/dummy.png' %}" alt="{% trans 'Contact' %}" class="media-object img-thumbnail img-circle thumb32" />
-                                            {% endif %}
+                                            <a>
+                                                {% thumbnail  post.me.image.imagefile "32x32" format='JPEG' background="#ffffff" as im %}
+                                                <img id="id_image_placeholder"
+                                                    src="{{ im.url }}"
+                                                    alt="{% trans 'Contact' %}"
+                                                  class="media-object img-thumbnail img-circle thumb32" />
+                                                 {% empty %}
+                                                 <img id="id_image_placeholder"
+                                                     src="{% static 'app/img/dummy64x64.png' %}"
+                                                     alt="{% trans 'Contact' %}"
+                                                   class="media-object img-thumbnail img-circle thumb32" />
+                                                 {% endthumbnail %}
                                             </a>
                                         </div>
                                         <div class="media-body media-middle">
@@ -37,8 +43,18 @@
                                 <div class="panel-body">
                                     {% if post.image != None and post.image != '' %}
                                     <p>
-                                        <a href="#">
-                                            <img src="{{ post.image.imagefile.url }}" alt="{% trans 'Contact' %}" class="img-responsive img-thumbnail" />
+                                        <a>
+                                            {% thumbnail post.image.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
+                                            <img id="id_image_placeholder"
+                                                src="{{ im.url }}"
+                                                alt="{% trans 'Contact' %}"
+                                              class="img-responsive img-thumbnail" />
+                                             {% empty %}
+                                             <img id="id_image_placeholder"
+                                                 src="{% static 'app/img/dummy200x200.png' %}"
+                                                 alt="{% trans 'Contact' %}"
+                                               class="img-responsive img-thumbnail" />
+                                             {% endthumbnail %}
                                         </a>
                                     </p>
                                     {% endif %}
@@ -105,11 +121,17 @@
                 <div class="panel-body">
                     {% for ad in ads.all %}
                     <a href="{{ ad.url }}">
-                        {% if ad.image != None and ad.image != '' %}
-                            <img src="{{ ad.image.imagefile.url }}" class="img-responsive img-thumbnail" />
-                        {% else %}
-                            <img src="{% static 'app/img/dummy.png' %}" class="img-responsive img-thumbnail" />
-                        {% endif %}
+                        {% thumbnail ad.image.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
+                        <img id="id_image_placeholder"
+                            src="{{ im.url }}"
+                            alt="{% trans 'Contact' %}"
+                          class="img-responsive img-thumbnail" />
+                         {% empty %}
+                         <img id="id_image_placeholder"
+                             src="{% static 'app/img/dummy200x200.png' %}"
+                             alt="{% trans 'Contact' %}"
+                           class="img-responsive img-thumbnail" />
+                         {% endthumbnail %}
                     </a>
                     {% endfor %}
                 </div>

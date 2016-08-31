@@ -1,4 +1,4 @@
-{% load staticfiles i18n %}
+{% load staticfiles i18n thumbnail %}
 <div class="table-responsive">
     <table id="table-ext-1" class="table table-bordered table-hover">
         <thead>
@@ -20,11 +20,11 @@
             <tr>
                 <td>
                     <div class="media">
-                        {% if task.assignee.image != None and task.assignee.image != '' %}
-                            <img src="{{ task.assignee.image.imagefile.url }}" alt="{{ task.assignee.name }} Avatar" width="60" height="60" class="img-responsive img-circle">
-                        {% else %}
-                            <img src="{% static 'app/img/dummy.png' %}" alt="{{ task.assignee.name }} Avatar" width="60" height="60" class="img-responsive img-circle">
-                        {% endif %}
+                        {% thumbnail task.assignee.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                            <img src="{{ im.url }}" alt="{{ task.assignee.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive img-circle" />
+                        {% empty %}
+                            <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ task.assignee.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive img-circle" />
+                        {% endthumbnail %}
                     </div>
                 </td>
                 <td>{% if task.assignee %}{{ task.assignee.name }}{% else %}{% trans 'Not Assigned' %}{% endif %}</td>

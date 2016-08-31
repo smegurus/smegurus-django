@@ -1,4 +1,4 @@
-{% load staticfiles i18n compress foundation_tenant_tags %}
+{% load staticfiles i18n compress thumbnail foundation_tenant_tags %}
 <!DOCTYPE html>
 <html lang="{{ request.language }}">
     <head>
@@ -171,11 +171,11 @@
                                     <!-- User picture-->
                                     <div class="user-block-picture">
                                         <div class="user-block-status">
-                                            {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
-                                                <img src="{{ request.tenant_me.image.imagefile.url }}" alt="{{ request.tenant_me.name }} Avatar" width="60" height="60" class="img-thumbnail img-circle">
-                                            {% else %}
-                                                <img src="{% static 'app/img/dummy.png' %}" alt="{{ request.tenant_me.name }} Avatar" width="60" height="60" class="img-thumbnail img-circle">
-                                            {% endif %}
+                                            {% thumbnail request.tenant_me.image.imagefile "60x60" format='JPEG' background="#ffffff" as im %}
+                                                <img src="{{ im.url }}" alt="{{ request.tenant_me.name }} Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                            {% empty %}
+                                                <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ request.tenant_me.name }} Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                                            {% endthumbnail %}
                                             <div class="circle circle-success circle-lg"></div>
                                         </div>
                                     </div>

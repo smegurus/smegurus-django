@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
 {% compress js inline %}
     {% include 'tenant_profile/profile_js.html' %}
@@ -13,11 +13,11 @@
                     <div class="col-md-4">
                         <div class="text-center">
                             <div class="pv-lg">
-                                {% if request.tenant_me.image != None and request.tenant_me.image != '' %}
-                                <img src="{{ request.tenant_me.image.imagefile.url }}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
-                                {% else %}
-                                <img src="{% static 'app/img/dummy.png' %}" alt="Contact" class="center-block img-responsive img-circle img-thumbnail thumb96">
-                                {% endif %}
+                                {% thumbnail request.tenant_me.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                    <img src="{{ im.url }}" alt="{% trans 'Contact' %}" width="{{ im.width }}" height="{{ im.height }}" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                                {% empty %}
+                                    <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ intake.me.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                                {% endthumbnail %}
                             </div>
                             <h3 class="m0 text-bold">{{ request.user.first_name }} {{ request.user.last_name }}</h3>
                             <div class="mv-lg">

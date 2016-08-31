@@ -86,6 +86,7 @@ SHARED_APPS = (
   'rest_framework.authtoken',
   # 'storages',
   "compressor",
+  'sorl.thumbnail',
 )
 
 TENANT_APPS = (
@@ -330,3 +331,11 @@ AUTHENTICATION_BACKENDS = (
     'smegurus.backends.UserModelEmailBackend',
     'django.contrib.auth.backends.ModelBackend',
  )
+
+
+# sorl-thumbnail
+# https://github.com/mariocesar/sorl-thumbnail
+
+THUMBNAIL_ENGINE = 'smegurus.snorlutil.Engine'
+THUMBNAIL_DEBUG=True
+THUMBNAIL_FORCE_OVERWRITE = True

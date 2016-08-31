@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
 
 {% compress js inline %}
@@ -158,11 +158,11 @@
                     <a href="#messages" class="list-group-item">
                         <div class="media-box">
                             <div class="pull-left">
-                                {% if comment_post.me.image != None and comment_post.me.image != '' %}
-                                    <img src="{{ comment_post.me.image.imagefile.url }}" alt="{% trans 'Image' %}" class="media-box-object img-circle thumb32" />
-                                {% else %}
-                                    <img src="{% static 'app/img/dummy.png' %}" alt="{% trans 'Image' %}" class="media-box-object img-circle thumb32" />
-                                {% endif %}
+                                {% thumbnail comment_post.me.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                    <img src="{{ im.url }}" alt="{% trans 'Image' %}" width="{{ im.width }}" height="{{ im.height }}" class="media-box-object img-circle thumb32" />
+                                {% empty %}
+                                    <img src="{% static 'app/img/dummy64x64.png' %}" alt="{% trans 'Image' %}" width="{{ im.width }}" height="{{ im.height }}" class="media-box-object img-circle thumb32" />
+                                {% endthumbnail %}
                             </div>
                             <div class="media-box-body clearfix">
                                 <small class="pull-right">{{ comment_post.created }}</small>

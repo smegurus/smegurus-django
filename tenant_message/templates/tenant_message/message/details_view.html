@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
 {% compress js inline %}
     {% include 'tenant_message/message/details_js.html' %}
@@ -22,15 +22,11 @@
                                 {% endif %}
 
                                 <div class="conversation-user">
-                                    {% if message.sender.image != None and message.sender.image != '' %}
-                                        <img src="{{ message.sender.image.imagefile.url }}"
-                                            alt="{% trans 'Mail Avatar' %}"
-                                          class="img-circle thumb64" />
-                                    {% else %}
-                                        <img src="{% static 'app/img/dummy.png' %}"
-                                             alt="{% trans 'Mail Avatar' %}"
-                                           class="img-circle thumb64" />
-                                    {% endif %}
+                                    {% thumbnail message.sender.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                        <img src="{{ im.url }}" alt="{% trans 'Mail Avatar' %}" width="{{ im.width }}" height="{{ im.height }}" class="img-circle thumb64">
+                                    {% empty %}
+                                        <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ intake.me.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="img-circle thumb64">
+                                    {% endthumbnail %}
                                 </div>
                                 <div class="conversation-body">
                                     <div class="name">

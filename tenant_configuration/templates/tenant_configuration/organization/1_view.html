@@ -1,5 +1,5 @@
 {% extends 'tenant_configuration/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
     {% compress js inline %}
         {% include 'tenant_configuration/organization/1_js.html' %}
@@ -18,12 +18,21 @@
         <!-- /.Upload ID -->
 
         <!-- Image Placeholder -->
+        {% thumbnail request.tenant_me.image.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
         <img id="id_image_placeholder"
-            src="{{ request.tenant_me.image.imagefile.url }}"
+            src="{{ im.url }}"
           style="height:200px;width:200px;"
             alt="{{ request.user.first_name }}'s Profile Picture"
           class="img-thumbnail center-block mb0 add-cover-image"
            name="product-image" />
+         {% empty %}
+         <img id="id_image_placeholder"
+             src="{% static 'app/img/dummy200x200.png' %}"
+           style="height:200px;width:200px;"
+             alt="{{ request.user.first_name }}'s Profile Picture"
+           class="img-thumbnail center-block mb0 add-cover-image"
+            name="product-image" />
+         {% endthumbnail %}
         <!-- /.Image Placeholder -->
 
         <br/>
