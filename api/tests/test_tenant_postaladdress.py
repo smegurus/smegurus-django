@@ -17,6 +17,9 @@ from api.views import authentication
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
 from smegurus import constants
 
 
@@ -72,33 +75,16 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # Above taken from:
         # http://www.django-rest-framework.org/api-guide/testing/#authenticating
 
-        # Initialize our test data.
-        PostalAddress.objects.bulk_create([
-            PostalAddress(owner=self.user),
-            PostalAddress(owner=self.user),
-            PostalAddress(owner=self.user),
-        ])
-
     @transaction.atomic
     def tearDown(self):
+        CountryOption.objects.delete_all()
+        ProvinceOption.objects.delete_all()
+        CityOption.objects.delete_all()
         PostalAddress.objects.delete_all()
-        ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
         # super(APIPostalAdressWithTenantSchemaTestCase, self).tearDown()
-
-    @transaction.atomic
-    def test_to_string(self):
-        # Create a new object with our specific test data.
-        postal_address = PostalAddress.objects.create(
-            id=2030,
-            name="Unit Test",
-            description="Used for unit testing purposes."
-        )
-        postal_address.save()
-        self.assertEqual(str(postal_address), "Unit Test")
 
     @transaction.atomic
     def test_list(self):
@@ -112,159 +98,189 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post(self):
+        country = CountryOption.objects.create(
+            id=1,
+            name="Avalon"
+        )
+        province = ProvinceOption.objects.create(
+            id=1,
+            country=country,
+            name="Colony Ship #124"
+        )
+        city = CityOption.objects.create(
+            id=1,
+            country=country,
+            province=province,
+            name="District 9"
+        )
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': 'Canada',
-            'address_region': 'Ontario',
+            'address_country': country.id,
+            'address_region': province.id,
+            'address_locality': city.id
         }
         response = self.unauthorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_post_with_authentication(self):
+        country = CountryOption.objects.create(
+            id=1,
+            name="Avalon"
+        )
+        province = ProvinceOption.objects.create(
+            id=1,
+            country=country,
+            name="Colony Ship #124"
+        )
+        city = CityOption.objects.create(
+            id=1,
+            country=country,
+            province=province,
+            name="District 9"
+        )
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': 'Canada',
-            'address_region': 'Ontario',
+            'address_country': country.id,
+            'address_region': province.id,
+            'address_locality': city.id
         }
         response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
-    def test_post_with_authentication_but_wrong_us_state(self):
-        data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id,
-            'address_country': 'United States',
-            'address_region': 'Ontario',
-        }
-        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    @transaction.atomic
-    def test_post_with_authentication_but_wrong_ca_state(self):
-        data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id,
-            'address_country': 'Canada',
-            'address_region': 'Michigan',
-        }
-        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    @transaction.atomic
-    def test_post_with_authentication_but_wrong_mx_state(self):
-        data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id,
-            'address_country': 'Mexico',
-            'address_region': 'Michigan',
-        }
-        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    @transaction.atomic
-    def test_post_with_authentication_but_wrong_cn_state(self):
-        data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id,
-            'address_country': 'China',
-            'address_region': 'Michigan',
-        }
-        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    @transaction.atomic
-    def test_post_with_authentication_but_wrong_br_state(self):
-        data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id,
-            'address_country': 'Brazil',
-            'address_region': 'Michigan',
-        }
-        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    @transaction.atomic
-    def test_post_with_authentication_but_wrong_ru_state(self):
-        data = {
-            'name': 'Unit Test',
-            'description': 'Used for unit testing purposes.',
-            'owner': self.user.id,
-            'address_country': 'Russia',
-            'address_region': 'Michigan',
-        }
-        response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    @transaction.atomic
     def test_put(self):
-        # Delete any previous data.
-        postal_addesses = PostalAddress.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
-
-        # Create a new object with our specific test data.
+        country = CountryOption.objects.create(
+            id=1,
+            name="Avalon"
+        )
+        province = ProvinceOption.objects.create(
+            id=1,
+            country=country,
+            name="Sector 666"
+        )
+        city = CityOption.objects.create(
+            id=1,
+            country=country,
+            province=province,
+            name="District 9"
+        )
         PostalAddress.objects.create(
             id=1,
             name="Unit Test",
-            description="Used for unit testing purposes."
+            description="Used for unit testing purposes.",
+            owner=self.user,
+            address_country=country,
+            address_region=province,
+            address_locality=city,
         )
 
-        # Run the test.
         data = {
-            'id': 1,
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': 'Canada',
-            'address_region': 'Ontario',
+            'address_country': country.id,
+            'address_region': province.id,
+            'address_locality': city.id
         }
         response = self.unauthorized_client.put('/api/tenantpostaladdress/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_put_with_authorization(self):
-        # Delete any previous data.
-        postal_addesses = PostalAddress.objects.all()
-        for postal_address in postal_addesses.all():
-            postal_addesses.delete()
-
-        # Create a new object with our specific test data.
+        country = CountryOption.objects.create(
+            id=1,
+            name="Avalon"
+        )
+        province = ProvinceOption.objects.create(
+            id=1,
+            country=country,
+            name="Sector 666"
+        )
+        city = CityOption.objects.create(
+            id=1,
+            country=country,
+            province=province,
+            name="District 9"
+        )
         PostalAddress.objects.create(
             id=1,
             name="Unit Test",
             description="Used for unit testing purposes.",
-            owner_id=self.user.id
+            owner=self.user,
+            address_country=country,
+            address_region=province,
+            address_locality=city,
         )
-
-        # Run the test.
         data = {
-            'id': 1,
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': 'Canada',
-            'address_region': 'Ontario',
+            'address_country': country.id,
+            'address_region': province.id,
+            'address_locality': city.id
         }
         response = self.authorized_client.put('/api/tenantpostaladdress/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
     def test_delete(self):
+        country = CountryOption.objects.create(
+            id=1,
+            name="Avalon"
+        )
+        province = ProvinceOption.objects.create(
+            id=1,
+            country=country,
+            name="Sector 666"
+        )
+        city = CityOption.objects.create(
+            id=1,
+            country=country,
+            province=province,
+            name="District 9"
+        )
+        PostalAddress.objects.create(
+            id=1,
+            name="Unit Test",
+            description="Used for unit testing purposes.",
+            owner=self.user,
+            address_country=country,
+            address_region=province,
+            address_locality=city,
+        )
         response = self.unauthorized_client.delete('/api/tenantpostaladdress/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authentication(self):
+        country = CountryOption.objects.create(
+            id=1,
+            name="Avalon"
+        )
+        province = ProvinceOption.objects.create(
+            id=1,
+            country=country,
+            name="Sector 666"
+        )
+        city = CityOption.objects.create(
+            id=1,
+            country=country,
+            province=province,
+            name="District 9"
+        )
+        PostalAddress.objects.create(
+            id=1,
+            name="Unit Test",
+            description="Used for unit testing purposes.",
+            owner=self.user,
+            address_country=country,
+            address_region=province,
+            address_locality=city,
+        )
         response = self.authorized_client.delete('/api/tenantpostaladdress/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

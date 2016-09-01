@@ -6,6 +6,13 @@ from foundation_public.models.provinceoption import ProvinceOption
 from foundation_public.models.cityoption import CityOption
 
 
+class PublicPostalAddressManager(models.Manager):
+    def delete_all(self):
+        items = PublicPostalAddress.objects.all()
+        for item in items.all():
+            item.delete()
+
+
 class PublicPostalAddress(AbstractPublicThing):
     """
     The mailing address.
@@ -18,6 +25,7 @@ class PublicPostalAddress(AbstractPublicThing):
         verbose_name = 'Postal Address'
         verbose_name_plural = 'Postal Addresses'
 
+    objects = PublicPostalAddressManager()
     address_country = models.ForeignKey(
         CountryOption,
         help_text=_('The country. For example, USA. You can also provide the two-letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">ISO 3166-1 alpha-2</a> country code.'),

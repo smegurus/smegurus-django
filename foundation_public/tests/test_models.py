@@ -154,6 +154,15 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
         self.assertIn(str(obj), 'Chambers')
 
     @transaction.atomic
+    def test_postaladdress_delete_all(self):
+        PublicPostalAddress.objects.create(
+            name='Chambers',
+        )
+        PublicPostalAddress.objects.delete_all()
+        count = PublicPostalAddress.objects.count()
+        self.assertEqual(count, 1)
+
+    @transaction.atomic
     def test_place_to_string(self):
         obj = PublicPlace.objects.create(
             name='Chambers',
