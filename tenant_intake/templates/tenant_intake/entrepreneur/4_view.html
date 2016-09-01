@@ -6,34 +6,34 @@
     {% endcompress %}
     <div class="content-wrapper">
 <div class="panel panel-default">
-    <div class="panel-heading">Entrepreneur Intake Form</div>
+    <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div>
     <div class="panel-body">
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
             <div class="steps clearfix">
                 <ul role="tablist">
                     <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
                         <a id="example-vertical-t-0" href="#example-vertical-h-0" aria-controls="example-vertical-p-0">
-                        <span class="current-info audible">current step: </span><span class="number">1.</span> Help
+                        <span class="current-info audible">{% trans 'current step' %}: </span><span class="number">1.</span> {% trans 'Help' %}
                         </a>
                     </li>
                     <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
                         <a id="example-vertical-t-1" href="#example-vertical-h-1" aria-controls="example-vertical-p-1">
-                        <span class="number">2.</span> Discovery
+                        <span class="number">2.</span> {% trans 'Discovery' %}
                         </a>
                     </li>
                     <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
                         <a id="example-vertical-t-2" href="#example-vertical-h-2" aria-controls="example-vertical-p-2">
-                        <span class="number">3.</span> Business Ownership
+                        <span class="number">3.</span> {% trans 'Business Ownership' %}
                         </a>
                     </li>
                     <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
                         <a id="example-vertical-t-3" href="#example-vertical-h-3" aria-controls="example-vertical-p-3">
-                        <span class="number">4.</span> Contact
+                        <span class="number">4.</span> {% trans 'Contact' %}
                         </a>
                     </li>
                     <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
                         <a id="example-vertical-t-4" href="#example-vertical-h-4" aria-controls="example-vertical-p-4">
-                        <span class="number">5.</span> Finish
+                        <span class="number">5.</span> {% trans 'Finish' %}
                         </a>
                     </li>
                 </ul>
@@ -59,10 +59,10 @@
             <div class="actions clearfix">
                 <ul role="menu" aria-label="Pagination">
                     <li class="disabled" aria-disabled="true">
-                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">Previous</a>
+                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">Next</a>
+                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
                     </li>
                     <!-- <li aria-hidden="true" style="display: none;">
                         <a href="#finish" role="menuitem">Finish</a>
