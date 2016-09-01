@@ -31,20 +31,20 @@
                         <!-- /.Upload ID -->
 
                         <!-- Image Placeholder -->
-                        {% thumbnail request.tenant_me.image.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
-                        <img id="id_image_placeholder"
-                            src="{{ im.url }}"
-                          style="height:200px;width:200px;"
-                            alt="{{ request.user.first_name }}'s Profile Picture"
-                          class="img-thumbnail center-block mb0 add-cover-image"
-                           name="product-image" />
+                        {% thumbnail request.tenant.logo.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
+                            <img id="id_image_placeholder"
+                                src="{{ im.url }}"
+                              style="height:{{ im.height }}px;width:{{ im.width }}px;"
+                                alt="{{ request.tenant.name }}'s Logo"
+                              class="img-thumbnail center-block mb0 add-cover-image"
+                               name="product-image" />
                          {% empty %}
-                         <img id="id_image_placeholder"
-                             src="{% static 'app/img/dummy200x200.png' %}"
-                           style="height:200px;width:200px;"
-                             alt="{{ request.user.first_name }}'s Profile Picture"
-                           class="img-thumbnail center-block mb0 add-cover-image"
-                            name="product-image" />
+                             <img id="id_image_placeholder"
+                                 src="{% static 'app/img/dummy200x200.png' %}"
+                               style="height:200px;width:200px;"
+                                 alt="{{ request.tenant.name }}'s Logo"
+                               class="img-thumbnail center-block mb0 add-cover-image"
+                                name="product-image" />
                          {% endthumbnail %}
                         <!-- /.Image Placeholder -->
 

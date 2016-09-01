@@ -24,15 +24,19 @@
 
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
-        get_tenant_me(
-            {{ request.tenant_me.id }},
-            function(me) {
-                var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
-                if (image > 0) {
-                   me['image'] = image;
+        get_public_organization(
+            {{ request.tenant.id }},
+            function(org) {
+                var logo = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
+                if (logo > 0) {
+                   org['logo'] = logo;
                 }
-                set_tenant_me(
-                    me,
+                set_public_organization(
+                    org,
+                    function(error) {
+                        enable_btn();
+                        console.log(error);
+                    },
                     function(json_result) {
                         enable_btn();
                         console.log(json_result);
@@ -70,7 +74,7 @@
         var upload_id = $('#id_hidden_upload_id').val();
 
         // Insert or Update.
-        set_tenant_imageupload(upload_id, image, function(json_result) {
+        set_public_imageupload(upload_id, image, function(json_result) {
             $('#id_hidden_url').attr('src', json_result['imagefile']);
             $('#id_hidden_upload_id').val(json_result['id']);
             $('#id_image_placeholder').attr('src', json_result['imagefile']);

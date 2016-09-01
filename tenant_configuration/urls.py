@@ -12,6 +12,7 @@ urlpatterns = (
     url(r'^config/organization/step/6$', views.config_org_step_six_page, name='foundation_auth_config_org_step_six'),
     url(r'^config/organization/step/7$', views.config_org_step_seven_page, name='foundation_auth_config_org_step_seven'),
     url(r'^config/organization/step/8$', views.config_org_step_eight_page, name='foundation_auth_config_org_step_eight'),
+    url(r'^config/organization/step/9$', views.config_org_step_nine_page, name='foundation_auth_config_org_step_nine'),
 
     # Entrepreneur
     url(r'^config/entrepreneur/step/1$', views.config_entr_step_one_page, name='foundation_auth_config_entr_step_one'),
