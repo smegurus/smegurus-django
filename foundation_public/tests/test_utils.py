@@ -6,11 +6,13 @@ from django.utils import translation
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
-from foundation_public.templatetags import foundation_public_tags
+from foundation_public.templatetags.foundation_public_tags import tenant_url
+from foundation_public.utils import get_unique_username_from_email
+from foundation_public.utils import get_pretty_formatted_date
 from smegurus import constants
 
 
-class FoundationPublicTagsWithPublicSchemaTestCase(TenantTestCase):
+class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -36,7 +38,7 @@ class FoundationPublicTagsWithPublicSchemaTestCase(TenantTestCase):
 
     @transaction.atomic
     def setUp(self):
-        super(FoundationPublicTagsWithPublicSchemaTestCase, self).setUp()
+        super(FoundationPublicUtilsWithPublicSchemaTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
 
     @transaction.atomic
@@ -44,45 +46,35 @@ class FoundationPublicTagsWithPublicSchemaTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(FoundationPublicTagsWithPublicSchemaTestCase, self).tearDown()
+        super(FoundationPublicUtilsWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
-    def test_tenant_url_with_public_schema(self):
-        url = foundation_public_tags.tenant_url(None, 'tenant_dashboard')
-        self.assertIn(u'http://example.com/en/dashboard', url)
-
-
-class FoundationPublicTagsWithTenantSchemaTestCase(TenantTestCase):
-    fixtures = []
-
-    def setup_tenant(self, tenant):
-        """Tenant Schema"""
-        tenant.schema_name = 'galacticalliance'
-        tenant.name = "Galactic Alliance of Humankind"
-        tenant.has_perks=True
-        tenant.has_mentors=True
-        tenant.how_discovered = "Command HQ"
-        tenant.how_many_served = 1
+    def test_get_unique_username_from_email(self):
+        random_text = get_unique_username_from_email("ledo@galacticalliance.com")
+        self.assertTrue(len(random_text) > 1)
 
     @transaction.atomic
-    def setUp(self):
-        super(FoundationPublicTagsWithTenantSchemaTestCase, self).setUp()
-        self.c = TenantClient(self.tenant)
-
-    @transaction.atomic
-    def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
-        super(FoundationPublicTagsWithTenantSchemaTestCase, self).tearDown()
-
-    @transaction.atomic
-    def test_tenant_url_with_tenant_schema(self):
-        url = foundation_public_tags.tenant_url('galacticalliance', 'tenant_dashboard')
-        self.assertIn(u'http://galacticalliance.example.com/en/dashboard', url)
-
-    @transaction.atomic
-    def test_pretty_formatted_date(self):
+    def test_get_pretty_formatted_date(self):
         today = timezone.now()
-        pretty_text = foundation_public_tags.pretty_formatted_date(today)
+
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 1 OF 3: Today
+        # - - - - - - - - - - - - - - - - - -
+        pretty_text = get_pretty_formatted_date(today)
         self.assertEqual(pretty_text, "Today")
+
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 2 OF 3: Between 0 to 60 days
+        # - - - - - - - - - - - - - - - - - -
+        N = 45
+        dt = today - timedelta(days=N)
+        pretty_text = get_pretty_formatted_date(dt)
+        self.assertEqual(pretty_text, "45 days ago")
+
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 3 OF 3: After 60 days
+        # - - - - - - - - - - - - - - - - - -
+        N = 128
+        dt = today - timedelta(days=N)
+        pretty_text = get_pretty_formatted_date(dt)
+        self.assertTrue(len(pretty_text) > 1)

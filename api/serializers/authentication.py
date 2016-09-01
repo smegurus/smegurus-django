@@ -1,5 +1,3 @@
-import base64  # (Used in RegisterSerializer:Create)
-import hashlib # (Used in RegisterSerializer:Create)
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate
@@ -9,7 +7,7 @@ from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from foundation_public.models.banned import BannedDomain
-
+from foundation_public.utils import get_unique_username_from_email
 
 INVALID_CREDENTIALS_ERROR = _('Unable to login with provided credentials.')
 INACTIVE_ACCOUNT_ERROR = _('User account is disabled.')
@@ -79,11 +77,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)  # Create the user account.
-        # Uniquely generate our 'username' by taking the email and create a hash.
-        # Source: https://github.com/dabapps/django-email-as-username/blob/master/emailusernames/utils.py
-        email = validated_data['email'].lower()  # Emails should be case-insensitive unique
-        converted = email.encode('utf8', 'ignore')  # Deal with internationalized email addresses
-        user.username = base64.urlsafe_b64encode(hashlib.sha256(converted).digest())[:30]
+        email = validated_data['email']
+
+        # Generate a unique username from the inputted email.
+        user.username = get_unique_username_from_email(email)
 
         user.is_active = False  # Lock the account.
         user.save()

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import resolve, reverse # Reverse
 from django.contrib.sites.models import Site
+from foundation_public.utils import get_pretty_formatted_date
 from smegurus.settings import env_var
 
 
@@ -17,3 +18,8 @@ def tenant_url(schema_name, view_name):
         return http_protocol + schema_name + '.%s' % Site.objects.get_current().domain + reverse(view_name)
     else:
         return http_protocol + '%s' % Site.objects.get_current().domain + reverse(view_name)
+
+
+@register.filter
+def pretty_formatted_date(date):
+    return get_pretty_formatted_date(date)
