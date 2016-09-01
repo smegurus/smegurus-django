@@ -14,19 +14,19 @@ from foundation_tenant.models.me import TenantMe
 from smegurus import constants
 
 
-def latest_message_master(request):
-    try:
-        return Message.objects.filter(
-            recipient=request.tenant_me,
-            participants=request.tenant_me
-        ).latest("last_modified").last_modified
-    except Message.DoesNotExist:
-        return datetime.now()
+# def latest_message_master(request):
+#     try:
+#         return Message.objects.filter(
+#             recipient=request.tenant_me,
+#             participants=request.tenant_me
+#         ).latest("last_modified").last_modified
+#     except Message.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=latest_message_master)
+# @condition(last_modified_func=latest_message_master)
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
@@ -95,7 +95,7 @@ def latest_conversation_details(request, sender_id):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=latest_conversation_details)
+# @condition(last_modified_func=latest_conversation_details)
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(
@@ -163,7 +163,7 @@ def latest_archived_message_master(request):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=latest_archived_message_master)
+# @condition(last_modified_func=latest_archived_message_master)
 def archive_list_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.

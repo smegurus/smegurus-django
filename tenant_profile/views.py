@@ -11,13 +11,13 @@ from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 
 
-def latest_me_master(request):
-    return request.tenant_me.last_modified
+# def latest_me_master(request):
+#     return request.tenant_me.last_modified
 
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=latest_me_master)
+# @condition(last_modified_func=latest_me_master)
 def profile_page(request):
     return render(request, 'tenant_profile/generic/view.html',{
         'page': 'profile',
@@ -26,7 +26,7 @@ def profile_page(request):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=latest_me_master)
+# @condition(last_modified_func=latest_me_master)
 def profile_settings_page(request):
     countries = CountryOption.objects.all()
     provinces = [] if not request.tenant_me.address.address_country else ProvinceOption.objects.filter(country=request.tenant_me.address.address_country)
@@ -40,7 +40,7 @@ def profile_settings_page(request):
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_me_master)
+# @condition(last_modified_func=latest_me_master)
 def locked_page(request):
     """Function will lock the User out of our system and will require a password authentication to be let back in."""
     request.tenant_me.is_locked=True
@@ -51,7 +51,7 @@ def locked_page(request):
 
 
 @tenant_profile_required
-@condition(last_modified_func=latest_me_master)
+# @condition(last_modified_func=latest_me_master)
 def tenant_profile_is_locked_page(request):
     from django.http import JsonResponse
     """Function will return either True or False depending if a subdomain exists or not."""

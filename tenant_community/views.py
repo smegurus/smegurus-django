@@ -13,17 +13,17 @@ from foundation_tenant.models.communityadvertisement import CommunityAdvertiseme
 from foundation_tenant.models.tag import Tag
 
 
-def latest_community_master(request):
-    try:
-        return CommunityPost.objects.latest("last_modified").last_modified
-    except CommunityPost.DoesNotExist:
-        return datetime.now()
+# def latest_community_master(request):
+#     try:
+#         return CommunityPost.objects.latest("last_modified").last_modified
+#     except CommunityPost.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
-@condition(last_modified_func=latest_community_master)
+# @condition(last_modified_func=latest_community_master)
 def community_page(request):
     """List of all the community posts in a paginated mannor."""
     filter_tag_id = request.GET.get('tag')

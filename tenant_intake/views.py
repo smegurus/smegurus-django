@@ -129,15 +129,15 @@ def intake_finished_page(request):
     })
 
 
-def latest_intake_master(request):
-    try:
-        return Intake.objects.latest("last_modified").last_modified
-    except Intake.DoesNotExist:
-        return datetime.now()
+# def latest_intake_master(request):
+#     try:
+#         return Intake.objects.latest("last_modified").last_modified
+#     except Intake.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_intake_master)
+# @condition(last_modified_func=latest_intake_master)
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -160,15 +160,15 @@ def intake_master_page(request):
     })
 
 
-def latest_intake_details(request, id):
-    try:
-        return Intake.objects.filter(id=id).latest("last_modified").last_modified
-    except Intake.DoesNotExist:
-        return datetime.now()
+# def latest_intake_details(request, id):
+#     try:
+#         return Intake.objects.filter(id=id).latest("last_modified").last_modified
+#     except Intake.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_intake_details)
+# @condition(last_modified_func=latest_intake_details)
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required

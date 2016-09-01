@@ -49,16 +49,16 @@ def generate_faqs():
     group2.items.add(qa_b3)
 
 
-def latest_faq_master(request):
-    try:
-        return FAQGroup.objects.latest("last_modified").last_modified
-    except FAQGroup.DoesNotExist:
-        return datetime.now()
+# def latest_faq_master(request):
+#     try:
+#         return FAQGroup.objects.latest("last_modified").last_modified
+#     except FAQGroup.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=latest_faq_master)
+# @condition(last_modified_func=latest_faq_master)
 def faq_page(request):
     # FAQItem.objects.delete_all()
     # FAQGroup.objects.delete_all() # For debugging purposes only!

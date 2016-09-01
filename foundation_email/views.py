@@ -56,15 +56,15 @@ def get_task_url(request, task):
     return url
 
 
-def latest_intake_details(request, id):
-    try:
-        return Intake.objects.filter(id=id).latest("last_modified").last_modified
-    except Intake.DoesNotExist:
-        return datetime.now()
+# def latest_intake_details(request, id):
+#     try:
+#         return Intake.objects.filter(id=id).latest("last_modified").last_modified
+#     except Intake.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_intake_details)
+# @condition(last_modified_func=latest_intake_details)
 def pending_intake_page(request, id):
     # Fetch the data.
     template_url = 'tenant_intake/pending_intake.html'
@@ -87,7 +87,7 @@ def pending_intake_page(request, id):
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_intake_details)
+# @condition(last_modified_func=latest_intake_details)
 def approved_intake_page(request, id):
     # Fetch the data.
     template_url = 'tenant_intake/approved_intake.html'
@@ -109,7 +109,7 @@ def approved_intake_page(request, id):
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_intake_details)
+# @condition(last_modified_func=latest_intake_details)
 def rejected_intake_page(request, id):
     # Fetch the data.
     template_url = 'tenant_intake/rejected_intake.html'
@@ -138,7 +138,7 @@ def latest_message_details(request, id):
 
 
 @login_required(login_url='/en/login')
-@condition(last_modified_func=latest_message_details)
+# @condition(last_modified_func=latest_message_details)
 def message_page(request, id):
     # Fetch the data.
     template_url = 'tenant_message/message.html'

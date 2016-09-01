@@ -19,25 +19,25 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.task import Task
 
 
-def latest_task_master(request):
-    try:
-        return Task.objects.filter(participants=request.tenant_me).latest("last_modified").last_modified
-    except Task.DoesNotExist:
-        return datetime.now()
-
-
-def latest_task_details(request, id):
-    try:
-        return Task.objects.get(id=int(id)).last_modified
-    except Task.DoesNotExist:
-        return datetime.now()
+# def latest_task_master(request):
+#     try:
+#         return Task.objects.filter(participants=request.tenant_me).latest("last_modified").last_modified
+#     except Task.DoesNotExist:
+#         return datetime.now()
+#
+#
+# def latest_task_details(request, id):
+#     try:
+#         return Task.objects.get(id=int(id)).last_modified
+#     except Task.DoesNotExist:
+#         return datetime.now()
 
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-@condition(last_modified_func=latest_task_master)
+# @condition(last_modified_func=latest_task_master)
 def task_master_page(request):
     pending_tasks = Task.objects.filter(
         Q(
@@ -71,7 +71,7 @@ def task_master_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-@condition(last_modified_func=latest_task_details)
+# @condition(last_modified_func=latest_task_details)
 def task_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/view.html',{
