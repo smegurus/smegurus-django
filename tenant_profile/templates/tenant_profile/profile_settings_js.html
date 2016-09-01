@@ -129,6 +129,9 @@
         if (website_url.length < 8) {
             website_url = "";
         }
+        if (website_url.indexOf("://None") > 0) {
+            website_url = "";
+        }
 
         get_tenant_me(  // Fetch our Me.
             {{ request.tenant_me.owner.id }},
@@ -139,7 +142,10 @@
                 }
                 me['telephone'] = $('#id_telephone').val();
                 me['description'] = $('#id_description').val();
-                me['url'] = website_url;
+                if (website_url) {
+                    me['url'] = website_url;
+                }
+
                 set_tenant_me(  // Save our Me
                     me,
                     function(json_result) {
