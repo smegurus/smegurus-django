@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
         // Special thanks: http://stackoverflow.com/a/4898449
@@ -206,8 +206,6 @@
      *  Function will run the application logic.
      */
     function ajax_save_org() {
-        disable_btn();
-
         // Defensive Code: If Country and Postal/Zip codes have inputted then
         //                 ensure the appropriate formatting was used.
         var postal = $('#id_postal_code').val();
@@ -265,6 +263,11 @@
             return;
         }
 
+        // Turn on the 'loading' animation.
+        var lb = new $.LoadingBox({
+            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
+        });
+
         /*
          *  Algorithm:
          *  1. Save the Postal Address.
@@ -283,12 +286,14 @@
                         console.log(o_success_result);
 
                         setTimeout(function() {
+                            lb.close(); // Turn off the 'loading' animatin.
                             enable_btn(); // Allow the user to press the button again.
                             window.location = "{% url 'foundation_auth_org_successful_registration' %}";
                         }, 2000);
 
                     },
                     function(o_error_result) {
+                        lb.close(); // Turn off the 'loading' animatin.
                         console.log("Failed Set Organization");
                         enable_btn(); // Allow the user to press the button again.
                         var string = JSON.stringify( o_error_result );
@@ -306,6 +311,7 @@
                 ); // end Organization
             },
             function(pa_error_result) {
+                lb.close(); // Turn off the 'loading' animatin.
                 console.log("Failed Set Postal Address");
                 console.log(pa_error_result);
                 enable_btn(); // Allow the user to press the button again.
