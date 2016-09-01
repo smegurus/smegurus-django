@@ -18,6 +18,9 @@ def my_last_modified_func(request):
     """
     # Get the last modified date for the User Profile.
     last_modified = request.tenant_me.last_modified
+    last_modified = latest_date_between(last_modified, request.tenant_me.address.last_modified)
+    last_modified = latest_date_between(last_modified, request.tenant_me.contact_point.last_modified)
+    last_modified = latest_date_between(last_modified, request.tenant_me.contact_point.last_modified)
 
     # Compare the last modified date per CalendarEvents.
     try:

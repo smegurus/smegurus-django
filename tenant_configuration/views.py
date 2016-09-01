@@ -73,6 +73,7 @@ def config_org_step_seven_page(request):
 def config_org_step_eight_page(request):
     return render(request, 'tenant_configuration/organization/8/view.html',{})
 
+
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_nine_page(request):
