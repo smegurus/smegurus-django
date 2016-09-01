@@ -9,6 +9,7 @@ from foundation_public.models.organization import PublicOrganization, PublicDoma
 from foundation_public.templatetags.foundation_public_tags import tenant_url
 from foundation_public.utils import get_unique_username_from_email
 from foundation_public.utils import get_pretty_formatted_date
+from foundation_public.utils import latest_between_dates
 from smegurus import constants
 
 
@@ -78,3 +79,21 @@ class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
         dt = today - timedelta(days=N)
         pretty_text = get_pretty_formatted_date(dt)
         self.assertTrue(len(pretty_text) > 1)
+
+    @transaction.atomic
+    def test_latest_between_dates(self):
+        today = timezone.now()
+        N = 45
+        dt = today - timedelta(days=N)
+
+        # - - - - - - #
+        # CASE 1 OF 2 #
+        # - - - - - - #
+        latest = latest_between_dates(today, dt)
+        self.assertEqual(today, latest);
+
+        # - - - - - - #
+        # CASE 2 OF 2 #
+        # - - - - - - #
+        latest = latest_between_dates(dt, today)
+        self.assertEqual(today, latest);

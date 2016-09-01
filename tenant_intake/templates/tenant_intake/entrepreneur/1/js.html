@@ -12,7 +12,7 @@
             $('#id_how_can_we_help_other_div').hide();
         {% endif %}
 
-        {% if intake.how_can_we_help != 2 %}
+        {% if intake.how_can_we_help != 1 %}
             $('#id_how_can_we_help_tag_div').hide();
         {% endif %}
 
@@ -20,7 +20,7 @@
         $("#id_how_can_we_help").change(function () {
             var end = this.value;
             var firstDropVal = $('#id_how_can_we_help').val();
-            if (firstDropVal == 2) {
+            if (firstDropVal == 1) {
                 $('#id_how_can_we_help_tag_div').show();
             } else {
                 $('#id_how_can_we_help_tag_div').hide();

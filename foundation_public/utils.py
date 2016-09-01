@@ -24,3 +24,11 @@ def get_pretty_formatted_date(created):
         return _("%(dt)s days ago") % { 'dt' : dt }
     else:
         return str(created)
+
+
+def latest_between_dates(date_1, date_2):
+    """Utility function to compare the dates and return latest date."""
+    if date_1 > date_2:
+        return date_1
+    else:
+        return date_2

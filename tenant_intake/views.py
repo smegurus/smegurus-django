@@ -8,8 +8,11 @@ from django.db.models import Q
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.http import condition
 from rest_framework import status
-
-from foundation_tenant.forms.tagform import TagForm
+from foundation_public.decorators import group_required
+from foundation_public.utils import latest_between_dates
+from tenant_configuration.decorators import tenant_configuration_required
+from tenant_intake.decorators import tenant_intake_required, tenant_intake_has_completed_redirection_required
+from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
@@ -18,11 +21,6 @@ from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from smegurus import constants
-
-from foundation_public.decorators import group_required
-from tenant_configuration.decorators import tenant_configuration_required
-from tenant_intake.decorators import tenant_intake_required, tenant_intake_has_completed_redirection_required
-from tenant_profile.decorators import tenant_profile_required
 
 
 @login_required(login_url='/en/login')
@@ -47,8 +45,21 @@ def has_completed_intake_page(request):
     })
 
 
+def entrepreneur_func(request):
+    """
+    Function will return the last_modified date for the intake object of
+    the Entrepreneurs account.
+    """
+    try:
+        intake, create = Intake.objects.get_or_create(me=request.tenant_me)
+        return latest_between_dates(intake.last_modified, request.tenant_me.address.last_modified)
+    except Intake.DoesNotExist:
+        return datetime.now()
+
+
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_one_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -61,6 +72,7 @@ def intake_entr_step_one_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_two_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -73,6 +85,7 @@ def intake_entr_step_two_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_three_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -85,6 +98,7 @@ def intake_entr_step_three_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_four_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -97,6 +111,7 @@ def intake_entr_step_four_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_five_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -109,6 +124,7 @@ def intake_entr_step_five_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 def intake_entr_step_six_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
     return render(request, 'tenant_intake/entrepreneur/6/view.html',{
@@ -120,6 +136,7 @@ def intake_entr_step_six_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+@condition(last_modified_func=entrepreneur_func)
 def intake_finished_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
     return render(request, 'tenant_intake/entrepreneur/finished/view.html',{
