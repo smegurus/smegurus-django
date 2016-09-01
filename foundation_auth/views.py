@@ -22,13 +22,13 @@ from smegurus.settings import env_var
 
 
 def user_registration_page(request):
-    return render(request, 'foundation_auth/user_register_view.html',{
+    return render(request, 'foundation_auth/user_registration/view.html',{
         'form': UserForm(),
     })
 
 
 def user_activation_required_page(request):
-    return render(request, 'foundation_auth/user_activation_required_view.html',{})
+    return render(request, 'foundation_auth/user_activation_required/view.html',{})
 
 
 def user_activate_page(request, signed_value):
@@ -59,14 +59,14 @@ def user_activate_page(request, signed_value):
     except PublicOrganization.DoesNotExist:
         login_url = reverse('foundation_auth_user_login')
 
-    return render(request, 'foundation_auth/user_activate_view.html',{
+    return render(request, 'foundation_auth/user_activation/view.html',{
         'user': user,
         'login_url': login_url,
     })
 
 
 def user_login_page(request):
-    return render(request, 'foundation_auth/user_login_view.html',{
+    return render(request, 'foundation_auth/login/view.html',{
         'form': LoginForm(),
     })
 
@@ -100,7 +100,7 @@ def organization_registration_page(request):
     if org_membership_count >= 1:
         return HttpResponseRedirect(reverse('foundation_auth_org_successful_registration'))
     else:
-        return render(request, 'foundation_auth/organization_register_view.html',{
+        return render(request, 'foundation_auth/org_registration/view.html',{
             'org_form': PublicOrganizationForm(),
             'address_form': PublicPostalAddressForm(),
             'countries': CountryOption.objects.all()
@@ -110,13 +110,13 @@ def organization_registration_page(request):
 @login_required(login_url='/en/login')
 def organization_successful_registration_page(request):
     organization = get_object_or_404(PublicOrganization, owner_id=request.user.id)
-    return render(request, 'foundation_auth/organization_success_register_view.html',{
+    return render(request, 'foundation_auth/org_registration_success/view.html',{
         'organization': organization,
     })
 
 
 def password_reset_page(request):
-    return render(request, 'foundation_auth/user_password_reset_view.html',{})
+    return render(request, 'foundation_auth/user_password_reset/view.html',{})
 
 
 def password_change_page(request, signed_value):
@@ -128,11 +128,11 @@ def password_change_page(request, signed_value):
         return HttpResponseBadRequest(_("Failed activating this account."))
 
     token, created = Token.objects.get_or_create(user_id=value)
-    return render(request, 'foundation_auth/user_password_change_view.html',{
+    return render(request, 'foundation_auth/user_password_change/view.html',{
         'uid': value,
         'token': token,
     })
 
 
 def password_reset_sent_page(request):
-    return render(request, 'foundation_auth/user_password_sent_reset_vieww.html',{})
+    return render(request, 'foundation_auth/user_password_sent_reset/view.html',{})
