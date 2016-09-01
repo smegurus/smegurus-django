@@ -19,7 +19,7 @@ def latest_me_master(request):
 @tenant_profile_required
 @condition(last_modified_func=latest_me_master)
 def profile_page(request):
-    return render(request, 'tenant_profile/profile_view.html',{
+    return render(request, 'tenant_profile/generic/view.html',{
         'page': 'profile',
     })
 
@@ -31,7 +31,7 @@ def profile_settings_page(request):
     countries = CountryOption.objects.all()
     provinces = [] if not request.tenant_me.address.address_country else ProvinceOption.objects.filter(country=request.tenant_me.address.address_country)
     cities = [] if not request.tenant_me.address.address_region else CityOption.objects.filter(province=request.tenant_me.address.address_region)
-    return render(request, 'tenant_profile/profile_settings_view.html',{
+    return render(request, 'tenant_profile/settings/view.html',{
         'page': 'profile',
         'countries': countries,
         'provinces': provinces,
@@ -45,7 +45,7 @@ def locked_page(request):
     """Function will lock the User out of our system and will require a password authentication to be let back in."""
     request.tenant_me.is_locked=True
     request.tenant_me.save()
-    return render(request, 'tenant_profile/is_locked_view.html',{
+    return render(request, 'tenant_profile/locked/view.html',{
         'page': 'profile',
     })
 
