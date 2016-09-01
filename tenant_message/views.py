@@ -9,24 +9,15 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.http import condition
 from foundation_public.models.organization import PublicOrganization
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from smegurus import constants
 
 
-# def latest_message_master(request):
-#     try:
-#         return Message.objects.filter(
-#             recipient=request.tenant_me,
-#             participants=request.tenant_me
-#         ).latest("last_modified").last_modified
-#     except Message.DoesNotExist:
-#         return datetime.now()
-
-
 @login_required(login_url='/en/login')
 @tenant_profile_required
-# @condition(last_modified_func=latest_message_master)
+@condition(last_modified_func=my_last_modified_func)
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
@@ -95,7 +86,7 @@ def latest_conversation_details(request, sender_id):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-# @condition(last_modified_func=latest_conversation_details)
+@condition(last_modified_func=my_last_modified_func)
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(

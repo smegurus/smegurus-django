@@ -26,9 +26,16 @@ def get_pretty_formatted_date(created):
         return str(created)
 
 
-def latest_between_dates(date_1, date_2):
+def latest_date_between(date_1, date_2):
     """Utility function to compare the dates and return latest date."""
     if date_1 > date_2:
         return date_1
     else:
         return date_2
+
+
+def latest_date_in(array):
+    latest = array[0]
+    for date in array:
+        latest = latest_date_between(latest, date)
+    return latest

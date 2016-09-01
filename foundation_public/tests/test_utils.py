@@ -9,7 +9,8 @@ from foundation_public.models.organization import PublicOrganization, PublicDoma
 from foundation_public.templatetags.foundation_public_tags import tenant_url
 from foundation_public.utils import get_unique_username_from_email
 from foundation_public.utils import get_pretty_formatted_date
-from foundation_public.utils import latest_between_dates
+from foundation_public.utils import latest_date_between
+from foundation_public.utils import latest_date_in
 from smegurus import constants
 
 
@@ -81,7 +82,7 @@ class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
         self.assertTrue(len(pretty_text) > 1)
 
     @transaction.atomic
-    def test_latest_between_dates(self):
+    def test_latest_date_between(self):
         today = timezone.now()
         N = 45
         dt = today - timedelta(days=N)
@@ -89,11 +90,24 @@ class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
         # - - - - - - #
         # CASE 1 OF 2 #
         # - - - - - - #
-        latest = latest_between_dates(today, dt)
+        latest = latest_date_between(today, dt)
         self.assertEqual(today, latest);
 
         # - - - - - - #
         # CASE 2 OF 2 #
         # - - - - - - #
-        latest = latest_between_dates(dt, today)
+        latest = latest_date_between(dt, today)
         self.assertEqual(today, latest);
+
+    @transaction.atomic
+    def test_latest_date_in(self):
+        today = timezone.now()
+        date_1 = today - timedelta(days=45)
+        date_2 = today - timedelta(days=365)
+        date_3 = today - timedelta(days=720)
+        date_4 = today - timedelta(days=32)
+        date_5 = today - timedelta(days=2)
+        latest_date = latest_date_in([
+            date_3, date_2, today, date_1, date_4, date_5
+        ])
+        self.assertEqual(today, latest_date)
