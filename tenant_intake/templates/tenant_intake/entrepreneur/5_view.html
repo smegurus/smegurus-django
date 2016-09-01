@@ -9,35 +9,11 @@
     <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div>
     <div class="panel-body">
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
-            <div class="steps clearfix">
-                <ul role="tablist">
-                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
-                        <a id="example-vertical-t-0" href="#example-vertical-h-0" aria-controls="example-vertical-p-0">
-                        <span class="current-info audible">{% trans 'current step' %}: </span><span class="number">1.</span> {% trans 'Help' %}
-                        </a>
-                    </li>
-                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
-                        <a id="example-vertical-t-1" href="#example-vertical-h-1" aria-controls="example-vertical-p-1">
-                        <span class="number">2.</span> {% trans 'Discovery' %}
-                        </a>
-                    </li>
-                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
-                        <a id="example-vertical-t-2" href="#example-vertical-h-2" aria-controls="example-vertical-p-2">
-                        <span class="number">3.</span> {% trans 'Business Ownership' %}
-                        </a>
-                    </li>
-                    <li role="tab" class="first current" aria-disabled="false" aria-selected="true">
-                        <a id="example-vertical-t-3" href="#example-vertical-h-3" aria-controls="example-vertical-p-3">
-                        <span class="number">4.</span> {% trans 'Contact' %}
-                        </a>
-                    </li>
-                    <li role="tab" class="last done" aria-disabled="false" aria-selected="false">
-                        <a id="example-vertical-t-4" href="#example-vertical-h-4" aria-controls="example-vertical-p-4">
-                        <span class="number">5.</span> {% trans 'Finish' %}
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <!-- PAGE SIDEBAR -->
+            {% include 'tenant_intake/entrepreneur/sidebar_view.html' with page=5 %}
+            <!-- end PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
             <div class="content clearfix">
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
@@ -94,6 +70,7 @@
                         </li> -->
                 </ul>
             </div>
+            <!-- end PAGE CONTENT -->
         </div>
     </div>
 </div>
