@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_intake/entrepreneur/6_js.html' %}
+        {% include 'tenant_intake/entrepreneur/6/js.html' %}
     {% endcompress %}
     <div class="content-wrapper">
 <div class="panel panel-default">
@@ -23,6 +23,8 @@
                     </fieldset>
                 </section>
             </div>
+            <!-- end PAGE CONTENT -->
+
             <div class="actions clearfix">
                 <ul role="menu" aria-label="Pagination">
                     <li class="disabled" aria-disabled="true">
@@ -33,7 +35,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- end PAGE CONTENT -->
+            
         </div>
     </div>
 </div>

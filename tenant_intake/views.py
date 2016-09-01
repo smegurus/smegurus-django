@@ -52,7 +52,7 @@ def has_completed_intake_page(request):
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_one_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/1_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/1/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -64,7 +64,7 @@ def intake_entr_step_one_page(request):
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_two_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/2_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/2/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -76,7 +76,7 @@ def intake_entr_step_two_page(request):
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_three_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/3_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/3/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -88,7 +88,7 @@ def intake_entr_step_three_page(request):
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_four_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/4_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/4/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -100,7 +100,7 @@ def intake_entr_step_four_page(request):
 @tenant_intake_has_completed_redirection_required
 def intake_entr_step_five_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/5_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/5/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'countries': CountryOption.objects.all()
@@ -111,7 +111,7 @@ def intake_entr_step_five_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def intake_entr_step_six_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/6_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/6/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -122,7 +122,7 @@ def intake_entr_step_six_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def intake_finished_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/finished_view.html',{
+    return render(request, 'tenant_intake/entrepreneur/finished/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)

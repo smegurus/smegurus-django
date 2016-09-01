@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_intake/entrepreneur/4_js.html' %}
+        {% include 'tenant_intake/entrepreneur/3/js.html' %}
     {% endcompress %}
     <div class="content-wrapper">
 <div class="panel panel-default">
@@ -10,7 +10,7 @@
     <div class="panel-body">
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
             <!-- PAGE SIDEBAR -->
-            {% include 'tenant_intake/entrepreneur/sidebar_view.html' with page=4 %}
+            {% include 'tenant_intake/entrepreneur/sidebar_view.html' with page=3 %}
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
@@ -19,12 +19,11 @@
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
                     <fieldset id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
                         {% for field in form %}
-                            {% if field.id_for_label == 'id_how_to_contact'  %}
-                                <div class="form-group has-feedback">
+                            {% if field.id_for_label == 'id_do_you_own_a_biz' or field.id_for_label == 'id_do_you_own_a_biz_other' %}
+                                <div class="form-group has-feedback" id="{{ field.id_for_label }}_div">
                                     <label for="signupInputText1" class="text-muted">{{ field.label_tag }}</label>
                                      {{ field }}
                                     {{ field.errors }}<br/>
-                                    <br/>
                                 </div>
                             {% endif %}
                         {% endfor %}
@@ -32,6 +31,8 @@
                     </fieldset>
                 </section>
             </div>
+            <!-- end PAGE CONTENT -->
+
             <div class="actions clearfix">
                 <ul role="menu" aria-label="Pagination">
                     <li class="disabled" aria-disabled="true">
@@ -45,7 +46,7 @@
                         </li> -->
                 </ul>
             </div>
-            <!-- end PAGE CONTENT -->
+            
         </div>
     </div>
 </div>
