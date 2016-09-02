@@ -129,7 +129,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
+    'foundation_public.middleware.PublicBanEnforcingMiddleware',   # Custom
+    'foundation_public.middleware.PublicVisitorMiddleware',        # Custom
     'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
     'foundation_tenant.middleware.TenantVisitorMiddleware',        # Custom
     'smegurus.middleware.SMEGurusTokenMiddleware',                 # Custom

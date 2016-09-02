@@ -25,6 +25,7 @@ from foundation_public.models.country import PublicCountry
 from foundation_public.models.abstract_person import AbstractPlacePerson
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
+from foundation_public.models.visitor import Visitor
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -172,3 +173,73 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_organization_to_string(self):
         self.assertIn(str(self.tenant), "Galactic Alliance of Humankind")
+
+    @transaction.atomic
+    def test_public_visitor_to_string(self):
+        vistor = Visitor.objects.create(
+            id=1,
+            path="/en/",
+            ip_address="127.0.0.1"
+        )
+        self.assertIn('/en/ by 127.0.0.1', str(vistor))
+        vistor.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_public_visitor_delete_all(self):
+        # Setup our unit test.
+        count = Visitor.objects.all().count()
+        self.assertEqual(count, 0)
+        Visitor.objects.bulk_create([
+            Visitor(
+                id = 1111,
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            Visitor(
+                id = 2222,
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            Visitor(
+                id = 3333,
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            Visitor(
+                id = 4444,
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            Visitor(
+                id = 5555,
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+        ])
+        count = Visitor.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        Visitor.objects.delete_all()
+        count = Visitor.objects.all().count()
+        self.assertEqual(count, 0)
+
+    @transaction.atomic
+    def test_public_visitor_is_path_suspicious(self):
+        # CASE 1 OF 2:
+        vistor = Visitor.objects.create(
+            id=1,
+            path="/HNAP1/",
+            ip_address="127.0.0.1"
+        )
+        self.assertTrue(vistor.is_path_suspicious())
+        vistor.delete();  # Cleanup
+
+        # CASE 2 OF 2:
+        vistor = Visitor.objects.create(
+            id=1,
+            path="/en/",
+            ip_address="127.0.0.1"
+        )
+        self.assertFalse(vistor.is_path_suspicious())
+        vistor.delete();  # Cleanup
