@@ -19,4 +19,4 @@ from foundation_public.models.country import PublicCountry
 from foundation_public.models.abstract_person import AbstractPlacePerson
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
-from foundation_public.models.visitor import Visitor
+from foundation_public.models.visitor import PublicVisitor

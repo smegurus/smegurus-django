@@ -14,6 +14,7 @@ from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
+from foundation_public.models.visitor import PublicVisitor
 
 
 # Register your models here.
@@ -32,3 +33,4 @@ admin.site.register(PublicPlace)
 admin.site.register(PublicCountry)
 admin.site.register(PublicOrganization)
 admin.site.register(PublicDomain)
+admin.site.register(PublicVisitor)

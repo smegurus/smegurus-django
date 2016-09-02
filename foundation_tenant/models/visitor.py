@@ -4,9 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.me import TenantMe
 
 
-class VisitorManager(models.Manager):
+class TenantVisitorManager(models.Manager):
     def delete_all(self):
-        items = Visitor.objects.all()
+        items = TenantVisitor.objects.all()
         for item in items.all():
             item.delete()
 
@@ -19,7 +19,7 @@ class TenantVisitor(models.Model):
         verbose_name = 'Tenant Visitor'
         verbose_name_plural = 'Tenant Visitors'
 
-    objects = VisitorManager()
+    objects = TenantVisitorManager()
     created = models.DateTimeField(auto_now_add=True)
     me = models.ForeignKey(
         TenantMe,

@@ -1,6 +1,6 @@
 from django.http import HttpResponseForbidden
 from foundation_public.models.banned import BannedIP
-from foundation_public.models.visitor import Visitor
+from foundation_public.models.visitor import PublicVisitor
 
 
 class PublicBanEnforcingMiddleware(object):
@@ -36,7 +36,7 @@ class PublicVisitorMiddleware(object):
         by an IP and keep a record.
         """
         # Save the visitor for the public view.
-        request.visitor = Visitor.objects.create(
+        request.visitor = PublicVisitor.objects.create(
             path=request.path,
             ip_address=self.get_client_ip(request)
         )
