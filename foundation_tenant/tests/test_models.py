@@ -39,6 +39,10 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from foundation_tenant.models.task import Task
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.visitor import TenantVisitor
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -991,3 +995,81 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertIn(obj.get_absolute_url(), '/en/task/666/')
         obj.delete();  # Cleanup
         me.delete()
+
+    @transaction.atomic
+    def test_tenant_visitor_to_string_by_user(self):
+        vistor = TenantVisitor.objects.create(
+            id=1,
+            me=TenantMe.objects.create(
+                id = 1111,
+                owner=User.objects.get(username='1'),
+                name="Ledo"
+            ),
+            path="/en/",
+            ip_address="127.0.0.1"
+        )
+        self.assertIn('/en/ by Ledo', str(vistor))
+        vistor.delete();  # Cleanup
+
+    @transaction.atomic
+    def test_tenant_visitor_delete_all(self):
+        # Setup our unit test.
+        count = TenantVisitor.objects.all().count()
+        self.assertEqual(count, 0)
+        TenantVisitor.objects.bulk_create([
+            TenantVisitor(
+                id = 1111,
+                me=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                ),
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            TenantVisitor(
+                id = 2222,
+                me = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                ),
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            TenantVisitor(
+                id = 3333,
+                me = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                ),
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            TenantVisitor(
+                id = 4444,
+                me = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                ),
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+            TenantVisitor(
+                id = 5555,
+                me = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                ),
+                path="/en/",
+                ip_address="127.0.0.1"
+            ),
+        ])
+        count = TenantVisitor.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        TenantVisitor.objects.delete_all()
+        count = TenantVisitor.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()
