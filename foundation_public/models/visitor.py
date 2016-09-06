@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_public import constants
 
 
 class PublicVisitorManager(models.Manager):
@@ -43,10 +44,4 @@ class PublicVisitor(models.Model):
         return a True/False depending on if this path exists in the suspicious
         list.
         """
-        suspicious_paths = [
-            '/phpMyAdmin/scripts/setup.php',
-            '/pma/scripts/setup.php',
-            '/myadmin/scripts/setup.php',
-            '/HNAP1/',
-        ]
-        return self.path in suspicious_paths
+        return self.path in constants.SUSPICIOUS_PATHS

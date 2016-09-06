@@ -118,8 +118,8 @@ TENANT_APPS = (
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE_CLASSES = [
-    'django_tenants.middleware.TenantMiddleware',                  # Third Party
-    'htmlmin.middleware.HtmlMinifyMiddleware',                     # Third Party
+    'django_tenants.middleware.TenantMiddleware',                   # Third Party
+    'htmlmin.middleware.HtmlMinifyMiddleware',                      # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -129,12 +129,13 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'foundation_public.middleware.PublicBanEnforcingMiddleware',   # Custom
-    'foundation_public.middleware.PublicVisitorMiddleware',        # Custom
-    'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
-    'foundation_tenant.middleware.TenantVisitorMiddleware',        # Custom
-    'smegurus.middleware.SMEGurusTokenMiddleware',                 # Custom
-    'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
+    'foundation_public.middleware.PublicBanEnforcingMiddleware',    # Custom
+    'foundation_public.middleware.PublicVisitorMiddleware',         # Custom
+    'foundation_public.middleware.PublicAutomaticBanningMiddleware',# Custom
+    'foundation_tenant.middleware.TenantMeMiddleware',              # Custom
+    'foundation_tenant.middleware.TenantVisitorMiddleware',         # Custom
+    'smegurus.middleware.SMEGurusTokenMiddleware',                  # Custom
+    'htmlmin.middleware.MarkRequestMiddleware',                     # Third Party
 ]
 
 ROOT_URLCONF = 'smegurus.urls'

@@ -1,6 +1,7 @@
 from django.http import HttpResponseForbidden
 from foundation_public.models.banned import BannedIP
 from foundation_public.models.visitor import PublicVisitor
+from foundation_public import constants
 
 
 class PublicBanEnforcingMiddleware(object):
@@ -48,3 +49,26 @@ class PublicVisitorMiddleware(object):
 
         # Return nothing.
         return None  # Finish our middleware handler.
+
+
+class PublicAutomaticBanningMiddleware(object):
+    def get_client_ip(self, request):
+        """Utility function for getting the IP. Source: http://stackoverflow.com/a/4581997"""
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+    def process_request(self, request):
+        """Automatically ban IP's attempting to access suspicious URLs."""
+        if request.path in constants.SUSPICIOUS_PATHS:
+            ip_addr = self.get_client_ip(request)
+            BannedIP.objects.create(
+                address=ip_addr,
+                reason=request.path
+            )
+            return HttpResponseForbidden('You are banned.')
+        else:
+            return None  # Finish our middleware handler.
