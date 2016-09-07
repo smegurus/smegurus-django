@@ -27,7 +27,7 @@
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
                         <!-- Upload ID -->
                         <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant_me.image.id }}"/>
-                        <input type="hidden" id="id_hidden_url" value="{% if request.tenant_me.image %}{{ request.tenant_me.image.imagefile.url }}{% endif %}"/>
+                        <input type="hidden" id="id_hidden_url" value="{% if request.tenant_me.image and request.tenant_me.image.imagefile %}{{ request.tenant_me.image.imagefile.url }}{% endif %}"/>
                         <!-- /.Upload ID -->
 
                         <!-- Image Placeholder -->
