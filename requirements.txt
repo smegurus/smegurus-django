@@ -7,6 +7,7 @@ Django==1.9.7
 django-appconf==1.0.2
 django-classy-tags==0.7.2
 django-compressor==2.0
+django-cors-headers==1.1.0
 django-filter==0.13.0
 django-htmlmin==0.9.1
 django-mailgun==0.9.1

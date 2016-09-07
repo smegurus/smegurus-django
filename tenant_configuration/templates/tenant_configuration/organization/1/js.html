@@ -72,9 +72,11 @@
         // Extract the information.
         var image = document.getElementById('id_image').files[0];
         var upload_id = $('#id_hidden_upload_id').val();
+        console.log("upload_id: "+upload_id);
 
         // Insert or Update.
         set_public_imageupload(upload_id, image, function(json_result) {
+            console.log(json_result);
             $('#id_hidden_url').attr('src', json_result['imagefile']);
             $('#id_hidden_upload_id').val(json_result['id']);
             $('#id_image_placeholder').attr('src', json_result['imagefile']);

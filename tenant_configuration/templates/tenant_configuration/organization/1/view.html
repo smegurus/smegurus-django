@@ -26,8 +26,8 @@
 
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
                         <!-- Upload ID -->
-                        <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant_me.image.id }}"/>
-                        <input type="hidden" id="id_hidden_url" value="{% if request.tenant_me.image %}{% if request.tenant_me.image.imagefile %}{{ request.tenant_me.image.imagefile.url }}{% endif %}{% endif %}"/>
+                        <input type="hidden" id="id_hidden_upload_id" value="{% if request.tenant.logo %}{{ request.tenant.logo.id }}{% endif %}"/>
+                        <input type="hidden" id="id_hidden_url" value="{% if request.tenant.logo %}{% if request.tenant.logo.imagefile %}{{ request.tenant.logo.imagefile.url }}{% endif %}{% endif %}"/>
                         <!-- /.Upload ID -->
 
                         <!-- Image Placeholder -->
