@@ -15,7 +15,7 @@ urlpatterns = (
     url(r'^intake/entrepreneur/round_1/step/5$', entrepreneur_view.intake_entr_round_one_step_five_page, name='tenant_intake_entr_round_one_step_five'),
 
     # Entrepreneur - Round Two
-    url(r'^intake/entrepreneur/round_2/step/1$', entrepreneur_view.intake_entr_round_two_step_one_page, name='tenant_intake_entr_step_one'),
+    url(r'^intake/entrepreneur/round_2/step/1$', entrepreneur_view.intake_entr_round_two_step_one_page, name='tenant_intake_entr_round_two_step_one'),
 
 
     # TODO: Implement.

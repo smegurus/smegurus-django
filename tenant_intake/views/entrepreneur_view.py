@@ -94,11 +94,11 @@ def intake_entr_round_one_step_five_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
 def intake_entr_round_two_step_one_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/round_1/5/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_2/1/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
     })

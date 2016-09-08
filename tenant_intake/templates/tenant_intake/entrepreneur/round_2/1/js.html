@@ -1,0 +1,80 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        });
+
+        // Initial setup.
+        {% if intake.how_can_we_help != 6 %}
+            $('#id_how_can_we_help_other_div').hide();
+        {% endif %}
+
+        {% if intake.how_can_we_help != 1 %}
+            $('#id_how_can_we_help_tag_div').hide();
+        {% endif %}
+
+        // Page functions.
+        $("#id_how_can_we_help").change(function () {
+            var end = this.value;
+            var firstDropVal = $('#id_how_can_we_help').val();
+            if (firstDropVal == 1) {
+                $('#id_how_can_we_help_tag_div').show();
+            } else {
+                $('#id_how_can_we_help_tag_div').hide();
+            }
+
+            if (firstDropVal == 6) {
+                $('#id_how_can_we_help_other_div').show();
+            } else {
+                $('#id_how_can_we_help_other_div').hide();
+            }
+
+        });
+    });
+
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+    }
+
+    function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_tenant_intake(
+            {{ intake.id }},
+            function(intake) {
+                intake['how_can_we_help'] = $('#id_how_can_we_help').val();
+                intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( json_result );
+                        console.log(string);
+                        window.location = "{% url 'tenant_intake_entr_round_one_step_two' %}";
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end Get Intake.
+    }
+</script>
