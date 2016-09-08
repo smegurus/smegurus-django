@@ -1,11 +1,33 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        // ALGORITHM
+        // If someone clicks on the "Other" option then show the government
+        // benefit "Other" options.
+        $('#id_other_government_benefit_div').hide();
+        {% for benefit in intake.government_benefits.all %}
+            {% if benefit.id == 6 %}
+                $('#id_other_government_benefit_div').show();
+            {% endif %}
+        {% endfor %}
+
+        // Keypress for enter.
         $(document).keypress(function(event){
             if(event.keyCode == 13){
                 $("#id_continue_btn").click();
             }
-        });
+        }); // end Keypress
+
+        // Detect the "Other" question.
+        $("#id_benefit_6").change(function () {
+            // This code detects whether the checkbox is clicked or not.
+            var is_other = $('input[id=id_benefit_6]').is(':checked');
+            if (is_other) {
+                $('#id_other_government_benefit_div').show();
+            } else {
+                $('#id_other_government_benefit_div').hide();
+            }
+        }); // end Other Click
     });
 
     function disable_btn() {
@@ -28,8 +50,7 @@
             {{ intake.id }},
             function(intake) {
                 intake['government_benefits'] = government_benefits;
-                // intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
-                // intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                intake['other_government_benefit'] = $('#id_other_government_benefit').val();
                 set_tenant_intake(
                     intake,
                     function(json_result) {
