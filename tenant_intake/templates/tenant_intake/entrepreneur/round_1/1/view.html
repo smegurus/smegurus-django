@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_intake/entrepreneur/1/js.html' %}
+        {% include 'tenant_intake/entrepreneur/round_1/1/js.html' %}
     {% endcompress %}
     <div class="content-wrapper">
 <div class="panel panel-default">
@@ -11,7 +11,7 @@
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
 
             <!-- PAGE SIDEBAR -->
-            {% include 'tenant_intake/entrepreneur/sidebar_view.html' with page=1 %}
+            {% include 'tenant_intake/entrepreneur/round_1/sidebar_view.html' with page=1 %}
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->

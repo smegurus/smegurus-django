@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_intake/entrepreneur/3/js.html' %}
+        {% include 'tenant_intake/entrepreneur/round_1/5/js.html' %}
     {% endcompress %}
     <div class="content-wrapper">
 <div class="panel panel-default">
@@ -10,7 +10,7 @@
     <div class="panel-body">
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
             <!-- PAGE SIDEBAR -->
-            {% include 'tenant_intake/entrepreneur/sidebar_view.html' with page=3 %}
+            {% include 'tenant_intake/entrepreneur/round_1/sidebar_view.html' with page=5 %}
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
@@ -18,16 +18,8 @@
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
                     <fieldset id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
-                        {% for field in form %}
-                            {% if field.id_for_label == 'id_do_you_own_a_biz' or field.id_for_label == 'id_do_you_own_a_biz_other' %}
-                                <div class="form-group has-feedback" id="{{ field.id_for_label }}_div">
-                                    <label for="signupInputText1" class="text-muted">{{ field.label_tag }}</label>
-                                     {{ field }}
-                                    {{ field.errors }}<br/>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                        {{ form.non_field_errors }}
+                        <h2 class="text-center pv">{% trans 'Finish' %}</h2>
+                        <p class="text-center pv">{% trans 'When you feeel confident with your answers. Click "Submit".' %}</p>
                     </fieldset>
                 </section>
             </div>
@@ -39,14 +31,11 @@
                         <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
+                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Submit' %}</a>
                     </li>
-                    <!-- <li aria-hidden="true" style="display: none;">
-                        <a href="#finish" role="menuitem">Finish</a>
-                        </li> -->
                 </ul>
             </div>
-            
+
         </div>
     </div>
 </div>

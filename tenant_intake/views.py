@@ -62,9 +62,9 @@ def entrepreneur_func(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
-def intake_entr_step_one_page(request):
+def intake_entr_round_one_step_one_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/1/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_1/1/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -75,9 +75,9 @@ def intake_entr_step_one_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
-def intake_entr_step_two_page(request):
+def intake_entr_round_one_step_two_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/2/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_1/2/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -88,9 +88,9 @@ def intake_entr_step_two_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
-def intake_entr_step_three_page(request):
+def intake_entr_round_one_step_three_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/3/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_1/3/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
@@ -101,9 +101,9 @@ def intake_entr_step_three_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
-def intake_entr_step_four_page(request):
+def intake_entr_round_one_step_four_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/4/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_1/4/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'countries': CountryOption.objects.all()
@@ -114,9 +114,9 @@ def intake_entr_step_four_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
 @tenant_intake_has_completed_redirection_required
-def intake_entr_step_five_page(request):
+def intake_entr_round_one_step_five_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/5/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_1/5/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
     })
@@ -125,9 +125,9 @@ def intake_entr_step_five_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
-def intake_finished_page(request):
+def intake_round_one_finished_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/finished/view.html',{
+    return render(request, 'tenant_intake/entrepreneur/round_1/finished/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
         'tags': Tag.objects.filter(is_program=True)
