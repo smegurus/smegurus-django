@@ -1,34 +1,12 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        // ALGORITHM
-        // If someone clicks on the "Other" option then show the government
-        // benefit "Other" options.
-        $('#id_other_government_benefit_div').hide();
-        {% for benefit in intake.government_benefits.all %}
-            {% if benefit.id == 6 %}
-                $('#id_other_government_benefit_div').show();
-            {% endif %}
-        {% endfor %}
-
         // Keypress for enter.
         $(document).keypress(function(event){
             if(event.keyCode == 13){
                 $("#id_continue_btn").click();
             }
         }); // end Keypress
-
-        // Detect the "Other" question.
-        $("#id_benefit_6").change(function () {
-            // This code detects whether the checkbox is clicked or not.
-            var is_other = $('input[id=id_benefit_6]').is(':checked');
-            if (is_other) {
-                $('#id_other_government_benefit_div').show();
-            } else {
-                $('#id_other_government_benefit_div').hide();
-            }
-        }); // end Other Click
-
 
         // Source from: http://stackoverflow.com/a/7120932
         $( "#id_date_of_birth" ).datepicker({
@@ -39,7 +17,6 @@
             changeYear: true,
             changeMonth: true
         }); // end SUPPORT END OF DATE.
-
     }); // end DOCUMENT START
 
     function disable_btn() {
