@@ -15,7 +15,7 @@ class IntakeForm(forms.ModelForm):
         fields = ['how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
         'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
         'do_you_own_a_biz_other', 'has_telephone', 'telephone',
-        'telephone_time',]
+        'telephone_time', 'government_benefits', 'identities']
         labels = {
             # 'name': _('Name'),
             # 'industry': _('Industry'),

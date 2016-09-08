@@ -6,33 +6,6 @@
                 $("#id_continue_btn").click();
             }
         });
-
-        // Initial setup.
-        {% if intake.how_can_we_help != 6 %}
-            $('#id_how_can_we_help_other_div').hide();
-        {% endif %}
-
-        {% if intake.how_can_we_help != 1 %}
-            $('#id_how_can_we_help_tag_div').hide();
-        {% endif %}
-
-        // Page functions.
-        $("#id_how_can_we_help").change(function () {
-            var end = this.value;
-            var firstDropVal = $('#id_how_can_we_help').val();
-            if (firstDropVal == 1) {
-                $('#id_how_can_we_help_tag_div').show();
-            } else {
-                $('#id_how_can_we_help_tag_div').hide();
-            }
-
-            if (firstDropVal == 6) {
-                $('#id_how_can_we_help_other_div').show();
-            } else {
-                $('#id_how_can_we_help_other_div').hide();
-            }
-
-        });
     });
 
     function disable_btn() {
@@ -46,13 +19,17 @@
     }
 
     function ajax_save_and_continue() {
+        var government_benefits = []; // initialize empty array
+        $(".source:checked").each(function(){
+            government_benefits.push($(this).val());
+        });
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_intake(
             {{ intake.id }},
             function(intake) {
-                intake['how_can_we_help'] = $('#id_how_can_we_help').val();
-                intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
-                intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                intake['government_benefits'] = government_benefits;
+                // intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                // intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
                 set_tenant_intake(
                     intake,
                     function(json_result) {

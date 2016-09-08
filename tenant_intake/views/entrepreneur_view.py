@@ -10,6 +10,8 @@ from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
@@ -101,6 +103,8 @@ def intake_entr_round_two_step_one_page(request):
     return render(request, 'tenant_intake/entrepreneur/round_2/1/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
+        'benefits': GovernmentBenefitOption.objects.all(),
+        'identies': IdentifyOption.objects.all()
     })
 
 

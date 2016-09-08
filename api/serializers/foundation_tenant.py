@@ -166,7 +166,9 @@ class IntakeSerializer(serializers.ModelSerializer):
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'has_telephone', 'telephone',
-                  'telephone_time', 'is_employee_created', 'note',)
+                  'telephone_time', 'is_employee_created', 'note',
+                  'government_benefits', 'other_government_benefit',
+                  'identities', 'date_of_birth',)
 
 
 class AdmissionSerializer(serializers.ModelSerializer):

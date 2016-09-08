@@ -184,6 +184,14 @@ class Intake(models.Model):
         blank=True,
         related_name='intake_government_benefits_%(app_label)s_%(class)s_related',
     )
+    other_government_benefit = models.CharField(
+        _("Other Government Benefit"),
+        max_length=127,
+        help_text=_('The textfield used to take other benefits not mentioned in our list.'),
+        blank=True,
+        null=True,
+        default='',
+    )
 
     # "Do any of the following statements apply to you" Section
     identities = models.ManyToManyField(

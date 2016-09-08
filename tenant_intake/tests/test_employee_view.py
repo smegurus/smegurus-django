@@ -7,7 +7,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from smegurus import constants
+from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
@@ -15,6 +16,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
