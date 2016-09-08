@@ -1,0 +1,70 @@
+{% extends 'tenant_intake/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+    {% compress js inline %}
+        {% include 'tenant_intake/entrepreneur/round_2/3/js.html' with intake=intake %}
+    {% endcompress %}
+    <div class="content-wrapper">
+
+<div class="panel panel-default">
+    <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round Two' %}</div>
+    <div class="panel-body">
+        <div id="example-vertical" role="application" class="wizard clearfix vertical">
+
+            <!-- PAGE SIDEBAR -->
+            {% include 'tenant_intake/entrepreneur/round_2/sidebar_view.html' with page=3 %}
+            <!-- end PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
+                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
+                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
+                    <!-- OPTIONS -->
+                    <div class="form-group has-feedback" id="id_how_can_we_help_div">
+                        <label for="signupInputText1" class="text-muted">
+                            <label for="id_how_can_we_help">{% trans 'What is your date of birth? (optional)' %}</label>
+                        </label>
+
+                        <fieldset>
+                           <div class="form-group mb">
+                              <label class="col-sm-2 control-label mb">DateTimePicker</label>
+                              <div class="col-sm-10">
+                                 <div id="datetimepicker" class="input-group date">
+
+                                    <input type="text" id="id_date_of_birth" value="{{ intake.date_of_birth|date:"Y-m-d" }}" />
+
+                                 </div>
+                              </div>
+                           </div>
+
+                        </fieldset>
+
+                            <br><br>
+
+                    </div>
+                    <!-- end OPTIONS -->
+
+                </section>
+            </div>
+            <!-- end PAGE CONTENT -->
+
+            <div class="actions clearfix">
+                <ul role="menu" aria-label="Pagination">
+                    <li class="disabled" aria-disabled="true">
+                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
+                    </li>
+                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
+                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
+                    </li>
+                    <!-- <li aria-hidden="true" style="display: none;">
+                        <a href="#finish" role="menuitem">Finish</a>
+                        </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock content %}

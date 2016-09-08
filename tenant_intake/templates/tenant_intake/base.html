@@ -19,6 +19,8 @@
         <!-- WHIRL (spinners)-->
         <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
         <!-- =============== PAGE VENDOR STYLES ===============-->
+        <!-- DATETIMEPICKER-->
+        <link rel="stylesheet" href="{% static 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' %}">
         <!-- =============== BOOTSTRAP STYLES ===============-->
         <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
         <!-- =============== APP STYLES ===============-->
@@ -31,6 +33,9 @@
         <!-- JQUERY-->
         <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
         {% endcompress %}
+        <!-- EXTERNAL CSS -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+        <!-- end EXTERNAL CSS -->
     </head>
     <body class="layout-h">
         <!-- CSRF Token -->
@@ -162,6 +167,15 @@
         </div>
         {% compress js %}
         <!-- =============== VENDOR SCRIPTS ===============-->
+        <!-- JQUERY UI-->
+        <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/datepicker.js' %}"></script>
+        <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
         <!-- INPUT MASK-->
         <script src="{% static 'vendor/jquery.inputmask/dist/jquery.inputmask.bundle.js' %}"></script>
         <!-- CHOSEN-->
