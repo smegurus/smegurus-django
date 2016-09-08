@@ -40,17 +40,20 @@
         $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
     }
 
+    function ajax_back() {
+        window.location = "{% url 'tenant_intake_entr_round_two_step_one' %}";
+    }
+
     function ajax_save_and_continue() {
-        var government_benefits = []; // initialize empty array
+        var identities = []; // initialize empty array
         $(".source:checked").each(function(){
-            government_benefits.push($(this).val());
+            identities.push($(this).val());
         });
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_intake(
             {{ intake.id }},
             function(intake) {
-                intake['government_benefits'] = government_benefits;
-                intake['other_government_benefit'] = $('#id_other_government_benefit').val();
+                intake['identities'] = identities;
                 set_tenant_intake(
                     intake,
                     function(json_result) {
