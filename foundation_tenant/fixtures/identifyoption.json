@@ -1,0 +1,73 @@
+[
+{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 1,
+    "fields": {
+        "order_number": 1,
+        "name": "Identify as a female"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 2,
+    "fields": {
+        "order_number": 2,
+        "name": "I am a First Nations/Aboriginal individual"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 3,
+    "fields": {
+        "order_number": 3,
+        "name": "I am permanently disabled"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 4,
+    "fields": {
+        "order_number": 4,
+        "name": "I am an immigrant/newcomer"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 5,
+    "fields": {
+        "order_number": 5,
+        "name": "I am a visible minority"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 6,
+    "fields": {
+        "order_number": 6,
+        "name": "I am an LGBT person"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 7,
+    "fields": {
+        "order_number": 7,
+        "name": "I am a social entrepreneur"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 8,
+    "fields": {
+        "order_number": 8,
+        "name": " I am a veteran"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 9,
+    "fields": {
+        "order_number": 9,
+        "name": "I am age 60 or older"
+    }
+},{
+    "model": "foundation_tenant.identifyoption",
+    "pk": 10,
+    "fields": {
+        "order_number": 10,
+        "name": "None of these statements apply to me"
+    }
+}
+]

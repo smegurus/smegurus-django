@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
@@ -174,6 +176,26 @@ class Intake(models.Model):
         help_text=_('User best times to be contacted by.'),
         default=1,
     )
+
+    # "Do you currently receive any of the following government benefits?" Section
+    government_benefits = models.ManyToManyField(
+        GovernmentBenefitOption,
+        help_text=_('The government benefits that belong to this Intake.'),
+        blank=True,
+        related_name='intake_government_benefits_%(app_label)s_%(class)s_related',
+    )
+
+    # "Do any of the following statements apply to you" Section
+    identities = models.ManyToManyField(
+        IdentifyOption,
+        help_text=_('The identify options belong to this Intake.'),
+        blank=True,
+        related_name='intake_identify_%(app_label)s_%(class)s_related',
+    )
+
+    # "What is your date of birth" Section.
+    date_of_birth = models.DateField(blank=True, null=True)
+
 
     def __str__(self):
         return str(self.me.name)

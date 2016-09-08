@@ -10,8 +10,8 @@ from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.imageupload import TenantImageUpload
-from foundation_tenant.models.abstract_creativework import AbstractCreativeWork
-from foundation_tenant.models.abstract_mediaobject import AbstractMediaObject
+from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
@@ -1073,3 +1073,199 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Cleanup
         TenantMe.objects.delete_all()
+
+    @transaction.atomic
+    def test_governmentbenfitoption_to_string(self):
+        obj = BusinessIdea.objects.create(
+            order_number=1,
+            name='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete()
+
+    @transaction.atomic
+    def test_governmentbenfitoption_delete_all(self):
+        # Setup our unit test.
+        count = GovernmentBenefitOption.objects.all().count()
+        self.assertEqual(count, 0)
+        GovernmentBenefitOption.objects.bulk_create([
+            GovernmentBenefitOption(order_number=1, name='Transhumanism',),
+            GovernmentBenefitOption(order_number=1, name='Space exploration',),
+            GovernmentBenefitOption(order_number=1, name='Unlimited energy',),
+            GovernmentBenefitOption(order_number=1, name='Defend hive',),
+        ])
+        count = GovernmentBenefitOption.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        GovernmentBenefitOption.objects.delete_all()
+        count = GovernmentBenefitOption.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = GovernmentBenefitOption.objects.all()
+        for item in items.all():
+            item.delete()
+
+    @transaction.atomic
+    def test_identifyoption_to_string(self):
+        obj = IdentifyOption.objects.create(
+            order_number=1,
+            name='hideauze.com',
+        )
+        self.assertIn(str(obj), 'hideauze.com')
+        obj.delete()
+
+    @transaction.atomic
+    def test_identifyoption_delete_all(self):
+        # Setup our unit test.
+        count = IdentifyOption.objects.all().count()
+        self.assertEqual(count, 0)
+        IdentifyOption.objects.bulk_create([
+            IdentifyOption(order_number=1, name='Transhumanism',),
+            IdentifyOption(order_number=1, name='Space exploration',),
+            IdentifyOption(order_number=1, name='Unlimited energy',),
+            IdentifyOption(order_number=1, name='Defend hive',),
+        ])
+        count = IdentifyOption.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        IdentifyOption.objects.delete_all()
+        count = IdentifyOption.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = IdentifyOption.objects.all()
+        for item in items.all():
+            item.delete()
+
+    @transaction.atomic
+    def test_countryoption_to_string(self):
+        country = CountryOption.objects.create(
+            name='hideauze.com',
+        )
+        self.assertIn(str(country), 'hideauze.com')
+        obj.delete()
+
+    @transaction.atomic
+    def test_countryoption_delete_all(self):
+        # Setup our unit test.
+        count = CountryOption.objects.all().count()
+        self.assertEqual(count, 0)
+        CountryOption.objects.bulk_create([
+            CountryOption(name='Transhumanism',),
+            CountryOption(name='Space exploration',),
+            CountryOption(name='Unlimited energy',),
+            CountryOption(name='Defend hive',),
+        ])
+        count = CountryOption.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        CountryOption.objects.delete_all()
+        count = CountryOption.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = CountryOption.objects.all()
+        for item in items.all():
+            item.delete()
+
+    @transaction.atomic
+    def test_provinceyoption_to_string(self):
+        country = CountryOption.objects.create(
+            name='hideauze.com',
+        )
+        province = ProvinceOption.objects.create(
+            country=country,
+            name='hideauze.com',
+        )
+        self.assertIn(str(province), 'hideauze.com')
+        province.delete()
+        country.delete()
+
+    @transaction.atomic
+    def test_identifyoption_delete_all(self):
+        # Setup our unit test.
+        country = CountryOption.objects.create(
+            name='hideauze.com',
+        )
+        count = ProvinceOption.objects.all().count()
+        self.assertEqual(count, 0)
+        ProvinceOption.objects.bulk_create([
+            ProvinceOption(country=country, name='Transhumanism',),
+            ProvinceOption(country=country, name='Space exploration',),
+            ProvinceOption(country=country, name='Unlimited energy',),
+            ProvinceOption(country=country, name='Defend hive',),
+        ])
+        count = ProvinceOption.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        ProvinceOption.objects.delete_all()
+        count = ProvinceOption.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = ProvinceOption.objects.all()
+        for item in items.all():
+            item.delete()
+        country.delete()
+
+    @transaction.atomic
+    def test_cityoption_to_string(self):
+        country = CountryOption.objects.create(
+            name='hideauze.com',
+        )
+        province = ProvinceOption.objects.create(
+            country=country,
+            name='hideauze.com',
+        )
+        city = ProvinceOption.objects.create(
+            country=country,
+            province=province,
+            name='hideauze.com',
+        )
+        self.assertIn(str(city), 'hideauze.com')
+        city.delete()
+        province.delete()
+        country.delete()
+
+    @transaction.atomic
+    def test_cityoption_delete_all(self):
+        # Setup our unit test.
+        country = CountryOption.objects.create(
+            name='hideauze.com',
+        )
+        province = ProvinceOption.objects.create(
+            country=country,
+            name='hideauze.com',
+        )
+        city = ProvinceOption.objects.create(
+            country=country,
+            province=province,
+            name='hideauze.com',
+        )
+        count = CityOption.objects.all().count()
+        self.assertEqual(count, 0)
+        CityOption.objects.bulk_create([
+            CityOption(country=country, province=province, name='Transhumanism',),
+            CityOption(country=country, province=province, name='Space exploration',),
+            CityOption(country=country, province=province, name='Unlimited energy',),
+            CityOption(country=country, province=province, name='Defend hive',),
+        ])
+        count = CityOption.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        CityOption.objects.delete_all()
+        count = CityOption.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = CityOption.objects.all()
+        for item in items.all():
+            item.delete()
+        province.delete()
+        country.delete()

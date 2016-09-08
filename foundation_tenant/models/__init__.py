@@ -2,6 +2,8 @@ from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.abstract_creativework import AbstractCreativeWork
 from foundation_tenant.models.abstract_mediaobject import AbstractMediaObject
+from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
