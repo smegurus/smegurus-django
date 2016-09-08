@@ -37,7 +37,7 @@
     }
 
     function ajax_back() {
-        window.location = "{% url 'tenant_intake_entr_step_two' %}";
+        window.location = "{% url 'tenant_intake_entr_round_one_step_two' %}";
     }
 
     function ajax_save_and_continue() {
@@ -53,7 +53,7 @@
                         enable_btn();
                         var string = JSON.stringify( json_result );
                         console.log(string);
-                        window.location = "{% url 'tenant_intake_entr_step_four' %}";
+                        window.location = "{% url 'tenant_intake_entr_round_one_step_four' %}";
                     },
                     function(error_json_result) {
                         enable_btn();

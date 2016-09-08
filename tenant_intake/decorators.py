@@ -12,7 +12,7 @@ def tenant_intake_required(view_func):
     def wrapper(request, *args, **kwargs):
         if request.tenant_me.is_entrepreneur():
             if not request.tenant_me.is_admitted:
-                return HttpResponseRedirect(reverse('tenant_intake_entr_step_one'))
+                return HttpResponseRedirect(reverse('tenant_intake_entr_round_one_step_one'))
 
         return view_func(request, *args, **kwargs)
     return wrapper

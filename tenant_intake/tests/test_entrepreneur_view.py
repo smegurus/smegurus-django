@@ -132,13 +132,13 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         self.user.groups.remove(entrepreneur_group)
         self.user.save()
 
-        url = reverse('tenant_intake_entr_step_one')
+        url = reverse('tenant_intake_entr_round_one_step_one')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_intake_page_one_with_entrepreneur_user(self):
-        url = reverse('tenant_intake_entr_step_one')
+        url = reverse('tenant_intake_entr_round_one_step_one')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
@@ -146,7 +146,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_intake_page_two_with_entrepreneur_user(self):
-        url = reverse('tenant_intake_entr_step_two')
+        url = reverse('tenant_intake_entr_round_one_step_two')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
@@ -154,7 +154,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_intake_page_three_with_entrepreneur_user(self):
-        url = reverse('tenant_intake_entr_step_three')
+        url = reverse('tenant_intake_entr_round_one_step_three')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
@@ -162,7 +162,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_intake_page_four_with_entrepreneur_user(self):
-        url = reverse('tenant_intake_entr_step_four')
+        url = reverse('tenant_intake_entr_round_one_step_four')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
@@ -170,7 +170,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_intake_page_five_with_entrepreneur_user(self):
-        url = reverse('tenant_intake_entr_step_five')
+        url = reverse('tenant_intake_entr_round_one_step_five')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
