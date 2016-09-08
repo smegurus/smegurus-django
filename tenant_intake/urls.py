@@ -13,7 +13,6 @@ urlpatterns = (
     url(r'^intake/entrepreneur/step/3$', views.intake_entr_step_three_page, name='tenant_intake_entr_step_three'),
     url(r'^intake/entrepreneur/step/4$', views.intake_entr_step_four_page, name='tenant_intake_entr_step_four'),
     url(r'^intake/entrepreneur/step/5$', views.intake_entr_step_five_page, name='tenant_intake_entr_step_five'),
-    url(r'^intake/entrepreneur/step/6$', views.intake_entr_step_six_page, name='tenant_intake_entr_step_six'),
     url(r'^intake/entrepreneur/finished$', views.intake_finished_page, name='tenant_intake_finished'),
 
     # Employee

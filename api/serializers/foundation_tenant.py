@@ -165,8 +165,8 @@ class IntakeSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'last_modified', 'me', 'status',
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
-                  'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',
-                  'how_to_contact_times', 'is_employee_created', 'note',)
+                  'do_you_own_a_biz_other', 'has_telephone', 'telephone',
+                  'telephone_time', 'is_employee_created', 'note',)
 
 
 class AdmissionSerializer(serializers.ModelSerializer):

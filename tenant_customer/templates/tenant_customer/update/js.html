@@ -88,9 +88,9 @@
                 intake['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
                 intake['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
                 intake['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
-                intake['how_to_contact'] = $('#id_how_to_contact').val();
-                intake['how_to_contact_telephone'] = $('#id_how_to_contact_telephone').val();
-                intake['how_to_contact_times'] = $('#id_how_to_contact_times').val();
+                intake['has_telephone'] = $('#id_has_telephone').val();
+                intake['telephone'] = $('#id_telephone').val();
+                intake['telephone_time'] = $('#id_telephone_time').val();
                 set_tenant_intake(
                     intake,
                     function(json_result) {
@@ -124,9 +124,9 @@
                 contact_point['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
                 contact_point['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
                 contact_point['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
-                contact_point['how_to_contact'] = $('#id_how_to_contact').val();
-                contact_point['how_to_contact_telephone'] = $('#id_how_to_contact_telephone').val();
-                contact_point['how_to_contact_times'] = $('#id_how_to_contact_times').val();
+                contact_point['has_telephone'] = $('#id_has_telephone').val();
+                contact_point['telephone'] = $('#id_telephone').val();
+                contact_point['telephone_time'] = $('#id_telephone_time').val();
                 set_tenant_contactpoint(
                     contact_point,
                     function(json_result) {

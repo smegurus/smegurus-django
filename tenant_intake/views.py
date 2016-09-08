@@ -106,7 +106,7 @@ def intake_entr_step_four_page(request):
     return render(request, 'tenant_intake/entrepreneur/4/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
-        'tags': Tag.objects.filter(is_program=True)
+        'countries': CountryOption.objects.all()
     })
 
 
@@ -119,19 +119,6 @@ def intake_entr_step_five_page(request):
     return render(request, 'tenant_intake/entrepreneur/5/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
-        'countries': CountryOption.objects.all()
-    })
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
-def intake_entr_step_six_page(request):
-    intake, create = Intake.objects.get_or_create(me=request.tenant_me)
-    return render(request, 'tenant_intake/entrepreneur/6/view.html',{
-        'intake': intake,
-        'form': IntakeForm(instance=intake),
-        'tags': Tag.objects.filter(is_program=True)
     })
 
 

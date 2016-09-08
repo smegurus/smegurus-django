@@ -1,11 +1,49 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        {% if intake.has_telephone == 0 or intake.has_telephone == 1 %} // HAS_TELEPHONE_OPTIONS_NO
+        $('#id_telephone_div').hide();
+        {% endif %}
+
+        {% if request.tenant_me.address.address_country.id == 1 or request.tenant_me.address.address_country.id == 2 %}
+            $("#id_telephone").inputmask("(999) 999-9999");
+        {% endif %}
+
         $(document).keypress(function(event){
             if(event.keyCode == 13){
                 $("#id_continue_btn").click();
             }
-        });
+        }); // end Keypress
+
+        $("#id_has_telephone").change(function () {
+            ajax_intake(
+                function(success) {
+                    location.reload(true); // Reload the page.
+                },
+                function(error_result) {
+                    console.log(error_result);
+                    // Convert the error json into string.
+                    var string = JSON.stringify( error_result );
+                    alert("Unknown Error: "+string);
+                }
+            ); // end INTAKE
+        }); // end TELEPHONE CHANGE
+
+        $("#id_address_country").change(function () {
+            var end = this.value;
+            var country_id = $('#id_address_country').val();
+            ajax_tenant_postaladdress(
+                function(success) {
+                    location.reload(true); // Reload the page.
+                },
+                function(failure) {
+                    console.log(error_result);
+                    // Convert the error json into string.
+                    var string = JSON.stringify( error_result );
+                    alert("Unknown Error: "+string);
+                }
+            ); // end AJAX TENANT POSTALADDRESS
+        }); // end Change Country
     }); // end Ready
 
     function disable_btn() {
@@ -18,37 +56,72 @@
         $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
     }
 
+    function ajax_tenant_postaladdress(success_callback, failure_callback) {
+        get_tenant_postaladdress(
+            {{ request.tenant_me.address.id }},
+            function(postaladdress) {
+                postaladdress['address_country'] = $('#id_address_country').val()
+                set_tenant_postaladdress(
+                    postaladdress,
+                    function(result) {
+                        success_callback(result);
+                    },
+                    function(error_result) {
+                        failure_callback(error_result);
+                    }
+                ); // end Set Tenant Postal Address
+
+            },
+            function(error_result) {
+                console.log(error_result);
+                // Convert the error json into string.
+                var string = JSON.stringify( error_result );
+                alert("Unknown Error: "+string);
+            }
+        ); // end Get Public Postal
+    }
+
+    function ajax_intake(success_callback, failure_callback) {
+        get_tenant_intake(
+            {{ intake.id }},
+            function(intake) {
+                var has_telephone = $('#id_has_telephone').val();
+                intake['has_telephone'] = has_telephone;
+                if (has_telephone == 2) { // HAS_TELEPHONE_OPTIONS_YES
+                    intake['telephone'] = $('#id_telephone').val();
+                    intake['telephone_time'] = $('#id_telephone_time').val();
+
+                } else {                  // HAS_TELEPHONE_OPTIONS_NO
+                    intake['telephone'] = "";
+                    intake['telephone_time'] = "";
+                }
+                console.log(intake);
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        success_callback(json_result);
+                    },
+                    function(error_json_result) {
+                        failure_callback(error_json_result);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                failure_callback(error_json_result);
+            }
+        ); // end Get Intake.
+    }
+
     function ajax_back() {
         window.location = "{% url 'tenant_intake_entr_step_three' %}";
     }
 
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
-        get_tenant_intake(
-            {{ intake.id }},
-            function(intake) {
-                intake['how_to_contact'] = $('#id_how_to_contact').val();
-                set_tenant_intake(
-                    intake,
-                    function(json_result) {
-                        enable_btn();
-                        var string = JSON.stringify( json_result );
-                        console.log(string);
-                        var contact = $('#id_how_to_contact').val();
-                        if (contact == 1) {
-                            window.location = "{% url 'tenant_intake_entr_step_six' %}";
-                        }
-                        if (contact == 2) {
-                            window.location = "{% url 'tenant_intake_entr_step_five' %}";
-                        }
-                    },
-                    function(error_json_result) {
-                        enable_btn();
-                        var string = JSON.stringify( error_json_result );
-                        console.log(error_json_result);
-                        alert(string);
-                    }
-                ); // end Set Intake.
+        ajax_intake(
+            function(json_result) {
+                enable_btn();
+                window.location = "{% url 'tenant_intake_entr_step_five' %}";
             },
             function(error_json_result) {
                 enable_btn();
@@ -56,7 +129,7 @@
                 console.log(error_json_result);
                 alert(string);
             }
-        ); // end Get Intake.
+        ); // end AJAX INTAKE
     }
 
 </script>

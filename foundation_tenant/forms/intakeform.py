@@ -14,8 +14,8 @@ class IntakeForm(forms.ModelForm):
         model = Intake
         fields = ['how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
         'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
-        'do_you_own_a_biz_other', 'how_to_contact', 'how_to_contact_telephone',
-        'how_to_contact_times',]
+        'do_you_own_a_biz_other', 'has_telephone', 'telephone',
+        'telephone_time',]
         labels = {
             # 'name': _('Name'),
             # 'industry': _('Industry'),
@@ -49,14 +49,14 @@ class IntakeForm(forms.ModelForm):
                 # 'placeholder': _('Enter name.')
             }),
 
-            'how_to_contact': Select(attrs={
+            'has_telephone': Select(attrs={
                 'class': u'form-control',
             }),
-            'how_to_contact_telephone': TextInput(attrs={
+            'telephone': TextInput(attrs={
                 'class': u'form-control',
                 # 'placeholder': _('Enter name.')
             }),
-            'how_to_contact_times': Select(attrs={
+            'telephone_time': Select(attrs={
                 'class': u'form-control',
             }),
         }

@@ -42,16 +42,17 @@ DO_YOU_OWN_A_BIZ_OPTIONS = (
 )
 
 
-HOW_TO_CONTACT_OPTIONS = (
-    (1, _('Email')),
-    (2, _('Phone')),
-)
-
-
-HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS = (
+TELEPHONE_TIMES_OPTIONS = (
     (1, _('Morning')),
     (2, _('Afternoon')),
     (3, _('Evening')),
+    (4, _('Anytime')),
+)
+
+
+HAS_TELEPHONE_OPTIONS = (
+    (1, _('No')),
+    (2, _('Yes')),
 )
 
 
@@ -153,13 +154,13 @@ class Intake(models.Model):
     )
 
     # "How should we contact you" Section
-    how_to_contact = models.PositiveSmallIntegerField(
-        _("How should we contact you"),
-        choices=HOW_TO_CONTACT_OPTIONS,
-        help_text=_('User enters how they wish to be contacted by.'),
+    has_telephone = models.PositiveSmallIntegerField(
+        _("Would you like to include your telephone?"),
+        choices=HAS_TELEPHONE_OPTIONS,
         default=1,
+        help_text=_('Would you like to include your telephone?'),
     )
-    how_to_contact_telephone = models.CharField(
+    telephone = models.CharField(
         _("Telephone"),
         max_length=255,
         help_text=_('The text field for telephone number.'),
@@ -167,9 +168,9 @@ class Intake(models.Model):
         null=True,
         default='',
     )
-    how_to_contact_times = models.PositiveSmallIntegerField(
+    telephone_time = models.PositiveSmallIntegerField(
         _("When is it best to call you"),
-        choices=HOW_TO_CONTACT_TELEPHONE_TIMES_OPTIONS,
+        choices=TELEPHONE_TIMES_OPTIONS,
         help_text=_('User best times to be contacted by.'),
         default=1,
     )
