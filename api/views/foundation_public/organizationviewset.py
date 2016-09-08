@@ -1,6 +1,5 @@
 import django_filters
 from django.contrib.auth.models import User
-from django.core.management import call_command
 from rest_framework import authentication
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework import viewsets
@@ -58,6 +57,3 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
             # Attach our current logged in User for our Organization.
             org.users.add(self.request.user)
             org.save()
-
-            # Finish by adding various data associated for this tenant.
-            call_command('populate_tenant')
