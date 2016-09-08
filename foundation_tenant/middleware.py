@@ -43,7 +43,7 @@ class TenantMeMiddleware(object):
                     tenant_me.save()
 
                 # STEP 3: Set the timezone for the user.
-                if tenant_me.address.address_locality:
+                if tenant_me.address and tenant_me.address.address_locality:
                     # Source:
                     # https://docs.djangoproject.com/en/dev/topics/i18n/timezones/#selecting-the-current-time-zone
                     tzname = tenant_me.address.address_locality.time_zone

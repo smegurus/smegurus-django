@@ -2,16 +2,15 @@ from django.db import transaction
 from django.contrib.auth.models import User, Group
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
-from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
-from foundation_public.models.organization import PublicOrganization, PublicDomain
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
@@ -19,13 +18,13 @@ from foundation_tenant.models.intake import Intake
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
-TEST_USER_USERNAME = "ledo"
+TEST_USER_USERNAME = "Ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
-TEST_USER_FIRSTNAME = "Ledo"
-TEST_USER_LASTNAME = ""
+TEST_USER_FIRST_NAME = "Ledo"
+TEST_USER_LAST_NAME = ""
 
 
-class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class TenantIntakeEmployeeTestCases(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -38,12 +37,8 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         tenant.how_discovered = "Command HQ"
         tenant.how_many_served = 1
 
-    @transaction.atomic
-    def setUp(self):
-        translation.activate('en')  # Set English
-        super(TenantIntakeDecoratorWithTenantSchemaTestCase, self).setUp()
-
-        # Initialize our test data.
+    @classmethod
+    def setUpTestData(cls):
         Group.objects.bulk_create([
             Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
             Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
@@ -53,17 +48,32 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
-
-        self.user = User.objects.create_user(  # Create our User.
+        User.objects.bulk_create([
+            User(email='1@1.com', username='1',password='1',is_active=True,),
+            User(email='2@2.com', username='2',password='2',is_active=True,),
+            User(email='3@3.com', username='3',password='3',is_active=True,),
+            User(email='4@4.com', username='4',password='4',is_active=True,),
+            User(email='5@5.com', username='5',password='5',is_active=True,),
+            User(email='6@6.com', username='6',password='6',is_active=True,),
+            User(email='7@7.com', username='7',password='7',is_active=True,),
+            User(email='8@8.com', username='8',password='8',is_active=True,),
+            User(email='9@9.com', username='9',password='9',is_active=True,),
+        ])
+        user = User.objects.create_user(  # Create our User.
             email=TEST_USER_EMAIL,
             username=TEST_USER_USERNAME,
-            password=TEST_USER_PASSWORD,
-            first_name=TEST_USER_FIRSTNAME,
-            last_name=TEST_USER_LASTNAME,
+            password=TEST_USER_PASSWORD
         )
-        self.user.is_active = True
-        self.user.save()
-        token = Token.objects.get(user__username=TEST_USER_USERNAME)
+        user.is_active = True
+        user.save()
+
+    @transaction.atomic
+    def setUp(self):
+        translation.activate('en')  # Set English
+        super(TenantIntakeEmployeeTestCases, self).setUp()
+        # Initialize our test data.
+        self.user = User.objects.get(username=TEST_USER_USERNAME)
+        token = Token.objects.get(user=self.user)
 
         # Setup.
         self.unauthorized_client = TenantClient(self.tenant)
@@ -77,7 +87,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         self.tenant.users.add(self.user)
         self.tenant.save()
 
-        # Setup User Profile.
+        # Setup User.
         country = CountryOption.objects.create(id=1, name='Avalan')
         province = ProvinceOption.objects.create(id=1, name='Colony 01', country=country)
         city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country, time_zone="America/Toronto")
@@ -91,98 +101,86 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
             )
         )
 
+        # Make the User belong to the Entrepreneur group.
+        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+        self.user.groups.add(entrepreneur_group)
+        self.user.save()
+
     @transaction.atomic
     def tearDown(self):
-        Intake.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
-        groups = Group.objects.all()
         for user in users.all():
             user.delete()
-        for group in groups.all():
-            group.delete()
-        # super(TenantIntakeDecoratorWithTenantSchemaTestCase, self).tearDown()
+        items = Group.objects.all()
+        for item in items.all():
+            item.delete()
+        # super(TenantIntakeEmployeeTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_tenant_intake_required_decorator_with_access_granted(self):
-        # Pre-configure.
+    def test_employee_intake_master_page(self):
+        # Make employee
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        self.user.groups.add(entrepreneur_group)
-        self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=True
+        self.user.groups.remove(entrepreneur_group)
+
+        # Make Me setup.
+        me = TenantMe.objects.get()
+        me.is_setup = True
         me.save()
 
-        # Run our test.
-        response = self.authorized_client.get(reverse('tenant_intake_check'))
+        # Run test and verify.
+        url = reverse('tenant_intake_employee_master')
+        response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'access-granted',response.content)
+        self.assertIn(b'Intake',response.content)
 
     @transaction.atomic
-    def test_tenant_intake_required_decorator_with_redirect(self):
-        # Pre-configure.
+    def test_employee_intake_details_page_with_200(self):
+        # Make employee
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        self.user.groups.add(entrepreneur_group)
-        self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=False
+        self.user.groups.remove(entrepreneur_group)
+
+        # Make Me setup.
+        me = TenantMe.objects.get()
+        me.is_setup = True
         me.save()
 
-        # Run our test and verify.
-        response = self.authorized_client.get(reverse('tenant_intake_check'))
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-
-    @transaction.atomic
-    def test_tenant_intake_required_decorator_with_anonymous_user(self):
-        # Run our test and verify.
-        response = self.unauthorized_client.get(reverse('tenant_intake_check'))
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-
-    @transaction.atomic
-    def test_tenant_intake_has_completed_redirection_required_decorator_with_access_granted(self):
-        # Pre-configure.
-        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        self.user.groups.add(entrepreneur_group)
-        self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=True
-        me.save()
-
-        Intake.objects.create(
+        # Make Intake object.
+        intake = Intake.objects.create(
             me=me,
-            status=constants.CREATED_STATUS
+            status=constants.PENDING_REVIEW_STATUS,
         )
 
-        # Run our test.
-        response = self.authorized_client.get(reverse('tenant_intake_has_completed'))
+        # Run test and verify.
+        url = reverse('tenant_intake_employee_details', args=[intake.id,])
+        response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'access-granted',response.content)
+        self.assertIn(b'Intake',response.content)
 
     @transaction.atomic
-    def test_tenant_intake_has_completed_redirection_required_decorator_with_redirect(self):
-        # Pre-configure.
+    def test_employee_intake_details_page_with_404(self):
+        # Make employee
+        advisor_group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
+        self.user.groups.add(advisor_group)
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        self.user.groups.add(entrepreneur_group)
-        self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=False
+        self.user.groups.remove(entrepreneur_group)
+
+        # Make Me setup.
+        me = TenantMe.objects.get()
+        me.is_setup = True
         me.save()
 
-        Intake.objects.create(
-            me=me,
-            status=constants.PENDING_REVIEW_STATUS
-        )
-
-        # Run our test and verify.
-        response = self.authorized_client.get(reverse('tenant_intake_check'))
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-
-    @transaction.atomic
-    def test_tenant_intake_has_completed_redirection_required_decorator_with_anonymous_user(self):
-        # Run our test and verify.
-        response = self.unauthorized_client.get(reverse('tenant_intake_check'))
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+        # Run test and verify.
+        url = reverse('tenant_intake_employee_details', args=[666])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'404',response.content)

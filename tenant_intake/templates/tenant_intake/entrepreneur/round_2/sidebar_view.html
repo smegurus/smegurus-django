@@ -1,0 +1,45 @@
+{% load i18n %}
+<div class="steps clearfix">
+    <ul role="tablist">
+        <li role="tab"
+            class="{% if page == 1 %}first current{% else %}last done{% endif %}"
+    aria-disabled="false"
+    aria-selected="{% if page == 1 %}true{% else %}false{% endif %}">
+            <a id="example-vertical-t-0" href="#example-vertical-h-0" aria-controls="example-vertical-p-0">
+            <span class="current-info audible">{% trans 'current step' %}: </span><span class="number">1.</span> {% trans 'Help' %}
+            </a>
+        </li>
+        <li role="tab"
+           class="{% if page == 2 %}first current{% else %}last done{% endif %}"
+   aria-disabled="false"
+   aria-selected="{% if page == 2 %}true{% else %}false{% endif %}">
+            <a id="example-vertical-t-1" href="#example-vertical-h-1" aria-controls="example-vertical-p-1">
+            <span class="number">2.</span> {% trans 'Discovery' %}
+            </a>
+        </li>
+        <li role="tab"
+           class="{% if page == 3 %}first current{% else %}last done{% endif %}"
+   aria-disabled="false"
+   aria-selected="{% if page == 3 %}true{% else %}false{% endif %}">
+            <a id="example-vertical-t-2" href="#example-vertical-h-2" aria-controls="example-vertical-p-2">
+            <span class="number">3.</span> {% trans 'Business Ownership' %}
+            </a>
+        </li>
+        <li role="tab"
+           class="{% if page == 4 %}first current{% else %}last done{% endif %}"
+   aria-disabled="false"
+   aria-selected="{% if page == 4 %}true{% else %}false{% endif %}">
+            <a id="example-vertical-t-3" href="#example-vertical-h-3" aria-controls="example-vertical-p-3">
+            <span class="number">4.</span> {% trans 'Contact' %}
+            </a>
+        </li>
+        <li role="tab"
+           class="{% if page == 5 %}first current{% else %}last done{% endif %}"
+   aria-disabled="false"
+   aria-selected="{% if page == 5 %}true{% else %}false{% endif %}">
+            <a id="example-vertical-t-4" href="#example-vertical-h-4" aria-controls="example-vertical-p-4">
+            <span class="number">5.</span> {% trans 'Finish' %}
+            </a>
+        </li>
+    </ul>
+</div>
