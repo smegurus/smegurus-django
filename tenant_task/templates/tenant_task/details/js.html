@@ -86,7 +86,7 @@
 
             // Format our "Date" object to a format django "DatetimeField"
             // to support.
-            var django_date = date_to_django_date(unprotected_date);
+            var django_date = date_to_django_datetime(unprotected_date);
 
             var text = "Changed start date to "+raw_text_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";
 
@@ -121,7 +121,7 @@
 
             // Format our "Date" object to a format django "DatetimeField"
             // to support.
-            var django_date = date_to_django_date(unprotected_date);
+            var django_date = date_to_django_datetime(unprotected_date);
 
             // Write the event log.
             var text = "Changed due date to "+raw_text_date+" by {{ request.user.first_name }} {{ request.user.last_name }}";

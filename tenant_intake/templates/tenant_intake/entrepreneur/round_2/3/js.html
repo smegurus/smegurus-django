@@ -42,7 +42,24 @@
         get_tenant_intake(
             {{ intake.id }},
             function(intake) {
-                intake['identities'] = identities;
+                // Extract the string.
+                var raw_text_date = $('#id_date_of_birth').val() ;
+
+                // Convert the string to a javascript "Date" object.
+                var unprotected_date = new Date(raw_text_date);
+
+                //BUGFIX: It appears when we converted our date, we lost a day.
+                //        Therefore, add a single day to our converted date.
+                unprotected_date.setDate(unprotected_date.getDate() + 1);
+
+                // Format our "Date" object to a format django "DatetimeField"
+                // to support.
+                var django_date = date_to_django_date(unprotected_date);
+                console.log(django_date);
+
+                // Update model.
+                intake['date_of_birth'] = django_date;
+
                 set_tenant_intake(
                     intake,
                     function(json_result) {
