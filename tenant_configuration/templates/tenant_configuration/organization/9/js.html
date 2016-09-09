@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
         $(document).keypress(function(event){
@@ -36,7 +36,22 @@
     });
 
     function ajax_dashboard() {
-        window.location = "{% url 'tenant_dashboard' %}";
+        // Turn on the 'loading' animation.
+        var lb = new $.LoadingBox({
+            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
+        });
+
+        // Run the expensive process.
+        tenant_finalize(
+            function(json_result) {
+
+                setTimeout(function() {
+                    lb.close(); // Turn off the 'loading' animatin.
+                    window.location = "{% url 'tenant_dashboard' %}";
+                }, 2000);
+
+            }
+        ); // end FINALIZE
     }
 
     function ajax_back() {

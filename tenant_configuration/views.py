@@ -3,7 +3,6 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
-from django.core.management import call_command
 from rest_framework import status
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
@@ -76,10 +75,6 @@ def config_org_step_eight_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_nine_page(request):
-    # Finish by adding various data associated for this tenant.
-    call_command('populate_tenant')
-
-    # Return the result.
     return render(request, 'tenant_configuration/organization/9/view.html',{})
 
 

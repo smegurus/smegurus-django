@@ -52,6 +52,7 @@ from api.views.foundation_tenant.messageviewset import MessageViewSet
 from api.views.foundation_tenant.noteviewset import NoteViewSet
 from api.views.foundation_tenant.taskviewset import TaskViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
+from api.views.foundation_tenant.functionviewset import FinalizeTenantSetupFunctionViewSet
 
 
 # URL Generator.
@@ -114,7 +115,10 @@ urlpatterns = (
     url(r'^api/activate/$', ActivationView.as_view(), name='api_activate'),
     url(r'^api/emailpasswordreset/$', EmailPasswordResetViewSet.as_view(), name='api_emailpasswordreset'),
     url(r'^api/changepassword/$', ChangePasswordViewSet.as_view(), name='api_changepassword'),
+
+    # Custom Functions.
     url(r'^api/isemailunique/$', IsEmailUniqueViewSet.as_view(), name='api_function_isemailunique'),
+    url(r'^api/finalize_tenant/$', FinalizeTenantSetupFunctionViewSet.as_view(), name='api_function_finalize_tenant'),
 
     # Provide authentication for this API login app.
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

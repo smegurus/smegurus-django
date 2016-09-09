@@ -26,6 +26,12 @@
         <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
         <!-- =============== CUSTOM STYLES ===============-->
         <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}">
+        <style>
+            .autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+            .autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+            .autocomplete-selected { background: #f0f0f0; }
+            .autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+        </style>
         {% endcompress %}
         {% compress js %}
         <!-- JQUERY-->
@@ -196,6 +202,7 @@
             {% include "api/js/tenant_intake.html" %}
             {% include "api/js/tenant_postaladdress.html" %}
             {% include "api/js/tenant_me.html" %}
+            {% include "api/js/tenant_function.html" %}
         {% endif %}
         <script>
             function ajax_logout() {

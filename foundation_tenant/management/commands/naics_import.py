@@ -90,19 +90,33 @@ class BIZNAICSOptionImporter:
 class Command(BaseCommand):
     """
         Run in your console:
-        $ python manage.py tenant_command naics_importer /Users/bartlomiejmika/Developer/rodolfomartinez/smegurus/django-smegurus/foundation_tenant/static/naics_2012.csv
+        $ python manage.py tenant_command naics_import
 
     """
     help = 'ETL imports the NAICS options.'
 
-    def add_arguments(self, parser):
-        parser.add_argument('file_path', nargs='+')
+    # DEPRECATED
+    #-------------
+    # def add_arguments(self, parser):
+    #     parser.add_argument('file_path', nargs='+')
 
     def handle(self, *args, **options):
-        os.system('clear;')  # Clear the console text.
-        for full_file_path in options['file_path']:
-            importer = BIZNAICSOptionImporter(full_file_path)
-            importer.begin_import()
+        # os.system('clear;')  # Clear the console text.
+
+        # The following code will find the file path of our file in our app.
+        import foundation_tenant
+        app_path = os.path.dirname(foundation_tenant.__file__)
+        file_path = app_path + "/static/naics_2012.csv"
+
+        # Import all our data.
+        importer = BIZNAICSOptionImporter(file_path)
+        importer.begin_import()
+
+        # DEPRECATED
+        #-------------
+        # for full_file_path in options['file_path']:
+        #     importer = BIZNAICSOptionImporter(full_file_path)
+        #     importer.begin_import()
 
 
 #-----------------

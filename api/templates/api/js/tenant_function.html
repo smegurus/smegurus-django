@@ -1,0 +1,30 @@
+<script>
+    /**
+     *  Function will perform the finalization setup of the tenant once first created.
+     */
+    function tenant_finalize(callback) {
+        var url = "/api/finalize_tenant/?format=json";
+        jQuery.ajax({
+            url: url,
+            data: JSON.stringify({}),
+            dataType: 'text',
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            processData: false,
+            type: 'POST',
+            success: function(data){
+                callback(data);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                callback(error);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+</script>
