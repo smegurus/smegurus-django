@@ -24,18 +24,6 @@
 
     function ajax_save_and_continue() {
         window.location = "{% url 'tenant_intake_entr_round_two_step_one' %}";
-
-
-        // complete_tenant_intake(
-        //     {{ intake.id }},
-        //     function(json_result){
-        //         console.log(json_result);
-        //         window.location = "{% url 'tenant_intake_finished' %}";
-        //     },
-        //     function(error_result) {
-        //         console.log(error_result);
-        //     }
-        // ); // end Complete Intake
     }
 
 </script>

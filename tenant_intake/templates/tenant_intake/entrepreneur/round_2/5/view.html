@@ -1,0 +1,49 @@
+{% extends 'tenant_intake/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+    {% compress js inline %}
+        {% include 'tenant_intake/entrepreneur/round_2/5/js.html' with intake=intake %}
+    {% endcompress %}
+    <div class="content-wrapper">
+
+<div class="panel panel-default">
+    <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round Two' %}</div>
+    <div class="panel-body">
+        <div id="example-vertical" role="application" class="wizard clearfix vertical">
+
+            <!-- PAGE SIDEBAR -->
+            {% include 'tenant_intake/entrepreneur/round_2/sidebar_view.html' with page=5 %}
+            <!-- end PAGE SIDEBAR -->
+
+            <!-- PAGE CONTENT -->
+            <div class="content clearfix">
+                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
+                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
+                    <fieldset id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
+                        <h2 class="text-center pv">{% trans 'Finish' %}</h2>
+                        <p class="text-center pv">{% trans 'When you feeel confident with your answers. Click "Submit".' %}</p>
+                    </fieldset>
+                </section>
+            </div>
+            <!-- end PAGE CONTENT -->
+
+            <!-- FORM BUTTON -->
+            <div class="actions clearfix">
+                <ul role="menu" aria-label="Pagination">
+                    <li class="disabled" aria-disabled="true">
+                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
+                    </li>
+                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
+                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Submit' %}</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- end FORM BUTTON -->
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock content %}
