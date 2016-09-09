@@ -139,7 +139,8 @@ class IntakeFilter(django_filters.FilterSet):
                   'do_you_own_a_biz_other', 'has_telephone', 'telephone',
                   'telephone_time', 'is_employee_created', 'note',
                   'government_benefits', 'other_government_benefit',
-                  'identities', 'date_of_birth',]
+                  'identities', 'date_of_birth', 'naics_depth_one', 'naics_depth_two',
+                  'naics_depth_three', 'naics_depth_four', 'naics_depth_five',]
 
 
 class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):

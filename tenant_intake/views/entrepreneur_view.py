@@ -3,10 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import condition
+from django.db.models import Q
 from foundation_public.decorators import group_required
 from foundation_public.utils import latest_date_between
 from tenant_intake.decorators import tenant_intake_has_completed_redirection_required
 from foundation_tenant.forms.intakeform import IntakeForm
+from foundation_tenant.models.naicsoption import NAICSOption
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
@@ -132,11 +134,64 @@ def intake_entr_round_two_step_three_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+# @condition(last_modified_func=entrepreneur_func)
+@tenant_intake_has_completed_redirection_required
+def intake_entr_round_two_step_four_page(request):
+    # Fetch the Intake object.
+    intake, create = Intake.objects.get_or_create(me=request.tenant_me)
+
+    # Get the first depth.
+    depth_one_results = NAICSOption.objects.filter(parent=None)
+
+    # Get the second depth.
+    depth_two_results = None
+    if intake.naics_depth_two:
+        depth_two_results = NAICSOption.objects.filter(parent=intake.naics_depth_two.parent)
+    else:
+        if intake.naics_depth_one:
+            depth_two_results = NAICSOption.objects.filter(parent=intake.naics_depth_one)
+
+    # Get the three depth.
+    depth_three_results = None
+    if intake.naics_depth_three:
+        depth_three_results = NAICSOption.objects.filter(parent=intake.naics_depth_three.parent)
+    else:
+        if intake.naics_depth_two:
+            depth_three_results = NAICSOption.objects.filter(parent=intake.naics_depth_two)
+
+    # Get the four depth.
+    depth_four_results = None
+    if intake.naics_depth_four:
+        depth_four_results = NAICSOption.objects.filter(parent=intake.naics_depth_four.parent)
+    else:
+        if intake.naics_depth_three:
+            depth_four_results = NAICSOption.objects.filter(parent=intake.naics_depth_three)
+
+    # Get the five depth.
+    depth_five_results = None
+    if intake.naics_depth_five:
+        depth_five_results = NAICSOption.objects.filter(parent=intake.naics_depth_five.parent)
+    else:
+        if intake.naics_depth_four:
+            depth_five_results = NAICSOption.objects.filter(parent=intake.naics_depth_four)
+
+    # Render the view.
+    return render(request, 'tenant_intake/entrepreneur/round_2/4/view.html',{
+        'intake': intake,
+        'depth_one_results': depth_one_results,
+        'depth_two_results': depth_two_results,
+        'depth_three_results': depth_three_results,
+        'depth_four_results': depth_four_results,
+        'depth_five_results': depth_five_results
+    })
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ENTREPRENEUR_GROUP_ID,])
 @condition(last_modified_func=entrepreneur_func)
 def intake_round_one_finished_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
     return render(request, 'tenant_intake/entrepreneur/round_1/finished/view.html',{
         'intake': intake,
         'form': IntakeForm(instance=intake),
-        'tags': Tag.objects.filter(is_program=True)
     })

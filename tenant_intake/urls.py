@@ -18,7 +18,7 @@ urlpatterns = (
     url(r'^intake/entrepreneur/round_2/step/1$', entrepreneur_view.intake_entr_round_two_step_one_page, name='tenant_intake_entr_round_two_step_one'),
     url(r'^intake/entrepreneur/round_2/step/2$', entrepreneur_view.intake_entr_round_two_step_two_page, name='tenant_intake_entr_round_two_step_two'),
     url(r'^intake/entrepreneur/round_2/step/3$', entrepreneur_view.intake_entr_round_two_step_three_page, name='tenant_intake_entr_round_two_step_three'),
-
+    url(r'^intake/entrepreneur/round_2/step/4$', entrepreneur_view.intake_entr_round_two_step_four_page, name='tenant_intake_entr_round_two_step_four'),
 
     # TODO: Implement.
     url(r'^intake/entrepreneur/finished$', entrepreneur_view.intake_round_one_finished_page, name='tenant_intake_finished'),

@@ -1,0 +1,221 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Keypress
+
+        // NAICS DEPTH ONE
+        $("#id_naics_depth_one").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_one').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_two').prop("disabled", false);
+                    $('#id_naics_depth_three').prop("disabled", true);
+                    $('#id_naics_depth_four').prop("disabled", true);
+                    $('#id_naics_depth_five').prop("disabled", true);
+
+                    // Update the UI.
+                    $('#id_naics_depth_two').html('');       // Clear selection
+                    $('#id_naics_depth_three').html('');     // Clear selection
+                    $('#id_naics_depth_four').html('');      // Clear selection
+                    $('#id_naics_depth_five').html('');      // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI.
+                    $(html).appendTo('#id_naics_depth_two'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH ONE
+
+        // NAICS DEPTH TWO
+        $("#id_naics_depth_two").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_two').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_three').prop("disabled", false);
+                    $('#id_naics_depth_four').prop("disabled", true);
+                    $('#id_naics_depth_five').prop("disabled", true);
+
+                    // Update the UI.
+                    $('#id_naics_depth_three').html('');     // Clear selection
+                    $('#id_naics_depth_four').html('');      // Clear selection
+                    $('#id_naics_depth_five').html('');      // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI.
+                    $(html).appendTo('#id_naics_depth_three'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH TWO
+
+        // NAICS DEPTH THREE
+        $("#id_naics_depth_three").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_three').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_four').prop("disabled", false);
+                    $('#id_naics_depth_five').prop("disabled", true);
+
+                    // Update the UI.
+                    $('#id_naics_depth_four').html('');       // Clear selection
+                    $('#id_naics_depth_five').html('');       // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI
+                    $(html).appendTo('#id_naics_depth_four'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH THREE
+
+        // NAICS DEPTH FOUR
+        $("#id_naics_depth_four").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_four').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_five').prop("disabled", false);
+
+                    // Update the UI.
+                    $('#id_naics_depth_five').html('');       // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $(html).appendTo('#id_naics_depth_five'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH FOUR
+    }); // end DOCUMENT START
+
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true);
+        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false);
+        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+    }
+
+    function ajax_back() {
+        window.location = "{% url 'tenant_intake_entr_round_two_step_three' %}";
+    }
+
+    function ajax_save_and_continue() {
+        var naics_depth_one = $('#id_naics_depth_one').val();
+        var naics_depth_two = $('#id_naics_depth_two').val();
+        var naics_depth_three = $('#id_naics_depth_three').val();
+        var naics_depth_four = $('#id_naics_depth_four').val();
+        var naics_depth_five = $('#id_naics_depth_five').val();
+
+        if (naics_depth_one <= 0 || naics_depth_one == '----') {
+            alert("Please select at minimum depth one.");
+            return;
+        }
+
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_tenant_intake(
+            {{ intake.id }},
+            function(intake) {
+
+                intake['naics_depth_one'] = parseInt(naics_depth_one);
+
+                if (naics_depth_two > 0 && naics_depth_two != '----') {
+                    intake['naics_depth_two'] = parseInt(naics_depth_two);
+                } else {
+                    intake['naics_depth_two'] = '';
+                }
+
+                if (naics_depth_three > 0 && naics_depth_three != '----') {
+                    intake['naics_depth_three'] = parseInt(naics_depth_three);
+                } else {
+                    intake['naics_depth_three'] = '';
+                }
+
+                if (naics_depth_four > 0 && naics_depth_four != '----') {
+                    intake['naics_depth_four'] = parseInt(naics_depth_four);
+                } else {
+                    intake['naics_depth_four'] = '';
+                }
+
+                if (naics_depth_five > 0 && naics_depth_five != '----') {
+                    intake['naics_depth_five'] = parseInt(naics_depth_five);
+                } else {
+                    intake['naics_depth_five'] = '';
+                }
+
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( json_result );
+                        console.log(string);
+                        window.location = "{% url 'tenant_intake_entr_round_two_step_four' %}";
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end Get Intake.
+    }
+</script>

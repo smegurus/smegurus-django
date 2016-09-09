@@ -6,6 +6,7 @@ from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
+from foundation_tenant.models.naicsoption import NAICSOption
 from smegurus import constants
 
 
@@ -204,6 +205,47 @@ class Intake(models.Model):
     # "What is your date of birth" Section.
     date_of_birth = models.DateField(blank=True, null=True)
 
+    # "What sector does your current business idea mainly fall into?" Section.
+    naics_depth_one = models.ForeignKey(
+        NAICSOption,
+        help_text=_('The NAICS option for depth one.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_naics_depth_one_%(app_label)s_%(class)s_related',
+    )
+    naics_depth_two = models.ForeignKey(
+        NAICSOption,
+        help_text=_('The NAICS option for depth two.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_naics_depth_two_%(app_label)s_%(class)s_related',
+    )
+    naics_depth_three = models.ForeignKey(
+        NAICSOption,
+        help_text=_('The NAICS option for depth three.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_inaics_depth_three_%(app_label)s_%(class)s_related',
+    )
+    naics_depth_four = models.ForeignKey(
+        NAICSOption,
+        help_text=_('The NAICS option for depth four.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_naics_depth_four_%(app_label)s_%(class)s_related',
+    )
+    naics_depth_five = models.ForeignKey(
+        NAICSOption,
+        help_text=_('The NAICS option for depth five.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_naics_depth_five_%(app_label)s_%(class)s_related',
+    )
 
     def __str__(self):
         return str(self.me.name)
