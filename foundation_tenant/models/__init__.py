@@ -7,6 +7,7 @@ from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.naicsoption import NAICSOption
 from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification

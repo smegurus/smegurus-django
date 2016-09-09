@@ -14,6 +14,7 @@ from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOp
 from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.naicsoption import NAICSOption
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.geocoordinate import GeoCoordinate
@@ -1173,7 +1174,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_provinceyoption_to_string(self):
+    def test_provinceoption_to_string(self):
         country = CountryOption.objects.create(
             name='hideauze.com',
         )
@@ -1186,7 +1187,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         country.delete()
 
     @transaction.atomic
-    def test_identifyoption_delete_all(self):
+    def test_provinceoption_delete_all(self):
         # Setup our unit test.
         country = CountryOption.objects.create(
             name='hideauze.com',
@@ -1269,3 +1270,35 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
         province.delete()
         country.delete()
+
+    @transaction.atomic
+    def test_naicsoption_to_string(self):
+        option = NAICSOption.objects.create(
+            name='hideauze.com',
+        )
+        self.assertIn(str(option), 'hideauze.com')
+        obj.delete()
+
+    @transaction.atomic
+    def test_countryoption_delete_all(self):
+        # Setup our unit test.
+        count = NAICSOption.objects.all().count()
+        self.assertEqual(count, 0)
+        NAICSOption.objects.bulk_create([
+            NAICSOption(name='Transhumanism',),
+            NAICSOption(name='Space exploration',),
+            NAICSOption(name='Unlimited energy',),
+            NAICSOption(name='Defend hive',),
+        ])
+        count = NAICSOption.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        NAICSOption.objects.delete_all()
+        count = NAICSOption.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        items = NAICSOption.objects.all()
+        for item in items.all():
+            item.delete()
