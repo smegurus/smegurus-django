@@ -5,11 +5,14 @@ from rest_framework import exceptions, serializers
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from smegurus import constants
+from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.identifyoption import IdentifyOption
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
-from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
+from foundation_tenant.models.imageupload import TenantImageUpload
+from foundation_tenant.models.naicsoption import NAICSOption
 from foundation_tenant.models.language import Language
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
@@ -29,11 +32,12 @@ from foundation_tenant.models.faqgroup import FAQGroup
 from foundation_tenant.models.communitypost import CommunityPost
 from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.message import Message
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.task import Task
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.note import Note
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.task import Task
+from foundation_tenant.models.visitor import TenantVisitor
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -252,3 +256,21 @@ class OrderedCommentPostSerializer(serializers.ModelSerializer):
         model = OrderedCommentPost
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'me',)
+
+
+class GovernmentBenefitOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GovernmentBenefitOption
+        fields = ('id', 'order_number', 'name',)
+
+
+class IdentifyOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IdentifyOption
+        fields = ('id', 'order_number', 'name',)
+
+
+class NAICSOptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NAICSOption
+        fields = ('id', 'seq_num', 'name', 'parent', 'year')

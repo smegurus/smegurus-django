@@ -30,6 +30,7 @@ from api.views.foundation_tenant.tenantimageuploadviewset import TenantImageUplo
 from api.views.foundation_tenant.countryoptionviewset import TenantCountryOptionViewSet
 from api.views.foundation_tenant.provinceoptionviewset import TenantProvinceOptionViewSet
 from api.views.foundation_tenant.cityoptionviewset import TenantCityOptionViewSet
+from api.views.foundation_tenant.naicsoptionviewset import NAICSOptionViewSet
 from api.views.foundation_tenant.languageviewset import LanguageViewSet
 from api.views.foundation_tenant.postaladdressviewset import PostalAddressViewSet
 from api.views.foundation_tenant.openinghoursspecificationviewset import OpeningHoursSpecificationViewSet
@@ -77,6 +78,7 @@ router.register(r'tenantimageupload', TenantImageUploadViewSet)
 router.register(r'tenantcountryoption', TenantCountryOptionViewSet)
 router.register(r'tenantprovinceoption', TenantProvinceOptionViewSet)
 router.register(r'tenantcityoption', TenantCityOptionViewSet)
+router.register(r'tenantnaicsoption', NAICSOptionViewSet)
 router.register(r'tenantlanguage', LanguageViewSet)
 router.register(r'tenantpostaladdress', PostalAddressViewSet)
 router.register(r'tenantopeninghoursspecification', OpeningHoursSpecificationViewSet)
