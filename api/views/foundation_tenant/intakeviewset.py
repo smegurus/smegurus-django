@@ -264,6 +264,13 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         # Fetch the Intake object we will perform our operation on.
         intake = self.get_object()
 
+        # Security: Only the owner can modify this object.
+        if intake.me != request.tenant_me:
+            return response.Response(
+                data={'message': 'You are not the owner of this object.'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
         # Delete any previous notes made so we can re-create them.
         if intake.privacy_note:
             intake.privacy_note.delete()

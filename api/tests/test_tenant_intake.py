@@ -238,14 +238,29 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authenticated_management_user(self):
-        note = Note.objects.create(
-            id=1,
-            me=self.me,
-        )
         Intake.objects.create(
             id=1,
             me=self.me,
-            note=note,
+            judgement_note=Note.objects.create(
+                id=1,
+                me=self.me,
+            ),
+            privacy_note=Note.objects.create(
+                id=2,
+                me=self.me,
+            ),
+            terms_note=Note.objects.create(
+                id=3,
+                me=self.me,
+            ),
+            confidentiality_note=Note.objects.create(
+                id=4,
+                me=self.me,
+            ),
+            collection_note=Note.objects.create(
+                id=5,
+                me=self.me,
+            ),
         )
         response = self.authorized_client.delete('/api/tenantintake/1/?format=json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -253,15 +268,15 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_authenticated_advisor_user(self):
         # Create our object to be deleted.
-        note = Note.objects.create(
-            id=1,
-            me=self.me,
-        )
+
         Intake.objects.create(
             id=1,
             me=self.me,
             status=constants.CREATED_STATUS,
-            note=note,
+            judgement_note=Note.objects.create(
+                id=1,
+                me=self.me,
+            ),
         )
 
         # Change Group that the User belongs in.
@@ -278,15 +293,14 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_complete_intake_with_anonymous_user(self):
         # Setup our object.
-        note = Note.objects.create(
-            id=1,
-            me=self.me,
-        )
         Intake.objects.create(
             id=1,
             me=self.me,
             status=constants.PENDING_REVIEW_STATUS,
-            note=note,
+            judgement_note=Note.objects.create(
+                id=1,
+                me=self.me,
+            ),
         )
 
         # Run the test and verify.
@@ -407,14 +421,13 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_judge_with_employee_user_for_existing_intake_with_note(self):
         # Setup our object.
-        note = Note.objects.create(
-            me=self.me,
-        )
         Intake.objects.create(
             id=1,
             me=self.me,
             status=constants.CREATED_STATUS,
-            note=note,
+            judgement_note=Note.objects.create(
+                me=self.me,
+            ),
         )
 
         # Run the test and verify.
@@ -538,3 +551,79 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn(b'No Intake matches the given query.', response.content)
         self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
+
+    @transaction.atomic
+    def test_crm_update_with_anonymous_user(self):
+        # Setup our object.
+        Intake.objects.create(
+            id=1,
+            me=self.me,
+            status=constants.PENDING_REVIEW_STATUS,
+            has_signed_with_name="Ledo"
+        )
+
+        # Run the test and verify.
+        response = self.unauthorized_client.put(
+            '/api/tenantintake/1/crm_update/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_crm_update_with_owner_user(self):
+        # Setup our object.
+        Intake.objects.create(
+            id=1,
+            me=self.me,
+            status=constants.CREATED_STATUS,
+            has_signed_with_name="Ledo"
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/1/crm_update/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_crm_update_with_different_owner_user(self):
+        # Setup our objects.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        new_user = User.objects.create_user(  # Create our user.
+            email='chambers@gah.com',
+            username='Chambers',
+            password='I do not like Stryker',
+        )
+        new_user.is_active = True
+        new_user.groups.add(org_admin_group)
+        new_user.save()
+        new_me = TenantMe.objects.create(
+            owner=new_user
+        )
+        Intake.objects.create(
+            id=1,
+            me=new_me,
+            status=constants.CREATED_STATUS,
+            has_signed_with_name="Ledo"
+        )
+
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/1/crm_update/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_crm_update_with_owner_user_with_404(self):
+        # Run the test and verify.
+        response = self.authorized_client.put(
+            '/api/tenantintake/6666/crm_update/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
