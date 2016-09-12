@@ -138,7 +138,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
-    def test_intake_page_one_with_entrepreneur_user(self):
+    def test_intake_round_one_page_one_with_entrepreneur_user(self):
         url = reverse('tenant_intake_entr_round_one_step_one')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -146,7 +146,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         #self.assertIn(b'Rewards',response.content)
 
     @transaction.atomic
-    def test_intake_page_two_with_entrepreneur_user(self):
+    def test_intake_round_one_page_two_with_entrepreneur_user(self):
         url = reverse('tenant_intake_entr_round_one_step_two')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -154,7 +154,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         #self.assertIn(b'Rewards',response.content)
 
     @transaction.atomic
-    def test_intake_page_three_with_entrepreneur_user(self):
+    def test_intake_round_one_page_three_with_entrepreneur_user(self):
         url = reverse('tenant_intake_entr_round_one_step_three')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -162,7 +162,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         #self.assertIn(b'Rewards',response.content)
 
     @transaction.atomic
-    def test_intake_page_four_with_entrepreneur_user(self):
+    def test_intake_round_one_page_four_with_entrepreneur_user(self):
         url = reverse('tenant_intake_entr_round_one_step_four')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -170,8 +170,56 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         #self.assertIn(b'Rewards',response.content)
 
     @transaction.atomic
-    def test_intake_page_five_with_entrepreneur_user(self):
+    def test_intake_round_one_page_five_with_entrepreneur_user(self):
         url = reverse('tenant_intake_entr_round_one_step_five')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_round_one_page_six_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_entr_round_one_step_six')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_round_two_page_one_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_entr_round_two_step_one')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_round_two_page_two_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_entr_round_two_step_two')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_round_two_page_three_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_entr_round_two_step_three')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_round_two_page_four_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_entr_round_two_step_four')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        #self.assertIn(b'Rewards',response.content)
+
+    @transaction.atomic
+    def test_intake_round_two_page_five_with_entrepreneur_user(self):
+        url = reverse('tenant_intake_entr_round_two_step_five')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
