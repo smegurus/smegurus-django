@@ -170,12 +170,14 @@ class IntakeSerializer(serializers.ModelSerializer):
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'has_telephone', 'telephone',
-                  'telephone_time', 'is_employee_created', 'note',
+                  'telephone_time', 'is_employee_created', 'judgement_note',
                   'government_benefits', 'other_government_benefit',
                   'identities', 'date_of_birth', 'naics_depth_one', 'naics_depth_two',
                   'naics_depth_three', 'naics_depth_four', 'naics_depth_five',
                   'has_signed_privacy_and_terms', 'has_signed_confidentiality_agreement',
-                  'has_signed_collection_and_use_of_information', 'has_signed_with_name')
+                  'has_signed_collection_and_use_of_information', 'has_signed_with_name',
+                  'has_signed_on_date', 'privacy_note', 'terms_note', 'confidentiality_note',
+                  'collection_note')
 
 
 class AdmissionSerializer(serializers.ModelSerializer):

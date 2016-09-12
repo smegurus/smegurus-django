@@ -72,8 +72,20 @@
         disable_btn(); // Disable the button so no multiple presses happen.
         ajax_intake(
             function(json_result) {
-                enable_btn();
-                window.location = "{% url 'tenant_intake_entr_round_one_step_six' %}";
+
+                tenant_crm_update(
+                    {{ intake.id }},
+                    function(success_result) {
+                        window.location = "{% url 'tenant_intake_entr_round_one_step_six' %}";
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end CRM UPDATE
+
             },
             function(error_json_result) {
                 enable_btn();

@@ -1,5 +1,5 @@
+from django.utils import timezone
 import django_filters
-from django.core.signing import Signer
 from django.core.mail import EmailMultiAlternatives    # Emailer
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
@@ -39,17 +39,6 @@ class SendEmailViewMixin(object):
             url += additonal_url
             url = url.replace("/None/","/en/")
         return url
-
-    def get_password_reset_url(self, user):
-        # Convert our User's ID into an encrypted value.
-        # Note: https://docs.djangoproject.com/en/dev/topics/signing/
-        signer = Signer()
-        id_sting = str(user.id).encode()
-        value = signer.sign(id_sting)
-
-        # Variables used to generate your output.
-        url = reverse('foundation_auth_password_reset_and_change', args=[value,])
-        return self.get_url_with_subdomain(url)
 
     def get_login_url(self):
         """Function will return the URL to the login page through the sub-domain of the organization."""
@@ -137,10 +126,11 @@ class IntakeFilter(django_filters.FilterSet):
                   'how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'has_telephone', 'telephone',
-                  'telephone_time', 'is_employee_created', 'note',
+                  'telephone_time', 'is_employee_created', 'judgement_note',
                   'government_benefits', 'other_government_benefit',
                   'identities', 'date_of_birth', 'naics_depth_one', 'naics_depth_two',
-                  'naics_depth_three', 'naics_depth_four', 'naics_depth_five',]
+                  'naics_depth_three', 'naics_depth_four', 'naics_depth_five',
+                  'privacy_note', 'terms_note', 'confidentiality_note', 'collection_note']
 
 
 class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
@@ -154,8 +144,16 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     def perform_destroy(self, instance):
         """Override the deletion function to archive the message instead of deleting it."""
         # Delete associated models with this model.
-        if instance.note:
-            instance.note.delete()
+        if instance.judgement_note:
+            instance.judgement_note.delete()
+        if instance.privacy_note:
+            instance.privacy_note.delete()
+        if instance.terms_note:
+            instance.terms_note.delete()
+        if instance.confidentiality_note:
+            instance.confidentiality_note.delete()
+        if instance.collection_note:
+            instance.collection_note.delete()
 
         instance.delete()  # Default deletion function.
 
@@ -225,16 +223,16 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 intake.me.is_admitted = (intake.status == constants.APPROVED_STATUS)
                 intake.me.save()
 
-                # Update or create 'Note' model.
+                # Update or create 'judgement_note' model.
                 description = serializer.data['comment']
-                if intake.note:
-                    intake.note.name = _("Intake Note")
-                    intake.note.description = description
-                    intake.note.save()
+                if intake.judgement_note:
+                    intake.judgement_note.name = _("Intake Note")
+                    intake.judgement_note.description = description
+                    intake.judgement_note.save()
                 else:
-                    intake.note = Note.objects.create(
+                    intake.judgement_note = Note.objects.create(
                         me=intake.me,
-                        name = _("Intake Note"),
+                        name = _("Intake Judgement Note"),
                         description = description,
                     )
                     intake.save()
@@ -259,3 +257,65 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 data="judge " + str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
+    def crm_update(self, request, pk=None):
+        # Fetch the Intake object we will perform our operation on.
+        intake = self.get_object()
+
+        # Delete any previous notes made so we can re-create them.
+        if intake.privacy_note:
+            intake.privacy_note.delete()
+        if intake.terms_note:
+            intake.terms_note.delete()
+        if intake.confidentiality_note:
+            intake.confidentiality_note.delete()
+        if intake.collection_note:
+            intake.collection_note.delete()
+
+        # Set our new signed date.
+        intake.has_signed_on_date = timezone.now()
+
+        # Create our notes.
+        intake.privacy_note = Note.objects.create(
+            me=intake.me,
+            name=_("Intake - Privacy Policy"),
+            description=_("Privacy Policy signed on %(date)s by %(name)s" % {
+                'date': intake.has_signed_on_date,
+                'name': intake.has_signed_with_name
+            })
+        )
+        intake.terms_note = Note.objects.create(
+            me=intake.me,
+            name=_("Intake - Terms of Use"),
+            description=_("Terms of Use signed on %(date)s by %(name)s" % {
+                'date': intake.has_signed_on_date,
+                'name': intake.has_signed_with_name
+            })
+        )
+        intake.confidentiality_note = Note.objects.create(
+            me=intake.me,
+            name=_("Intake - Confidentiality"),
+            description=_("Confidentiality Agreement signed on %(date)s by %(name)s" % {
+                'date': intake.has_signed_on_date,
+                'name': intake.has_signed_with_name
+            })
+        )
+        intake.collection_note = Note.objects.create(
+            me=intake.me,
+            name=_("Intake - Collection"),
+            description=_("Collection and Use of Information Policy signed on %(date)s by %(name)s" % {
+                'date': intake.has_signed_on_date,
+                'name': intake.has_signed_with_name
+            })
+        )
+
+        # Save our Intake with all the new Notes we have created.
+        intake.save()
+
+        # 'privacy_note', 'terms_note', 'confidentiality_note', 'collection_note'
+        return response.Response(
+            data={'message': 'User has been admitted.'},
+            status=status.HTTP_200_OK
+        )

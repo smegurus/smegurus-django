@@ -88,13 +88,6 @@ class Intake(models.Model):
         default=constants.CREATED_STATUS,
         db_index=True,
     )
-    note = models.ForeignKey(
-        Note,
-        help_text=_('The note associated with this intake.'),
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL
-    )
     is_employee_created = models.BooleanField(    # CONTROLLED BY EMPLOYEES ONLY
         _("Is Employee Created"),
         default=False,
@@ -202,6 +195,12 @@ class Intake(models.Model):
         null=True,
         default='',
     )
+    has_signed_on_date = models.DateTimeField(
+        _("Has Signed on Date"),
+        help_text=_('The timestamp of when the User officially signed our agreements.'),
+        blank=True,
+        null=True,
+    )
 
     # "Do you currently receive any of the following government benefits?" Section
     government_benefits = models.ManyToManyField(
@@ -270,6 +269,48 @@ class Intake(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         related_name='intake_naics_depth_five_%(app_label)s_%(class)s_related',
+    )
+
+    # Notes:
+    judgement_note = models.ForeignKey(
+        Note,
+        help_text=_('The comments that where entered during the Intake judgement process.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_judgement_note_%(app_label)s_%(class)s_related',
+    )
+    privacy_note = models.ForeignKey(
+        Note,
+        help_text=_('The note indicating whether User has signed the privacy policy document or not.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_privacy_note_%(app_label)s_%(class)s_related',
+    )
+    terms_note = models.ForeignKey(
+        Note,
+        help_text=_('The note indicating whether User has signed the terms of use document or not.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_terms_note_%(app_label)s_%(class)s_related',
+    )
+    confidentiality_note = models.ForeignKey(
+        Note,
+        help_text=_('The note indicating whether User has signed the confidentiality document or not.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_confidentiality_note_%(app_label)s_%(class)s_related',
+    )
+    collection_note = models.ForeignKey(
+        Note,
+        help_text=_('The note indicating whether User has signed the collection and use of information document or not.'),
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='intake_collection_note_%(app_label)s_%(class)s_related',
     )
 
     def __str__(self):
