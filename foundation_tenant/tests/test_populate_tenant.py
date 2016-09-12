@@ -10,7 +10,7 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
-from foundation_tenant.models.country import Country
+from foundation_tenant.models.countryoption import CountryOption
 from smegurus import constants
 
 
@@ -52,7 +52,7 @@ class FoundationTenantUtilsWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 
     @transaction.atomic
     def tearDown(self):
-        Country.objects.delete_all()
+        CountryOption.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()
@@ -64,5 +64,5 @@ class FoundationTenantUtilsWithTenantSchemaTestCase(APITestCase, TenantTestCase)
     @transaction.atomic
     def test_populate_countries_for_this_tenant(self):
         call_command('populate_tenant')
-        countries = Country.objects.all()
-        self.assertTrue(countries.count() >= 3)
+        countries_count = CountryOption.objects.count()
+        self.assertEqual(countries_count, 3)
