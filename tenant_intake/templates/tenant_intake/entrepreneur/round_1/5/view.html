@@ -2,25 +2,85 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_intake/entrepreneur/round_1/5/js.html' %}
+        {% include 'tenant_intake/entrepreneur/round_1/5/js.html' with intake=intake %}
     {% endcompress %}
     <div class="content-wrapper">
+
 <div class="panel panel-default">
     <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round One' %}</div>
     <div class="panel-body">
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
+
             <!-- PAGE SIDEBAR -->
             {% include 'tenant_intake/entrepreneur/round_1/sidebar_view.html' with page=5 %}
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
-            <div class="content clearfix">
+            <div class="content clearfix" style="height: 550px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <fieldset id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
-                        <h2 class="text-center pv">{% trans 'Finish' %}</h2>
-                        <p class="text-center pv">{% trans 'When you feeel confident with your answers. Click "Submit".' %}</p>
-                    </fieldset>
+                    <!-- OPTIONS -->
+                    <div class="form-group has-feedback" id="id_how_can_we_help_div">
+                        <label for="signupInputText1" class="text-muted">
+                            <label for="id_how_can_we_help">{% trans 'As part of using the SME Gurus platform through <insert org name>, we need you to agree to the following conditions. You can click the links to read the documents, and once you are satisfied, please type in your name below to agree and sign them digitally.' %}</label>
+                        </label>
+
+                        <label for="signupInputText1" class="text-muted">
+                            <label for="id_how_can_we_help">{% trans 'I have read and agree to:' %}</label>
+                        </label>
+
+                            <!-- has_signed_privacy_and_terms -->
+                            <input value="{{ intake.has_signed_privacy_and_terms }}"
+                                   class="source"
+{% if intake.has_signed_privacy_and_terms %}checked="true"{% endif %}
+                                      id="id_has_signed_privacy_and_terms"
+                                    type="checkbox" />{% trans 'Privacy Policy &amp; Terms of Use' %}
+                            <!-- end has_signed_privacy_and_terms -->
+
+                            <br><br>
+
+                            <!-- has_signed_confidentiality_agreement -->
+                            <input value="{{ benefit.id }}"
+                                   class="source"
+{% if intake.has_signed_confidentiality_agreement %}checked="true"{% endif %}
+                                      id="id_has_signed_confidentiality_agreement"
+                                    type="checkbox" />{% trans 'Confidentiality Agreement' %}
+                            <!-- end has_signed_confidentiality_agreement -->
+
+                            <br><br>
+
+                            <!-- end has_signed_collection_and_use_of_information -->
+                            <input value="{{ benefit.id }}"
+                                   class="source"
+{% if intake.has_signed_collection_and_use_of_information %}checked="true"{% endif %}
+                                      id="id_has_signed_collection_and_use_of_information"
+                                    type="checkbox" />{% trans 'Collection and Use of Information Policy' %}
+                            <!-- end has_signed_collection_and_use_of_information -->
+
+                            <br><br>
+
+                    </div>
+                    <!-- end OPTIONS -->
+
+                    <!-- has_signed_with_name -->
+                    <div id="id_other_government_benefit_div">
+                        <div class="form-group has-feedback">
+
+                            <input class="form-control"
+                             placeholder="{% trans '(Please type in your full name)' %}"
+                                      id="id_has_signed_with_name"
+                               maxlength="127"
+                                    type="text"
+                                   value="{{ intake.has_signed_with_name }}" />
+                            <br>
+                        </div>
+                    </div>
+                    <!-- end has_signed_with_name -->
+
+                    <label for="signupInputText1" class="text-muted">
+                        <label for="">{% trans 'By clicking submit, you agree to all of the terms above. If you do not wish to agree, you may not continue to use this use this system until contacting ORG NAME at ORG TELE' %}</label>
+                    </label>
+
                 </section>
             </div>
             <!-- end PAGE CONTENT -->
@@ -31,12 +91,17 @@
                         <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Submit' %}</a>
+                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
                     </li>
+                    <!-- <li aria-hidden="true" style="display: none;">
+                        <a href="#finish" role="menuitem">Finish</a>
+                        </li> -->
                 </ul>
             </div>
-
         </div>
     </div>
 </div>
+
+</div>
+
 {% endblock content %}

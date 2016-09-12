@@ -178,6 +178,31 @@ class Intake(models.Model):
         default=1,
     )
 
+    # Terms & Conditions.
+    has_signed_privacy_and_terms = models.BooleanField(
+        _("Has Signed Privacy Policy and Terms of Use"),
+        default=False,
+        help_text=_('Has User agreed to our Privacy Policy and Terms of Use policy.'),
+    )
+    has_signed_confidentiality_agreement = models.BooleanField(
+        _("Has Signed Confidentiality Agreement"),
+        default=False,
+        help_text=_('Has User agreed to our Confidentiality Agreement.'),
+    )
+    has_signed_collection_and_use_of_information = models.BooleanField(
+        _("Has Signed Confidentiality Agreement"),
+        default=False,
+        help_text=_('Has User agreed to our Confidentiality Agreement.'),
+    )
+    has_signed_with_name = models.CharField(
+        _("Has Signed with Name"),
+        max_length=127,
+        help_text=_('The name the User has signed with.'),
+        blank=True,
+        null=True,
+        default='',
+    )
+
     # "Do you currently receive any of the following government benefits?" Section
     government_benefits = models.ManyToManyField(
         GovernmentBenefitOption,

@@ -173,7 +173,9 @@ class IntakeSerializer(serializers.ModelSerializer):
                   'telephone_time', 'is_employee_created', 'note',
                   'government_benefits', 'other_government_benefit',
                   'identities', 'date_of_birth', 'naics_depth_one', 'naics_depth_two',
-                  'naics_depth_three', 'naics_depth_four', 'naics_depth_five',)
+                  'naics_depth_three', 'naics_depth_four', 'naics_depth_five',
+                  'has_signed_privacy_and_terms', 'has_signed_confidentiality_agreement',
+                  'has_signed_collection_and_use_of_information', 'has_signed_with_name')
 
 
 class AdmissionSerializer(serializers.ModelSerializer):

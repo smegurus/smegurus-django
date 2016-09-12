@@ -9,21 +9,79 @@
     }); // end Ready
 
     function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true);
-        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_continue_btn').attr("disabled", "disabled");
     }
 
     function enable_btn() {
-        $('#id_continue_btn').prop("disabled", false);
-        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+        $('#id_continue_btn').removeAttr("disabled");
     }
 
     function ajax_back() {
         window.location = "{% url 'tenant_intake_entr_round_one_step_four' %}";
     }
 
+    function ajax_intake(success_callback, failure_callback) {
+        get_tenant_intake(
+            {{ intake.id }},
+            function(intake) {
+                intake['has_signed_privacy_and_terms'] = $('input[id=id_has_signed_privacy_and_terms]').is(':checked');
+                intake['has_signed_confidentiality_agreement'] = $('input[id=id_has_signed_confidentiality_agreement]').is(':checked');
+                intake['has_signed_collection_and_use_of_information'] = $('input[id=id_has_signed_collection_and_use_of_information]').is(':checked');
+                intake['has_signed_with_name'] = $('#id_has_signed_with_name').val();
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        success_callback(json_result);
+                    },
+                    function(error_json_result) {
+                        failure_callback(error_json_result);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                failure_callback(error_json_result);
+            }
+        ); // end Get Intake.
+    }
+
     function ajax_save_and_continue() {
-        window.location = "{% url 'tenant_intake_entr_round_two_step_one' %}";
+        var has_signed_privacy_and_terms = $('input[id=id_has_signed_privacy_and_terms]').is(':checked');
+        if (has_signed_privacy_and_terms == false) {
+            alert("{% trans 'Please sign the \'Privacy Policy & Terms of Use\'.' %}");
+            return;
+        }
+
+        var has_signed_confidentiality_agreement = $('input[id=id_has_signed_confidentiality_agreement]').is(':checked');
+        if (has_signed_confidentiality_agreement == false) {
+            alert("{% trans 'Please sign the \'Confidentiality Agreement\'.' %}");
+            return;
+        }
+
+        var has_signed_collection_and_use_of_information = $('input[id=id_has_signed_collection_and_use_of_information]').is(':checked');
+        if (has_signed_collection_and_use_of_information == false) {
+            alert("{% trans 'Please sign the \'Collection and Use of Information Policy\'.' %}");
+            return;
+        }
+
+        var has_signed_with_name = $('#id_has_signed_with_name').val();
+        if (has_signed_with_name <= 0) {
+            alert("{% trans 'Please sign with your full name.' %}");
+            return;
+        }
+
+        disable_btn(); // Disable the button so no multiple presses happen.
+        ajax_intake(
+            function(json_result) {
+                enable_btn();
+                window.location = "{% url 'tenant_intake_entr_round_one_step_six' %}";
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end AJAX INTAKE
     }
 
 </script>
