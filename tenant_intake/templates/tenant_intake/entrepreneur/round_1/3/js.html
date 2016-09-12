@@ -6,7 +6,7 @@
                 $("#id_continue_btn").click();
             }
         });
-        
+
         // Initial setup.
         {% if intake.do_you_own_a_biz != 5 %}
             $('#id_do_you_own_a_biz_other_div').hide();
@@ -27,13 +27,11 @@
     });
 
     function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true);
-        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_continue_btn').attr("disabled", "disabled");
     }
 
     function enable_btn() {
-        $('#id_continue_btn').prop("disabled", false);
-        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+        $('#id_continue_btn').removeAttr("disabled");
     }
 
     function ajax_back() {

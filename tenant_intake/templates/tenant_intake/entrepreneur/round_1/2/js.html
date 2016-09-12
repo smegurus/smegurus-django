@@ -27,14 +27,12 @@
         });
     });
 
-    function enable_btn() {
-        $('#id_continue_btn').prop("disabled", false);
-        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+    function disable_btn() {
+        $('#id_continue_btn').attr("disabled", "disabled");
     }
 
-    function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true);
-        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+    function enable_btn() {
+        $('#id_continue_btn').removeAttr("disabled");
     }
 
     function ajax_back() {
