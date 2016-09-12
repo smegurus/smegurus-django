@@ -78,7 +78,7 @@
                     <!-- end has_signed_with_name -->
 
                     <label for="signupInputText1" class="text-muted">
-                        <label for="">{% trans 'By clicking submit, you agree to all of the terms above. If you do not wish to agree, you may not continue to use this use this system until contacting ORG NAME at ORG TELE' %}</label>
+                        <label for="">{% blocktrans with name=request.tenant.name telephone=request.tenant.telephone %}By clicking submit, you agree to all of the terms above. If you do not wish to agree, you may not continue to use this use this system until contacting <b>{{ name }}</b> at <b>{{ telephone }}</b>{% endblocktrans %}</label>
                     </label>
 
                 </section>
