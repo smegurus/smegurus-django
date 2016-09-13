@@ -12,7 +12,6 @@
         $('#id_has_telephone').prop("disabled", true);
         $('#id_telephone').prop("disabled", true);
         $('#id_telephone_time').prop("disabled", true);
-
         $('#id_government_benefits').prop("disabled", true);
         $('#id_government_benefits_0').prop("disabled", true);
         $('#id_government_benefits_1').prop("disabled", true);
@@ -22,7 +21,6 @@
         $('#id_government_benefits_5').prop("disabled", true);
         $('#id_government_benefits_6').prop("disabled", true);
         $('#id_other_government_benefit').prop("disabled", true);
-
         $('#id_identities').prop("disabled", true);
         $('#id_identities_0').prop("disabled", true);
         $('#id_identities_1').prop("disabled", true);
@@ -34,9 +32,7 @@
         $('#id_identities_7').prop("disabled", true);
         $('#id_identities_8').prop("disabled", true);
         $('#id_identities_9').prop("disabled", true);
-
         $('#id_date_of_birth').prop("disabled", true);
-
         $('#id_naics_depth_one').prop("disabled", true);
         $('#id_naics_depth_two').prop("disabled", true);
         $('#id_naics_depth_three').prop("disabled", true);
@@ -47,6 +43,27 @@
         $('#id_has_signed_collection_and_use_of_information').prop("disabled", true);
         $('#id_has_signed_with_name').prop("disabled", true);
         $('#id_has_signed_on_date').prop("disabled", true);
+
+        // Hide empy fields.
+        var how_can_we_help_other = $('#id_how_can_we_help_other').val();
+        if (how_can_we_help_other <=0 ) {
+            $('#id_how_can_we_help_other_div').hide();
+        }
+
+        var how_did_you_hear_other = $('#id_how_did_you_hear_other').val();
+        if (how_did_you_hear_other <=0 ) {
+            $('#id_how_did_you_hear_other_div').hide();
+        }
+
+        var do_you_own_a_biz_other = $('#id_do_you_own_a_biz_other').val();
+        if (do_you_own_a_biz_other <=0 ) {
+            $('#id_do_you_own_a_biz_other_div').hide();
+        }
+
+        var other_government_benefit = $('#id_other_government_benefit').val();
+        if (other_government_benefit <=0 ) {
+            $('#id_other_government_benefit_div').hide();
+        }
     });
 
     function ajax_reject() {
