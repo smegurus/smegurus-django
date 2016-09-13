@@ -13,13 +13,11 @@
     }
 
     function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true);
-        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_continue_btn').attr("disabled", "disabled");
     }
 
     function enable_btn() {
-        $('#id_continue_btn').prop("disabled", false);
-        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
+        $('#id_continue_btn').removeAttr("disabled");
     }
 
     function ajax_save_and_continue() {

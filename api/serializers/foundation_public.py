@@ -49,7 +49,7 @@ class ProvinceOptionSerializer(serializers.ModelSerializer):
 class CityOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CityOption
-        fields = ('id', 'name', 'country', 'province', 'time_zone',)
+        fields = ('id', 'name', 'country', 'province',)
 
 
 class PublicLanguageSerializer(serializers.ModelSerializer):
@@ -62,40 +62,6 @@ class PublicPostalAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicPostalAddress
         fields = ('id', 'name', 'alternate_name', 'description', 'address_country', 'address_locality', 'address_region', 'post_office_box_number', 'postal_code', 'street_address', 'owner', 'url')
-
-    def validate(self, data):
-        """
-        Perform our own custom validation.
-        """
-        address_country = data.get('address_country')
-        address_region = data.get('address_region')
-        message = _("Province/State does not exist for specified Country.")
-
-        if address_country == _("United States"):
-            if not address_region in constants.US_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Canada"):
-            if not address_region in constants.CA_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Mexico"):
-            if not address_region in constants.MX_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("China"):
-            if not address_region in constants.CN_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Brazil"):
-            if not address_region in constants.BR_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        if address_country == _("Russia"):
-            if not address_region in constants.RU_ADDRESS_REGIONS:
-                raise serializers.ValidationError(message)
-
-        return super(PublicPostalAddressSerializer, self).validate(data)
 
 
 class PublicOpeningHoursSpecificationSerializer(serializers.ModelSerializer):
@@ -152,7 +118,7 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
                    'linkedin_url', 'github_url', 'google_plus_url', 'youtube_url',
                    'flickr_url', 'pintrest_url', 'reddit_url', 'soundcloud_url',
                    'is_setup', 'learning_preference', 'challenge', 'has_mentors',
-                   'has_perks', 'how_discovered',)
+                   'has_perks', 'how_discovered', 'time_zone',)
 
     def validate(self, data):
         """

@@ -44,15 +44,6 @@ class CityOption(models.Model):
         related_name="city_province_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
-    # NOTE: A complete list of time zones can be found here: http://stackoverflow.com/q/13866926
-    time_zone = models.CharField(
-        _("Timezone"),
-        max_length=255,
-        help_text=_('The timezone this city belongs to.'),
-        blank=True,
-        null=True,
-        default='America/Toronto',
-    )
 
     def __str__(self):
         return str(self.name)

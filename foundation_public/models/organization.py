@@ -320,6 +320,15 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         default=True,
         help_text=_('Variable controls whether perks are allowed in our system.'),
     )
+    # NOTE: A complete list of time zones can be found here: http://stackoverflow.com/q/13866926
+    time_zone = models.CharField(
+        _("Timezone"),
+        max_length=255,
+        help_text=_('The timezone this Organization belongs to.'),
+        blank=True,
+        null=True,
+        default='America/Toronto',
+    )
 
     def __str__(self):
         return str(self.name)

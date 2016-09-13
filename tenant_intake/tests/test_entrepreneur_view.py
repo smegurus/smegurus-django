@@ -92,7 +92,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         # Setup User.
         country = CountryOption.objects.create(id=1, name='Avalan')
         province = ProvinceOption.objects.create(id=1, name='Colony 01', country=country)
-        city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country, time_zone="America/Toronto")
+        city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country,)
         self.me = TenantMe.objects.create(
             owner=self.user,
             address=PostalAddress.objects.create(

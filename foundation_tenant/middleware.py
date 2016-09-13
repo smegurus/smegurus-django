@@ -9,6 +9,17 @@ from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.visitor import TenantVisitor
 
 
+class TenantTimezoneMiddleware(object):
+    def process_request(self, request):
+        """Sets the timezone per Organization."""
+        if not request.tenant.schema_name in ['public', 'test']:
+            # Source:
+            # https://docs.djangoproject.com/en/dev/topics/i18n/timezones/#selecting-the-current-time-zone
+            tzname = request.tenant.time_zone
+            timezone.activate(pytz.timezone(tzname))
+        return None  # Finish our middleware handler.
+
+
 class TenantMeMiddleware(object):
     def process_request(self, request):
         """
@@ -41,14 +52,6 @@ class TenantMeMiddleware(object):
                         owner=request.user,
                     )
                     tenant_me.save()
-
-                # STEP 3: Set the timezone for the user.
-                if tenant_me.address and tenant_me.address.address_locality:
-                    # Source:
-                    # https://docs.djangoproject.com/en/dev/topics/i18n/timezones/#selecting-the-current-time-zone
-                    tzname = tenant_me.address.address_locality.time_zone
-                    timezone.activate(pytz.timezone(tzname))
-
         return None  # Finish our middleware handler.
 
 

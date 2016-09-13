@@ -1,3 +1,4 @@
+import pytz
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
@@ -69,7 +70,9 @@ def config_org_step_seven_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_eight_page(request):
-    return render(request, 'tenant_configuration/organization/8/view.html',{})
+    return render(request, 'tenant_configuration/organization/8/view.html',{
+        'timezones': pytz.common_timezones
+    })
 
 
 @login_required(login_url='/en/login')
@@ -79,40 +82,6 @@ def config_org_step_nine_page(request):
 
 
 @login_required(login_url='/en/login')
-@group_required([constants.ENTREPRENEUR_GROUP_ID,])
-def config_entr_step_one_page(request):
-    return render(request, 'tenant_configuration/entrepreneur/1_view.html',{})
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ENTREPRENEUR_GROUP_ID,])
-def config_entr_step_two_page(request):
-    businessidea, create = BusinessIdea.objects.get_or_create(owner=request.user)
-    return render(request, 'tenant_configuration/entrepreneur/2_view.html',{
-        'businessidea': businessidea,
-        'form': BusinessIdeaForm(instance=businessidea),
-    })
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ENTREPRENEUR_GROUP_ID,])
-def config_entr_step_three_page(request):
-    tellusyourneed, create = TellUsYourNeed.objects.get_or_create(owner=request.user)
-    return render(request, 'tenant_configuration/entrepreneur/3_view.html',{
-        'tellusyourneed': tellusyourneed,
-        'form': TellUsYourNeedForm(instance=tellusyourneed),
-    })
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ENTREPRENEUR_GROUP_ID,])
-def config_entr_step_four_page(request):
-    return render(request, 'tenant_configuration/entrepreneur/4_view.html',{
-        'tags': Tag.objects.all(),
-    })
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ENTREPRENEUR_GROUP_ID,])
-def config_entr_step_five_page(request):
-    return render(request, 'tenant_configuration/entrepreneur/5_view.html',{})
+@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
+def config_org_step_ten_page(request):
+    return render(request, 'tenant_configuration/organization/10/view.html',{})

@@ -2,7 +2,8 @@
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_configuration/organization/8/js.html' %}
+        {% include 'tenant_configuration/organization/10/js.html' %}
+        {% include 'foundation_public/loadingbox_js.html' %}
     {% endcompress %}
     <div class="content-wrapper">
 <div class="panel panel-default">
@@ -11,31 +12,18 @@
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
 
             <!-- PAGE SIDEBAR -->
-            {% include 'tenant_configuration/organization/sidebar_view.html' with page=8 %}
+            {% include 'tenant_configuration/organization/sidebar_view.html' with page=10 %}
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
+            <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Timezone' %}</h2>
-                    <p class="text-center pv">{% trans 'Please pick a standard timezone that your organization will run under.' %}</p>
+                    <h2 class="text-center pv">{% trans 'You\'re Ready To Start' %}</h2>
+                    <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
 
                     <br/>
 
-                    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <label for="timezone">{% trans 'Time zone:' %}</label>
-
-                        <!-- TIMEZONES -->
-                        <select id="id_timezone" name="timezone" class="form-control">
-                            {% for tz in timezones %}
-                                <option value="{{ tz }}"{% if tz == request.tenant.time_zone %} selected="selected"{% endif %}>{{ tz }}</option>
-                            {% endfor %}
-                        </select>
-                        <!-- end TIMEZONES -->
-
-                        <br/>
-                    </form>
                 </section>
             </div>
             <!-- end PAGE CONTENT -->
@@ -43,10 +31,10 @@
             <div class="actions clearfix">
                 <ul role="menu" aria-label="Pagination">
                     <li class="disabled" aria-disabled="true">
-                        <a onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
+                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
+                        <a onclick="ajax_dashboard();" role="menuitem" id="id_continue_btn">{% trans 'Submit' %}</a>
                     </li>
                     <!-- <li aria-hidden="true" style="display: none;">
                         <a href="#finish" role="menuitem">Finish</a>

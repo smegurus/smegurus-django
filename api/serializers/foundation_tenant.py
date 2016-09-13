@@ -79,7 +79,7 @@ class ProvinceOptionSerializer(serializers.ModelSerializer):
 class CityOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CityOption
-        fields = ('id', 'name', 'country', 'province', 'time_zone',)
+        fields = ('id', 'name', 'country', 'province',)
 
 
 class PostalAddressSerializer(serializers.ModelSerializer):
