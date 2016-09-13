@@ -67,8 +67,12 @@
     });
 
     function ajax_reject() {
-        $('#id_reject_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
+        if (comment <=0) {
+            alert("{% trans 'Please leave a comment why you rejected this User.' %}");
+            return;
+        }
+        $('#id_reject_btn').prop("disabled", true);
         tenant_intake_judge(
             {{ intake.id }},
             4, // contants.REJECTED_STATUS
@@ -89,6 +93,10 @@
     function ajax_accept() {
         $('#id_accept_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
+        if (comment <=0) {
+            alert("{% trans 'Please leave a comment why you accepted this User.' %}");
+            return;
+        }
         tenant_intake_judge(
             {{ intake.id }},
             5, // contants.APPROVED_STATUS

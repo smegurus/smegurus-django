@@ -249,12 +249,12 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 )
             else:
                 return response.Response(
-                    data="judge " + str(serializer.errors),
+                    data=str(serializer.errors),
                     status=status.HTTP_400_BAD_REQUEST
                 )
         except Exception as e:
             return response.Response(
-                data="judge " + str(e),
+                data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -267,7 +267,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         # Security: Only the owner can modify this object.
         if intake.me != request.tenant_me:
             return response.Response(
-                data={'message': 'You are not the owner of this object.'},
+                data='You are not the owner of this object.',
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
@@ -323,6 +323,6 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
         # 'privacy_note', 'terms_note', 'confidentiality_note', 'collection_note'
         return response.Response(
-            data={'message': 'User has been admitted.'},
+            data='User has been admitted.',
             status=status.HTTP_200_OK
         )
