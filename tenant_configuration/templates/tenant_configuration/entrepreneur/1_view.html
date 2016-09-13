@@ -1,5 +1,5 @@
 {% extends 'tenant_configuration/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
     {% compress js inline %}
         {% include 'tenant_configuration/entrepreneur/1_js.html' %}
@@ -13,17 +13,26 @@
 
     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
         <!-- Upload ID -->
-        <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant_me.image.id }}"/>
-        <input type="hidden" id="id_hidden_url" value="{{ request.tenant_me.image.imagefile.url }}"/>
+        <input type="hidden" id="id_hidden_upload_id" value="{% if request.tenant_me.image and request.tenant_me.image.imagefile %}{{ request.tenant_me.image.id }}{% endif %}"/>
+        <input type="hidden" id="id_hidden_url" value="{% if request.tenant_me.image and request.tenant_me.image.imagefile %}{{ request.tenant_me.image.imagefile.url }}{% endif %}"/>
         <!-- /.Upload ID -->
 
         <!-- Image Placeholder -->
-        <img id="id_image_placeholder"
-            src="{{ request.tenant_me.image.imagefile.url }}"
-          style="height:200px;width:200px;"
-            alt="{{ request.tenant_me.name }} Picture"
-          class="img-thumbnail center-block mb0 add-cover-image"
-           name="product-image" />
+        {% thumbnail request.tenant_me.image.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
+            <img id="id_image_placeholder"
+                src="{{ im.url }}"
+              style="height:{{ im.height }}px;width:{{ im.width }}px;"
+                alt="{{ request.tenant_me.name }} Picture"
+              class="img-thumbnail center-block mb0 add-cover-image"
+               name="product-image" />
+         {% empty %}
+             <img id="id_image_placeholder"
+                 src="{% static 'app/img/dummy200x200.png' %}"
+               style="height:200px;width:200px;"
+                 alt="{{ request.tenant_me.name }} Picture"
+               class="img-thumbnail center-block mb0 add-cover-image"
+                name="product-image" />
+         {% endthumbnail %}
         <!-- /.Image Placeholder -->
 
         <br/>
