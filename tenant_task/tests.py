@@ -98,7 +98,7 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         for user in users.all():
             user.delete()
         # super(TenantTaskTestCases, self).tearDown()
-    
+
     @transaction.atomic
     def test_task_master_page_with_empty(self):
         url = reverse('tenant_task_master')

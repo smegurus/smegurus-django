@@ -58,7 +58,7 @@ def task_master_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def task_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/view.html',{

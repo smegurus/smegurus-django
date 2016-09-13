@@ -161,7 +161,7 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
         )
         PublicPostalAddress.objects.delete_all()
         count = PublicPostalAddress.objects.count()
-        self.assertEqual(count, 1)
+        self.assertEqual(count, 0)
 
     @transaction.atomic
     def test_place_to_string(self):
@@ -220,7 +220,7 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        Visitor.objects.delete_all()
+        PublicVisitor.objects.delete_all()
         count = PublicVisitor.objects.all().count()
         self.assertEqual(count, 0)
 

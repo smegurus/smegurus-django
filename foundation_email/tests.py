@@ -184,7 +184,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         intake = Intake.objects.create(
             id=1,
             me=me,
-            note=Note.objects.create(
+            judgement_note=Note.objects.create(
                 id=1,
                 me=me,
                 name="Space Citizen\'s Newsletter",
@@ -208,7 +208,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         intake = Intake.objects.create(
             id=1,
             me=me,
-            note=Note.objects.create(
+            judgement_note=Note.objects.create(
                 id=1,
                 me=me,
                 name="Space Citizen\'s Newsletter",
@@ -238,7 +238,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         intake = Intake.objects.create(
             id=1,
             me=me,
-            note=Note.objects.create(
+            judgemet_note=Note.objects.create(
                 id=1,
                 me=me,
                 name="Space Citizen\'s Newsletter",
@@ -275,7 +275,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         intake = Intake.objects.create(
             id=666,
             me=me,
-            note=Note.objects.create(
+            judgement_note=Note.objects.create(
                 id=666,
                 me=me,
                 name="Space Citizen\'s Newsletter",
@@ -305,7 +305,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         intake = Intake.objects.create(
             id=1,
             me=me,
-            note=Note.objects.create(
+            judgement_note=Note.objects.create(
                 id=1,
                 me=me,
                 name="Space Citizen\'s Newsletter",

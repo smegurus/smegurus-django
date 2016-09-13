@@ -11,6 +11,9 @@ from smegurus import constants
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
 from tenant_profile.decorators import tenant_profile_required
 
 
@@ -87,14 +90,29 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
         self.tenant.save()
 
         # Setup User.
-        TenantMe.objects.create(
+        country = CountryOption.objects.create(id=1, name='Avalon')
+        province = ProvinceOption.objects.create(id=1, name='Colony', country=country)
+        city = CityOption.objects.create(id=1, name='Sector 666', province=province, country=country)
+        self.me = TenantMe.objects.create(
             owner=self.user,
+            address=PostalAddress.objects.create(
+                id=1,
+                name="Avalon",
+                address_country=country,
+                address_region=province,
+                address_locality=city,
+                postal_code='91210',
+                street_address='666 Nerv Tube'
+            )
         )
 
     @transaction.atomic
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
+        CityOption.objects.delete_all()
+        ProvinceOption.objects.delete_all()
+        CountryOption.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():

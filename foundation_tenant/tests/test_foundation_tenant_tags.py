@@ -152,7 +152,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
             me=me,
         )
         Intake.objects.create(
-            note=note,
+            judgement_note=note,
             me=me,
             status=constants.PENDING_REVIEW_STATUS,
         )

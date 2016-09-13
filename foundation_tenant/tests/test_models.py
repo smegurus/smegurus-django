@@ -761,7 +761,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_ordered_log_event_to_string(self):
-        me = TenantM.objects.create(
+        me = TenantMe.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -835,7 +835,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_ordered_comment_post_to_string(self):
-        me = TenantM.objects.create(
+        me = TenantMe.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -1077,7 +1077,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_governmentbenfitoption_to_string(self):
-        obj = BusinessIdea.objects.create(
+        obj = GovernmentBenefitOption.objects.create(
             order_number=1,
             name='hideauze.com',
         )
@@ -1147,7 +1147,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             name='hideauze.com',
         )
         self.assertIn(str(country), 'hideauze.com')
-        obj.delete()
+        country.delete()
 
     @transaction.atomic
     def test_countryoption_delete_all(self):
@@ -1223,7 +1223,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             country=country,
             name='hideauze.com',
         )
-        city = ProvinceOption.objects.create(
+        city = CityOption.objects.create(
             country=country,
             province=province,
             name='hideauze.com',
@@ -1243,7 +1243,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             country=country,
             name='hideauze.com',
         )
-        city = ProvinceOption.objects.create(
+        city = CityOption.objects.create(
             country=country,
             province=province,
             name='hideauze.com',
@@ -1277,7 +1277,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             name='hideauze.com',
         )
         self.assertIn(str(option), 'hideauze.com')
-        obj.delete()
+        option.delete()
 
     @transaction.atomic
     def test_countryoption_delete_all(self):

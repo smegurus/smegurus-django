@@ -86,7 +86,7 @@ def latest_conversation_details(request, sender_id):
 
 @login_required(login_url='/en/login')
 @tenant_profile_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(

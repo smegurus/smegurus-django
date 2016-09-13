@@ -34,7 +34,11 @@ def is_note_protected(note):
     referenced anywhere else.
     """
     try:
-        Intake.objects.get(note=note)
+        Intake.objects.get(judgement_note=note)
+        Intake.objects.get(privacy_note=note)
+        Intake.objects.get(terms_note=note)
+        Intake.objects.get(confidentiality_note=note)
+        Intake.objects.get(collection_note=note)
         return True
     except Intake.DoesNotExist:
         pass

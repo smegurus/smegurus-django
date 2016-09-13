@@ -34,7 +34,7 @@ def master_page(request):
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def details_page(request, id):
     me = get_object_or_404(TenantMe, pk=id)
     return render(request, 'tenant_customer/details/view.html',{
@@ -87,7 +87,7 @@ def create_page(request):
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_profile_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def update_page(request, pk):
     me = get_object_or_404(TenantMe, pk=pk)
     intake = get_object_or_404(Intake, me=me)
