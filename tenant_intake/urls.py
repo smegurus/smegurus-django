@@ -5,7 +5,6 @@ from tenant_intake.views import entrepreneur_view, employee_view, decorator_view
 urlpatterns = (
     # Decorators
     url(r'^intake/check$', decorator_view.check_page, name='tenant_intake_check'),
-    url(r'^intake/has_completed$', decorator_view.has_completed_intake_page, name='tenant_intake_has_completed'),
 
     # Entrepreneur - Round One Intake
     url(r'^intake/entrepreneur/step-1-1$', entrepreneur_view.intake_entr_round_one_step_one_page, name='tenant_intake_entr_round_one_step_one'),

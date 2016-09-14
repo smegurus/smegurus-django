@@ -9,6 +9,9 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.http import condition
 from foundation_public.models.organization import PublicOrganization
 from tenant_profile.decorators import tenant_profile_required
+from tenant_intake.decorators import tenant_intake_required
+from tenant_reception.decorators import tenant_reception_required
+from tenant_configuration.decorators import tenant_configuration_required
 from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
@@ -16,7 +19,10 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 @condition(last_modified_func=my_last_modified_func)
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
@@ -32,7 +38,10 @@ def inbox_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 def compose_page(request):
     entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
     mentors = TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
@@ -51,7 +60,10 @@ def compose_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 def specific_compose_page(request, id):
     entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
     mentors = TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
@@ -85,7 +97,10 @@ def latest_conversation_details(request, sender_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 # @condition(last_modified_func=my_last_modified_func)
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
@@ -115,7 +130,10 @@ def conversation_page(request, sender_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 def archive_conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(
@@ -153,7 +171,10 @@ def latest_archived_message_master(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 # @condition(last_modified_func=latest_archived_message_master)
 def archive_list_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
@@ -173,7 +194,10 @@ def archive_list_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
 @tenant_profile_required
+@tenant_configuration_required
 def archive_details_page(request, sender_id):
     messages = Message.objects.filter(
         Q(

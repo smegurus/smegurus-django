@@ -141,48 +141,48 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         response = self.unauthorized_client.get(reverse('tenant_intake_check'))
         self.assertEqual(response.status_code, status.HTTP_302_FOUND)
 
-    @transaction.atomic
-    def test_tenant_intake_has_completed_redirection_required_decorator_with_access_granted(self):
-        # Pre-configure.
-        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        self.user.groups.add(entrepreneur_group)
-        self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=True
-        me.save()
-
-        Intake.objects.create(
-            me=me,
-            status=constants.CREATED_STATUS
-        )
-
-        # Run our test.
-        response = self.authorized_client.get(reverse('tenant_intake_has_completed'))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue(len(response.content) > 1)
-        self.assertIn(b'access-granted',response.content)
-
-    @transaction.atomic
-    def test_tenant_intake_has_completed_redirection_required_decorator_with_redirect(self):
-        # Pre-configure.
-        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        self.user.groups.add(entrepreneur_group)
-        self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=False
-        me.save()
-
-        Intake.objects.create(
-            me=me,
-            status=constants.PENDING_REVIEW_STATUS
-        )
-
-        # Run our test and verify.
-        response = self.authorized_client.get(reverse('tenant_intake_check'))
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
-
-    @transaction.atomic
-    def test_tenant_intake_has_completed_redirection_required_decorator_with_anonymous_user(self):
-        # Run our test and verify.
-        response = self.unauthorized_client.get(reverse('tenant_intake_check'))
-        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+#    @transaction.atomic
+#    def test_tenant_intake_has_completed_redirection_required_decorator_with_access_granted(self):
+#        # Pre-configure.
+#        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+#        self.user.groups.add(entrepreneur_group)
+#        self.user.save()
+#        me, created = TenantMe.objects.get_or_create(owner=self.user)
+#        me.is_admitted=True
+#        me.save()
+#
+#        Intake.objects.create(
+#            me=me,
+#            status=constants.CREATED_STATUS
+#        )
+#
+#        # Run our test.
+#        response = self.authorized_client.get(reverse('tenant_intake_has_completed'))
+#        self.assertEqual(response.status_code, status.HTTP_200_OK)
+#        self.assertTrue(len(response.content) > 1)
+#        self.assertIn(b'access-granted',response.content)
+#
+#    @transaction.atomic
+#    def test_tenant_intake_has_completed_redirection_required_decorator_with_redirect(self):
+#        # Pre-configure.
+#        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
+#        self.user.groups.add(entrepreneur_group)
+#        self.user.save()
+#        me, created = TenantMe.objects.get_or_create(owner=self.user)
+#        me.is_admitted=False
+#        me.save()
+#
+#        Intake.objects.create(
+#            me=me,
+#            status=constants.PENDING_REVIEW_STATUS
+#        )
+#
+#        # Run our test and verify.
+#        response = self.authorized_client.get(reverse('tenant_intake_check'))
+#        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+#
+#    @transaction.atomic
+#    def test_tenant_intake_has_completed_redirection_required_decorator_with_anonymous_user(self):
+#        # Run our test and verify.
+#        response = self.unauthorized_client.get(reverse('tenant_intake_check'))
+#        self.assertEqual(response.status_code, status.HTTP_302_FOUND)

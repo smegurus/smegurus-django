@@ -8,11 +8,17 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
 
 
-def tenant_intake_required(view_func):
+def tenant_reception_required(view_func):
+    """
+    Decorator will check to see if the User's Intake has been completed or not
+    and if Intake has been completed then redirect to the reception page, else
+    allow the current page to load up.
+    """
     def wrapper(request, *args, **kwargs):
         if request.tenant_me.is_entrepreneur():
-            if not request.tenant_me.is_admitted:
-                return HttpResponseRedirect(reverse('tenant_intake_entr_round_one_step_one'))
+            intake, created = Intake.objects.get_or_create(me=request.tenant_me)
+            if intake.status in [constants.PENDING_REVIEW_STATUS, constants.REJECTED_STATUS]:
+                return HttpResponseRedirect(reverse('tenant_reception'))
 
         return view_func(request, *args, **kwargs)
     return wrapper
