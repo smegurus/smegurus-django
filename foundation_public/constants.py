@@ -27,4 +27,5 @@ SUSPICIOUS_PATHS = [
     '/readme.html',
     '/.git/HEAD',
     '/zabbix/index.php',
+    '/xmlrpc.php'
 ]
