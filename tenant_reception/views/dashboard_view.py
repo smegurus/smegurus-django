@@ -12,12 +12,8 @@ from tenant_reception.decorators import tenant_reception_required
 
 
 @login_required(login_url='/en/login')
-@tenant_intake_required
-@tenant_reception_required
-@tenant_profile_required
-@tenant_configuration_required
-@condition(last_modified_func=my_last_modified_func)
-def reception_master_page(request):
-    return render(request, 'tenant_reception/view.html',{
-        'page': 'reception-master',
+# @condition(last_modified_func=my_last_modified_func)
+def reception_dashboard_master_page(request):
+    return render(request, 'tenant_reception/dashboard/master/view.html',{
+        'page': 'reception-dashboard-master',
     })

@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, include, url
-from tenant_reception.views import reception_view
+from tenant_reception.views import dashboard_view, decorator_view
 
 
 urlpatterns = (
-    # url(r'^reception/has_completed$', decorator_view.has_completed_intake_page, name='tenant_intake_has_completed'),
-    url(r'^reception$', reception_view.reception_master_page, name='tenant_reception'),
+    url(r'^reception/is_required$', decorator_view.is_required_page, name='tenant_reception_is_required'),
+    url(r'^reception$', dashboard_view.reception_dashboard_master_page, name='tenant_reception'),
 )

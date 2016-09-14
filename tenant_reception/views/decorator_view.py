@@ -7,7 +7,7 @@ from tenant_profile.decorators import tenant_profile_required
 @login_required(login_url='/en/login')
 @tenant_profile_required
 @tenant_reception_required
-def has_completed_intake_page(request):
+def is_required_page(request):
     """Function will return either True or False depending if it meets decorator criteria."""
     from django.http import JsonResponse
     return JsonResponse({
