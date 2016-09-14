@@ -121,7 +121,7 @@ INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in S
 MIDDLEWARE_CLASSES = [
     'foundation_public.middleware.PublicBanEnforcingMiddleware',    # Custom
     'foundation_public.middleware.PublicVisitorMiddleware',         # Custom
-    'foundation_public.middleware.PublicAutomaticBanningMiddleware',# Custom
+    'foundation_public.middleware.PublicTrapURLMiddleware',         # Custom
     'django_tenants.middleware.TenantMiddleware',                   # Third Party
     'foundation_tenant.middleware.TenantTimezoneMiddleware',        # Custom
     'htmlmin.middleware.HtmlMinifyMiddleware',                      # Third Party

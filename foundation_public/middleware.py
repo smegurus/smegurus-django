@@ -51,7 +51,7 @@ class PublicVisitorMiddleware(object):
         return None  # Finish our middleware handler.
 
 
-class PublicAutomaticBanningMiddleware(object):
+class PublicTrapURLMiddleware(object):
     def get_client_ip(self, request):
         """Utility function for getting the IP. Source: http://stackoverflow.com/a/4581997"""
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
