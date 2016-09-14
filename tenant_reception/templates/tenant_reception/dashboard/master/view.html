@@ -9,12 +9,13 @@
             <div class="jumbotron">
                 <h1>{% trans 'Reception' %}</h1>
                 <p>{% trans 'Welcome to our reception! You are welcome to ask us questions and look at our available resources.' %}</p>
-                
+
             </div>
             <!-- end JUMBOTRON -->
         </div>
     </div>
     <div class="row">
+        <!-- ASK QUESTION -->
         <div class="col-lg-4">
             <div class="well well-lg">
                 <h4>{% trans 'Ask Question' %}</h4>
@@ -24,6 +25,9 @@
                 </p>
             </div>
         </div>
+        <!-- end ASK QUESTION -->
+
+        <!-- FAQ -->
         <div class="col-lg-4">
             <div class="well well-lg">
                 <h4>Frequently Asked Questions</h4>
@@ -33,6 +37,9 @@
                 </p>
             </div>
         </div>
+        <!-- end FAQ -->
+
+        <!-- RESOURCES -->
         <div class="col-lg-4">
             <div class="well well-lg">
                 <h4>Resources</h4>
@@ -42,6 +49,19 @@
                 </p>
             </div>
         </div>
+        <!-- end RESOURCES -->
+
+        <!-- TODOS -->
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>TODO</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                <p>
+                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_reception_todo' %}">Learn more</a>
+                </p>
+            </div>
+        </div>
+        <!-- end TODOS -->
     </div>
 </div>
 <!-- end PAGE CONTENT -->

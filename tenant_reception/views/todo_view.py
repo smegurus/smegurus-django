@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 
 
 @login_required(login_url='/en/login')
-def reception_dashboard_master_page(request):
-    return render(request, 'tenant_reception/dashboard/master/view.html',{
+def reception_todo_master_page(request):
+    return render(request, 'tenant_reception/todo/master/view.html',{
         'page': 'reception-dashboard-master',
     })
