@@ -39,6 +39,7 @@ from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor
 from foundation_tenant.models.uploadtask import UploadTask
+from foundation_tenant.models.learningtask import LearningTask
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -290,3 +291,13 @@ class UploadTaskSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'assigned_by',
                   'assignee', 'status', 'start', 'due', 'download', 'upload',)
+
+
+class LearningTaskSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
+    image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
+    class Meta:
+        model = LearningTask
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'image_url', 'assigned_by',
+                  'assignee', 'status', 'start', 'due',)

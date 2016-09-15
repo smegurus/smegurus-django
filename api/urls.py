@@ -56,6 +56,7 @@ from api.views.foundation_tenant.taskviewset import TaskViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
 from api.views.foundation_tenant.functionviewset import FinalizeTenantSetupFunctionViewSet
 from api.views.foundation_tenant.uploadtaskviewset import UploadTaskViewSet
+from api.views.foundation_tenant.learningtaskviewset import LearningTaskViewSet
 
 
 # URL Generator.
@@ -104,6 +105,7 @@ router.register(r'tenantmessage', MessageViewSet)
 router.register(r'tenantnote', NoteViewSet)
 router.register(r'tenanttask', TaskViewSet)
 router.register(r'tenantuploadtask', UploadTaskViewSet)
+router.register(r'tenantlearningtask', LearningTaskViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 
 

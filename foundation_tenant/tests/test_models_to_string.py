@@ -45,6 +45,7 @@ from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
 from foundation_tenant.models.uploadtask import UploadTask
+from foundation_tenant.models.learningtask import LearningTask
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -381,6 +382,22 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             name='Ice Age',
         )
         task = UploadTask.objects.create(
+            id=1,
+            assigned_by=me,
+            description="Ice Age"
+        )
+        self.assertIn(str(task), 'Ice Age')
+        task.delete();  # Cleanup
+        me.delete()
+
+    @transaction.atomic
+    def test_learningtask_to_string(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=User.objects.get(username='1'),
+            name='Ice Age',
+        )
+        task = LearningTask.objects.create(
             id=1,
             assigned_by=me,
             description="Ice Age"

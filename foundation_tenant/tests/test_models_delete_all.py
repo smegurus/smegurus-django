@@ -45,6 +45,7 @@ from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
 from foundation_tenant.models.uploadtask import UploadTask
+from foundation_tenant.models.learningtask import LearningTask
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -896,7 +897,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_task_delete_all(self):
+    def test_uploadtask_delete_all(self):
         # Setup our unit test.
         count = UploadTask.objects.all().count()
         self.assertEqual(count, 0)
@@ -948,6 +949,64 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         # Run our test and verify.
         UploadTask.objects.delete_all()
         count = UploadTask.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()
+
+    @transaction.atomic
+    def test_learningtask_delete_all(self):
+        # Setup our unit test.
+        count = LearningTask.objects.all().count()
+        self.assertEqual(count, 0)
+        LearningTask.objects.bulk_create([
+            LearningTask(
+                id = 1111,
+                assigned_by=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                ),
+                description="Ice Age"
+            ),
+            LearningTask(
+                id = 2222,
+                assigned_by = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Global Cooling"
+            ),
+            LearningTask(
+                id = 3333,
+                assigned_by = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Hibernation"
+            ),
+            LearningTask(
+                id = 4444,
+                assigned_by = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Mini-Ice Age"
+            ),
+            LearningTask(
+                id = 5555,
+                assigned_by = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Reflective Particles"
+            ),
+        ])
+        count = LearningTask.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        LearningTask.objects.delete_all()
+        count = LearningTask.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup

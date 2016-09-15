@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.abstract_task import AbstractTask
 from foundation_tenant.models.fileupload import TenantFileUpload
 from smegurus import constants
 
@@ -15,7 +16,7 @@ class UploadTaskManager(models.Manager):
             item.delete()
 
 
-class UploadTask(AbstractThing):
+class UploadTask(AbstractTask):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_upload_tasks'
@@ -23,37 +24,6 @@ class UploadTask(AbstractThing):
         verbose_name_plural = 'Upload Tasks'
 
     objects = UploadTaskManager()
-    start = models.DateTimeField(
-        blank=True,
-        null=True,
-    )
-    due = models.DateTimeField(
-        blank=True,
-        null=True,
-    )
-    assigned_by = models.ForeignKey(
-        TenantMe,
-        help_text=_('The user whom assigned this UploadTask.'),
-        blank=True,
-        null=True,
-        related_name="upload_task_assigned_by_%(app_label)s_%(class)s_related",
-        on_delete=models.CASCADE
-    )
-    assignee = models.ForeignKey(
-        TenantMe,
-        help_text=_('The user whom is the UploadTask assigned to.'),
-        blank=True,
-        null=True,
-        related_name="upload_task_assignee_%(app_label)s_%(class)s_related",
-        on_delete=models.CASCADE
-    )
-    status = models.PositiveSmallIntegerField(            # CONTROLLED BY SYSTEM
-        _("Status"),
-        choices=constants.TASK_STATUS_OPTIONS,
-        help_text=_('The state this UploadTask.'),
-        default=constants.UNASSIGNED_TASK_STATUS,
-        db_index=True,
-    )
     download = models.ForeignKey(
         TenantFileUpload,
         help_text=_('The file the User must download.'),
