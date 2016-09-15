@@ -13,9 +13,27 @@
         });
 
         $('#id_save_org_btn').on('click', function(){
-            disable_btn();
-            ajax_save_org();
-        });
+            var schema_name = $('#id_schema_name').val();
+
+            if( schema_name == "" ){
+                alert("{% trans 'Missing Sub-Domain Name' %}");
+                return;
+            }
+
+            // Check to see if the schema name has not been taken before.
+            // If the schema name is unique then proceed further.
+            public_is_organization_schema_name_unique(
+                schema_name,
+                function(bool_val) {
+                    if (bool_val == true) {
+                        ajax_save_org();
+                    } else {
+                        disable_btn();
+                        alert("{% trans 'Sub-domain is not unique! Please choose a different sub-domain name.' %}");
+                    }
+                }
+            ); // end Schema Name is Unique.
+        }); // end Click
 
         $("#id_address_country").change(function () {
             var end = this.value;

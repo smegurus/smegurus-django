@@ -98,6 +98,7 @@
         {% include "api/js/auth_password_reset.html" %}
 
         {% if request.user.is_authenticated %}
+            {% include "api/js/public_function.html" %}
             {% include "api/js/public_countryoption.html" %}
             {% include "api/js/public_provinceoption.html" %}
             {% include "api/js/public_cityoption.html" %}
