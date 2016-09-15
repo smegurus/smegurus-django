@@ -44,6 +44,7 @@ from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.uploadtask import UploadTask
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -101,21 +102,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         # super(FoundationTenantModelsWithTenantSchemaTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_intake_to_string(self):
-        me = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-            name='Ice Age',
-        )
-        obj = Intake.objects.create(
-            id=1,
-            me=me
-        )
-        self.assertIn(str(obj), 'Ice Age')
-        obj.delete();  # Cleanup
-        me.delete()
-
-    @transaction.atomic
     def test_intake_delete_all(self):
         # Setup our unit test.
         count = Intake.objects.all().count()
@@ -169,14 +155,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         TenantMe.objects.delete_all()
 
     @transaction.atomic
-    def test_place_to_string(self):
-        obj = Place.objects.create(
-            name='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete();  # Cleanup
-
-    @transaction.atomic
     def test_place_delete_all(self):
         # Setup our unit test.
         count = Place.objects.all().count()
@@ -200,13 +178,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_postaladdress_to_string(self):
-        obj = PostalAddress.objects.create(
-            name='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-
-    @transaction.atomic
     def test_postaladdress_delete_all(self):
         # Setup our unit test.
         count = PostalAddress.objects.all().count()
@@ -224,14 +195,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         PostalAddress.objects.delete_all()
         count = PostalAddress.objects.all().count()
         self.assertEqual(count, 0)
-
-    @transaction.atomic
-    def test_businessidea_to_string(self):
-        obj = BusinessIdea.objects.create(
-            name='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete()
 
     @transaction.atomic
     def test_businessidea_delete_all(self):
@@ -256,15 +219,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = BusinessIdea.objects.all()
         for item in items.all():
             item.delete()
-
-    @transaction.atomic
-    def test_tellusyourneed_to_string(self):
-        obj = TellUsYourNeed.objects.create(
-            id=2030,
-            owner=User.objects.get(username='1')
-        )
-        self.assertIn(str(obj), '2030')
-        obj.delete()
 
     @transaction.atomic
     def test_tellusyourneed_delete_all(self):
@@ -292,14 +246,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_tag_to_string(self):
-        obj = Tag.objects.create(
-            name='Testing',
-        )
-        self.assertIn(str(obj), 'Testing')
-        obj.delete()
-
-    @transaction.atomic
     def test_tag_delete_all(self):
         # Setup our unit test.
         count = Tag.objects.all().count()
@@ -323,14 +269,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = Tag.objects.all()
         for item in items.all():
             item.delete()
-
-    @transaction.atomic
-    def test_openinghoursspecification_to_string(self):
-        obj = OpeningHoursSpecification.objects.create(
-            name='Testing',
-        )
-        self.assertIn(str(obj), 'Testing')
-        obj.delete()
 
     @transaction.atomic
     def test_openinghoursspecification_delete_all(self):
@@ -358,126 +296,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_tenant_me_to_string(self):
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-        )
-        self.assertIn(str(obj), '1')
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_me_is_entrepreneur_with_false(self):
-        # Attach non-entrepreneur group.
-        group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
-        user = User.objects.get(username='1')
-        user.groups.add(group)
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=user,
-        )
-
-        # Run the test and verify.
-        self.assertFalse(obj.is_entrepreneur())
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_me_is_entrepreneur_with_true(self):
-        # Attach entrepreneur group.
-        group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        user = User.objects.get(username='1')
-        user.groups.add(group)
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=user,
-        )
-
-        # Run the test and verify
-        self.assertTrue(obj.is_entrepreneur())
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_me_is_employee_with_true(self):
-        # Attach employee group.
-        group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
-        user = User.objects.get(username='1')
-        user.groups.add(group)
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=user,
-        )
-
-        # Run the test and verify
-        self.assertTrue(obj.is_employee())
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_me_is_employee_with_false(self):
-        # Attach non-employee group.
-        group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-        user = User.objects.get(username='1')
-        user.groups.add(group)
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=user,
-        )
-
-        # Run the test and verify
-        self.assertFalse(obj.is_employee())
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_me_is_manager_with_true(self):
-        # Attach manager group.
-        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-        user = User.objects.get(username='1')
-        user.groups.add(group)
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=user,
-        )
-
-        # Run the test and verify
-        self.assertTrue(obj.is_manager())
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_me_is_manager_with_false(self):
-        # Attach non-manager group.
-        group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
-        user = User.objects.get(username='1')
-        user.groups.add(group)
-        obj = TenantMe.objects.create(
-            id=1,
-            owner=user,
-        )
-
-        # Run the test and verify
-        self.assertFalse(obj.is_manager())
-        obj.delete()
-
-    @transaction.atomic
-    def test_tenant_get_by_owner_or_none_with_success(self):
-        user = User.objects.get(username='1')
-        TenantMe.objects.create(
-            id=999,
-            owner=user,
-        )
-        me = TenantMe.objects.get_by_owner_or_none(owner=user)
-        self.assertIsNotNone(me)
-        me.delete()
-
-    @transaction.atomic
-    def test_tenant_me_get_by_owner_or_none_with_none(self):
-        target_me = TenantMe.objects.create(
-            id=666,
-            owner=User.objects.get(username='1'),
-        )
-        search_me = TenantMe.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
-        self.assertIsNone(search_me)
-        target_me.delete()
-
-    @transaction.atomic
     def test_tenant_me_delete_all(self):
         # Setup our unit test.
         count = TenantMe.objects.all().count()
@@ -503,16 +321,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_calendar_event_get_by_owner_or_none_with_none(self):
-        target_me = TenantMe.objects.create(
-            id=666,
-            owner=User.objects.get(username='1'),
-        )
-        search_me = TenantMe.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
-        self.assertIsNone(search_me)
-        target_me.delete()
-
-    @transaction.atomic
     def test_calendar_event_delete_all(self):
         # Setup our unit test.
         count = TenantMe.objects.all().count()
@@ -531,19 +339,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         TenantMe.objects.delete_all()
         count = TenantMe.objects.all().count()
         self.assertEqual(count, 0)
-
-    @transaction.atomic
-    def test_admission_to_string(self):
-        tag = Tag.objects.create(
-            name='Testing',
-        )
-        self.assertIn(str(tag), 'Testing')
-        admission = Admission.objects.create(
-            tag=tag,
-        )
-        self.assertIn(str(admission), 'Testing')
-        admission.delete();  # Cleanup
-        tag.delete()
 
     @transaction.atomic
     def test_admission_delete_all(self):
@@ -566,14 +361,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
     @transaction.atomic
-    def test_faqgroup_to_string(self):
-        obj = FAQGroup.objects.create(
-            text='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete();  # Cleanup
-
-    @transaction.atomic
     def test_faqgroup_delete_all(self):
         # Setup our unit test.
         count = FAQGroup.objects.all().count()
@@ -590,14 +377,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
     @transaction.atomic
-    def test_faqitem_to_string(self):
-        obj = FAQItem.objects.create(
-            question_text='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete();  # Cleanup
-
-    @transaction.atomic
     def test_faqitem_delete_all(self):
         # Setup our unit test.
         count = FAQItem.objects.all().count()
@@ -612,15 +391,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         FAQItem.objects.delete_all()
         count = FAQItem.objects.all().count()
         self.assertEqual(count, 0)
-
-    @transaction.atomic
-    def test_communitypost_to_string(self):
-        obj = CommunityPost.objects.create(
-            name='hideauze.com',
-            owner=User.objects.get(username='1')
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete();  # Cleanup
 
     @transaction.atomic
     def test_communitypost_delete_all(self):
@@ -640,15 +410,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
     @transaction.atomic
-    def test_communityadvertisement_to_string(self):
-        obj = CommunityAdvertisement.objects.create(
-            name='hideauze.com',
-            owner=User.objects.get(username='1')
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete();  # Cleanup
-
-    @transaction.atomic
     def test_communityadvertisement_delete_all(self):
         # Setup our unit test.
         count = CommunityAdvertisement.objects.all().count()
@@ -666,15 +427,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
     @transaction.atomic
-    def test_message_to_string(self):
-        obj = Message.objects.create(
-            name='hideauze.com',
-            owner=User.objects.get(username='1')
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete();  # Cleanup
-
-    @transaction.atomic
     def test_message_delete_all(self):
         # Setup our unit test.
         count = Message.objects.all().count()
@@ -690,21 +442,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Message.objects.delete_all()
         count = Message.objects.all().count()
         self.assertEqual(count, 0)
-
-    @transaction.atomic
-    def test_entrepreneur_note_to_string(self):
-        me = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-            name='Ice Age',
-        )
-        obj = Note.objects.create(
-            id=1,
-            me=me
-        )
-        self.assertIn(str(obj), 'Ice Age')
-        obj.delete();  # Cleanup
-        me.delete()
 
     @transaction.atomic
     def test_entrepreneur_note_delete_all(self):
@@ -758,22 +495,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Cleanup
         TenantMe.objects.delete_all()
-
-    @transaction.atomic
-    def test_ordered_log_event_to_string(self):
-        me = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-            name='Ice Age',
-        )
-        obj = OrderedLogEvent.objects.create(
-            id=1,
-            me=me,
-            text="Ice Age"
-        )
-        self.assertIn(str(obj), 'Ice Age')
-        obj.delete();  # Cleanup
-        me.delete()
 
     @transaction.atomic
     def test_ordered_log_event_delete_all(self):
@@ -834,22 +555,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         TenantMe.objects.delete_all()
 
     @transaction.atomic
-    def test_ordered_comment_post_to_string(self):
-        me = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-            name='Ice Age',
-        )
-        obj = OrderedCommentPost.objects.create(
-            id=1,
-            me=me,
-            description="Ice Age"
-        )
-        self.assertIn(str(obj), 'Ice Age')
-        obj.delete();  # Cleanup
-        me.delete()
-
-    @transaction.atomic
     def test_ordered_log_event_delete_all(self):
         # Setup our unit test.
         count = OrderedCommentPost.objects.all().count()
@@ -908,22 +613,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         TenantMe.objects.delete_all()
 
     @transaction.atomic
-    def test_task_to_string(self):
-        me = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-            name='Ice Age',
-        )
-        obj = Task.objects.create(
-            id=1,
-            assigned_by=me,
-            description="Ice Age"
-        )
-        self.assertIn(str(obj), 'Ice Age')
-        obj.delete();  # Cleanup
-        me.delete()
-
-    @transaction.atomic
     def test_task_delete_all(self):
         # Setup our unit test.
         count = Task.objects.all().count()
@@ -980,37 +669,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Cleanup
         TenantMe.objects.delete_all()
-
-    @transaction.atomic
-    def test_task_get_absolute_url(self):
-        me = TenantMe.objects.create(
-            id=1,
-            owner=User.objects.get(username='1'),
-            name='Ice Age',
-        )
-        obj = Task.objects.create(
-            id=666,
-            assigned_by=me,
-            description="Ice Age"
-        )
-        self.assertIn(obj.get_absolute_url(), '/en/task/666/')
-        obj.delete();  # Cleanup
-        me.delete()
-
-    @transaction.atomic
-    def test_tenant_visitor_to_string_by_user(self):
-        vistor = TenantVisitor.objects.create(
-            id=1,
-            me=TenantMe.objects.create(
-                id = 1111,
-                owner=User.objects.get(username='1'),
-                name="Ledo"
-            ),
-            path="/en/",
-            ip_address="127.0.0.1"
-        )
-        self.assertIn('/en/ by Ledo', str(vistor))
-        vistor.delete();  # Cleanup
 
     @transaction.atomic
     def test_tenant_visitor_delete_all(self):
@@ -1076,15 +734,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         TenantMe.objects.delete_all()
 
     @transaction.atomic
-    def test_governmentbenfitoption_to_string(self):
-        obj = GovernmentBenefitOption.objects.create(
-            order_number=1,
-            name='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete()
-
-    @transaction.atomic
     def test_governmentbenfitoption_delete_all(self):
         # Setup our unit test.
         count = GovernmentBenefitOption.objects.all().count()
@@ -1107,15 +756,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = GovernmentBenefitOption.objects.all()
         for item in items.all():
             item.delete()
-
-    @transaction.atomic
-    def test_identifyoption_to_string(self):
-        obj = IdentifyOption.objects.create(
-            order_number=1,
-            name='hideauze.com',
-        )
-        self.assertIn(str(obj), 'hideauze.com')
-        obj.delete()
 
     @transaction.atomic
     def test_identifyoption_delete_all(self):
@@ -1142,14 +782,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_countryoption_to_string(self):
-        country = CountryOption.objects.create(
-            name='hideauze.com',
-        )
-        self.assertIn(str(country), 'hideauze.com')
-        country.delete()
-
-    @transaction.atomic
     def test_countryoption_delete_all(self):
         # Setup our unit test.
         count = CountryOption.objects.all().count()
@@ -1172,19 +804,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = CountryOption.objects.all()
         for item in items.all():
             item.delete()
-
-    @transaction.atomic
-    def test_provinceoption_to_string(self):
-        country = CountryOption.objects.create(
-            name='hideauze.com',
-        )
-        province = ProvinceOption.objects.create(
-            country=country,
-            name='hideauze.com',
-        )
-        self.assertIn(str(province), 'hideauze.com')
-        province.delete()
-        country.delete()
 
     @transaction.atomic
     def test_provinceoption_delete_all(self):
@@ -1212,25 +831,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = ProvinceOption.objects.all()
         for item in items.all():
             item.delete()
-        country.delete()
-
-    @transaction.atomic
-    def test_cityoption_to_string(self):
-        country = CountryOption.objects.create(
-            name='hideauze.com',
-        )
-        province = ProvinceOption.objects.create(
-            country=country,
-            name='hideauze.com',
-        )
-        city = CityOption.objects.create(
-            country=country,
-            province=province,
-            name='hideauze.com',
-        )
-        self.assertIn(str(city), 'hideauze.com')
-        city.delete()
-        province.delete()
         country.delete()
 
     @transaction.atomic
@@ -1272,14 +872,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         country.delete()
 
     @transaction.atomic
-    def test_naicsoption_to_string(self):
-        option = NAICSOption.objects.create(
-            name='hideauze.com',
-        )
-        self.assertIn(str(option), 'hideauze.com')
-        option.delete()
-
-    @transaction.atomic
     def test_countryoption_delete_all(self):
         # Setup our unit test.
         count = NAICSOption.objects.all().count()
@@ -1302,3 +894,61 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         items = NAICSOption.objects.all()
         for item in items.all():
             item.delete()
+
+    @transaction.atomic
+    def test_task_delete_all(self):
+        # Setup our unit test.
+        count = UploadTask.objects.all().count()
+        self.assertEqual(count, 0)
+        UploadTask.objects.bulk_create([
+            UploadTask(
+                id = 1111,
+                assigned_by=TenantMe.objects.create(
+                    id = 1111,
+                    owner=User.objects.get(username='1')
+                ),
+                description="Ice Age"
+            ),
+            UploadTask(
+                id = 2222,
+                assigned_by = TenantMe.objects.create(
+                    id = 1112,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Global Cooling"
+            ),
+            UploadTask(
+                id = 3333,
+                assigned_by = TenantMe.objects.create(
+                    id = 1113,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Hibernation"
+            ),
+            UploadTask(
+                id = 4444,
+                assigned_by = TenantMe.objects.create(
+                    id = 1114,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Mini-Ice Age"
+            ),
+            UploadTask(
+                id = 5555,
+                assigned_by = TenantMe.objects.create(
+                    id = 1115,
+                    owner=User.objects.get(username='1'),
+                ),
+                description="Solar Reflective Particles"
+            ),
+        ])
+        count = UploadTask.objects.all().count()
+        self.assertEqual(count, 5)
+
+        # Run our test and verify.
+        UploadTask.objects.delete_all()
+        count = UploadTask.objects.all().count()
+        self.assertEqual(count, 0)
+
+        # Cleanup
+        TenantMe.objects.delete_all()

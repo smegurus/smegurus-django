@@ -38,6 +38,7 @@ from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.uploadtask import UploadTask
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -279,3 +280,13 @@ class NAICSOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = NAICSOption
         fields = ('id', 'seq_num', 'name', 'parent', 'year')
+
+
+class UploadTaskSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
+    image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
+    class Meta:
+        model = UploadTask
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'image_url', 'assigned_by',
+                  'assignee', 'status', 'start', 'due', 'download', 'upload',)

@@ -35,4 +35,5 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.orderedlogevent import OrderedLogEvent
 from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
 from foundation_tenant.models.task import Task
+from foundation_tenant.models.uploadtask import UploadTask
 from foundation_tenant.models.visitor import TenantVisitor
