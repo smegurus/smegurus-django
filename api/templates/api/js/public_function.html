@@ -30,4 +30,33 @@
             }
         });
     }
+
+    function public_is_organization_schema_name_unique(schema_name, callback) {
+        var url = "/api/isorganizationschemanameunique/?format=json";
+        jQuery.ajax({
+            url: url,
+            data: JSON.stringify({
+                'name': schema_name,
+            }),
+            dataType: 'text',
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            processData: false,
+            type: 'POST',
+            success: function(data){
+                var is_unique = data.indexOf('true') !== -1;
+                callback(is_unique);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                callback(false);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>

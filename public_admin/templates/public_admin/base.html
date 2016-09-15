@@ -197,6 +197,7 @@
         {% include "api/js/auth_register.html" %}
         {% include "api/js/auth_password_reset.html" %}
         {% if request.user.is_authenticated %}
+            {% include "api/js/public_function.html" %}
             {% include "api/js/public_organization.html" %}
             {% include "api/js/public_postaladdress.html" %}
             {% include "api/js/public_imageupload.html" %}

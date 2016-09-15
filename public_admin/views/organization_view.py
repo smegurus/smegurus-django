@@ -24,7 +24,14 @@ def organization_master_page(request):
 
 
 @staff_member_required
-def organization_create_1_page(request):
+def organization_initialization_page(request):
+    return render(request, 'public_admin/organization/create/0/view.html',{
+        'org_form': PublicOrganizationForm(),
+    })
+
+
+@staff_member_required
+def organization_create_1_page(request, id):
     return render(request, 'public_admin/organization/create/1/view.html',{
         'org_form': PublicOrganizationForm(),
         'address_form': PublicPostalAddressForm(),

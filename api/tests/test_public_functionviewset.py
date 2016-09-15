@@ -140,3 +140,24 @@ class APIFunctionViewSetWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         }
         response = self.unauthorized_client.post(url, json.dumps(data), HTTP_AUTHORIZATION='Token 123', content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_api_function_is_organization_schema_name_unique(self):
+        # Log in the the account.
+        user = User.objects.get()
+        token = Token.objects.get(user_id=user.id)
+
+        # Begin this unit test.
+        url = reverse('api_function_is_organization_schema_name_unique')
+        data = {
+            'name': 'test'
+        }
+        response = self.authorized_client.post(
+            url,
+            json.dumps(data),
+            HTTP_AUTHORIZATION='Token ' + token.key,
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn(b'is_unique', response.content)
+        self.assertIn(b'true', response.content)

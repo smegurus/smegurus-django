@@ -7,7 +7,6 @@
               $(this).attr("disabled",true);
         });
 
-
         $("#id_save_org_btn").ajaxStop(function(){
               $(this).attr("disabled",false);
         });
@@ -17,9 +16,28 @@
         });
 
         $('#id_save_org_btn').on('click', function(){
-            disable_btn();
-            ajax_save_org();
-        });
+            var schema_name = $('#id_schema_name').val();
+
+            if( schema_name == "" ){
+                alert("{% trans 'Missing Sub-Domain Name' %}");
+                return;
+            }
+
+            // Check to see if the schema name has not been taken before.
+            // If the schema name is unique then proceed further.
+            public_is_organization_schema_name_unique(
+                schema_name,
+                function(bool_val) {
+                    if (bool_val == true) {
+                        ajax_save_org();
+                    } else {
+                        disable_btn();
+                        alert("{% trans 'Sub-domain is not unique! Please choose a different sub-domain name.' %}");
+                    }
+                }
+            ); // end Schema Name is Unique.
+
+        }); // end Click
     }); // end Document.
 
     /**
@@ -136,6 +154,12 @@
             return;
         }
 
+        if( $('#id_name').val() == "" ){
+            alert("{% trans 'Please fill out your company name.' %}");
+            enable_btn();
+            return;
+        }
+
         // Defensive Code:
         if ( $('#id_how_many_served').val() == '' ) {
             alert("{% trans 'Please select how many entreprenuers are served' %}");
@@ -164,14 +188,18 @@
         });
 
         api_organization(
-            function(o_success_result) {
+            function(organization) {
                 console.log("Successfully Created Organization");
-                console.log(o_success_result);
+                console.log(organization);
 
                 setTimeout(function() {
                     lb.close(); // Turn off the 'loading' animatin.
                     enable_btn(); // Allow the user to press the button again.
-                    window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+
+                    // Generate our new URL.
+                    var url = "{% url 'public_admin_organization_create_1' 'placeholder' %}";
+                    var details_url = url.replace("placeholder", organization['id']);
+                    window.location = details_url;
                 }, 2000);
 
             },
@@ -187,6 +215,8 @@
                     alert("{% trans 'The sub-domain is using a word which is reserved by our system.' %}");
                 } else if (string.indexOf('banned word') > -1) {
                     alert("{% trans 'The sub-domain is using a word which is banned by our system.' %}");
+                } else if (string.indexOf('special characters') > -1) {
+                    alert("{% trans 'The sub-domain cannot have numbers or special characters.' %}");
                 } else {
                     alert(string);
                 }
