@@ -1,0 +1,65 @@
+{% extends 'public_admin/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'foundation_public/loadingbox_js.html' %}
+    {% include 'public_admin/organization/create/1/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'public_admin_dashboard_master' %}">{% trans 'Administration' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'public_admin_organization' %}">{% trans 'Organization' %}</a>
+        </li>
+        <li class="active">{% trans 'Create' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="panel panel-default">
+        <div class="panel-heading">{% trans 'Manual Create Organization - Form 1 of x' %}</div>
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+                <!-- PROFILE -->
+                <fieldset>
+                    <legend>{% trans 'Profile' %}</legend>
+                        <!-- Org Form -->
+                        {% for org_field in org_form %}
+                            <div class="form-group">
+                                <label for="input-id-1" class="col-sm-2 control-label">{{ org_field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {{ org_field }}
+                                </div>
+                                {{ org_field.errors }}<br/>
+                            </div>
+                            <br />
+                            <br />
+                        {% endfor %}
+                        {{ org_field.non_field_errors }}
+                        <!-- /.Org Form -->
+                </fieldset>
+                <!-- end PROFILE -->
+
+                <!-- SUBMISSION -->
+                <div style="float: right;">
+                    <button onclick="ajax_reject();" type="button" class="btn btn-danger btn-lg" id="id_reject_btn">{% trans 'Cancel' %}</button>
+                    <button onclick="ajax_accept();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Create' %}</button>
+                </div>
+                <!-- end SUBMISSION -->
+
+
+            </form>
+        </div>
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}

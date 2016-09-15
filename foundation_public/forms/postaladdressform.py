@@ -2,7 +2,7 @@ from datetime import date
 from django import forms
 from django.db import models
 from django.forms import ModelForm, Textarea, TextInput, NumberInput, BooleanField
-from django.forms.widgets import EmailInput
+from django.forms.widgets import EmailInput, Select
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -12,7 +12,7 @@ from foundation_public.models.organization import PublicPostalAddress
 class PublicPostalAddressForm(forms.ModelForm):
     class Meta:
         model = PublicPostalAddress
-        fields = ['street_address', 'postal_code', 'address_locality', 'address_region', 'address_country', ] # 'post_office_box_number',
+        fields = ['street_address', 'postal_code', 'post_office_box_number', 'address_country', 'address_region', 'address_locality',]
         labels = {
             'street_address': _('Street Address'),
             'postal_code': _('Postal Code/Zip'),
@@ -29,16 +29,20 @@ class PublicPostalAddressForm(forms.ModelForm):
                 'class': u'form-control',
                 'placeholder': _('Enter the postal code')
             }),
-            'address_locality': TextInput(attrs={
+            'post_office_box_number': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter the city name')
+                'placeholder': _('Enter the postal code')
             }),
-            'address_region': TextInput(attrs={
+            'address_country': Select(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter country')
+            }),
+            'address_region': Select(attrs={
                 'class': u'form-control',
                 'placeholder': _('Enter province name')
             }),
-            'address_country': TextInput(attrs={
+            'address_locality': Select(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter country')
+                'placeholder': _('Enter the city name')
             }),
         }
