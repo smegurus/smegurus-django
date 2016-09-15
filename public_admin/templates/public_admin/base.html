@@ -1,0 +1,227 @@
+{% load staticfiles compress i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.language }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
+        <title>{% trans 'SME Gurus' %}</title>
+        {% compress css %}
+        <!-- =============== VENDOR STYLES ===============-->
+        <!-- FONT AWESOME-->
+        <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
+        <!-- SIMPLE LINE ICONS-->
+        <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}">
+        <!-- ANIMATE.CSS-->
+        <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.min.css' %}">
+        <!-- WHIRL (spinners)-->
+        <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
+        <!-- =============== PAGE VENDOR STYLES ===============-->
+        <!-- DATETIMEPICKER-->
+        <link rel="stylesheet" href="{% static 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' %}">
+        <!-- =============== BOOTSTRAP STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
+        <!-- =============== APP STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
+        <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
+        <!-- =============== CUSTOM STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}">
+        {% endcompress %}
+        {% compress js %}
+        <!-- JQUERY-->
+        <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+        {% endcompress %}
+        <!-- EXTERNAL CSS -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+        <!-- end EXTERNAL CSS -->
+    </head>
+    <body class="layout-h">
+        <!-- CSRF Token -->
+        {% csrf_token %}
+        <div class="wrapper">
+            <!-- top navbar-->
+            <header class="topnavbar-wrapper">
+                <!-- START Top Navbar-->
+                <nav role="navigation" class="navbar topnavbar">
+                    <!-- START navbar header-->
+                    <div class="navbar-header">
+                        <a href="#/" class="navbar-brand">
+                            <div class="brand-logo">
+                                <!--<img src="img/logo.png" alt="App Logo" class="img-responsive">-->
+                                <h3 class="site-title-v2">{% trans 'SME Gurus' %}</h3>
+                            </div>
+                            <div class="brand-logo-collapsed">
+                                <img src="{% static 'app/img/logo-single.png' %}" alt="{% trans 'SME Gurus' %}" class="img-responsive">
+                            </div>
+                        </a>
+                    </div>
+                    <!-- END navbar header-->
+
+                    <!-- START Nav wrapper-->
+                    <div class="navbar-collapse collapse">
+                        <!-- START Left navbar-->
+                        <ul class="nav navbar-nav">
+                            <li></li>
+                            {% comment %}
+                            <li>
+                                <a href="#dashboard" data-toggle="dropdown">Dashboard</a>
+                                <ul class="dropdown-menu animated fadeIn">
+                                    <li><a href="dashboard.html">Dashboard v1</a>
+                                    </li>
+                                    <li><a href="dashboard_v2.html">Dashboard v2</a>
+                                    </li>
+                                    <li><a href="dashboard_v3.html">Dashboard v3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="widgets.html">Widgets</a>
+                            </li>
+                            {% endcomment %}
+                        </ul>
+                        <!-- END Left navbar-->
+                        <!-- START Right Navbar-->
+                        <ul class="nav navbar-nav navbar-right">
+                            {% comment %}
+                            <!-- START lock screen-->
+                            <li class="dropdown">
+                                <a href="lock.html" title="Lock screen">
+                                <em class="icon-lock"></em>
+                                </a>
+                            </li>
+                            <!-- END lock screen-->
+                            {% endcomment %}
+
+                            <!-- START Contacts button-->
+                            <li>
+                                <a href="#" data-toggle-state="offsidebar-open" data-no-persist="true">
+                                <em class="icon-notebook"></em>
+                                </a>
+                            </li>
+                            <!-- END Contacts menu-->
+
+                        </ul>
+                        <!-- END Right Navbar-->
+                    </div>
+                    <!-- END Nav wrapper-->
+                </nav>
+                <!-- END Top Navbar-->
+            </header>
+            <!-- offsidebar-->
+            <aside class="offsidebar hide">
+                <!-- START Off Sidebar (right)-->
+                <nav>
+                    <!-- Nav tabs-->
+                    <ul class="nav">
+                        <!-- LOGOUT -->
+                        <li class=" ">
+                            <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="{% trans 'Logout' %}" >
+                            <em class="icon-logout"></em>
+                            <span data-localize="offsidebar.nav.LOGOUT">{% trans 'Logout' %}</span>
+                            </a>
+                        </li>
+                        <li class="has-logout-block">
+                            <div id="logout-block" class="collapse">
+                                <div class="item logout-block">
+                                    <p>{% trans 'Are you sure you want to log out?' %}</p>
+                                    <button onclick="ajax_logout();" type="button" class="mb-sm btn label-green-v2 pull-left">
+                                        {% trans 'YES' %}
+                                    </button>
+                                    <button type="button" class="mb-sm btn label-red-v2 pull-right">
+                                        {% trans 'NO' %}
+                                    </button>
+                                    <label class="checkbox-inline c-checkbox">
+                                    <input id="inlineCheckbox10" type="checkbox" value="{% trans 'Do not ask me again' %}">
+                                    <span class="fa fa-check"></span>{% trans 'Don\'t ask me again' %}</label>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- end LOGOUT -->
+
+                    </ul>
+                    <!-- Tab panes-->
+                </nav>
+                <!-- END Off Sidebar (right)-->
+            </aside>
+            <!-- Main section-->
+            <section>
+                <!-- CSRF Token -->
+                {% csrf_token %}
+
+                <!-- CONTENT -->
+                {% block content %}
+                {% endblock %}
+                <!-- /.CONTENT -->
+            </section>
+            <!-- Page footer-->
+            <footer>
+                <span>&copy;</span>
+                <span>{% trans '2013' %}</span>
+                <span>-</span>
+                <span>{% now "Y" %}</span>
+                <span>{% trans 'by' %}</span>
+                <span>{% trans 'SME Gurus.' %}</span>
+                <span>{% trans 'All rights reserved.' %}</span>
+            </footer>
+        </div>
+        {% compress js %}
+        <!-- =============== VENDOR SCRIPTS ===============-->
+        <!-- JQUERY UI-->
+        <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
+        <script src="{% static 'vendor/jquery-ui/ui/datepicker.js' %}"></script>
+        <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
+        <!-- INPUT MASK-->
+        <script src="{% static 'vendor/jquery.inputmask/dist/jquery.inputmask.bundle.js' %}"></script>
+        <!-- CHOSEN-->
+        <script src="{% static 'vendor/chosen_v1.2.0/chosen.jquery.min.js' %}"></script>
+        <!-- MODERNIZR-->
+        <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
+        <!-- BOOTSTRAP-->
+        <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
+        <!-- STORAGE API-->
+        <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
+        <!-- PARSLEY-->
+        <script src="{% static 'vendor/parsleyjs/dist/parsley.min.js' %}"></script>
+        <!-- =============== APP SCRIPTS ===============-->
+        <script src="{% static 'app/js/app.js' %}"></script>
+        <!-- =============== API SCRIPTS ===============-->
+        {% include "foundation_public/common_js.html" %}
+        {% include "api/js/auth_activation.html" %}
+        {% include "api/js/auth_login.html" %}
+        {% include "api/js/auth_register.html" %}
+        {% include "api/js/auth_password_reset.html" %}
+        {% if request.user.is_authenticated %}
+            {% include "api/js/public_organization.html" %}
+            {% include "api/js/public_postaladdress.html" %}
+            {% include "api/js/public_imageupload.html" %}
+            {% include "api/js/tenant_tag.html" %}
+            {% include "api/js/tenant_imageupload.html" %}
+            {% include "api/js/tenant_naicsoption.html" %}
+            {% include "api/js/tenant_businessidea.html" %}
+            {% include "api/js/tenant_tellusyourneed.html" %}
+            {% include "api/js/tenant_intake.html" %}
+            {% include "api/js/tenant_postaladdress.html" %}
+            {% include "api/js/tenant_me.html" %}
+        {% endif %}
+        <script>
+            function ajax_logout() {
+                sign_off(
+                    function(success_result) {
+                        console.log(success_result);
+                        window.location = "{% url 'foundation_auth_user_login' %}";
+                    },
+                    function(error_result) {
+                        console.log(error_result);
+                    }
+                );
+            }
+        </script>
+        {% endcompress %}
+    </body>
+</html>

@@ -71,6 +71,7 @@ SHARED_APPS = (
 
   # everything below is custom made by us.
   'public_index',
+  'public_admin',
   'foundation_auth',
   'foundation_email',
 

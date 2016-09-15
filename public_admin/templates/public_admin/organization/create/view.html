@@ -1,0 +1,51 @@
+{% extends 'public_admin/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'public_admin_dashboard_master' %}">{% trans 'Administration' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'public_admin_organizattion' %}">{% trans 'Organization' %}</a>
+        </li>
+        <li class="active">{% trans 'Create' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+
+    <div class="row">
+        <!-- LIST -->
+        <div class="col-lg-6">
+            <div class="well well-lg">
+                <h4>{% trans 'List Organiztions' %}</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                <p>
+                    <a role="button" class="btn btn-primary btn-lg">Learn more</a>
+                </p>
+            </div>
+        </div>
+        <!-- end LIST -->
+
+        <!-- CREATE -->
+        <div class="col-lg-6">
+            <div class="well well-lg">
+                <h4>{% trans 'Create Organiztion' %}</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                <p>
+                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'public_admin_organizattion_create' %}">Learn more</a>
+                </p>
+            </div>
+        </div>
+        <!-- end CREATE -->
+
+
+    </div>
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}
