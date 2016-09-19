@@ -15,9 +15,9 @@ from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
-from api.serializers.foundation_tenant import UploadTaskSerializer
+from api.serializers.foundation_tenant import LearningTaskSerializer
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.uploadtask import UploadTask
+from foundation_tenant.models.task_learning import LearningTask
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -71,21 +71,21 @@ class SendEmailViewMixin(object):
 #         msg.send()
 
 
-class UploadTaskFilter(django_filters.FilterSet):
+class LearningTaskFilter(django_filters.FilterSet):
     class Meta:
-        model = UploadTask
+        model = LearningTask
         fields = ['id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'assigned_by',
-                  'assignee', 'status', 'start', 'due', 'download', 'upload',]
+                  'assignee', 'status', 'start', 'due',]
 
 
-class UploadTaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
-    queryset = UploadTask.objects.all()
-    serializer_class = UploadTaskSerializer
+class LearningTaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
+    queryset = LearningTask.objects.all()
+    serializer_class = LearningTaskSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
-    filter_class = UploadTaskFilter
+    filter_class = LearningTaskFilter
 
     def perform_create(self, serializer):
         """Override the creation function to include creation of associated models."""

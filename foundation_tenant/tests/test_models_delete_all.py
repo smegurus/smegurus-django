@@ -40,8 +40,8 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task_basic import BasicTask
-from foundation_tenant.models.uploadtask import UploadTask
-from foundation_tenant.models.learningtask import LearningTask
+from foundation_tenant.models.task_upload import UploadTask
+from foundation_tenant.models.task_learning import LearningTask
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption

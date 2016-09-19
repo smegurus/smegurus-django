@@ -53,8 +53,8 @@ from api.views.foundation_tenant.communityadvertisementviewset import CommunityA
 from api.views.foundation_tenant.messageviewset import MessageViewSet
 from api.views.foundation_tenant.noteviewset import NoteViewSet
 from api.views.foundation_tenant.taskbasicviewset import BasicTaskViewSet
-from api.views.foundation_tenant.uploadtaskviewset import UploadTaskViewSet
-from api.views.foundation_tenant.learningtaskviewset import LearningTaskViewSet
+from api.views.foundation_tenant.taskuploadviewset import UploadTaskViewSet
+from api.views.foundation_tenant.tasklearningviewset import LearningTaskViewSet
 from api.views.foundation_tenant.functionviewset import FinalizeTenantSetupFunctionViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
 

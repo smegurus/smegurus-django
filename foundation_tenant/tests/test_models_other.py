@@ -44,7 +44,7 @@ from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
-from foundation_tenant.models.uploadtask import UploadTask
+from foundation_tenant.models.task_upload import UploadTask
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

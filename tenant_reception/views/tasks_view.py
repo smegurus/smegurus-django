@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
-from foundation_tenant.models.uploadtask import UploadTask
-from foundation_tenant.models.learningtask import LearningTask
+from foundation_tenant.models.task_upload import UploadTask
+from foundation_tenant.models.task_learning import LearningTask
 
 
 @login_required(login_url='/en/login')
