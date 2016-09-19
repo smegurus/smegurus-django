@@ -101,7 +101,7 @@ router.register(r'tenantcommunitypost', CommunityPostViewSet)
 router.register(r'tenantcommunityadvertisement', CommunityAdvertisementViewSet)
 router.register(r'tenantmessage', MessageViewSet)
 router.register(r'tenantnote', NoteViewSet)
-router.register(r'tenantTask', TaskViewSet)
+router.register(r'tenanttask', TaskViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 
 
