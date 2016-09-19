@@ -97,5 +97,5 @@ class LearningTaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             status=constants.ASSIGNED_TASK_STATUS,
         )
 
-        # Send email notification for 'OrderedLogEvent' model.
+        # Send email notification for 'SortedLogEventByCreated' model.
         # self.send_notification(task, log_event)

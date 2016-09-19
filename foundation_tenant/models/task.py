@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus import constants
 
 
@@ -76,13 +76,13 @@ class Task(AbstractThing):
         db_index=True,
     )
     comment_posts = models.ManyToManyField(                # CONTROLLED BY SYSTEM
-        OrderedCommentPost,
+        SortedCommentPostByCreated,
         help_text=_('The community posts associated with this Task.'),
         blank=True,
         related_name='task_comment_posts_%(app_label)s_%(class)s_related',
     )
     log_events = models.ManyToManyField(                  # CONTROLLED BY SYSTEM & PRIVATE
-        OrderedLogEvent,
+        SortedLogEventByCreated,
         help_text=_('The log events associated with this Task.'),
         blank=True,
         related_name='task_log_events_%(app_label)s_%(class)s_related',

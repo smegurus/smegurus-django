@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus import constants
 
 

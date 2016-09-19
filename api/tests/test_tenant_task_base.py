@@ -16,8 +16,8 @@ from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
@@ -91,8 +91,8 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         PostalAddress.objects.delete_all()  # Must be above Tasks.
         ContactPoint.objects.delete_all()   # Must be above Tasks.
         Task.objects.delete_all()
-        OrderedLogEvent.objects.delete_all()
-        OrderedCommentPost.objects.delete_all()
+        SortedLogEventByCreated.objects.delete_all()
+        SortedCommentPostByCreated.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():

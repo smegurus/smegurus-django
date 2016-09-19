@@ -16,8 +16,8 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus import constants
 
 
@@ -149,8 +149,8 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        OrderedLogEvent.objects.delete_all()
-        OrderedCommentPost.objects.delete_all()
+        SortedLogEventByCreated.objects.delete_all()
+        SortedCommentPostByCreated.objects.delete_all()
         Task.objects.delete_all()
         Message.objects.delete_all()
         Intake.objects.delete_all()
@@ -432,7 +432,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
             owner=self.user,
             notify_when_task_had_an_interaction=True,
         )
-        log_event = OrderedLogEvent.objects.create(
+        log_event = SortedLogEventByCreated.objects.create(
             id=666,
             me=me,
             text="Hail, citizen of the Galactic Alliance ...",
@@ -462,7 +462,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
             owner=self.user,
             notify_when_task_had_an_interaction=True,
         )
-        log_event = OrderedLogEvent.objects.create(
+        log_event = SortedLogEventByCreated.objects.create(
             id=666,
             me=me,
             text="Hail, citizen of the Galactic Alliance ...",

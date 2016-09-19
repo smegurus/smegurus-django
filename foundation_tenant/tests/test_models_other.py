@@ -37,8 +37,8 @@ from foundation_tenant.models.communityadvertisement import CommunityAdvertiseme
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption

@@ -37,8 +37,8 @@ from foundation_tenant.models.communityadvertisement import CommunityAdvertiseme
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
@@ -500,10 +500,10 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_ordered_log_event_delete_all(self):
         # Setup our unit test.
-        count = OrderedLogEvent.objects.all().count()
+        count = SortedLogEventByCreated.objects.all().count()
         self.assertEqual(count, 0)
-        OrderedLogEvent.objects.bulk_create([
-            OrderedLogEvent(
+        SortedLogEventByCreated.objects.bulk_create([
+            SortedLogEventByCreated(
                 id = 1111,
                 me=TenantMe.objects.create(
                     id = 1111,
@@ -511,7 +511,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 text="Ice Age"
             ),
-            OrderedLogEvent(
+            SortedLogEventByCreated(
                 id = 2222,
                 me = TenantMe.objects.create(
                     id = 1112,
@@ -519,7 +519,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 text="Global Cooling"
             ),
-            OrderedLogEvent(
+            SortedLogEventByCreated(
                 id = 3333,
                 me = TenantMe.objects.create(
                     id = 1113,
@@ -527,7 +527,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 text="Solar Hibernation"
             ),
-            OrderedLogEvent(
+            SortedLogEventByCreated(
                 id = 4444,
                 me = TenantMe.objects.create(
                     id = 1114,
@@ -535,7 +535,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 text="Mini-Ice Age"
             ),
-            OrderedLogEvent(
+            SortedLogEventByCreated(
                 id = 5555,
                 me = TenantMe.objects.create(
                     id = 1115,
@@ -544,12 +544,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 text="Solar Reflective Particles"
             ),
         ])
-        count = OrderedLogEvent.objects.all().count()
+        count = SortedLogEventByCreated.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        OrderedLogEvent.objects.delete_all()
-        count = OrderedLogEvent.objects.all().count()
+        SortedLogEventByCreated.objects.delete_all()
+        count = SortedLogEventByCreated.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup
@@ -558,10 +558,10 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_ordered_log_event_delete_all(self):
         # Setup our unit test.
-        count = OrderedCommentPost.objects.all().count()
+        count = SortedCommentPostByCreated.objects.all().count()
         self.assertEqual(count, 0)
-        OrderedCommentPost.objects.bulk_create([
-            OrderedCommentPost(
+        SortedCommentPostByCreated.objects.bulk_create([
+            SortedCommentPostByCreated(
                 id = 1111,
                 me=TenantMe.objects.create(
                     id = 1111,
@@ -569,7 +569,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Ice Age"
             ),
-            OrderedCommentPost(
+            SortedCommentPostByCreated(
                 id = 2222,
                 me = TenantMe.objects.create(
                     id = 1112,
@@ -577,7 +577,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Global Cooling"
             ),
-            OrderedCommentPost(
+            SortedCommentPostByCreated(
                 id = 3333,
                 me = TenantMe.objects.create(
                     id = 1113,
@@ -585,7 +585,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Solar Hibernation"
             ),
-            OrderedCommentPost(
+            SortedCommentPostByCreated(
                 id = 4444,
                 me = TenantMe.objects.create(
                     id = 1114,
@@ -593,7 +593,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Mini-Ice Age"
             ),
-            OrderedCommentPost(
+            SortedCommentPostByCreated(
                 id = 5555,
                 me = TenantMe.objects.create(
                     id = 1115,
@@ -602,12 +602,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 description="Solar Reflective Particles"
             ),
         ])
-        count = OrderedCommentPost.objects.all().count()
+        count = SortedCommentPostByCreated.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        OrderedCommentPost.objects.delete_all()
-        count = OrderedLogEvent.objects.all().count()
+        SortedCommentPostByCreated.objects.delete_all()
+        count = SortedLogEventByCreated.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup

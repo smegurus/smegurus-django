@@ -11,8 +11,8 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -172,7 +172,7 @@ def task_page(request, task_id, log_event_id):
     # Fetch the data.
     template_url = 'tenant_task/task.html'
     task = get_object_or_404(Task, pk=int(task_id))
-    log_event = get_object_or_404(OrderedLogEvent, pk=int(log_event_id))
+    log_event = get_object_or_404(SortedLogEventByCreated, pk=int(log_event_id))
     web_view_extra_url = reverse('foundation_email_task', args=[task.id, log_event.id,])
 
     # Run a security check to make sure the authenticated User is a

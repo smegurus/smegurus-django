@@ -17,8 +17,8 @@ from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from smegurus import constants
@@ -92,8 +92,8 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         PostalAddress.objects.delete_all()  # Must be above Tasks.
         ContactPoint.objects.delete_all()   # Must be above Tasks.
         Task.objects.delete_all()
-        OrderedLogEvent.objects.delete_all()
-        OrderedCommentPost.objects.delete_all()
+        SortedLogEventByCreated.objects.delete_all()
+        SortedCommentPostByCreated.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
@@ -123,7 +123,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 0)
         self.assertEqual(len(mail.outbox), 0)
 
@@ -154,7 +154,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         self.assertEqual(len(mail.outbox), 1)
 
@@ -193,7 +193,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         self.assertEqual(len(mail.outbox), 1)
 
@@ -220,10 +220,10 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        count = OrderedCommentPost.objects.count()
+        count = SortedCommentPostByCreated.objects.count()
         self.assertEqual(count, 0)
         self.assertEqual(len(mail.outbox), 0)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 0)
 
     @transaction.atomic
@@ -253,10 +253,10 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        count = OrderedCommentPost.objects.count()
+        count = SortedCommentPostByCreated.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(len(mail.outbox), 1)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
 
     @transaction.atomic
@@ -294,10 +294,10 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        count = OrderedCommentPost.objects.count()
+        count = SortedCommentPostByCreated.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(len(mail.outbox), 1)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
 
 
@@ -324,10 +324,10 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        count = OrderedCommentPost.objects.count()
+        count = SortedCommentPostByCreated.objects.count()
         self.assertEqual(count, 0)
         self.assertEqual(len(mail.outbox), 0)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 0)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.ASSIGNED_TASK_STATUS)
@@ -360,7 +360,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(mail.outbox), 1)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.COMPLETED_TASK_STATUS)
@@ -401,7 +401,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(mail.outbox), 1)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.COMPLETED_TASK_STATUS)
@@ -429,10 +429,10 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-        count = OrderedCommentPost.objects.count()
+        count = SortedCommentPostByCreated.objects.count()
         self.assertEqual(count, 0)
         self.assertEqual(len(mail.outbox), 0)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 0)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.ASSIGNED_TASK_STATUS)
@@ -465,7 +465,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(mail.outbox), 1)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.INCOMPLETE_TASK_STATUS)
@@ -506,7 +506,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(mail.outbox), 1)
-        log_event_count = OrderedLogEvent.objects.count()
+        log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.INCOMPLETE_TASK_STATUS)

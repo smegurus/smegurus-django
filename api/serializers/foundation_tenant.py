@@ -34,8 +34,8 @@ from foundation_tenant.models.communityadvertisement import CommunityAdvertiseme
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor
 from foundation_tenant.models.uploadtask import UploadTask
@@ -251,16 +251,16 @@ class TaskSerializer(serializers.ModelSerializer):
                   'assignee', 'status', 'participants', 'tags',
                   'start', 'due', 'comment_posts', 'log_events',)
 
-class OrderedLogEventSerializer(serializers.ModelSerializer):
+class SortedLogEventByCreatedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OrderedLogEvent
+        model = SortedLogEventByCreated
         fields = ('id', 'created', 'last_modified', 'me', 'text',)
 
 
-class OrderedCommentPostSerializer(serializers.ModelSerializer):
+class SortedCommentPostByCreatedSerializer(serializers.ModelSerializer):
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
-        model = OrderedCommentPost
+        model = SortedCommentPostByCreated
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'me',)
 

@@ -15,11 +15,11 @@ from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
-from api.serializers.foundation_tenant import TaskSerializer, OrderedLogEventSerializer, OrderedCommentPostSerializer
+from api.serializers.foundation_tenant import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.orderedlogevent import OrderedLogEvent
-from foundation_tenant.models.orderedcommentpost import OrderedCommentPost
+from foundation_tenant.models.logevent import SortedLogEventByCreated
+from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -104,13 +104,13 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         task.participants.add(self.request.tenant_me)
 
         # Create "Ticket created" log event and attach it this Task.
-        log_event = OrderedLogEvent.objects.create(
+        log_event = SortedLogEventByCreated.objects.create(
             me=self.request.tenant_me,
             text='Created Task #'+str(task.id)
         )
         task.log_events.add(log_event)
 
-        # Send email notification for 'OrderedLogEvent' model.
+        # Send email notification for 'SortedLogEventByCreated' model.
         self.send_notification(task, log_event)
 
     def perform_update(self, serializer):
@@ -130,9 +130,9 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def log_event(self, request, pk=None):
         try:
-            serializer = OrderedLogEventSerializer(data=request.data)
+            serializer = SortedLogEventByCreatedSerializer(data=request.data)
             if serializer.is_valid():
-                # Create the 'OrderedLogEvent' model and save it.
+                # Create the 'SortedLogEventByCreated' model and save it.
                 log_event = serializer.save(me=request.tenant_me)
                 task = self.get_object()
                 task.log_events.add(log_event)
@@ -151,7 +151,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def post_comment(self, request, pk=None):
         try:
-            serializer = OrderedCommentPostSerializer(data=request.data)
+            serializer = SortedCommentPostByCreatedSerializer(data=request.data)
             if serializer.is_valid():
                 # Save the comment.
                 comment_post = serializer.save(me=request.tenant_me)
@@ -160,7 +160,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                 # Save an log event.
                 text = request.tenant_me.name + " has made a comment."
-                log_event = OrderedLogEvent.objects.create(
+                log_event = SortedLogEventByCreated.objects.create(
                     me=request.tenant_me,
                     text=text,
                 )
@@ -191,7 +191,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # Save an log event.
             text = request.tenant_me.name + " has changed the status to be completed."
-            log_event = OrderedLogEvent.objects.create(
+            log_event = SortedLogEventByCreated.objects.create(
                 me=request.tenant_me,
                 text=text,
             )
@@ -219,7 +219,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # Save an log event.
             text = request.tenant_me.name + " has changed the status to be incompleted."
-            log_event = OrderedLogEvent.objects.create(
+            log_event = SortedLogEventByCreated.objects.create(
                 me=request.tenant_me,
                 text=text,
             )
