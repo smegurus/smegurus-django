@@ -34,12 +34,5 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.abstract_task import AbstractTask
-from foundation_tenant.models.task_basic import TaskBasic
-from foundation_tenant.models.task_calendar import TaskCalendar
-from foundation_tenant.models.task_docgen import TaskDocGen
-from foundation_tenant.models.task_webform import TaskWebForm
-from foundation_tenant.models.task_upload import TaskUpload
-from foundation_tenant.models.task_learning import TaskLearning
-from foundation_tenant.models.task_resource import TaskResource
+from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor

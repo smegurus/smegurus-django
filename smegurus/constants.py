@@ -65,7 +65,7 @@ COMPLETED_TASK_STATUS = 4
 COMPLETED_TASK_AND_VERIFIED_STATUS = 5
 
 
-# Variables control the level of detail email notification the User will
+# Constants control the level of detail email notification the User will
 # receive when interacted by the platform.
 NO_EMAIL_FREQUENCY_STATUS = 0
 ESSENTIAL_EMAIL_FREQUENCY_STATUS = 1
@@ -78,4 +78,25 @@ TASK_STATUS_OPTIONS = (
     (INCOMPLETE_TASK_STATUS, _('Incomplete')),
     (COMPLETED_TASK_STATUS, _('Complete')),
     (COMPLETED_TASK_AND_VERIFIED_STATUS, _('Complete and verified')),
+)
+
+
+# Constants control what type of Tasks are available in our system.
+TASK_BASIC_TYPE = 1
+TASK_CALENDAR_TYPE = 2
+TASK_DOCGEN_TYPE = 3
+TASK_LEARNING_TYPE = 4
+TASK_WEBFORM_TYPE = 5
+TASK_UPLOAD_TYPE = 6
+TASK_RESOURCE_TYPE = 7
+
+
+TASK_TYPE_OPTIONS = (
+    (TASK_BASIC_TYPE, _('Basic Task')),
+    (TASK_CALENDAR_TYPE, _('Calendar Task')),
+    (TASK_DOCGEN_TYPE, _('Document Generation Task')),
+    (TASK_LEARNING_TYPE, _('Learning Task')),
+    (TASK_WEBFORM_TYPE, _('Web Form Task')),
+    (TASK_UPLOAD_TYPE, _('Upload Task')),
+    (TASK_RESOURCE_TYPE, _('Resource Task')),
 )

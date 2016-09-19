@@ -15,9 +15,9 @@ from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
-from api.serializers.foundation_tenant import TaskBasicSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
+from api.serializers.foundation_tenant import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.task_basic import TaskBasic
+from foundation_tenant.models.task import Task
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus.settings import env_var
@@ -73,22 +73,22 @@ class SendEmailViewMixin(object):
         msg.send()
 
 
-class TaskBasicFilter(django_filters.FilterSet):
+class TaskFilter(django_filters.FilterSet):
     class Meta:
-        model = TaskBasic
+        model = Task
         fields = ['created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
                   'start', 'due', 'comment_posts',]
 
 
-class TaskBasicViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
-    queryset = TaskBasic.objects.all()
-    serializer_class = TaskBasicSerializer
+class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
-    filter_class = TaskBasicFilter
+    filter_class = TaskFilter
 
     def perform_create(self, serializer):
         """Override the creation function to include creation of associated models."""
