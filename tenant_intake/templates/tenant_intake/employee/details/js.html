@@ -64,6 +64,12 @@
         if (other_government_benefit <=0 ) {
             $('#id_other_government_benefit_div').hide();
         }
+
+        var telephone = $('#id_telephone').val();
+        if (telephone <=0 ) {
+            $('#id_telephone_div').hide();
+            $('#id_telephone_time_div').hide();
+        }
     });
 
     function ajax_reject() {
