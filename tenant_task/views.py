@@ -10,7 +10,6 @@ from foundation_tenant.utils import my_last_modified_func
 from tenant_intake.decorators import tenant_intake_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_configuration.decorators import tenant_configuration_required
-from smegurus import constants
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
@@ -18,13 +17,14 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.task import Task
+from smegurus import constants
 
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def task_master_page(request):
     pending_tasks = Task.objects.filter(
         Q(
@@ -51,6 +51,13 @@ def task_master_page(request):
         'pending_tasks': pending_tasks,
         'incomplete_tasks': incomplete_tasks,
         'completed_tasks': completed_tasks,
+        'TASK_BASIC_TYPE': constants.TASK_BASIC_TYPE,
+        'TASK_CALENDAR_TYPE': constants.TASK_CALENDAR_TYPE,
+        'TASK_DOCGEN_TYPE': constants.TASK_DOCGEN_TYPE,
+        'TASK_LEARNING_TYPE': constants.TASK_LEARNING_TYPE,
+        'TASK_WEBFORM_TYPE': constants.TASK_WEBFORM_TYPE,
+        'TASK_UPLOAD_TYPE': constants.TASK_UPLOAD_TYPE,
+        'TASK_RESOURCE_TYPE': constants.TASK_RESOURCE_TYPE
     })
 
 

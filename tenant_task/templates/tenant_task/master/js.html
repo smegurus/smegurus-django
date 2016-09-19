@@ -4,8 +4,10 @@
         // Do nothing.
     });
 
-    function ajax_create_task() {
-        var task = {};
+    function ajax_create_task(task_type_of) {
+        var task = {
+            'type_of': task_type_of,
+        };
         set_tenant_tasks(
             task,
             function(json_result) {
