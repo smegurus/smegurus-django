@@ -9,7 +9,7 @@
         set_tenant_tasks(
             task,
             function(json_result) {
-                var url = "url 'tenant_task_details' 'placeholder'";
+                var url = "{% url 'tenant_task_details' 'placeholder' %}";
                 var details_url = url.replace("placeholder", json_result['id']);
                 window.location = details_url;
             },

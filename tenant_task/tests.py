@@ -106,3 +106,55 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'Tasks',response.content)
+
+    @transaction.atomic
+    def test_task_master_page_with_data(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        url = reverse('tenant_task_master')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Tasks',response.content)
+
+    @transaction.atomic
+    def test_task_details_page_with_404(self):
+        url = reverse('tenant_task_details', args=[666,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'404',response.content)
+
+    @transaction.atomic
+    def test_task_details_page(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS
+        )
+        task.participants.add(me)
+
+        url = reverse('tenant_task_details', args=[666,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Tasks',response.content)

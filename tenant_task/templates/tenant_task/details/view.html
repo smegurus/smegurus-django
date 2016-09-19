@@ -1,0 +1,372 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress thumbnail %}
+{% block content %}
+
+{% compress js inline %}
+    {% include 'tenant_task/details/js.html' %}
+{% endcompress %}
+
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <h3>{% trans 'Task Details' %}
+        <small>{% trans 'Modify this current task.' %}</small>
+    </h3>
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Main panel-->
+            <div class="panel b">
+                <div class="panel-heading">
+                    {% comment %}
+                    <div class="pull-right mt">
+                        <div class="label label-info">started</div>
+                    </div>
+                    {% endcomment %}
+
+                    <!-- TITLE -->
+                    <h4 class="mv">
+                        <span id="id_task_title_span">
+                            {% if task.name %}
+                                {{ task.name }}
+                            {% else %}
+                                {% trans 'Task #' %}{{ task.id }}
+                            {% endif %}
+                        </span>
+                    </h4>
+                    <!-- end TITLE -->
+
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+
+                        <!-- EDITOR TOOLBAR -->
+                        <div data-role="editor-toolbar" data-target="#editor" class="btn-toolbar btn-editor">
+                           <div class="btn-group">
+                              <a data-edit="bold" data-toggle="tooltip" title="Bold (Ctrl/Cmd+B)" class="btn btn-default">
+                                 <em class="fa fa-bold"></em>
+                              </a>
+                              <a data-edit="italic" data-toggle="tooltip" title="Italic (Ctrl/Cmd+I)" class="btn btn-default">
+                                 <em class="fa fa-italic"></em>
+                              </a>
+                              <a data-edit="strikethrough" data-toggle="tooltip" title="Strikethrough" class="btn btn-default">
+                                 <em class="fa fa-strikethrough"></em>
+                              </a>
+                              <a data-edit="underline" data-toggle="tooltip" title="Underline (Ctrl/Cmd+U)" class="btn btn-default">
+                                 <em class="fa fa-underline"></em>
+                              </a>
+                           </div>
+                           <div class="btn-group">
+                              <a data-edit="insertunorderedlist" data-toggle="tooltip" title="Bullet list" class="btn btn-default">
+                                 <em class="fa fa-list-ul"></em>
+                              </a>
+                              <a data-edit="insertorderedlist" data-toggle="tooltip" title="Number list" class="btn btn-default">
+                                 <em class="fa fa-list-ol"></em>
+                              </a>
+                              <a data-edit="outdent" data-toggle="tooltip" title="Reduce indent (Shift+Tab)" class="btn btn-default">
+                                 <em class="fa fa-dedent"></em>
+                              </a>
+                              <a data-edit="indent" data-toggle="tooltip" title="Indent (Tab)" class="btn btn-default">
+                                 <em class="fa fa-indent"></em>
+                              </a>
+                           </div>
+                           <div class="btn-group">
+                              <a data-edit="justifyleft" data-toggle="tooltip" title="Align Left (Ctrl/Cmd+L)" class="btn btn-default">
+                                 <em class="fa fa-align-left"></em>
+                              </a>
+                              <a data-edit="justifycenter" data-toggle="tooltip" title="Center (Ctrl/Cmd+E)" class="btn btn-default">
+                                 <em class="fa fa-align-center"></em>
+                              </a>
+                              <a data-edit="justifyright" data-toggle="tooltip" title="Align Right (Ctrl/Cmd+R)" class="btn btn-default">
+                                 <em class="fa fa-align-right"></em>
+                              </a>
+                              <a data-edit="justifyfull" data-toggle="tooltip" title="Justify (Ctrl/Cmd+J)" class="btn btn-default">
+                                 <em class="fa fa-align-justify"></em>
+                              </a>
+                           </div>
+                           <div class="btn-group">
+                               <a data-toggle="dropdown" title="Hyperlink" class="btn btn-default">
+                                  <em class="fa fa-link"></em>
+                               </a>
+                               <div class="dropdown-menu">
+                                  <div class="input-group ml-xs mr-xs">
+                                     <input id="LinkInput" placeholder="URL" type="text" data-edit="createLink" class="form-control input-sm">
+                                     <div class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-default">Add</button>
+                                     </div>
+                                  </div>
+                               </div>
+                               <a data-edit="unlink" data-toggle="tooltip" title="Remove Hyperlink" class="btn btn-default">
+                                  <em class="fa fa-cut"></em>
+                               </a>
+                           </div>
+                        </div>
+                        <!-- end EDITOR TOOLBAR -->
+
+                        <!-- EDITOR CONTENT -->
+                        <div id="editor" contenteditable="true" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">
+                            {% if task.description %}
+                                {{ task.description|escape|safe }}
+                            {% endif %}
+                        </div>
+                        <!-- end EDITOR CONTENT -->
+
+                    </div>
+
+                    <p class="text-right">
+                        <button id="id_update_btn"
+                              type="button"
+                             class="btn btn-primary">{% trans 'Update' %}</button>
+                    </p>
+
+                </div>
+            </div>
+            <!-- End Main panel-->
+
+            <!-- TASK LOG -->
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="panel-title">Task History</div>
+                </div>
+                <!-- START list group-->
+                <div data-height="180" data-scrollable="" class="list-group">
+
+                    {% for log_event in task.log_events.all %}
+                    <a href="#" class="list-group-item">
+                        <div class="media-box">
+                            <p class="mb-sm">
+                                <small class="pull-right">{{ log_event.created }}</small>
+                                <small>{{ log_event.text }}</small>
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <!-- end TASK LOG -->
+
+            <!-- Team messages-->
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="pull-right label label-danger">5</div>
+                    <div class="pull-right label label-success">12</div>
+                    <div class="panel-title">Team messages</div>
+                </div>
+                <!-- START list group-->
+                <div data-height="180" data-scrollable="" class="list-group">
+                    <!-- START list group item-->
+                    {% for comment_post in task.comment_posts.all %}
+                    <a href="#messages" class="list-group-item">
+                        <div class="media-box">
+                            <div class="pull-left">
+                                {% thumbnail comment_post.me.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                    <img src="{{ im.url }}" alt="{% trans 'Image' %}" width="{{ im.width }}" height="{{ im.height }}" class="media-box-object img-circle thumb32" />
+                                {% empty %}
+                                    <img src="{% static 'app/img/dummy64x64.png' %}" alt="{% trans 'Image' %}" width="{{ im.width }}" height="{{ im.height }}" class="media-box-object img-circle thumb32" />
+                                {% endthumbnail %}
+                            </div>
+                            <div class="media-box-body clearfix">
+                                <small class="pull-right">{{ comment_post.created }}</small>
+                                <strong class="media-box-heading text-primary"><span class="text-left"></span>{{ comment_post.me.name|escape|safe }}</strong>
+                                <p class="mb-sm">
+                                    <small>{{ comment_post.description|escape|safe }}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    <!-- END list group item-->
+
+                </div>
+                <!-- END list group-->
+                <!-- START panel footer-->
+                <div class="panel-footer clearfix">
+                    <div class="input-group">
+                        <input id="id_comment" type="text" placeholder="{% trans 'Type message ..' %}" class="form-control input-sm" />
+                        <span class="input-group-btn">
+                        <button id="id_comment_btn" onclick="" type="button" class="btn btn-default btn-sm">
+                            <i class="fa fa-mail-reply"></i>
+                        </button>
+                        </span>
+                    </div>
+                </div>
+                <!-- END panel-footer-->
+            </div>
+            <!-- End Team messages-->
+
+        </div>
+        <div class="col-lg-4">
+            <!-- Aside panel-->
+            <div class="panel b">
+                {% if task.assignee == request.tenant_me %}
+                <div class="panel-body bb">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <button id="id_complete_btn" onclick="ajax_complete_task();" type="button" class="btn btn-success btn-oval">
+                                <em class="fa fa-check"></em>
+                                <span>Complete</span>
+                            </button>
+                        </div>
+                        <div class="pull-right">
+                            <button id="id_incomplete_btn" onclick="ajax_incomplete_task();" type="button" class="btn btn-danger btn-oval">
+                                <em class="fa fa-close"></em>
+                                <span>Incomplete</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% comment %}
+                <div class="panel-body bb">
+                    <div class="table-grid table-grid-align-middle mv">
+                        <div class="col">
+                            <div class="progress progress-xs m0">
+                                <div style="width: 48%" class="progress-bar progress-bar-info">48%</div>
+                            </div>
+                        </div>
+                        <div class="col wd-xxs text-right">
+                            <div class="text-bold text-muted">48%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-inline mv">
+                        <li>
+                            <div class="badge p-sm bg-warning">priority</div>
+                        </li>
+                        <li>
+                            <div class="badge p-sm bg-gray">angularjs</div>
+                        </li>
+                        <li>
+                            <div class="badge p-sm bg-gray">jquery</div>
+                        </li>
+                        <li>
+                            <div class="badge p-sm bg-gray">gulp</div>
+                        </li>
+                        <li>
+                            <div class="badge p-sm bg-gray">git</div>
+                        </li>
+                        <li>
+                            <div class="badge p-sm bg-gray">ios</div>
+                        </li>
+                    </ul>
+                </div>
+                {% endcomment %}
+                <table class="table bb">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Start date' %}</strong>
+                            </td>
+                            <td>
+                                <input type="text" id="id_task_event_start" value="{{ task.start|date:"Y-m-d" }}" class="form-control" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Due date' %}</strong>
+                            </td>
+                            <td>
+                                <input type="text" id="id_task_event_due" value="{{ task.due|date:"Y-m-d" }}" class="form-control" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Assigned by' %}</strong>
+                            </td>
+                            <td>{{ task.assigned_by.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Assignee' %}</strong>
+                            </td>
+                            <td>
+                                <!-- ASSIGNEE -->
+                                <select id="id_assignee" class="chosen-select form-control">
+                                    <optgroup label="Administrators">
+                                        {% for admin in admins.all %}
+                                            <option value="{{ admin.id }}" {% if task.assignee == admin %}selected="true"{% endif %}>
+                                            {{ admin.owner.first_name }} {{ admin.owner.last_name }}
+                                            </option>
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Managers">
+                                        {% for manager in managers.all %}
+
+                                            <option value="{{ manager.id }}" {% if task.assignee == manager %}selected="true"{% endif %}>
+                                                    {{ manager.owner.first_name }} {{ manager.owner.last_name }}
+                                            </option>
+
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Advisors">
+                                        {% for advisor in advisors.all %}
+
+                                            <option value="{{ advisor.id }}" {% if task.assignee == advisor %}selected="true"{% endif %}>
+                                                {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
+                                            </option>
+
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Mentors">
+                                        {% for mentor in mentors.all %}
+
+                                            <option value="{{ mentor.id }}" {% if task.assignee == mentor %}selected="true"{% endif %}>
+                                                {{ mentor.owner.first_name }} {{ mentor.owner.last_name }}
+                                            </option>
+
+                                        {% endfor %}
+                                    </optgroup>
+                                    <optgroup label="Entreprenuers">
+                                        {% for entrepreneur in entrepreneurs.all %}
+
+                                            <option value="{{ entrepreneur.id }}" {% if task.assignee == entrepreneur %}selected="true"{% endif %}>
+                                                {{ entrepreneur.owner.first_name }} {{ entrepreneur.owner.last_name }}
+                                            </option>
+
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                                <!-- end ASSIGNEE -->
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Members' %}</strong>
+                            </td>
+                            <td>
+                                {% for member in task.participants.all %}
+                                    <p>{{ member.name }}</p>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Tags' %}</strong>
+                            </td>
+                            <td>
+
+                                <select id="select2-1" multiple="multiple" class="form-control">
+                                    {% for tag in tags.all %}
+                                        <option value="{{ tag.id }}" {% if tag in task.tags.all %}selected="true"{% endif %}>
+                                            {{ tag.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-right">
+                    <a href="{% url 'tenant_task_master' %}" class="btn btn-link">{% trans 'Open repository' %}
+                    </a>
+                </p>
+            </div>
+            <!-- end Aside panel-->
+        </div>
+    </div>
+</div>
+<!-- end PAGE CONTENT -->
+
+{% endblock content %}

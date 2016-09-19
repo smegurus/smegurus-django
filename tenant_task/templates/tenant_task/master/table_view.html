@@ -35,7 +35,7 @@
                     <a onclick="ajax_delete_task({{ task.id }});" class="btn btn-xs btn-danger" id="id_delete_task_{{ task.id }}">
                         {% trans 'Delete' %} <i class="fa fa-remove"></i>
                     </a>
-                    <a href="url 'tenant_task_details' task.id" class="btn btn-xs btn-info">
+                    <a href="{% url 'tenant_task_details' task.id %}" class="btn btn-xs btn-info">
                         {% trans 'Details' %} <i class="fa fa-info-circle"></i>
                     </a>
                 </td>
