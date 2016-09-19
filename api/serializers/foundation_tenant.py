@@ -36,7 +36,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.task import Task
+from foundation_tenant.models.task_basic import BasicTask
 from foundation_tenant.models.visitor import TenantVisitor
 from foundation_tenant.models.uploadtask import UploadTask
 from foundation_tenant.models.learningtask import LearningTask
@@ -241,11 +241,11 @@ class NoteSerializer(serializers.ModelSerializer):
                   'description', 'image', 'image_url', 'me',)
 
 
-class TaskSerializer(serializers.ModelSerializer):
+class BasicTaskSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
-        model = Task
+        model = BasicTask
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',

@@ -39,13 +39,14 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.task import Task
+from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.uploadtask import UploadTask
+from foundation_tenant.models.learningtask import LearningTask
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
-from foundation_tenant.models.uploadtask import UploadTask
-from foundation_tenant.models.learningtask import LearningTask
+
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -278,13 +279,13 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         me.delete()
 
     @transaction.atomic
-    def test_task_to_string(self):
+    def test_basic_task_to_string(self):
         me = TenantMe.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
         )
-        obj = Task.objects.create(
+        obj = BasicTask.objects.create(
             id=1,
             assigned_by=me,
             description="Ice Age"

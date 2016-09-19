@@ -1,9 +1,9 @@
 <script>
-    function set_tenant_tasks(data, func_callback, func_error_callback)
+    function set_tenant_basic_tasks(data, func_callback, func_error_callback)
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/tenanttask/";
+        var url = "/api/tenantbasictask/";
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -34,8 +34,8 @@
         });
     }
 
-    function get_tenant_task(id, func_callback, func_error_callback) {
-        var url = "/api/tenanttask/" + id + "/?format=json";
+    function get_tenant_basic_task(id, func_callback, func_error_callback) {
+        var url = "/api/tenantbasictask/" + id + "/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -58,8 +58,8 @@
         });
     }
 
-    function delete_tenant_task(id, func_callback, func_error_callback) {
-        var url = "/api/tenanttask/" + id + "/";
+    function delete_tenant_basic_task(id, func_callback, func_error_callback) {
+        var url = "/api/tenantbasictask/" + id + "/";
         jQuery.ajax({
             url: url,
             headers: {
@@ -82,8 +82,8 @@
         });
     }
 
-    function tenant_task_log_event(id, text, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/log_event/?format=json";
+    function tenant_basic_task_log_event(id, text, success_callback, error_callback) {
+        var url = "/api/tenantbasictask/" + id + "/log_event/?format=json";
         jQuery.ajax({
             url: url,
             data: JSON.stringify({
@@ -110,8 +110,8 @@
         });
     }
 
-    function tenant_task_post_comment(id, text, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/post_comment/?format=json";
+    function tenant_basic_task_post_comment(id, text, success_callback, error_callback) {
+        var url = "/api/tenantbasictask/" + id + "/post_comment/?format=json";
         jQuery.ajax({
             url: url,
             data: JSON.stringify({
@@ -138,8 +138,8 @@
         });
     }
 
-    function tenant_task_complete_task(id, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/complete_task/?format=json";
+    function tenant_basic_task_complete_task(id, success_callback, error_callback) {
+        var url = "/api/tenantbasictask/" + id + "/complete_task/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -162,8 +162,8 @@
         });
     }
 
-    function tenant_task_incomplete_task(id, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/incomplete_task/?format=json";
+    function tenant_basic_task_incomplete_task(id, success_callback, error_callback) {
+        var url = "/api/tenantbasictask/" + id + "/incomplete_task/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
