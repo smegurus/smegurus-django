@@ -62,6 +62,7 @@ UNASSIGNED_TASK_STATUS = 1
 ASSIGNED_TASK_STATUS = 2
 INCOMPLETE_TASK_STATUS = 3
 COMPLETED_TASK_STATUS = 4
+COMPLETED_TASK_AND_VERIFIED_STATUS = 5
 
 
 # Variables control the level of detail email notification the User will
@@ -76,4 +77,5 @@ TASK_STATUS_OPTIONS = (
     (ASSIGNED_TASK_STATUS, _('Assigned')),
     (INCOMPLETE_TASK_STATUS, _('Incomplete')),
     (COMPLETED_TASK_STATUS, _('Complete')),
+    (COMPLETED_TASK_AND_VERIFIED_STATUS, _('Complete and verified')),
 )

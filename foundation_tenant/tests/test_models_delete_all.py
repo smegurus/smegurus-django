@@ -39,9 +39,9 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.task_basic import BasicTask
-from foundation_tenant.models.task_upload import UploadTask
-from foundation_tenant.models.task_learning import LearningTask
+from foundation_tenant.models.task_basic import TaskBasic
+from foundation_tenant.models.task_upload import TaskUpload
+from foundation_tenant.models.task_learning import TaskLearning
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
@@ -616,10 +616,10 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_basic_task_delete_all(self):
         # Setup our unit test.
-        count = BasicTask.objects.all().count()
+        count = TaskBasic.objects.all().count()
         self.assertEqual(count, 0)
-        BasicTask.objects.bulk_create([
-            BasicTask(
+        TaskBasic.objects.bulk_create([
+            TaskBasic(
                 id = 1111,
                 assigned_by=TenantMe.objects.create(
                     id = 1111,
@@ -627,7 +627,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Ice Age"
             ),
-            BasicTask(
+            TaskBasic(
                 id = 2222,
                 assigned_by = TenantMe.objects.create(
                     id = 1112,
@@ -635,7 +635,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Global Cooling"
             ),
-            BasicTask(
+            TaskBasic(
                 id = 3333,
                 assigned_by = TenantMe.objects.create(
                     id = 1113,
@@ -643,7 +643,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Solar Hibernation"
             ),
-            BasicTask(
+            TaskBasic(
                 id = 4444,
                 assigned_by = TenantMe.objects.create(
                     id = 1114,
@@ -651,7 +651,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Mini-Ice Age"
             ),
-            BasicTask(
+            TaskBasic(
                 id = 5555,
                 assigned_by = TenantMe.objects.create(
                     id = 1115,
@@ -660,12 +660,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 description="Solar Reflective Particles"
             ),
         ])
-        count = BasicTask.objects.all().count()
+        count = TaskBasic.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        BasicTask.objects.delete_all()
-        count = BasicTask.objects.all().count()
+        TaskBasic.objects.delete_all()
+        count = TaskBasic.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup
@@ -897,12 +897,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             item.delete()
 
     @transaction.atomic
-    def test_uploadtask_delete_all(self):
+    def test_TaskUpload_delete_all(self):
         # Setup our unit test.
-        count = UploadTask.objects.all().count()
+        count = TaskUpload.objects.all().count()
         self.assertEqual(count, 0)
-        UploadTask.objects.bulk_create([
-            UploadTask(
+        TaskUpload.objects.bulk_create([
+            TaskUpload(
                 id = 1111,
                 assigned_by=TenantMe.objects.create(
                     id = 1111,
@@ -910,7 +910,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Ice Age"
             ),
-            UploadTask(
+            TaskUpload(
                 id = 2222,
                 assigned_by = TenantMe.objects.create(
                     id = 1112,
@@ -918,7 +918,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Global Cooling"
             ),
-            UploadTask(
+            TaskUpload(
                 id = 3333,
                 assigned_by = TenantMe.objects.create(
                     id = 1113,
@@ -926,7 +926,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Solar Hibernation"
             ),
-            UploadTask(
+            TaskUpload(
                 id = 4444,
                 assigned_by = TenantMe.objects.create(
                     id = 1114,
@@ -934,7 +934,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Mini-Ice Age"
             ),
-            UploadTask(
+            TaskUpload(
                 id = 5555,
                 assigned_by = TenantMe.objects.create(
                     id = 1115,
@@ -943,24 +943,24 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 description="Solar Reflective Particles"
             ),
         ])
-        count = UploadTask.objects.all().count()
+        count = TaskUpload.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        UploadTask.objects.delete_all()
-        count = UploadTask.objects.all().count()
+        TaskUpload.objects.delete_all()
+        count = TaskUpload.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup
         TenantMe.objects.delete_all()
 
     @transaction.atomic
-    def test_learningtask_delete_all(self):
+    def test_TaskLearning_delete_all(self):
         # Setup our unit test.
-        count = LearningTask.objects.all().count()
+        count = TaskLearning.objects.all().count()
         self.assertEqual(count, 0)
-        LearningTask.objects.bulk_create([
-            LearningTask(
+        TaskLearning.objects.bulk_create([
+            TaskLearning(
                 id = 1111,
                 assigned_by=TenantMe.objects.create(
                     id = 1111,
@@ -968,7 +968,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Ice Age"
             ),
-            LearningTask(
+            TaskLearning(
                 id = 2222,
                 assigned_by = TenantMe.objects.create(
                     id = 1112,
@@ -976,7 +976,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Global Cooling"
             ),
-            LearningTask(
+            TaskLearning(
                 id = 3333,
                 assigned_by = TenantMe.objects.create(
                     id = 1113,
@@ -984,7 +984,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Solar Hibernation"
             ),
-            LearningTask(
+            TaskLearning(
                 id = 4444,
                 assigned_by = TenantMe.objects.create(
                     id = 1114,
@@ -992,7 +992,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ),
                 description="Mini-Ice Age"
             ),
-            LearningTask(
+            TaskLearning(
                 id = 5555,
                 assigned_by = TenantMe.objects.create(
                     id = 1115,
@@ -1001,12 +1001,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 description="Solar Reflective Particles"
             ),
         ])
-        count = LearningTask.objects.all().count()
+        count = TaskLearning.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        LearningTask.objects.delete_all()
-        count = LearningTask.objects.all().count()
+        TaskLearning.objects.delete_all()
+        count = TaskLearning.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup

@@ -15,9 +15,9 @@ from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
-from api.serializers.foundation_tenant import BasicTaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
+from api.serializers.foundation_tenant import TaskBasicSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.task_basic import TaskBasic
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus.settings import env_var
@@ -73,22 +73,22 @@ class SendEmailViewMixin(object):
         msg.send()
 
 
-class BasicTaskFilter(django_filters.FilterSet):
+class TaskBasicFilter(django_filters.FilterSet):
     class Meta:
-        model = BasicTask
+        model = TaskBasic
         fields = ['created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
                   'start', 'due', 'comment_posts',]
 
 
-class BasicTaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
-    queryset = BasicTask.objects.all()
-    serializer_class = BasicTaskSerializer
+class TaskBasicViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
+    queryset = TaskBasic.objects.all()
+    serializer_class = TaskBasicSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
-    filter_class = BasicTaskFilter
+    filter_class = TaskBasicFilter
 
     def perform_create(self, serializer):
         """Override the creation function to include creation of associated models."""

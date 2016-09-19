@@ -15,9 +15,9 @@ from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
-from api.serializers.foundation_tenant import LearningTaskSerializer
+from api.serializers.foundation_tenant import TaskLearningSerializer
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.task_learning import LearningTask
+from foundation_tenant.models.task_learning import TaskLearning
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -71,21 +71,21 @@ class SendEmailViewMixin(object):
 #         msg.send()
 
 
-class LearningTaskFilter(django_filters.FilterSet):
+class TaskLearningFilter(django_filters.FilterSet):
     class Meta:
-        model = LearningTask
+        model = TaskLearning
         fields = ['id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'assigned_by',
                   'assignee', 'status', 'start', 'due',]
 
 
-class LearningTaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
-    queryset = LearningTask.objects.all()
-    serializer_class = LearningTaskSerializer
+class TaskLearningViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
+    queryset = TaskLearning.objects.all()
+    serializer_class = TaskLearningSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
-    filter_class = LearningTaskFilter
+    filter_class = TaskLearningFilter
 
     def perform_create(self, serializer):
         """Override the creation function to include creation of associated models."""

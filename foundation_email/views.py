@@ -10,7 +10,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.note import Note
-from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.task_basic import TaskBasic
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus.settings import env_var

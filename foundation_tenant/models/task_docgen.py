@@ -9,25 +9,25 @@ from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus import constants
 
 
-class TaskBasicManager(models.Manager):
+class TaskDocGenManager(models.Manager):
     def delete_all(self):
-        items = TaskBasic.objects.all()
+        items = TaskDocGen.objects.all()
         for item in items.all():
             item.delete()
 
 
-class TaskBasic(AbstractTask):
+class TaskDocGen(AbstractTask):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_task_basics'
-        verbose_name = _('Basic Task')
-        verbose_name_plural = _('Basic Tasks')
+        db_table = 'biz_task_doc_gens'
+        verbose_name = _('Document Generation Task')
+        verbose_name_plural = _('Document Generation Tasks')
 
-    objects = TaskBasicManager()
+    objects = TaskDocGenManager()
 
     def __str__(self):
         return str(self.name)
 
 #TODO: IMPLEMENT
     # def get_absolute_url(self):
-    #     return reverse('tenant_TaskBasic_details', args=[self.id])
+    #     return reverse('tenant_TaskDocGen_details', args=[self.id])

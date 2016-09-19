@@ -39,9 +39,9 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.task_basic import BasicTask
-from foundation_tenant.models.task_upload import UploadTask
-from foundation_tenant.models.task_learning import LearningTask
+from foundation_tenant.models.task_basic import TaskBasic
+from foundation_tenant.models.task_upload import TaskUpload
+from foundation_tenant.models.task_learning import TaskLearning
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
@@ -285,7 +285,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             owner=User.objects.get(username='1'),
             name='Ice Age',
         )
-        obj = BasicTask.objects.create(
+        obj = TaskBasic.objects.create(
             id=1,
             assigned_by=me,
             description="Ice Age"
@@ -376,13 +376,13 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         option.delete()
 
     @transaction.atomic
-    def test_uploadtask_to_string(self):
+    def test_TaskUpload_to_string(self):
         me = TenantMe.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
         )
-        task = UploadTask.objects.create(
+        task = TaskUpload.objects.create(
             id=1,
             assigned_by=me,
             description="Ice Age"
@@ -392,13 +392,13 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         me.delete()
 
     @transaction.atomic
-    def test_learningtask_to_string(self):
+    def test_TaskLearning_to_string(self):
         me = TenantMe.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
         )
-        task = LearningTask.objects.create(
+        task = TaskLearning.objects.create(
             id=1,
             assigned_by=me,
             description="Ice Age"

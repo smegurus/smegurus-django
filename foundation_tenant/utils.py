@@ -9,7 +9,7 @@ from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.note import Note
-from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.task_basic import TaskBasic
 
 
 def my_last_modified_func(request):

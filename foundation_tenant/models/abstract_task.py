@@ -68,6 +68,11 @@ class AbstractTask(AbstractThing):
         blank=True,
         related_name='task_log_events_%(app_label)s_%(class)s_related',
     )
+    has_review_requirement = models.BooleanField(
+        _("Has Review Requirement"),
+        help_text=_('Indicates whether this Task needs to be reviewed by Employees.'),
+        default=False
+    )
 
     def __str__(self):
         return str(self.name)

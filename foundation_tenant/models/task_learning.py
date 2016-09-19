@@ -8,21 +8,21 @@ from foundation_tenant.models.abstract_task import AbstractTask
 from smegurus import constants
 
 
-class LearningTaskManager(models.Manager):
+class TaskLearningManager(models.Manager):
     def delete_all(self):
-        items = LearningTask.objects.all()
+        items = TaskLearning.objects.all()
         for item in items.all():
             item.delete()
 
 
-class LearningTask(AbstractTask):
+class TaskLearning(AbstractTask):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_learning_tasks'
+        db_table = 'biz_task_learnings'
         verbose_name = 'Learning Task'
         verbose_name_plural = 'Learning Tasks'
 
-    objects = LearningTaskManager()
+    objects = TaskLearningManager()
 
     #TODO: IMPLEMENT
 
@@ -30,4 +30,4 @@ class LearningTask(AbstractTask):
         return str(self.name)
 
     # def get_absolute_url(self):
-    #     return reverse('tenant_LearningTask_details', args=[self.id])
+    #     return reverse('tenant_TaskLearning_details', args=[self.id])

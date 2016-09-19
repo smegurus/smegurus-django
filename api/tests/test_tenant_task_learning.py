@@ -13,7 +13,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.models.task_learning import LearningTask
+from foundation_tenant.models.task_learning import TaskLearning
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
@@ -25,7 +25,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class APITaskLearningWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -59,7 +59,7 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APILearningTaskWithTenantSchemaTestCase, self).setUp()
+        super(APITaskLearningWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -79,24 +79,24 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        LearningTask.objects.delete_all()
+        TaskLearning.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        LearningTask.objects.delete_all()
+        TaskLearning.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APILearningTaskWithTenantSchemaTestCase, self).tearDown()
+        # super(APITaskLearningWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list(self):
-        response = self.unauthorized_client.get('/api/tenantlearningtask/')
+        response = self.unauthorized_client.get('/api/tenantTaskLearning/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_list_with_authentication(self):
-        response = self.authorized_client.get('/api/tenantlearningtask/')
+        response = self.authorized_client.get('/api/tenantTaskLearning/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
@@ -106,7 +106,7 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.unauthorized_client.post('/api/tenantlearningtask/', data, format="json")
+        response = self.unauthorized_client.post('/api/tenantTaskLearning/', data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
@@ -116,13 +116,13 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id
         }
-        response = self.authorized_client.post('/api/tenantlearningtask/', data, format="json")
+        response = self.authorized_client.post('/api/tenantTaskLearning/', data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     @transaction.atomic
     def test_put(self):
         # Create a new object with our specific test data.
-        LearningTask.objects.create(
+        TaskLearning.objects.create(
             id=1,
             name="Unit Test",
             description="Used for unit testing purposes."
@@ -136,7 +136,7 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'owner': self.user.id
         }
         response = self.unauthorized_client.put(
-            '/api/tenantlearningtask/1/',
+            '/api/tenantTaskLearning/1/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -145,7 +145,7 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_authorization(self):
         # Create a new object with our specific test data.
-        LearningTask.objects.create(
+        TaskLearning.objects.create(
             id=1,
             name="Unit Test",
             description="Used for unit testing purposes.",
@@ -160,7 +160,7 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'owner': self.user.id
         }
         response = self.authorized_client.put(
-            '/api/tenantlearningtask/1/',
+            '/api/tenantTaskLearning/1/',
             json.dumps(data),
             content_type='application/json'
         )
@@ -168,16 +168,16 @@ class APILearningTaskWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete(self):
-        response = self.unauthorized_client.delete('/api/tenantlearningtask/1/')
+        response = self.unauthorized_client.delete('/api/tenantTaskLearning/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
     def test_delete_with_authentication(self):
-        LearningTask.objects.create(
+        TaskLearning.objects.create(
             id=1,
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner_id=self.user.id
         )
-        response = self.authorized_client.delete('/api/tenantlearningtask/1/')
+        response = self.authorized_client.delete('/api/tenantTaskLearning/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

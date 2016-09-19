@@ -39,12 +39,12 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.task_basic import TaskBasic
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
-from foundation_tenant.models.task_upload import UploadTask
+from foundation_tenant.models.task_upload import TaskUpload
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

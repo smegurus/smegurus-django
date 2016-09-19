@@ -2,15 +2,15 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
-from foundation_tenant.models.task_upload import UploadTask
-from foundation_tenant.models.task_learning import LearningTask
+from foundation_tenant.models.task_upload import TaskUpload
+from foundation_tenant.models.task_learning import TaskLearning
 
 
 @login_required(login_url='/en/login')
 def reception_tasks_master_page(request):
     unified_tasks = []
-    upload_tasks = UploadTask.objects.filter(assignee=request.tenant_me)
-    learning_tasks = LearningTask.objects.filter(assignee=request.tenant_me)
+    upload_tasks = TaskUpload.objects.filter(assignee=request.tenant_me)
+    learning_tasks = TaskLearning.objects.filter(assignee=request.tenant_me)
     for i in upload_tasks.all():
         unified_tasks.append(i)
     for i in learning_tasks.all():

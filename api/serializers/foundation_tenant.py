@@ -36,10 +36,10 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.task_basic import TaskBasic
 from foundation_tenant.models.visitor import TenantVisitor
-from foundation_tenant.models.task_upload import UploadTask
-from foundation_tenant.models.task_learning import LearningTask
+from foundation_tenant.models.task_upload import TaskUpload
+from foundation_tenant.models.task_learning import TaskLearning
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -241,11 +241,11 @@ class NoteSerializer(serializers.ModelSerializer):
                   'description', 'image', 'image_url', 'me',)
 
 
-class BasicTaskSerializer(serializers.ModelSerializer):
+class TaskBasicSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
-        model = BasicTask
+        model = TaskBasic
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
@@ -283,21 +283,21 @@ class NAICSOptionSerializer(serializers.ModelSerializer):
         fields = ('id', 'seq_num', 'name', 'parent', 'year')
 
 
-class UploadTaskSerializer(serializers.ModelSerializer):
+class TaskUploadSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
-        model = UploadTask
+        model = TaskUpload
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'assigned_by',
                   'assignee', 'status', 'start', 'due', 'download', 'upload',)
 
 
-class LearningTaskSerializer(serializers.ModelSerializer):
+class TaskLearningSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
-        model = LearningTask
+        model = TaskLearning
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'image_url', 'assigned_by',
                   'assignee', 'status', 'start', 'due',)

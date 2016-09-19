@@ -9,21 +9,21 @@ from foundation_tenant.models.fileupload import TenantFileUpload
 from smegurus import constants
 
 
-class UploadTaskManager(models.Manager):
+class TaskUploadManager(models.Manager):
     def delete_all(self):
-        items = UploadTask.objects.all()
+        items = TaskUpload.objects.all()
         for item in items.all():
             item.delete()
 
 
-class UploadTask(AbstractTask):
+class TaskUpload(AbstractTask):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_upload_tasks'
+        db_table = 'biz_task_uploads'
         verbose_name = 'Upload Task'
         verbose_name_plural = 'Upload Tasks'
 
-    objects = UploadTaskManager()
+    objects = TaskUploadManager()
     download = models.ForeignKey(
         TenantFileUpload,
         help_text=_('The file the User must download.'),
@@ -45,4 +45,4 @@ class UploadTask(AbstractTask):
         return str(self.name)
 
     # def get_absolute_url(self):
-    #     return reverse('tenant_UploadTask_details', args=[self.id])
+    #     return reverse('tenant_TaskUpload_details', args=[self.id])

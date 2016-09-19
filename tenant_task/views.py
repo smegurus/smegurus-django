@@ -17,7 +17,7 @@ from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
-from foundation_tenant.models.task_basic import BasicTask
+from foundation_tenant.models.task_basic import TaskBasic
 
 
 @login_required(login_url='/en/login')
@@ -26,7 +26,7 @@ from foundation_tenant.models.task_basic import BasicTask
 @tenant_profile_required
 @condition(last_modified_func=my_last_modified_func)
 def task_master_page(request):
-    pending_tasks = BasicTask.objects.filter(
+    pending_tasks = TaskBasic.objects.filter(
         Q(
             participants=request.tenant_me,
             status=constants.UNASSIGNED_TASK_STATUS,
@@ -36,12 +36,12 @@ def task_master_page(request):
         )
     )
 
-    incomplete_tasks = BasicTask.objects.filter(
+    incomplete_tasks = TaskBasic.objects.filter(
         participants=request.tenant_me,
         status=constants.INCOMPLETE_TASK_STATUS,
     )
 
-    completed_tasks = BasicTask.objects.filter(
+    completed_tasks = TaskBasic.objects.filter(
         participants=request.tenant_me,
         status=constants.COMPLETED_TASK_STATUS,
     )
