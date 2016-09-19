@@ -41,4 +41,5 @@ from foundation_tenant.models.task_docgen import TaskDocGen
 from foundation_tenant.models.task_webform import TaskWebForm
 from foundation_tenant.models.task_upload import TaskUpload
 from foundation_tenant.models.task_learning import TaskLearning
+from foundation_tenant.models.task_resource import TaskResource
 from foundation_tenant.models.visitor import TenantVisitor
