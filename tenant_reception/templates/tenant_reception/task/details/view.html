@@ -71,6 +71,19 @@
             <!-- end Main panel-->
 
 
+            <!-- CALENDAR PANEL-->
+            {% if task.type_of == constants.TASK_CALENDAR_TYPE %}
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <!-- START calendar-->
+                  <div id="calendar"></div>
+                  <!-- END calendar-->
+               </div>
+            </div>
+            {% endif %}
+            <!-- end CALENDAR PANEL-->
+
+
             <!-- TASK LOG -->
             <div class="panel b">
                 <div class="panel-heading">

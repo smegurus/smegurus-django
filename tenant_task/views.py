@@ -51,13 +51,7 @@ def task_master_page(request):
         'pending_tasks': pending_tasks,
         'incomplete_tasks': incomplete_tasks,
         'completed_tasks': completed_tasks,
-        'TASK_BASIC_TYPE': constants.TASK_BASIC_TYPE,
-        'TASK_CALENDAR_TYPE': constants.TASK_CALENDAR_TYPE,
-        'TASK_DOCGEN_TYPE': constants.TASK_DOCGEN_TYPE,
-        'TASK_LEARNING_TYPE': constants.TASK_LEARNING_TYPE,
-        'TASK_WEBFORM_TYPE': constants.TASK_WEBFORM_TYPE,
-        'TASK_UPLOAD_TYPE': constants.TASK_UPLOAD_TYPE,
-        'TASK_RESOURCE_TYPE': constants.TASK_RESOURCE_TYPE
+        'constants': constants,
     })
 
 
@@ -72,6 +66,7 @@ def task_details_page(request, id):
         # Required.
         'page': 'tasks',
         'task': task,
+        'constants': constants,
         # Tags.
         'tags': Tag.objects.all(),
         # Members.

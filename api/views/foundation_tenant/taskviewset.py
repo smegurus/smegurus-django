@@ -79,7 +79,8 @@ class TaskFilter(django_filters.FilterSet):
         fields = ['created', 'last_modified', 'owner', 'name',
                   'description', 'image', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
-                  'start', 'due', 'comment_posts',]
+                  'start', 'due', 'comment_posts', 'type_of',
+                  'has_review_requirement', 'download', 'upload']
 
 
 class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):

@@ -36,6 +36,11 @@
         $( "#id_comment_btn" ).click(function(e) {  // CLICK POST COMMENT BUTTON HANDLER
             post_comment_handler();
         }); // end CLICK POST COMMENT BUTTON HANDLER
+
+        // page is now ready, initialize the calendar...
+        $('#calendar').fullCalendar({
+            // put your options and callbacks here
+        })
     }); // end Document Start
 
     function ajax_complete_task() {
