@@ -66,7 +66,6 @@
 
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
-            //TODO: IMPLEMENT POPULATING OUR CALENDAREVENT OBJECT.
             dayClick: function(date, jsEvent, view) {
                 if (is_calendar_locked == false) {
                     $(this).css('background-color', 'red'); // Highlight the day.
@@ -86,8 +85,25 @@
                         }
                     ); // end SET CALENDAR EVENT.
                 } // end IS CALENDAR LOCKED
-            } // end DAYCLICK
+            }, // end DAYCLICK
+            eventSources: [
+            {
+                // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
+                events: [
+                    {% if task.calendar_event %}
+                    {
+                        uid: {{ task.calendar_event.id }},
+                        title: '{{ task.calender_event.name }}',
+                        start: new Date({{ task.calendar_event.start.year }}, {{ task.calendar_event.start.month }}-1, {{ task.calendar_event.start.day }}),
+                        backgroundColor: '{{ task.calender_event.colour }}',
+                        borderColor: '{{ task.calender_event.colour }}'
+                    }
+                    {% endif %}
+                ]
+            }]
         }) // end FULLCALENDAR
+
+        console.log("{{ task.calendar_event.id }}");
 
         // Required code to initialize the datepicker.
         $( "#id_task_event_start" ).datepicker({

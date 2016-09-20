@@ -39,7 +39,27 @@
 
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
-            // put your options and callbacks here
+            displayEventTime: false, // hide start time.
+            eventSources: [
+            {
+                // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
+                events: [
+                    {% if task.calendar_event %}
+                    {
+                        uid: {{ task.calendar_event.id }},
+                        title: '{{ task.calendar_event.name }}',
+                        start: new Date({{ task.calendar_event.start.year }}, {{ task.calendar_event.start.month }}-1, {{ task.calendar_event.start.day }}),
+                    }
+                    {% endif %}
+                ]
+            }],
+            eventRender: function(event, element)
+            {
+                element.css('font-size','14px');
+                element.css('text-align: center');
+                // element.css('background-color', 'red'); // Highlight colour of the box to be red.
+            }
+
         })
     }); // end Document Start
 

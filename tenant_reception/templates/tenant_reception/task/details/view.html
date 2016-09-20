@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_reception/task/details/js.html' %}
+    {% include 'tenant_reception/task/details/js.html' with task=task %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE CONTENT -->
