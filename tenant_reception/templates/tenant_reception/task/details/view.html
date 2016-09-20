@@ -1,0 +1,240 @@
+{% extends 'tenant_reception/base.html' %}
+{% load staticfiles i18n compress thumbnail %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_reception/task/details/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception_tasks_master' %}">{% trans 'Tasks' %}</a>
+        </li>
+        <li class="active">{% trans 'Task #' %}{{ task.id }}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="row">
+        <!-- BODY CONTENT -->
+        <div class="col-lg-8">
+            <!-- Main panel-->
+            <div class="panel b">
+                <div class="panel-heading">
+                    <!-- STATUS -->
+                    <div class="pull-right mt">
+                        {% if task.status == constants.UNASSIGNED_TASK_STATUS %}
+                            <div class="inline wd-xxs label label-success">{% trans 'open' %}</div>
+                        {% elif task.status == constants.ASSIGNED_TASK_STATUS %}
+                            <div class="inline wd-xxs label label-success">{% trans 'open' %}</div>
+                        {% elif task.status == constants.INCOMPLETE_TASK_STATUS %}
+                            <div class="inline wd-xxs label label-warning">{% trans 'pending' %}</div>
+                        {% elif task.status == constants.COMPLETED_TASK_STATUS %}
+                            <div class="inline wd-xxs label label-danger">{% trans 'closed' %}</div>
+                        {% elif task.status == constants.COMPLETED_TASK_AND_VERIFIED_STATUS %}
+                            <div class="inline wd-xxs label label-danger">{% trans 'closed' %}</div>
+                        {% endif %}
+                    </div>
+                    <!-- end STATUS -->
+
+                    <!-- TITLE -->
+                    <h4 class="mv">
+                        <span id="id_task_title_span">
+                            {% if task.name %}
+                                {{ task.name }}
+                            {% else %}
+                                {% trans 'Task #' %}{{ task.id }}
+                            {% endif %}
+                        </span>
+                    </h4>
+                    <!-- end TITLE -->
+
+                    <!-- EDITOR CONTENT -->
+                    <div id="editor" contenteditable="false" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">
+                        {% if task.description %}
+                            {{ task.description|escape|safe }}
+                        {% endif %}
+                    </div>
+                    <!-- end EDITOR CONTENT -->
+
+                </div>
+
+            </div>
+            <!-- end Main panel-->
+
+
+            <!-- TASK LOG -->
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="panel-title">Task History</div>
+                </div>
+                <!-- START list group-->
+                <div data-height="180" data-scrollable="" class="list-group">
+
+                    {% for log_event in task.log_events.all %}
+                    <a href="#" class="list-group-item">
+                        <div class="media-box">
+                            <p class="mb-sm">
+                                <small class="pull-right">{{ log_event.created }}</small>
+                                <small>{{ log_event.text }}</small>
+                            </p>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <!-- end TASK LOG -->
+
+            <!-- Team messages-->
+            <div class="panel b">
+                <div class="panel-heading">
+                    <div class="pull-right label label-info">{{ task.comment_posts.count }}</div>
+                    <div class="panel-title">{% trans 'Messages' %}</div>
+                </div>
+                <!-- START list group-->
+                <div data-height="180" data-scrollable="" class="list-group">
+                    <!-- START list group item-->
+                    {% for comment_post in task.comment_posts.all %}
+                    <a href="#messages" class="list-group-item">
+                        <div class="media-box">
+                            <div class="pull-left">
+                                {% thumbnail comment_post.me.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                    <img src="{{ im.url }}" alt="{% trans 'Image' %}" width="{{ im.width }}" height="{{ im.height }}" class="media-box-object img-circle thumb32" />
+                                {% empty %}
+                                    <img src="{% static 'app/img/dummy64x64.png' %}" alt="{% trans 'Image' %}" width="{{ im.width }}" height="{{ im.height }}" class="media-box-object img-circle thumb32" />
+                                {% endthumbnail %}
+                            </div>
+                            <div class="media-box-body clearfix">
+                                <small class="pull-right">{{ comment_post.created }}</small>
+                                <strong class="media-box-heading text-primary"><span class="text-left"></span>{{ comment_post.me.name|escape|safe }}</strong>
+                                <p class="mb-sm">
+                                    <small>{{ comment_post.description|escape|safe }}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    <!-- END list group item-->
+
+                </div>
+                <!-- END list group-->
+                <!-- START panel footer-->
+                <div class="panel-footer clearfix">
+                    <div class="input-group">
+                        <input id="id_comment" type="text" placeholder="{% trans 'Type message ..' %}" class="form-control input-sm" />
+                        <span class="input-group-btn">
+                        <button id="id_comment_btn" onclick="" type="button" class="btn btn-default btn-sm">
+                            <i class="fa fa-mail-reply"></i>
+                        </button>
+                        </span>
+                    </div>
+                </div>
+                <!-- END panel-footer-->
+            </div>
+            <!-- End Team messages-->
+        </div>
+        <!-- end BODY CONTENT -->
+
+        <!-- SIDEBAR CONTENT -->
+        <div class="col-lg-4">
+            <!-- Aside panel-->
+            <div class="panel b">
+                <!-- BODY OF TASK SIDEBAR -->
+                <table class="table bb">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Start date' %}</strong>
+                            </td>
+                            <td>
+                                {% if task.start %}{{ task.start|date:"Y-m-d" }}{% else %}-{% endif %}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Due date' %}</strong>
+                            </td>
+                            <td>
+                                {% if task.due %}{{ task.due|date:"Y-m-d" }}{% else %}-{% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Assigned by' %}</strong>
+                            </td>
+                            <td>{{ task.assigned_by.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Assignee' %}</strong>
+                            </td>
+                            <td>
+                                {{ task.assignee.name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Members' %}</strong>
+                            </td>
+                            <td>
+                                {% for member in task.participants.all %}
+                                    <p>{{ member.name }}</p>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>{% trans 'Tags' %}</strong>
+                            </td>
+                            <td>
+                                {% for tag in task.tags.all %}
+                                    <div class="badge p-sm bg-info">{{ tag.name }}</div>
+                                {% empty %}
+                                -
+                                {% endfor %}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <!-- end BODY OF TASK SIDEBAR -->
+
+
+                <div class="panel-body bb">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <button id="id_complete_btn" onclick="ajax_complete_task();" type="button" class="btn btn-success btn-oval">
+                                <em class="fa fa-check"></em>
+                                <span>{% trans 'Complete' %}</span>
+                            </button>
+                        </div>
+                        <div class="pull-right">
+                            <button id="id_incomplete_btn" onclick="ajax_incomplete_task();" type="button" class="btn btn-danger btn-oval">
+                                <em class="fa fa-close"></em>
+                                <span>{% trans 'Incomplete' %}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-right">
+                    <a href="" class="btn btn-link">{% trans 'Open help ticket' %}</a>
+                </p>
+            </div>
+        </div>
+        <!-- end SIDEBAR CONTENT -->
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}

@@ -26,7 +26,7 @@ def reception_tasks_master_page(request):
 @login_required(login_url='/en/login')
 def task_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
-    template_path = 'tenant_reception/task/details/generic/view.html'
+    template_path = 'tenant_reception/task/details/view.html'
     return render(request, template_path, {
         # Required.
         'page': 'reception-tasks-details',
