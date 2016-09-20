@@ -19,13 +19,28 @@
         <!-- WHIRL (spinners)-->
         <link rel="stylesheet" href="{% static 'vendor/whirl/dist/whirl.css' %}">
         <!-- =============== PAGE VENDOR STYLES ===============-->
+        <!-- DATATABLES-->
+        <link rel="stylesheet" href="{% static 'vendor/datatables-colvis/css/dataTables.colVis.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/datatables/media/css/dataTables.bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/dataTables.fontAwesome/index.css' %}">
+        <!-- FULLCALENDAR-->
+        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.print.css' %}" media='print' />
+        <!-- CHOSEN-->
+        <link rel="stylesheet" href="{% static 'vendor/chosen_v1.2.0/chosen.min.css' %}">
         <!-- DATETIMEPICKER-->
         <link rel="stylesheet" href="{% static 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' %}">
         <!-- =============== BOOTSTRAP STYLES ===============-->
         <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
+        <!-- SELECT2-->
+        <link rel="stylesheet" href="{% static 'vendor/select2/dist/css/select2.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap-theme/dist/select2-bootstrap.css' %}">
         <!-- =============== APP STYLES ===============-->
         <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
         <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
+        <!-- =============== CUSTOM STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}">
+        <!-- https://github.com/xoxco/jQuery-Tags-Input -->
         <!-- =============== CUSTOM STYLES ===============-->
         <link rel="stylesheet" href="{% static 'custom/jquery-tag/jquery.tagsinput.min.css' %}">
         {% endcompress %}
@@ -166,7 +181,7 @@
             </footer>
         </div>
         {% compress js %}
-        <!-- =============== VENDOR SCRIPTS ===============-->
+        <!-- =============== PAGE VENDOR SCRIPTS ===============-->
         <!-- JQUERY UI-->
         <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
@@ -180,16 +195,24 @@
         <script src="{% static 'vendor/jquery.inputmask/dist/jquery.inputmask.bundle.js' %}"></script>
         <!-- CHOSEN-->
         <script src="{% static 'vendor/chosen_v1.2.0/chosen.jquery.min.js' %}"></script>
-        <!-- MODERNIZR-->
-        <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
-        <!-- BOOTSTRAP-->
-        <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
-        <!-- STORAGE API-->
-        <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
-        <!-- PARSLEY-->
-        <script src="{% static 'vendor/parsleyjs/dist/parsley.min.js' %}"></script>
-        <!-- =============== APP SCRIPTS ===============-->
-        <script src="{% static 'app/js/app.js' %}"></script>
+        <!-- MOMENT JS-->
+        <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
+        <!-- FULLCALENDAR-->
+        <script src="{% static 'vendor/fullcalendar/fullcalendar.min.js' %}"></script>
+        <script src="{% static 'vendor/fullcalendar/gcal.js' %}"></script>
+        <!-- SELECT2-->
+        <script src="{% static 'vendor/select2/dist/js/select2.js' %}"></script>
+        <!-- DATATABLES-->
+        <script src="{% static 'vendor/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'vendor/datatables-colvis/js/dataTables.colVis.js' %}"></script>
+        <script src="{% static 'vendor/datatables/media/js/dataTables.bootstrap.js' %}"></script>
+        <!-- SPARKLINE-->
+        <script src="{% static 'vendor/sparkline/index.js' %}"></script>
+        <!-- WYSIWYG -->
+        <script src="{% static 'vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap-wysiwyg/external/jquery.hotkeys.js' %}"></script>
+        <!-- =============== EXTRA SCRIPTS ===============-->
+        <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
         <!-- =============== API SCRIPTS ===============-->
         {% include "foundation_public/common_js.html" %}
         {% include "api/js/auth_activation.html" %}
