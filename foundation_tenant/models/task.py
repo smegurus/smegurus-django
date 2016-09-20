@@ -5,6 +5,7 @@ from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from smegurus import constants
@@ -29,6 +30,7 @@ class Task(AbstractThing):
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
 
+    objects = TaskManager()
     start = models.DateTimeField(
         blank=True,
         null=True,
@@ -105,7 +107,14 @@ class Task(AbstractThing):
     #----------------------#
     # Calendar Task Fields #
     #----------------------#
-    # Nothing ...
+    calendar_event = models.ForeignKey(
+        CalendarEvent,
+        help_text=_('The calendar event of this Task.'),
+        blank=True,
+        null=True,
+        related_name="task_calendar_event_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
+    )
 
     #----------------------#
     # Doc Gen Task Fields  #

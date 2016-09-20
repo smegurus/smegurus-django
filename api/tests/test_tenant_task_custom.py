@@ -21,6 +21,7 @@ from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.calendarevent import CalendarEvent
 from smegurus import constants
 
 
@@ -91,6 +92,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()  # Must be above Tasks.
         ContactPoint.objects.delete_all()   # Must be above Tasks.
+        CalendarEvent.objects.delete_all()
         Task.objects.delete_all()
         SortedLogEventByCreated.objects.delete_all()
         SortedCommentPostByCreated.objects.delete_all()
@@ -510,3 +512,97 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
         self.assertEqual(task.status, constants.INCOMPLETE_TASK_STATUS)
+
+    @transaction.atomic
+    def test_set_calendar_event_with_anonymous_user(self):
+        me = TenantMe.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        task = Task.objects.create(
+            id=666,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+        data = {
+            'datetime': '2016-09-20 18:16:36.687365-04',
+        }
+        response = self.unauthorized_client.put(
+            '/api/tenanttask/666/set_calendar_event/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_set_calendar_event_with_owner_user(self):
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+            notify_when_task_had_an_interaction=True,
+        )
+        task = Task.objects.create(
+            id=666,
+            owner=self.user,
+            assigned_by=me,
+            assignee=me,
+            status=constants.ASSIGNED_TASK_STATUS,
+        )
+        task.participants.add(me)
+
+        #--------------------#
+        # CASE 1 OF 4: VALID #
+        #--------------------#
+        data = {
+            'datetime': '2016-09-20 18:16:36.687365-04',
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/set_calendar_event/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        #------------------------#
+        # CASE 2 OF 4: NOT VALID #
+        #------------------------#
+        data = {
+            'datetime': 'da future yo',
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/set_calendar_event/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        #-------------------------------#
+        # CASE 3 OF 4: MISSING ASSIGNEE #
+        #-------------------------------#
+        task.assignee = None
+        task.save()
+        data = {
+            'datetime': '2016-09-20 18:16:36.687365-04',
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/set_calendar_event/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        #--------------------------------#
+        # CASE 4 OF 4: VALID WITH DELETE #
+        #--------------------------------#
+        task.assignee = me
+        task.save()
+        data = {
+            'datetime': '2016-09-20 18:16:36.687365-04',
+        }
+        response = self.authorized_client.put(
+            '/api/tenanttask/666/set_calendar_event/?format=json',
+            json.dumps(data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

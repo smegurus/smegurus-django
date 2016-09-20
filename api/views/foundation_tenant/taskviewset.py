@@ -16,10 +16,12 @@ from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
+from api.serializers.misc import DateTimeSerializer
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
+from foundation_tenant.models.calendarevent import CalendarEvent
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -80,7 +82,8 @@ class TaskFilter(django_filters.FilterSet):
                   'description', 'image', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
                   'start', 'due', 'comment_posts', 'type_of',
-                  'has_review_requirement', 'download', 'upload']
+                  'has_review_requirement', 'download', 'upload',
+                  'calendar_event',]
 
 
 class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
@@ -231,6 +234,54 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # Return the success indicator.
             return response.Response(status=status.HTTP_200_OK)
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def set_calendar_event(self, request, pk=None):
+        """
+        Function will create a CalendarEvent for the inputted date and set it
+        to the Task. If a previous CalendarEvent object exists then delete that
+        object and assign it to the newly created on.
+        """
+        try:
+            task = self.get_object()  # Get Task
+
+            # Defensive Code: Prevent running function if assignee not assigned.
+            if task.assignee == None:
+                return response.Response(
+                    data='Requires assignee before being called.',
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Attempt to deserialize our inputted data.
+            serializer = DateTimeSerializer(data=request.data)
+            if serializer.is_valid():
+                # Get the 'datatime' and create our calendar event.
+                datetime = serializer.data['datetime']
+                calendar_event = CalendarEvent.objects.create(
+                    owner=task.assignee.owner,
+                    name=task.name,
+                    colour='rgb(246, 80, 77)',
+                    start=datetime,
+                    finish=datetime
+                )
+
+                # Previous existing data needs to be deleted.
+                if task.calendar_event:
+                    task.calendar_event.delete()
+
+                # Save our newly created CalendarEvent.
+                task.calendar_event = calendar_event
+                task.save()
+
+                # Return the success indicator.
+                return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
         except Exception as e:
             return response.Response(
                 data=str(e),

@@ -172,10 +172,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = Place.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        for item in Place.objects.all():
-            item.delete()
-
     @transaction.atomic
     def test_postaladdress_delete_all(self):
         # Setup our unit test.
@@ -214,11 +210,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = BusinessIdea.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = BusinessIdea.objects.all()
-        for item in items.all():
-            item.delete()
-
     @transaction.atomic
     def test_tellusyourneed_delete_all(self):
         # Setup our unit test.
@@ -238,11 +229,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         TellUsYourNeed.objects.delete_all()
         count = TellUsYourNeed.objects.all().count()
         self.assertEqual(count, 0)
-
-        # Cleanup
-        items = TellUsYourNeed.objects.all()
-        for item in items.all():
-            item.delete()
 
     @transaction.atomic
     def test_tag_delete_all(self):
@@ -264,11 +250,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = Tag.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = Tag.objects.all()
-        for item in items.all():
-            item.delete()
-
     @transaction.atomic
     def test_openinghoursspecification_delete_all(self):
         # Setup our unit test.
@@ -288,11 +269,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         OpeningHoursSpecification.objects.delete_all()
         count = OpeningHoursSpecification.objects.all().count()
         self.assertEqual(count, 0)
-
-        # Cleanup
-        items = OpeningHoursSpecification.objects.all()
-        for item in items.all():
-            item.delete()
 
     @transaction.atomic
     def test_tenant_me_delete_all(self):
@@ -314,28 +290,23 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = TenantMe.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = TenantMe.objects.all()
-        for item in items.all():
-            item.delete()
-
     @transaction.atomic
     def test_calendar_event_delete_all(self):
         # Setup our unit test.
-        count = TenantMe.objects.all().count()
+        count = CalendarEvent.objects.all().count()
         self.assertEqual(count, 0)
-        TenantMe.objects.bulk_create([
-            TenantMe(id=1, owner=User.objects.get(username='1')),
-            TenantMe(id=2, owner=User.objects.get(username='2')),
-            TenantMe(id=3, owner=User.objects.get(username='3')),
-            TenantMe(id=4, owner=User.objects.get(username='4')),
-            TenantMe(id=5, owner=User.objects.get(username='5')),
+        CalendarEvent.objects.bulk_create([
+            CalendarEvent(id=1, owner=User.objects.get(username='1')),
+            CalendarEvent(id=2, owner=User.objects.get(username='2')),
+            CalendarEvent(id=3, owner=User.objects.get(username='3')),
+            CalendarEvent(id=4, owner=User.objects.get(username='4')),
+            CalendarEvent(id=5, owner=User.objects.get(username='5')),
         ])
-        count = TenantMe.objects.all().count()
+        count = CalendarEvent.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        TenantMe.objects.delete_all()
+        CalendarEvent.objects.delete_all()
         count = TenantMe.objects.all().count()
         self.assertEqual(count, 0)
 

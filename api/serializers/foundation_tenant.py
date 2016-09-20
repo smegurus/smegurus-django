@@ -248,7 +248,7 @@ class TaskSerializer(serializers.ModelSerializer):
                   'description', 'image', 'image_url', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
                   'start', 'due', 'comment_posts', 'log_events', 'type_of',
-                  'has_review_requirement', 'download', 'upload',)
+                  'has_review_requirement', 'download', 'upload', 'calendar_event',)
 
 class SortedLogEventByCreatedSerializer(serializers.ModelSerializer):
     class Meta:

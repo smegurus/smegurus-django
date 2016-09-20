@@ -62,10 +62,32 @@
         $('#editor').wysiwyg();
         $('#editor').cleanHtml();
 
+        var is_calendar_locked = false;
+
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
-            // put your options and callbacks here
-        })
+            //TODO: IMPLEMENT POPULATING OUR CALENDAREVENT OBJECT.
+            dayClick: function(date, jsEvent, view) {
+                if (is_calendar_locked == false) {
+                    $(this).css('background-color', 'red'); // Highlight the day.
+
+                    var datetime = date.format() + 'T00:00:00.000Z'; // Get the date.
+
+                    tenant_task_set_calendar_event(
+                        {{ task.id }},
+                        datetime,
+                        function(success_response) {
+                            location.reload(true);
+                            is_calendar_locked = true;
+                        },
+                        function(failure_response) {
+                            print_error_handler(failure_response);
+                            is_calendar_locked = false;
+                        }
+                    ); // end SET CALENDAR EVENT.
+                } // end IS CALENDAR LOCKED
+            } // end DAYCLICK
+        }) // end FULLCALENDAR
 
         // Required code to initialize the datepicker.
         $( "#id_task_event_start" ).datepicker({

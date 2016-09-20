@@ -8,3 +8,7 @@ class JudgementSerializer(serializers.Serializer):
 
 class IntegerSerializer(serializers.Serializer):
     value = serializers.IntegerField()
+
+
+class DateTimeSerializer(serializers.Serializer):
+    datetime = serializers.DateTimeField()
