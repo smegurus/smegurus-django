@@ -6,6 +6,7 @@ from django.utils import translation
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.utils import my_last_modified_func
+from foundation_tenant.utils import get_pretty_formatted_date
 from smegurus import constants
 
 
@@ -48,3 +49,29 @@ class FoundationTenantUtilsWithTenantSchemaTestCase(TenantTestCase):
     @transaction.atomic
     def test_my_last_modified_func(self):
         pass  #TODO: Implement.
+
+    @transaction.atomic
+    def test_get_pretty_formatted_date(self):
+        today = timezone.now()
+
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 1 OF 3: Today
+        # - - - - - - - - - - - - - - - - - -
+        pretty_text = get_pretty_formatted_date(today)
+        self.assertEqual(pretty_text, "Today")
+
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 2 OF 3: Between 0 to 60 days
+        # - - - - - - - - - - - - - - - - - -
+        N = 45
+        dt = today - timedelta(days=N)
+        pretty_text = get_pretty_formatted_date(dt)
+        self.assertEqual(pretty_text, "45 days ago")
+
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 3 OF 3: After 60 days
+        # - - - - - - - - - - - - - - - - - -
+        N = 128
+        dt = today - timedelta(days=N)
+        pretty_text = get_pretty_formatted_date(dt)
+        self.assertTrue(len(pretty_text) > 1)

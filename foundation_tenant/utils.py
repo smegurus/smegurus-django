@@ -79,3 +79,14 @@ def my_last_modified_func(request):
 
     # Return the processed latest modified date
     return last_modified
+
+
+def get_pretty_formatted_date(created):
+    today = timezone.now()
+    dt = (today - created).days
+    if dt == 0:
+        return _("Today")
+    elif dt < 60 and dt > 0:
+        return _("%(dt)s days ago") % { 'dt' : dt }
+    else:
+        return str(created)

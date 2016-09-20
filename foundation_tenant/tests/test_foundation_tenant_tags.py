@@ -12,6 +12,7 @@ from foundation_tenant.templatetags.foundation_tenant_tags import count_unread_m
 from foundation_tenant.templatetags.foundation_tenant_tags import count_new_intakes
 from foundation_tenant.templatetags.foundation_tenant_tags import is_note_protected
 from foundation_tenant.templatetags.foundation_tenant_tags import count_pending_tasks
+from foundation_tenant.templatetags.foundation_tenant_tags import pretty_formatted_date
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
@@ -175,7 +176,6 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
         # Run our test and verify.
         self.assertFalse(is_note_protected(note))
 
-
     @transaction.atomic
     def test_count_pending_tasks(self):
         me = TenantMe.objects.create(
@@ -194,3 +194,15 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
 
         # Run our test and verify.
         self.assertEqual(count_pending_tasks(me), 1)
+
+    @transaction.atomic
+    def test_pretty_formatted_date(self):
+        today = timezone.now()
+        pretty_text = foundation_tags.pretty_formatted_date(today)
+        self.assertEqual(pretty_text, "Today")
+
+    @transaction.atomic
+    def test_pretty_formatted_rating_value(self):
+        for i in range(1, 6):
+            pretty_text = foundation_tags.pretty_formatted_rating_value(i)
+            self.assertTrue(len(pretty_text) > 1)

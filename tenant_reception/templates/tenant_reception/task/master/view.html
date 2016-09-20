@@ -1,5 +1,5 @@
 {% extends 'tenant_reception/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress foundation_tenant_tags %}
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
@@ -35,7 +35,7 @@
                                     <th class="sort-alpha">{% trans 'Status' %}</th>
                                     <th class="sort-alpha">{% trans 'Title' %}</th>
                                     <th>{% trans 'Description' %}</th>
-                                    <th>{% trans 'Created' %}</th>
+                                    <th>{% trans 'Due' %}</th>
                                     <th>{% trans 'Options' %}</th>
                                 </tr>
                             </thead>
@@ -66,7 +66,7 @@
                                             {% elif task.status == constants.ASSIGNED_TASK_STATUS %}
                                                 <div class="inline wd-xxs label label-success">{% trans 'open' %}</div>
                                             {% elif task.status == constants.INCOMPLETE_TASK_STATUS %}
-                                                <div class="inline wd-xxs label label-warning">{% trans 'pending' %}</div>
+                                                <div class="inline wd-xxs label label-warning">{% trans 'incomplete' %}</div>
                                             {% elif task.status == constants.COMPLETED_TASK_STATUS %}
                                                 <div class="inline wd-xxs label label-danger">{% trans 'closed' %}</div>
                                             {% elif task.status == constants.COMPLETED_TASK_AND_VERIFIED_STATUS %}
@@ -75,7 +75,7 @@
                                         </td>
                                         <td>{% if task.name %}{{ task.name }}{% else %}{% trans '-' %}{% endif %}</td>
                                         <td>{{ task.description|safe|escape|truncatechars:45 }}</td>
-                                        <td>{% if task.due %}{{ task.due }}{% else %}{% trans '-' %}{% endif %}</td>
+                                        <td>{% if task.due %}{{ task.due|date:"Y-m-d" }}{% else %}{% trans '-' %}{% endif %}</td>
                                         <td>
                                             <a href="{% url 'tenant_reception_tasks_details' task.id %}" class="btn btn-xs btn-info">
                                                 {% trans 'Details' %} <i class="fa fa-info-circle"></i>

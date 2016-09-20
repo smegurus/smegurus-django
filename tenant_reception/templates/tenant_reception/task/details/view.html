@@ -1,5 +1,5 @@
 {% extends 'tenant_reception/base.html' %}
-{% load staticfiles i18n compress thumbnail %}
+{% load staticfiles i18n compress thumbnail foundation_tenant_tags %}
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
@@ -36,7 +36,7 @@
                         {% elif task.status == constants.ASSIGNED_TASK_STATUS %}
                             <div class="inline wd-xxs label label-success">{% trans 'open' %}</div>
                         {% elif task.status == constants.INCOMPLETE_TASK_STATUS %}
-                            <div class="inline wd-xxs label label-warning">{% trans 'pending' %}</div>
+                            <div class="inline wd-xxs label label-warning">{% trans 'incomplete' %}</div>
                         {% elif task.status == constants.COMPLETED_TASK_STATUS %}
                             <div class="inline wd-xxs label label-danger">{% trans 'closed' %}</div>
                         {% elif task.status == constants.COMPLETED_TASK_AND_VERIFIED_STATUS %}
@@ -49,7 +49,7 @@
                     <h4 class="mv">
                         <span id="id_task_title_span">
                             {% if task.name %}
-                                {{ task.name }}
+                                {{ task.name|safe }}
                             {% else %}
                                 {% trans 'Task #' %}{{ task.id }}
                             {% endif %}
@@ -74,7 +74,7 @@
             <!-- TASK LOG -->
             <div class="panel b">
                 <div class="panel-heading">
-                    <div class="panel-title">Task History</div>
+                    <div class="panel-title">{% trans 'Task History' %}</div>
                 </div>
                 <!-- START list group-->
                 <div data-height="180" data-scrollable="" class="list-group">
@@ -84,7 +84,7 @@
                         <div class="media-box">
                             <p class="mb-sm">
                                 <small class="pull-right">{{ log_event.created }}</small>
-                                <small>{{ log_event.text }}</small>
+                                <small>{{ log_event.text|safe }}</small>
                             </p>
                         </div>
                     </a>
@@ -172,14 +172,14 @@
                             <td>
                                 <strong>{% trans 'Assigned by' %}</strong>
                             </td>
-                            <td>{{ task.assigned_by.name }}</td>
+                            <td>{{ task.assigned_by.name|safe }}</td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>{% trans 'Assignee' %}</strong>
                             </td>
                             <td>
-                                {{ task.assignee.name }}
+                                {{ task.assignee.name|safe }}
                             </td>
                         </tr>
                         <tr>
@@ -188,7 +188,7 @@
                             </td>
                             <td>
                                 {% for member in task.participants.all %}
-                                    <p>{{ member.name }}</p>
+                                    <p>{{ member.name|safe }}</p>
                                 {% endfor %}
                             </td>
                         </tr>
@@ -198,7 +198,7 @@
                             </td>
                             <td>
                                 {% for tag in task.tags.all %}
-                                    <div class="badge p-sm bg-info">{{ tag.name }}</div>
+                                    <div class="badge p-sm bg-info">{{ tag.name|safe }}</div>
                                 {% empty %}
                                 -
                                 {% endfor %}
