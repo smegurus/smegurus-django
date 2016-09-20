@@ -20,6 +20,7 @@ from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.calendarevent import CalendarEvent
 from smegurus import constants
 
 
@@ -90,6 +91,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()  # Must be above Tasks.
         ContactPoint.objects.delete_all()   # Must be above Tasks.
+        CalendarEvent.objects.delete_all()
         Task.objects.delete_all()
         SortedLogEventByCreated.objects.delete_all()
         SortedCommentPostByCreated.objects.delete_all()
@@ -232,11 +234,16 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             owner=self.user,
         )
+        calendar_event = CalendarEvent.objects.create(
+            id=666,
+            owner=self.user
+        )
         task = Task.objects.create(
             id=666,
             owner=self.user,
             assigned_by=me,
             assignee=me,
+            calendar_event=calendar_event
         )
         response = self.authorized_client.delete('/api/tenanttask/'+str(task.id)+'/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

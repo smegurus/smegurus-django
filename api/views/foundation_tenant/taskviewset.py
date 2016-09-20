@@ -129,6 +129,8 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             log_event.delete()
         for post in instance.comment_posts.all():
             post.delete()
+        if task.calendar_event:
+            task.calendar_event.delete()
         instance.delete()  # Delete our model.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
@@ -146,6 +148,8 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
         except Exception as e:
             return response.Response(
                 data=str(e),
@@ -178,6 +182,8 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                 # Return the success indicator.
                 return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
         except Exception as e:
             return response.Response(
                 data=str(e),
