@@ -4,13 +4,13 @@
 
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_calendar/details/js.html' with calendar_event=calendar_event %}
+    {% include 'tenant_calendar/create/js.html' with calendar_event=calendar_event %}
 {% endcompress %}
 <!-- end PAGE JS -->
 
 <!-- PAGE HTML -->
 <div class="content-wrapper">
-   <h3>{% trans 'Event' %}</h3>
+   <h3>{% trans 'New Event' %}</h3>
    <div class="table-grid table-grid-desktop">
 
 
@@ -100,12 +100,9 @@
 
                 </fieldset>
                 <!-- SUBMISSION -->
-                <div class="pull-left">
-                    <button onclick="ajax_reject();" type="button" class="btn btn-danger btn-lg" id="id_reject_btn">{% trans 'Delete' %}</button>
-                </div>
                 <div class="pull-right">
 
-                    <button onclick="ajax_update();" type="button" class="btn btn-primary btn-lg" id="id_accept_btn">{% trans 'Update' %}</button>
+                    <button onclick="ajax_create();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Create' %}</button>
                 </div>
                 <!-- end SUBMISSION -->
             </form>

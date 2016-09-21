@@ -1,5 +1,7 @@
 <script type="text/javascript">
     function ajax_load_create() {
+        window.location = "{% url 'tenant_calendar_create' %}";
+
         var calendarevent = {
             'colour': 'rgb(246, 80, 77)',
         };

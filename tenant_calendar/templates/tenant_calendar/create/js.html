@@ -1,0 +1,98 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Keypress
+
+        // DATETIMEPICKER
+        // -----------------------------------
+
+        $('#datetimepicker1').datetimepicker({
+        //   defaultDate: '{{ calendar_event.start }}',
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        });
+
+        $('#datetimepicker2').datetimepicker({
+        //   defaultDate: '{{ calendar_event.finish }}',
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        });
+    }); // end DOCUMENT START
+
+    function ajax_create() {
+        // Get our variables.
+        var name = $('#id_name').val();
+        var description = $('#id_description').val();
+        var start = $('#id_start').val();
+        var unprotected_start_date = new Date(start);
+        var django_start_date = date_to_django_datetime(unprotected_start_date);
+        var finish = $('#id_finish').val();
+        var unprotected_finish_date = new Date(finish);
+        var django_finish_date = date_to_django_datetime(unprotected_finish_date);
+        var participants = $('#select2-1').val()
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the event name.' %}");
+            return;
+        }
+        if (description <= 0) {
+            alert("{% trans 'Please enter a description.' %}");
+            return;
+        }
+        if ( django_start_date.indexOf('NaN') !== -1 ) {
+            alert("{% trans 'Please enter a start date.' %}");
+            return;
+        }
+        if ( django_finish_date.indexOf('NaN') !== -1 ) {
+            alert("{% trans 'Please enter a finish date.' %}");
+            return;
+        }
+
+        // Set our object variables.
+        var calender_event = {
+            'name': name,
+            'description': description,
+            'colour': 'rgb(246, 80, 77)',
+            'start': django_start_date,
+            'finish': django_finish_date,
+        };
+
+        // Attach our participants to or object.
+        if (participants) {
+            calender_event['participants'] = participants;
+        }
+
+        // Create our object.
+        set_tenant_calendarevent(
+            calender_event,
+            function(json_result) {
+                window.location = "{% url 'tenant_calendar_master' %}";
+            },
+            function(error_json_result) {
+                console.log(error_json_result);
+            }
+        ); // end SET CALENDAR EVENT.
+    }
+</script>
