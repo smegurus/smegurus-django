@@ -28,6 +28,22 @@
         }) // end FULLCALENDAR
     });
 
+    function ajax_delete(id) {
+        $('#id_delete_'+id).prop("disabled", true);
+        delete_tenant_calendarevent(
+            id,
+            function(success) {
+                location.reload(true);
+            },
+            function(failure) {
+                $('#id_reject_btn').prop("id_reject_btn", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
+
     function ajax_load_create() {
         window.location = "{% url 'tenant_calendar_create' %}";
     }

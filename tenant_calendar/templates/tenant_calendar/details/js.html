@@ -47,6 +47,22 @@
         {% endif %}
     }); // end DOCUMENT START
 
+    function ajax_delete(id) {
+        $('#id_reject_btn').prop("disabled", true);
+        delete_tenant_calendarevent(
+            id,
+            function(success) {
+                window.location = "{% url 'tenant_calendar_master' %}";
+            },
+            function(failure) {
+                $('#id_reject_btn').prop("id_reject_btn", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
+
     function ajax_update() {
         // Get our variables.
         var name = $('#id_name').val();

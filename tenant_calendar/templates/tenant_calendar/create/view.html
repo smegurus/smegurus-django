@@ -10,7 +10,19 @@
 
 <!-- PAGE HTML -->
 <div class="content-wrapper">
-   <h3>{% trans 'New Event' %}</h3>
+    <!-- TITLE -->
+   <h3>
+       {% trans 'New Event' %}
+       <!-- BREADCRUMBS -->
+       <ol class="breadcrumb">
+           <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+           <li><a href="{% url 'tenant_calendar_master' %}">{% trans 'Calendar' %}</a></li>
+           <li class="active">{% trans 'New Event' %}</li>
+       </ol>
+       <!-- end BREADCRUMBS -->
+   </h3>
+   <!-- end TITLE -->
+
    <div class="table-grid table-grid-desktop">
 
 
