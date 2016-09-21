@@ -48,22 +48,44 @@
     }); // end DOCUMENT START
 
     function ajax_update() {
+        // Get our variables.
+        var name = $('#id_name').val();
+        var description = $('#id_description').val();
+        var start = $('#id_start').val();
+        var unprotected_start_date = new Date(start);
+        var django_start_date = date_to_django_datetime(unprotected_start_date);
+        var finish = $('#id_finish').val();
+        var unprotected_finish_date = new Date(finish);
+        var django_finish_date = date_to_django_datetime(unprotected_finish_date);
+        var participants = $('#select2-1').val()
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the event name.' %}");
+            return;
+        }
+        if (description <= 0) {
+            alert("{% trans 'Please enter a description.' %}");
+            return;
+        }
+        if ( django_start_date.indexOf('NaN') !== -1 ) {
+            alert("{% trans 'Please enter a start date.' %}");
+            return;
+        }
+        if ( django_finish_date.indexOf('NaN') !== -1 ) {
+            alert("{% trans 'Please enter a finish date.' %}");
+            return;
+        }
+
+        // Update model.
         get_tenant_calendarevent(
             {{ calendar_event.id }},
             function(calender_event) {
-                calender_event['name'] = $('#id_name').val();
-                calender_event['description'] = $('#id_description').val();
-
-                var start = $('#id_start').val();
-                var unprotected_start_date = new Date(start);
-                var django_start_date = date_to_django_datetime(unprotected_start_date);
+                calender_event['name'] = name;
+                calender_event['description'] = description;
                 calender_event['start'] = django_start_date;
-
-                var finish = $('#id_finish').val();
-                var unprotected_finish_date = new Date(finish);
-                var django_finish_date = date_to_django_datetime(unprotected_finish_date);
                 calender_event['finish'] = django_finish_date;
-
+                calender_event['participants'] = $('#select2-1').val()
                 set_tenant_calendarevent(
                     calender_event,
                     function(json_result) {

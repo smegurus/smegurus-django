@@ -89,13 +89,13 @@
                          <div class="col-sm-10">
                              <select id="select2-1" multiple="multiple" class="form-control">
                                  {% for me in all_profiles %}
-                                     <option value="{{ me.id }}">{{ me.name }}</option>
+                                     <option value="{{ me.id }}" {% if me in calendar_event.participants.all %}selected="true"{% endif %}>{{ me.name }}</option>
                                  {% endfor %}
                              </select>
                          </div>
 
                       </div>
-                      <!-- end DESCRIPTION -->
+                      <!-- end PARTICIPANTS -->
 
 
                 </fieldset>
