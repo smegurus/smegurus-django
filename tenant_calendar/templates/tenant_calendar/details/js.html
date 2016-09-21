@@ -12,6 +12,7 @@
         // -----------------------------------
 
         $('#datetimepicker1').datetimepicker({
+        //   defaultDate: '{{ calendar_event.start }}',
           icons: {
               time: 'fa fa-clock-o',
               date: 'fa fa-calendar',
@@ -25,6 +26,7 @@
         });
 
         $('#datetimepicker2').datetimepicker({
+        //   defaultDate: '{{ calendar_event.finish }}',
           icons: {
               time: 'fa fa-clock-o',
               date: 'fa fa-calendar',
@@ -36,6 +38,13 @@
               clear: 'fa fa-trash'
             }
         });
+
+        {% if calendar_event.start %}
+            $('#id_start').val('{{ calendar_event.start|date:"m/d/Y f:i A" }}');
+        {% endif %}
+        {% if calendar_event.finish %}
+            $('#id_finish').val('{{ calendar_event.finish|date:"m/d/Y f:i A" }}');
+        {% endif %}
     }); // end DOCUMENT START
 
     function ajax_update() {
