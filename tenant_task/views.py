@@ -1,4 +1,5 @@
-from datetime import datetime
+from django.utils import timezone
+from datetime import datetime, timedelta
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
@@ -17,6 +18,7 @@ from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.task import Task
+from foundation_tenant.models.calendarevent import CalendarEvent
 from smegurus import constants
 
 
@@ -69,6 +71,8 @@ def task_details_page(request, id):
         'constants': constants,
         # Tags.
         'tags': Tag.objects.all(),
+        # CalendarEvent
+        'calendar_items': CalendarEvent.objects.filter(start__gte=timezone.now()),
         # Members.
         'entrepreneurs': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID),
         'mentors': TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID),

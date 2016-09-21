@@ -62,49 +62,6 @@
         $('#editor').wysiwyg();
         $('#editor').cleanHtml();
 
-        var is_calendar_locked = false;
-
-        // page is now ready, initialize the calendar...
-        $('#calendar').fullCalendar({
-            dayClick: function(date, jsEvent, view) {
-                if (is_calendar_locked == false) {
-                    $(this).css('background-color', 'red'); // Highlight the day.
-
-                    var datetime = date.format() + 'T00:00:00.000Z'; // Get the date.
-
-                    tenant_task_set_calendar_event(
-                        {{ task.id }},
-                        datetime,
-                        function(success_response) {
-                            location.reload(true);
-                            is_calendar_locked = true;
-                        },
-                        function(failure_response) {
-                            print_error_handler(failure_response);
-                            is_calendar_locked = false;
-                        }
-                    ); // end SET CALENDAR EVENT.
-                } // end IS CALENDAR LOCKED
-            }, // end DAYCLICK
-            eventSources: [
-            {
-                // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
-                events: [
-                    {% if task.calendar_event %}
-                    {
-                        uid: {{ task.calendar_event.id }},
-                        title: '{{ task.calender_event.name }}',
-                        start: new Date({{ task.calendar_event.start.year }}, {{ task.calendar_event.start.month }}-1, {{ task.calendar_event.start.day }}),
-                        backgroundColor: '{{ task.calender_event.colour }}',
-                        borderColor: '{{ task.calender_event.colour }}'
-                    }
-                    {% endif %}
-                ]
-            }]
-        }) // end FULLCALENDAR
-
-        console.log("{{ task.calendar_event.id }}");
-
         // Required code to initialize the datepicker.
         $( "#id_task_event_start" ).datepicker({
             dateFormat: "yy-mm-dd",
@@ -183,6 +140,25 @@
                 }
             ); // end AJAX TASK HANDLE
         }); // end DUE DATE HANDLER
+
+
+        $( "#id_calendar_event" ).change(function(e) {  // ASSIGNEE HANDLER
+            var calendar_event = $('#id_calendar_event').val() ;
+            $('#id_calendar_event').prop("disabled", true);
+            var text = "{% trans 'Assigned Calendar event to task by' %} {{ request.user.first_name }} {{ request.user.last_name }}";
+            ajax_task_handle(
+                'calendar_event',
+                parseInt(calendar_event),
+                text,
+                function(json_result) {
+                    location.reload(true); //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                },
+                function(error_json_result) {
+                    $('#id_calendar_event').prop("disabled", false);
+                    print_error_handler(error_json_result);
+                }
+            ); // end AJAX TASK HANDLE
+        }); // end CALENDAR EVENT
 
 
         $( "#id_assignee" ).change(function(e) {  // ASSIGNEE HANDLER

@@ -122,15 +122,24 @@
             <!-- End Main panel-->
 
             <!-- CALENDAR PANEL-->
-            {% if task.type_of == constants.TASK_CALENDAR_TYPE %}
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!-- TITLE -->
+                    <h4 class="mv">{% trans 'Calendar Event' %}</h4>
+                    <!-- end TITLE -->
+               </div>
                <div class="panel-body">
-                  <!-- START calendar-->
-                  <div id="calendar"></div>
-                  <!-- END calendar-->
+                   <select class="form-control" id="id_calendar_event">
+                       {% if task.calendar_event == None %}
+                           <option value="0">{% trans 'Please select a calendar event ...' %}</option>
+                       {% endif %}
+                       {% for event in calendar_items.all %}
+                           <option value="{{ event.id }}" {% if event == task.calendar_event %}selected="true"{% endif %}>{{ event.name }}</option>
+                       {% endfor %}
+                   </select>
+
                </div>
             </div>
-            {% endif %}
             <!-- end CALENDAR PANEL-->
 
             <!-- TASK LOG -->
