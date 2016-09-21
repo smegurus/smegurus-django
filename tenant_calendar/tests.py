@@ -95,7 +95,7 @@ class TenantCalendarTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_calendar_page(self):
-        url = reverse('tenant_calendar')
+        url = reverse('tenant_calendar_master')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

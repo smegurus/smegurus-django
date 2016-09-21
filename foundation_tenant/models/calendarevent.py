@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.abstract_thing import AbstractThing
+from smegurus import constants
 
 
 class CalendarEventManager(models.Manager):
@@ -11,7 +13,7 @@ class CalendarEventManager(models.Manager):
             item.delete()
 
 
-class CalendarEvent(models.Model):
+class CalendarEvent(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_calendar_events'
@@ -19,22 +21,6 @@ class CalendarEvent(models.Model):
         verbose_name_plural = 'Calendar Events'
 
     objects = CalendarEventManager()
-    created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey(
-        User,
-        help_text=_('The user whom owns this thing.'),
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE
-    )
-    name = models.CharField(
-        _("Name"),
-        max_length=127,
-        help_text=_('The name of the item.'),
-        blank=True,
-        null=True,
-    )
     colour = models.CharField(
         _("Colour"),
         max_length=31,
@@ -45,10 +31,25 @@ class CalendarEvent(models.Model):
     start = models.DateTimeField(
         blank=True,
         null=True,
+        help_text=_('The date/time this event starts on.'),
     )
     finish = models.DateTimeField(
         blank=True,
         null=True,
+        help_text=_('The date/time this event will finish.'),
+    )
+    participants = models.ManyToManyField(
+        TenantMe,
+        help_text=_('The users who are participating in this event.'),
+        blank=True,
+        related_name="calendar_event_participants_%(app_label)s_%(class)s_related"
+    )
+    status = models.PositiveSmallIntegerField(            # CONTROLLED BY SYSTEM
+        _("Status"),
+        choices=constants.STATUS_OPTIONS,
+        help_text=_('The state this task.'),
+        default=constants.CREATED_STATUS,
+        db_index=True,
     )
 
     def __str__(self):

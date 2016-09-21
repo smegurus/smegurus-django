@@ -1,0 +1,67 @@
+{% load staticfiles i18n compress thumbnail foundation_tenant_tags %}
+<!-- SIDEBAR JS -->
+{% compress js inline %}
+<script>
+    function ajax_complete_task() {
+        $('#id_complete_btn').prop("disabled", true);
+        tenant_task_complete_task(
+            {{ task.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_reception_tasks_master' %}";
+            },
+            function(error_json_result) {
+                $('#id_complete_btn').prop("disabled", false);
+                print_error_handler(error_json_result);
+            }
+        ); // end COMPLETE TASK
+    }
+
+    function ajax_incomplete_task() {
+        $('#id_incomplete_btn').prop("disabled", true);
+        tenant_task_incomplete_task(
+            {{ task.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_reception_tasks_master' %}";
+            },
+            function(error_json_result) {
+                $('#id_incomplete_btn').prop("disabled", false);
+                print_error_handler(error_json_result);
+            }
+        ); // end INCOMPLETE TASK
+    }
+</script>
+{% endcompress %}
+<!-- end SIDEBAR JS -->
+<!-- SIDEBAR TEXT -->
+<div class="panel b">
+    <!-- BODY OF TASK SIDEBAR -->
+    <table class="table bb">
+        <tbody>
+            <tr>
+                <td>
+                    <strong>{% trans 'Did you complete this task?' %}</strong>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pull-left">
+                        <button id="id_complete_btn" onclick="ajax_complete_task();" type="button" class="btn btn-success btn-oval">
+                            <em class="fa fa-check"></em>
+                            <span>{% trans 'Complete' %}</span>
+                        </button>
+                    </div>
+                    <div class="pull-right">
+                        <button id="id_not_attending_btn" onclick="ajax_incomplete_task();" type="button" class="btn btn-danger btn-oval">
+                            <em class="fa fa-close"></em>
+                            <span>{% trans 'Incomplete' %}</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- end SIDEBAR TEXT -->

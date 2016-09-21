@@ -13,7 +13,7 @@ from foundation_tenant.models.calendarevent import CalendarEvent
 class CalendarEventFilter(django_filters.FilterSet):
     class Meta:
         model = CalendarEvent
-        fields = ['name', 'colour', 'start', 'finish', 'owner',]
+        fields = ['name', 'description', 'colour', 'start', 'finish', 'owner', 'participants', 'status',]
 
 
 class CalendarEventViewSet(viewsets.ModelViewSet):

@@ -244,6 +244,28 @@
                     <a href="" class="btn btn-link">{% trans 'Open help ticket' %}</a>
                 </p>
             </div>
+
+
+{% comment %}
+            {% if task.status == constants.UNASSIGNED_TASK_STATUS or task.status == constants.ASSIGNED_TASK_STATUS or task.status == constants.INCOMPLETE_TASK_STATUS %}
+
+                <!-- TEXT SIDEBAR -->
+                {% if task.type_of == constants.TASK_BASIC_TYPE %}
+                    {% include 'tenant_reception/task/details/basic_sidebar.html' with task=task %}
+                {% endif %}
+                <!-- end TEXT SIDEBAR -->
+
+                <!-- CALENDAR SIDEBAR -->
+                {% if task.type_of == constants.TASK_CALENDAR_TYPE %}
+                    {% include 'tenant_reception/task/details/calendar_sidebar.html' with task=task %}
+                {% endif %}
+                <!-- end CALENDAR SIDEBAR -->
+
+            {% else %}
+
+            {% endif %}
+{% endcomment %}
+
         </div>
         <!-- end SIDEBAR CONTENT -->
     </div>

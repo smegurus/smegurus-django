@@ -1,12 +1,29 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    <!-- PAGE JS -->
     {% compress js inline %}
-        {% include 'tenant_calendar/js.html' %}
+        {% include 'tenant_calendar/master/js.html' %}
     {% endcompress %}
+    <!-- end PAGE JS -->
 
-<!-- Page content-->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
+    <div class="pull-right">
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-link">
+            <em class="fa fa-ellipsis-v fa-lg"></em>
+            </button>
+            <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                <li>
+                    <a onclick="ajax_load_create();">
+                        <em class="fa fa-fw fa-plus mr"></em>
+                        <span>{% trans 'New Event' %}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
    <h3>{% trans 'Full Calendar' %}
       <small>{% trans 'Drag and Drop events and tasks' %}</small>
    </h3>
@@ -114,4 +131,5 @@
       <!-- END row-->
    </div>
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

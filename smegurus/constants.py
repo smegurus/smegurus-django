@@ -55,6 +55,19 @@ PENDING_REVIEW_STATUS = 2
 IN_REVIEW_STATUS = 3
 REJECTED_STATUS = 4
 APPROVED_STATUS = 5
+SUSPENDED_STATUS = 6
+EXPIRED_STATUS = 7
+
+
+STATUS_OPTIONS = (
+    (CREATED_STATUS, _('Created')),
+    (PENDING_REVIEW_STATUS, _('Pending')),
+    (IN_REVIEW_STATUS, _('In Review')),
+    (REJECTED_STATUS, _('Rejected')),
+    (APPROVED_STATUS, _('Approved')),
+    (SUSPENDED_STATUS, _('Suspended')),
+    (EXPIRED_STATUS, _('Expired')),
+)
 
 
 # These constants are used for Task model.

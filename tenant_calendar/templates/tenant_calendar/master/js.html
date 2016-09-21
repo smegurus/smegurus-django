@@ -1,4 +1,21 @@
 <script type="text/javascript">
+    function ajax_load_create() {
+        var calendarevent = {
+            'colour': 'rgb(246, 80, 77)',
+        };
+        set_tenant_calendarevent(
+            calendarevent,
+            function(json_result) {
+                var url = "{% url 'tenant_calendar_details' 'placeholder' %}";
+                var details_url = url.replace("placeholder", json_result['id']);
+                window.location = details_url;
+            },
+            function(error_json_result) {
+                console.log(error_json_result);
+            }
+        );
+    }
+
     (function (window, document, $, undefined) {
 
         if (!$.fn.fullCalendar) return;

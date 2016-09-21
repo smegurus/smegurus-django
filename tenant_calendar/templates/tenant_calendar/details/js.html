@@ -1,0 +1,73 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Keypress
+
+        // DATETIMEPICKER
+        // -----------------------------------
+
+        $('#datetimepicker1').datetimepicker({
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        });
+
+        $('#datetimepicker2').datetimepicker({
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        });
+    }); // end DOCUMENT START
+
+    function ajax_update() {
+        get_tenant_calendarevent(
+            {{ calendar_event.id }},
+            function(calender_event) {
+                calender_event['name'] = $('#id_name').val();
+                calender_event['description'] = $('#id_description').val();
+
+                var start = $('#id_start').val();
+                var unprotected_start_date = new Date(start);
+                var django_start_date = date_to_django_datetime(unprotected_start_date);
+                calender_event['start'] = django_start_date;
+
+                var finish = $('#id_finish').val();
+                var unprotected_finish_date = new Date(finish);
+                var django_finish_date = date_to_django_datetime(unprotected_finish_date);
+                calender_event['finish'] = django_finish_date;
+
+                set_tenant_calendarevent(
+                    calender_event,
+                    function(json_result) {
+                        window.location = "{% url 'tenant_calendar_master' %}";
+                    },
+                    function(error_json_result) {
+                        console.log(error_json_result);
+                    }
+                ); // end SET CALENDAR EVENT.
+            },
+            function(error_result) {
+                console.log(error_result);
+            }
+        ); // end GET CALENDAR EVENT.
+    }
+</script>
