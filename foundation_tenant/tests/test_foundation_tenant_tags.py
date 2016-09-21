@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import transaction
 from django.contrib.auth.models import User, Group
 from django.utils import translation
@@ -198,11 +199,5 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_pretty_formatted_date(self):
         today = timezone.now()
-        pretty_text = foundation_tags.pretty_formatted_date(today)
+        pretty_text = pretty_formatted_date(today)
         self.assertEqual(pretty_text, "Today")
-
-    @transaction.atomic
-    def test_pretty_formatted_rating_value(self):
-        for i in range(1, 6):
-            pretty_text = foundation_tags.pretty_formatted_rating_value(i)
-            self.assertTrue(len(pretty_text) > 1)

@@ -129,8 +129,8 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             log_event.delete()
         for post in instance.comment_posts.all():
             post.delete()
-        if task.calendar_event:
-            task.calendar_event.delete()
+        if instance.calendar_event:
+            instance.calendar_event.delete()
         instance.delete()  # Delete our model.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])

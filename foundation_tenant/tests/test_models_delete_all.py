@@ -835,9 +835,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        items = CityOption.objects.all()
-        for item in items.all():
-            item.delete()
         province.delete()
         country.delete()
 
