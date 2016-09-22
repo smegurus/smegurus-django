@@ -25,6 +25,7 @@
         </div>
     </div>
     <div class="row">
+        {% comment %}
         <!-- ASK QUESTION -->
         <div class="col-lg-4">
             <div class="well well-lg">
@@ -60,8 +61,21 @@
             </div>
         </div>
         <!-- end RESOURCES -->
+        {% endcomment %}
 
-        <!-- TODOS -->
+        <!-- CALENDAR -->
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>{% trans 'Calendar' %}</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                <p>
+                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_reception_calendar_master' %}">{% trans 'View' %}</a>
+                </p>
+            </div>
+        </div>
+        <!-- end CALENDAR -->
+
+        <!-- TASKS -->
         <div class="col-lg-4">
             <div class="well well-lg">
                 <h4>{% trans 'Tasks' %}</h4>
@@ -71,7 +85,7 @@
                 </p>
             </div>
         </div>
-        <!-- end TODOS -->
+        <!-- end TASKS -->
     </div>
 </div>
 <!-- end PAGE CONTENT -->

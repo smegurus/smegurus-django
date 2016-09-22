@@ -1,0 +1,83 @@
+{% extends 'tenant_reception/base.html' %}
+{% load staticfiles i18n compress foundation_tenant_tags %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // page is now ready, initialize the calendar...
+        $('#calendar').fullCalendar({
+            displayEventTime: false, // hide start time.
+            eventClick: function(calEvent, jsEvent, view) {
+                // Go to the details page.
+                var url = "{% url 'tenant_reception_calendar_details' 'placeholder' %}";
+                var details_url = url.replace("placeholder", calEvent.uid);
+                window.location = details_url;
+            }, // end EVENT CLICK
+            eventSources: [
+            {
+                // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
+                events: [
+                    {% for calendar_event in pending_events.all %}
+                    {
+                        uid: {{ calendar_event.id }},
+                        title: '{{ calendar_event.name }}',
+                        start: new Date({{ calendar_event.start.year }}, {{ calendar_event.start.month }}-1, {{ calendar_event.start.day }}),
+                    },
+                    {% endfor %}
+                ]
+            }],
+            eventRender: function(event, element)
+            {
+                element.css('font-size','14px');
+                element.css('text-align: center');
+                // element.css('background-color', 'red'); // Highlight colour of the box to be red.
+            }
+
+        });
+    });
+</script>
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
+        </li>
+        <li class="active">{% trans 'Calendar' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+    <div class="container-fluid">
+        <!-- START DATATABLE 1 -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <!-- {% trans 'Tasks' %} -->
+                    </div>
+                    <div class="panel-body">
+
+
+                        <!-- CALENDAR CONTENT -->
+                        <div id="calendar" role="tabpanel" class="tab-pane active">
+                            <!-- START calendar-->
+                            <div id="calendar"></div>
+                            <!-- END calendar-->
+                        </div>
+                        <!-- CALENDAR CONTENT -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END DATATABLE 1 -->
+    </div>
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}
