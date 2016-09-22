@@ -90,3 +90,10 @@ def get_pretty_formatted_date(created):
         return _("%(dt)s days ago") % { 'dt' : dt }
     else:
         return str(created)
+
+
+def int_or_none(value):
+    try:
+        return int(value)
+    except Exception as e:
+        return None

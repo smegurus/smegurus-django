@@ -4,7 +4,7 @@
 
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_calendar/create/js.html' with calendar_event=calendar_event %}
+    {% include 'tenant_calendar/create/js.html' with calendar_event=calendar_event type_of=type_of constants=constants %}
 {% endcompress %}
 <!-- end PAGE JS -->
 
@@ -32,6 +32,7 @@
              <form method="get" action="/" class="form-horizontal">
                 <fieldset>
                    <legend>{% trans 'Details' %}</legend>
+
                    <!-- NAME -->
                    <div class="form-group">
                       <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
@@ -94,9 +95,11 @@
 
                       <br /><br />
 
-                      <!-- PARTICIPANTS -->
+                      <!-- PENDING -->
+                      {% if type_of == constants.CALENDAR_EVENT_BY_CUSTOM_TYPE %}
+                      <!-- PENDING BY CUSTOM -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                         <label class="col-sm-2 control-label">{% trans 'Pending Individuals' %}</label>
 
                          <div class="col-sm-10">
                              <select id="select2-1" multiple="multiple" class="form-control">
@@ -107,8 +110,24 @@
                          </div>
 
                       </div>
-                      <!-- end DESCRIPTION -->
+                      <!-- end PENDING BY TAG -->
+                      {% else %}
+                      <!-- PENDING -->
+                      <div class="form-group">
+                         <label class="col-sm-2 control-label">{% trans 'Pending Groups' %}</label>
 
+                         <div class="col-sm-10">
+                             <select id="select2-1" multiple="multiple" class="form-control">
+                                 {% for tag in tags %}
+                                     <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                 {% endfor %}
+                             </select>
+                         </div>
+
+                      </div>
+                      <!-- end PENDING -->
+                      {% endif %}
+                      <!-- end PENDING -->
 
                 </fieldset>
                 <!-- SUBMISSION -->

@@ -7,6 +7,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.utils import get_pretty_formatted_date
+from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
 
@@ -75,3 +76,13 @@ class FoundationTenantUtilsWithTenantSchemaTestCase(TenantTestCase):
         dt = today - timedelta(days=N)
         pretty_text = get_pretty_formatted_date(dt)
         self.assertTrue(len(pretty_text) > 1)
+
+    @transaction.atomic
+    def test_int_or_none(self):
+        # Case 1 of 2:
+        value = int_or_none('3')
+        self.assertEqual(value, 3)
+
+        # Case 2 of 2:
+        value = int_or_none('')
+        self.assertIsNone(value)

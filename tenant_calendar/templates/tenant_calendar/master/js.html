@@ -44,7 +44,7 @@
         );
     }
 
-    function ajax_load_create() {
-        window.location = "{% url 'tenant_calendar_create' %}";
+    function ajax_load_create(type_of) {
+        window.location = "{% url 'tenant_calendar_create' %}?type_of="+type_of;
     }
 </script>

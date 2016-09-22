@@ -113,3 +113,11 @@ TASK_TYPE_OPTIONS = (
     (TASK_UPLOAD_TYPE, _('Upload Task')),
     (TASK_RESOURCE_TYPE, _('Resource Task')),
 )
+
+
+CALENDAR_EVENT_BY_CUSTOM_TYPE = 1
+CALENDAR_EVENT_BY_TAG_TYPE = 2
+CALENDAR_EVENT_TYPE_OPTIONS = (
+    (CALENDAR_EVENT_BY_CUSTOM_TYPE, _('Calendar Event by Custom')),
+    (CALENDAR_EVENT_BY_TAG_TYPE, _('Calendar Event by Tag')),
+)

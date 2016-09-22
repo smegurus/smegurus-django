@@ -15,9 +15,15 @@
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
                 <li>
-                    <a onclick="ajax_load_create();">
-                    <em class="fa fa-fw fa-plus mr"></em>
-                    <span>{% trans 'New Event' %}</span>
+                    <a onclick="ajax_load_create({{ constants.CALENDAR_EVENT_BY_CUSTOM_TYPE }});">
+                    <em class="fa fa-fw fa-user mr"></em>
+                    <span>{% trans 'New Event by Individual Invite' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="ajax_load_create({{ constants.CALENDAR_EVENT_BY_TAG_TYPE }});">
+                    <em class="fa fa-fw fa-users mr"></em>
+                    <span>{% trans 'New Event by Group Invite' %}</span>
                     </a>
                 </li>
             </ul>

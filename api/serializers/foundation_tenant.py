@@ -156,10 +156,9 @@ class TenantMeSerializer(serializers.ModelSerializer):
 
 
 class CalendarEventSerializer(serializers.ModelSerializer):
-    status = serializers.IntegerField(read_only=True)
     class Meta:
         model = CalendarEvent
-        fields = ('id', 'name', 'description', 'colour', 'start', 'finish', 'participants', 'status',)
+        fields = ('id', 'name', 'description', 'type_of', 'colour', 'start', 'finish', 'tags', 'pending', 'attendees', 'absentees',)
 
 
 class IntakeSerializer(serializers.ModelSerializer):

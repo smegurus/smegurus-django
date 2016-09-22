@@ -73,7 +73,7 @@
         var finish = $('#id_finish').val();
         var unprotected_finish_date = new Date(finish);
         var django_finish_date = date_to_django_datetime(unprotected_finish_date);
-        var participants = $('#select2-1').val()
+        var pending = $('#select2-1').val()
 
         // Defensive Code.
         if (name <= 0) {
@@ -101,7 +101,7 @@
                 calender_event['description'] = description;
                 calender_event['start'] = django_start_date;
                 calender_event['finish'] = django_finish_date;
-                calender_event['participants'] = $('#select2-1').val()
+                calender_event['pending'] = $('#select2-1').val()
                 set_tenant_calendarevent(
                     calender_event,
                     function(json_result) {

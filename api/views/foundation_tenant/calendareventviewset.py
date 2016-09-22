@@ -8,12 +8,15 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant  import CalendarEventSerializer
 from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.tag import Tag
+from smegurus import constants
 
 
 class CalendarEventFilter(django_filters.FilterSet):
     class Meta:
         model = CalendarEvent
-        fields = ['name', 'description', 'colour', 'start', 'finish', 'owner', 'participants', 'status',]
+        fields = ['name', 'description', 'type_of', 'colour', 'start', 'finish', 'owner', 'tags', 'pending', 'attendees', 'absentees',]
 
 
 class CalendarEventViewSet(viewsets.ModelViewSet):
@@ -27,6 +30,12 @@ class CalendarEventViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Add owner to the CalendarEvent when being created for the first time"""
         # Include the owner attribute directly, rather than from request data.
-        instance = serializer.save(
+        calendar_event = serializer.save(
             owner=self.request.user,
         )
+
+        # If this event is by group invite, then take the groups and
+        # assign the Users from each group into this event.
+        if calendar_event.type_of == constants.CALENDAR_EVENT_BY_TAG_TYPE:
+            for tag in calendar_event.tags.all():
+                pass #TODO: IMPLEMENT
