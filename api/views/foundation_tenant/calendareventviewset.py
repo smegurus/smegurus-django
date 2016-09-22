@@ -28,7 +28,7 @@ class CalendarEventViewSet(viewsets.ModelViewSet):
     filter_class = CalendarEventFilter
 
     def perform_create(self, serializer):
-        """Add owner to the CalendarEvent when being created for the first time"""
+        """Override the create command to add additional computations."""
         # Include the owner attribute directly, rather than from request data.
         calendar_event = serializer.save(
             owner=self.request.user,
@@ -38,4 +38,6 @@ class CalendarEventViewSet(viewsets.ModelViewSet):
         # assign the Users from each group into this event.
         if calendar_event.type_of == constants.CALENDAR_EVENT_BY_TAG_TYPE:
             for tag in calendar_event.tags.all():
-                pass #TODO: IMPLEMENT
+                me = TenantMe.objects.get(tags__id=tag.id)
+                calendar_event.pending.add(me)
+                calendar_event.save()
