@@ -1,0 +1,8 @@
+{% load staticfiles i18n compress %}
+{% trans 'calendar_event #' %}{{ calendar_event.id }}
+
+{{ log_event.text }}
+
+{% trans 'Login here to view.' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

@@ -13,6 +13,7 @@ from foundation_tenant.models.note import Note
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
+from foundation_tenant.models.calendarevent import CalendarEvent
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -186,5 +187,38 @@ def task_page(request, task_id, log_event_id):
         'task': task,
         'log_event': log_event,
         'url': get_task_url(request, task),
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+    })
+
+
+def get_calendar_info_url(request, calendar_event):
+    url = 'https://' if request.is_secure() else 'http://'
+    url += request.tenant.schema_name + "."
+    url += get_current_site(request).domain
+    url += reverse('tenant_calendar_details_info', args=[calendar_event.id,])
+    url = url.replace("None","en")
+    return url
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_task_details)
+def calendar_pending_event_page(request, calendar_event_id):
+    # Fetch the data.
+    template_url = 'tenant_calendar/pending_invite.html'
+    calendar_event = get_object_or_404(CalendarEvent, pk=int(calendar_event_id))
+
+    web_view_extra_url = reverse('foundation_email_calendar_pending_event', args=[calendar_event.id,])
+
+    # # Run a security check to make sure the authenticated User is a
+    # # participant in the conversation.
+    # if request.tenant_me not in task.participants.all():
+    #     raise PermissionDenied
+
+    # Render our email templated message.
+    return render(request, template_url,{
+        'user': request.user,
+        'me': request.tenant_me,
+        'calendar_event': calendar_event,
+        'url': get_calendar_info_url(request, calendar_event),
         'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
     })
