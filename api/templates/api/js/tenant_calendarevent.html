@@ -115,4 +115,53 @@
             }
         });
     }
+
+    function tenant_calendar_event_attending(id, success_callback, error_callback) {
+        var url = "/api/tenantcalendarevent/" + id + "/attending/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'PUT',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    function tenant_calendar_event_abstaining(id, success_callback, error_callback) {
+        var url = "/api/tenantcalendarevent/" + id + "/abstaining/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'PUT',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
 </script>

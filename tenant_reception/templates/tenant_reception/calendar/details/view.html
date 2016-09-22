@@ -16,40 +16,10 @@
 
     function ajax_not_attending(id) {
         $('#id_reject_btn').prop("disabled", true); // Disable Button.
-        get_tenant_calendarevent(
+        tenant_calendar_event_abstaining(
             {{ calendar_event.id }},
             function(calender_event) {
-                // STEP 1: Remove myself from the pending, if I exist there.
-                var pending_arr = calender_event['pending'];
-                var index = pending_arr.indexOf({{ request.tenant_me.id }});
-                if (index > -1) {
-                    pending_arr.splice(index, 1);
-                }
-
-                // STEP 2: Remove myself from the attendees, if I exist there.
-                var attendees_arr = calender_event['attendees'];
-                var index = attendees_arr.indexOf({{ request.tenant_me.id }});
-                if (index > -1) {
-                    attendees_arr.splice(index, 1);
-                }
-                calender_event['attendees'] = attendees_arr;
-
-                // STEP 3: Add myself to the absentees array.
-                var absentee_arr = calender_event['absentees'];
-                absentee_arr.push({{ request.tenant_me.id }});
-                calender_event['absentees'] = absentee_arr;
-
-                // STEP 4: Update the model.
-                set_tenant_calendarevent(
-                    calender_event,
-                    function(json_result) {
-                        window.location = "{% url 'tenant_reception_calendar_master' %}";
-                    },
-                    function(error_json_result) {
-                        $('#id_reject_btn').prop("id_reject_btn", false);
-                        console.log(error_json_result);
-                    }
-                ); // end SET CALENDAR EVENT.
+                window.location = "{% url 'tenant_reception_calendar_master' %}";
             },
             function(error_result) {
                 $('#id_reject_btn').prop("id_reject_btn", false);
@@ -60,40 +30,10 @@
 
     function ajax_attending() {
         $('#id_accept_btn').prop("disabled", true); // Disable Button.
-        get_tenant_calendarevent(
+        tenant_calendar_event_attending(
             {{ calendar_event.id }},
             function(calender_event) {
-                // STEP 1: Remove myself from the pending, if I exist there.
-                var pending_arr = calender_event['pending'];
-                var index = pending_arr.indexOf({{ request.tenant_me.id }});
-                if (index > -1) {
-                    pending_arr.splice(index, 1);
-                }
-
-                // STEP 2: Remove myself from the absentees, if I exist there.
-                var absentees_arr = calender_event['absentees'];
-                var index = absentees_arr.indexOf({{ request.tenant_me.id }});
-                if (index > -1) {
-                    absentees_arr.splice(index, 1);
-                }
-                calender_event['absentees'] = absentees_arr;
-
-                // STEP 2: Add myself to the attendee array.
-                var attendees_arr = calender_event['attendees'];
-                attendees_arr.push({{ request.tenant_me.id }});
-                calender_event['attendees'] = attendees_arr;
-
-                // STEP 3: Update the model.
-                set_tenant_calendarevent(
-                    calender_event,
-                    function(json_result) {
-                        window.location = "{% url 'tenant_reception_calendar_master' %}";
-                    },
-                    function(error_json_result) {
-                        $('#id_accept_btn').prop("id_accept_btn", false);
-                        console.log(error_json_result);
-                    }
-                ); // end SET CALENDAR EVENT.
+                window.location = "{% url 'tenant_reception_calendar_master' %}";
             },
             function(error_result) {
                 $('#id_accept_btn').prop("id_accept_btn", false);
