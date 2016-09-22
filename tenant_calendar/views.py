@@ -1,9 +1,9 @@
-from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.views.decorators.http import condition
+from django.db.models import Q
 from rest_framework.authtoken.models import Token
 from foundation_tenant.utils import my_last_modified_func
 from tenant_configuration.decorators import tenant_configuration_required
@@ -24,8 +24,12 @@ from smegurus import constants
 @tenant_configuration_required
 # @condition(last_modified_func=my_last_modified_func)
 def calendar_master_page(request):
+    events = CalendarEvent.objects.filter(
+        Q(owner=request.user) | Q(attendees__id=request.tenant_me.id) | Q(pending__id=request.tenant_me.id)
+    )
     return render(request, 'tenant_calendar/master/view.html',{
         'page': 'calendar',
+        'events': events,
         'my_events': CalendarEvent.objects.filter(owner=request.user),
         'pending_events': CalendarEvent.objects.filter(pending__id=request.tenant_me.id),
         'attending_events': CalendarEvent.objects.filter(attendees__id=request.tenant_me.id),

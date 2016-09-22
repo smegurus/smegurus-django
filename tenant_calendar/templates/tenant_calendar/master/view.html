@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_calendar/master/js.html' with my_events=my_events %}
+    {% include 'tenant_calendar/master/js.html' with events=events %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->

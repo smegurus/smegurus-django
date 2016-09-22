@@ -14,7 +14,7 @@
             {
                 // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
                 events: [
-                    {% for item in my_events %}
+                    {% for item in events %}
                         {
                             uid: {{ item.id }},
                             title: '{{ item.name }}',
