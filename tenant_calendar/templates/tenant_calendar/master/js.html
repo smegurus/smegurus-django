@@ -6,7 +6,7 @@
             displayEventTime: false, // hide start time.
             eventClick: function(calEvent, jsEvent, view) {
                 // Go to the details page.
-                var url = "{% url 'tenant_calendar_details' 'placeholder' %}";
+                var url = "{% url 'tenant_calendar_details_edit' 'placeholder' %}";
                 var details_url = url.replace("placeholder", calEvent.uid);
                 window.location = details_url;
             }, // end EVENT CLICK
@@ -14,7 +14,7 @@
             {
                 // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
                 events: [
-                    {% for item in calendar_items %}
+                    {% for item in my_events %}
                         {
                             uid: {{ item.id }},
                             title: '{{ item.name }}',

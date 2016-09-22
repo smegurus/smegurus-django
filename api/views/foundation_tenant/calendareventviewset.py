@@ -40,4 +40,3 @@ class CalendarEventViewSet(viewsets.ModelViewSet):
             for tag in calendar_event.tags.all():
                 me = TenantMe.objects.get(tags__id=tag.id)
                 calendar_event.pending.add(me)
-                calendar_event.save()

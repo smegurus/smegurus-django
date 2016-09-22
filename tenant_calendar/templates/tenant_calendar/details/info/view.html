@@ -1,0 +1,239 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+<!-- PAGE JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        {% if calendar_event.start %}
+            $('#id_start').val('{{ calendar_event.start|date:"m/d/Y f:i A" }}');
+        {% endif %}
+        {% if calendar_event.finish %}
+            $('#id_finish').val('{{ calendar_event.finish|date:"m/d/Y f:i A" }}');
+        {% endif %}
+    }); // end DOCUMENT START
+
+    function ajax_not_attending(id) {
+        $('#id_reject_btn').prop("disabled", true); // Disable Button.
+        get_tenant_calendarevent(
+            {{ calendar_event.id }},
+            function(calender_event) {
+                // STEP 1: Remove myself from the pending, if I exist there.
+                var pending_arr = calender_event['pending'];
+                var index = pending_arr.indexOf({{ request.tenant_me.id }});
+                if (index > -1) {
+                    pending_arr.splice(index, 1);
+                }
+
+                // STEP 2: Remove myself from the attendees, if I exist there.
+                var attendees_arr = calender_event['attendees'];
+                var index = attendees_arr.indexOf({{ request.tenant_me.id }});
+                if (index > -1) {
+                    attendees_arr.splice(index, 1);
+                }
+                calender_event['attendees'] = attendees_arr;
+
+                // STEP 3: Add myself to the absentees array.
+                var absentee_arr = calender_event['absentees'];
+                absentee_arr.push({{ request.tenant_me.id }});
+                calender_event['absentees'] = absentee_arr;
+
+                // STEP 4: Update the model.
+                set_tenant_calendarevent(
+                    calender_event,
+                    function(json_result) {
+                        window.location = "{% url 'tenant_calendar_master' %}";
+                    },
+                    function(error_json_result) {
+                        $('#id_reject_btn').prop("id_reject_btn", false);
+                        console.log(error_json_result);
+                    }
+                ); // end SET CALENDAR EVENT.
+            },
+            function(error_result) {
+                $('#id_reject_btn').prop("id_reject_btn", false);
+                console.log(error_result);
+            }
+        ); // end GET CALENDAR EVENT.
+    }
+
+    function ajax_attending() {
+        $('#id_accept_btn').prop("disabled", true); // Disable Button.
+        get_tenant_calendarevent(
+            {{ calendar_event.id }},
+            function(calender_event) {
+                // STEP 1: Remove myself from the pending, if I exist there.
+                var pending_arr = calender_event['pending'];
+                var index = pending_arr.indexOf({{ request.tenant_me.id }});
+                if (index > -1) {
+                    pending_arr.splice(index, 1);
+                }
+
+                // STEP 2: Remove myself from the absentees, if I exist there.
+                var absentees_arr = calender_event['absentees'];
+                var index = absentees_arr.indexOf({{ request.tenant_me.id }});
+                if (index > -1) {
+                    absentees_arr.splice(index, 1);
+                }
+                calender_event['absentees'] = absentees_arr;
+
+                // STEP 2: Add myself to the attendee array.
+                var attendees_arr = calender_event['attendees'];
+                attendees_arr.push({{ request.tenant_me.id }});
+                calender_event['attendees'] = attendees_arr;
+
+                // STEP 3: Update the model.
+                set_tenant_calendarevent(
+                    calender_event,
+                    function(json_result) {
+                        window.location = "{% url 'tenant_calendar_master' %}";
+                    },
+                    function(error_json_result) {
+                        $('#id_accept_btn').prop("id_accept_btn", false);
+                        console.log(error_json_result);
+                    }
+                ); // end SET CALENDAR EVENT.
+            },
+            function(error_result) {
+                $('#id_accept_btn').prop("id_accept_btn", false);
+                console.log(error_result);
+            }
+        ); // end GET CALENDAR EVENT.
+    }
+</script>
+{% endcompress %}
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+   <!-- TITLE -->
+   <h3>
+       {% trans 'Event' %}
+       <!-- BREADCRUMBS -->
+       <ol class="breadcrumb">
+           <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+           <li><a href="{% url 'tenant_calendar_master' %}">{% trans 'Calendar' %}</a></li>
+           <li class="active">{% trans 'Event' %}</li>
+       </ol>
+       <!-- end BREADCRUMBS -->
+   </h3>
+   <!-- end TITLE -->
+
+   <div class="table-grid table-grid-desktop">
+       <div class="panel panel-default">
+          <!-- <div class="panel-heading">Form elements</div> -->
+          <div class="panel-body">
+             <form method="get" action="/" class="form-horizontal">
+                <fieldset>
+                   <legend>{% trans 'Details' %}</legend>
+                   <!-- NAME -->
+                   <div class="form-group">
+                      <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+
+                      <div class="col-sm-10">
+                         <input type="text" class="form-control form-control" id="id_name" value="{{ calendar_event.name }}" readonly="true">
+                      </div>
+
+                   </div>
+                    <!-- end NAME -->
+
+                    <br /><br />
+
+                    <!-- START DATE -->
+                    <div class="form-group">
+                       <label class="col-sm-2 control-label">{% trans 'Start Date &amp; Time' %}</label>
+
+                       <div class="col-sm-10">
+                           <div id="datetimepicker1" class="input-group date">
+                                 <input type="text" class="form-control" id="id_start" readonly="true">
+                                 <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                 </span>
+                          </div>
+                       </div>
+
+                    </div>
+                     <!-- end START DATE -->
+
+                     <br /><br />
+
+                     <!-- FINISH DATE -->
+                     <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Finish Date &amp; Time' %}</label>
+
+                        <div class="col-sm-10">
+                            <div id="datetimepicker2" class="input-group date">
+                                  <input type="text" class="form-control" id="id_finish" readonly="true">
+                                  <span class="input-group-addon">
+                                     <span class="fa fa-calendar"></span>
+                                  </span>
+                           </div>
+                        </div>
+
+                     </div>
+                      <!-- end FINISH DATE -->
+
+                      <br /><br />
+
+                      <!-- DESCRIPTION -->
+                      <div class="form-group">
+                         <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+
+                         <div class="col-sm-10">
+                            <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}" readonly="true">{{ calendar_event.description }}</textarea>
+                         </div>
+
+                      </div>
+                      <!-- end DESCRIPTION -->
+                </fieldset>
+
+                <fieldset>
+                    <!-- ATTENDEES -->
+                    <div class="form-group">
+                       <label class="col-sm-2 control-label">{% trans 'Attendees' %}</label>
+
+                       <div class="col-sm-10">
+                       {% for me in calendar_event.attendees.all %}
+                           <p>{{ me.name }}</p>
+                       {% endfor %}
+                       </div>
+
+                    </div>
+                    <!-- end ATTENDEES -->
+                </fieldset>
+
+
+                <fieldset>
+                    <!-- ABSENTEES -->
+                    <div class="form-group">
+                       <label class="col-sm-2 control-label">{% trans 'Absentees' %}</label>
+
+                       <div class="col-sm-10">
+                       {% for me in calendar_event.absentees.all %}
+                           <p>{{ me.name }}</p>
+                       {% endfor %}
+                       </div>
+
+                    </div>
+                    <!-- end ABSENTEES -->
+                </fieldset>
+
+                <!-- SUBMISSION -->
+
+                <div class="pull-right">
+                    <button onclick="ajax_not_attending();" type="button" class="btn btn-default btn-lg" id="id_reject_btn">{% trans 'Not Attending' %}</button>
+
+                    <button onclick="ajax_attending();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'I will be attending' %}</button>
+                </div>
+                <!-- end SUBMISSION -->
+            </form>
+        </div>
+    </div>
+
+
+
+  </div>
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_calendar/master/js.html' %}
+    {% include 'tenant_calendar/master/js.html' with my_events=my_events %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -53,10 +53,19 @@
                             <!-- Nav tabs-->
                             <ul role="tablist" class="nav nav-tabs">
                                 <li role="presentation" class="active">
-                                    <a href="#calendar" aria-controls="calendar" role="tab" data-toggle="tab" aria-expanded="true">{% trans 'Calendar' %}</a>
+                                    <a href="#calendar" aria-controls="calendar" role="tab" data-toggle="tab" aria-expanded="true">{% trans 'My Calendar' %}</a>
                                 </li>
                                 <li role="presentation" class="">
-                                    <a href="#master_list" aria-controls="master_list" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Events' %}</a>
+                                    <a href="#my_events" aria-controls="my_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'My Events' %}</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#pending_events" aria-controls="pending_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Pending Events' %}</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#attending_events" aria-controls="attending_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Attending Events' %}</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#absentee_events" aria-controls="absentee_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Absentee Events' %}</a>
                                 </li>
                             </ul>
                             <!-- Tab panes-->
@@ -68,11 +77,30 @@
                                     <!-- END calendar-->
                                 </div>
                                 <!-- CALENDAR CONTENT -->
-                                <!-- EVENTS CONTENT -->
-                                <div id="master_list" role="tabpanel" class="tab-pane">
-                                    {% include 'tenant_calendar/master/table_view.html' with items=calendar_items %}
+
+                                <!-- MY EVENTS -->
+                                <div id="my_events" role="tabpanel" class="tab-pane">
+                                    {% include 'tenant_calendar/master/table_view.html' with items=my_events me=request.tenant_me enable_edit=True %}
                                 </div>
-                                <!-- end EVENTS CONTENT -->
+                                <!-- end MY EVENTS -->
+
+                                <!-- end PENDING EVENTS -->
+                                <div id="pending_events" role="tabpanel" class="tab-pane">
+                                    {% include 'tenant_calendar/master/table_view.html' with items=pending_events me=request.tenant_me enable_edit=False %}
+                                </div>
+                                <!-- end PENDING EVENTS -->
+
+                                <!-- APPROVED EVENTS -->
+                                <div id="attending_events" role="tabpanel" class="tab-pane">
+                                    {% include 'tenant_calendar/master/table_view.html' with items=attending_events me=request.tenant_me enable_edit=False %}
+                                </div>
+                                <!-- end APPROVED EVENTS -->
+
+                                <!-- end ABSCENTEE EVENTS -->
+                                <div id="absentee_events" role="tabpanel" class="tab-pane">
+                                    {% include 'tenant_calendar/master/table_view.html' with items=absentee_events me=request.tenant_me enable_edit=False %}
+                                </div>
+                                <!-- end ABSCENTEE EVENTS -->
                             </div>
                         </div>
                     </div>

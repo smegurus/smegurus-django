@@ -26,7 +26,10 @@ from smegurus import constants
 def calendar_master_page(request):
     return render(request, 'tenant_calendar/master/view.html',{
         'page': 'calendar',
-        'calendar_items': CalendarEvent.objects.filter(owner=request.user),
+        'my_events': CalendarEvent.objects.filter(owner=request.user),
+        'pending_events': CalendarEvent.objects.filter(pending__id=request.tenant_me.id),
+        'attending_events': CalendarEvent.objects.filter(attendees__id=request.tenant_me.id),
+        'absentee_events': CalendarEvent.objects.filter(absentees__id=request.tenant_me.id),
         'constants': constants,
     })
 
@@ -53,8 +56,24 @@ def calendar_create_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 # @condition(last_modified_func=my_last_modified_func)
-def calendar_details_page(request, id):
-    return render(request, 'tenant_calendar/details/view.html',{
+def calendar_edit_details_page(request, id):
+    return render(request, 'tenant_calendar/details/edit/view.html',{
+        'page': 'calendar',
+        'calendar_items': CalendarEvent.objects.filter(owner=request.user),
+        'calendar_event': get_object_or_404(CalendarEvent, id=int(id)),
+        'all_profiles': TenantMe.objects.all(),
+        'constants': constants,
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def calendar_info_details_page(request, id):
+    return render(request, 'tenant_calendar/details/info/view.html',{
         'page': 'calendar',
         'calendar_items': CalendarEvent.objects.filter(owner=request.user),
         'calendar_event': get_object_or_404(CalendarEvent, id=int(id)),
