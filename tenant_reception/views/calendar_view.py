@@ -12,11 +12,14 @@ from smegurus import constants
 
 @login_required(login_url='/en/login')
 def reception_calendar_master_page(request):
+    calendar_events = CalendarEvent.objects.filter(
+        Q(pending__id=request.tenant_me.id) |
+        Q(attendees__id=request.tenant_me.id) |
+        Q(absentees__id=request.tenant_me.id)
+    ).order_by("-start")
     return render(request, 'tenant_reception/calendar/master/view.html',{
         'page': 'reception-calendar-master',
-        'pending_events': CalendarEvent.objects.filter(pending__id=request.tenant_me.id),
-        'attending_events': CalendarEvent.objects.filter(attendees__id=request.tenant_me.id),
-        'absentee_events': CalendarEvent.objects.filter(absentees__id=request.tenant_me.id),
+        'calendar_events': calendar_events
     })
 
 
