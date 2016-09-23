@@ -16,7 +16,7 @@ def reception_calendar_master_page(request):
         Q(pending__id=request.tenant_me.id) |
         Q(attendees__id=request.tenant_me.id) |
         Q(absentees__id=request.tenant_me.id)
-    ).order_by("-start")
+    ).order_by("-finish")
     return render(request, 'tenant_reception/calendar/master/view.html',{
         'page': 'reception-calendar-master',
         'calendar_events': calendar_events

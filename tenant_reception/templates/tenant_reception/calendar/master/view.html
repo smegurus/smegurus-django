@@ -38,6 +38,39 @@
 
         });
     });
+
+    (function(window, document, $, undefined){
+
+      $(function(){
+
+        //
+        // Zero configuration
+        //
+
+        $('#datatable1').dataTable({
+            'paging':   true,  // Table pagination
+            'ordering': true,  // Column ordering
+            'info':     true,  // Bottom left status text
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch:      'Search all columns:',
+                sLengthMenu:  '_MENU_ records per page',
+                info:         'Showing page _PAGE_ of _PAGES_',
+                zeroRecords:  'Nothing found - sorry',
+                infoEmpty:    'No records available',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            }
+        });
+
+        // On input keyup trigger filtering
+        columnInputs
+          .keyup(function () {
+              dtInstance2.fnFilter(this.value, columnInputs.index(this));
+          });
+      });
+
+    })(window, document, window.jQuery);
 </script>
 {% endcompress %}
 <!-- end PAGE JS -->
@@ -78,35 +111,50 @@
                 <!-- end CALENDAR PANEL -->
 
                 <!-- EVENTS PANEL -->
-                <h4 class="page-header">{% trans 'Events' %}</h4>
+                <h4 class="page-header">{% trans 'My Events' %}</h4>
                 <div class="panel panel-default">
                      <div class="panel-body">
                         <div class="table-responsive">
-                           <table class="table table-striped">
-                              <thead>
-                                 <tr>
-                                    <th>{% trans 'Status' %}</th>
-                                    <th>{% trans 'Title' %}</th>
-                                    <th>{% trans 'Start Date/Time' %}</th>
-                                    <th>{% trans 'Finish Date/Time' %}</th>
-                                    <th>&nbsp;</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                  {% for event in calendar_events %}
+                            <!-- DATA TABLE -->
+                            <table id="datatable1" class="table table-striped table-hover">
+                               <thead>
+                                  <tr>
+                                      <th class="sort-alpha">{% trans 'Status' %}</th>
+                                      <th class="sort-alpha">{% trans 'Title' %}</th>
+                                      <th class="sort-numeric">{% trans 'Start Date/Time' %}</th>
+                                      <th class="sort-numeric">{% trans 'Finish Date/Time' %}</th>
+                                      <th>&nbsp;</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                   {% for event in calendar_events %}
 
-                                 <tr {% if request.tenant_me in event.attendees.all %}class="success"{% elif request.tenant_me in event.absentees.all %}class="danger"{% endif %}>
-                                    <td>{% if request.tenant_me in event.attendees.all %}Attending{% elif request.tenant_me in event.absentees.all %}Abstaining{% else %}Pending{% endif %}</td>
-                                    <td>{{ event.name }}</td>
-                                    <td>{{ event.start }}</td>
-                                    <td>{{ event.finish }}</td>
-                                    <td>
-                                        <a href="{% url 'tenant_reception_calendar_details' event.id %}" class="btn btn-xs btn-info">{% trans 'View' %}&nbsp;<i class="fa fa-info-circle"></i></a>
-                                    </td>
-                                 </tr>
-                                 {% endfor %}
-                              </tbody>
-                           </table>
+                                  <tr {% if request.tenant_me in event.attendees.all %}class="success"{% elif request.tenant_me in event.absentees.all %}class="danger"{% endif %}>
+                                     <td>{% if request.tenant_me in event.attendees.all %}Attending{% elif request.tenant_me in event.absentees.all %}Abstaining{% else %}Pending{% endif %}</td>
+                                     <td>{{ event.name }}</td>
+                                     <td>{{ event.start }}</td>
+                                     <td>{{ event.finish }}</td>
+                                     <td>
+                                         <a href="{% url 'tenant_reception_calendar_details' event.id %}" class="btn btn-xs btn-info">{% trans 'View' %}&nbsp;<i class="fa fa-info-circle"></i></a>
+                                     </td>
+                                  </tr>
+                                  {% endfor %}
+
+                                  {% comment %}
+                                  <tr class="gradeX">
+                                     <td>Trident</td>
+                                     <td>Internet Explorer 4.0</td>
+                                     <td>Win 95+</td>
+                                     <td>4</td>
+                                     <td>X</td>
+                                  </tr>
+                                  {% endcomment %}
+
+
+                               </tbody>
+                            </table>
+                            <!-- end DATA TABLE -->
+
                         </div>
                      </div>
                   </div>
