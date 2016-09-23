@@ -13,6 +13,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from foundation_public.models.banned import BannedWord
 from foundation_tenant.models.inforesource import InfoResource
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
@@ -112,13 +113,65 @@ class APIInfoResourceWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_with_authentication(self):
+        # CASE 1 OF 5: SUCCESS
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
-            'owner': self.user.id
+            'owner': self.user.id,
+            'type_of': constants.INFO_RESOURCE_INTERAL_URL_TYPE,
+            'url': 'http://smegurus.com'
         }
         response = self.authorized_client.post('/api/tenantinforesource/', data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # CASE 2 OF 5: FAILS INTERNAL URL
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'type_of': constants.INFO_RESOURCE_INTERAL_URL_TYPE,
+            'url': 'http://hideauze.com'
+        }
+        response = self.authorized_client.post('/api/tenantinforesource/', data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # CASE 3 OF 5: FAILS EMBEDDED YOUTUBE VIDEO URL
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'type_of': constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE,
+            'url': 'https://youtu.be/sNuvSWwIExk'
+        }
+        response = self.authorized_client.post('/api/tenantinforesource/', data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # CASE 4 OF 5: FAILS BAD WORD IN NAME.
+        banned_word = BannedWord.objects.create(
+            id=1,
+            text='Hideauze',
+        )
+        data = {
+            'name': 'Hideauze',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'type_of': constants.INFO_RESOURCE_INTERAL_URL_TYPE,
+            'url': 'http://smegurus.com'
+        }
+        response = self.authorized_client.post('/api/tenantinforesource/', data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        # CASE 5 OF 5: FAILS BAD WORD IN DESCRIPTION.
+        data = {
+            'name': 'Unit Test',
+            'description': 'Hideauze',
+            'owner': self.user.id,
+            'type_of': constants.INFO_RESOURCE_INTERAL_URL_TYPE,
+            'url': 'http://smegurus.com'
+        }
+        response = self.authorized_client.post('/api/tenantinforesource/', data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        banned_word.delete()
 
     @transaction.atomic
     def test_put(self):

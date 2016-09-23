@@ -263,7 +263,7 @@
 
                             <!-- RESOURCES -->
                             <li {% if page == 'resource' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_resource' %}" title="{% trans 'Resources' %}">
+                                <a href="{% url 'tenant_resource_master' %}" title="{% trans 'Resources' %}">
                                     <em class="icon-notebook"></em>
                                     <span data-localize="sidebar.nav.RESOURCES">{% trans 'Resources' %}</span>
                                 </a>
@@ -349,6 +349,7 @@
                                 </a>
                             </li>
                             <!-- end MY WORK -->
+
                         </ul>
                         <!-- END sidebar nav-->
                     </nav>
@@ -554,6 +555,7 @@
                     {% include "api/js/tenant_intake.html" %}
                     {% include "api/js/tenant_note.html" %}
                     {% include "api/js/tenant_task.html" %}
+                    {% include "api/js/tenant_inforesource.html" %}
                     {% include "api/js/tenant_me.html" %}
                     {% include "api/js/tenant_function.html" %}
                     <script>

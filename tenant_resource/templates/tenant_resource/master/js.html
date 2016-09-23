@@ -1,0 +1,14 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Do nothing.
+    });
+
+    function ajax_create_resource(type_of) {
+        window.location = "{% url 'tenant_resource_create' %}?type_of="+type_of;
+    }
+
+    function ajax_delete_task(id) {
+        
+    }
+</script>

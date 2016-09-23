@@ -1,0 +1,114 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_resource/master/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- MENU -->
+    <div class="pull-right">
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-link">
+            <em class="fa fa-ellipsis-v fa-lg"></em>
+            </button>
+            <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                <li>
+                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERAL_URL_TYPE }});">
+                        <em class="fa fa-fw fa-link mr"></em>
+                        <span>{% trans 'Create Internal Resource' %}</span>
+                    </a>
+                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_EXTERNAL_URL_TYPE }});">
+                        <em class="fa fa-fw fa-external-link mr"></em>
+                        <span>{% trans 'Create External Resource' %}</span>
+                    </a>
+                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE }});">
+                        <em class="fa fa-fw fa-youtube mr"></em>
+                        <span>{% trans 'Create Embedded YouTube Video Resource' %}</span>
+                    </a>
+                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE }});">
+                        <em class="fa fa-fw fa-video-camera mr"></em>
+                        <span>{% trans 'Create Video Resource' %}</span>
+                    </a>
+                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERNAL_FILE_TYPE }});">
+                        <em class="fa fa-fw fa-download mr"></em>
+                        <span>{% trans 'Create Downloadable File Resource' %}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   <!-- end MENU -->
+
+
+   <!-- TITLE -->
+   <h3>
+       {% trans 'Resources' %}
+       <!-- BREADCRUMBS -->
+       <ol class="breadcrumb">
+           <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+           </li>
+           <li class="active">{% trans 'Resource' %}</li>
+       </ol>
+       <!-- end BREADCRUMBS -->
+   </h3>
+   <!-- end TITLE -->
+
+   <!-- CONTENT -->
+   <div class="table-grid table-grid-desktop">
+       <!-- ROW -->
+       <div class="row">
+           <div class="col-lg-12">
+               <div class="panel panel-default">
+                   <div class="panel-body">
+                       <table id="datatable1" class="table table-striped table-hover">
+                           <thead>
+                               <tr>
+                                   <th>{% trans 'Name' %}</th>
+                                   <th style="width:20%">{% trans 'Status' %}</th>
+                                   <!-- <th>Browser</th>
+                                   <th>Platform(s)</th>
+                                   <th class="sort-numeric">Engine version</th>
+                                   <th class="sort-alpha">CSS grade</th> -->
+                                   <th style="width:10%">{% trans 'Options' %}</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               {% for resource in inforesources.all %}
+                                   <tr class="gradeA">
+                                       <td>{{ resource.me.name }}</td>
+                                       <td>
+                                           {% if resource.status == 2 %}
+                                               {% trans 'Pending Review' %}
+                                           {% elif resource.status == 3 %}
+                                               {% trans 'In Review' %}
+                                           {% elif resource.status == 4 %}
+                                               {% trans 'Rejected' %}
+                                           {% elif resource.status == 5 %}
+                                               {% trans 'Approved' %}
+                                           {% endif %}
+                                       </td>
+                                       <td>
+                                           <a href="{% url 'tenant_intake_employee_details' resource.id %}">
+                                               <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
+                                           </a>
+                                       </td>
+                                   </tr>
+                               {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- end ROW -->
+  </div>
+  <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+
+{% endblock content %}

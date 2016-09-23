@@ -1,0 +1,97 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_resource/create/js.html' with type_of=type_of constants=constants %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE -->
+    <h3>
+        <!-- TEXT -->
+        {% if type_of == constants.INFO_RESOURCE_INTERAL_URL_TYPE %}
+            <em class="fa fa-fw fa-link mr"></em>{% trans 'New Internal Resource' %}
+        {% elif type_of == constants.INFO_RESOURCE_EXTERNAL_URL_TYPE %}
+            <em class="fa fa-fw fa-external-link mr"></em>{% trans 'New External Resource' %}
+        {% elif type_of == constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE %}
+            <em class="fa fa-fw fa-youtube mr"></em>{% trans 'New Embedded YouTube Video Resource' %}
+        {% elif type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
+            <em class="fa fa-fw fa-video-camera mr"></em>{% trans 'New Video Resource' %}
+        {% elif type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+            <em class="fa fa-fw fa-download mr"></em>{% trans 'New File Download Resource' %}
+        {% endif %}
+        <!-- end TEXT -->
+        
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_resource_master' %}">{% trans 'Resource' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'New Resource' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE -->
+    <!-- CONTENT -->
+    <div class="table-grid table-grid-desktop">
+        <!-- ROW -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- FORM -->
+                        <form method="get" action="/" class="form-horizontal">
+                            <fieldset>
+                                <legend>{% trans 'Details' %}</legend>
+                                <!-- NAME -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}">
+                                    </div>
+                                </div>
+                                <!-- end NAME -->
+                                <br /><br />
+                                <!-- DESCRIPTION -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}"></textarea>
+                                    </div>
+                                </div>
+                                <!-- end DESCRIPTION -->
+                                <br /><br />
+                                <!-- URL -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}">
+                                    </div>
+                                </div>
+                                <!-- end URL -->
+                                <br /><br />
+                            </fieldset>
+                            <!-- SUBMISSION -->
+                            <div class="pull-right">
+                                <button onclick="ajax_create();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Create' %}</button>
+                            </div>
+                            <!-- end SUBMISSION -->
+                        </form>
+                        <!-- end FORM -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end ROW -->
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

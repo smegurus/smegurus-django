@@ -1,0 +1,70 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Keypress
+    }); // end DOCUMENT START
+
+    function ajax_create() {
+        // Get our variables.
+        var name = $('#id_name').val();
+        var description = $('#id_description').val();
+        var website_url = $('#id_url').val();
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the resource name.' %}");
+            return;
+        }
+        if (description <= 0) {
+            alert("{% trans 'Please enter a description.' %}");
+            return;
+        }
+        if (website_url <= 0) {
+            alert("{% trans 'Please enter a url.' %}");
+            return;
+        }
+
+        // Defensive Code: If the user doesn't include 'http' then automatically
+        //                 include it into the URL. Also handle situations where
+        //                 Twitter username is entered and replace it with the
+        //                 full Twitter URL.
+        if (website_url.indexOf("http") < 0) {
+            website_url = 'http://' + website_url;
+        }
+
+        // Set our object variables.
+        var resource = {
+            'type_of': {{ type_of }},
+            'name': name,
+            'description': description,
+            'url': website_url,
+        };
+
+        // Create our object.
+        set_tenant_inforesource(
+            resource,
+            function(json_result) {
+                window.location = "{% url 'tenant_resource_master' %}";
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+
+                if (string.indexOf('valid URL') > -1) {
+                    alert("{% trans 'Please enter a valid URL.' %}");
+                } else if (string.indexOf('he URL is not embedded') > -1) {
+                    alert("{% trans 'Please enter the embedded YouTube URL.' %}");
+                } else if (string.indexOf('The URL needs to have our domain') > -1) {
+                    alert("{% trans 'Please enter a URL using only smegurus.com in it. This is because you have chosen a INTERNAL resource type.' %}");
+                } else {
+                    alert(string);
+                }
+            }
+        ); // end SET CALENDAR EVENT.
+    }
+</script>
