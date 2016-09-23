@@ -82,30 +82,7 @@
             </div>
             {% endif %}
             <!-- end CALENDAR PANEL-->
-
-
-            <!-- TASK LOG -->
-            <div class="panel b">
-                <div class="panel-heading">
-                    <div class="panel-title">{% trans 'Task History' %}</div>
-                </div>
-                <!-- START list group-->
-                <div data-height="180" data-scrollable="" class="list-group">
-
-                    {% for log_event in task.log_events.all %}
-                    <a href="#" class="list-group-item">
-                        <div class="media-box">
-                            <p class="mb-sm">
-                                <small class="pull-right">{{ log_event.created }}</small>
-                                <small>{{ log_event.text|safe }}</small>
-                            </p>
-                        </div>
-                    </a>
-                    {% endfor %}
-
-                </div>
-            </div>
-            <!-- end TASK LOG -->
+            
 
             <!-- Team messages-->
             <div class="panel b">
