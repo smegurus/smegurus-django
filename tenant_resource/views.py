@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
@@ -39,4 +39,19 @@ def resource_create_page(request):
         'page': 'resource',
         'type_of': int_or_none(request.GET.get('type_of')),
         'constants': constants
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_reception_required
+@tenant_intake_required
+@tenant_configuration_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def resource_edit_details_page(request, id):
+    inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
+    return render(request, 'tenant_resource/details/edit/view.html',{
+        'page': 'resource',
+        'constants': constants,
+        'inforesource': inforesource
     })

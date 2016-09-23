@@ -8,7 +8,17 @@
         window.location = "{% url 'tenant_resource_create' %}?type_of="+type_of;
     }
 
-    function ajax_delete_task(id) {
-        
+    function ajax_delete_resource(id) {
+        delete_tenant_inforesource(
+            id,
+            function(inforesource) {
+                location.reload(true); // Refresh this page.
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
     }
 </script>

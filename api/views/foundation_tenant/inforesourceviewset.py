@@ -23,3 +23,10 @@ class InfoResourceViewSet(viewsets.ModelViewSet):
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly, )
     filter_class = InfoResourceFilter
+
+    def perform_create(self, serializer):
+        """Override the create command to add additional computations."""
+        # Include the owner attribute directly, rather than from request data.
+        info_resource = serializer.save(
+            owner=self.request.user,
+        )

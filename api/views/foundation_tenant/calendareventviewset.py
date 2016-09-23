@@ -86,7 +86,7 @@ class CalendarEventViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     filter_class = CalendarEventFilter
 
     def perform_create(self, serializer):
-        """Override the create command to add additional computations."""
+        """Override the create function to add additional computations."""
         # Include the owner attribute directly, rather than from request data.
         calendar_event = serializer.save(
             owner=self.request.user,
