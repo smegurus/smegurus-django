@@ -44,7 +44,7 @@ from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
-
+from foundation_tenant.models.inforesource import InfoResource
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -368,6 +368,15 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_naicsoption_to_string(self):
         option = NAICSOption.objects.create(
+            name='hideauze.com',
+        )
+        self.assertIn(str(option), 'hideauze.com')
+        option.delete()
+
+
+    @transaction.atomic
+    def test_info_resource_to_string(self):
+        option = InfoResource.objects.create(
             name='hideauze.com',
         )
         self.assertIn(str(option), 'hideauze.com')

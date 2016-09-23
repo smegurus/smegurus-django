@@ -38,6 +38,7 @@ from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.inforesource import InfoResource
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -280,3 +281,9 @@ class NAICSOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = NAICSOption
         fields = ('id', 'seq_num', 'name', 'parent', 'year')
+
+
+class InfoResourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InfoResource
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'type_of', 'upload',)

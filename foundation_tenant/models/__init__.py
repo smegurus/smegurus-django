@@ -36,3 +36,4 @@ from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.inforesource import InfoResource

@@ -44,6 +44,7 @@ from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.inforesource import InfoResource
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -722,11 +723,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = GovernmentBenefitOption.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = GovernmentBenefitOption.objects.all()
-        for item in items.all():
-            item.delete()
-
     @transaction.atomic
     def test_identifyoption_delete_all(self):
         # Setup our unit test.
@@ -746,11 +742,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = IdentifyOption.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = IdentifyOption.objects.all()
-        for item in items.all():
-            item.delete()
-
     @transaction.atomic
     def test_countryoption_delete_all(self):
         # Setup our unit test.
@@ -769,11 +760,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         CountryOption.objects.delete_all()
         count = CountryOption.objects.all().count()
         self.assertEqual(count, 0)
-
-        # Cleanup
-        items = CountryOption.objects.all()
-        for item in items.all():
-            item.delete()
 
     @transaction.atomic
     def test_provinceoption_delete_all(self):
@@ -796,12 +782,6 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         ProvinceOption.objects.delete_all()
         count = ProvinceOption.objects.all().count()
         self.assertEqual(count, 0)
-
-        # Cleanup
-        items = ProvinceOption.objects.all()
-        for item in items.all():
-            item.delete()
-        country.delete()
 
     @transaction.atomic
     def test_cityoption_delete_all(self):
@@ -857,7 +837,21 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         count = NAICSOption.objects.all().count()
         self.assertEqual(count, 0)
 
-        # Cleanup
-        items = NAICSOption.objects.all()
-        for item in items.all():
-            item.delete()
+    @transaction.atomic
+    def test_countryoption_delete_all(self):
+        # Setup our unit test.
+        count = InfoResource.objects.all().count()
+        self.assertEqual(count, 0)
+        InfoResource.objects.bulk_create([
+            InfoResource(name='Transhumanism',),
+            InfoResource(name='Space exploration',),
+            InfoResource(name='Unlimited energy',),
+            InfoResource(name='Defend hive',),
+        ])
+        count = InfoResource.objects.all().count()
+        self.assertEqual(count, 4)
+
+        # Run our test and verify.
+        InfoResource.objects.delete_all()
+        count = InfoResource.objects.all().count()
+        self.assertEqual(count, 0)
