@@ -7,10 +7,14 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from smegurus import constants
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.cityoption import CityOption
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.calendarevent import CalendarEvent
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -83,10 +87,28 @@ class TenantCalendarTestCases(APITestCase, TenantTestCase):
         self.tenant.users.add(self.user)
         self.tenant.save()
 
+        # Create our Profile.
+        country = CountryOption.objects.create(id=1, name='Avalan')
+        province = ProvinceOption.objects.create(id=1, name='Colony 01', country=country)
+        city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country,)
+        self.me = TenantMe.objects.create(
+            owner=self.user,
+            is_admitted=True,
+            address=PostalAddress.objects.create(
+                address_country=CountryOption.objects.get(id=1),
+                address_region=ProvinceOption.objects.get(id=1),
+                address_locality=CityOption.objects.get(id=1),
+                owner=self.user
+            )
+        )
+
     @transaction.atomic
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
+        CityOption.objects.delete_all()
+        ProvinceOption.objects.delete_all()
+        CountryOption.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
@@ -94,8 +116,50 @@ class TenantCalendarTestCases(APITestCase, TenantTestCase):
         # super(TenantCalendarTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_calendar_page(self):
+    def test_calendar_master_page(self):
         url = reverse('tenant_calendar_master')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Calendar',response.content)
+
+    @transaction.atomic
+    def test_calendar_details_page(self):
+        calendar_event = CalendarEvent.objects.create(
+            id=666,
+            owner=self.user,
+            name='Celebrate victorious battle of Hideauze',
+            description='Come and celebrate!',
+            start='1980-01-01',
+            finish='1980-01-01',
+        )
+        calendar_event.pending.add(self.me)
+        url = reverse('tenant_calendar_details_edit', args=[calendar_event.id,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Calendar',response.content)
+
+    @transaction.atomic
+    def test_calendar_info_page(self):
+        calendar_event = CalendarEvent.objects.create(
+            id=666,
+            owner=self.user,
+            name='Celebrate victorious battle of Hideauze',
+            description='Come and celebrate!',
+            start='1980-01-01',
+            finish='1980-01-01',
+        )
+        calendar_event.pending.add(self.me)
+        url = reverse('tenant_calendar_details_info', args=[calendar_event.id,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Calendar',response.content)
+
+    @transaction.atomic
+    def test_calendar_created_page(self):
+        url = reverse('tenant_calendar_create')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
