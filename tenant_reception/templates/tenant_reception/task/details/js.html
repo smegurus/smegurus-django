@@ -40,6 +40,12 @@
         // page is now ready, initialize the calendar...
         $('#calendar').fullCalendar({
             displayEventTime: false, // hide start time.
+            eventClick: function(calEvent, jsEvent, view) {
+                // Go to the details page.
+                var url = "{% url 'tenant_reception_calendar_details' 'placeholder' %}";
+                var details_url = url.replace("placeholder", calEvent.uid);
+                window.location = details_url;
+            }, // end EVENT CLICK
             eventSources: [
             {
                 // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
