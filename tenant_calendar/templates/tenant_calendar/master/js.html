@@ -6,7 +6,7 @@
             displayEventTime: false, // hide start time.
             eventClick: function(calEvent, jsEvent, view) {
                 // Go to the details page.
-                var url = "{% url 'tenant_calendar_details_edit' 'placeholder' %}";
+                var url = "{% url 'tenant_calendar_details_info' 'placeholder' %}";
                 var details_url = url.replace("placeholder", calEvent.uid);
                 window.location = details_url;
             }, // end EVENT CLICK
@@ -14,19 +14,59 @@
             {
                 // Importing event data: https://fullcalendar.io/docs/event_data/Event_Source_Object/
                 events: [
-                    {% for item in events %}
-                        {
-                            uid: {{ item.id }},
-                            title: '{{ item.name }}',
-                            start: new Date({{ item.start.year }}, {{ item.start.month }}-1, {{ item.start.day }}),
-                            backgroundColor: '{{ item.colour }}',
-                            borderColor: '{{ item.colour }}'
-                        },
+                    {% for calendar_event in calendar_events.all %}
+                    {
+                        uid: {{ calendar_event.id }},
+                        title: '{{ calendar_event.name }}',
+                        start: new Date({{ calendar_event.start.year }}, {{ calendar_event.start.month }}-1, {{ calendar_event.start.day }}),
+                        status_colour: {% if me in calendar_event.attendees.all %}'green'{% elif me in calendar_event.absentees.all %}'red'{% else %}'grey'{% endif %}
+                    },
                     {% endfor %}
                 ]
-            }]
-        }) // end FULLCALENDAR
+            }],
+            eventRender: function(event, element)
+            {
+                element.css('font-size','14px');
+                element.css('text-align: center');
+                var colour = event['status_colour'];
+                element.css('background-color', colour);
+            }
+
+        });
     });
+
+    (function(window, document, $, undefined){
+
+      $(function(){
+
+        //
+        // Zero configuration
+        //
+
+        $('#datatable1').dataTable({
+            'paging':   true,  // Table pagination
+            'ordering': true,  // Column ordering
+            'info':     true,  // Bottom left status text
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch:      'Search all columns:',
+                sLengthMenu:  '_MENU_ records per page',
+                info:         'Showing page _PAGE_ of _PAGES_',
+                zeroRecords:  'Nothing found - sorry',
+                infoEmpty:    'No records available',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            }
+        });
+
+        // On input keyup trigger filtering
+        columnInputs
+          .keyup(function () {
+              dtInstance2.fnFilter(this.value, columnInputs.index(this));
+          });
+      });
+
+    })(window, document, window.jQuery);
 
     function ajax_delete(id) {
         $('#id_delete_'+id).prop("disabled", true);

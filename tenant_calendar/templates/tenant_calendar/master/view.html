@@ -3,9 +3,10 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_calendar/master/js.html' with events=events %}
+    {% include 'tenant_calendar/master/js.html' with calendar_events=calendar_events me=request.tenant_me %}
 {% endcompress %}
 <!-- end PAGE JS -->
+
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <div class="pull-right">
@@ -31,7 +32,7 @@
     </div>
 
     <!-- TITLE -->
-    <h3>{% trans 'Full Calendar' %}
+    <h3>{% trans 'Calendar' %}
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
@@ -45,71 +46,87 @@
     <!-- START row-->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <!-- START panel-->
+            <div class="col-lg-12">
+                <!-- CALENDAR PANEL -->
                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <!-- {% trans 'Tasks' %} -->
+                    </div>
                     <div class="panel-body">
-                        <div role="tabpanel">
-                            <!-- Nav tabs-->
-                            <ul role="tablist" class="nav nav-tabs">
-                                <li role="presentation" class="active">
-                                    <a href="#calendar" aria-controls="calendar" role="tab" data-toggle="tab" aria-expanded="true">{% trans 'My Calendar' %}</a>
-                                </li>
-                                <li role="presentation" class="">
-                                    <a href="#my_events" aria-controls="my_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'My Events' %}</a>
-                                </li>
-                                <li role="presentation" class="">
-                                    <a href="#pending_events" aria-controls="pending_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Pending Events' %}</a>
-                                </li>
-                                <li role="presentation" class="">
-                                    <a href="#attending_events" aria-controls="attending_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Attending Events' %}</a>
-                                </li>
-                                <li role="presentation" class="">
-                                    <a href="#absentee_events" aria-controls="absentee_events" role="tab" data-toggle="tab" aria-expanded="false">{% trans 'Absentee Events' %}</a>
-                                </li>
-                            </ul>
-                            <!-- Tab panes-->
-                            <div class="tab-content">
-                                <!-- CALENDAR CONTENT -->
-                                <div id="calendar" role="tabpanel" class="tab-pane active">
-                                    <!-- START calendar-->
-                                    <div id="calendar"></div>
-                                    <!-- END calendar-->
-                                </div>
-                                <!-- CALENDAR CONTENT -->
 
-                                <!-- MY EVENTS -->
-                                <div id="my_events" role="tabpanel" class="tab-pane">
-                                    {% include 'tenant_calendar/master/table_view.html' with items=my_events me=request.tenant_me enable_edit=True %}
-                                </div>
-                                <!-- end MY EVENTS -->
-
-                                <!-- end PENDING EVENTS -->
-                                <div id="pending_events" role="tabpanel" class="tab-pane">
-                                    {% include 'tenant_calendar/master/table_view.html' with items=pending_events me=request.tenant_me enable_edit=False %}
-                                </div>
-                                <!-- end PENDING EVENTS -->
-
-                                <!-- APPROVED EVENTS -->
-                                <div id="attending_events" role="tabpanel" class="tab-pane">
-                                    {% include 'tenant_calendar/master/table_view.html' with items=attending_events me=request.tenant_me enable_edit=False %}
-                                </div>
-                                <!-- end APPROVED EVENTS -->
-
-                                <!-- end ABSCENTEE EVENTS -->
-                                <div id="absentee_events" role="tabpanel" class="tab-pane">
-                                    {% include 'tenant_calendar/master/table_view.html' with items=absentee_events me=request.tenant_me enable_edit=False %}
-                                </div>
-                                <!-- end ABSCENTEE EVENTS -->
-                            </div>
+                        <!-- CALENDAR CONTENT -->
+                        <div id="calendar" role="tabpanel" class="tab-pane active">
+                            <!-- calendar widget -->
+                            <div id="calendar"></div>
+                            <!-- end calendar widget-->
                         </div>
+                        <!-- CALENDAR CONTENT -->
+
                     </div>
                 </div>
-                <!-- END panel-->
+                <!-- end CALENDAR PANEL -->
+
+                <!-- EVENTS PANEL -->
+                <h4 class="page-header">{% trans 'My Events' %}</h4>
+                <div class="panel panel-default">
+                     <div class="panel-body">
+                        <div class="table-responsive">
+                            <!-- DATA TABLE -->
+                            <table id="datatable1" class="table table-striped table-hover">
+                               <thead>
+                                  <tr>
+                                      <th class="sort-alpha">{% trans 'Status' %}</th>
+                                      <th class="sort-alpha">{% trans 'Title' %}</th>
+                                      <th class="sort-numeric">{% trans 'Start Date/Time' %}</th>
+                                      <th class="sort-numeric">{% trans 'Finish Date/Time' %}</th>
+                                      <th>&nbsp;</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                   {% for event in calendar_events %}
+
+                                  <tr {% if request.tenant_me in event.attendees.all %}class="success"{% elif request.tenant_me in event.absentees.all %}class="danger"{% endif %}>
+                                     <td>{% if request.tenant_me in event.attendees.all %}Attending{% elif request.tenant_me in event.absentees.all %}Abstaining{% else %}Pending{% endif %}</td>
+                                     <td>{{ event.name }}</td>
+                                     <td>{{ event.start }}</td>
+                                     <td>{{ event.finish }}</td>
+                                     <td>
+                                         {% if request.user == event.owner %}
+                                         <a onclick="ajax_delete({{ event.id }});" class="btn btn-xs btn-danger" id="id_delete_{{ event.id }}">
+                                             {% trans 'Delete' %} <i class="fa fa-remove"></i>
+                                         </a>
+                                         <a href="{% url 'tenant_calendar_details_edit' event.id %}" class="btn btn-xs btn-warning">
+                                             {% trans 'Edit' %} <i class="fa fa-edit"></i>
+                                         </a>
+                                         {% endif %}
+                                         <a href="{% url 'tenant_calendar_details_info' event.id %}" class="btn btn-xs btn-info">{% trans 'View' %}&nbsp;<i class="fa fa-info-circle"></i></a>
+                                     </td>
+                                  </tr>
+                                  {% endfor %}
+
+                                  {% comment %}
+                                  <tr class="gradeX">
+                                     <td>Trident</td>
+                                     <td>Internet Explorer 4.0</td>
+                                     <td>Win 95+</td>
+                                     <td>4</td>
+                                     <td>X</td>
+                                  </tr>
+                                  {% endcomment %}
+
+
+                               </tbody>
+                            </table>
+                            <!-- end DATA TABLE -->
+
+                        </div>
+                     </div>
+                  </div>
+                  <!-- end EVENTS PANEL -->
             </div>
         </div>
-        <!-- END row-->
+        <!-- END DATATABLE 1 -->
     </div>
 </div>
-<!-- end PAGE HTML -->
+<!-- end PAGE CONTENT -->
 {% endblock content %}

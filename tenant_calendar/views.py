@@ -24,16 +24,15 @@ from smegurus import constants
 @tenant_configuration_required
 # @condition(last_modified_func=my_last_modified_func)
 def calendar_master_page(request):
-    events = CalendarEvent.objects.filter(
-        Q(owner=request.user) | Q(attendees__id=request.tenant_me.id) | Q(pending__id=request.tenant_me.id)
-    )
+    calendar_events = CalendarEvent.objects.filter(
+        Q(pending__id=request.tenant_me.id) |
+        Q(attendees__id=request.tenant_me.id) |
+        Q(absentees__id=request.tenant_me.id) |
+        Q(owner=request.user)
+    ).order_by("-finish")
     return render(request, 'tenant_calendar/master/view.html',{
         'page': 'calendar',
-        'events': events,
-        'my_events': CalendarEvent.objects.filter(owner=request.user),
-        'pending_events': CalendarEvent.objects.filter(pending__id=request.tenant_me.id),
-        'attending_events': CalendarEvent.objects.filter(attendees__id=request.tenant_me.id),
-        'absentee_events': CalendarEvent.objects.filter(absentees__id=request.tenant_me.id),
+        'calendar_events': calendar_events,
         'constants': constants,
     })
 
