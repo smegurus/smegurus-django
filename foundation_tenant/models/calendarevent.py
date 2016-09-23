@@ -72,3 +72,13 @@ class CalendarEvent(AbstractThing):
 
     def __str__(self):
         return str(self.name)
+
+
+class SortedCalendarEventByCreated(CalendarEvent):
+    class Meta:
+        proxy = True
+        app_label = 'foundation_tenant'
+        db_table = 'biz_sorted_calendar_events_by_created'
+        ordering = ('-created',)
+        verbose_name = _('Sorted by Created Calendar Event')
+        verbose_name_plural = _('Sorted by Created Calendar Events')

@@ -4,6 +4,7 @@ from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.views.decorators.http import condition
 from django.db.models import Q
+from django.db.models import Count
 from rest_framework.authtoken.models import Token
 from foundation_tenant.utils import my_last_modified_func
 from tenant_configuration.decorators import tenant_configuration_required
@@ -29,7 +30,7 @@ def calendar_master_page(request):
         Q(attendees__id=request.tenant_me.id) |
         Q(absentees__id=request.tenant_me.id) |
         Q(owner=request.user)
-    ).order_by("-finish")
+    ).annotate(num_ids=Count('id')).order_by('-finish')  # Make unique and sort by latest.
     return render(request, 'tenant_calendar/master/view.html',{
         'page': 'calendar',
         'calendar_events': calendar_events,

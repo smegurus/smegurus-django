@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Count
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.me import TenantMe
@@ -16,7 +16,7 @@ def reception_calendar_master_page(request):
         Q(pending__id=request.tenant_me.id) |
         Q(attendees__id=request.tenant_me.id) |
         Q(absentees__id=request.tenant_me.id)
-    ).order_by("-finish")
+    ).annotate(num_ids=Count('id')).order_by('-finish')  # Make unique and sort by latest.
     return render(request, 'tenant_reception/calendar/master/view.html',{
         'page': 'reception-calendar-master',
         'calendar_events': calendar_events

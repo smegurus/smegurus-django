@@ -1,5 +1,10 @@
 import django_filters
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.translation import ugettext_lazy as _
+from django.template.loader import render_to_string    # HTML to TXT
+from django.core.urlresolvers import reverse
+from django.core.mail import EmailMultiAlternatives    # Emailer
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -14,7 +19,56 @@ from api.serializers.misc  import IntegerSerializer
 from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.tag import Tag
+from smegurus.settings import env_var
 from smegurus import constants
+
+
+class SendEmailViewMixin(object):
+    def get_web_view(self, calendar_event):
+        url = 'https://' if self.request.is_secure() else 'http://'
+        url += self.request.tenant.schema_name + "."
+        url += get_current_site(self.request).domain
+        url += reverse('foundation_email_calendar_pending_event', args=[calendar_event.id,])
+        return url
+
+    def get_calendar_event_url(self, calendar_event):
+        """Function will return the URL to the calendar_event page through the sub-domain of the organization."""
+        url = 'https://' if self.request.is_secure() else 'http://'
+        url += self.request.tenant.schema_name + "."
+        url += get_current_site(self.request).domain
+        url += reverse('foundation_email_calendar_pending_event', args=[calendar_event.id,])
+        url = url.replace("None","en")
+        return url
+
+    def send_notification(self, calendar_event):
+        # Iterate through all the participants in the CalendarEvent and get their
+        # email only if they request email notification for taks.
+        contact_list = []
+        for me in calendar_event.pending.all():
+            if me.notify_when_task_had_an_interaction:
+                contact_list.append(me.owner.email)
+
+        # Generate the data.
+        subject = "Pending Event #" + str(calendar_event.id)
+        param = {
+            'user': self.request.user,
+            'calendar_event': calendar_event,
+            'url': self.get_calendar_event_url(calendar_event),
+            'web_view_url': self.get_web_view(calendar_event),
+        }
+
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('tenant_calendar/pending_invite.html', param)
+        html_content = render_to_string('tenant_calendar/pending_invite.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+        to = contact_list
+
+        # Send the email.
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
 
 class CalendarEventFilter(django_filters.FilterSet):
@@ -23,7 +77,7 @@ class CalendarEventFilter(django_filters.FilterSet):
         fields = ['name', 'description', 'type_of', 'colour', 'start', 'finish', 'owner', 'tags', 'pending', 'attendees', 'absentees',]
 
 
-class CalendarEventViewSet(viewsets.ModelViewSet):
+class CalendarEventViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     queryset = CalendarEvent.objects.all()
     serializer_class = CalendarEventSerializer
     pagination_class = LargeResultsSetPagination
@@ -44,6 +98,8 @@ class CalendarEventViewSet(viewsets.ModelViewSet):
             for tag in calendar_event.tags.all():
                 me = TenantMe.objects.get(tags__id=tag.id)
                 calendar_event.pending.add(me)
+
+        self.send_notification(calendar_event)  # Send notification to all users.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def attending(self, request, pk=None):
