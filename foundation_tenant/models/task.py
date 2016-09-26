@@ -8,6 +8,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
+from foundation_tenant.models.inforesource import InfoResource
 from smegurus import constants
 
 
@@ -140,7 +141,7 @@ class Task(AbstractThing):
         blank=True,
         null=True,
         related_name="task_download_%(app_label)s_%(class)s_related",
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL
     )
     upload = models.ForeignKey(
         TenantFileUpload,
@@ -148,13 +149,20 @@ class Task(AbstractThing):
         blank=True,
         null=True,
         related_name="task_upload_%(app_label)s_%(class)s_related",
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL
     )
 
     #----------------------#
     # Resource Task Fields #
     #----------------------#
-    # Nothing ...
+    resource = models.ForeignKey(
+        InfoResource,
+        help_text=_('The the InfoResource associated with this Task.'),
+        blank=True,
+        null=True,
+        related_name="task_resource_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
+    )
 
     def __str__(self):
         return str(self.name)

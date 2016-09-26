@@ -161,6 +161,25 @@
         }); // end CALENDAR EVENT
 
 
+        $( "#id_resource" ).change(function(e) {  // ASSIGNEE HANDLER
+            var resource = $('#id_resource').val() ;
+            $('#id_resource').prop("disabled", true);
+            var text = "{% trans 'Assigned Resource to task by' %} {{ request.user.first_name }} {{ request.user.last_name }}";
+            ajax_task_handle(
+                'resource',
+                parseInt(resource),
+                text,
+                function(json_result) {
+                    location.reload(true); //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+                },
+                function(error_json_result) {
+                    $('#id_resource').prop("disabled", false);
+                    print_error_handler(error_json_result);
+                }
+            ); // end AJAX TASK HANDLE
+        }); // end CALENDAR EVENT
+
+
         $( "#id_assignee" ).change(function(e) {  // ASSIGNEE HANDLER
             var assignee = $('#id_assignee').val() ;
             var text = "Re-assined task by {{ request.user.first_name }} {{ request.user.last_name }}";

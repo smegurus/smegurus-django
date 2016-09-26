@@ -122,25 +122,32 @@
             <!-- End Main panel-->
 
             <!-- CALENDAR PANEL-->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <!-- TITLE -->
-                    <h4 class="mv">{% trans 'Calendar Event' %}</h4>
-                    <!-- end TITLE -->
-               </div>
-               <div class="panel-body">
-                   <select class="form-control" id="id_calendar_event">
-                       {% if task.calendar_event == None %}
-                           <option value="0">{% trans 'Please select a calendar event ...' %}</option>
-                       {% endif %}
-                       {% for event in calendar_items.all %}
-                           <option value="{{ event.id }}" {% if event == task.calendar_event %}selected="true"{% endif %}>{{ event.name }}</option>
-                       {% endfor %}
-                   </select>
+            {% if task.type_of == constants.TASK_CALENDAR_TYPE %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <!-- TITLE -->
+                        <h4 class="mv">{% trans 'Calendar Event' %}</h4>
+                        <!-- end TITLE -->
+                   </div>
+                   <div class="panel-body">
+                       <select class="form-control" id="id_calendar_event">
+                           {% if task.calendar_event == None %}
+                               <option value="0">{% trans 'Please select a calendar event ...' %}</option>
+                           {% endif %}
+                           {% for event in calendar_items.all %}
+                               <option value="{{ event.id }}" {% if event == task.calendar_event %}selected="true"{% endif %}>{{ event.name }}</option>
+                           {% endfor %}
+                       </select>
+                   </div>
+                </div>
+            {% endif %}
+            <!-- end CALENDAR PANEL -->
 
-               </div>
-            </div>
-            <!-- end CALENDAR PANEL-->
+            <!-- RESOURCE PANEL-->
+            {% if task.type_of == constants.TASK_RESOURCE_TYPE %}
+                {% include 'tenant_task/details/resource_view.html' with task=task constants=constants %}
+            {% endif %}
+            <!-- end RESOURCE PANEL -->
 
             <!-- TASK LOG -->
             <div class="panel b">
@@ -223,54 +230,18 @@
                         <div class="pull-left">
                             <button id="id_complete_btn" onclick="ajax_complete_task();" type="button" class="btn btn-success btn-oval">
                                 <em class="fa fa-check"></em>
-                                <span>Complete</span>
+                                <span>{% trans 'Complete' %}</span>
                             </button>
                         </div>
                         <div class="pull-right">
                             <button id="id_incomplete_btn" onclick="ajax_incomplete_task();" type="button" class="btn btn-danger btn-oval">
                                 <em class="fa fa-close"></em>
-                                <span>Incomplete</span>
+                                <span>{% trans 'Incomplete' %}</span>
                             </button>
                         </div>
                     </div>
                 </div>
                 {% endif %}
-                {% comment %}
-                <div class="panel-body bb">
-                    <div class="table-grid table-grid-align-middle mv">
-                        <div class="col">
-                            <div class="progress progress-xs m0">
-                                <div style="width: 48%" class="progress-bar progress-bar-info">48%</div>
-                            </div>
-                        </div>
-                        <div class="col wd-xxs text-right">
-                            <div class="text-bold text-muted">48%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <ul class="list-inline mv">
-                        <li>
-                            <div class="badge p-sm bg-warning">priority</div>
-                        </li>
-                        <li>
-                            <div class="badge p-sm bg-gray">angularjs</div>
-                        </li>
-                        <li>
-                            <div class="badge p-sm bg-gray">jquery</div>
-                        </li>
-                        <li>
-                            <div class="badge p-sm bg-gray">gulp</div>
-                        </li>
-                        <li>
-                            <div class="badge p-sm bg-gray">git</div>
-                        </li>
-                        <li>
-                            <div class="badge p-sm bg-gray">ios</div>
-                        </li>
-                    </ul>
-                </div>
-                {% endcomment %}
                 <table class="table bb">
                     <tbody>
                         <tr>
