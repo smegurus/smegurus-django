@@ -81,7 +81,7 @@
                                 <br /><br />
 
                                 <!-- FILE UPLOAD -->
-                                {% if type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+                                {% if type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE or type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
                                     <div id="id_upload_div">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">{% trans 'File' %}</label>

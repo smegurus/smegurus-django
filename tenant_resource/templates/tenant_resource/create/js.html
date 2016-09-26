@@ -51,13 +51,13 @@
             alert("{% trans 'Please enter a description.' %}");
             return;
         }
-        {% if type_of != constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+        {% if type_of != constants.INFO_RESOURCE_INTERNAL_FILE_TYPE or type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
         if (website_url <= 0) {
             alert("{% trans 'Please enter a url.' %}");
             return;
         }
         {% endif %}
-        
+
 
         // Defensive Code: If the user doesn't include 'http' then automatically
         //                 include it into the URL. Also handle situations where

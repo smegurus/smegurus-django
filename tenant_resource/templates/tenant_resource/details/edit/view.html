@@ -78,7 +78,7 @@
                                 <!-- end URL -->
                                 <br /><br />
                                 <!-- FILE UPLOAD -->
-                                {% if inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+                                {% if inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE or inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">{% trans 'File' %}</label>
                                         <div class="col-sm-10">
