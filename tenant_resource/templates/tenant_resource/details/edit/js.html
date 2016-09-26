@@ -48,17 +48,21 @@
             alert("{% trans 'Please enter a description.' %}");
             return;
         }
+        {% if inforesource.type_of != constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
         if (website_url <= 0) {
             alert("{% trans 'Please enter a url.' %}");
             return;
         }
+        {% endif %}
 
         // Defensive Code: If the user doesn't include 'http' then automatically
         //                 include it into the URL. Also handle situations where
         //                 Twitter username is entered and replace it with the
         //                 full Twitter URL.
-        if (website_url.indexOf("http") < 0) {
-            website_url = 'http://' + website_url;
+        if (website_url > 0) {
+            if (website_url.indexOf("http") < 0) {
+                website_url = 'http://' + website_url;
+            }
         }
 
         $("#id_accept_btn").prop("disabled",true);
