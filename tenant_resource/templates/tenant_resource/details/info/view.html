@@ -103,6 +103,17 @@
                                 </div>
                                 {% endif %}
                                 <!-- end VIDEO UPLOAD -->
+                                <!-- YOUTUBE -->
+                                {% if inforesource.type_of == constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE %}
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'YouTube Video' %}</label>
+                                    <div class="col-sm-10">
+                                        <iframe width="560" height="315" src="{{ inforesource.url }}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <br /><br />
+                                </div>
+                                {% endif %}
+                                <!-- end YOUTUBE -->
 
                             </fieldset>
                             <!-- SUBMISSION -->
