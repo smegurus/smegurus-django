@@ -1,0 +1,15 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_accept_btn").click();
+            }
+        }); // end Keypress
+    }); // end DOCUMENT START
+
+    function ajax_cancel() {
+        window.location = "{% url 'tenant_resource_master' %}";
+    }
+</script>

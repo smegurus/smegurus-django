@@ -55,3 +55,18 @@ def resource_edit_details_page(request, id):
         'constants': constants,
         'inforesource': inforesource
     })
+
+
+@login_required(login_url='/en/login')
+@tenant_reception_required
+@tenant_intake_required
+@tenant_configuration_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def resource_info_details_page(request, id):
+    inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
+    return render(request, 'tenant_resource/details/info/view.html',{
+        'page': 'resource',
+        'constants': constants,
+        'inforesource': inforesource
+    })

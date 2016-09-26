@@ -97,10 +97,14 @@
                                            {{ resource.name }}
                                        </td>
                                        <td>
-
+                                           {% if request.tenant_me.is_employee %}
                                            <button onclick="ajax_delete_resource({{ resource.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
                                            <a href="{% url 'tenant_resource_details_edit' resource.id %}">
                                                <button type="button" class="btn btn-labeled btn-warning">{% trans 'Edit' %}</button>
+                                           </a>
+                                           {% endif %}
+                                           <a href="{% url 'tenant_resource_details_info' resource.id %}">
+                                               <button type="button" class="btn btn-labeled btn-info">{% trans 'View' %}</button>
                                            </a>
                                        </td>
                                    </tr>
