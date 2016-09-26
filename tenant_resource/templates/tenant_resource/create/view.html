@@ -45,6 +45,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
+                    <!-- PANEL -->
                     <div class="panel-body">
                         <!-- FORM -->
                         <form method="get" action="/" class="form-horizontal">
@@ -81,27 +82,50 @@
 
                                 <!-- FILE UPLOAD -->
                                 {% if type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
-                                        <div class="col-sm-10">
+                                    <div id="id_upload_div">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{% trans 'File' %}</label>
+                                            <div class="col-sm-10">
 
-                                        <!-- Upload ID -->
-                                        <input type="hidden" id="id_hidden_upload_id" />
-                                        <input type="hidden" id="id_hidden_url" />
-                                        <!-- /.Upload ID -->
+                                            <!-- Upload ID -->
+                                            <input type="hidden" id="id_hidden_upload_id" />
+                                            <input type="hidden" id="id_hidden_url" />
+                                            <!-- /.Upload ID -->
 
-                                        <!-- File Upload Button -->
-                                        <label class="form-control btn btn-success mt10 curp" >
-                                        <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
-                                        <input onchange="ajax_upload_file();"
-                                                     id="id_file"
-                                                   type="file"
-                                                  class="form-control mb10 hide" />
-                                        </label>
-                                        <!-- /.File Upload Button -->
+                                            <!-- File Upload Button -->
+                                            <label class="form-control btn btn-success mt10 curp" >
+                                                <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
+                                                <input onchange="ajax_upload_file();"
+                                                             id="id_file"
+                                                           type="file"
+                                                          class="form-control mb10 hide" />
+                                            </label>
+                                            <!-- /.File Upload Button -->
                                         </div>
                                     </div>
-                                    <br /><br />
+                                </div>
+                                <div id="id_upload_finished_div" style="display: none;">
+                                    <div class="form-group">
+
+                                        <label class="col-sm-2 control-label"></label>
+                                        <div class="col-sm-10">
+                                            <!-- SUCCESS PANEL -->
+                                            <div class="col-lg-4">
+                                                <!-- START panel-->
+                                                <div id="panelDemo9" class="panel panel-success">
+                                                    <div class="panel-heading">{% trans 'Successful Upload!' %}</div>
+                                                    <div class="panel-body">
+                                                        <p>{% trans 'You have succesfully uploaded the file.' %}</p>
+                                                    </div>
+                                                </div>
+                                                <!-- END panel-->
+                                            </div>
+                                        </div>
+                                        <!-- end SUCCESS PANEL -->
+
+                                    </div>
+                                </div>
+                                <br /><br />
                                 {% endif %}
                                 <!-- end FILE UPLOAD -->
                             </fieldset>
@@ -113,6 +137,7 @@
                         </form>
                         <!-- end FORM -->
                     </div>
+                    <!-- end PANEL -->
                 </div>
             </div>
         </div>

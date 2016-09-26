@@ -24,12 +24,14 @@
         var upload_id = $('#id_hidden_upload_id').val();
         console.log("upload_id: "+upload_id);
 
+        $('#id_upload_div').hide()
+
         // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(json_result) {
             console.log(json_result);
             $('#id_hidden_url').attr('src', json_result['datafile']);
             $('#id_hidden_upload_id').val(json_result['id']);
-            $('#id_image_placeholder').attr('src', json_result['datafile']);
+            $('#id_upload_finished_div').show()
         });
     }
 
@@ -49,10 +51,12 @@
             alert("{% trans 'Please enter a description.' %}");
             return;
         }
+        {% if type_of != constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
         if (website_url <= 0) {
             alert("{% trans 'Please enter a url.' %}");
             return;
         }
+        {% endif %}
 
         // Defensive Code: If the user doesn't include 'http' then automatically
         //                 include it into the URL. Also handle situations where
@@ -70,9 +74,11 @@
             'url': website_url,
         };
 
-        if (upload_id <= 0) {
+        if (upload_id > 0) {
             resource['upload'] = parseInt(upload_id);
         }
+
+        $("#id_accept_btn").prop("disabled",true); // Disable button.
 
         // Create our object.
         set_tenant_inforesource(
@@ -81,6 +87,7 @@
                 window.location = "{% url 'tenant_resource_master' %}";
             },
             function(error_json_result) {
+                $("id_accept_btn").removeAttr("disabled");
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
 

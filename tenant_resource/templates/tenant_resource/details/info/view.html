@@ -77,6 +77,19 @@
                                 </div>
                                 <!-- end URL -->
                                 <br /><br />
+                                <!-- FILE UPLOAD -->
+                                {% if inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
+                                        <div class="col-sm-10">
+                                            {% if inforesource.upload %}
+                                                <p>{% trans 'File' %}: <a href="{{ inforesource.upload.get_s3_url }}" target="_blank">{{ inforesource.upload }}</a></p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                {% endif %}
+                                <!-- end FILE UPLOAD -->
                             </fieldset>
                             <!-- SUBMISSION -->
                             <div class="pull-right">
