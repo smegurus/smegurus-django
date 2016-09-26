@@ -2,7 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
+from smegurus.settings import env_var
 
 class TenantFileUploadManager(models.Manager):
     def delete_all(self):
@@ -39,6 +39,9 @@ class TenantFileUpload(models.Model):
 
     def __str__(self):
         return str(self.datafile)
+
+    def get_s3_url(self): 
+        return "https://" + env_var('AWS_STORAGE_BUCKET_NAME') + ".s3.amazonaws.com/media/"+str(self.datafile)
 
     # def delete(self, *args, **kwargs):
     #     """

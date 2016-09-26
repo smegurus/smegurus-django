@@ -61,6 +61,8 @@
             website_url = 'http://' + website_url;
         }
 
+        $("#id_accept_btn").prop("disabled",true);
+
         // Set our object variables.
         get_tenant_inforesource(
             {{ inforesource.id }},
@@ -78,6 +80,7 @@
                         window.location = "{% url 'tenant_resource_master' %}";
                     },
                     function(error_json_result) {
+                        $("id_accept_btn").removeAttr("disabled");
                         var string = JSON.stringify( error_json_result );
                         console.log(string);
                         if (string.indexOf('valid URL') > -1) {
@@ -93,6 +96,7 @@
                 ); // end SET.
             },
             function(error_json_result) {
+                $("id_accept_btn").removeAttr("disabled");
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
                 alert(string);

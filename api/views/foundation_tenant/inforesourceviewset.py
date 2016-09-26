@@ -30,3 +30,9 @@ class InfoResourceViewSet(viewsets.ModelViewSet):
         info_resource = serializer.save(
             owner=self.request.user,
         )
+
+    def perform_destroy(self, instance):
+        """Override the deletion function to include deletion of associated models."""
+        if instance.upload:
+            instance.upload.delete()
+        instance.delete()  # Delete our model.

@@ -18,6 +18,7 @@ from foundation_tenant.models.inforesource import InfoResource
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.fileupload import TenantFileUpload
 from smegurus import constants
 
 
@@ -85,6 +86,7 @@ class APIInfoResourceWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         InfoResource.objects.delete_all()
+        TenantFileUpload.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
@@ -219,5 +221,11 @@ class APIInfoResourceWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authentication(self):
+        info_resource = InfoResource.objects.get(id=1)
+        info_resource.upload = TenantFileUpload.objects.create(
+            id=666,
+            owner=self.user,
+        )
+        info_resource.save()
         response = self.authorized_client.delete('/api/tenantinforesource/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
