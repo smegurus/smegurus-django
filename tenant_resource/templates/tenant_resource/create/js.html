@@ -9,11 +9,36 @@
         }); // end Keypress
     }); // end DOCUMENT START
 
+    /**
+     *  Function will asynchronously upload the file.
+     */
+    function ajax_upload_file() {
+        if ($('#id_file').val() == "") {
+            alert(_("Please select a file to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var file = document.getElementById('id_file').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+        console.log("upload_id: "+upload_id);
+
+        // Insert or Update.
+        set_tenant_fileupload(upload_id, file, function(json_result) {
+            console.log(json_result);
+            $('#id_hidden_url').attr('src', json_result['datafile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['datafile']);
+        });
+    }
+
     function ajax_create() {
         // Get our variables.
         var name = $('#id_name').val();
         var description = $('#id_description').val();
         var website_url = $('#id_url').val();
+        var upload_id = $('#id_hidden_upload_id').val();
 
         // Defensive Code.
         if (name <= 0) {
@@ -44,6 +69,10 @@
             'description': description,
             'url': website_url,
         };
+
+        if (upload_id <= 0) {
+            resource['upload'] = parseInt(upload_id);
+        }
 
         // Create our object.
         set_tenant_inforesource(

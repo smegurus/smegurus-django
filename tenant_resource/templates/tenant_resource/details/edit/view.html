@@ -77,6 +77,34 @@
                                 </div>
                                 <!-- end URL -->
                                 <br /><br />
+                                <!-- FILE UPLOAD -->
+                                {% if inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
+                                        <div class="col-sm-10">
+                                            {% if inforesource.upload %}
+                                                <p>{% trans 'File' %}: <a href="{{ inforesource.upload.datefile.url }}">{{ inforesource.upload }}</a></p>
+                                            {% endif %}
+
+                                        <!-- Upload ID -->
+                                        <input type="hidden" id="id_hidden_upload_id" value="{% if inforesource.upload %}{{ inforesource.upload.id }}{% endif %}" />
+                                        <input type="hidden" id="id_hidden_url" value="{% if inforesource.upload %}{% if inforesource.upload.datefile %}{{ inforesource.upload.datefile.url }}{% endif %}{% endif %}" />
+                                        <!-- /.Upload ID -->
+
+                                        <!-- File Upload Button -->
+                                        <label class="form-control btn btn-success mt10 curp" >
+                                        <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
+                                        <input onchange="ajax_upload_file();"
+                                                     id="id_file"
+                                                   type="file"
+                                                  class="form-control mb10 hide" />
+                                        </label>
+                                        <!-- /.File Upload Button -->
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                {% endif %}
+                                <!-- end FILE UPLOAD -->
                             </fieldset>
                             <!-- SUBMISSION -->
                             <div class="pull-right">
