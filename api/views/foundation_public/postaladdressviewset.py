@@ -13,7 +13,12 @@ from foundation_public.models.postaladdress import PublicPostalAddress
 class PublicPostalAddressFilter(django_filters.FilterSet):
     class Meta:
         model = PublicPostalAddress
-        fields = ['name', 'alternate_name', 'description', 'address_country', 'address_locality', 'address_region', 'post_office_box_number', 'postal_code', 'street_address', 'created', 'last_modified', 'owner',]
+        fields = ['id', 'name', 'alternate_name', 'description', 'owner', 'url',
+                  'country', 'postal_code', 'locality', 'region',
+                  'street_number', 'suffix',
+                  'street_name', 'street_type', 'direction', 'suite_number',
+                  'floor_number', 'buzz_number', 'address_line_2',
+                  'address_line_3',]
 
 
 class PublicPostalAddressViewSet(viewsets.ModelViewSet):

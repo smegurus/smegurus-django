@@ -12,7 +12,12 @@ from foundation_public.models.organization import PublicPostalAddress
 class PublicPostalAddressForm(forms.ModelForm):
     class Meta:
         model = PublicPostalAddress
-        fields = ['street_address', 'postal_code', 'post_office_box_number', 'address_country', 'address_region', 'address_locality',]
+        fields = ['id', 'name', 'alternate_name', 'description', 'owner', 'url',
+                  'country', 'postal_code', 'locality', 'region',
+                  'street_number', 'suffix',
+                  'street_name', 'street_type', 'direction', 'suite_number',
+                  'floor_number', 'buzz_number', 'address_line_2',
+                  'address_line_3',]
         labels = {
             'street_address': _('Street Address'),
             'postal_code': _('Postal Code/Zip'),

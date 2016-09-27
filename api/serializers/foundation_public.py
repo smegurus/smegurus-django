@@ -61,7 +61,12 @@ class PublicLanguageSerializer(serializers.ModelSerializer):
 class PublicPostalAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicPostalAddress
-        fields = ('id', 'name', 'alternate_name', 'description', 'address_country', 'address_locality', 'address_region', 'post_office_box_number', 'postal_code', 'street_address', 'owner', 'url')
+        fields = ('id', 'name', 'alternate_name', 'description', 'owner', 'url',
+                  'country', 'postal_code', 'locality', 'region',
+                  'street_number', 'suffix',
+                  'street_name', 'street_type', 'direction', 'suite_number',
+                  'floor_number', 'buzz_number', 'address_line_2',
+                  'address_line_3',)
 
 
 class PublicOpeningHoursSpecificationSerializer(serializers.ModelSerializer):
