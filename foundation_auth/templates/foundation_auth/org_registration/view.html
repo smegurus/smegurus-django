@@ -13,92 +13,26 @@
     {% trans 'ORGANIZATION REGISTRATION' %}
 </p>
 
-
+<!-- FORM -->
 <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Sub-domain' %}</label>
-       <input id="id_schema_name" type="text" placeholder="{% trans 'Enter first name' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-link form-control-feedback text-muted"></span>
-       .smegurus.com
-    </div>
-
+    <!-- NAME -->
     <div class="form-group has-feedback">
        <label for="signupInputText1" class="text-muted">{% trans 'Company Name' %}</label>
        <input id="id_name" type="text" placeholder="{% trans 'Enter company name' %}" autocomplete="off" required class="form-control">
        <span class="fa fa-building form-control-feedback text-muted"></span>
     </div>
+    <!-- end NAME -->
 
+    <!-- SUB-DOMAIN -->
     <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Website' %}</label>
-       <input id="id_url" type="text" placeholder="{% trans 'Enter website' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-external-link form-control-feedback text-muted"></span>
+       <label for="signupInputText1" class="text-muted">{% trans 'Your SME Gurus Web Address' %}</label>
+       <input id="id_schema_name" type="text" placeholder="{% trans 'Ex.: smallbusinesscenter' %}" autocomplete="off" required class="form-control">
+       <span class="fa fa-link form-control-feedback text-muted"></span>
+       smallbusinesscenter.smegurus.com
     </div>
+    <!-- end SUB-DOMAIN -->
 
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Facebook' %}</label>
-       <input id="id_facebook_url" type="text" placeholder="{% trans 'Enter Facebook' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-facebook form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Twitter' %}</label>
-       <input id="id_twitter_url" type="text" placeholder="{% trans 'Enter Twitter' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-twitter form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Country' %}</label>
-       <select id="id_address_country" class="form-control">
-           <option value="">{% trans 'Please select your country' %}</option>
-           {% for country in countries.all %}
-               <option value="{{ country.id }}">{{ country.name }}</option>
-           {% endfor %}
-       </select>
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Province/State' %}</label>
-       <select id="id_address_region" class="form-control" disabled>
-           <option value="0" selected="selected"> {% trans 'Please select a province/state' %}</option>
-       </select>
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'City' %}</label>
-       <select id="id_address_locality" class="form-control" disabled>
-           <option value="0" selected="selected"> {% trans 'Please select a city' %}</option>
-       </select>
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Street Address' %}</label>
-       <input id="id_street_address" type="text" placeholder="{% trans 'Enter street address' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <div class="form-group has-feedback">
-       <label for="signupInputText1" class="text-muted">{% trans 'Postal/Zip' %}</label>
-       <input id="id_postal_code" type="text" placeholder="{% trans 'Enter postal/zip' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-map-marker form-control-feedback text-muted"></span>
-    </div>
-
-    <!-- Org Form -->
-    {% for org_field in org_form %}
-        {% if org_field.id_for_label == 'id_how_many_served' %}
-            {{ org_field.label_tag }} {{ org_field }}
-            {{ org_field.errors }}<br/>
-        {% endif %}
-        {% if org_field.id_for_label == 'id_how_discovered' %}
-        {{ org_field.label_tag }} {{ org_field }}
-        {{ org_field.errors }}<br/>
-        {% endif %}
-    {% endfor %}
-    {{ org_field.non_field_errors }}
-    <!-- /.Org Form -->
-
+    <!-- SIGN TOS -->
     <div class="clearfix">
        <div class="checkbox c-checkbox pull-left mt0">
           <label>
@@ -107,7 +41,11 @@
           </label>
        </div>
     </div>
+    <!-- end SIGN TOS -->
 
+    <!-- SUBMIT -->
     <button id="id_save_org_btn" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Create Organization' %}</button>
+    <!-- end SUBMIT -->
  </form>
+ <!-- end FORM -->
 {% endblock content %}

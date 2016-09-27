@@ -34,147 +34,18 @@
                 }
             ); // end Schema Name is Unique.
         }); // end Click
-
-        $("#id_address_country").change(function () {
-            var end = this.value;
-            var country_id = $('#id_address_country').val();
-            var criteria = Array();
-            criteria.push({
-                'country': parseInt(country_id),
-            });
-            filter_publicprovinceoptions(
-                criteria,
-                function(json_result) {
-                    $('#id_address_region').prop("disabled", false);
-                    html = "<option value=\"0\">Please select a province.</option>";
-                    $(json_result).each(function(iter,val2){
-                        $(val2['results']).each(function(index, column){
-                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
-                        });
-                    }); // end Iterate Provinces
-                    $('#id_address_region').html('');       // Clear selection
-                    $(html).appendTo('#id_address_region'); // Load new selection
-                }
-            ); // end Filter Provinces
-        }); // end Change Country
-
-        $("#id_address_region").change(function () {
-            var end = this.value;
-            var criteria = Array();
-            criteria.push({
-                'province': parseInt($('#id_address_region').val()),
-            });
-            filter_publiccityoptions(
-                criteria,
-                function(json_result) {
-                    $('#id_address_locality').prop("disabled", false);
-                    html = "";
-                    $(json_result).each(function(iter, results){
-                        if (results['count'] == 0) {
-                            // Generate a option to restrict.
-                            html += "<option value=\"0\">Coming soon.</option>";
-
-                            // Lock submit button.
-                            //$('#id_register_btn').prop("disabled", true);
-                        } else {
-                            // Generate options.
-                            html = "<option value=\"0\">Please select a city.</option>";
-                            $(results['results']).each(function(index, column){
-                                html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
-                            });
-
-                            // Unlock submit button.
-                            //$('#id_register_btn').prop("disabled", false);
-                        }
-                    }); // end Iterate Provinces
-                    $('#id_address_locality').html('');       // Clear selection
-                    $(html).appendTo('#id_address_locality'); // Load new selection
-                }
-            ); // end Filter City
-        }); // end Change Province
     }); // end Document.
-
-
-
-    /**
-     *  Function creates an Postal Address.
-     */
-    function api_postal_address(success_callback, error_callback) {
-        var data = {
-            'name': $('#id_name').val() + ' HQ Address',
-            'address_country': $('#id_address_country').val(),
-            'address_locality': $('#id_address_locality').val(),
-            'address_region': $('#id_address_region').val(),
-            'post_office_box_number': $('#id_post_office_box_number').val(),
-            'postal_code': $('#id_postal_code').val(),
-            'street_address': $('#id_street_address').val(),
-            'owner': {{ request.user.id }},
-        };
-
-        if ( $('#id_hidden_postaladdress').val() ) {
-            data['id'] = $('#id_hidden_postaladdress').val();
-        }
-
-        set_public_postaladdress(
-            data,
-            function(json_result) {
-                success_callback(json_result); // Call back the function.
-            },
-            function(error_json_result) {
-                error_callback(error_json_result); // Return JSON
-            }
-        ); // end Postal Address
-    }
 
     /**
      *  Function creates an Organization.
      */
     function api_organization(success_callback, error_callback) {
-        // Fetch the inputted URLs.
-        var website_url = $('#id_url').val();
-        var facebook_url = $('#id_facebook_url').val();
-        var twitter_url = $('#id_twitter_url').val();
-
-        // Defensive Code: If the user doesn't include 'http' then automatically
-        //                 include it into the URL. Also handle situations where
-        //                 Twitter username is entered and replace it with the
-        //                 full Twitter URL.
-        if (website_url.indexOf("http") < 0) {
-            website_url = 'http://' + website_url;
-        }
-        if (website_url.length < 8) {
-            website_url = "";
-        }
-
-        if (facebook_url.indexOf("http") < 0) {
-            facebook_url = 'http://' + facebook_url;
-        }
-        if (facebook_url.length < 8) {
-            facebook_url = "";
-        }
-
-        if (twitter_url.indexOf("@") == 0) {
-            twitter_url = 'http://twitter.com/' + twitter_url.replace("@", "");;
-        } else {
-            if (twitter_url.indexOf("http") < 0) {
-                twitter_url = 'http://' + twitter_url;
-            }
-        }
-        if (twitter_url.length < 8) {
-            twitter_url = "";
-        }
-
         // Generate the Organization object from User input.
         var data = {
             'schema_name': $('#id_schema_name').val().toLowerCase(),
             'name': $('#id_name').val(),
             'alternate_name': $('#id_name').val(),
             'legal_name': $('#id_name').val(),
-            'url': website_url,
-            'facebook_url': facebook_url,
-            'twitter_url': twitter_url,
-            'how_discovered': $('#id_how_discovered').val(),
-            'how_many_served': $('#id_how_many_served').val(),
             'is_tos_signed': $('#id_is_tos_signed').is(':checked'),
         };
 
@@ -224,25 +95,6 @@
      *  Function will run the application logic.
      */
     function ajax_save_org() {
-        // Defensive Code: If Country and Postal/Zip codes have inputted then
-        //                 ensure the appropriate formatting was used.
-        var postal = $('#id_postal_code').val();
-        var country = $('#id_address_country').val().toLowerCase();
-        if (country == 'united states') {
-            if (check_unitedstates_zip(postal) == false) {
-                alert("{% trans 'The entered ZIP code was formatted wrong, please try again.' %}");
-                enable_btn();
-                return;
-            }
-        }
-        if (country == 'canada') {
-            if (check_canadian_postal(postal) == false) {
-                alert("{% trans 'The entered postal code was formatted wrong, please try again.' %}");
-                enable_btn();
-                return;
-            }
-        }
-
         // Defensive Code: Protect against empty string.
         if( $('#id_schema_name').val() == "" ){
             alert("{% trans 'Missing Sub-Domain Name' %}");
@@ -258,21 +110,6 @@
             enable_btn();
             return;
         }
-
-        // Defensive Code:
-        if ( $('#id_how_many_served').val() == '' ) {
-            alert("{% trans 'Please select how many entreprenuers are served' %}");
-            enable_btn();
-            return;
-        }
-
-        // Defensive Code: Prevent no answer for "How Discovered".
-        if ( $('#id_how_discovered').val() == '' ) {
-            alert("{% trans 'Please select how heared about us.' %}");
-            enable_btn();
-            return;
-        }
-
         // Defensive Code: Ensure that the user agrees to the terms before proceeding.
         var is_tsa_checked = $('#id_is_tos_signed').is(':checked');
         if (is_tsa_checked == false) {
@@ -286,60 +123,35 @@
             loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
         });
 
-        /*
-         *  Algorithm:
-         *  1. Save the Postal Address.
-         *  2. Save the Organization.
-         *  3. Load the dashboard page.
-         */
-        api_postal_address(
-            function(pa_success_result) {
-                console.log("Successfully Created Postal Address");
-                console.log(pa_success_result);
-                $('#id_hidden_postaladdress').val(pa_success_result['id']);
+        // Create our ORG.
+        api_organization(
+             function(o_success_result) {
+                 console.log("Successfully Created Organization");
+                 console.log(o_success_result);
 
-                api_organization(
-                    function(o_success_result) {
-                        console.log("Successfully Created Organization");
-                        console.log(o_success_result);
+                 setTimeout(function() {
+                     lb.close(); // Turn off the 'loading' animatin.
+                     enable_btn(); // Allow the user to press the button again.
+                     window.location = "{% url 'foundation_auth_org_successful_registration' %}";
+                 }, 2000);
 
-                        setTimeout(function() {
-                            lb.close(); // Turn off the 'loading' animatin.
-                            enable_btn(); // Allow the user to press the button again.
-                            window.location = "{% url 'foundation_auth_org_successful_registration' %}";
-                        }, 2000);
-
-                    },
-                    function(o_error_result) {
-                        lb.close(); // Turn off the 'loading' animatin.
-                        console.log("Failed Set Organization");
-                        enable_btn(); // Allow the user to press the button again.
-                        var string = JSON.stringify( o_error_result );
-                        console.log(string);
-                        if (string.indexOf('schema') > -1) {
-                            alert("{% trans 'The sub-domain you entered already exists.' %}");
-                        } else if (string.indexOf('reserved word') > -1) {
-                            alert("{% trans 'The sub-domain is using a word which is reserved by our system.' %}");
-                        } else if (string.indexOf('banned word') > -1) {
-                            alert("{% trans 'The sub-domain is using a word which is banned by our system.' %}");
-                        } else {
-                            alert(string);
-                        }
-                    }
-                ); // end Organization
-            },
-            function(pa_error_result) {
-                lb.close(); // Turn off the 'loading' animatin.
-                console.log("Failed Set Postal Address");
-                console.log(pa_error_result);
-                enable_btn(); // Allow the user to press the button again.
-                var string = JSON.stringify( pa_error_result );
-                if (string.indexOf('Province/State does not exist') > -1) {
-                    alert("{% trans 'Province/State does not exist for specified Country.' %}");
-                } else {
-                    alert(string);
-                }
-            }
-        ); // end Postal Address
+             },
+             function(o_error_result) {
+                 lb.close(); // Turn off the 'loading' animatin.
+                 console.log("Failed Set Organization");
+                 enable_btn(); // Allow the user to press the button again.
+                 var string = JSON.stringify( o_error_result );
+                 console.log(string);
+                 if (string.indexOf('schema') > -1) {
+                     alert("{% trans 'The sub-domain you entered already exists.' %}");
+                 } else if (string.indexOf('reserved word') > -1) {
+                     alert("{% trans 'The sub-domain is using a word which is reserved by our system.' %}");
+                 } else if (string.indexOf('banned word') > -1) {
+                     alert("{% trans 'The sub-domain is using a word which is banned by our system.' %}");
+                 } else {
+                     alert(string);
+                 }
+             }
+         ); // end Organization
     }
 </script>

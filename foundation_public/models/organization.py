@@ -224,11 +224,14 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         max_length=127,
         help_text=_('The details of how the User discovered our website.'),
         null=True,
+        blank=True
     )
     how_many_served = models.PositiveSmallIntegerField(
         _("How many entrepreneurs served"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
         choices=HOW_MANY_SERVED_OPTIONS,
+        null=True,
+        blank=True
     )
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),

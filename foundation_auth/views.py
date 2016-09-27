@@ -84,7 +84,7 @@ def user_launchpad_page(request):
     # First check to see if this User belongs to any Organizations and if
     # the User does then go to that Organizations "Dashboard".
     try:
-        organization = PublicOrganization.objects.get(users__id=request.user.id)
+        organization = PublicOrganization.objects.get(users__id=int(request.user.id))
         url = organization.reverse('tenant_dashboard')
         return HttpResponseRedirect(url)  # Go to our new URL.
     except PublicOrganization.DoesNotExist:

@@ -137,9 +137,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'smegurus.middleware.SMEGurusTokenMiddleware',                  # Custom
     'foundation_tenant.middleware.TenantMeMiddleware',              # Custom
     'foundation_tenant.middleware.TenantVisitorMiddleware',         # Custom
-    'smegurus.middleware.SMEGurusTokenMiddleware',                  # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                     # Third Party
 ]
 

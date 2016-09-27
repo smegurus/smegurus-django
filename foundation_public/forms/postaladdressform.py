@@ -19,34 +19,38 @@ class PublicPostalAddressForm(forms.ModelForm):
                   'floor_number', 'buzz_number', 'address_line_2',
                   'address_line_3',]
         labels = {
-            'street_address': _('Street Address'),
+            'street_number': _('Street #'),
             'postal_code': _('Postal Code/Zip'),
-            'address_locality': _('City'),
-            'address_region': _('Province/State'),
-            'address_country': _('Country'),
+            'locality': _('City'),
+            'region': _('Province/State'),
+            'buzz_number': _('Entry Code / Buzz #'),
+            'suite_number': _('Suite #'),
+            'floor_number': _('Floor #'),
+            'address_line_2': _('Address Line 2'),
+            'address_line_3': _('Address Line 3'),
         }
         widgets = {
-            'street_address': TextInput(attrs={
+            'street_number': TextInput(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter the street address.')
+                'placeholder': _('Enter the street number.')
+            }),
+            'street_name': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter the street name.')
             }),
             'postal_code': TextInput(attrs={
                 'class': u'form-control',
                 'placeholder': _('Enter the postal code')
             }),
-            'post_office_box_number': TextInput(attrs={
-                'class': u'form-control',
-                'placeholder': _('Enter the postal code')
-            }),
-            'address_country': Select(attrs={
+            'country': Select(attrs={
                 'class': u'form-control',
                 'placeholder': _('Enter country')
             }),
-            'address_region': Select(attrs={
+            'region': Select(attrs={
                 'class': u'form-control',
                 'placeholder': _('Enter province name')
             }),
-            'address_locality': Select(attrs={
+            'locality': Select(attrs={
                 'class': u'form-control',
                 'placeholder': _('Enter the city name')
             }),
