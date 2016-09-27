@@ -3,6 +3,7 @@ from tenant_reception.views import dashboard_view, decorator_view, tasks_view, c
 
 
 urlpatterns = (
+    url(r'^reception/resource/(.*)/$', resource_view.reception_resource_details_page, name='tenant_reception_resource_details'),
     url(r'^reception/calendar/(.*)/$', calendar_view.reception_calendar_details_page, name='tenant_reception_calendar_details'),
     url(r'^reception/tasks/(.*)/$', tasks_view.task_details_page, name='tenant_reception_tasks_details'),
     url(r'^reception/is_required$', decorator_view.is_required_page, name='tenant_reception_is_required'),

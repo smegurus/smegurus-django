@@ -1,0 +1,24 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_accept_btn").click();
+            }
+        }); // end Keypress
+    }); // end DOCUMENT START
+
+    function visit_internal_url(url) {
+        window.location = url;
+    }
+
+    function visit_external_url(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
+
+    function ajax_cancel() {
+        window.location = "{% url 'tenant_reception_resource_master' %}";
+    }
+</script>
