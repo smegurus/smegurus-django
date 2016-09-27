@@ -1,7 +1,10 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     function filter_publicprovinceoptions(criteria, callback)
     {
-        var url = "/api/publicprovinceoption/?format=json";
+        var url = get_base_domain_url("/api/publicprovinceoption/?format=json");
         for (var i = 0; i < criteria.length; i++) {
             url += "&";
 
@@ -37,7 +40,7 @@
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/publicprovinceoption/";
+        var url = get_base_domain_url("/api/publicprovinceoption/");
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -69,7 +72,7 @@
     }
 
     function get_publicprovinceoption(id, func_callback, func_error_callback) {
-        var url = "/api/publicprovinceoption/" + id + "/?format=json";
+        var url = get_base_domain_url("/api/publicprovinceoption/" + id + "/?format=json");
         jQuery.ajax({
             url: url,
             headers: {
@@ -93,7 +96,7 @@
     }
 
     function delete_publicprovinceoption(id, func_callback, func_error_callback) {
-        var url = "/api/publicprovinceoption/" + id + "/";
+        var url = get_base_domain_url("/api/publicprovinceoption/" + id + "/");
         jQuery.ajax({
             url: url,
             headers: {

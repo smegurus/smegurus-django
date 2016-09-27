@@ -33,6 +33,25 @@ class TenantMeMiddleware(object):
                 # STEP 1: Get or create a TenantMe.
                 tenant_me, created = TenantMe.objects.get_or_create(owner=request.user)
                 request.tenant_me = tenant_me
+
+                # STEP 2: Populate the TenantMe object.
+                if created:
+                    tenant_me.name = request.user.first_name+' '+request.user.last_name
+                    tenant_me.given_name = request.user.first_name
+                    tenant_me.family_name = request.user.last_name
+                    tenant_me.email = request.user.email
+                    tenant_me.address = PostalAddress.objects.create(
+                        owner=request.user,
+                        name='User #' + str(request.user.id) + ' Address',
+                    )
+                    tenant_me.contact_point = ContactPoint.objects.create(
+                        owner=request.user,
+                        name='User #' + str(request.user.id) + ' Contact Point',
+                    )
+                    tenant_me.image = TenantImageUpload.objects.create(
+                        owner=request.user,
+                    )
+                    tenant_me.save()
         return None  # Finish our middleware handler.
 
 

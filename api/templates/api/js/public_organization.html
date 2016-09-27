@@ -1,4 +1,7 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     /**
      * Developers Note: Unknown error at line 25 unless we add the 'bug_error_callback' parameter.
      */
@@ -6,7 +9,7 @@
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/publicorganization/";
+        var url = get_base_domain_url("/api/publicorganization/");
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -38,7 +41,7 @@
     }
 
     function get_public_organization(id, func_callback, func_error_callback) {
-        var url = "/api/publicorganization/" + id + "/?format=json";
+        var url = get_base_domain_url("/api/publicorganization/" + id + "/?format=json");
         jQuery.ajax({
             url: url,
             headers: {
@@ -61,7 +64,7 @@
     }
 
     function delete_public_organization(id, func_callback, func_error_callback) {
-        var url = "/api/publicorganization/" + id + "/";
+        var url = get_base_domain_url("/api/publicorganization/" + id + "/");
         jQuery.ajax({
             url: url,
             headers: {

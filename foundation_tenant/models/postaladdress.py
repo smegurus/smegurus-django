@@ -62,7 +62,6 @@ class PostalAddress(AbstractThing):
         help_text=_('The street number.'),
         blank=True,
         null=True,
-        default='',
     )
     suffix = models.CharField(
         _("Suffix"),

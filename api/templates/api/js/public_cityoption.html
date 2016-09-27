@@ -1,7 +1,10 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     function filter_publiccityoptions(criteria, callback)
     {
-        var url = "/api/publiccityoption/?format=json";
+        var url = get_base_domain_url("/api/publiccityoption/?format=json");
         for (var i = 0; i < criteria.length; i++) {
             url += "&";
 
@@ -37,7 +40,7 @@
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/publiccityoption/";
+        var url = get_base_domain_url("/api/publiccityoption/");
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -69,7 +72,7 @@
     }
 
     function get_publiccityoption(id, func_callback, func_error_callback) {
-        var url = "/api/publiccityoption/" + id + "/?format=json";
+        var url = get_base_domain_url("/api/publiccityoption/" + id + "/?format=json");
         jQuery.ajax({
             url: url,
             headers: {
@@ -93,7 +96,7 @@
     }
 
     function delete_publiccityoption(id, func_callback, func_error_callback) {
-        var url = "/api/publiccityoption/" + id + "/";
+        var url = get_base_domain_url("/api/publiccityoption/" + id + "/");
         jQuery.ajax({
             url: url,
             headers: {

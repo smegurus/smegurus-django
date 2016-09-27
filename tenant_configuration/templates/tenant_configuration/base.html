@@ -194,6 +194,9 @@
         {% if request.user.is_authenticated %}
             {% include "api/js/public_organization.html" %}
             {% include "api/js/public_postaladdress.html" %}
+            {% include "api/js/public_countryoption.html" %}
+            {% include "api/js/public_provinceoption.html" %}
+            {% include "api/js/public_cityoption.html" %}
             {% include "api/js/public_imageupload.html" %}
             {% include "api/js/tenant_tag.html" %}
             {% include "api/js/tenant_imageupload.html" %}
@@ -201,6 +204,9 @@
             {% include "api/js/tenant_tellusyourneed.html" %}
             {% include "api/js/tenant_intake.html" %}
             {% include "api/js/tenant_postaladdress.html" %}
+            {% include "api/js/tenant_countryoption.html" %}
+            {% include "api/js/tenant_provinceoption.html" %}
+            {% include "api/js/tenant_cityoption.html" %}
             {% include "api/js/tenant_me.html" %}
             {% include "api/js/tenant_function.html" %}
         {% endif %}

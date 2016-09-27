@@ -1,4 +1,7 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     /**
      *  Function will create a new image upload and return the inserted
      *  results through the callback.
@@ -12,7 +15,7 @@
             data.append('imagefile', image);
         }
 
-        var url = "/api/publicimageupload/";
+        var url = get_base_domain_url("/api/publicimageupload/");
         var type = "POST";
         if (upload_id > 0)
         {
@@ -50,7 +53,7 @@
     }
 
     function delete_public_imageupload(upload_id, callback) {
-        var url = "/api/publicimageupload/" + upload_id + "/";
+        var url = get_base_domain_url("/api/publicimageupload/" + upload_id + "/");
         jQuery.ajax({
             url: url,
             headers: {

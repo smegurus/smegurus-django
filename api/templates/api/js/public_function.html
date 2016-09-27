@@ -1,9 +1,12 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     /**
      *  Function will lookup the email and return TRUE or FALSE to the callback.
      */
     function public_is_email_unique(email, callback) {
-        var url = "/api/isemailunique/?format=json";
+        var url = get_base_domain_url("/api/isemailunique/?format=json");
         jQuery.ajax({
             url: url,
             data: JSON.stringify({
@@ -32,7 +35,7 @@
     }
 
     function public_is_organization_schema_name_unique(schema_name, callback) {
-        var url = "/api/isorganizationschemanameunique/?format=json";
+        var url = get_base_domain_url("/api/isorganizationschemanameunique/?format=json");
         jQuery.ajax({
             url: url,
             data: JSON.stringify({

@@ -1,9 +1,12 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     function set_public_postaladdress(data, func_callback, func_error_callback)
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/publicpostaladdress/";
+        var url = get_base_domain_url("/api/publicpostaladdress/");
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -35,7 +38,7 @@
     }
 
     function get_public_postaladdress(id, func_callback, func_error_callback) {
-        var url = "/api/publicpostaladdress/" + id + "/?format=json";
+        var url = get_base_domain_url("/api/publicpostaladdress/" + id + "/?format=json");
         jQuery.ajax({
             url: url,
             headers: {
@@ -59,7 +62,7 @@
     }
 
     function delete_public_postaladdress(id, func_callback, func_error_callback) {
-        var url = "/api/publicpostaladdress/" + id + "/";
+        var url = get_base_domain_url("/api/publicpostaladdress/" + id + "/");
         jQuery.ajax({
             url: url,
             headers: {

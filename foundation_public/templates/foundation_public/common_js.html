@@ -71,4 +71,26 @@
             return false;
         }
     }
+
+    /**
+     *  Returns the exact domain without subdomains.
+     */
+    function get_base_domain_url(append_url) {
+        var hostName = document.domain;
+        var domain = hostName;
+
+        if (hostName != null) {
+            var parts = hostName.split('.').reverse();
+
+            if (parts != null && parts.length > 1) {
+                domain = parts[1] + '.' + parts[0];
+
+                if (hostName.toLowerCase().indexOf('.co.uk') != -1 && parts.length > 2) {
+                  domain = parts[2] + '.' + domain;
+                }
+            }
+        }
+
+        return location.protocol + "//" + domain + append_url;
+    }
 </script>

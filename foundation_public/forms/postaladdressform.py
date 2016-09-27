@@ -28,6 +28,7 @@ class PublicPostalAddressForm(forms.ModelForm):
             'floor_number': _('Floor #'),
             'address_line_2': _('Address Line 2'),
             'address_line_3': _('Address Line 3'),
+            'direction': _('Direction'),
         }
         widgets = {
             'street_number': TextInput(attrs={
@@ -44,14 +45,40 @@ class PublicPostalAddressForm(forms.ModelForm):
             }),
             'country': Select(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter country')
             }),
             'region': Select(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter province name')
             }),
             'locality': Select(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter the city name')
+            }),
+            'suffix': Select(attrs={
+                'class': u'form-control',
+            }),
+            'street_type': Select(attrs={
+                'class': u'form-control',
+            }),
+            'direction': Select(attrs={
+                'class': u'form-control',
+            }),
+            'suite_number': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter the suite number.')
+            }),
+            'floor_number': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter the floor number.')
+            }),
+            'buzz_number': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter the entry code / buzz number.')
+            }),
+            'address_line_2': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter the address line 2.')
+            }),
+            'address_line_3': TextInput(attrs={
+                'class': u'form-control',
+                'placeholder': _('Enter the address line 3.')
             }),
         }

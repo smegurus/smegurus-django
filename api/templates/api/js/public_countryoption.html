@@ -1,7 +1,10 @@
 <script>
+    // DEVELOPER NOTES:
+    // - Requires "common_js.html" to be included before using this code.
+
     function filter_publiccountryoptions(criteria, callback)
     {
-        var url = "/api/publiccountryoption/?format=json";
+        var url = get_base_domain_url("/api/publiccountryoption/?format=json");
         for (var i = 0; i < criteria.length; i++) {
             url += "&";
 
@@ -37,7 +40,7 @@
     {
         // Setup depending on whether we are inserting or updating.
         var type = "POST"; // Insert.
-        var url = "/api/publiccountryoption/";
+        var url = get_base_domain_url("/api/publiccountryoption/");
         if (data['id'] > 0) {
             type = "PUT"; // Update
             url += data['id'] + "/";
@@ -69,7 +72,7 @@
     }
 
     function get_publiccountryoption(id, func_callback, func_error_callback) {
-        var url = "/api/publiccountryoption/" + id + "/?format=json";
+        var url = get_base_domain_url("/api/publiccountryoption/" + id + "/?format=json");
         jQuery.ajax({
             url: url,
             headers: {
@@ -93,7 +96,7 @@
     }
 
     function delete_publiccountryoption(id, func_callback, func_error_callback) {
-        var url = "/api/publiccountryoption/" + id + "/";
+        var url = get_base_domain_url("/api/publiccountryoption/" + id + "/");
         jQuery.ajax({
             url: url,
             headers: {

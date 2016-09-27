@@ -1,0 +1,46 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        });
+
+        $("#id_country").change(function () {
+            var end = this.value;
+            var country_id = $('#id_country').val();
+            var criteria = Array();
+            criteria.push({
+                'country': parseInt(country_id),
+            });
+            filter_publicprovinceoptions(
+                criteria,
+                function(json_result) {
+                    $('#id_region').prop("disabled", false);
+                    html = "<option value=\"0\">Please select a province.</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $('#id_region').html('');       // Clear selection
+                    $(html).appendTo('#id_region'); // Load new selection
+                }
+            ); // end Filter Provinces
+        }); // end Change Country
+    }); // end Ready
+
+    function disable_btn() {
+        $('#id_continue_btn').attr("disabled", "disabled");
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').removeAttr("disabled");
+    }
+
+    function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+        window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+    }
+</script>
