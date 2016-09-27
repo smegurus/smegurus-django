@@ -82,7 +82,14 @@
             </div>
             {% endif %}
             <!-- end CALENDAR PANEL-->
-            
+
+
+            <!-- RESOURCE PANEL-->
+            {% if task.type_of == constants.TASK_RESOURCE_TYPE %}
+                {% include 'tenant_reception/task/details/resource_panel.html' with task=task constants=constants %}
+            {% endif %}
+            <!-- end RESOURCE PANEL -->
+
 
             <!-- Team messages-->
             <div class="panel b">

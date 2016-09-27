@@ -145,7 +145,7 @@
 
             <!-- RESOURCE PANEL-->
             {% if task.type_of == constants.TASK_RESOURCE_TYPE %}
-                {% include 'tenant_task/details/resource_view.html' with task=task constants=constants %}
+                {% include 'tenant_task/details/resource_panel.html' with task=task constants=constants %}
             {% endif %}
             <!-- end RESOURCE PANEL -->
 
