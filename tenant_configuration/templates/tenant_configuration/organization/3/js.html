@@ -20,11 +20,11 @@
     });
 
     function disable_btn() {
-        $('#id_continue_btn').attr("disabled", "disabled");
+        $('#id_continue_btn').prop("disabled", true); // Disable button.
     }
 
     function enable_btn() {
-        $('#id_continue_btn').removeAttr("disabled");
+        $('#id_continue_btn').prop("disabled", false); // Enable button.
     }
 
     function ajax_back() {

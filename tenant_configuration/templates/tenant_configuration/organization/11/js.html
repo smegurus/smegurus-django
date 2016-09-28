@@ -35,11 +35,21 @@
         );  // end Set Organization
     });
 
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true); // Disable button.
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false); // Enable button.
+    }
+
     function ajax_dashboard() {
         // Turn on the 'loading' animation.
         var lb = new $.LoadingBox({
             loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
         });
+
+        disable_btn(); // Disable the button.
 
         // Run the expensive process.
         tenant_finalize(
