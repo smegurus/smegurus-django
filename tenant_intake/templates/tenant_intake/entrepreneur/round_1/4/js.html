@@ -5,7 +5,7 @@
         $('#id_telephone_div').hide();
         {% endif %}
 
-        {% if request.tenant_me.address.address_country.id == 1 or request.tenant_me.address.address_country.id == 2 %}
+        {% if request.tenant_me.address.country.id == 1 or request.tenant_me.address.country.id == 2 %}
             $("#id_telephone").inputmask("(999) 999-9999");
         {% endif %}
 
@@ -29,11 +29,12 @@
             ); // end INTAKE
         }); // end TELEPHONE CHANGE
 
-        $("#id_address_country").change(function () {
+        $("#id_country").change(function () {
             var end = this.value;
-            var country_id = $('#id_address_country').val();
+            var country_id = $('#id_country').val();
             ajax_tenant_postaladdress(
                 function(success) {
+                    console.log(success);
                     location.reload(true); // Reload the page.
                 },
                 function(failure) {
@@ -58,7 +59,7 @@
         get_tenant_postaladdress(
             {{ request.tenant_me.address.id }},
             function(postaladdress) {
-                postaladdress['address_country'] = $('#id_address_country').val()
+                postaladdress['country'] = $('#id_country').val()
                 set_tenant_postaladdress(
                     postaladdress,
                     function(result) {
