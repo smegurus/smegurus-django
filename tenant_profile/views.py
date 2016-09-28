@@ -35,8 +35,8 @@ def profile_page(request):
 @condition(last_modified_func=my_last_modified_func)
 def profile_settings_page(request):
     countries = CountryOption.objects.all()
-    provinces = [] if not request.tenant_me.address.address_country else ProvinceOption.objects.filter(country=request.tenant_me.address.address_country)
-    cities = [] if not request.tenant_me.address.address_region else CityOption.objects.filter(province=request.tenant_me.address.address_region)
+    provinces = [] if not request.tenant_me.address.country else ProvinceOption.objects.filter(country=request.tenant_me.address.country)
+    cities = [] if not request.tenant_me.address.region else CityOption.objects.filter(province=request.tenant_me.address.region)
     return render(request, 'tenant_profile/settings/view.html',{
         'page': 'profile',
         'countries': countries,
