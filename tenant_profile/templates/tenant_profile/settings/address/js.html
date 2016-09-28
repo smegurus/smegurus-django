@@ -103,7 +103,18 @@
                 set_tenant_postaladdress(
                     postal_address,
                     function(json_result) {
-                        location.reload(true); // Reload the page.
+                        rebuild_geo_data_tenant_postaladdress(
+                            {{ address.id }},
+                            function(json_result) {
+                                location.reload(true); // Reload the page.
+                            },
+                            function(error_json_result) {
+                                var string = JSON.stringify( error_result );
+                                console.log(error_result);
+                                alert(string);
+                                location.reload(true); // Reload the page.
+                            }
+                        ); // end GEO UPDATE.
                     },
                     function(json_error_result) {
                         enable_btn();

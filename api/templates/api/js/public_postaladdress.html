@@ -86,7 +86,7 @@
     }
 
     function rebuild_geo_data_public_postaladdress(id, success_callback, error_callback) {
-        var url = "/api/publicpostaladdress/" + id + "/rebuild_geo_data/?format=json";
+        var url = get_base_domain_url("/api/publicpostaladdress/" + id + "/rebuild_geo_data/?format=json");
         jQuery.ajax({
             url: url,
             headers: {

@@ -105,7 +105,18 @@
                 set_public_postaladdress(
                     postal_address,
                     function(json_result) {
-                        window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                        rebuild_geo_data_public_postaladdress(
+                            {{ address.id }},
+                            function(json_result) {
+                                window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                            },
+                            function(error_json_result) {
+                                var string = JSON.stringify( error_json_result );
+                                console.log(error_json_result);
+                                alert(string);
+                                window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                            }
+                        ); // end GEO UPDATE.
                     },
                     function(json_error_result) {
                         enable_btn();
