@@ -98,9 +98,9 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
             address=PostalAddress.objects.create(
                 id=1,
                 name="Avalon",
-                address_country=country,
-                address_region=province,
-                address_locality=city,
+                country=country,
+                region=province,
+                locality=city,
                 postal_code='91210',
                 street_address='666 Nerv Tube'
             )

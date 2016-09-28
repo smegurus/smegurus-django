@@ -96,9 +96,9 @@ class TenantIntakeEmployeeTestCases(APITestCase, TenantTestCase):
         self.me = TenantMe.objects.create(
             owner=self.user,
             address=PostalAddress.objects.create(
-                address_country=CountryOption.objects.get(id=1),
-                address_region=ProvinceOption.objects.get(id=1),
-                address_locality=CityOption.objects.get(id=1),
+                country=CountryOption.objects.get(id=1),
+                region=ProvinceOption.objects.get(id=1),
+                locality=CityOption.objects.get(id=1),
                 owner=self.user
             )
         )

@@ -117,9 +117,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.unauthorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -145,9 +145,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.authorized_client.post('/api/tenantpostaladdress/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -174,18 +174,18 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
 
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.unauthorized_client.put('/api/tenantpostaladdress/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -212,17 +212,17 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.authorized_client.put('/api/tenantpostaladdress/1/', json.dumps(data), content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -249,9 +249,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
         response = self.unauthorized_client.delete('/api/tenantpostaladdress/1/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -278,9 +278,9 @@ class APIPostalAdressWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
         response = self.authorized_client.delete('/api/tenantpostaladdress/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

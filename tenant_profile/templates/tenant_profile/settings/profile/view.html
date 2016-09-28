@@ -98,7 +98,7 @@
                                 <form action="">
                                     <div class="form-group">
                                         <label>{% trans 'Country*' %}</label>
-                                        <select id="id_address_country" class="form-control">
+                                        <select id="id_country" class="form-control">
                                             <option value="0" selected="selected"> {% trans 'Please select a country' %}</option>
                                             {% for country in countries.all %}
                                                 <option value="{{ country.id }}" {% if request.tenant_me.address.country == country %}selected{% endif %}>
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>{% trans 'State/Province*' %}</label>
-                                        <select id="id_address_region" class="form-control" {% if not request.tenant_me.address.country %}disabled{% endif %}>
+                                        <select id="id_region" class="form-control" {% if not request.tenant_me.address.country %}disabled{% endif %}>
                                             <option value="0" selected="selected"> {% trans 'Please select a province/state' %}</option>
                                             {% for province in provinces.all %}
                                                 <option value="{{ province.id }}" {% if request.tenant_me.address.region == province %}selected{% endif %}>
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>{% trans 'City*' %}</label>
-                                        <select id="id_address_locality" class="form-control" {% if not request.tenant_me.address.region %}disabled{% endif %}>
+                                        <select id="id_locality" class="form-control" {% if not request.tenant_me.address.region %}disabled{% endif %}>
                                             <option value="0" selected="selected"> {% trans 'Please select a city' %}</option>
                                             {% for city in cities.all %}
                                                 <option value="{{ city.id }}" {% if request.tenant_me.address.locality == city %}selected{% endif %}>

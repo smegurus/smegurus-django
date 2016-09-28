@@ -114,9 +114,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.unauthorized_client.post(
             reverse('publicpostaladdress-list'),
@@ -146,9 +146,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.authorized_client.post(
             reverse('publicpostaladdress-list'),
@@ -181,9 +181,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
 
         # Run the test.
@@ -191,9 +191,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.unauthorized_client.put(
             '/api/publicpostaladdress/1/',
@@ -226,9 +226,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
 
         # Run the test.
@@ -236,9 +236,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
             'owner': self.user.id,
-            'address_country': country.id,
-            'address_region': province.id,
-            'address_locality': city.id
+            'country': country.id,
+            'region': province.id,
+            'locality': city.name
         }
         response = self.authorized_client.put(
             '/api/publicpostaladdress/1/',
@@ -291,9 +291,9 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
             name="Unit Test",
             description="Used for unit testing purposes.",
             owner=self.user,
-            address_country=country,
-            address_region=province,
-            address_locality=city,
+            country=country,
+            region=province,
+            locality=city.name,
         )
         response = self.authorized_client.delete('/api/publicpostaladdress/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

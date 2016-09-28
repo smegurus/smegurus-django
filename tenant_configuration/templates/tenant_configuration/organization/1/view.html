@@ -31,10 +31,11 @@
                         <div class="form-group has-feedback">
                             <label for="signupInputText1" class="text-muted">{% trans 'Country' %}</label>
                             <select id="id_country" class="form-control">
+                                {% if not address.country %}
+                                    <option value="">{% trans 'Please select your country' %}</option>
+                                {% endif %}
                                 {% for country in countries.all %}
                                     <option value="{{ country.id }}" {% if address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
-                                {% empty %}
-                                    <option value="">{% trans 'Please select your country' %}</option>
                                 {% endfor %}
                             </select>
                             <span class="fa fa-map-marker form-control-feedback text-muted"></span>

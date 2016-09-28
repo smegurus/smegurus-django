@@ -1,9 +1,9 @@
 {% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
-        $("#id_address_country").change(function () {
+        $("#id_country").change(function () {
             var end = this.value;
-            var country_id = $('#id_address_country').val();
+            var country_id = $('#id_country').val();
             var criteria = Array();
             criteria.push({
                 'country': parseInt(country_id),
@@ -11,29 +11,29 @@
             filter_publicprovinceoptions(
                 criteria,
                 function(json_result) {
-                    $('#id_address_region').prop("disabled", false);
+                    $('#id_region').prop("disabled", false);
                     html = "<option value=\"0\">Please select a province.</option>";
                     $(json_result).each(function(iter,val2){
                         $(val2['results']).each(function(index, column){
                             html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
                         });
                     }); // end Iterate Provinces
-                    $('#id_address_region').html('');       // Clear selection
-                    $(html).appendTo('#id_address_region'); // Load new selection
+                    $('#id_region').html('');       // Clear selection
+                    $(html).appendTo('#id_region'); // Load new selection
                 }
             ); // end Filter Provinces
         }); // end Change Country
 
-        $("#id_address_region").change(function () {
+        $("#id_region").change(function () {
             var end = this.value;
             var criteria = Array();
             criteria.push({
-                'province': parseInt($('#id_address_region').val()),
+                'province': parseInt($('#id_region').val()),
             });
             filter_publiccityoptions(
                 criteria,
                 function(json_result) {
-                    $('#id_address_locality').prop("disabled", false);
+                    $('#id_locality').prop("disabled", false);
                     html = "";
                     $(json_result).each(function(iter, results){
                         if (results['count'] == 0) {
@@ -53,8 +53,8 @@
                             //$('#id_register_btn').prop("disabled", false);
                         }
                     }); // end Iterate Provinces
-                    $('#id_address_locality').html('');       // Clear selection
-                    $(html).appendTo('#id_address_locality'); // Load new selection
+                    $('#id_locality').html('');       // Clear selection
+                    $(html).appendTo('#id_locality'); // Load new selection
                 }
             ); // end Filter City
         }); // end Change Province
@@ -66,9 +66,9 @@
     function api_postal_address(success_callback, error_callback) {
         var data = {
             // 'name': $('#id_name').val() + ' HQ Address',
-            // 'address_country': $('#id_address_country').val(),
-            // 'address_locality': $('#id_address_locality').val(),
-            // 'address_region': $('#id_address_region').val(),
+            // 'country': $('#id_country').val(),
+            // 'locality': $('#id_locality').val(),
+            // 'region': $('#id_region').val(),
             // 'post_office_box_number': $('#id_post_office_box_number').val(),
             // 'postal_code': $('#id_postal_code').val(),
             // 'street_address': $('#id_street_address').val(),

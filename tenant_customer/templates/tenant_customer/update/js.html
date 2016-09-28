@@ -153,9 +153,9 @@
         get_tenant_postaladdress(
             {{ me.address.id }},
             function(address) {
-                address['address_country'] = $('#id_address_country').val();
-                address['address_region'] = $('#id_address_region').val();
-                address['address_locality'] = $('#id_address_locality').val();
+                address['country'] = $('#id_country').val();
+                address['region'] = $('#id_region').val();
+                address['locality'] = $('#id_locality').val();
                 address['post_office_box_number'] = $('#id_post_office_box_number').val();
                 address['postal_code'] = $('#id_postal_code').val();
                 address['street_address'] = $('#id_street_address').val();

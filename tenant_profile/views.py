@@ -9,10 +9,12 @@ from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.utils import my_last_modified_func
+from foundation_tenant.forms.postaladdressform import PostalAddressForm
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.postaladdress import PostalAddress
 
 
 @login_required(login_url='/en/login')
@@ -46,14 +48,22 @@ def profile_settings_profile_page(request):
 @tenant_configuration_required
 # @condition(last_modified_func=my_last_modified_func)
 def profile_settings_address_page(request):
+    address = request.tenant_me.address
     countries = CountryOption.objects.all()
-    provinces = [] if not request.tenant_me.address.country else ProvinceOption.objects.filter(country=request.tenant_me.address.country)
-    cities = [] if not request.tenant_me.address.region else CityOption.objects.filter(province=request.tenant_me.address.region)
+    provinces = [] if not address.country else ProvinceOption.objects.filter(country=address.country)
+    print("-->", request.tenant_me.address)
+    print("-=>", provinces)
     return render(request, 'tenant_profile/settings/address/view.html',{
         'page': 'profile',
         'countries': countries,
         'provinces': provinces,
-        'cities': cities
+        'address': address,
+        'form': PostalAddressForm(instance=address),
+        'accepted_fields': [
+            'id_postal_code', 'id_street_number', 'id_suffix', 'id_street_name',
+            'id_street_type', 'id_direction', 'id_suite_number', 'id_floor_number',
+            'id_buzz_number', 'id_address_line_2', 'id_address_line_3',
+        ]
     })
 
 
