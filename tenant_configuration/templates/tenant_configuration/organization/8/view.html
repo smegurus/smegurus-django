@@ -1,9 +1,12 @@
 {% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
+    <!-- PAGE JS -->
     {% compress js inline %}
         {% include 'tenant_configuration/organization/8/js.html' %}
     {% endcompress %}
+    <!-- end PAGE JS -->
+    <!-- PAGE HTML -->
     <div class="content-wrapper">
 <div class="panel panel-default">
     <!-- <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div> -->
@@ -15,27 +18,27 @@
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
+            <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Timezone' %}</h2>
-                    <p class="text-center pv">{% trans 'Please pick a standard timezone that your organization will run under.' %}</p>
+                    <h2 class="text-center pv">{% trans 'Perks and Rewards' %}</h2>
+                    <p class="text-center pv">{% trans 'To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.' %}</p>
 
                     <br/>
 
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <label for="timezone">{% trans 'Time zone:' %}</label>
-
-                        <!-- TIMEZONES -->
-                        <select id="id_timezone" name="timezone" class="form-control">
-                            {% for tz in timezones %}
-                                <option value="{{ tz }}"{% if tz == request.tenant.time_zone %} selected="selected"{% endif %}>{{ tz }}</option>
-                            {% endfor %}
-                        </select>
-                        <!-- end TIMEZONES -->
-
+                        <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
+                        {% trans '<b>Activate Perks & Rewards:</b> Your entrepreneurs will receive access to special offers.' %}
+                        <br>
                         <br/>
+
+                        <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
+                        {% trans '<b>No Perks (not recommended):</b> If you don\'t want to offer perks to your clients, then select this option.' %}
+                        <br>
+                        <br/>
+
                     </form>
+
                 </section>
             </div>
             <!-- end PAGE CONTENT -->
@@ -43,7 +46,7 @@
             <div class="actions clearfix">
                 <ul role="menu" aria-label="Pagination">
                     <li class="disabled" aria-disabled="true">
-                        <a onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
+                        <a id="id_skip_btn" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</a>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
                         <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
@@ -56,4 +59,5 @@
         </div>
     </div>
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

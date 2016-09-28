@@ -23,11 +23,11 @@
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
 
-        var has_perks = $("input:radio[name=has_perks]:checked").val()
+        var has_mentors = $("input:radio[name=has_mentors]:checked").val()
         get_public_organization(  // Fetch our organization.
             {{ request.tenant.id }},
             function(organization) {
-                organization['has_perks'] = has_perks;
+                organization['has_mentors'] = has_mentors;
                 set_public_organization(  // Save our organization.
                     organization,
                     function(error) {

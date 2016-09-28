@@ -6,11 +6,18 @@
                 $("#id_continue_btn").click();
             }
         });
-    }); // end Ready
 
-    function ajax_back() {
-        window.location = "{% url 'foundation_auth_config_org_step_three' %}";
-    }
+        // Customize the call to tagsInput to match your code.
+        // Include all the parameters you are calling, and any other code
+        // necessary to demonstrate the problem you are having.
+        // The docs are here: http://xoxco.com/projects/code/tagsinput
+        //
+        // If you can't recreate the problem here, check your original code for issues.
+
+        $('#tags').tagsInput({
+            // my parameters here
+        });
+    });
 
     function disable_btn() {
         $('#id_continue_btn').attr("disabled", "disabled");
@@ -20,40 +27,77 @@
         $('#id_continue_btn').removeAttr("disabled");
     }
 
+    function api_search(name, callback)
+    {
+        var search_criteria = Array(); // Variable used to store the search criteria.
+        search_criteria.push({ 'name': name });
+
+        // Search through the products and generate UI with the results.
+        filter_tenant_tags(search_criteria, function(json_objects) {
+            callback(json_objects);
+        });
+    }
+
+    function ajax_back() {
+        window.location = "{% url 'foundation_auth_config_org_step_three' %}";
+    }
+
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
 
-        var learning_preference = $("input:radio[name=learning_preference]:checked").val()
-        if (learning_preference > 0) {
-            get_public_organization(  // Fetch our organization.
-                {{ request.tenant.id }},
-                function(organization) {
-                    organization['learning_preference'] = learning_preference;
-                    set_public_organization(  // Save our organization.
-                        organization,
-                        function(error) {
-                            enable_btn();
-                            console.log(error);
-                        },
-                        function(json_result) {
-                            enable_btn();
-                            console.log(json_result);
-                            window.location = "{% url 'foundation_auth_config_org_step_five' %}";
-                        },
-                        function(json_error_result) {
-                            enable_btn();
-                            console.log(json_error_result);
-                            alert(json_error_result);
-                        }
-                    ); // end Get Organization
-                },
-                function(error_result) {
-                    enable_btn();
-                    console.log(error_result);
-                    alert(json_error_result);
-                }
-            );  // end Set Organization
-        }
+        // Get all the Tag Items in the #tags input and iterate through
+        // all the items and save them to our database.
+        var tag_items = $('#tags').val();
+        var arr = tag_items.split(',');
+        arr.forEach(function(value, index) {
+            api_search(
+                value,
+                function(tag_list) {
+
+                    // CASE 1 of 2: No Results.
+                    if (parseInt(tag_list['count']) == 0) {
+
+                        set_tenant_tag(
+                            {
+                                 'name': value,
+                                 'is_program': true,
+                            },
+                            function(json_result) {
+                                console.log(json_result);
+                            },
+                            function(json_error_result) {
+                                console.log(json_error_result);
+                            }
+                        ); // end Set Tag.
+                    } // end CASE 1
+
+                    else { // CASE 2 of 2: Has Results.
+
+                        tag_list['results'].forEach(function(tag, index) { // Iterate through all the search results.
+                            tag['is_program'] = true; // Update.
+                            console.log(tag);
+                            set_tenant_tag(
+                                tag,
+                                function(json_result) {
+                                    console.log(json_result);
+                                },
+                                function(json_error_result) {
+                                    console.log(json_error_result);
+                                }
+                            ); // end Set Tag.
+                        }); // end Array
+
+                    } // end CASE 2
+
+                }   // end Search List
+            );   // end Search Tag
+        });
+
+        // Wait until all the items get updated.
+        setTimeout(function() {
+            enable_btn();
+            window.location = "{% url 'foundation_auth_config_org_step_five' %}";
+        }, 1000);
     }
 
 </script>

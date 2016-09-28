@@ -1,9 +1,12 @@
 {% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
+    <!-- PAGE JS -->
     {% compress js inline %}
         {% include 'tenant_configuration/organization/7/js.html' %}
     {% endcompress %}
+    <!-- end PAGE JS -->
+    <!-- PAGE HTML -->
     <div class="content-wrapper">
 <div class="panel panel-default">
     <!-- <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div> -->
@@ -18,22 +21,20 @@
             <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Perks and Rewards' %}</h2>
-                    <p class="text-center pv">{% trans 'To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.' %}</p>
+                    <h2 class="text-center pv">{% trans 'Mentors and External Advisors' %}</h2>
+                    <p class="text-center pv">{% trans 'The most successful entrepreneurs have a mentor or advisor that they can go to. For these reasons, SME Gurus allows entrerepenrus to email compelted documents such as their Business Model Canvas, to an external advisor or mentor. While most of our clients use this feature, you may wish to disable it because of privacy or security concerns. If you do enable this option, externals will only see completed documents - they won\'t be able to view any other data.' %}</p>
 
                     <br/>
-
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
-                        {% trans '<b>Activate Perks & Rewards:</b> Your entrepreneurs will receive access to special offers.' %}
+                        <input type="radio" name="has_mentors" value=true {% if request.tenant.has_mentors == True %}checked{% endif %}>
+                        {% trans '<b>Enable External Advisors:</b> Your entrepreneurs will be able to easily share documents with external advisors - such as a mentor or lender.' %}
                         <br>
                         <br/>
 
-                        <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
-                        {% trans '<b>No Perks (not recommended):</b> If you don\'t want to offer perks to your clients, then select this option.' %}
+                        <input type="radio" name="has_mentors" value=false {% if request.tenant.has_mentors == False %}checked{% endif %}>
+                        {% trans '<b>Traditional (not recommended):</b> If you don\'t want your entrepreneurs to interact with external advisors, then select this option.' %}
                         <br>
                         <br/>
-
                     </form>
 
                 </section>
@@ -56,4 +57,5 @@
         </div>
     </div>
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

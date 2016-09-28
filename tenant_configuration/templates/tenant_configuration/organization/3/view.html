@@ -1,9 +1,12 @@
 {% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
+    <!-- PAGE JS -->
     {% compress js inline %}
         {% include 'tenant_configuration/organization/3/js.html' %}
     {% endcompress %}
+    <!-- end PAGE JS -->
+    <!-- PAGE HTML -->
     <div class="content-wrapper">
 <div class="panel panel-default">
     <!-- <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div> -->
@@ -15,16 +18,20 @@
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
+            <div class="content clearfix" style="height: 775px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Program Setup' %}</h2>
-                    <p class="text-center pv">Now, we need to identify which of your tags are programs that run or plan to offer in the short-term - this will help clients filling out an online intake form, and will make them available for signup. If you do not set any tags as programs, then the system will create a 'General intake' option for your clients.</p>
+                    <h2 class="text-center pv">{% trans 'Set Your Tags' %}</h2>
+                    <p class="text-center pv">Now, we are going to set up tags to help you categorize your clients. These help you group your clients by a characteristic or program that you may offer. Tags will be a great help when it comes to searching for clients, analzying your data, and creating reports. The best part is that clients can have multiple tags, and tags can also be added or removed as often as needed. Not sure where to start? For example, you can use:</p>
+                    <p class="text-center pv">newcomers - this could help to designate clients that are new to the country and may require additional supports or services</p>
+                    <p class="text-center pv">spanish language - you could use any language as a tag here to indicate that the client (in this case) speaks Spanish</p>
+                    <p class="text-center pv">entrepreneurship 101 - if you were running a program called Entrepreneurship 101, then you could create this tag to designate someone as being part of a program.</p>
+                    <p class="text-center pv">Now, why don't you go ahead and create a few tags. You should add tags for any programs that you currently offer, or plan to offer in the next 3 months. We recommend that you choose 3 from the list below or create at least 3 to start. If you don't create any, the system autocreates a 'general intake' tag that you can use. </p>
 
                     <br/>
 
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
+                        <input id="tags" value="newcomer, youth, social entrepreneur, food, technology, retail, spanish language, french language, female, accessibility needs  " />
 
                         <br/>
 
@@ -49,4 +56,5 @@
         </div>
     </div>
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

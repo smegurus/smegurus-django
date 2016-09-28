@@ -40,7 +40,7 @@ def config_org_step_one_page(request):
 
     # Connection will turn back to the Tenant from the Public b/c of the
     # "django-tenants" middleware we are using.
-    return render(request, 'tenant_configuration/organization/0/view.html',{
+    return render(request, 'tenant_configuration/organization/1/view.html',{
         'countries': CountryOption.objects.all(),
         'provinces': provinces,
         'address': address,
@@ -56,30 +56,24 @@ def config_org_step_one_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_one1_page(request):
-    return render(request, 'tenant_configuration/organization/1/view.html',{
+def config_org_step_two_page(request):
+    return render(request, 'tenant_configuration/organization/2/view.html',{
         'org_form': PublicOrganizationForm(request.tenant),
     })
 
 
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_two_page(request):
-    return render(request, 'tenant_configuration/organization/2/view.html',{})
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_three_page(request):
-    return render(request, 'tenant_configuration/organization/3/view.html',{
-        'tags': Tag.objects.all(),
-    })
+    return render(request, 'tenant_configuration/organization/3/view.html',{})
 
 
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_four_page(request):
-    return render(request, 'tenant_configuration/organization/4/view.html',{})
+    return render(request, 'tenant_configuration/organization/4/view.html',{
+        'tags': Tag.objects.all(),
+    })
 
 
 @login_required(login_url='/en/login')
@@ -103,18 +97,24 @@ def config_org_step_seven_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_eight_page(request):
-    return render(request, 'tenant_configuration/organization/8/view.html',{
+    return render(request, 'tenant_configuration/organization/8/view.html',{})
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
+def config_org_step_nine_page(request):
+    return render(request, 'tenant_configuration/organization/9/view.html',{
         'timezones': pytz.common_timezones
     })
 
 
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_nine_page(request):
-    return render(request, 'tenant_configuration/organization/9/view.html',{})
+def config_org_step_ten_page(request):
+    return render(request, 'tenant_configuration/organization/10/view.html',{})
 
 
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_ten_page(request):
-    return render(request, 'tenant_configuration/organization/10/view.html',{})
+def config_org_step_eleven_page(request):
+    return render(request, 'tenant_configuration/organization/11/view.html',{})
