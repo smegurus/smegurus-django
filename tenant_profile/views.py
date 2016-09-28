@@ -51,8 +51,6 @@ def profile_settings_address_page(request):
     address = request.tenant_me.address
     countries = CountryOption.objects.all()
     provinces = [] if not address.country else ProvinceOption.objects.filter(country=address.country)
-    print("-->", request.tenant_me.address)
-    print("-=>", provinces)
     return render(request, 'tenant_profile/settings/address/view.html',{
         'page': 'profile',
         'countries': countries,
