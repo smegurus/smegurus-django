@@ -65,10 +65,13 @@ class PublicTrapURLMiddleware(object):
         """Automatically ban IP's attempting to access suspicious URLs."""
         if request.path in constants.SUSPICIOUS_PATHS:
             ip_addr = self.get_client_ip(request)
-            BannedIP.objects.create(
-                address=ip_addr,
-                reason=request.path
-            )
+            try:
+                BannedIP.objects.create(
+                    address=ip_addr,
+                    reason=request.path
+                )
+            except Exception as e:
+                pass
             return HttpResponseForbidden('You are banned.')
         else:
             return None  # Finish our middleware handler.
