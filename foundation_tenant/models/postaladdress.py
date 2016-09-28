@@ -135,8 +135,52 @@ class PostalAddress(AbstractThing):
         null=True,
         default='',
     )
-
-    # https://schema.org/PostalAddress
+    latitude = models.FloatField(
+        _("Latitude"),
+        help_text=_('The latitude of a location. For example 37.42242 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).'),
+        blank=True,
+        default=0.00,
+    )
+    longitude = models.FloatField(
+        _("Longitude"),
+        help_text=_('The longitude of a location. For example -122.08585 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System">WGS 84</a>).'),
+        blank=True,
+        default=0.00,
+    )
 
     def __str__(self):
-        return str(self.name)
+        text = ''
+
+        if self.suite_number:
+            text += str(self.suite_number) + "-"
+
+        text += str(self.street_number) + " "
+
+        if self.suffix:
+            text += str(self.suffix) + " "
+
+        text += str(self.street_name) + " "
+        text += str(self.street_type) + " "
+
+        if self.direction:
+            text += str(self.direction) + " "
+
+        if self.floor_number:
+            text += "Floor # " + str(self.floor_number) + " "
+
+        if self.buzz_number:
+            text += "Buzz # " + str(self.buzz_number) + " "
+
+        if self.locality:
+            text += str(self.locality) + ", "
+
+        if self.region:
+            text += str(self.region) + ", "
+
+        if self.country:
+            text += str(self.country) + ", "
+
+        if self.postal_code:
+            text += str(self.postal_code)
+
+        return text

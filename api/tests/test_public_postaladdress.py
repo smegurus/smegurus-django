@@ -297,3 +297,71 @@ class APIPublicPostalAdressWithPublicSchemaTestCase(APITestCase, TenantTestCase)
         )
         response = self.authorized_client.delete('/api/publicpostaladdress/1/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_rebuild_geo_data_with_anonymous_user(self):
+        # Create a new object with our specific test data.
+        country = CountryOption.objects.create(
+            id=1,
+            name='Ontario',
+        )
+        region = ProvinceOption.objects.create(
+            id=1,
+            name='Canada',
+            country=country
+        )
+        postal_address = PublicPostalAddress.objects.create(
+            id=1,
+            name='Test Address',
+            owner=self.user,
+            street_number='120',
+            street_name='Centre',
+            street_type='ST',
+            suite_number='102',
+            postal_code='N6J4X4',
+            locality='London',
+            region=region,
+            country=country,
+        )
+
+        # Run the test.
+        response = self.unauthorized_client.put(
+            '/api/publicpostaladdress/1/rebuild_geo_data/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        # self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_rebuild_geo_data_with_authenticated_user(self):
+        # Create a new object with our specific test data.
+        country = CountryOption.objects.create(
+            id=1,
+            name='Ontario',
+        )
+        region = ProvinceOption.objects.create(
+            id=1,
+            name='Canada',
+            country=country
+        )
+        PublicPostalAddress.objects.create(
+            id=1,
+            name='Test Address',
+            owner=self.user,
+            street_number='120',
+            street_name='Centre',
+            street_type='ST',
+            suite_number='102',
+            postal_code='N6J4X4',
+            locality='London',
+            region=region,
+            country=country,
+        )
+
+        # Run the test.
+        response = self.authorized_client.put(
+            '/api/publicpostaladdress/1/rebuild_geo_data/?format=json',
+            json.dumps({}),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

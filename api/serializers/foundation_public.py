@@ -59,6 +59,8 @@ class PublicLanguageSerializer(serializers.ModelSerializer):
 
 
 class PublicPostalAddressSerializer(serializers.ModelSerializer):
+    latitude = serializers.FloatField(read_only=True)
+    longitude = serializers.FloatField(read_only=True)
     class Meta:
         model = PublicPostalAddress
         fields = ('id', 'name', 'alternate_name', 'description', 'owner', 'url',
@@ -66,7 +68,7 @@ class PublicPostalAddressSerializer(serializers.ModelSerializer):
                   'street_number', 'suffix',
                   'street_name', 'street_type', 'direction', 'suite_number',
                   'floor_number', 'buzz_number', 'address_line_2',
-                  'address_line_3',)
+                  'address_line_3', 'latitude', 'longitude')
 
 
 class PublicOpeningHoursSpecificationSerializer(serializers.ModelSerializer):

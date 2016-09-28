@@ -93,7 +93,7 @@ class PostalAddressSerializer(serializers.ModelSerializer):
                   'street_number', 'suffix',
                   'street_name', 'street_type', 'direction', 'suite_number',
                   'floor_number', 'buzz_number', 'address_line_2',
-                  'address_line_3',)
+                  'address_line_3', 'latitude', 'longitude')
 
 class OpeningHoursSpecificationSerializer(serializers.ModelSerializer):
     class Meta:
