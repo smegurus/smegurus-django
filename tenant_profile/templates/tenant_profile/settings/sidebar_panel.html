@@ -1,0 +1,10 @@
+{% load i18n %}
+<div class="panel b">
+    <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Personal Settings' %}</div>
+    <div class="list-group">
+        <a href="{% url 'tenant_profile_setting_profile' %}" class="list-group-item">{% trans 'Profile' %}</a>
+        <a href="{% url 'tenant_profile_setting_address' %}" class="list-group-item">{% trans 'Address' %}</a>
+        <a href="{% url 'tenant_profile_setting_password' %}" class="list-group-item">{% trans 'Password' %}</a>
+        <a href="{% url 'tenant_profile_setting_notification' %}" class="list-group-item">{% trans 'Notifications' %}</a>
+    </div>
+</div>

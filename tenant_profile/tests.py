@@ -129,7 +129,7 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_profile_settings_page(self):
-        url = reverse('tenant_profile_setting')
+        url = reverse('tenant_profile_setting_profile')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

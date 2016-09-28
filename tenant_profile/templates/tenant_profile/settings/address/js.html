@@ -1,0 +1,113 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        $("#id_address_country").change(function () {
+            var end = this.value;
+            var country_id = $('#id_address_country').val();
+            var criteria = Array();
+            criteria.push({
+                'country': country_id,
+            });
+            filter_provinceoptions(
+                criteria,
+                function(json_result) {
+                    $('#id_address_region').prop("disabled", false);
+                    html = "<option value=\"0\">Please select a province.</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $('#id_address_region').html('');       // Clear selection
+                    $(html).appendTo('#id_address_region'); // Load new selection
+                }
+            ); // end Filter Provinces
+        }); // end Change Country
+
+        $("#id_address_region").change(function () {
+            var end = this.value;
+            var criteria = Array();
+            criteria.push({
+                'province': parseInt($('#id_address_region').val()),
+            });
+            filter_cityoptions(
+                criteria,
+                function(json_result) {
+                    $('#id_address_locality').prop("disabled", false);
+                    html = "";
+                    $(json_result).each(function(iter, results){
+                        if (results['count'] == 0) {
+                            // Generate a option to restrict.
+                            html += "<option value=\"0\">Coming soon.</option>";
+
+                            // Lock submit button.
+                            //$('#id_register_btn').prop("disabled", true);
+                        } else {
+                            // Generate options.
+                            html = "<option value=\"0\">Please select a city.</option>";
+                            $(results['results']).each(function(index, column){
+                                html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                            });
+
+                            // Unlock submit button.
+                            //$('#id_register_btn').prop("disabled", false);
+                        }
+                    }); // end Iterate Provinces
+                    $('#id_address_locality').html('');       // Clear selection
+                    $(html).appendTo('#id_address_locality'); // Load new selection
+                }
+            ); // end Filter City
+        }); // end Change Province
+    }); // end Ready
+
+    function disable_btn() {
+        // Address.
+        $('#id_location_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_location_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        // Address.
+        $('#id_location_btn').prop("disabled", false);
+        $('#id_location_btn').val("{% trans 'Update' %}");
+    }
+
+    function ajax_location() {
+        get_tenant_postaladdress(
+            {{ request.tenant_me.address.id }},
+            function(postaladdress) {
+
+                postaladdress['address_country'] = $('#id_address_country').val()
+                postaladdress['address_region'] = $('#id_address_region').val()
+                postaladdress['address_locality'] = $('#id_address_locality').val()
+                postaladdress['postal_code'] = $('#id_postal_code').val()
+                postaladdress['post_office_box_number'] = $('#id_post_office_box_number').val()
+                postaladdress['street_address'] = $('#id_street_address').val()
+
+                set_tenant_postaladdress(
+                    postaladdress,
+                    function(result) {
+                        console.log(result);
+                        enable_btn();
+                        location.reload(true);
+                    },
+                    function(error_result) {
+                        console.log(error_result);
+                        enable_btn();
+                        // Convert the error json into string.
+                        var string = JSON.stringify( error_result );
+                        alert("Unknown Error: "+string);
+                    }
+                ); // end Set Tenant Postal Address
+
+            },
+            function(error_result) {
+                console.log(error_result);
+                enable_btn();
+                // Convert the error json into string.
+                var string = JSON.stringify( error_result );
+                alert("Unknown Error: "+string);
+            }
+        ); // end Get Public Postal
+    }
+</script>

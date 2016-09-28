@@ -1,0 +1,55 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Do nothing.
+    });
+
+    function disable_btn() {
+        // Notification
+        $('#id_notification_btn').val("{% trans 'Please Wait...' %}");
+        $('#id_notification_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        // Notification.
+        $('#id_notification_btn').prop("disabled", false);
+        $('#id_notification_btn').val("{% trans 'Update' %}");
+    }
+
+    function notification_disabled() {
+        // $('#myModal').modal({
+        //      closeExisting: false
+        // });
+    }
+
+    function ajax_notification() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_tenant_me(  // Fetch our Me.
+            {{ request.tenant_me.owner.id }},
+            function(me) {
+                me['notify_when_task_had_an_interaction'] = $('#id_notify_when_task_had_an_interaction').is(':checked');
+                me['notify_when_new_messages'] = $('#id_notify_when_new_messages').is(':checked');
+                me['notify_when_due_tasks'] = $('#id_notify_when_due_tasks').is(':checked');
+
+                set_tenant_me(  // Save our Me
+                    me,
+                    function(json_result) {
+                        enable_btn();
+                        console.log(json_result);
+                        location.reload(true);
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Me
+            },
+            function(error_result) {
+                enable_btn();
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Me
+    }
+</script>

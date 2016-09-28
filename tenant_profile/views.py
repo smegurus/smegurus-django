@@ -32,16 +32,52 @@ def profile_page(request):
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-@condition(last_modified_func=my_last_modified_func)
-def profile_settings_page(request):
+# @condition(last_modified_func=my_last_modified_func)
+def profile_settings_profile_page(request):
+    return render(request, 'tenant_profile/settings/profile/view.html',{
+        'page': 'profile'
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def profile_settings_address_page(request):
     countries = CountryOption.objects.all()
     provinces = [] if not request.tenant_me.address.country else ProvinceOption.objects.filter(country=request.tenant_me.address.country)
     cities = [] if not request.tenant_me.address.region else CityOption.objects.filter(province=request.tenant_me.address.region)
-    return render(request, 'tenant_profile/settings/view.html',{
+    return render(request, 'tenant_profile/settings/address/view.html',{
         'page': 'profile',
         'countries': countries,
         'provinces': provinces,
         'cities': cities
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def profile_settings_password_page(request):
+    return render(request, 'tenant_profile/settings/password/view.html',{
+        'page': 'profile'
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def profile_settings_notification_page(request):
+    return render(request, 'tenant_profile/settings/notification/view.html',{
+        'page': 'profile'
     })
 
 

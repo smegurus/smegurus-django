@@ -1,24 +1,17 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
+<!-- PAGE JS -->
     {% compress js inline %}
-        {% include 'tenant_profile/settings/js.html' %}
+        {% include 'tenant_profile/settings/profile/js.html' %}
     {% endcompress %}
-
-<!-- Page content-->
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
     <div class="container-md">
         <div class="row">
             <div class="col-md-3">
-                <div class="panel b">
-                    <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Personal Settings' %}</div>
-                    <div class="list-group">
-                        <a href="#tabSetting1" data-toggle="tab" class="list-group-item">{% trans 'Profile' %}</a>
-                        <a href="#tabSetting2" data-toggle="tab" class="list-group-item">{% trans 'Address' %}</a>
-                        <a href="#tabSetting3" data-toggle="tab" class="list-group-item">{% trans 'Password' %}</a>
-                        <a href="#tabSetting4" data-toggle="tab" class="list-group-item">{% trans 'Notifications' %}</a>
-                    </div>
-                </div>
+                {% include 'tenant_profile/settings/sidebar_panel.html' with page_num=1 %}
             </div>
             <div class="col-md-9">
                 <div class="tab-content p0 b0">
@@ -262,30 +255,5 @@
         </div>
     </div>
 </div>
-
-{% comment %}
-<!-- MODAL -->
-<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" class="modal">
-   <div class="modal-dialog">
-      <div class="modal-content">
-
-         <div class="modal-header">
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 id="myModalLabel" class="modal-title">Modal title</h4>
-         </div>
-
-         <div class="modal-body">...</div>
-         <div class="modal-footer">
-            <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-         </div>
-
-      </div>
-   </div>
-</div>
-<!-- end MODAL -->
-{% endcomment %}
-
+<!-- end PAGE HTML -->
 {% endblock content %}

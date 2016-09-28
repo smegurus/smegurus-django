@@ -1,0 +1,184 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress thumbnail %}
+{% block content %}
+<!-- PAGE JS -->
+    {% compress js inline %}
+        {% include 'tenant_profile/settings/address/js.html' %}
+    {% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'tenant_profile/settings/sidebar_panel.html' with page_num=2 %}
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content p0 b0">
+                    <div id="tabSetting2" class="tab-pane active">
+                        <div class="panel b">
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Address' %}</div>
+                            <div class="panel-body">
+                                <!-- ADDRESS -->
+                                <form action="">
+                                    <div class="form-group">
+                                        <label>{% trans 'Country*' %}</label>
+                                        <select id="id_address_country" class="form-control">
+                                            <option value="0" selected="selected"> {% trans 'Please select a country' %}</option>
+                                            {% for country in countries.all %}
+                                                <option value="{{ country.id }}" {% if request.tenant_me.address.country == country %}selected{% endif %}>
+                                                    {{ country.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'State/Province*' %}</label>
+                                        <select id="id_address_region" class="form-control" {% if not request.tenant_me.address.country %}disabled{% endif %}>
+                                            <option value="0" selected="selected"> {% trans 'Please select a province/state' %}</option>
+                                            {% for province in provinces.all %}
+                                                <option value="{{ province.id }}" {% if request.tenant_me.address.region == province %}selected{% endif %}>
+                                                    {{ province.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'City*' %}</label>
+                                        <select id="id_address_locality" class="form-control" {% if not request.tenant_me.address.region %}disabled{% endif %}>
+                                            <option value="0" selected="selected"> {% trans 'Please select a city' %}</option>
+                                            {% for city in cities.all %}
+                                                <option value="{{ city.id }}" {% if request.tenant_me.address.locality == city %}selected{% endif %}>
+                                                    {{ city.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'Postal/Zip*' %}</label>
+                                        <input id="id_postal_code" type="text" class="form-control" value="{{ request.tenant_me.address.postal_code }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'Postal Office Box Number' %}</label>
+                                        <input id="id_post_office_box_number" type="text" class="form-control" value="{{ request.tenant_me.address.post_office_box_number }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'Street Address*' %}</label>
+                                        <input id="id_street_address" type="text" class="form-control" value="{{ request.tenant_me.address.street_address }}" />
+                                    </div>
+                                    <button id="id_location_btn"
+                                       onclick="ajax_location();"
+                                          type="button"
+                                         class="btn btn-info">{% trans 'Update Address' %}</button>
+                                    <p>
+                                        <small class="text-muted">{% trans '* Your telephone and address are private, and can only be viewed by your host organization and advisors.' %}</small>
+                                    </p>
+                                </form>
+                                <!-- end PASSWORD -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tabSetting3" class="tab-pane">
+                        <div class="panel b">
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Password' %}</div>
+                            <div class="panel-body">
+                                <!-- PASSWORD -->
+                                <form action="">
+                                    {% comment %}
+                                    <div class="form-group">
+                                        <label>{% trans 'Current password' %}</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    {% endcomment %}
+                                    <div class="form-group">
+                                        <label>{% trans 'New password' %}</label>
+                                        <input id="id_password" type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{% trans 'Confirm new password' %}</label>
+                                        <input id="id_password_repeated" type="password" class="form-control">
+                                    </div>
+                                    <button id="id_password_btn"
+                                       onclick="ajax_password();"
+                                          type="button"
+                                         class="btn btn-info">{% trans 'Update password' %}</button>
+                                    <p>
+                                        {% comment %}
+                                        <small class="text-muted">{% trans '* Integer fermentum accumsan metus, id sagittis ipsum molestie vitae' %}</small>
+                                        {% endcomment %}
+                                    </p>
+                                </form>
+                                <!-- end PASSWORD -->
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tabSetting4" class="tab-pane">
+                        <!-- NOTIFICATION -->
+                        <form action="">
+                            <div class="panel b">
+                                <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Notifications' %}</div>
+                                <div class="panel-body bb">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input disabled id="id_disable_all_notifications" class="mis-comm" type="checkbox" value="" onchange="notification_disabled()">
+                                                <strong>{% trans 'Disable email notifications' %}</strong>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <p>
+                                        <strong>{% trans 'Interaction' %}</strong>
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="id_notify_when_task_had_an_interaction"
+                                                     type="checkbox"
+                                                    value="" {% if request.tenant_me.notify_when_task_had_an_interaction %}checked{% endif %} />
+                                                {% trans 'Alert me when a task, that I am a participant in, had an interaction' %}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="id_notify_when_new_messages"
+                                                     type="checkbox"
+                                                    value="" {% if request.tenant_me.notify_when_new_messages %}checked{% endif %} />
+                                                {% trans 'Alert me when I receive a new message' %}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="id_notify_when_due_tasks"
+                                                     type="checkbox"
+                                                    value="" {% if request.tenant_me.notify_when_due_tasks %}checked{% endif %} />
+                                                {% trans 'Alert me when I have an item due within 2 days' %}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button id="id_notification_btn"
+                                       onclick="ajax_notification();"
+                                          type="button"
+                                         class="btn btn-info">{% trans 'Update notifications' %}</button>
+                                    <p>
+                                        {% comment %}
+                                        <small class="text-muted">{% trans 'Mauris sodales accumsan erat, ut dapibus erat faucibus vitae.' %}</small>
+                                        {% endcomment %}
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end NOTIFICATION -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}
