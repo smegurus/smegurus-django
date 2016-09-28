@@ -20,11 +20,11 @@
     }); // end DOCUMENT START
 
     function disable_btn() {
-        $('#id_continue_btn').attr("disabled", "disabled");
+        $('#id_continue_btn').prop("disabled", true); // Disable button.
     }
 
     function enable_btn() {
-        $('#id_continue_btn').removeAttr("disabled");
+        $('#id_continue_btn').prop("disabled", false); // Enable button.
     }
 
     function ajax_back() {
@@ -61,9 +61,6 @@
                 set_tenant_intake(
                     intake,
                     function(json_result) {
-                        enable_btn();
-                        var string = JSON.stringify( json_result );
-                        console.log(string);
                         window.location = "{% url 'tenant_intake_entr_round_two_step_four' %}";
                     },
                     function(error_json_result) {

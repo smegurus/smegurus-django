@@ -10,11 +10,11 @@
     }); // end DOCUMENT START
 
     function disable_btn() {
-        $('#id_continue_btn').attr("disabled", "disabled");
+        $('#id_continue_btn').prop("disabled", true); // Disable button.
     }
 
     function enable_btn() {
-        $('#id_continue_btn').removeAttr("disabled");
+        $('#id_continue_btn').prop("disabled", false); // Enable button.
     }
 
     function ajax_back() {
@@ -22,13 +22,14 @@
     }
 
     function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
         complete_tenant_intake(
             {{ intake.id }},
             function(json_result){
-                console.log(json_result);
                 window.location = "{% url 'tenant_intake_finished' %}";
             },
             function(error_result) {
+                enable_btn();
                 console.log(error_result);
             }
         ); // end Complete Intake

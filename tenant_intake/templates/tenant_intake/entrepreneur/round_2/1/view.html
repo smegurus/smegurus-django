@@ -61,15 +61,9 @@
 
             <div class="actions clearfix">
                 <ul role="menu" aria-label="Pagination">
-                    <!-- <li class="disabled" aria-disabled="true">
-                        <a href="#previous" role="menuitem">Previous</a>
-                        </li> -->
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
+                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
                     </li>
-                    <!-- <li aria-hidden="true" style="display: none;">
-                        <a href="#finish" role="menuitem">Finish</a>
-                        </li> -->
                 </ul>
             </div>
         </div>
