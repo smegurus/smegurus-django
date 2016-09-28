@@ -86,7 +86,7 @@ class PublicPostalAddress(AbstractPublicThing):
     )
     street_type = models.CharField(
         _("Street Type"),
-        max_length=1,
+        max_length=15,
         choices=constants.POSTALADDRESS_STREET_TYPE_OPTIONS,
         help_text=_('The street type.'),
         blank=True,
@@ -94,9 +94,9 @@ class PublicPostalAddress(AbstractPublicThing):
     )
     direction = models.CharField(
         _("Street Type"),
-        max_length=1,
+        max_length=2,
         choices=constants.POSTALADDRESS_DIRECTION_OPTIONS,
-        help_text=_('The street type.'),
+        help_text=_('The direction.'),
         blank=True,
         null=True,
     )
@@ -110,7 +110,7 @@ class PublicPostalAddress(AbstractPublicThing):
     )
     floor_number = models.CharField(
         _("Floor"),
-        max_length=7,
+        max_length=5,
         help_text=_('The floor #.'),
         blank=True,
         null=True,
@@ -118,7 +118,7 @@ class PublicPostalAddress(AbstractPublicThing):
     )
     buzz_number = models.CharField(
         _("Entry Code / Buzz"),
-        max_length=7,
+        max_length=15,
         help_text=_('The entry code.'),
         blank=True,
         null=True,
@@ -126,7 +126,7 @@ class PublicPostalAddress(AbstractPublicThing):
     )
     address_line_2 = models.CharField(
         _("Address Line 2"),
-        max_length=7,
+        max_length=31,
         help_text=_('The address line 1.'),
         blank=True,
         null=True,
@@ -134,7 +134,7 @@ class PublicPostalAddress(AbstractPublicThing):
     )
     address_line_3 = models.CharField(
         _("Address Line 3"),
-        max_length=7,
+        max_length=31,
         help_text=_('The address line 3.'),
         blank=True,
         null=True,

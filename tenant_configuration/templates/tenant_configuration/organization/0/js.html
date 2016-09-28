@@ -32,6 +32,7 @@
     }); // end Ready
 
     function disable_btn() {
+        // $('#id_continue_btn').attr("disabled", "disabled");
         $('#id_continue_btn').attr("disabled", "disabled");
     }
 
@@ -40,7 +41,87 @@
     }
 
     function ajax_save_and_continue() {
-        disable_btn(); // Disable the button so no multiple presses happen.
-        window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+        var country_id = $('#id_country').val();
+        var region_id = $('#id_region').val();
+        var locality = $('#id_locality').val();
+        var postal_code = $('#id_postal_code').val();
+        var street_number = $('#id_street_number').val();
+        var suffix = $('#id_suffix').val();
+        var street_name = $('#id_street_name').val();
+        var street_type = $('#id_street_type').val();
+        var direction = $('#id_direction').val();
+        var suite_number = $('#id_suite_number').val();
+        var floor_number = $('#id_floor_number').val();
+        var buzz_number = $('#id_buzz_number').val();
+        var address_line_2 = $('#id_address_line_2').val();
+        var address_line_3 = $('#id_address_line_3').val();
+
+        if (country_id <= 0) {
+            alert("{% trans 'Please select a country.' %}");
+            return;
+        }
+        if (region_id <= 0) {
+            alert("{% trans 'Please select a Province / State.' %}");
+            return;
+        }
+        if (locality <= 0) {
+            alert("{% trans 'Please enter your city.' %}");
+            return;
+        }
+        if (postal_code <= 0) {
+            alert("{% trans 'Please enter your postal code / zip.' %}");
+            return;
+        }
+        if (street_number <= 0) {
+            alert("{% trans 'Please enter your street number.' %}");
+            return;
+        }
+        if (street_name <= 0) {
+            alert("{% trans 'Please enter your street name.' %}");
+            return;
+        }
+        if (street_type <= 0) {
+            alert("{% trans 'Please enter your street type.' %}");
+            return;
+        }
+
+        //disable_btn(); // Disable the button so no multiple presses happen.
+        get_public_postaladdress(
+            {{ address.id }},
+            function(postal_address) {
+                postal_address['country'] = parseInt(country_id);
+                postal_address['region'] = parseInt(region_id);
+                postal_address['locality'] = locality;
+                postal_address['postal_code'] = postal_code;
+                postal_address['street_number'] = street_number;
+                postal_address['suffix'] = suffix;
+                postal_address['street_name'] = street_name;
+                postal_address['street_type'] = street_type;
+                postal_address['direction'] = direction;
+                postal_address['suite_number'] = suite_number;
+                postal_address['floor_number'] = floor_number;
+                postal_address['buzz_number'] = buzz_number;
+                postal_address['address_line_2'] = address_line_2;
+                postal_address['address_line_3'] = address_line_3;
+                set_public_postaladdress(
+                    postal_address,
+                    function(json_result) {
+                        window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_result );
+                        console.log(error_result);
+                        alert(string);
+                    }
+                ); // end SET POSTALADDRESS
+            },
+            function(json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_result );
+                console.log(error_result);
+                alert(string);
+            }
+        ); // end GET POSTALADDRESS
     }
 </script>

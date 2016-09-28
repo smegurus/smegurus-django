@@ -35,10 +35,14 @@ def config_org_step_one_page(request):
         owner=request.user,
     )
 
+    # Fetch all the provinces for this Address.
+    provinces = [] if not address.country else ProvinceOption.objects.filter(country=address.country)
+
     # Connection will turn back to the Tenant from the Public b/c of the
     # "django-tenants" middleware we are using.
     return render(request, 'tenant_configuration/organization/0/view.html',{
         'countries': CountryOption.objects.all(),
+        'provinces': provinces,
         'address': address,
         'form': PublicPostalAddressForm(instance=address),
         'accepted_fields': [

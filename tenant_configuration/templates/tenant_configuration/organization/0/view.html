@@ -30,7 +30,7 @@
                             <select id="id_country" class="form-control">
                                 <option value="">{% trans 'Please select your country' %}</option>
                                 {% for country in countries.all %}
-                                    <option value="{{ country.id }}">{{ country.name }}</option>
+                                    <option value="{{ country.id }}" {% if country.id == address.country.id %}selected="selected"{% endif %}>{{ country.name }}</option>
                                 {% endfor %}
                             </select>
                             <span class="fa fa-map-marker form-control-feedback text-muted"></span>
@@ -39,8 +39,12 @@
                         <!-- PROVINCE -->
                         <div class="form-group has-feedback">
                             <label for="signupInputText1" class="text-muted">{% trans 'Province/State' %}</label>
-                            <select id="id_region" class="form-control" disabled>
-                                <option value="0" selected="selected"> {% trans 'Please select a province/state' %}</option>
+                            <select id="id_region" class="form-control" {% if not provinces %}disabled{% endif %}>
+                                {% for province in provinces.all %}
+                                    <option value="{{ province.id }}" {% if province.id == address.province.id %}selected="selected"{% endif %}>{{ province.name }}</option>
+                                {% empty %}
+                                    <option value="0" selected="selected"> {% trans 'Please select a province/state' %}</option>
+                                {% endfor %}
                             </select>
                             <span class="fa fa-map-marker form-control-feedback text-muted"></span>
                         </div>
@@ -48,7 +52,7 @@
                         <!-- MUNICIPALITY -->
                         <div class="form-group has-feedback">
                             <label for="signupInputText1" class="text-muted">{% trans 'City' %}</label>
-                            <input id="id_locality" type="text" placeholder="{% trans 'Enter street address' %}" autocomplete="off" required class="form-control">
+                            <input id="id_locality" type="text" placeholder="{% trans 'Enter street address' %}" autocomplete="off" required class="form-control" value="{{ address.locality }}" />
                             <span class="fa fa-map-marker form-control-feedback text-muted"></span>
                         </div>
                         <!-- end MUNICIPALITY -->
@@ -71,7 +75,7 @@
                         <a href="#previous" role="menuitem">Previous</a>
                         </li> -->
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <a onclick="ajax_save_and_continue();" role="menuitem" id="id_continue_btn">{% trans 'Next' %}</a>
+                        <button class="btn btn-block btn-primary mt-lg" type="button" id="id_continue_btn" onclick="ajax_save_and_continue();">{% trans 'Next' %}</button>
                     </li>
                     <!-- <li aria-hidden="true" style="display: none;">
                         <a href="#finish" role="menuitem">Finish</a>
