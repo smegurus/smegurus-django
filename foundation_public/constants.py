@@ -28,5 +28,6 @@ SUSPICIOUS_PATHS = [
     '/.git/HEAD',
     '/zabbix/index.php',
     '/xmlrpc.php',
-    '/r/errors.log'
+    '/r/errors.log',
+    '/license.php'
 ]
