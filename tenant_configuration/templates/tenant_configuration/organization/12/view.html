@@ -3,8 +3,8 @@
 {% block content %}
 <!-- PAGE JS -->
     {% compress js inline %}
+        {% include 'tenant_configuration/organization/12/js.html' %}
         {% include 'foundation_public/loadingbox_js.html' %}
-        {% include 'tenant_configuration/organization/11/js.html' %}
     {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -15,32 +15,15 @@
         <div id="example-vertical" role="application" class="wizard clearfix vertical">
 
             <!-- PAGE SIDEBAR -->
-            {% include 'tenant_configuration/organization/sidebar_view.html' with page=11 %}
+            {% include 'tenant_configuration/organization/sidebar_view.html' with page=12 %}
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
             <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Metrics' %}</h2>
-                    <p class="text-center pv">{% trans 'Help us out by answering a few questions.' %}</p>
-
-                    {% for field in form %}
-                        {% if field.id_for_label in accepted_fields %}
-                            <div class="form-group" id="{{ field.id_for_label }}_div">
-                                {{ field.label_tag }} {{ field }}
-                                {{ field.errors }}<br/>
-                                {% comment %}
-                                <label class="col-sm-4 control-label">{{ field.label_tag }}</label>
-                                <div class="col-sm-8">
-                                    {{ field }}
-                                    {{ field.errors }}<br/>
-                                </div>
-                                {% endcomment %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                    {{ form.non_field_errors }}
+                    <h2 class="text-center pv">{% trans 'You\'re Ready To Start' %}</h2>
+                    <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
 
                     <br/>
 
@@ -54,7 +37,7 @@
                         <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
+                        <button id="id_continue_btn" type="button" class="btn btn-block btn-success mt-lg" onclick="ajax_dashboard();" role="menuitem">{% trans 'Submit' %}</button>
                     </li>
                 </ul>
             </div>

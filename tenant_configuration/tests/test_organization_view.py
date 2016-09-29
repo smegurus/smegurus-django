@@ -293,3 +293,21 @@ class FoundationConfigurationOrganizationViewsWithTenatSchemaTestCases(APITestCa
         url = reverse('foundation_auth_config_org_step_eleven')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    @transaction.atomic
+    def test_config_org_step_twelve_page_view_with_success(self):
+        # Setup our User.
+        org_admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(org_admin_group)
+        self.user.save()
+
+        # Test & verify.
+        url = reverse('foundation_auth_config_org_step_twelve')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @transaction.atomic
+    def test_config_org_step_twelve_page_view_with_failure(self):
+        url = reverse('foundation_auth_config_org_step_twelve')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

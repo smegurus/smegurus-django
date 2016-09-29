@@ -117,4 +117,15 @@ def config_org_step_ten_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_eleven_page(request):
-    return render(request, 'tenant_configuration/organization/11/view.html',{})
+    return render(request, 'tenant_configuration/organization/11/view.html',{
+        'form': PublicOrganizationForm(instance=request.tenant),
+        'accepted_fields': [
+            'id_how_many_served', 'id_how_discovered',
+        ],
+    })
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
+def config_org_step_twelve_page(request):
+    return render(request, 'tenant_configuration/organization/12/view.html',{})

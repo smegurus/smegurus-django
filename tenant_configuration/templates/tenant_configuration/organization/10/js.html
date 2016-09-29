@@ -32,8 +32,6 @@
                 set_tenant_me(
                     me,
                     function(json_result) {
-                        enable_btn();
-                        console.log(json_result);
                         window.location = "{% url 'foundation_auth_config_org_step_eleven' %}";
                     },
                     function(error_result) {

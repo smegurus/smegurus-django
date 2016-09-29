@@ -86,7 +86,15 @@
    aria-disabled="false"
    aria-selected="{% if page == 11 %}true{% else %}false{% endif %}">
             <a id="example-vertical-t-11" href="#example-vertical-h-11" aria-controls="example-vertical-p-11">
-            <span class="number">11.</span> {% trans 'Finish' %}
+            <span class="number">11.</span> {% trans 'Metrics' %}
+            </a>
+        </li>
+        <li role="tab"
+           class="{% if page == 12 %}first current{% else %}last done{% endif %}"
+   aria-disabled="false"
+   aria-selected="{% if page == 12 %}true{% else %}false{% endif %}">
+            <a id="example-vertical-t-12" href="#example-vertical-h-12" aria-controls="example-vertical-p-12">
+            <span class="number">12.</span> {% trans 'Finish' %}
             </a>
         </li>
     </ul>
