@@ -84,7 +84,7 @@
         var comment = $.trim($('#id_review').val());
         tenant_intake_review(
             {{ intake_form.instance.id }},
-            5,  // contants.APPROVED_STATUS
+            {{ contants.APPROVED_STATUS }},
             comment,
             true,
             function() {

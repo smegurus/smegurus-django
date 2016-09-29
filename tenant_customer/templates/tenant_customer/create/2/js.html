@@ -1,20 +1,14 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        $(document).keypress(function(event){
-            if(event.keyCode == 13){
-                $("#id_continue_btn").click();
-            }
-        });
-
         $("#id_country").change(function () {
             var end = this.value;
             var country_id = $('#id_country').val();
             var criteria = Array();
             criteria.push({
-                'country': parseInt(country_id),
+                'country': country_id,
             });
-            filter_publicprovinceoptions(
+            filter_provinceoptions(
                 criteria,
                 function(json_result) {
                     $('#id_region').prop("disabled", false);
@@ -29,17 +23,21 @@
                 }
             ); // end Filter Provinces
         }); // end Change Country
-    }); // end Ready
+    }); // end Document Start
 
     function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true); // Disable button.
+        $('#id_next_btn').prop("disabled", true); // Disable button.
     }
 
     function enable_btn() {
-        $('#id_continue_btn').prop("disabled", false); // Enable button.
+        $('#id_next_btn').prop("disabled", false); // Enable button.
     }
 
-    function ajax_save_and_continue() {
+    function ajax_back() {
+        window.location = "{% url 'tenant_customer_create_step_1' me.id %}";
+    }
+
+    function ajax_protected_next() {
         var country_id = $('#id_country').val();
         var region_id = $('#id_region').val();
         var locality = $('#id_locality').val();
@@ -85,8 +83,8 @@
         // }
 
         disable_btn(); // Disable the button so no multiple presses happen.
-        get_public_postaladdress(
-            {{ address.id }},
+        get_tenant_postaladdress(
+            {{ me.address.id }},
             function(postal_address) {
                 postal_address['country'] = parseInt(country_id);
                 postal_address['region'] = parseInt(region_id);
@@ -102,16 +100,16 @@
                 // postal_address['buzz_number'] = buzz_number;
                 postal_address['address_line_2'] = address_line_2;
                 postal_address['address_line_3'] = address_line_3;
-                set_public_postaladdress(
+                set_tenant_postaladdress(
                     postal_address,
                     function(json_result) {
-                        rebuild_geo_data_public_postaladdress(
-                            {{ address.id }},
+                        rebuild_geo_data_tenant_postaladdress(
+                            {{ me.address.id }},
                             function(json_result) {
-                                window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                                window.location = "{% url 'tenant_customer_create_step_3' me.id %}";
                             },
                             function(error_json_result) {
-                                window.location = "{% url 'foundation_auth_config_org_step_two' %}";
+                                window.location = "{% url 'tenant_customer_create_step_3' me.id %}";
                             }
                         ); // end GEO UPDATE.
                     },

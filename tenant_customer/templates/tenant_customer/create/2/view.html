@@ -1,0 +1,105 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_customer/create/2/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <!-- TEXT -->
+        <em class="fa fa-fw ffa icon-user mr"></em>{% trans 'New Entrepreneur' %}
+        <!-- end TEXT -->
+
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_customer_master' %}">{% trans 'Clients' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'Create - Step 2' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="panel panel-default">
+        <!-- <div class="panel-heading">Entrepreneur Intake Form</div> -->
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+
+                <fieldset>
+
+                    <!-- ADDRESS -->
+                    <legend>
+                        <em class="fa icon-location-pin"></em> {% trans 'Address' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Country' %}:</label>
+                        <div class="col-sm-10">
+                            <select id="id_country" class="form-control">
+                                {% if not me.address.country %}
+                                    <option value="">{% trans 'Please select your country' %}</option>
+                                {% endif %}
+                                {% for country in countries.all %}
+                                    <option value="{{ country.id }}" {% if me.address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Province' %}:</label>
+                        <div class="col-sm-10">
+                            <select id="id_region" class="form-control" {% if not me.address.region %}disabled{% endif %}>
+                                {% for province in provinces.all %}
+                                    <option value="{{ province.id }}" {% if province == me.address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
+                                {% empty %}
+                                    <option value="" selected="selected">{% trans 'Please select a province/state' %}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+
+                    {% for field in form %}
+                        {% if field.id_for_label in accepted_fields %}
+                            <div class="form-group" id="{{ field.id_for_label }}_div">
+                                <label class="col-sm-2 control-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {{ field }}
+                                    {{ field.errors }}
+                                </div>
+                            </div>
+                            <br />
+                        {% endif %}
+                    {% endfor %}
+                    {{ form.non_field_errors }}
+                    <!-- end ADDRESS -->
+
+                    <br />
+                    <br />
+
+                </fieldset>
+
+                <!-- SUBMIT -->
+                <div style="float: right;">
+                    <button id="id_back_btn" onclick="ajax_back();" type="button" class="btn btn-default btn-lg">{% trans 'Previous' %}</button>
+                    <button id="id_next_btn" onclick="ajax_protected_next();" type="button" class="btn btn-primary btn-lg">{% trans 'Next' %}</button>
+                </div>
+                <!-- end SUBMIT -->
+            </form>
+
+        </div>
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

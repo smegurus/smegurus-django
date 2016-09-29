@@ -10,6 +10,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
+from foundation_public.utils import random_text
 from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
@@ -17,10 +18,8 @@ from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
-from foundation_public.utils import random_text
-from foundation_public.models.countryoption import CountryOption
-from foundation_public.models.provinceoption import ProvinceOption
-from foundation_public.models.cityoption import CityOption
+from foundation_tenant.models.countryoption import CountryOption
+from foundation_tenant.models.provinceoption import ProvinceOption
 from smegurus import constants
 
 
@@ -89,7 +88,67 @@ def create_page(request):
         me=me,
         status=constants.CREATED_STATUS,
     )
-    return HttpResponseRedirect(reverse('tenant_customer_update', args=[me.id,]))
+    return HttpResponseRedirect(reverse('tenant_customer_create_step_1', args=[me.id,]))
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def create_step_one_page(request, pk):
+    # Render our View.
+    return render(request, 'tenant_customer/create/1/view.html',{
+        'page': 'client',
+        'me': get_object_or_404(TenantMe, pk=pk),
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def create_step_two_page(request, pk):
+    me = get_object_or_404(TenantMe, pk=pk)
+
+    # Fetch all the provinces for this Address.
+    provinces = [] if not me.address.country else ProvinceOption.objects.filter(country=me.address.country)
+
+    # Render our View.
+    return render(request, 'tenant_customer/create/2/view.html',{
+        'page': 'client',
+        'me': me,
+        'form': PostalAddressForm(instance=me.address),
+        'countries': CountryOption.objects.all(),
+        'provinces': provinces,
+        'accepted_fields': [
+            'id_locality', 'id_postal_code', 'id_street_number', 'id_suffix',
+            'id_street_name', 'id_suite_number', 'id_address_line_2',
+            'id_address_line_3',
+        ]
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+# @condition(last_modified_func=my_last_modified_func)
+def create_step_three_page(request, pk):
+    me = get_object_or_404(TenantMe, pk=pk)
+    intake = get_object_or_404(Intake, me=me)
+
+    # Render our View.
+    return render(request, 'tenant_customer/create/3/view.html',{
+        'page': 'client',
+        'me': me,
+        'form': IntakeForm(instance=intake),
+        'constants': constants
+    })
 
 
 @login_required(login_url='/en/login')
@@ -108,6 +167,7 @@ def update_page(request, pk):
     # Render our View.
     return render(request, 'tenant_customer/update/view.html',{
         'page': 'client',
+        'constants': constants,
         'me': me,
         'intake_form': IntakeForm(instance=intake),
         'address_form': PostalAddressForm(instance=me.address),

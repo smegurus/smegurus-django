@@ -13,7 +13,7 @@ class PostalAddressForm(forms.ModelForm):
     class Meta:
         model = PostalAddress
         fields = ['id', 'name', 'alternate_name', 'description', 'owner', 'url',
-                  'country', 'postal_code', 'locality', 'region',
+                  'country', 'region', 'locality', 'postal_code',
                   'street_number', 'suffix',
                   'street_name', 'suite_number',
                   'address_line_2',
@@ -46,8 +46,9 @@ class PostalAddressForm(forms.ModelForm):
             'region': Select(attrs={
                 'class': u'form-control',
             }),
-            'locality': Select(attrs={
+            'locality': TextInput(attrs={
                 'class': u'form-control',
+                'placeholder': _('Enter the city.')
             }),
             'suffix': TextInput(attrs={
                 'class': u'form-control',

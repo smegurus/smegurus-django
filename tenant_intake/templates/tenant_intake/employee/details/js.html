@@ -81,7 +81,7 @@
         $('#id_reject_btn').prop("disabled", true);
         tenant_intake_judge(
             {{ intake.id }},
-            4, // contants.REJECTED_STATUS
+            {{ contants.REJECTED_STATUS }},
             comment,
             false,
             function(json_result) {
@@ -105,7 +105,7 @@
         }
         tenant_intake_judge(
             {{ intake.id }},
-            5, // contants.APPROVED_STATUS
+            {{ contants.APPROVED_STATUS }},
             comment,
             false,
             function(json_result) {

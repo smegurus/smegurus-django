@@ -13,6 +13,9 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission, IsOwner
 from api.serializers.foundation_tenant import TenantMeSerializer
 from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.contactpoint import ContactPoint
 
 
 class TenantMeFilter(django_filters.FilterSet):
@@ -46,6 +49,30 @@ class TenantMeViewSet(viewsets.ModelViewSet):
         me.contact_point.telephone = me.telephone
         me.contact_point.email = me.email
         me.contact_point.save()
+
+    def perform_destroy(self, instance):
+        """Override the deletion function to include deletion of associated models."""
+        # Delete objects which are dependent on this model.
+        try:
+            intake = Intake.objects.get(me=instance)
+            intake.delete()
+        except Intake.DoesNotExist:
+            pass
+
+        try:
+            postal_address = PostalAddress.objects.get(owner=instance.owner)
+            postal_address.delete()
+        except PostalAddress.DoesNotExist:
+            pass
+
+        try:
+            contact_point = ContactPoint.objects.get(owner=instance.owner)
+            contact_point.delete()
+        except ContactPoint.DoesNotExist:
+            pass
+
+        # Delete the User object which will cascade the deletions to other objects.
+        instance.owner.delete()
 
     @detail_route(methods=['put'], permission_classes=[EmployeePermission])
     def admit_me(self, request, pk=None):

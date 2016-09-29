@@ -1,0 +1,90 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_customer/create/3/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <!-- TEXT -->
+        <em class="fa fa-fw ffa icon-user mr"></em>{% trans 'New Entrepreneur' %}
+        <!-- end TEXT -->
+
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_customer_master' %}">{% trans 'Clients' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'Create - Step 3' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="panel panel-default">
+        <!-- <div class="panel-heading">Entrepreneur Intake Form</div> -->
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+
+                <fieldset>
+
+                    <!-- ADDRESS -->
+                    <!-- INTAKE -->
+                    <legend>
+                        <em class="fa fa-random"></em>
+                        {% trans 'Intake' %}
+                    </legend>
+                    {% for field in form %}
+                        <div class="form-group" id="{{ field.id_for_label }}_div">
+                            <label class="col-sm-3 control-label">{{ field.label_tag }}</label>
+                            <div class="col-sm-9">
+                                {{ field }}
+                                {{ field.errors }}<br/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {{ form.non_field_errors }}
+                    <br />
+                    <!-- end INTAKE -->
+
+                    <br />
+
+                    <!-- COMMENT -->
+                    <legend>
+                        <em class="fa fa-comment-o"></em> {% trans 'Review' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{% trans 'Comment' %}</label>
+                        <div class="col-sm-9">
+                            <textarea id="id_review" class="form-control" name="textarea" rows="6">{{ intake_form.instance.comment }}</textarea>
+                            <span class="help-block m-b-none">This is a private comment to associate with this intake. The Entrepreneur will not be able to read this comment. </span>
+                        </div>
+                    </div>
+                    <br />
+                    <!-- end COMMENT -->
+
+                </fieldset>
+
+                <!-- SUBMIT -->
+                <div style="float: right;">
+                    <button id="id_back_btn" onclick="ajax_back();" type="button" class="btn btn-default btn-lg">{% trans 'Previous' %}</button>
+                    <button id="id_next_btn" onclick="ajax_protected_next();" type="button" class="btn btn-success btn-lg">{% trans 'Submit' %}</button>
+                </div>
+                <!-- end SUBMIT -->
+            </form>
+
+        </div>
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

@@ -12,13 +12,31 @@
                 <li>
                     <a href="{% url 'tenant_customer_create' %}">
                     <em class="fa fa-fw fa-plus mr"></em>
-                    <span>{% trans 'New contact' %}</span>
+                    <span>{% trans 'New entrepreneur' %}</span>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-    <h3>{% trans 'Clients' %}</h3>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <!-- TEXT -->
+        <em class="fa fa-fw ffa icon-people mr"></em>{% trans 'Clients' %}
+        <!-- end TEXT -->
+
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'Clients' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
     <div class="row">
         <!-- CLIENT -->
         {% for intake in intakes.all %}

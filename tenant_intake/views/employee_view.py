@@ -59,4 +59,5 @@ def intake_details_page(request, id):
         'page': 'intake',
         'intake': intake,
         'form': IntakeForm(instance=intake),
+        'constants': constants
     })

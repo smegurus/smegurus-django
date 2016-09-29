@@ -1,0 +1,74 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Do nothing.
+    });
+
+    function disable_btn() {
+        $('#id_next_btn').prop("disabled", true); // Disable button.
+    }
+
+    function enable_btn() {
+        $('#id_next_btn').prop("disabled", false); // Enable button.
+    }
+
+    function ajax_back() {
+        window.location = "{% url 'tenant_customer_create_step_2' me.id %}";
+    }
+
+    function ajax_finalize_submit() {
+        var comment = $.trim($('#id_review').val());
+        tenant_intake_review(
+            {{ form.instance.id }},
+            {{ constants.APPROVED_STATUS }},
+            comment,
+            true,
+            function() {
+                window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
+            },
+            function() {
+                $('#id_submit_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Tenant Intake Review
+    }
+
+    function ajax_protect_next() {
+        disable_btn();
+        get_tenant_intake(
+            {{ form.instance.id }},
+            function(intake) {
+                intake['how_can_we_help'] = $('#id_how_can_we_help').val();
+                intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                intake['how_did_you_hear'] = $('#id_how_did_you_hear').val();
+                intake['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
+                intake['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
+                intake['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
+                intake['has_telephone'] = $('#id_has_telephone').val();
+                intake['telephone'] = $('#id_telephone').val();
+                intake['telephone_time'] = $('#id_telephone_time').val();
+                set_tenant_intake(
+                    intake,
+                    function(json_result) {
+                        ajax_finalize_submit(); // Finialize submission.
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(error_json_result);
+                        alert(string);
+                    }
+                ); // end Set Intake.
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                alert(string);
+            }
+        ); // end Get Intake.
+    }
+</script>
