@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
         $(document).keypress(function(event){
@@ -6,7 +6,15 @@
                 $("#id_continue_btn").click();
             }
         });
-    }); // end Ready
+    });
+
+    function disable_btn() {
+        $('#id_continue_btn').prop("disabled", true); // Disable button.
+    }
+
+    function enable_btn() {
+        $('#id_continue_btn').prop("disabled", false); // Enable button.
+    }
 
     function disable_btn() {
         $('#id_continue_btn').prop("disabled", true); // Disable button.
@@ -21,37 +29,47 @@
     }
 
     function ajax_save_and_continue() {
+        var how_many_served = $('#id_how_many_served').val();
+        var how_discovered = $('#id_how_discovered').val();
+
+        if (how_many_served <= 0) {
+            alert("{% trans 'Please how many served.' %}");
+            return;
+        }
+        if (how_discovered <= 0) {
+            alert("{% trans 'Please select how you discovered us.' %}");
+            return;
+        }
+
         disable_btn(); // Disable the button so no multiple presses happen.
 
-        var has_mentors = $("input:radio[name=has_mentors]:checked").val()
         get_public_organization(  // Fetch our organization.
             {{ request.tenant.id }},
             function(organization) {
-                organization['has_mentors'] = has_mentors;
+                organization['how_many_served'] = how_many_served;
+                organization['how_discovered'] = how_discovered;
                 set_public_organization(  // Save our organization.
                     organization,
                     function(error) {
-                        enable_btn();
                         console.log(error);
                     },
                     function(json_result) {
-                        enable_btn();
-                        console.log(json_result);
                         window.location = "{% url 'foundation_auth_config_org_step_eight' %}";
                     },
                     function(json_error_result) {
                         enable_btn();
+                        var string = JSON.stringify( json_error_result );
                         console.log(json_error_result);
-                        alert(json_error_result);
+                        alert(string);
                     }
                 ); // end Get Organization
             },
-            function(error_result) {
+            function(json_error_result) {
                 enable_btn();
-                console.log(error_result);
-                alert(json_error_result);
+                var string = JSON.stringify( json_error_result );
+                console.log(json_error_result);
+                alert(string);
             }
         );  // end Set Organization
     }
-
 </script>

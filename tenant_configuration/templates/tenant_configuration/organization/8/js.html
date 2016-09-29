@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
         $(document).keypress(function(event){
@@ -6,7 +6,34 @@
                 $("#id_continue_btn").click();
             }
         });
-    }); // end Ready
+
+        // DEVELOPER NOTES:
+        // Automatically update Organization that we are setup.
+        //
+        get_public_organization(  // Fetch our organization.
+            {{ request.tenant.id }},
+            function(organization) {
+                organization['is_setup'] = true;
+                set_public_organization(  // Save our organization.
+                    organization,
+                    function(error) {
+                        console.log(error);
+                    },
+                    function(json_result) {
+                        console.log(json_result);
+                    },
+                    function(json_error_result) {
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Organization
+            },
+            function(error_result) {
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Organization
+    });
 
     function disable_btn() {
         $('#id_continue_btn').prop("disabled", true); // Disable button.
@@ -16,42 +43,29 @@
         $('#id_continue_btn').prop("disabled", false); // Enable button.
     }
 
-    function ajax_back() {
-        window.location = "{% url 'foundation_auth_config_org_step_seven' %}";
+    function ajax_dashboard() {
+        // Turn on the 'loading' animation.
+        var lb = new $.LoadingBox({
+            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
+        });
+
+        disable_btn(); // Disable the button.
+
+        // Run the expensive process.
+        tenant_finalize(
+            function(json_result) {
+
+                setTimeout(function() {
+                    lb.close(); // Turn off the 'loading' animatin.
+                    window.location = "{% url 'tenant_dashboard' %}";
+                }, 2000);
+
+            }
+        ); // end FINALIZE
     }
 
-    function ajax_save_and_continue() {
-        disable_btn(); // Disable the button so no multiple presses happen.
-
-        var has_perks = $("input:radio[name=has_perks]:checked").val()
-        get_public_organization(  // Fetch our organization.
-            {{ request.tenant.id }},
-            function(organization) {
-                organization['has_perks'] = has_perks;
-                set_public_organization(  // Save our organization.
-                    organization,
-                    function(error) {
-                        enable_btn();
-                        console.log(error);
-                    },
-                    function(json_result) {
-                        enable_btn();
-                        console.log(json_result);
-                        window.location = "{% url 'foundation_auth_config_org_step_nine' %}";
-                    },
-                    function(json_error_result) {
-                        enable_btn();
-                        console.log(json_error_result);
-                        alert(json_error_result);
-                    }
-                ); // end Get Organization
-            },
-            function(error_result) {
-                enable_btn();
-                console.log(error_result);
-                alert(json_error_result);
-            }
-        );  // end Set Organization
+    function ajax_back() {
+        window.location = "{% url 'foundation_auth_config_org_step_seven' %}";
     }
 
 </script>

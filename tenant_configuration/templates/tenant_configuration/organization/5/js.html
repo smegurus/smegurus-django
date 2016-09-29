@@ -8,10 +8,6 @@
         });
     }); // end Ready
 
-    function ajax_back() {
-        window.location = "{% url 'foundation_auth_config_org_step_four' %}";
-    }
-
     function disable_btn() {
         $('#id_continue_btn').prop("disabled", true); // Disable button.
     }
@@ -20,40 +16,40 @@
         $('#id_continue_btn').prop("disabled", false); // Enable button.
     }
 
-    function ajax_save_and_continue() {
-        disable_btn(); // Disable the button so no multiple presses happen.
-
-        var learning_preference = $("input:radio[name=learning_preference]:checked").val()
-        if (learning_preference > 0) {
-            get_public_organization(  // Fetch our organization.
-                {{ request.tenant.id }},
-                function(organization) {
-                    organization['learning_preference'] = learning_preference;
-                    set_public_organization(  // Save our organization.
-                        organization,
-                        function(error) {
-                            enable_btn();
-                            console.log(error);
-                        },
-                        function(json_result) {
-                            enable_btn();
-                            console.log(json_result);
-                            window.location = "{% url 'foundation_auth_config_org_step_six' %}";
-                        },
-                        function(json_error_result) {
-                            enable_btn();
-                            console.log(json_error_result);
-                            alert(json_error_result);
-                        }
-                    ); // end Get Organization
-                },
-                function(error_result) {
-                    enable_btn();
-                    console.log(error_result);
-                    alert(json_error_result);
-                }
-            );  // end Set Organization
-        }
+    function ajax_back() {
+        window.location = "{% url 'foundation_auth_config_org_step_four' %}";
     }
 
+    function ajax_save_and_continue() {
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_public_organization(  // Fetch our organization.
+            {{ request.tenant.id }},
+            function(organization) {
+                var time_zone = $('#id_timezone').val();
+                organization['time_zone'] = time_zone;
+                set_public_organization(  // Save our organization.
+                    organization,
+                    function(error) {
+                        enable_btn();
+                        console.log(error);
+                    },
+                    function(json_result) {
+                        enable_btn();
+                        console.log(json_result);
+                        window.location = "{% url 'foundation_auth_config_org_step_six' %}";
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        console.log(json_error_result);
+                        alert(json_error_result);
+                    }
+                ); // end Get Organization
+            },
+            function(error_result) {
+                enable_btn();
+                console.log(error_result);
+                alert(json_error_result);
+            }
+        );  // end Set Organization
+    }
 </script>

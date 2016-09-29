@@ -1,13 +1,14 @@
 {% extends 'tenant_configuration/base.html' %}
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
-    <!-- PAGE JS -->
+<!-- PAGE JS -->
     {% compress js inline %}
         {% include 'tenant_configuration/organization/8/js.html' %}
+        {% include 'foundation_public/loadingbox_js.html' %}
     {% endcompress %}
-    <!-- end PAGE JS -->
-    <!-- PAGE HTML -->
-    <div class="content-wrapper">
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
 <div class="panel panel-default">
     <!-- <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div> -->
     <div class="panel-body">
@@ -21,23 +22,10 @@
             <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Perks and Rewards' %}</h2>
-                    <p class="text-center pv">{% trans 'To encourage and reward entrepreneurs, SME Gurus offers users perks for completing certain tasks or reaching certain milestones. Your users might receive discounts on website design and hosting, business cards, or even connected to potential funders. Most clients enable this option to help their entrepreneurs get started and to keep them motivated.' %}</p>
+                    <h2 class="text-center pv">{% trans 'You\'re Ready To Start' %}</h2>
+                    <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
 
                     <br/>
-
-                    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <input type="radio" name="has_perks" value=true {% if request.tenant.has_perks == True %}checked{% endif %}>
-                        {% trans '<b>Activate Perks & Rewards:</b> Your entrepreneurs will receive access to special offers.' %}
-                        <br>
-                        <br/>
-
-                        <input type="radio" name="has_perks" value=false {% if request.tenant.has_perks == False %}checked{% endif %}>
-                        {% trans '<b>No Perks (not recommended):</b> If you don\'t want to offer perks to your clients, then select this option.' %}
-                        <br>
-                        <br/>
-
-                    </form>
 
                 </section>
             </div>
@@ -49,7 +37,7 @@
                         <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
                     </li>
                     <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
+                        <button id="id_continue_btn" type="button" class="btn btn-block btn-success mt-lg" onclick="ajax_dashboard();" role="menuitem">{% trans 'Submit' %}</button>
                     </li>
                 </ul>
             </div>

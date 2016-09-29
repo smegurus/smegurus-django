@@ -22,38 +22,55 @@
 
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
-
-        var challenge = $("input:radio[name=challenge]:checked").val()
-        if (challenge > 0) {
-            get_public_organization(  // Fetch our organization.
-                {{ request.tenant.id }},
-                function(organization) {
-                    organization['challenge'] = challenge;
-                    set_public_organization(  // Save our organization.
-                        organization,
-                        function(error) {
-                            enable_btn();
-                            console.log(error);
-                        },
-                        function(json_result) {
-                            enable_btn();
-                            console.log(json_result);
-                            window.location = "{% url 'foundation_auth_config_org_step_seven' %}";
-                        },
-                        function(json_error_result) {
-                            enable_btn();
-                            console.log(json_error_result);
-                            alert(json_error_result);
-                        }
-                    ); // end Get Organization
-                },
-                function(error_result) {
-                    enable_btn();
-                    console.log(error_result);
-                    alert(json_error_result);
+        get_tenant_me(
+            {{ request.tenant_me.id }},
+            function(me) {
+                var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
+                if (image > 0) {
+                   me['image'] = image;
                 }
-            );  // end Set Organization
+                set_tenant_me(
+                    me,
+                    function(json_result) {
+                        window.location = "{% url 'foundation_auth_config_org_step_seven' %}";
+                    },
+                    function(error_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_result );
+                        console.log(error_result);
+                        alert(string);
+                    }
+                ); // end Set TenantMe
+            },
+            function(error_result) {
+                enable_btn();
+                var string = JSON.stringify( error_result );
+                console.log(error_result);
+                alert(string);
+            }
+        ); // end Get TenantMe
+    }
+
+    /**
+     *  Function will asynchronously upload the cover image.
+     */
+    function ajax_upload_image() {
+        if ($('#id_image').val() == "") {
+            alert(_("Please select an image to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
         }
+
+        // Extract the information.
+        var image = document.getElementById('id_image').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+
+        // Insert or Update.
+        set_tenant_imageupload(upload_id, image, function(json_result) {
+            $('#id_hidden_url').attr('src', json_result['imagefile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['imagefile']);
+        });
     }
 
 </script>

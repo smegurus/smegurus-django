@@ -78,7 +78,9 @@ def config_org_step_four_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_five_page(request):
-    return render(request, 'tenant_configuration/organization/5/view.html',{})
+    return render(request, 'tenant_configuration/organization/5/view.html',{
+        'timezones': pytz.common_timezones
+    })
 
 
 @login_required(login_url='/en/login')
@@ -90,33 +92,7 @@ def config_org_step_six_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_seven_page(request):
-    return render(request, 'tenant_configuration/organization/7/view.html',{})
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_eight_page(request):
-    return render(request, 'tenant_configuration/organization/8/view.html',{})
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_nine_page(request):
-    return render(request, 'tenant_configuration/organization/9/view.html',{
-        'timezones': pytz.common_timezones
-    })
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_ten_page(request):
-    return render(request, 'tenant_configuration/organization/10/view.html',{})
-
-
-@login_required(login_url='/en/login')
-@group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_eleven_page(request):
-    return render(request, 'tenant_configuration/organization/11/view.html',{
+    return render(request, 'tenant_configuration/organization/7/view.html',{
         'form': PublicOrganizationForm(instance=request.tenant),
         'accepted_fields': [
             'id_how_many_served', 'id_how_discovered',
@@ -126,5 +102,5 @@ def config_org_step_eleven_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
-def config_org_step_twelve_page(request):
-    return render(request, 'tenant_configuration/organization/12/view.html',{})
+def config_org_step_eight_page(request):
+    return render(request, 'tenant_configuration/organization/8/view.html',{})

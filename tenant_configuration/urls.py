@@ -12,10 +12,6 @@ urlpatterns = (
     url(r'^config/organization/step/6$', organization_view.config_org_step_six_page, name='foundation_auth_config_org_step_six'),
     url(r'^config/organization/step/7$', organization_view.config_org_step_seven_page, name='foundation_auth_config_org_step_seven'),
     url(r'^config/organization/step/8$', organization_view.config_org_step_eight_page, name='foundation_auth_config_org_step_eight'),
-    url(r'^config/organization/step/9$', organization_view.config_org_step_nine_page, name='foundation_auth_config_org_step_nine'),
-    url(r'^config/organization/step/10$', organization_view.config_org_step_ten_page, name='foundation_auth_config_org_step_ten'),
-    url(r'^config/organization/step/11$', organization_view.config_org_step_eleven_page, name='foundation_auth_config_org_step_eleven'),
-    url(r'^config/organization/step/12$', organization_view.config_org_step_twelve_page, name='foundation_auth_config_org_step_twelve'),
 
     # Entrepreneur
     url(r'^config/entrepreneur/step/1$', entrepreneur_view.config_entr_step_one_page, name='foundation_auth_config_entr_step_one'),

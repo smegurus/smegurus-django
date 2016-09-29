@@ -5,7 +5,7 @@
     {% compress js inline %}
         {% include 'tenant_configuration/organization/5/js.html' %}
     {% endcompress %}
-    <!-- end PAGE JS -->
+    <!-- PAGE JS -->
     <!-- PAGE HTML -->
     <div class="content-wrapper">
 <div class="panel panel-default">
@@ -18,26 +18,26 @@
             <!-- end PAGE SIDEBAR -->
 
             <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
+            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
                 <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Learning Preferences' %}</h2>
-                    <p class="text-center pv">{% trans 'Now we need to setup how your entrepreneurs will receive instruction. You can choose from the following:' %}</p>
+                    <h2 class="text-center pv">{% trans 'Timezone' %}</h2>
+                    <p class="text-center pv">{% trans 'Please pick a standard timezone that your organization will run under.' %}</p>
 
                     <br/>
 
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <input type="radio" name="learning_preference" value="2" {% if request.tenant.learning_preference == 2 %}checked{% endif %}>
-                        {% trans '<b>Blended:</b> Your entrepreneurs will go through our custom education modules and then complete an exercise to generate key documents such as their Business Model Canvas. This is the option that the majority of our clients use, and remember, you can always blend this will real world instruction.' %}
-                        <br>
+                        <label for="timezone">{% trans 'Time zone:' %}</label>
+
+                        <!-- TIMEZONES -->
+                        <select id="id_timezone" name="timezone" class="form-control">
+                            {% for tz in timezones %}
+                                <option value="{{ tz }}"{% if tz == request.tenant.time_zone %} selected="selected"{% endif %}>{{ tz }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- end TIMEZONES -->
+
                         <br/>
-
-                        <input type="radio" name="learning_preference" value="1" {% if request.tenant.learning_preference == 1 %}checked{% endif %}>
-                        {% trans '<b>Traditional (not recommended):</b> If you want to rely solely on classroom instruction, then select this option and your clients will only go through activities to generate key documents' %}
-
-                        <br>
-                        <br/>
-
                     </form>
                 </section>
             </div>
