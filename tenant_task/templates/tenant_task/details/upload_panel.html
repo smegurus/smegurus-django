@@ -1,0 +1,69 @@
+{% load i18n %}
+<!-- ADD FILES -->
+<div class="panel b" id="id_add_file_div">
+    <div class="panel-heading">
+        <!-- TITLE -->
+        <div class="panel-title">{% trans 'Add File' %}</div>
+        <!-- end TITLE -->
+    </div>
+    <div class="panel-body">
+        <!-- File Upload Button -->
+        <label class="form-control btn btn-success mt10 curp" >
+        <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
+        <input onchange="ajax_upload_file();"
+                     id="id_file"
+                   type="file"
+                  class="form-control mb10 hide" />
+        </label>
+        <!-- /.File Upload Button -->
+    </div>
+</div>
+<!-- end ADD FILES -->
+<!-- FILES LIST -->
+<div class="panel b">
+    <div class="panel-heading">
+        <!-- TITLE -->
+        <div class="pull-right">
+            <button id="id_add_file_btn"
+               onclick="$('#id_add_file_div').show(); $('#id_add_file_btn').prop('disabled', true);"
+                  type="button"
+                 class="btn btn-success">{% trans '+' %}</button>
+        </div>
+        <div class="panel-title">{% trans 'Files' %}</div>
+        <!-- end TITLE -->
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file_upload in task.uploads.all %}
+                    <tr>
+                        <td>
+                            {{ file_upload }}
+                        </td>
+                        <td>
+                            <div class="pull-right">
+                                <!-- DOWNLOAD -->
+                                <button onclick="load_new_tab('{{ file_upload.get_s3_url }}');"
+                                    type="button"
+                                    class="btn btn-default">
+                                <em class="fa fa-fw fa-download mr"></em>
+                                {% trans 'Download' %}
+                                </button>
+                                <!-- end DOWNLOAD -->
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- end FILES LIST -->

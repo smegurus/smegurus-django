@@ -82,8 +82,7 @@ class TaskFilter(django_filters.FilterSet):
                   'description', 'image', 'assigned_by',
                   'assignee', 'status', 'participants', 'tags',
                   'start', 'due', 'comment_posts', 'type_of',
-                  'has_review_requirement', 'download', 'upload',
-                  'calendar_event',]
+                  'has_review_requirement', 'uploads', 'calendar_event',]
 
 
 class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
@@ -129,6 +128,8 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             log_event.delete()
         for post in instance.comment_posts.all():
             post.delete()
+        for file_upload in instance.uploads.all():
+            file_upload.delete()
         if instance.calendar_event:
             instance.calendar_event.delete()
         instance.delete()  # Delete our model.

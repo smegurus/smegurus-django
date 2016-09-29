@@ -135,21 +135,11 @@ class Task(AbstractThing):
     #----------------------#
     # Upload Task Fields   #
     #----------------------#
-    download = models.ForeignKey(
+    uploads = models.ManyToManyField(
         TenantFileUpload,
-        help_text=_('The file the User must download.'),
+        help_text=_('The files uploaded by a User.'),
         blank=True,
-        null=True,
-        related_name="task_download_%(app_label)s_%(class)s_related",
-        on_delete=models.SET_NULL
-    )
-    upload = models.ForeignKey(
-        TenantFileUpload,
-        help_text=_('The file uploaded by the User.'),
-        blank=True,
-        null=True,
-        related_name="task_upload_%(app_label)s_%(class)s_related",
-        on_delete=models.SET_NULL
+        related_name='task_uploads_%(app_label)s_%(class)s_related',
     )
 
     #----------------------#
