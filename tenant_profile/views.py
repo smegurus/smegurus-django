@@ -59,8 +59,7 @@ def profile_settings_address_page(request):
         'form': PostalAddressForm(instance=address),
         'accepted_fields': [
             'id_postal_code', 'id_street_number', 'id_suffix', 'id_street_name',
-            'id_street_type', 'id_direction', 'id_suite_number', 'id_floor_number',
-            'id_buzz_number', 'id_address_line_2', 'id_address_line_3',
+            'id_suite_number', 'id_address_line_2', 'id_address_line_3',
         ]
     })
 

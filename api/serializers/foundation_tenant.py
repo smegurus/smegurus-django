@@ -91,8 +91,8 @@ class PostalAddressSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'alternate_name', 'description', 'owner', 'url',
                   'country', 'postal_code', 'locality', 'region',
                   'street_number', 'suffix',
-                  'street_name', 'street_type', 'direction', 'suite_number',
-                  'floor_number', 'buzz_number', 'address_line_2',
+                  'street_name', 'suite_number',
+                  'address_line_2',
                   'address_line_3', 'latitude', 'longitude')
 
 class OpeningHoursSpecificationSerializer(serializers.ModelSerializer):

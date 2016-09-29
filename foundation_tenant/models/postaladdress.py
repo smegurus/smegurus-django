@@ -66,7 +66,6 @@ class PostalAddress(AbstractThing):
     suffix = models.CharField(
         _("Suffix"),
         max_length=1,
-        choices=constants.POSTALADDRESS_SUFFIX_OPTIONS,
         help_text=_('The suffix.'),
         blank=True,
         null=True,
@@ -79,42 +78,10 @@ class PostalAddress(AbstractThing):
         null=True,
         default='',
     )
-    street_type = models.CharField(
-        _("Street Type"),
-        max_length=15,
-        choices=constants.POSTALADDRESS_STREET_TYPE_OPTIONS,
-        help_text=_('The street type.'),
-        blank=True,
-        null=True,
-    )
-    direction = models.CharField(
-        _("Street Type"),
-        max_length=2,
-        choices=constants.POSTALADDRESS_DIRECTION_OPTIONS,
-        help_text=_('The direction.'),
-        blank=True,
-        null=True,
-    )
     suite_number = models.CharField(
         _("Suite"),
         max_length=7,
         help_text=_('The suite #.'),
-        blank=True,
-        null=True,
-        default='',
-    )
-    floor_number = models.CharField(
-        _("Floor"),
-        max_length=5,
-        help_text=_('The floor #.'),
-        blank=True,
-        null=True,
-        default='',
-    )
-    buzz_number = models.CharField(
-        _("Entry Code / Buzz"),
-        max_length=15,
-        help_text=_('The entry code.'),
         blank=True,
         null=True,
         default='',
@@ -160,16 +127,6 @@ class PostalAddress(AbstractThing):
             text += str(self.suffix) + " "
 
         text += str(self.street_name) + " "
-        text += str(self.street_type) + " "
-
-        if self.direction:
-            text += str(self.direction) + " "
-
-        if self.floor_number:
-            text += "Floor # " + str(self.floor_number) + " "
-
-        if self.buzz_number:
-            text += "Buzz # " + str(self.buzz_number) + " "
 
         if self.locality:
             text += str(self.locality) + ", "
