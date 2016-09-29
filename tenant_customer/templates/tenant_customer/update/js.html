@@ -33,8 +33,30 @@
                 $("#id_email_span").text('Please enter a properly formatted email.');
                 $('#id_submit_btn').prop("disabled", true);
             }
-
         }); // end Email Keypress
+
+        $("#id_country").change(function () {
+            var end = this.value;
+            var country_id = $('#id_country').val();
+            var criteria = Array();
+            criteria.push({
+                'country': country_id,
+            });
+            filter_provinceoptions(
+                criteria,
+                function(json_result) {
+                    $('#id_region').prop("disabled", false);
+                    html = "<option value=\"0\">Please select a province.</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $('#id_region').html('');       // Clear selection
+                    $(html).appendTo('#id_region'); // Load new selection
+                }
+            ); // end Filter Provinces
+        }); // end Change Country
     }); // end Document Start
 
     function ajax_unprotected_submit() {

@@ -90,16 +90,27 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{% trans 'Country' %}</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_country" value="{{ me.address.country }}" />
-                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                            <select id="id_country" class="form-control">
+                                {% if not me.address.country %}
+                                    <option value="">{% trans 'Please select your country' %}</option>
+                                {% endif %}
+                                {% for country in countries.all %}
+                                    <option value="{{ country.id }}" {% if me.address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
                     <br/>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{% trans 'Province' %}</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_region" value="{{ me.address.region }}" />
-                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                            <select id="id_region" class="form-control" {% if not me.address.region %}disabled{% endif %}>
+                                {% for province in provinces.all %}
+                                    <option value="{{ province.id }}" {% if province == me.address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
+                                {% empty %}
+                                    <option value="" selected="selected">{% trans 'Please select a province/state' %}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
                     <br/>

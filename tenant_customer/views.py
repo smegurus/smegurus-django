@@ -18,6 +18,10 @@ from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.forms.intakeform import IntakeForm
+from foundation_tenant.forms.postaladdressform import PostalAddressForm
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
+from foundation_public.models.cityoption import CityOption
 from smegurus import constants
 
 
@@ -101,8 +105,21 @@ def create_page(request):
 def update_page(request, pk):
     me = get_object_or_404(TenantMe, pk=pk)
     intake = get_object_or_404(Intake, me=me)
+
+    # Fetch all the provinces for this Address.
+    provinces = [] if not me.address.country else ProvinceOption.objects.filter(country=me.address.country)
+
+    # Render our View.
     return render(request, 'tenant_customer/update/view.html',{
         'page': 'client',
         'me': me,
         'intake_form': IntakeForm(instance=intake),
+        'address_form': PostalAddressForm(instance=me.address),
+        'countries': CountryOption.objects.all(),
+        'provinces': provinces,
+        'accepted_fields': [
+            'id_country', 'id_province',
+            'id_postal_code', 'id_street_number', 'id_suffix', 'id_street_name',
+            'id_suite_number', 'id_address_line_2', 'id_address_line_3',
+        ]
     })
