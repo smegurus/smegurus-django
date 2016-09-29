@@ -11,6 +11,7 @@ from foundation_public.utils import get_unique_username_from_email
 from foundation_public.utils import get_pretty_formatted_date
 from foundation_public.utils import latest_date_between
 from foundation_public.utils import latest_date_in
+from foundation_public.utils import random_text
 from smegurus import constants
 
 
@@ -111,3 +112,8 @@ class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
             date_3, date_2, today, date_1, date_4, date_5
         ])
         self.assertEqual(today, latest_date)
+
+    @transaction.atomic
+    def test_random_text(self):
+        text = random_text(31)
+        self.assertTrue(len(text) > 0)

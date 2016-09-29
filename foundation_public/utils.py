@@ -1,3 +1,4 @@
+import random
 import base64
 import hashlib
 from django.utils import timezone
@@ -39,3 +40,9 @@ def latest_date_in(array):
     for date in array:
         latest = latest_date_between(latest, date)
     return latest
+
+
+def random_text(size):
+    """Randomly generate text"""
+    alphabet_and_numbers = 'abcdefghijklmnopqrstuvwqyz1234567890'
+    return(''.join(random.choice(alphabet_and_numbers) for _ in range(size)))

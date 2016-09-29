@@ -1,5 +1,3 @@
-import random
-from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve, reverse
@@ -19,6 +17,7 @@ from foundation_tenant.models.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
+from foundation_public.utils import random_text
 from foundation_public.models.countryoption import CountryOption
 from foundation_public.models.provinceoption import ProvinceOption
 from foundation_public.models.cityoption import CityOption
@@ -53,10 +52,7 @@ def details_page(request, id):
     })
 
 
-def random_text(size):
-    """Randomly generate text"""
-    alphabet_and_numbers = 'abcdefghijklmnopqrstuvwqyz1234567890'
-    return(''.join(random.choice(alphabet_and_numbers) for _ in range(size)))
+
 
 
 @login_required(login_url='/en/login')
