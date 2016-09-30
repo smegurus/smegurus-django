@@ -11,7 +11,7 @@ from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_public.utils import random_text
-from foundation_tenant.utils import my_last_modified_func
+from foundation_tenant.utils import my_last_modified_func, int_or_none
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
@@ -63,10 +63,11 @@ def details_page(request, id):
 @condition(last_modified_func=my_last_modified_func)
 def create_page(request):
     """Function will create a new Entrepreneur and redirect to the page of updating data."""
+    random_password = random_text(8)
     user = User.objects.create_user(
         username=random_text(30),
         email=random_text(100) + "@" + random_text(100) + ".com",
-        password=random_text(128)
+        password=random_password
     )
     entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
     user.groups.add(entrepreneur_group)
@@ -89,7 +90,8 @@ def create_page(request):
         me=me,
         status=constants.CREATED_STATUS,
     )
-    return HttpResponseRedirect(reverse('tenant_customer_create_step_1', args=[me.id,]))
+    url = reverse('tenant_customer_create_step_1', args=[me.id,]) + "?pass="+random_password
+    return HttpResponseRedirect(url)
 
 
 @login_required(login_url='/en/login')
@@ -103,6 +105,7 @@ def create_step_one_page(request, pk):
     return render(request, 'tenant_customer/create/1/view.html',{
         'page': 'client',
         'me': get_object_or_404(TenantMe, pk=pk),
+        'temporary_password': request.GET.get('pass'),
     })
 
 
