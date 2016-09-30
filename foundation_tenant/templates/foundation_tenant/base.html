@@ -211,6 +211,17 @@
                             </li>
                             <!-- end TASKS -->
 
+                            <!-- TEAM -->
+                            {% if request.tenant_me.is_manager %}
+                                <li {% if page == 'team' %}class=" active"{% endif %}>
+                                    <a href="{% url 'tenant_team_master' %}" title="{% trans 'Goals' %}">
+                                        <em class="fa fa-sitemap"></em>
+                                        <span data-localize="sidebar.nav.GOALS">{% trans 'Team' %}</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <!-- end TEAM -->
+
                             <!-- PROGRESS -->
                             <li class=" ">
                                 <a href="#progress" title="{% trans 'Progress' %}" data-toggle="collapse">
