@@ -82,7 +82,7 @@
 
     function ajax_finalize_submit() {
         var comment = $.trim($('#id_review').val());
-        tenant_intake_review(
+        tenant_intake_judge(
             {{ intake_form.instance.id }},
             {{ contants.APPROVED_STATUS }},
             comment,

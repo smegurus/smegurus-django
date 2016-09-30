@@ -20,6 +20,7 @@ from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
+from foundation_tenant.models.naicsoption import NAICSOption
 from smegurus import constants
 
 
@@ -142,12 +143,57 @@ def create_step_three_page(request, pk):
     me = get_object_or_404(TenantMe, pk=pk)
     intake = get_object_or_404(Intake, me=me)
 
+    # Get the first depth.
+    depth_one_results = NAICSOption.objects.filter(parent=None)
+
+    # Get the second depth.
+    depth_two_results = None
+    if intake.naics_depth_two:
+        depth_two_results = NAICSOption.objects.filter(parent=intake.naics_depth_two.parent)
+    else:
+        if intake.naics_depth_one:
+            depth_two_results = NAICSOption.objects.filter(parent=intake.naics_depth_one)
+
+    # Get the three depth.
+    depth_three_results = None
+    if intake.naics_depth_three:
+        depth_three_results = NAICSOption.objects.filter(parent=intake.naics_depth_three.parent)
+    else:
+        if intake.naics_depth_two:
+            depth_three_results = NAICSOption.objects.filter(parent=intake.naics_depth_two)
+
+    # Get the four depth.
+    depth_four_results = None
+    if intake.naics_depth_four:
+        depth_four_results = NAICSOption.objects.filter(parent=intake.naics_depth_four.parent)
+    else:
+        if intake.naics_depth_three:
+            depth_four_results = NAICSOption.objects.filter(parent=intake.naics_depth_three)
+
+    # Get the five depth.
+    depth_five_results = None
+    if intake.naics_depth_five:
+        depth_five_results = NAICSOption.objects.filter(parent=intake.naics_depth_five.parent)
+    else:
+        if intake.naics_depth_four:
+            depth_five_results = NAICSOption.objects.filter(parent=intake.naics_depth_four)
+
     # Render our View.
     return render(request, 'tenant_customer/create/3/view.html',{
         'page': 'client',
         'me': me,
         'form': IntakeForm(instance=intake),
-        'constants': constants
+        'constants': constants,
+        'rejected_fields': [
+            'id_naics_depth_one', 'id_naics_depth_two', 'id_naics_depth_three',
+            'id_naics_depth_four', 'id_naics_depth_five',
+        ],
+        'intake': intake,
+        'depth_one_results': depth_one_results,
+        'depth_two_results': depth_two_results,
+        'depth_three_results': depth_three_results,
+        'depth_four_results': depth_four_results,
+        'depth_five_results': depth_five_results
     })
 
 

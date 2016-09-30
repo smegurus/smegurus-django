@@ -1,7 +1,143 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        // Do nothing.
+        // Source from: http://stackoverflow.com/a/7120932
+        $( "#id_date_of_birth" ).datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: new Date(1910,0,1),
+            maxDate: new Date(2010,0,1),
+            yearRange: '1910:2010' ,
+            changeYear: true,
+            changeMonth: true
+        }); // end SUPPORT END OF DATE.
+
+        // NAICS DEPTH ONE
+        $("#id_naics_depth_one").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_one').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_two').prop("disabled", false);
+                    $('#id_naics_depth_three').prop("disabled", true);
+                    $('#id_naics_depth_four').prop("disabled", true);
+                    $('#id_naics_depth_five').prop("disabled", true);
+
+                    // Update the UI.
+                    $('#id_naics_depth_two').html('');       // Clear selection
+                    $('#id_naics_depth_three').html('');     // Clear selection
+                    $('#id_naics_depth_four').html('');      // Clear selection
+                    $('#id_naics_depth_five').html('');      // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI.
+                    $(html).appendTo('#id_naics_depth_two'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH ONE
+
+        // NAICS DEPTH TWO
+        $("#id_naics_depth_two").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_two').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_three').prop("disabled", false);
+                    $('#id_naics_depth_four').prop("disabled", true);
+                    $('#id_naics_depth_five').prop("disabled", true);
+
+                    // Update the UI.
+                    $('#id_naics_depth_three').html('');     // Clear selection
+                    $('#id_naics_depth_four').html('');      // Clear selection
+                    $('#id_naics_depth_five').html('');      // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI.
+                    $(html).appendTo('#id_naics_depth_three'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH TWO
+
+        // NAICS DEPTH THREE
+        $("#id_naics_depth_three").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_three').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_four').prop("disabled", false);
+                    $('#id_naics_depth_five').prop("disabled", true);
+
+                    // Update the UI.
+                    $('#id_naics_depth_four').html('');       // Clear selection
+                    $('#id_naics_depth_five').html('');       // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI
+                    $(html).appendTo('#id_naics_depth_four'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH THREE
+
+        // NAICS DEPTH FOUR
+        $("#id_naics_depth_four").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_four').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_five').prop("disabled", false);
+
+                    // Update the UI.
+                    $('#id_naics_depth_five').html('');       // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $(html).appendTo('#id_naics_depth_five'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH FOUR
     });
 
     function disable_btn() {
@@ -18,38 +154,132 @@
 
     function ajax_finalize_submit() {
         var comment = $.trim($('#id_review').val());
-        tenant_intake_review(
+        tenant_intake_judge(
             {{ form.instance.id }},
             {{ constants.APPROVED_STATUS }},
             comment,
             true,
-            function() {
+            function(json_result) {
                 window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
             },
-            function() {
-                $('#id_submit_btn').prop("disabled", false);
+            function(error_json_result) {
+                enable_btn(); // enable button.
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
-                alert(string);
+                if (string.indexOf('comment') > -1 && string.indexOf('This field may not be blank.') > -1) {
+                    alert("{% trans 'Please write a comment before submitting.' %}");
+                } else {
+                    alert(string);
+                }
             }
         ); // end Tenant Intake Review
     }
 
-    function ajax_protect_next() {
-        disable_btn();
+    function ajax_protected_next() {
+        //---------------- NAICS ----------------
+        var naics_depth_one = $('#id_naics_depth_one').val();
+        var naics_depth_two = $('#id_naics_depth_two').val();
+        var naics_depth_three = $('#id_naics_depth_three').val();
+        var naics_depth_four = $('#id_naics_depth_four').val();
+        var naics_depth_five = $('#id_naics_depth_five').val();
+        if (naics_depth_one <= 0 || naics_depth_one == '----') {
+            alert("Please select at minimum depth one.");
+            return;
+        }
+
+        //---------------- GOVERNMENT ----------------
+        var government_benefits = []; // initialize empty array
+        $('#id_government_benefits :checked').each(function() {
+            government_benefits.push($(this).val());
+        });
+
+        //---------------- IDENTITIES ----------------
+        var identities = []; // initialize empty array
+        $('#id_identities :checked').each(function() {
+            identities.push($(this).val());
+        });
+
+        disable_btn(); // Disable the button.
+
         get_tenant_intake(
             {{ form.instance.id }},
             function(intake) {
+                //---------------- HOW CAN WE HELP ----------------
                 intake['how_can_we_help'] = $('#id_how_can_we_help').val();
                 intake['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
                 intake['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+
+                //---------------- HOW DID YOU HEAR ----------------
                 intake['how_did_you_hear'] = $('#id_how_did_you_hear').val();
                 intake['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
+
+                //---------------- DO YOU OWN A BIZ ----------------
                 intake['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
                 intake['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
+
+                //---------------- TELEPHONE ----------------
                 intake['has_telephone'] = $('#id_has_telephone').val();
                 intake['telephone'] = $('#id_telephone').val();
                 intake['telephone_time'] = $('#id_telephone_time').val();
+
+                //---------------- GOVERNMENT ----------------
+                intake['government_benefits'] = government_benefits;
+                intake['other_government_benefit'] = $('#id_other_government_benefit').val();
+
+                //---------------- IDENTITIES ----------------
+                intake['identities'] = identities;
+
+                //---------------- DATE OF BIRTH ----------------
+                // Extract the string.
+                var raw_text_date = $('#id_date_of_birth').val() ;
+
+                // Convert the string to a javascript "Date" object.
+                var unprotected_date = new Date(raw_text_date);
+
+                //BUGFIX: It appears when we converted our date, we lost a day.
+                //        Therefore, add a single day to our converted date.
+                unprotected_date.setDate(unprotected_date.getDate() + 1);
+
+                // Format our "Date" object to a format django "DatetimeField"
+                // to support.
+                var django_date = date_to_django_date(unprotected_date);
+                console.log(django_date);
+
+                // Update model.
+                intake['date_of_birth'] = django_date;
+
+                //---------------- HAS SIGNED ----------------
+                intake['has_signed_privacy_and_terms'] = $('input[id=id_has_signed_privacy_and_terms]').is(':checked');
+                intake['has_signed_confidentiality_agreement'] = $('input[id=id_has_signed_confidentiality_agreement]').is(':checked');
+                intake['has_signed_collection_and_use_of_information'] = $('input[id=id_has_signed_collection_and_use_of_information]').is(':checked');
+                intake['has_signed_with_name'] = $('#id_has_signed_with_name').val();
+
+                //---------------- NAICS ----------------
+                intake['naics_depth_one'] = parseInt(naics_depth_one);
+
+                if (naics_depth_two > 0 && naics_depth_two != '----') {
+                    intake['naics_depth_two'] = parseInt(naics_depth_two);
+                } else {
+                    intake['naics_depth_two'] = '';
+                }
+
+                if (naics_depth_three > 0 && naics_depth_three != '----') {
+                    intake['naics_depth_three'] = parseInt(naics_depth_three);
+                } else {
+                    intake['naics_depth_three'] = '';
+                }
+
+                if (naics_depth_four > 0 && naics_depth_four != '----') {
+                    intake['naics_depth_four'] = parseInt(naics_depth_four);
+                } else {
+                    intake['naics_depth_four'] = '';
+                }
+
+                if (naics_depth_five > 0 && naics_depth_five != '----') {
+                    intake['naics_depth_five'] = parseInt(naics_depth_five);
+                } else {
+                    intake['naics_depth_five'] = '';
+                }
                 set_tenant_intake(
                     intake,
                     function(json_result) {
