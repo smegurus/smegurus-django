@@ -1,8 +1,13 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_team/master/js.html' %}
+{% endcompress %}
+<!-- PAGE JS -->
 
-<!-- Page content-->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
     <h3>
@@ -74,5 +79,5 @@
     </div>
     <!-- end CONTENT -->
 </div>
-
+<!-- end PAGE HTML -->
 {% endblock content %}
