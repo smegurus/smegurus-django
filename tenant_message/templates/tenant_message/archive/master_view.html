@@ -2,6 +2,7 @@
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
 
+<!-- PAGE JS -->
 {% compress js inline %}
     <script>
     $(document).ready(function () {
@@ -13,10 +14,24 @@
     });
     </script>
 {% endcompress %}
+<!-- end PAGE JS -->
 
-<!-- Page content-->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-    <h3>{% trans 'Archive' %}</h3>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-envelope mr"></em>{% trans 'Archive' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">{% trans 'Archive' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- CONTENT -->
     <div class="table-grid table-grid-desktop">
 
         <div class="col">
@@ -80,5 +95,7 @@
             </div>
         </div>
     </div>
+    <!-- end CONTENT -->
 </div>
+<!-- PAGE HTML -->
 {% endblock content %}

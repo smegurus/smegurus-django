@@ -1,13 +1,29 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+<!-- PAGE JS -->
 <input id="id_user" type="hidden" value="{{ recipient.id }}" />
 {% compress js inline %}
     {% include 'tenant_message/composer/js.html' %}
 {% endcompress %}
-<!-- Page content-->
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-<h3>{% trans 'Composer' %}</h3>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-envelope mr"></em>{% trans 'Inbox' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Composer' %}</a></li>
+            <li class="active">{% trans 'Composer' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+<!-- CONTENT -->
 <div class="table-grid table-grid-desktop">
     <!-- START panel-->
     <div class="panel panel-default">
@@ -45,5 +61,7 @@
         </div>
         </dvi>
     </div>
+    <!-- end CONTENT -->
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

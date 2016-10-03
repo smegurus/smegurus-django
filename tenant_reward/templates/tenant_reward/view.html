@@ -2,13 +2,27 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
-<!-- Page content-->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-   <h3>{% trans 'Rewards' %}</h3>
-   <div class="table-grid table-grid-desktop">
-      <div class="col col-md">
-      </div>
-  </div>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-trophy mr"></em>{% trans 'Rewards' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">{% trans 'Rewards' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="table-grid table-grid-desktop">
+        <div class="col col-md">
+        </div>
+    </div>
+    <!-- end CONTENT -->
 </div>
+<!-- end PAGE HTML -->
 
 {% endblock content %}

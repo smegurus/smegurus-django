@@ -1,10 +1,12 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress thumbnail %}
 {% block content %}
+<!-- PAGE JS -->
 {% compress js inline %}
     {% include 'tenant_message/message/details_js.html' %}
 {% endcompress %}
-<!-- Page content-->
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- CONVERSATION LOG -->
     <div class="panel panel-default">
@@ -90,4 +92,5 @@
     <!-- end COMMUNICATOR -->
 
 </div>
+<!-- PAGE HTML -->
 {% endblock content %}

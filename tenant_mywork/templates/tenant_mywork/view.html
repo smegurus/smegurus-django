@@ -2,12 +2,29 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
-<!-- Page content-->
+<!-- PAGE JS -->
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-   <h3>{% trans 'My Work' %}</h3>
-   <div class="table-grid table-grid-desktop">
-      <div class="col col-md">
-      </div>
-  </div>
+    <!-- TITLE -->
+    <h3><em class="fa fa-fw ffa icon-docs mr"></em>{% trans 'My Work' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">{% trans 'My Work' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- TITLE -->
+
+    <!-- CONTENT -->
+    <div class="table-grid table-grid-desktop">
+        <div class="col col-md">
+        </div>
+    </div>
+    <!-- end CONTENT -->
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

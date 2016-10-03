@@ -9,6 +9,7 @@
 
 <!-- PAGE HTML -->
 <div class="content-wrapper">
+    <!-- SIDEBUTTON -->
     <div class="pull-right">
         <div class="btn-group">
             <button data-toggle="dropdown" class="btn btn-link">
@@ -30,9 +31,10 @@
             </ul>
         </div>
     </div>
+    <!-- end SIDEBUTTON -->
 
     <!-- TITLE -->
-    <h3>{% trans 'Calendar' %}
+    <h3><em class="fa fa-fw ffa icon-calendar mr"></em>{% trans 'Calendar' %}
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>

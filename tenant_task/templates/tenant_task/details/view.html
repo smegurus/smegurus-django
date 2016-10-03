@@ -6,11 +6,26 @@
     {% include 'tenant_task/details/js.html' with task=task %}
 {% endcompress %}
 
-<!-- PAGE CONTENT -->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-    <h3>{% trans 'Task Details' %}
-        <small>{% trans 'Modify this current task.' %}</small>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Tasks' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_task_master' %}">{% trans 'Tasks' %}</a>
+            </li>
+            <li class="active">{% trans 'Task Details' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
     </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- CONTENT -->
     <div class="row">
         <div class="col-lg-8">
             <!-- Main panel-->
@@ -361,7 +376,8 @@
             <!-- end Aside panel-->
         </div>
     </div>
+    <!-- end CONTENT -->
 </div>
-<!-- end PAGE CONTENT -->
+<!-- end PAGE HTML -->
 
 {% endblock content %}

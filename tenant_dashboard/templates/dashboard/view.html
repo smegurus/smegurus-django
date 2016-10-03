@@ -1,14 +1,26 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-
-<!-- Page content-->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-   <h3>{% trans 'Dashboard' %}</h3>
-   <div class="table-grid table-grid-desktop">
-      <div class="col col-md">
-      </div>
-  </div>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-speedometer mr"></em>{% trans 'Dashboard' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li class="active">{% trans 'Home' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- CONTENT -->
+    <div class="table-grid table-grid-desktop">
+        <div class="col col-md">
+        </div>
+    </div>
+    <!-- CONTENT -->
 </div>
+<!-- end PAGE HTML -->
 
 {% endblock content %}

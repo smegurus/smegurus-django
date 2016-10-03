@@ -2,13 +2,28 @@
 {% load staticfiles i18n compress %}
 {% block content %}
 
+<!-- PAGE JS -->
 {% compress js inline %}
     {% include 'tenant_intake/employee/details/js.html' %}
 {% endcompress %}
+<!-- end PAGE JS -->
 
-<!-- Page content-->
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-    <h3>{% trans 'Intake Details' %}</h3>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'tenant_intake_employee_master' %}">{% trans 'Intake' %}</a></li>
+            <li class="active">{% trans 'Intake Details' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- CONTENT -->
     <div class="table-grid table-grid-desktop">
         <div class="col col-md">
         </div>
@@ -86,5 +101,7 @@
             <!-- END panel-->
         </div>
     </div>
+    <!-- end CONTENT -->
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}

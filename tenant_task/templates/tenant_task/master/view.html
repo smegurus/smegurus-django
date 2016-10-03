@@ -8,6 +8,7 @@
 
 <!-- PAGE CONTENT -->
 <div class="content-wrapper">
+    <!-- SIDEBUTTON -->
     <div class="pull-right">
         <div class="btn-group">
             <button data-toggle="dropdown" class="btn btn-link">
@@ -43,9 +44,21 @@
             </ul>
         </div>
     </div>
-    <h3>{% trans 'Task' %}
-        <small>{% trans 'A list of tasks that involes you.' %}</small>
+    <!-- end SIDEBUTTON -->
+
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Tasks' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">{% trans 'Tasks' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
     </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
     <!-- START panel-->
     <div class="panel panel-default">
         <!-- <div class="panel-heading">Demo Table #1</div> -->

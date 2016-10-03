@@ -1,12 +1,29 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+
+<!-- PAGE JS -->
 {% compress js inline %}
     {% include 'tenant_intake/employee/master/js.html' %}
 {% endcompress %}
-<!-- Page content-->
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
 <div class="content-wrapper">
-    <h3>{% trans 'Intake' %}</h3>
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">{% trans 'Intake' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- CONTENT -->
     <div class="table-grid table-grid-desktop">
         <div class="col col-md">
         </div>
@@ -66,5 +83,7 @@
     <!-- END DATATABLE 1 -->
 </div>
 </div>
+<!-- end CONTENT -->
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}
