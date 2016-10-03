@@ -74,16 +74,10 @@
                                             {{ team_member.name }}
                                         </td>
                                         <td>
-                                            {% comment %}
-                                            <button id="id_delete_{{ resource.id }}_btn" onclick="ajax_delete_resource({{ resource.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
-                                            <a href="{% url 'tenant_resource_details_edit' resource.id %}">
-                                                <button type="button" class="btn btn-labeled btn-warning">{% trans 'Edit' %}</button>
-                                            </a>
-
-                                            <a href="{% url 'tenant_resource_details_info' resource.id %}">
-                                                <button type="button" class="btn btn-labeled btn-info">{% trans 'View' %}</button>
-                                            </a>
-                                            {% endcomment %}
+                                            <!-- BUTTON -->
+                                            <button id="id_delete_{{ team_member.id }}_btn" onclick="ajax_delete_employee({{ team_member.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
+                                            <button id="id_edit_{{ team_member.id }}_btn" onclick="ajax_edit_employee({{ team_member.id }});" type="button" class="btn btn-labeled btn-warning">{% trans 'Edit' %}</button>
+                                            <!-- end BUTTON -->
                                         </td>
                                     </tr>
                                 {% endfor %}

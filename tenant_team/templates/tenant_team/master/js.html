@@ -56,7 +56,30 @@
 
     })(window, document, window.jQuery);
 
+    function ajax_delete_employee(me_id) {
+        $('#id_delete_'+me_id+'_btn').prop("disabled", true); // Disable button.
+        delete_tenant_me(
+            me_id,
+            function(result) {
+                location.reload(true); // Reload the page.
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_result );
+                console.log(error_result);
+                alert(string);
+            }
+        );
+    }
+
     function ajax_create_employee(group_id) {
-        window.location = "{% url 'tenant_team_create' %}?group_id="+group_id; 
+        window.location = "{% url 'tenant_team_create' %}?group_id="+group_id;
+    }
+
+    function ajax_edit_employee(me_id) {
+        $('#id_edit_'+me_id+'_btn').prop("disabled", true); // Disable button.
+        // Generate our new URL.
+        var url = "{% url 'tenant_team_update' 'placeholder' %}";
+        var details_url = url.replace("placeholder", me_id);
+        window.location = details_url;
     }
 </script>
