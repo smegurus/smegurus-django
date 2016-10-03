@@ -122,6 +122,7 @@ TENANT_APPS = (
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE_CLASSES = [
+    'smegurus.middleware.SMEGurusIPAddressMiddleware',              # Custom
     'foundation_public.middleware.PublicBanEnforcingMiddleware',    # Custom
     'foundation_public.middleware.PublicVisitorMiddleware',         # Custom
     'foundation_public.middleware.PublicTrapURLMiddleware',         # Custom
@@ -137,6 +138,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'smegurus.middleware.SMEGurusAuthTokenMiddleware',              # Custom
+    'foundation_tenant.middleware.TenantTimezoneMiddleware',        # Custom
+    'foundation_tenant.middleware.TenantMeMiddleware',              # Custom
     'foundation_tenant.middleware.TenantVisitorMiddleware',         # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                     # Third Party
 ]
@@ -155,11 +159,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.core.context_processors.i18n',
-                'smegurus.context_processors.base_constants',        # Custom
-                'smegurus.context_processors.ip',                    # Custom
-                'smegurus.context_processors.auth_token',            # Custom
-                'foundation_tenant.context_processors.me',           # Custom
-                'foundation_tenant.context_processors.timezone'      # Custom
+                'smegurus.context_processors.base_constants',           # Custom
             ],
         },
     },
