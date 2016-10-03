@@ -1,0 +1,186 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_team/details/js.html' %}
+{% endcompress %}
+<!-- PAGE JS -->
+
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa fa-sitemap mr"></em>{% trans 'Team' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_team_master' %}">{% trans 'Team' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'My Team Member' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- SHOW PASSWORD -->
+    {% if temporary_password %}
+    <div id="panelDemo12" class="panel panel-danger">
+        <div class="panel-heading">{% trans 'Temporary Password Generated' %}</div>
+            <div class="panel-body">
+                <p>{% trans 'A temporary password has been generated for this employee. Please give this password to the employee ask them to change their password once they login with it.' %}</p>
+                <p><h1>{{ temporary_password }}</h1></p>
+            </div>
+        <div class="panel-footer">{% trans 'Remember: Help keep this password safe by not sharing it with anyone else.' %}</div>
+    </div>
+    {% endif %}
+    <!-- end SHOW PASSWORD -->
+
+    <div class="panel panel-default">
+        <!-- <div class="panel-heading">Entrepreneur Intake Form</div> -->
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+
+                <fieldset>
+
+                    <!-- PROFILE -->
+                    <legend>
+                        <em class="fa fa-child"></em>
+                        {% trans 'Profile' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_first_name" value="{{ me.given_name }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Last Name' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_last_name" value="{{ me.family_name }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_url" value="{% if me.url %}{{ me.url }}{% endif %}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                        <div class="col-sm-10">
+                            <textarea id="id_description" class="form-control" name="textarea" rows="6">{{ me.description }}</textarea>
+                            <span class="help-block m-b-none">{% trans 'Give a quick summary of this entrepreneur.' %}</span>
+                        </div>
+                    </div>
+                    <!-- end PROFILE -->
+
+                    <br />
+                    <br />
+
+                    <!-- CONTACT INFORMATION -->
+                    <legend>
+                        <em class="fa icon-book-open"></em>
+                        {% trans 'Contact Information' %}
+                    </legend>
+                    <div id="id_email_div" class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Email' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_email" value="{{ me.email }}" />
+                            <span id="id_email_span" class="help-block m-b-none"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Telephone' %}</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="id_telephone" value="{{ me.telephone }}" />
+                            <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                        </div>
+                    </div>
+                    <!-- end CONTACT INFORMATION -->
+
+                    <br/>
+                    <br/>
+
+                    <!-- ADDRESS -->
+                    <legend>
+                        <em class="fa icon-location-pin"></em> {% trans 'Address' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Country' %}:</label>
+                        <div class="col-sm-10">
+                            <select id="id_country" class="form-control">
+                                {% if not me.address.country %}
+                                    <option value="">{% trans 'Please select your country' %}</option>
+                                {% endif %}
+                                {% for country in countries.all %}
+                                    <option value="{{ country.id }}" {% if me.address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Province' %}:</label>
+                        <div class="col-sm-10">
+                            <select id="id_region" class="form-control" {% if not me.address.region %}disabled{% endif %}>
+                                {% for province in provinces.all %}
+                                    <option value="{{ province.id }}" {% if province == me.address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
+                                {% empty %}
+                                    <option value="" selected="selected">{% trans 'Please select a province/state' %}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    {% for field in address_form %}
+                        {% if field.id_for_label in address_fields %}
+                            <div class="form-group" id="{{ field.id_for_label }}_div">
+                                <label class="col-sm-2 control-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {{ field }}
+                                    {{ field.errors }}
+                                </div>
+                            </div>
+                            <br />
+                        {% endif %}
+                    {% endfor %}
+                    {{ form.non_field_errors }}
+                    <!-- end ADDRESS -->
+
+                    <br />
+                    <br />
+
+
+                </fieldset>
+
+                <!-- SUBMIT -->
+                <div class="pull-left">
+                    <button id="id_del_btn" onclick="ajax_cancel();" type="button" class="btn btn-danger btn-lg">{% trans 'Delete' %}</button>
+                </div>
+                <div class="pull-right">
+                    <button id="id_next_btn" onclick="ajax_protected_next();" type="button" class="btn btn-primary btn-lg">{% trans 'Update' %}</button>
+                </div>
+                <!-- end SUBMIT -->
+            </form>
+
+        </div>
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

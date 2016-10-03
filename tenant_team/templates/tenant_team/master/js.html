@@ -55,4 +55,8 @@
       });
 
     })(window, document, window.jQuery);
+
+    function ajax_create_employee(group_id) {
+        window.location = "{% url 'tenant_team_create' %}?group_id="+group_id; 
+    }
 </script>

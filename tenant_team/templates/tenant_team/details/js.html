@@ -1,0 +1,299 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Lock the Next button until the email has been properly set.
+        {% if not me.email %}
+            disable_btn();
+        {% endif %}
+
+        // Call function when any keys are pressed for the 'email' field
+        // and verify dynamically if the email is good.
+        $( "#id_email" ).keypress(function() {
+            var email = $( "#id_email" ).val();
+
+            // Check to see if the email has been validated or else indicate
+            // that the text is bad.
+            if (is_email_valid(email)) {
+                public_is_email_unique(
+                    email,
+                    function(is_unique) {
+                        if (is_unique || email == "{{ me.email }}") {
+                            $('#id_email_div').attr('class','form-group has-success');
+                            $("#id_email_span").text('');
+                            enable_btn();
+                        } else {
+                            $('#id_email_div').attr('class','form-group has-warning');
+                            $("#id_email_span").text('Email is not unique! Please choose a different email.');
+                            disable_btn();
+                        }
+                    }
+                ); // end Is Email Uniue
+            } else {
+                $('#id_email_div').attr('class','form-group has-error');
+                $("#id_email_span").text('Please enter a properly formatted email.');
+                disable_btn();
+            }
+        }); // end Email Keypress
+
+        $("#id_country").change(function () {
+            var end = this.value;
+            var country_id = $('#id_country').val();
+            var criteria = Array();
+            criteria.push({
+                'country': country_id,
+            });
+            filter_provinceoptions(
+                criteria,
+                function(json_result) {
+                    $('#id_region').prop("disabled", false);
+                    html = "<option value=\"0\">Please select a province.</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $('#id_region').html('');       // Clear selection
+                    $(html).appendTo('#id_region'); // Load new selection
+                }
+            ); // end Filter Provinces
+        }); // end Change Country
+    }); // end Document Start
+
+    function disable_btn() {
+        $('#id_next_btn').prop("disabled", true); // Disable button.
+    }
+
+    function enable_btn() {
+        $('#id_next_btn').prop("disabled", false); // Enable button.
+    }
+
+    function ajax_cancel() {
+        $('#id_del_btn').prop("disabled", true); // Disable button.
+        delete_tenant_me(
+            {{ me.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_customer_master' %}";
+            },
+            function(error_json_result) {
+                $('#id_del_btn').prop("disabled", false); // Enable button.
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end DELETE.
+    }
+
+    function ajax_protected_next() {
+        var email = $( "#id_email" ).val();
+
+        // Check to see if the email has been validated or else indicate
+        // that the text is bad.
+        if (is_email_valid(email)) {
+            public_is_email_unique(
+                email,
+                function(is_unique) {
+                    if (is_unique || email == "{{ me.email }}") {
+                        ajax_unprotected_next();
+                    }
+                }
+            ); // end Is Email Uniue
+        } else {
+            $('#id_email_div').attr('class','form-group has-error');
+            $("#id_email_span").text('Please enter a properly formatted email.');
+            disable_btn();
+        }
+    }
+
+    function ajax_contant_point(callback) {
+        get_tenant_contactpoint(
+            {{ me.contact_point.id }},
+            function(contact_point) {
+                contact_point['how_can_we_help'] = $('#id_how_can_we_help').val();
+                contact_point['how_can_we_help_other'] = $('#id_how_can_we_help_other').val();
+                contact_point['how_can_we_help_tag'] = $('#id_how_can_we_help_tag').val();
+                contact_point['how_did_you_hear'] = $('#id_how_did_you_hear').val();
+                contact_point['how_did_you_hear_other'] = $('#id_how_did_you_hear_other').val();
+                contact_point['do_you_own_a_biz'] = $('#id_do_you_own_a_biz').val();
+                contact_point['do_you_own_a_biz_other'] = $('#id_do_you_own_a_biz_other').val();
+                contact_point['has_telephone'] = $('#id_has_telephone').val();
+                contact_point['telephone'] = $('#id_telephone').val();
+                contact_point['telephone_time'] = $('#id_telephone_time').val();
+                set_tenant_contactpoint(
+                    contact_point,
+                    function(json_result) {
+                        callback(json_result); // Run the callback.
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end Set Postal Address
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Get Postal Address
+    }
+
+    function ajax_address(callback) {
+        var country_id = $('#id_country').val();
+        var region_id = $('#id_region').val();
+        var locality = $('#id_locality').val();
+        var postal_code = $('#id_postal_code').val();
+        var street_number = $('#id_street_number').val();
+        var suffix = $('#id_suffix').val();
+        var street_name = $('#id_street_name').val();
+        // var street_type = $('#id_street_type').val();
+        // var direction = $('#id_direction').val();
+        var suite_number = $('#id_suite_number').val();
+        // var floor_number = $('#id_floor_number').val();
+        // var buzz_number = $('#id_buzz_number').val();
+        var address_line_2 = $('#id_address_line_2').val();
+        var address_line_3 = $('#id_address_line_3').val();
+
+        if (country_id <= 0) {
+            enable_btn();
+            alert("{% trans 'Please select a country.' %}");
+            return;
+        }
+        if (region_id <= 0) {
+            enable_btn();
+            alert("{% trans 'Please select a Province / State.' %}");
+            return;
+        }
+        if (locality <= 0) {
+            enable_btn();
+            alert("{% trans 'Please enter your city.' %}");
+            return;
+        }
+        if (postal_code <= 0) {
+            enable_btn();
+            alert("{% trans 'Please enter your postal code / zip.' %}");
+            return;
+        }
+        if (street_number <= 0) {
+            enable_btn();
+            alert("{% trans 'Please enter your street number.' %}");
+            return;
+        }
+        if (street_name <= 0) {
+            enable_btn();
+            alert("{% trans 'Please enter your street name.' %}");
+            return;
+        }
+        // if (street_type <= 0) {
+        //     alert("{% trans 'Please enter your street type.' %}");
+        //     return;
+        // }
+
+        get_tenant_postaladdress(
+            {{ me.address.id }},
+            function(postal_address) {
+                postal_address['country'] = parseInt(country_id);
+                postal_address['region'] = parseInt(region_id);
+                postal_address['locality'] = locality;
+                postal_address['postal_code'] = postal_code;
+                postal_address['street_number'] = street_number;
+                postal_address['suffix'] = suffix;
+                postal_address['street_name'] = street_name;
+                // postal_address['street_type'] = street_type;
+                // postal_address['direction'] = direction;
+                postal_address['suite_number'] = suite_number;
+                // postal_address['floor_number'] = floor_number;
+                // postal_address['buzz_number'] = buzz_number;
+                postal_address['address_line_2'] = address_line_2;
+                postal_address['address_line_3'] = address_line_3;
+                set_tenant_postaladdress(
+                    postal_address,
+                    function(json_result) {
+                        rebuild_geo_data_tenant_postaladdress(
+                            {{ me.address.id }},
+                            function(json_result) {
+                                callback(json_result);
+                            },
+                            function(error_json_result) {
+                                callback(json_result);
+                            }
+                        ); // end GEO UPDATE.
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_result );
+                        console.log(error_result);
+                        alert(string);
+                    }
+                ); // end SET POSTALADDRESS
+            },
+            function(json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_result );
+                console.log(error_result);
+                alert(string);
+            }
+        ); // end GET POSTALADDRESS
+    }
+
+    function ajax_me(callback) {
+        // Defensive Code: If the user doesn't include 'http' then automatically
+        //                 include it into the URL. Also handle situations where
+        //                 Twitter username is entered and replace it with the
+        //                 full Twitter URL.
+        var website_url = $('#id_url').val();
+        if (website_url.indexOf("http") < 0) {
+            website_url = 'http://' + website_url;
+        }
+        if (website_url.length < 8) {
+            website_url = "";
+        }
+
+        get_tenant_me(
+            {{ me.id }},
+            function(me) {
+                me['given_name'] = $('#id_first_name').val();
+                me['family_name'] = $('#id_last_name').val();
+                me['email'] = $('#id_email').val();
+                me['telephone'] = $('#id_telephone').val();
+                me['url'] = website_url;
+                me['description'] = $('#id_description').val();
+                set_tenant_me(
+                    me,
+                    function(new_me) {
+                        callback(new_me); // Return callback if successful.
+                    },
+                    function(error_json_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET TenantMe
+            },
+            function(error_json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET TenantMe
+    }
+
+    function ajax_unprotected_next() {
+        disable_btn(); // Disable the button.
+
+        // UPDATE ME.
+        ajax_me(function(me) {
+            // UPDATE CONTACT POINT.
+            ajax_contant_point(function(callback_result) {
+                // UPDATE ADDRESS.
+                ajax_address(function(result) {
+                    window.location = "{% url 'tenant_team_master' %}";
+                }); // end UPDATE ADDRESS
+            }); // End UPDATE CONTACT POINT.
+        }); // end UPDATE ME.
+    }
+</script>

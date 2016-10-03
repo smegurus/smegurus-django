@@ -9,6 +9,24 @@
 
 <!-- PAGE HTML -->
 <div class="content-wrapper">
+    <!-- SIDEBUTTON -->
+    <div class="pull-right">
+        <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-link">
+            <em class="fa fa-ellipsis-v fa-lg"></em>
+            </button>
+            <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                <li>
+                    <a onclick="ajax_create_employee({{ constants.ADVISOR_GROUP_ID }});">
+                        <em class="fa fa-fw fa-plus mr"></em>
+                        <span>{% trans 'Create Advisor' %}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- end SIDEBUTTON -->
+
     <!-- TITLE & BREADCRUMBS -->
     <h3>
         <em class="fa fa-fw ffa fa-sitemap mr"></em>{% trans 'Team' %}
