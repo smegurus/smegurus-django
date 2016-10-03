@@ -71,8 +71,8 @@
         );
     }
 
-    function ajax_create_employee(group_id) {
-        window.location = "{% url 'tenant_team_create' %}?group_id="+group_id;
+    function ajax_create_employee() {
+        window.location = "{% url 'tenant_team_create' %}";
     }
 
     function ajax_edit_employee(me_id) {

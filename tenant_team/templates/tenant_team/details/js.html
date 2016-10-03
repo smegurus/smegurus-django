@@ -3,7 +3,7 @@
     $(document).ready(function () {
         // Lock the Next button until the email has been properly set.
         {% if not me.email %}
-            disable_btn();
+            //disable_btn();
         {% endif %}
 
         // Call function when any keys are pressed for the 'email' field
@@ -263,7 +263,27 @@
                 set_tenant_me(
                     me,
                     function(new_me) {
-                        callback(new_me); // Return callback if successful.
+
+                        var roles = []; // initialize empty array
+                        $('#id_role :checked').each(function() {
+                            roles.push($(this).val());
+                        });
+
+                        // ATTACH ME ROLES.
+                        set_tenant_me_roles(
+                            {{ me.id }},
+                            roles,
+                            function(json_result) {
+                                callback(new_me); // Return callback if successful.
+                            },
+                            function(error_json_result) {
+                                enable_btn();
+                                var string = JSON.stringify( error_json_result );
+                                console.log(string);
+                                alert(string);
+                            }
+                        ); // end ATTACH ME ROLES.
+
                     },
                     function(error_json_result) {
                         enable_btn();

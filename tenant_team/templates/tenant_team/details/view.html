@@ -165,6 +165,22 @@
                     <br />
                     <br />
 
+                    <!-- ROLE -->
+                    <legend>
+                        <em class="fa fa-group"></em> {% trans 'Role' %}
+                    </legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Choice(s)' %}:</label>
+                        <div class="col-sm-10" id="id_role">
+                            {% for group in groups.all %}
+                                {% if group.id != constants.ENTREPRENEUR_GROUP_ID and group.id != constants.SYSTEM_ADMIN_GROUP_ID and group.id != constants.CLIENT_MANAGER_GROUP_ID %}
+                                    <input type="checkbox" {% if group in me.owner.groups.all %}checked{% endif %} value="{{ group.id }}" />&nbsp;{{ group.name }}<br /><br />
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- end ROLE -->
+
 
                 </fieldset>
 

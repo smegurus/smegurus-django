@@ -25,7 +25,6 @@ from smegurus import constants
 
 @login_required(login_url='/en/login')
 @group_required([
-    constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
     constants.ORGANIZATION_ADMIN_GROUP_ID,
     constants.CLIENT_MANAGER_GROUP_ID,
@@ -42,7 +41,7 @@ def master_page(request):
         Q(owner__groups__id=constants.ADVISOR_GROUP_ID) |
         Q(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID) |
         Q(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-    )
+    ).distinct('id')
     return render(request, 'tenant_team/master/view.html',{
         'page': 'team',
         'team_members': team_members,
@@ -51,7 +50,6 @@ def master_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([
-    constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
     constants.ORGANIZATION_ADMIN_GROUP_ID,
     constants.CLIENT_MANAGER_GROUP_ID,
@@ -64,21 +62,12 @@ def master_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def create_page(request):
     """Function will create a new emplee and redirect to the page of updating data."""
-    # Fetch the Group the employee will belong to
-    try:
-        group_id = int(request.GET.get('group_id'))
-        group = Group.objects.get(id=group_id)
-    except Exception as e:
-        from django.http import HttpResponseForbidden
-        return HttpResponseForbidden(str(e))
-
     random_password = random_text(8)
     user = User.objects.create_user(
         username=random_text(30),
         email=random_text(100) + "@" + random_text(100) + ".com",
         password=random_password
     )
-    user.groups.add(group)
     address = PostalAddress.objects.create(
         owner=user,
         name='User #' + str(user.id) + ' Address',
@@ -100,7 +89,6 @@ def create_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([
-    constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
     constants.ORGANIZATION_ADMIN_GROUP_ID,
     constants.CLIENT_MANAGER_GROUP_ID,
@@ -122,6 +110,7 @@ def update_page(request, pk):
     return render(request, 'tenant_team/details/view.html',{
         'page': 'team',
         'me': me,
+        'groups': Group.objects.all(),
         'address_form': PostalAddressForm(instance=me.address),
         'countries': CountryOption.objects.all(),
         'provinces': provinces,

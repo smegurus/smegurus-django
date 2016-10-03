@@ -94,6 +94,22 @@ class EmployeePermission(permissions.BasePermission):
             return False
 
 
+class ManagerPermission(permissions.BasePermission):
+    """
+    Global permission check for authenticated User to see if they are an
+    Managers of this organization.
+    """
+    message = 'You are not a Manager!'
+    def has_permission(self, request, view):
+        if request.user.is_anonymous():
+            return False
+        else:
+            for group in request.user.groups.all():
+                if group.id in constants.MANAGEMENT_EMPLOYEE_GROUP_IDS:
+                    return True
+            return False
+
+
 class IsOwnerOrIsAnEmployee(permissions.BasePermission):
     """
     Object-level permission to only allow owners of an object to view/edit it.

@@ -10,8 +10,9 @@ from rest_framework import status
 from rest_framework import response
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
-from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission, IsOwner
+from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission, IsOwner, ManagerPermission
 from api.serializers.foundation_tenant import TenantMeSerializer
+from api.serializers.misc import JSONDictionarySerializer
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.postaladdress import PostalAddress
@@ -117,5 +118,26 @@ class TenantMeViewSet(viewsets.ModelViewSet):
         else:
             return response.Response(
                 data={'message': 'Failed authenticating'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+
+    @detail_route(methods=['put'], permission_classes=[ManagerPermission,])
+    def set_roles(self, request, pk=None):
+        """Function allows setting the roles an employee belongs to by the manager."""
+        try:
+            serializer = JSONDictionarySerializer(data=request.data)
+            if serializer.is_valid():
+                me = self.get_object()
+                roles = serializer.data['array']
+                for group_id in roles:
+                    me.owner.groups.add(int(group_id))
+                me.save()
+            return response.Response(
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return response.Response(
+                data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )

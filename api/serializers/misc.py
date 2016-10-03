@@ -12,3 +12,7 @@ class IntegerSerializer(serializers.Serializer):
 
 class DateTimeSerializer(serializers.Serializer):
     datetime = serializers.DateTimeField()
+
+
+class JSONDictionarySerializer(serializers.Serializer):
+    array = serializers.JSONField()
