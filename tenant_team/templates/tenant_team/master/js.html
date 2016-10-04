@@ -64,9 +64,14 @@
                 location.reload(true); // Reload the page.
             },
             function(error_json_result) {
-                var string = JSON.stringify( error_result );
-                console.log(error_result);
-                alert(string);
+                $('#id_delete_'+me_id+'_btn').prop("disabled", false); // Disable button.
+                var string = JSON.stringify( error_json_result );
+                console.log(error_json_result);
+                if (string.indexOf('Cannot delete upper-tier management user') > -1) {
+                    alert("{% trans 'Cannot delete upper-tier management user.' %}");
+                } else {
+                    alert(string);
+                }
             }
         );
     }

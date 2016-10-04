@@ -16,6 +16,7 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.intake import Intake
 from smegurus import constants
 
 
@@ -83,6 +84,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
+        Intake.objects.delete_all()
         TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
@@ -172,16 +174,45 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     @transaction.atomic
-    def test_delete_with_authentication(self):
-        # Setup our object.
-        TenantMe.objects.create(
+    def test_delete_with_authentication_case_one(self):
+        address = PostalAddress.objects.create(
             id=1,
             owner=self.user,
         )
-
-        # Run the test and verify.
-        response = self.authorized_client.delete('/api/tenantme/1/')
+        contact_point = ContactPoint.objects.create(
+            id=1,
+            owner=self.user,
+        )
+        me = TenantMe.objects.create(
+            id=666,
+            owner=self.user,
+        )
+        Intake.objects.create(
+            id=1,
+            me=me,
+        )
+        response = self.authorized_client.delete('/api/tenantme/'+str(me.id)+'/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_delete_with_authentication_case_two(self):
+        me = TenantMe.objects.create(
+            id=666,
+            owner=self.user,
+        )
+        response = self.authorized_client.delete('/api/tenantme/'+str(me.id)+'/')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    @transaction.atomic
+    def test_delete_with_authentication_case_three(self):
+        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        self.user.groups.add(group)
+        me = TenantMe.objects.create(
+            id=999,
+            owner=self.user,
+        )
+        response = self.authorized_client.delete('/api/tenantme/'+str(me.id)+'/')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     @transaction.atomic
     def test_admit_me_with_entrepreneur_user(self):

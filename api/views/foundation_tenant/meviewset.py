@@ -2,6 +2,7 @@ import django_filters
 from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.contrib.auth import authenticate, login, logout
+from rest_framework import exceptions
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -17,6 +18,7 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from smegurus import constants
 
 
 class TenantMeFilter(django_filters.FilterSet):
@@ -53,6 +55,12 @@ class TenantMeViewSet(viewsets.ModelViewSet):
 
     def perform_destroy(self, instance):
         """Override the deletion function to include deletion of associated models."""
+        # Defensive Code: Prevent deletion of upper-tier management members.
+        for target_group_id in [constants.ORGANIZATION_ADMIN_GROUP_ID, constants.CLIENT_MANAGER_GROUP_ID, constants.SYSTEM_ADMIN_GROUP_ID]:
+            for search_group in instance.owner.groups.all():
+                if target_group_id == search_group.id:
+                    raise exceptions.ParseError("Cannot delete upper-tier management user.")
+
         # Delete objects which are dependent on this model.
         try:
             intake = Intake.objects.get(me=instance)
