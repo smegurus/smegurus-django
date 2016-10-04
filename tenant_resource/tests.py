@@ -7,10 +7,11 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from smegurus import constants
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.inforesource import InfoResource
+from smegurus import constants
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -92,6 +93,7 @@ class TenantResourceTestCases(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
+        InfoResource.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
@@ -99,8 +101,40 @@ class TenantResourceTestCases(APITestCase, TenantTestCase):
         # super(TenantResourceTestCases, self).tearDown()
 
     @transaction.atomic
-    def test_resource_page(self):
-        url = reverse('tenant_resource')
+    def test_resource_master_page(self):
+        url = reverse('tenant_resource_master')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Resources',response.content)
+
+    @transaction.atomic
+    def test_resource_create_page(self):
+        url = reverse('tenant_resource_create')
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Resources',response.content)
+
+    @transaction.atomic
+    def test_resource_edit_page(self):
+        info_resource = InfoResource.objects.create(
+            id=1,
+            type_of=constants.INFO_RESOURCE_INTERAL_URL_TYPE
+        )
+        url = reverse('tenant_resource_details_edit', args=[info_resource.id,])
+        response = self.authorized_client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(len(response.content) > 1)
+        self.assertIn(b'Resources',response.content)
+
+    @transaction.atomic
+    def test_resource_info_page(self):
+        info_resource = InfoResource.objects.create(
+            id=1,
+            type_of=constants.INFO_RESOURCE_INTERAL_URL_TYPE
+        )
+        url = reverse('tenant_resource_details_info', args=[info_resource.id,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

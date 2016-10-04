@@ -24,7 +24,6 @@ def resource_page(request):
     return render(request, 'tenant_resource/master/view.html',{
         'page': 'resource',
         'inforesources': InfoResource.objects.all(),
-        'constants': constants,
     })
 
 
@@ -38,7 +37,6 @@ def resource_create_page(request):
     return render(request, 'tenant_resource/create/view.html',{
         'page': 'resource',
         'type_of': int_or_none(request.GET.get('type_of')),
-        'constants': constants
     })
 
 
@@ -52,7 +50,6 @@ def resource_edit_details_page(request, id):
     inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
     return render(request, 'tenant_resource/details/edit/view.html',{
         'page': 'resource',
-        'constants': constants,
         'inforesource': inforesource
     })
 
@@ -67,6 +64,5 @@ def resource_info_details_page(request, id):
     inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
     return render(request, 'tenant_resource/details/info/view.html',{
         'page': 'resource',
-        'constants': constants,
         'inforesource': inforesource
     })
