@@ -229,6 +229,13 @@ class Intake(models.Model):
     # "What is your date of birth" Section.
     date_of_birth = models.DateField(blank=True, null=True)
 
+    # "Has business idea" Section.
+    has_business_idea = models.BooleanField(    # CONTROLLED BY EMPLOYEES ONLY
+        _("I have a business idea"),
+        default=False,
+        help_text=_('Variable controls whether the entrepreneur has a business or not.'),
+    )
+
     # "What sector does your current business idea mainly fall into?" Section.
     naics_depth_one = models.ForeignKey(
         NAICSOption,

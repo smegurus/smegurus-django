@@ -127,7 +127,7 @@ class IntakeFilter(django_filters.FilterSet):
                   'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
                   'do_you_own_a_biz_other', 'has_telephone', 'telephone',
                   'telephone_time', 'is_employee_created', 'judgement_note',
-                  'government_benefits', 'other_government_benefit',
+                  'government_benefits', 'other_government_benefit', 'has_business_idea',
                   'identities', 'date_of_birth', 'naics_depth_one', 'naics_depth_two',
                   'naics_depth_three', 'naics_depth_four', 'naics_depth_five',
                   'privacy_note', 'terms_note', 'confidentiality_note', 'collection_note']

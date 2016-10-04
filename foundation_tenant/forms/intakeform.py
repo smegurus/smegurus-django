@@ -14,7 +14,7 @@ class IntakeForm(forms.ModelForm):
         model = Intake
         fields = ['how_can_we_help', 'how_can_we_help_other', 'how_can_we_help_tag',
         'how_did_you_hear', 'how_did_you_hear_other', 'do_you_own_a_biz',
-        'do_you_own_a_biz_other', 'has_telephone', 'telephone',
+        'do_you_own_a_biz_other', 'has_telephone', 'telephone', 'has_business_idea',
         'telephone_time', 'government_benefits', 'other_government_benefit',
         'identities', 'date_of_birth', 'naics_depth_one', 'naics_depth_two',
         'naics_depth_three', 'naics_depth_four', 'naics_depth_five',

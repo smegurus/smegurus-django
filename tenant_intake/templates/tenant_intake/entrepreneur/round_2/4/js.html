@@ -1,6 +1,10 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        {% if intake.has_business_idea == False %}
+            $('#id_how_can_we_help_div').hide();
+        {% endif %}
+
         {% if intake.naics_depth_two == None %}
             $('#id_depth_two_fieldset').hide();
         {% endif %}
@@ -132,6 +136,16 @@
             ); // end Filter Category
         }); // end NAICS DEPTH THREE
 
+        $("#id_has_business_idea").change(function () {
+            var has_business_idea = $("#id_has_business_idea").is(':checked');
+            console.log(has_business_idea);
+            if (has_business_idea) {
+                $('#id_how_can_we_help_div').show();
+            } else {
+                $('#id_how_can_we_help_div').hide();
+            }
+        });
+
         // NAICS DEPTH FOUR
         $("#id_naics_depth_four").change(function () {
             var end = this.value;
@@ -217,6 +231,8 @@
                 } else {
                     intake['naics_depth_five'] = '';
                 }
+
+                intake['has_business_idea'] = $("#id_has_business_idea").is(':checked');
 
                 set_tenant_intake(
                     intake,
