@@ -22,7 +22,7 @@ class IntakeForm(forms.ModelForm):
         'has_signed_collection_and_use_of_information', 'has_signed_with_name',
         'has_signed_on_date',]
         labels = {
-            # 'name': _('Name'),
+            'how_can_we_help_tag': _('Which program are you interested in?'),
             # 'industry': _('Industry'),
             # 'image': _('Image'),
         }
