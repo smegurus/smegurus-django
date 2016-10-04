@@ -53,11 +53,15 @@
                 // Format our "Date" object to a format django "DatetimeField"
                 // to support.
                 var django_date = date_to_django_date(unprotected_date);
-                console.log(django_date);
 
-                // Update model.
-                intake['date_of_birth'] = django_date;
+                // Update model if there was inputted entry.
+                if ( django_date.indexOf("NaN") !== -1 ) {
+                    intake['date_of_birth'] = "";
+                } else {
+                    intake['date_of_birth'] = django_date;
+                }
 
+                // Save the model.
                 set_tenant_intake(
                     intake,
                     function(json_result) {
