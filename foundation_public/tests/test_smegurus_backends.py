@@ -70,7 +70,7 @@ class SMEGurusBackendWithPublicSchemaTestCase(APITestCase, TenantTestCase):
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        super(SMEGurusBackendWithPublicSchemaTestCase, self).tearDown()
+        # super(SMEGurusBackendWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_authenticate_with_success(self):

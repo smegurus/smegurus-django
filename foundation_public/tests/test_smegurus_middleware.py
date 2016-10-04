@@ -70,7 +70,7 @@ class SMEGurusTokenMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTestCas
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        super(SMEGurusTokenMiddlewareWithPublicSchemaTestCase, self).tearDown()
+        # super(SMEGurusTokenMiddlewareWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_token_middleware_with_authentication_with_token(self):

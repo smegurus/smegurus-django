@@ -52,10 +52,11 @@ class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
 
     @transaction.atomic
     def tearDown(self):
+        pass
         # users = User.objects.all()
         # for user in users.all():
         #     user.delete()
-        super(FoundationPublicMiddlewareWithPublicSchemaTestCase, self).tearDown()
+        # super(FoundationPublicMiddlewareWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_ppass(self):

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils import translation
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
+from rest_framework.test import APITestCase
 from foundation_public.models.organization import PublicOrganization, PublicDomain
 from foundation_public.templatetags.foundation_public_tags import tenant_url
 from foundation_public.utils import get_unique_username_from_email
@@ -15,41 +16,20 @@ from foundation_public.utils import random_text
 from smegurus import constants
 
 
-class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
+class FoundationPublicUtilsTestCase(APITestCase):
     fixtures = []
-
-    def setup_tenant(self, tenant):
-        """Public Schema"""
-        tenant.schema_name = 'test'
-        tenant.name = "Galactic Alliance of Humankind"
-        tenant.has_perks=True
-        tenant.has_mentors=True
-        tenant.how_discovered = "Command HQ"
-        tenant.how_many_served = 1
-
-    @classmethod
-    def setUpTestData(cls):
-        Group.objects.bulk_create([
-            Group(id=constants.ENTREPRENEUR_GROUP_ID, name="Entreprenuer",),
-            Group(id=constants.MENTOR_GROUP_ID, name="Mentor",),
-            Group(id=constants.ADVISOR_GROUP_ID, name="Advisor",),
-            Group(id=constants.ORGANIZATION_MANAGER_GROUP_ID, name="Org Manager",),
-            Group(id=constants.ORGANIZATION_ADMIN_GROUP_ID, name="Org Admin",),
-            Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
-            Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
-        ])
 
     @transaction.atomic
     def setUp(self):
-        super(FoundationPublicUtilsWithPublicSchemaTestCase, self).setUp()
-        self.c = TenantClient(self.tenant)
+        pass
 
     @transaction.atomic
     def tearDown(self):
-        users = User.objects.all()
-        for user in users.all():
-            user.delete()
-        super(FoundationPublicUtilsWithPublicSchemaTestCase, self).tearDown()
+        pass
+        # users = User.objects.all()
+        # for user in users.all():
+        #     user.delete()
+        # super(FoundationPublicUtilsWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_get_unique_username_from_email(self):
@@ -59,15 +39,20 @@ class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
     @transaction.atomic
     def test_get_pretty_formatted_date(self):
         today = timezone.now()
+        # - - - - - - - - - - - - - - - - - -
+        # CASE 1 OF 4: None
+        # - - - - - - - - - - - - - - - - - -
+        pretty_text = get_pretty_formatted_date(None)
+        self.assertEqual(pretty_text, "-")
 
         # - - - - - - - - - - - - - - - - - -
-        # CASE 1 OF 3: Today
+        # CASE 2 OF 4: Today
         # - - - - - - - - - - - - - - - - - -
         pretty_text = get_pretty_formatted_date(today)
         self.assertEqual(pretty_text, "Today")
 
         # - - - - - - - - - - - - - - - - - -
-        # CASE 2 OF 3: Between 0 to 60 days
+        # CASE 3 OF 4: Between 0 to 60 days
         # - - - - - - - - - - - - - - - - - -
         N = 45
         dt = today - timedelta(days=N)
@@ -75,7 +60,7 @@ class FoundationPublicUtilsWithPublicSchemaTestCase(TenantTestCase):
         self.assertEqual(pretty_text, "45 days ago")
 
         # - - - - - - - - - - - - - - - - - -
-        # CASE 3 OF 3: After 60 days
+        # CASE 4 OF 4: After 60 days
         # - - - - - - - - - - - - - - - - - -
         N = 128
         dt = today - timedelta(days=N)

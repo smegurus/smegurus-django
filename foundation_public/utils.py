@@ -17,6 +17,9 @@ def get_unique_username_from_email(email):
 
 
 def get_pretty_formatted_date(created):
+    if created == None:
+        return "-"
+        
     today = timezone.now()
     dt = (today - created).days
     if dt == 0:

@@ -75,7 +75,7 @@ class FoundationPublicDecoratorWithPublicSchemaTestCase(APITestCase, TenantTestC
             user.delete()
         for group in groups.all():
             group.delete()
-        super(FoundationPublicDecoratorWithPublicSchemaTestCase, self).tearDown()
+        # super(FoundationPublicDecoratorWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_tenant_required_decorator_with_access_denied(self):

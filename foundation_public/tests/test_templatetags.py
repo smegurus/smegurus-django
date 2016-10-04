@@ -44,7 +44,7 @@ class FoundationPublicTagsWithPublicSchemaTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(FoundationPublicTagsWithPublicSchemaTestCase, self).tearDown()
+        # super(FoundationPublicTagsWithPublicSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_tenant_url_with_public_schema(self):
@@ -74,7 +74,7 @@ class FoundationPublicTagsWithTenantSchemaTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(FoundationPublicTagsWithTenantSchemaTestCase, self).tearDown()
+        # super(FoundationPublicTagsWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_tenant_url_with_tenant_schema(self):
