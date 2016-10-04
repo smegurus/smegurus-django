@@ -1,6 +1,14 @@
 {% extends 'tenant_intake/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+<!-- PAGE JS -->
+<script>
+    function ajax_continue() {
+        window.location = "{{ dashboard_url }}";
+    }
+</script>
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
     <div class="content-wrapper">
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -9,7 +17,11 @@
 
     <!-- PAGE CONTENT -->
     <div class="panel-body">
-        <p class="text-center pv">{% blocktrans with url=dashboard_url %}Thank you for completing the signup process! Please click the button below to continue to your new SME Gurus <a href="{{ url }}">Dashboard</a>!{% endblocktrans %}</p>
+        <p class="text-center pv">{% blocktrans with url=dashboard_url %}Thank you for completing the signup process! Please click the button below to continue to your new SME Gurus <a href="{{ dashboard_url }}">Dashboard</a>!{% endblocktrans %}</p>
+
+        <p class="text-center pv">
+            <button id="id_continue_btn" type="button" class="btn btn-block btn-primary" onclick="ajax_continue();" role="menuitem">{% trans 'Continue' %}</button>
+        </p>
 
         <p class="text-center pv">{% trans 'And don\'t forget to follow us!' %}</p>
     </div>
@@ -35,4 +47,5 @@
         </p>
     </div>
 </div>
+<!-- end PAGE HTML -->
 {% endblock content %}
