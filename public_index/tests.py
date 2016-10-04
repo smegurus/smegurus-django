@@ -48,7 +48,7 @@ class PublicIndexTestCase(TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        super(PublicIndexTestCase, self).tearDown()
+        # super(PublicIndexTestCase, self).tearDown()
 
     @transaction.atomic
     def test_index_page_view(self):
