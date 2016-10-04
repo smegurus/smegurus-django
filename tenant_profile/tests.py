@@ -97,12 +97,15 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
             owner=self.user,
             address=PostalAddress.objects.create(
                 id=1,
-                name="Avalon",
+                name='Test Address',
+                owner=self.user,
+                street_number='120',
+                street_name='Centre Street',
+                suite_number='102',
+                postal_code='N6J4X4',
+                locality='London',
+                region=region,
                 country=country,
-                region=province,
-                locality=city,
-                postal_code='91210',
-                street_address='666 Nerv Tube'
             )
         )
 
