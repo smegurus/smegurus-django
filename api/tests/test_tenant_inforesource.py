@@ -57,6 +57,8 @@ class APIInfoResourceWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         user.is_active = True
         user.save()
+        group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        user.groups.add(group)
 
     @transaction.atomic
     def setUp(self):
@@ -104,7 +106,7 @@ class APIInfoResourceWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     @transaction.atomic
-    def test_post(self):
+    def test_post_with_anonymous_user(self):
         data = {
             'name': 'Unit Test',
             'description': 'Used for unit testing purposes.',
@@ -112,6 +114,21 @@ class APIInfoResourceWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         }
         response = self.unauthorized_client.post('/api/tenantinforesource/', data, format="json")
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    @transaction.atomic
+    def test_post_with_non_management_user(self):
+        for group in self.user.groups.all():
+            group.delete()
+
+        data = {
+            'name': 'Unit Test',
+            'description': 'Used for unit testing purposes.',
+            'owner': self.user.id,
+            'type_of': constants.INFO_RESOURCE_INTERAL_URL_TYPE,
+            'url': 'http://smegurus.com'
+        }
+        response = self.authorized_client.post('/api/tenantinforesource/', data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     @transaction.atomic
     def test_post_with_authentication(self):
