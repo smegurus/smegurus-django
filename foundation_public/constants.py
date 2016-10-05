@@ -29,5 +29,13 @@ SUSPICIOUS_PATHS = [
     '/zabbix/index.php',
     '/xmlrpc.php',
     '/r/errors.log',
-    '/license.php'
+    '/license.php',
+    '/web-console/ServerInfo.jsp',
+    '/jmx-console/HtmlAdaptor',
+    '/if youve had a dose of a freaky ghost',
+    '/invoker/JMXInvokerServlet',
+    '/status',
+    '/engine/log.txt',
+    '/command.php',
+    'wp-includes/js/wp-util.js'
 ]
