@@ -37,5 +37,7 @@ SUSPICIOUS_PATHS = [
     '/status',
     '/engine/log.txt',
     '/command.php',
-    'wp-includes/js/wp-util.js'
+    '/wp-includes/js/wp-util.js',
+    '/benutzer/env.cgi',
+    '/1phpmyadmin/'
 ]
