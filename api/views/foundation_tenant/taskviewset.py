@@ -79,10 +79,9 @@ class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         fields = ['created', 'last_modified', 'owner', 'name',
-                  'description', 'image', 'assigned_by',
-                  'assignee', 'status', 'participants', 'tags',
-                  'start', 'due', 'comment_posts', 'type_of',
-                  'has_review_requirement', 'uploads', 'calendar_event',]
+                  'description', 'image', 'status', 'type_of',
+                  'start', 'is_due', 'due', 'tags', 'assigned_by', 'opening',
+                  'closures', 'comment_posts', 'log_events', 'uploads', 'resources',]
 
 
 class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
@@ -99,12 +98,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         task = serializer.save(
             owner=self.request.user,
             assigned_by=self.request.tenant_me,
-            assignee=self.request.tenant_me,
-            status=constants.ASSIGNED_TASK_STATUS,
         )
-
-        # Update 'Task' model.
-        task.participants.add(self.request.tenant_me)
 
         # Create "Ticket created" log event and attach it this Task.
         log_event = SortedLogEventByCreated.objects.create(
@@ -112,9 +106,6 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             text='Created Task #'+str(task.id)
         )
         task.log_events.add(log_event)
-
-        # Send email notification for 'SortedLogEventByCreated' model.
-        self.send_notification(task, log_event)
 
     def perform_update(self, serializer):
         """Update "TenantMe" model and its associated models."""
@@ -193,11 +184,11 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def complete_task(self, request, pk=None):
-        """Function will mark this Task as 'COMPLETED_TASK_STATUS'."""
+        """Function will mark this Task as 'CLOSED_TASK_STATUS'."""
         try:
             # Get Task and update it's status.
             task = self.get_object()
-            task.status = constants.COMPLETED_TASK_STATUS
+            task.status = constants.CLOSED_TASK_STATUS
             task.save()
 
             # Save an log event.

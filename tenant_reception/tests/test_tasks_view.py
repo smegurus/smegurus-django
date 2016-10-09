@@ -128,7 +128,7 @@ class TenantReceptionTaskTestCases(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=self.me,
             assignee=self.me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(self.me)
         url = reverse('tenant_reception_tasks_details', args=[task.id,])

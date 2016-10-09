@@ -70,12 +70,12 @@ def my_last_modified_func(request):
     except Note.DoesNotExist:
         pass
 
-    # Compare the last modified date per Task.
-    try:
-        new_last_modified = Task.objects.filter(participants=request.tenant_me).latest("last_modified").last_modified
-        last_modified = latest_date_between(last_modified, new_last_modified)
-    except Task.DoesNotExist:
-        pass
+    # # Compare the last modified date per Task.
+    # try:
+    #     new_last_modified = Task.objects.filter(participants=request.tenant_me).latest("last_modified").last_modified
+    #     last_modified = latest_date_between(last_modified, new_last_modified)
+    # except Task.DoesNotExist:
+    #     pass
 
     # Return the processed latest modified date
     return last_modified

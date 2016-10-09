@@ -1,0 +1,130 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_task/create/js.html' with task=task %}
+{% endcompress %}
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+   <!-- TITLE -->
+   <h3>
+       {% trans 'Event' %}
+       <!-- BREADCRUMBS -->
+       <ol class="breadcrumb">
+           <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+           <li><a href="{% url 'tenant_task_master_open' %}">{% trans 'Tasks' %}</a></li>
+           <li class="active">{% trans 'Create Task' %}</li>
+       </ol>
+       <!-- end BREADCRUMBS -->
+   </h3>
+   <!-- end TITLE -->
+
+   <div class="table-grid table-grid-desktop">
+       <div class="panel panel-default">
+          <!-- <div class="panel-heading">Form elements</div> -->
+          <div class="panel-body">
+             <form method="get" action="/" class="form-horizontal">
+                <fieldset>
+                   <legend>{% trans 'Details' %}</legend>
+                   <!-- NAME -->
+                   <div class="form-group">
+                      <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+
+                      <div class="col-sm-10">
+                         <input type="text" class="form-control form-control" id="id_name" value="{{ calendar_event.name }}">
+                      </div>
+
+                   </div>
+                    <!-- end NAME -->
+
+                     <br /><br />
+
+                     <!-- DUE DATE -->
+                     <div class="form-group">
+                        <label class="col-sm-2 control-label">{% trans 'Due Date &amp; Time' %}</label>
+
+                        <div class="col-sm-10">
+                            <div id="datetimepicker2" class="input-group date">
+                                  <input type="text" class="form-control" id="id_finish">
+                                  <span class="input-group-addon">
+                                     <span class="fa fa-calendar"></span>
+                                  </span>
+                           </div>
+                        </div>
+
+                     </div>
+                      <!-- end DUE DATE -->
+
+                      <br /><br />
+
+                      <!-- DESCRIPTION -->
+                      <div class="form-group">
+                         <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+
+                         <div class="col-sm-10">
+                            <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}">{{ calendar_event.description }}</textarea>
+                         </div>
+
+                      </div>
+                      <!-- end DESCRIPTION -->
+
+                      <br /><br />
+
+                      <!-- ASSIGNEES -->
+                      {% if type_of == constants.TASK_BY_CUSTOM_TYPE %}
+                      <!-- BY CUSTOM -->
+                      <div class="form-group">
+                         <label class="col-sm-2 control-label">{% trans 'Assignees' %}</label>
+
+                         <div class="col-sm-10">
+                             <select id="select2-1" multiple="multiple" class="form-control">
+                                 {% for me in all_profiles %}
+                                     <option value="{{ me.id }}">{{ me.name }}</option>
+                                 {% endfor %}
+                             </select>
+                         </div>
+
+                      </div>
+                      <!-- end BY CUSTOM -->
+                      {% else %}
+                      <!-- BY TAG -->
+                      <div class="form-group">
+                         <label class="col-sm-2 control-label">{% trans 'Assignees by Tags' %}</label>
+
+                         <div class="col-sm-10">
+                             <select id="select2-1" multiple="multiple" class="form-control">
+                                 {% for tag in tags %}
+                                     <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                 {% endfor %}
+                             </select>
+                         </div>
+
+                      </div>
+                      <!-- end BY TAG -->
+                      {% endif %}
+                      <!-- end ASSIGNEES -->
+                </fieldset>
+
+                <!-- SUBMISSION -->
+                <div class="pull-left">
+                    <button onclick="ajax_cancel();" type="button" class="btn btn-danger btn-lg" id="id_reject_btn">{% trans 'Cancel' %}</button>
+                </div>
+                <div class="pull-right">
+
+                    <button onclick="ajax_create();" type="button" class="btn btn-primary btn-lg" id="id_accept_btn">{% trans 'Create' %}</button>
+                </div>
+                <!-- end SUBMISSION -->
+            </form>
+        </div>
+    </div>
+
+
+
+  </div>
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

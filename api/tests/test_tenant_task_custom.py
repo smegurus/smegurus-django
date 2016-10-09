@@ -112,7 +112,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         data = {
             'id': task.id,
@@ -141,7 +141,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -180,7 +180,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=new_user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -209,7 +209,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         data = {
             'id': task.id,
@@ -240,7 +240,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -281,7 +281,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=new_user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -313,7 +313,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         data = {
             'id': task.id,
@@ -332,7 +332,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 0)
         task = Task.objects.get(pk=666)
-        self.assertEqual(task.status, constants.ASSIGNED_TASK_STATUS)
+        self.assertEqual(task.status, constants.OPEN_TASK_STATUS)
 
     @transaction.atomic
     def test_complete_task_with_owner_user(self):
@@ -346,7 +346,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            status=constants.OPEN_TASK_STATUS,
         )
         task.participants.add(me)
 
@@ -365,7 +365,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
-        self.assertEqual(task.status, constants.COMPLETED_TASK_STATUS)
+        self.assertEqual(task.status, constants.CLOSED_TASK_STATUS)
 
     @transaction.atomic
     def test_complete_task_with_different_owner_user(self):
@@ -387,7 +387,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=new_user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(me)
 
@@ -406,7 +406,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 1)
         task = Task.objects.get(pk=666)
-        self.assertEqual(task.status, constants.COMPLETED_TASK_STATUS)
+        self.assertEqual(task.status, constants.CLOSED_TASK_STATUS)
 
     @transaction.atomic
     def test_incomplete_task_with_anonymous_user(self):
@@ -418,7 +418,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            status=constants.OPEN_TASK_STATUS,
         )
         data = {
             'id': task.id,
@@ -437,7 +437,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         log_event_count = SortedLogEventByCreated.objects.count()
         self.assertEqual(log_event_count, 0)
         task = Task.objects.get(pk=666)
-        self.assertEqual(task.status, constants.ASSIGNED_TASK_STATUS)
+        self.assertEqual(task.status, constants.OPEN_TASK_STATUS)
 
     @transaction.atomic
     def test_incomplete_task_with_owner_user(self):
@@ -451,7 +451,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            status=constants.OPEN_TASK_STATUS,
         )
         task.participants.add(me)
 
@@ -492,7 +492,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=new_user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            status=constants.OPEN_TASK_STATUS,
         )
         task.participants.add(me)
 
@@ -523,7 +523,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=666,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            status=constants.OPEN_TASK_STATUS,
         )
         data = {
             'datetime': '2016-09-20 18:16:36.687365-04',
@@ -547,7 +547,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            status=constants.OPEN_TASK_STATUS,
         )
         task.participants.add(me)
 

@@ -251,11 +251,10 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ('id', 'created', 'last_modified', 'owner', 'name',
-                  'description', 'image', 'image_url', 'assigned_by',
-                  'assignee', 'status', 'participants', 'tags',
-                  'start', 'due', 'comment_posts', 'log_events', 'type_of',
-                  'has_review_requirement', 'uploads', 'calendar_event',
-                  'resource',)
+                  'description', 'image', 'image_url', 'status', 'type_of',
+                  'start', 'is_due', 'due', 'tags', 'assigned_by', 'opening',
+                  'closures', 'comment_posts', 'log_events', 'uploads', 'resources',)
+
 
 class SortedLogEventByCreatedSerializer(serializers.ModelSerializer):
     class Meta:

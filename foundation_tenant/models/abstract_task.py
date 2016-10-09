@@ -53,7 +53,7 @@ class AbstractTask(AbstractThing):
         _("Status"),
         choices=constants.TASK_STATUS_OPTIONS,
         help_text=_('The state this task.'),
-        default=constants.UNASSIGNED_TASK_STATUS,
+        default=constants.OPEN_TASK_STATUS,
         db_index=True,
     )
     comment_posts = models.ManyToManyField(                # CONTROLLED BY SYSTEM

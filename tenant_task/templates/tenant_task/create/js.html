@@ -1,0 +1,128 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Keypress
+
+        // DATETIMEPICKER
+        // -----------------------------------
+
+        $('#datetimepicker1').datetimepicker({
+        //   defaultDate: '{{ calendar_event.start }}',
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        });
+
+        $('#datetimepicker2').datetimepicker({
+        //   defaultDate: '{{ calendar_event.finish }}',
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        });
+    }); // end DOCUMENT START
+
+    function disable_btn() {
+        $('#id_accept_btn').prop("disabled", true);
+    }
+
+    function enable_btn() {
+        $('#id_accept_btn').prop("disabled", false);
+    }
+
+    function print_error_handler(error_json_result) {
+        var string = JSON.stringify( error_json_result );
+        console.log(string);
+        alert(string);
+    }
+
+    function ajax_task(success_callback, failure_callback) {
+
+        // Get our variables.
+        var name = $('#id_name').val();
+        var description = $('#id_description').val();
+        var finish = $('#id_finish').val();
+        var unprotected_finish_date = new Date(finish);
+        var django_due_date = date_to_django_datetime(unprotected_finish_date);
+        var assignees = $('#select2-1').val()
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the task name.' %}");
+            return;
+        }
+        if (description <= 0) {
+            alert("{% trans 'Please enter a description.' %}");
+            return;
+        }
+        if ( django_due_date.indexOf('NaN') !== -1 ) {
+            alert("{% trans 'Please enter a due date.' %}");
+            return;
+        }
+
+        // Set our object variables.
+        var task = {
+            'type_of': {{ type_of }},
+            'name': name,
+            'description': description,
+            'due': django_due_date,
+        };
+
+        // Attach our pending to or object.
+        {% if type_of == constants.TASK_BY_TAG_TYPE %}
+            if (assignees) {
+                task['tags'] = assignees;
+            }
+        {% else %}
+            if (assignees) {
+                task['opening'] = assignees;
+            }
+        {% endif %}
+
+        disable_btn(); // Disable the button.
+
+        set_tenant_tasks(
+            task,
+            function(json_result) {
+                success_callback(json_result);
+            },
+            function(error_json_result) {
+                enable_btn(); // Enable the button.
+                failure_callback(error_json_result);
+            }
+        ); // end Set Task.
+    }
+
+    function ajax_cancel(type_of) {
+        window.location = "{% url 'tenant_task_master_open' %}";
+    }
+
+    function ajax_create() {
+        ajax_task(
+            function(success_result) {
+                window.location = "{% url 'tenant_task_master_open' %}";
+            },
+            function(failure_result) {
+                print_error_handler(failure_result);
+            }
+        ); // end FUNC
+    }
+</script>

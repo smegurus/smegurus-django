@@ -51,11 +51,8 @@ def is_note_protected(note):
 def count_pending_tasks(me):
     return Task.objects.filter(
         Q(
-            participants=me,
-            status=constants.UNASSIGNED_TASK_STATUS,
-        ) | Q(
-            participants=me,
-            status=constants.ASSIGNED_TASK_STATUS,
+            opening=me,
+            status=constants.OPEN_TASK_STATUS,
         )
     ).count()
 

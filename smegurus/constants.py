@@ -68,42 +68,28 @@ STATUS_OPTIONS = (
 )
 
 
-# These constants are used for Task model.
-UNASSIGNED_TASK_STATUS = 1
-ASSIGNED_TASK_STATUS = 2
-INCOMPLETE_TASK_STATUS = 3
-COMPLETED_TASK_STATUS = 4
-COMPLETED_TASK_AND_VERIFIED_STATUS = 5
-
-
 # Constants control the level of detail email notification the User will
 # receive when interacted by the platform.
 NO_EMAIL_FREQUENCY_STATUS = 0
 ESSENTIAL_EMAIL_FREQUENCY_STATUS = 1
 EXCESSIVE_EMAIL_FREQUENCY_STATUS = 3
+
+
+# These constants are used for Task model.
+OPEN_TASK_STATUS = 1
+CLOSED_TASK_STATUS = 2
 TASK_STATUS_OPTIONS = (
-    (UNASSIGNED_TASK_STATUS, _('Unassigned')),
-    (ASSIGNED_TASK_STATUS, _('Assigned')),
-    (INCOMPLETE_TASK_STATUS, _('Incomplete')),
-    (COMPLETED_TASK_STATUS, _('Complete')),
-    (COMPLETED_TASK_AND_VERIFIED_STATUS, _('Complete and verified')),
+    (OPEN_TASK_STATUS, _('Open')),
+    (CLOSED_TASK_STATUS, _('Completed')),
 )
 
 
-# Constants control what type of Tasks are available in our system.
-TASK_BASIC_TYPE = 1
-TASK_CALENDAR_TYPE = 2
-TASK_DOCGEN_TYPE = 3
-TASK_LEARNING_TYPE = 4
-TASK_WEBFORM_TYPE = 5
-TASK_RESOURCE_TYPE = 6
+# Constants used for Tasks.
+TASK_BY_CUSTOM_TYPE = 1
+TASK_BY_TAG_TYPE = 2
 TASK_TYPE_OPTIONS = (
-    (TASK_BASIC_TYPE, _('Basic Task')),
-    (TASK_CALENDAR_TYPE, _('Calendar Task')),
-    (TASK_DOCGEN_TYPE, _('Document Generation Task')),
-    (TASK_LEARNING_TYPE, _('Learning Task')),
-    (TASK_WEBFORM_TYPE, _('Web Form Task')),
-    (TASK_RESOURCE_TYPE, _('Resource Task')),
+    (TASK_BY_CUSTOM_TYPE, _('Task by Custom')),
+    (TASK_BY_TAG_TYPE, _('Task by Tag')),
 )
 
 

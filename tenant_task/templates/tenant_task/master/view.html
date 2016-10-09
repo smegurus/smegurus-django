@@ -12,33 +12,17 @@
     <div class="pull-right">
         <div class="btn-group">
             <button data-toggle="dropdown" class="btn btn-link">
-            <em class="fa fa-ellipsis-v fa-lg"></em>
+            <em class="fa fa-plus fa-lg"></em>&nbsp;<b>{% trans 'New Task' %}</b>
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
                 <li>
-                    <a onclick="ajax_create_task({{ constants.TASK_BASIC_TYPE }});">
-                        <em class="fa fa-fw fa-child mr"></em>
-                        <span>{% trans 'Create Basic Task' %}</span>
+                    <a onclick="ajax_create_task({{ constants.TASK_BY_CUSTOM_TYPE }});">
+                        <em class="fa fa-fw fa-user mr"></em>
+                        <span>{% trans 'New Task by Individual' %}</span>
                     </a>
-                    <a onclick="ajax_create_task({{ constants.TASK_CALENDAR_TYPE }});">
-                        <em class="fa fa-fw fa-calendar mr"></em>
-                        <span>{% trans 'Create Calendar Task' %}</span>
-                    </a>
-                    <a onclick="ajax_create_task({{ constants.TASK_DOCGEN_TYPE }});">
-                        <em class="fa fa-fw fa-file-pdf-o mr"></em>
-                        <span>{% trans 'Document Generation Task' %}</span>
-                    </a>
-                    <a onclick="ajax_create_task({{ constants.TASK_LEARNING_TYPE }});">
-                        <em class="fa fa-fw fa-graduation-cap mr"></em>
-                        <span>{% trans 'Learning Task' %}</span>
-                    </a>
-                    <a onclick="ajax_create_task({{ constants.TASK_WEBFORM_TYPE }});">
-                        <em class="fa fa-fw fa-edit mr"></em>
-                        <span>{% trans 'Web Form Task' %}</span>
-                    </a>
-                    <a onclick="ajax_create_task({{ constants.TASK_RESOURCE_TYPE }});">
-                        <em class="fa fa-fw fa-external-link mr"></em>
-                        <span>{% trans 'Resource Task' %}</span>
+                    <a onclick="ajax_create_task({{ constants.TASK_BY_TAG_TYPE }});">
+                        <em class="fa fa-fw fa-users mr"></em>
+                        <span>{% trans 'New Task by Tag' %}</span>
                     </a>
                 </li>
             </ul>
@@ -51,7 +35,8 @@
         <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Tasks' %}
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
-            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
             </li>
             <li class="active">{% trans 'Tasks' %}</li>
         </ol>
@@ -65,35 +50,21 @@
         <div role="tabpanel" class="panel panel-transparent">
             <!-- Nav tabs-->
             <ul role="tablist" class="nav nav-tabs nav-justified">
-                <li role="presentation" class="active">
-                    <a href="#pending_tasks" aria-controls="pending_tasks" role="tab" data-toggle="tab" class="bb0">
-                    <em class="fa fa-clock-o fa-fw"></em>{% trans 'Pending Tasks' %}</a>
+                <li role="presentation" {% if sub_page == 'open' %}class="active"{% endif %}>
+                    <a href="{% url 'tenant_task_master_open' %}" aria-controls="open_tasks" class="bb0">
+                    <em class="fa fa-clock-o fa-fw"></em>{% trans 'Open Tasks' %}</a>
                 </li>
-                <li role="presentation">
-                    <a href="#incomplete_tasks" aria-controls="incomplete_tasks" role="tab" data-toggle="tab" class="bb0">
-                    <em class="fa fa-remove fa-fw"></em>{% trans 'Incomplete Tasks' %}</a>
-                </li>
-                <li role="presentation">
-                    <a href="#completed_tasks" aria-controls="completed_tasks" role="tab" data-toggle="tab" class="bb0">
+                <li role="presentation" {% if sub_page == 'complete' %}class="active"{% endif %}>
+                    <a href="{% url 'tenant_task_master_closed' %}" aria-controls="completed_tasks" class="bb0">
                     <em class="fa fa-check fa-fw"></em>{% trans 'Completed Tasks' %}</a>
                 </li>
             </ul>
             <!-- Tab panes-->
             <div class="tab-content p0 bg-white">
-                <div id="pending_tasks" role="tabpanel" class="tab-pane active">
+                <div id="open_tasks" role="tabpanel" class="tab-pane active">
                     <!-- START list group-->
-                    {% include 'tenant_task/master/table_view.html' with tasks=pending_tasks %}
+                    {% include 'tenant_task/master/table_view.html' with tasks=tasks %}
                     <!-- END list group-->
-                </div>
-                <div id="incomplete_tasks" role="tabpanel" class="tab-pane">
-                    <!-- START table responsive-->
-                    {% include 'tenant_task/master/table_view.html' with tasks=incomplete_tasks %}
-                    <!-- END table responsive-->
-                </div>
-                <div id="completed_tasks" role="tabpanel" class="tab-pane">
-                    <!-- START table responsive-->
-                    {% include 'tenant_task/master/table_view.html' with tasks=completed_tasks %}
-                    <!-- END table responsive-->
                 </div>
             </div>
         </div>

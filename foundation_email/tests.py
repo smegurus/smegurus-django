@@ -442,7 +442,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.participants.add(me)
         task.log_events.add(log_event)
@@ -472,7 +472,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
             owner=self.user,
             assigned_by=me,
             assignee=me,
-            status=constants.ASSIGNED_TASK_STATUS
+            status=constants.OPEN_TASK_STATUS
         )
         task.log_events.add(log_event)
 
