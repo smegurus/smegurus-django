@@ -1,8 +1,51 @@
 {% load i18n %}
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
         // Do nothing.
     });
+
+    (function(window, document, $, undefined){
+
+      $(function(){
+
+        //
+        // Zero configuration
+        //
+
+        $('#datatable1').dataTable({
+            'paging':   true,  // Table pagination
+            'ordering': true,  // Column ordering
+            'info':     true,  // Bottom left status text
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch:      'Search all columns:',
+                sLengthMenu:  '_MENU_ records per page',
+                info:         'Showing page _PAGE_ of _PAGES_',
+                zeroRecords:  'Nothing found - sorry',
+                infoEmpty:    'No records available',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            }
+        });
+      });
+
+    })(window, document, window.jQuery);
+
+    function ajax_delete(id) {
+        $('#id_delete_'+id).prop("disabled", true);
+        delete_tenant_task(
+            id,
+            function(success) {
+                location.reload(true);
+            },
+            function(error_json_result) {
+                $('#id_reject_btn').prop("id_reject_btn", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
 
     function ajax_create_task(type_of) {
         window.location = "{% url 'tenant_task_master_create' %}?type_of="+type_of;

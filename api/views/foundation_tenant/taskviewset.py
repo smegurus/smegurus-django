@@ -121,8 +121,6 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             post.delete()
         for file_upload in instance.uploads.all():
             file_upload.delete()
-        if instance.calendar_event:
-            instance.calendar_event.delete()
         instance.delete()  # Delete our model.
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])

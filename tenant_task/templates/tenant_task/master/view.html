@@ -63,7 +63,9 @@
             <div class="tab-content p0 bg-white">
                 <div id="open_tasks" role="tabpanel" class="tab-pane active">
                     <!-- START list group-->
-                    {% include 'tenant_task/master/table_view.html' with tasks=tasks %}
+                    <div style="padding: 25px;">
+                        {% include 'tenant_task/master/table_view.html' with tasks=tasks %}
+                    </div>
                     <!-- END list group-->
                 </div>
             </div>

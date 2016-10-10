@@ -30,10 +30,14 @@ from smegurus import constants
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
 def task_open_master_page(request):
+    tasks = Task.objects.filter(
+        Q(assigned_by=request.tenant_me) |
+        Q(opening=request.tenant_me)
+    ).distinct('id')
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
         'sub_page': 'open',
-        'tasks': None,
+        'tasks': tasks,
     })
 
 
