@@ -31,8 +31,11 @@ from smegurus import constants
 # @condition(last_modified_func=my_last_modified_func)
 def task_open_master_page(request):
     tasks = Task.objects.filter(
-        Q(assigned_by=request.tenant_me) |
-        Q(opening=request.tenant_me)
+        Q(status=constants.OPEN_TASK_STATUS) &
+        Q(
+            Q(assigned_by=request.tenant_me) |
+            Q(opening=request.tenant_me)
+        )
     ).distinct('id')
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
@@ -48,8 +51,12 @@ def task_open_master_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def task_closed_master_page(request):
     tasks = Task.objects.filter(
-        status=constants.CLOSED_TASK_STATUS,
-    )
+        Q(status=constants.CLOSED_TASK_STATUS) &
+        Q(
+            Q(assigned_by=request.tenant_me) |
+            Q(opening=request.tenant_me)
+        )
+    ).distinct('id')
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
         'sub_page': 'complete',
@@ -77,22 +84,62 @@ def task_master_create_page(request):
 @tenant_intake_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def task_details_page(request, id):
+def task_edit_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/edit/view.html',{
         # Required.
         'page': 'tasks',
         'task': task,
-        # # Tags.
-        # 'tags': Tag.objects.all(),
-        # # CalendarEvent
-        # 'calendar_items': CalendarEvent.objects.filter(start__gte=timezone.now()),
-        # # Resources
-        # 'resources': InfoResource.objects.all(),
-        # # Members.
-        # 'entrepreneurs': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID),
-        # 'mentors': TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID),
-        # 'advisors': TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID),
-        # 'managers': TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID),
-        # 'admins': TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID),
+        # Tags.
+        'tags': Tag.objects.all(),
+        # CalendarEvent
+        'calendar_items': CalendarEvent.objects.filter(start__gte=timezone.now()),
+        # Resources
+        'resources': InfoResource.objects.all(),
+        # Members.
+        'all_profiles': TenantMe.objects.all(),
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+@tenant_intake_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def task_info_details_page(request, id):
+    task = get_object_or_404(Task, pk=int(id))
+    return render(request, 'tenant_task/details/edit/view.html',{
+        # Required.
+        'page': 'tasks',
+        'task': task,
+        # Tags.
+        'tags': Tag.objects.all(),
+        # CalendarEvent
+        'calendar_items': CalendarEvent.objects.filter(start__gte=timezone.now()),
+        # Resources
+        'resources': InfoResource.objects.all(),
+        # Members.
+        'all_profiles': TenantMe.objects.all(),
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+@tenant_intake_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def task_info_details_page(request, id):
+    task = get_object_or_404(Task, pk=int(id))
+    return render(request, 'tenant_task/details/info/view.html',{
+        # Required.
+        'page': 'tasks',
+        'task': task,
+        # Tags.
+        'tags': Tag.objects.all(),
+        # CalendarEvent
+        'calendar_items': CalendarEvent.objects.filter(start__gte=timezone.now()),
+        # Resources
+        'resources': InfoResource.objects.all(),
+        # Members.
+        'all_profiles': TenantMe.objects.all(),
     })

@@ -52,7 +52,7 @@ def get_task_url(request, task):
     url = 'https://' if request.is_secure() else 'http://'
     url += request.tenant.schema_name + "."
     url += get_current_site(request).domain
-    url += reverse('tenant_task_details', args=[task.id,])
+    url += reverse('tenant_task_details_info', args=[task.id,])
     url = url.replace("None","en")
     return url
 

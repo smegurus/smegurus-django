@@ -60,12 +60,6 @@ class Task(AbstractThing):
         null=True,
         help_text=_('The date/time this task will finish.'),
     )
-    tags = models.ManyToManyField(
-        Tag,
-        help_text=_('The tags that belong to this Task.'),
-        blank=True,
-        related_name="task_tags_%(app_label)s_%(class)s_related"
-    )
     assigned_by = models.ForeignKey(
         TenantMe,
         help_text=_('The user whom assigned this task.'),
@@ -74,9 +68,15 @@ class Task(AbstractThing):
         related_name="task_assigned_by_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
-    opening = models.ManyToManyField(
+    participants = models.ManyToManyField(
         TenantMe,
         help_text=_('The users who are participating in this task.'),
+        blank=True,
+        related_name="task_participants_%(app_label)s_%(class)s_related"
+    )
+    opening = models.ManyToManyField(
+        TenantMe,
+        help_text=_('The users who are not participating in this task.'),
         blank=True,
         related_name="task_opening_%(app_label)s_%(class)s_related"
     )
@@ -85,6 +85,12 @@ class Task(AbstractThing):
         help_text=_('The users who are participating in this task.'),
         blank=True,
         related_name="task_closures_%(app_label)s_%(class)s_related"
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        help_text=_('The tags that belong to this Task.'),
+        blank=True,
+        related_name="task_tags_%(app_label)s_%(class)s_related"
     )
     comment_posts = models.ManyToManyField(                # CONTROLLED BY SYSTEM
         SortedCommentPostByCreated,

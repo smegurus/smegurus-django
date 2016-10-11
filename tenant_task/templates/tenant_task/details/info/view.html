@@ -4,7 +4,7 @@
 
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_task/details/edit/js.html' with task=task %}
+    {% include 'tenant_task/details/info/js.html' with task=task %}
 {% endcompress %}
 <!-- end PAGE JS -->
 
@@ -37,7 +37,7 @@
                       <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
 
                       <div class="col-sm-10">
-                         <input type="text" class="form-control form-control" id="id_name" value="{{ task.name }}" />
+                         <input type="text" class="form-control form-control" id="id_name" value="{{ task.name }}" readonly="true" />
                       </div>
 
                    </div>
@@ -51,7 +51,7 @@
 
                         <div class="col-sm-10">
                             <div id="datetimepicker2" class="input-group date">
-                                <input type="text" class="form-control" id="id_due" value="{{ task.due|date:"m/d/Y" }}" />
+                                <input type="text" class="form-control" id="id_due" value="{{ task.due|date:"m/d/Y" }}" readonly="true" />
                                 <span class="input-group-addon">
                                     <span class="fa fa-calendar"></span>
                                 </span>
@@ -68,7 +68,7 @@
                          <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
 
                          <div class="col-sm-10">
-                            <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}">{{ task.description }}</textarea>
+                            <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}" readonly="true">{{ task.description }}</textarea>
                          </div>
 
                       </div>
@@ -76,48 +76,7 @@
 
                       <br /><br />
 
-                      <!-- ASSIGNEES -->
-                      {% if task.type_of == constants.TASK_BY_CUSTOM_TYPE %}
-                      <!-- BY CUSTOM -->
 
-                      <!-- OPENING -->
-                      <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Open' %}</label>
-                         <div class="col-sm-10">
-                             <input disabled="true" type="text" class="form-control input-sm" value="{% for member in task.opening.all %}{{ member.name }}{% if not forloop.last %},{% endif %}{% endfor %}" />
-                         </div>
-                      </div>
-                      <!-- end OPENING -->
-
-                      <br /><br />
-
-                      <!-- CLOSURE -->
-                      <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Closed' %}</label>
-                         <div class="col-sm-10">
-                             <input disabled="true" type="text" class="form-control input-sm" value="{% for member in task.closure.all %}{{ member.name }}{% if not forloop.last %},{% endif %}{% endfor %}" />
-                         </div>
-                      </div>
-                      <!-- end CLOSURE -->
-
-                      <!-- end BY CUSTOM -->
-                      {% else %}
-                      <!-- BY TAG -->
-                      <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Assignees by Tags' %}</label>
-
-                         <div class="col-sm-10">
-                             <select id="select2-1" multiple="multiple" class="form-control">
-                                 {% for tag in tags %}
-                                     <option value="{{ tag.id }}">{{ tag.name }}</option>
-                                 {% endfor %}
-                             </select>
-                         </div>
-
-                      </div>
-                      <!-- end BY TAG -->
-                      {% endif %}
-                      <!-- end ASSIGNEES -->
                 </fieldset>
 
                 <!-- SUBMISSION -->
@@ -125,8 +84,7 @@
                     <button onclick="ajax_cancel();" type="button" class="btn btn-default btn-lg" id="id_cancel_btn">{% trans 'Cancel' %}</button>
                 </div>
                 <div class="pull-right">
-                    <button onclick="ajax_update();" type="button" class="btn btn-primary btn-lg" id="id_continue_btn">{% trans 'Update' %}</button>
-                    <button onclick="ajax_incomplete_task();" type="button" class="btn btn-warning btn-lg" id="id_incomplete_btn">{% trans 'Incomplete' %}</button>
+                    <button onclick="ajax_incomplete_task();" type="button" class="btn btn-warning btn-lg" id="id_incomplete_btn">{% trans 'Re-open' %}</button>
                     <button onclick="ajax_complete_task();" type="button" class="btn btn-success btn-lg" id="id_complete_btn">{% trans 'Complete' %}</button>
                 </div>
                 <!-- end SUBMISSION -->

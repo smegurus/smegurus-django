@@ -1,0 +1,134 @@
+{% load i18n %}
+<script>
+    function print_error_handler(error_json_result) {
+        var string = JSON.stringify( error_json_result );
+        console.log(string);
+        alert(string);
+    }
+
+    function post_comment_handler() {
+        $('#id_comment_btn').prop("disabled", true);
+        $('#id_comment').prop("disabled", true);
+        tenant_task_post_comment(
+            {{ task.id }},
+            $("#id_comment").val(),
+            function(json_result) {
+                location.reload(true); //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+            },
+            function(error_json_result) {
+                $('#id_comment_btn').prop("disabled", false);
+                $('#id_comment').prop("disabled", true);
+                print_error_handler(error_json_result);
+            }
+        ); // end POST COMMENT
+    }
+
+    $(document).ready(function () {
+        // Display hide or show Complete/Incomplete buttons depending on the state.
+        {% if request.tenant_me in task.closure.all %}
+            $("#id_incomplete_btn").show();
+            $("#id_complete_btn").hide();
+        {% endif %}
+        {% if request.tenant_me in task.opening.all %}
+            $("#id_incomplete_btn").hide();
+            $("#id_complete_btn").show();
+        {% endif %}
+
+        $("#id_comment").keypress(function(e) {  // POST COMMENT KEYPRESS HANDLER
+            if (e.which == 13) {
+                post_comment_handler();
+            }
+        });  // end POST COMMENT KEYPRESS HANDLER
+
+        $( "#id_comment_btn" ).click(function(e) {  // CLICK POST COMMENT BUTTON HANDLER
+            post_comment_handler();
+        }); // end CLICK POST COMMENT BUTTON HANDLER
+    }); // end READY
+
+    function ajax_cancel() {
+        $('#id_cancel_btn').prop("disabled", true);
+        window.location = "{% url 'tenant_task_master_open' %}";
+    }
+
+    function load_new_tab(url) {
+        var win = window.open(url, '_blank');
+        if (win) {
+            //Browser has allowed it to be opened
+            win.focus();
+        } else {
+            //Browser has blocked it
+            alert('Please allow popups for this website');
+        }
+    }
+
+    /**
+     *  Function will asynchronously upload the file.
+     */
+    function ajax_upload_file() {
+        if ($('#id_file').val() == "") {
+            alert(_("Please select a file to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var file = document.getElementById('id_file').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+        console.log("upload_id: "+upload_id);
+
+        // Insert or Update.
+        set_tenant_fileupload(upload_id, file, function(file_upload) {
+
+            // UPDATE THE UI.
+            $('#id_add_file_div').hide() // Close the uploading div.
+            $('#id_add_file_btn').prop('disabled', false); // enable the add button.
+
+            get_tenant_task(
+                {{ task.id }},
+                function(task) {
+                    task['uploads'].push(file_upload['id']); // Add our file upload.
+                    set_tenant_tasks(
+                        task,
+                        function(json_result) {
+                            location.reload(true); // Reload the page.
+                        },
+                        function(error_json_result) {
+                            print_error_handler(error_json_result);
+                        }
+                    ); // end Set Task.
+                },
+                function(error_json_result) {
+                    print_error_handler(error_json_result);
+                }
+            ); // end Get Task
+        }); // end UPLOAD
+    }
+
+    function ajax_complete_task() {
+        $('#id_complete_btn').prop("disabled", true);
+        tenant_task_complete_task(
+            {{ task.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_task_master_open' %}";
+            },
+            function(error_json_result) {
+                $('#id_complete_btn').prop("disabled", false);
+                print_error_handler(error_json_result);
+            }
+        ); // end COMPLETE TASK
+    }
+
+    function ajax_incomplete_task() {
+        $('#id_incomplete_btn').prop("disabled", true);
+        tenant_task_incomplete_task(
+            {{ task.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_task_master_open' %}";
+            },
+            function(error_json_result) {
+                $('#id_incomplete_btn').prop("disabled", false);
+                print_error_handler(error_json_result);
+            }
+        ); // end INCOMPLETE TASK
+    }
+</script>

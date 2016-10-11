@@ -27,16 +27,15 @@
              <td>{{ task.due }}</td>
              <td>
                  {% if request.user == task.owner %}
-                 <a onclick="ajax_delete({{ task.id }});" class="btn btn-xs btn-danger" id="id_delete_{{ task.id }}">
-                     {% trans 'Delete' %} <i class="fa fa-remove"></i>
-                 </a>
-                 <a href="{% url 'tenant_task_details' task.id %}" class="btn btn-xs btn-warning">
-                     {% trans 'Edit' %} <i class="fa fa-edit"></i>
-                 </a>
+                     <a onclick="ajax_delete({{ task.id }});" class="btn btn-xs btn-danger" id="id_delete_{{ task.id }}">
+                         {% trans 'Delete' %} <i class="fa fa-remove"></i>
+                     </a>
+                     <a href="{% url 'tenant_task_details_edit' task.id %}" class="btn btn-xs btn-warning">
+                         {% trans 'Edit' %} <i class="fa fa-edit"></i>
+                     </a>
+                 {% else %}
+                     <a href="{% url 'tenant_task_details_info' task.id %}" class="btn btn-xs btn-info">{% trans 'View' %}&nbsp;<i class="fa fa-info-circle"></i></a>
                  {% endif %}
-                 {% comment %}
-                 <a href="{% url 'tenant_calendar_details_info' task.id %}" class="btn btn-xs btn-info">{% trans 'View' %}&nbsp;<i class="fa fa-info-circle"></i></a>
-                 {% endcomment %}
              </td>
           </tr>
           {% endfor %}

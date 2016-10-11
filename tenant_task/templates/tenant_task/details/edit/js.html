@@ -1,0 +1,149 @@
+{% load i18n %}
+<script>
+    function print_error_handler(error_json_result) {
+        var string = JSON.stringify( error_json_result );
+        console.log(string);
+        alert(string);
+    }
+
+    function post_comment_handler() {
+        $('#id_comment_btn').prop("disabled", true);
+        $('#id_comment').prop("disabled", true);
+        tenant_task_post_comment(
+            {{ task.id }},
+            $("#id_comment").val(),
+            function(json_result) {
+                location.reload(true); //TODO: Implement dynamically adding 'LogEvent' to the 'Task History'.
+            },
+            function(error_json_result) {
+                $('#id_comment_btn').prop("disabled", false);
+                $('#id_comment').prop("disabled", true);
+                print_error_handler(error_json_result);
+            }
+        ); // end POST COMMENT
+    }
+
+    $(document).ready(function () {
+        // Required code to initialize the WYSIWYG editor.
+        $('#editor').wysiwyg();
+        $('#editor').cleanHtml();
+
+        // Due date.
+        $('#datetimepicker2').datetimepicker({
+         defaultDate: '{{ task.due|date:"m/d/Y" }}',
+          icons: {
+              time: 'fa fa-clock-o',
+              date: 'fa fa-calendar',
+              up: 'fa fa-chevron-up',
+              down: 'fa fa-chevron-down',
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-crosshairs',
+              clear: 'fa fa-trash'
+            }
+        }); // end DATETIMEPICKER
+
+        $("#id_comment").keypress(function(e) {  // POST COMMENT KEYPRESS HANDLER
+            if (e.which == 13) {
+                post_comment_handler();
+            }
+        });  // end POST COMMENT KEYPRESS HANDLER
+
+        $( "#id_comment_btn" ).click(function(e) {  // CLICK POST COMMENT BUTTON HANDLER
+            post_comment_handler();
+        }); // end CLICK POST COMMENT BUTTON HANDLER
+    }); // end READY
+
+    function ajax_task(success_callback, failure_callback) {
+        get_tenant_task(
+            {{ task.id }},
+            function(task) {
+                // Extract the string.
+                var raw_text_date = $('#id_due').val() ;
+
+                // Convert the string to a javascript "Date" object.
+                var unprotected_date = new Date(raw_text_date);
+
+                //BUGFIX: It appears when we converted our date, we lost a day.
+                //        Therefore, add a single day to our converted date.
+                unprotected_date.setDate(unprotected_date.getDate() + 1);
+
+                // Format our "Date" object to a format django "DatetimeField"
+                // to support.
+                var django_date = date_to_django_datetime(unprotected_date);
+
+                task['due'] = django_date;
+
+                set_tenant_tasks(
+                    task,
+                    function(json_result) {
+
+                        tenant_task_log_event(
+                            {{ task.id }},
+                            'Updated task.',
+                            function(json_result) {
+                                success_callback(json_result);
+                            },
+                            function(error_json_result) {
+                                failure_callback(error_json_result);
+                            }
+                        ); // end Change Date
+
+                    },
+                    function(error_json_result) {
+                        failure_callback(error_json_result);
+                    }
+                ); // end Set Task.
+            },
+            function(error_json_result) {
+                failure_callback(error_json_result);
+            }
+        ); // end Get Task
+    }
+
+    function ajax_complete_task() {
+        $('#id_complete_btn').prop("disabled", true);
+        tenant_task_complete(
+            {{ task.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_task_master_open' %}";
+            },
+            function(error_json_result) {
+                $('#id_complete_btn').prop("disabled", false);
+                print_error_handler(error_json_result);
+            }
+        ); // end COMPLETE TASK
+    }
+
+    function ajax_incomplete_task() {
+        $('#id_incomplete_btn').prop("disabled", true);
+        tenant_task_incomplete(
+            {{ task.id }},
+            function(json_result) {
+                window.location = "{% url 'tenant_task_master_open' %}";
+            },
+            function(error_json_result) {
+                $('#id_incomplete_btn').prop("disabled", false);
+                print_error_handler(error_json_result);
+            }
+        ); // end INCOMPLETE TASK
+    }
+
+    function ajax_cancel() {
+        $('#id_cancel_btn').prop("disabled", true);
+        window.location = "{% url 'tenant_task_master_open' %}";
+    }
+
+    function ajax_update() {
+        $('#id_continue_btn').prop("disabled", true);
+        ajax_task(
+            function(success_result) {
+                window.location = "{% url 'tenant_task_master_open' %}";
+            },
+            function(failure_result) {
+                $('#id_continue_btn').prop("disabled", false);
+                print_error_handler(failure_result);
+            }
+        ); // end FUNC
+    }
+</script>

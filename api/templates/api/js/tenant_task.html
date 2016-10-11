@@ -138,8 +138,8 @@
         });
     }
 
-    function tenant_task_complete_task(id, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/complete_task/?format=json";
+    function tenant_task_complete(id, success_callback, error_callback) {
+        var url = "/api/tenanttask/" + id + "/complete/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -162,8 +162,8 @@
         });
     }
 
-    function tenant_task_incomplete_task(id, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/incomplete_task/?format=json";
+    function tenant_task_incomplete(id, success_callback, error_callback) {
+        var url = "/api/tenanttask/" + id + "/incomplete/?format=json";
         jQuery.ajax({
             url: url,
             headers: {
@@ -186,19 +186,39 @@
         });
     }
 
-    function tenant_task_set_calendar_event(id, datetime, success_callback, error_callback) {
-        var url = "/api/tenanttask/" + id + "/set_calendar_event/?format=json";
+    function tenant_task_open(id, success_callback, error_callback) {
+        var url = "/api/tenanttask/" + id + "/open/?format=json";
         jQuery.ajax({
             url: url,
-            data: JSON.stringify({
-                'datetime': datetime,
-            }),
-            dataType: 'text',
             headers: {
                 Authorization: 'Token ' + '{{ request.token }}'
             },
             cache: false,
-            contentType: 'application/json; charset=utf-8',
+            contentType: false,
+            processData: false,
+            type: 'PUT',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    function tenant_task_close(id, success_callback, error_callback) {
+        var url = "/api/tenanttask/" + id + "/close/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
             processData: false,
             type: 'PUT',
             success: function(json_results){

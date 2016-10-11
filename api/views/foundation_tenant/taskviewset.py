@@ -14,7 +14,7 @@ from rest_framework import response
 from rest_framework.decorators import detail_route
 from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
-from api.permissions import IsOwnerOrIsAnEmployee
+from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission
 from api.serializers.foundation_tenant import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from api.serializers.misc import DateTimeSerializer
 from foundation_tenant.models.me import TenantMe
@@ -39,7 +39,7 @@ class SendEmailViewMixin(object):
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
-        url += reverse('tenant_task_details', args=[task.id,])
+        url += reverse('tenant_task_details_info', args=[task.id,])
         url = url.replace("None","en")
         return url
 
@@ -79,7 +79,7 @@ class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
         fields = ['created', 'last_modified', 'owner', 'name',
-                  'description', 'image', 'status', 'type_of',
+                  'description', 'image', 'status', 'type_of', 'participants',
                   'start', 'is_due', 'due', 'tags', 'assigned_by', 'opening',
                   'closures', 'comment_posts', 'log_events', 'uploads', 'resources',]
 
@@ -100,6 +100,23 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             assigned_by=self.request.tenant_me,
         )
 
+        # Add myself to the participants.
+        task.participants.add(self.request.tenant_me)
+
+        # If this task is by group invite, then take the groups and
+        # assign the Users from each group into this event.
+        if task.type_of == constants.TASK_BY_TAG_TYPE:
+            for tag in task.tags.all():
+                try:
+                    me = TenantMe.objects.get(tags__id=tag.id)
+                    task.opening.add(me)
+                except Exception as e:
+                    pass
+
+        # All assigned Users are added to the participants list.
+        for me in task.opening.all():
+            task.participants.add(me)
+
         # Create "Ticket created" log event and attach it this Task.
         log_event = SortedLogEventByCreated.objects.create(
             me=self.request.tenant_me,
@@ -110,8 +127,15 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     def perform_update(self, serializer):
         """Update "TenantMe" model and its associated models."""
         task = serializer.save()  # Update the 'Task' model.
-        if task.assignee:
-            task.participants.add(task.assignee)  # Update associated models.
+
+        # Add myself to the participants.
+        task.participants.add(self.request.tenant_me)
+
+        # All assigned Users are added to the participants list.
+        for me in task.opening.all():
+            task.participants.add(me)
+        for me in task.closures.all():
+            task.participants.add(me)
 
     def perform_destroy(self, instance):
         """Override the deletion function to include deletion of associated models."""
@@ -133,8 +157,9 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 task = self.get_object()
                 task.log_events.add(log_event)
 
-                # Send email notification for event.
-                self.send_notification(task, log_event)
+                # Send email notification for specific events.
+                if 'Created' in log_event.text:
+                    self.send_notification(task, log_event)
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)
@@ -164,7 +189,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 )
                 task.log_events.add(log_event)
 
-                # Add the user to the participants.
+                # Add myself to the participants.
                 task.participants.add(request.tenant_me)
 
                 # Send email notification for log event.
@@ -181,11 +206,38 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             )
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    def complete_task(self, request, pk=None):
+    def close(self, request, pk=None):
+        """Function will place the User into the closure list from the opening list."""
+        try:
+            task = self.get_object()  # Get Task and update it's status.
+            task.opening.remove(request.tenant_me)
+            task.closure.add(request.tenant_me)
+            return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def open(self, request, pk=None):
+        """Function will place the User into the opening list from the closure list."""
+        try:
+            task = self.get_object()  # Get Task and update it's status.
+            task.opening.add(request.tenant_me)
+            task.closure.remove(request.tenant_me)
+            return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[EmployeePermission])
+    def complete(self, request, pk=None):
         """Function will mark this Task as 'CLOSED_TASK_STATUS'."""
         try:
-            # Get Task and update it's status.
-            task = self.get_object()
+            task = self.get_object()  # Get Task and update it's status.
             task.status = constants.CLOSED_TASK_STATUS
             task.save()
 
@@ -197,24 +249,21 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             )
             task.log_events.add(log_event)
 
-            # Send email notification for log event.
-            self.send_notification(task, log_event)
-
-            # Return the success indicator.
-            return response.Response(status=status.HTTP_200_OK)
+            self.send_notification(task, log_event)  # Send email notification for log event.
+            return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
             return response.Response(
                 data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    def incomplete_task(self, request, pk=None):
+    @detail_route(methods=['put'], permission_classes=[EmployeePermission])
+    def incomplete(self, request, pk=None):
         """Function will mark this Task as 'INCOMPLETE_TASK_STATUS'."""
         try:
             # Get Task and update it's status.
             task = self.get_object()
-            task.status = constants.INCOMPLETE_TASK_STATUS
+            task.status = constants.OPEN_TASK_STATUS
             task.save()
 
             # Save an log event.
@@ -224,60 +273,8 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 text=text,
             )
             task.log_events.add(log_event)
-
-            # Send email notification for log event.
-            self.send_notification(task, log_event)
-
-            # Return the success indicator.
-            return response.Response(status=status.HTTP_200_OK)
-        except Exception as e:
-            return response.Response(
-                data=str(e),
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    def set_calendar_event(self, request, pk=None):
-        """
-        Function will create a CalendarEvent for the inputted date and set it
-        to the Task. If a previous CalendarEvent object exists then delete that
-        object and assign it to the newly created on.
-        """
-        try:
-            task = self.get_object()  # Get Task
-
-            # Defensive Code: Prevent running function if assignee not assigned.
-            if task.assignee == None:
-                return response.Response(
-                    data='Requires assignee before being called.',
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-
-            # Attempt to deserialize our inputted data.
-            serializer = DateTimeSerializer(data=request.data)
-            if serializer.is_valid():
-                # Get the 'datatime' and create our calendar event.
-                datetime = serializer.data['datetime']
-                calendar_event = CalendarEvent.objects.create(
-                    owner=task.assignee.owner,
-                    name=task.name,
-                    colour='rgb(246, 80, 77)',
-                    start=datetime,
-                    finish=datetime
-                )
-
-                # Previous existing data needs to be deleted.
-                if task.calendar_event:
-                    task.calendar_event.delete()
-
-                # Save our newly created CalendarEvent.
-                task.calendar_event = calendar_event
-                task.save()
-
-                # Return the success indicator.
-                return response.Response(status=status.HTTP_200_OK)
-            else:
-                raise Exception('Inputted data is not valid.')
+            self.send_notification(task, log_event)  # Send email notification for log event.
+            return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
             return response.Response(
                 data=str(e),

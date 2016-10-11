@@ -130,15 +130,15 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         self.assertIn(b'Tasks',response.content)
 
     @transaction.atomic
-    def test_task_details_page_with_404(self):
-        url = reverse('tenant_task_details', args=[666,])
+    def test_task_edit_details_page_with_404(self):
+        url = reverse('tenant_task_details_edit', args=[666,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
         self.assertIn(b'404',response.content)
 
     @transaction.atomic
-    def test_task_details_page(self):
+    def test_task_edit_details_page(self):
         me = TenantMe.objects.create(
             id=999,
             owner=self.user,
@@ -153,7 +153,7 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         )
         task.participants.add(me)
 
-        url = reverse('tenant_task_details', args=[666,])
+        url = reverse('tenant_task_details_edit', args=[666,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
