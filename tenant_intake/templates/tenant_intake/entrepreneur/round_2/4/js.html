@@ -205,8 +205,12 @@
         get_tenant_intake(
             {{ intake.id }},
             function(intake) {
-
-                intake['naics_depth_one'] = parseInt(naics_depth_one);
+                var has_biz_idea = $('#id_has_business_idea').is(":checked");
+                if (has_biz_idea) {
+                    intake['naics_depth_one'] = parseInt(naics_depth_one);
+                } else {
+                    intake['naics_depth_one'] = '';
+                }
 
                 if (naics_depth_two > 0 && naics_depth_two != '----') {
                     intake['naics_depth_two'] = parseInt(naics_depth_two);
