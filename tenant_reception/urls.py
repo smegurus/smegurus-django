@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from tenant_reception.views import dashboard_view, decorator_view, tasks_view, calendar_view, resource_view
 
 

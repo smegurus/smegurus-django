@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from tenant_intake.views import entrepreneur_view, employee_view, decorator_view
 
 

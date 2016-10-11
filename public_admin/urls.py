@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from public_admin.views import dashboard_view, organization_view
 
 

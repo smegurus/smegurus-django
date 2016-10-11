@@ -13,7 +13,6 @@ from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.models.organization import PublicDomain
 from foundation_public.models.visitor import PublicVisitor
 
 
@@ -32,5 +31,4 @@ admin.site.register(PublicPostalAddress)
 admin.site.register(PublicPlace)
 admin.site.register(PublicCountry)
 admin.site.register(PublicOrganization)
-admin.site.register(PublicDomain)
 admin.site.register(PublicVisitor)
