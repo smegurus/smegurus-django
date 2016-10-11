@@ -25,13 +25,13 @@
 
     $(document).ready(function () {
         // Display hide or show Complete/Incomplete buttons depending on the state.
-        {% if request.tenant_me in task.closure.all %}
-            $("#id_incomplete_btn").show();
-            $("#id_complete_btn").hide();
+        {% if request.tenant_me in task.closures.all %}
+            $("#id_open_btn").show();
+            $("#id_close_btn").hide();
         {% endif %}
         {% if request.tenant_me in task.opening.all %}
-            $("#id_incomplete_btn").hide();
-            $("#id_complete_btn").show();
+            $("#id_open_btn").hide();
+            $("#id_close_btn").show();
         {% endif %}
 
         $("#id_comment").keypress(function(e) {  // POST COMMENT KEYPRESS HANDLER
@@ -45,7 +45,7 @@
         }); // end CLICK POST COMMENT BUTTON HANDLER
     }); // end READY
 
-    function ajax_cancel() {
+    function ajax_back() {
         $('#id_cancel_btn').prop("disabled", true);
         window.location = "{% url 'tenant_task_master_open' %}";
     }
@@ -104,29 +104,29 @@
         }); // end UPLOAD
     }
 
-    function ajax_complete_task() {
-        $('#id_complete_btn').prop("disabled", true);
-        tenant_task_complete_task(
+    function ajax_close() {
+        $('#id_close_btn').prop("disabled", true);
+        tenant_task_close(
             {{ task.id }},
             function(json_result) {
                 window.location = "{% url 'tenant_task_master_open' %}";
             },
             function(error_json_result) {
-                $('#id_complete_btn').prop("disabled", false);
+                $('#id_close_btn').prop("disabled", false);
                 print_error_handler(error_json_result);
             }
         ); // end COMPLETE TASK
     }
 
-    function ajax_incomplete_task() {
-        $('#id_incomplete_btn').prop("disabled", true);
-        tenant_task_incomplete_task(
+    function ajax_open() {
+        $('#id_open_btn').prop("disabled", true);
+        tenant_task_open(
             {{ task.id }},
             function(json_result) {
                 window.location = "{% url 'tenant_task_master_open' %}";
             },
             function(error_json_result) {
-                $('#id_incomplete_btn').prop("disabled", false);
+                $('#id_open_btn').prop("disabled", false);
                 print_error_handler(error_json_result);
             }
         ); // end INCOMPLETE TASK

@@ -95,13 +95,14 @@
                       <div class="form-group">
                          <label class="col-sm-2 control-label">{% trans 'Closed' %}</label>
                          <div class="col-sm-10">
-                             <input disabled="true" type="text" class="form-control input-sm" value="{% for member in task.closure.all %}{{ member.name }}{% if not forloop.last %},{% endif %}{% endfor %}" />
+                             <input disabled="true" type="text" class="form-control input-sm" value="{% for member in task.closures.all %}{{ member.name }}{% if not forloop.last %},{% endif %}{% endfor %}" />
                          </div>
                       </div>
                       <!-- end CLOSURE -->
 
                       <!-- end BY CUSTOM -->
                       {% else %}
+
                       <!-- BY TAG -->
                       <div class="form-group">
                          <label class="col-sm-2 control-label">{% trans 'Assignees by Tags' %}</label>
@@ -109,7 +110,7 @@
                          <div class="col-sm-10">
                              <select id="select2-1" multiple="multiple" class="form-control">
                                  {% for tag in tags %}
-                                     <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                     <option value="{{ tag.id }}" {% if tag in task.tags.all %}selected="selected"{% endif %}>{{ tag.name }}</option>
                                  {% endfor %}
                              </select>
                          </div>
@@ -122,12 +123,12 @@
 
                 <!-- SUBMISSION -->
                 <div class="pull-left">
-                    <button onclick="ajax_cancel();" type="button" class="btn btn-default btn-lg" id="id_cancel_btn">{% trans 'Cancel' %}</button>
+                    <button onclick="ajax_back();" type="button" class="btn btn-default btn-lg" id="id_cancel_btn">{% trans 'Back' %}</button>
                 </div>
                 <div class="pull-right">
                     <button onclick="ajax_update();" type="button" class="btn btn-primary btn-lg" id="id_continue_btn">{% trans 'Update' %}</button>
-                    <button onclick="ajax_incomplete_task();" type="button" class="btn btn-warning btn-lg" id="id_incomplete_btn">{% trans 'Incomplete' %}</button>
-                    <button onclick="ajax_complete_task();" type="button" class="btn btn-success btn-lg" id="id_complete_btn">{% trans 'Complete' %}</button>
+                    <button onclick="ajax_incomplete_task();" type="button" class="btn btn-warning btn-lg" id="id_incomplete_btn">{% trans 'Re-Open Task' %}</button>
+                    <button onclick="ajax_complete_task();" type="button" class="btn btn-success btn-lg" id="id_complete_btn">{% trans 'Close Task' %}</button>
                 </div>
                 <!-- end SUBMISSION -->
             </form>

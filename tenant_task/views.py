@@ -31,9 +31,9 @@ from smegurus import constants
 # @condition(last_modified_func=my_last_modified_func)
 def task_open_master_page(request):
     tasks = Task.objects.filter(
-        Q(status=constants.OPEN_TASK_STATUS) &
         Q(
-            Q(assigned_by=request.tenant_me) |
+            Q(status=constants.OPEN_TASK_STATUS) & Q(assigned_by=request.tenant_me)
+        ) | Q(
             Q(opening=request.tenant_me)
         )
     ).distinct('id')
@@ -51,12 +51,13 @@ def task_open_master_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def task_closed_master_page(request):
     tasks = Task.objects.filter(
-        Q(status=constants.CLOSED_TASK_STATUS) &
         Q(
-            Q(assigned_by=request.tenant_me) |
-            Q(opening=request.tenant_me)
+            Q(status=constants.CLOSED_TASK_STATUS) & Q(assigned_by=request.tenant_me)
+        ) | Q(
+            Q(closures=request.tenant_me)
         )
     ).distinct('id')
+    print(tasks)
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
         'sub_page': 'complete',

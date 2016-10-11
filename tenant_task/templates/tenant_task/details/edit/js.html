@@ -24,6 +24,16 @@
     }
 
     $(document).ready(function () {
+        // Display hide or show Complete/Incomplete buttons depending on the state.
+        {% if task.status == constants.CLOSED_TASK_STATUS %}
+            $("#id_incomplete_btn").show();
+            $("#id_complete_btn").hide();
+        {% endif %}
+        {% if task.status == constants.OPEN_TASK_STATUS %}
+            $("#id_incomplete_btn").hide();
+            $("#id_complete_btn").show();
+        {% endif %}
+
         // Required code to initialize the WYSIWYG editor.
         $('#editor').wysiwyg();
         $('#editor').cleanHtml();
@@ -55,29 +65,68 @@
     }); // end READY
 
     function ajax_task(success_callback, failure_callback) {
+        // Get our variables.
+        var name = $('#id_name').val();
+        var description = $('#id_description').val();
+
+        // Defensive Code.
+        if (name <= 0) {
+            failure_callback("{% trans 'Please enter the task name.' %}");
+            return;
+        }
+        if (description <= 0) {
+            failure_callback("{% trans 'Please enter a description.' %}");
+            return;
+        }
+
+        // Extract the string.
+        var raw_text_date = $('#id_due').val() ;
+
+        // Convert the string to a javascript "Date" object.
+        var unprotected_date = new Date(raw_text_date);
+
+        //BUGFIX: It appears when we converted our date, we lost a day.
+        //        Therefore, add a single day to our converted date.
+        unprotected_date.setDate(unprotected_date.getDate() + 1);
+
+        // Format our "Date" object to a format django "DatetimeField"
+        // to support.
+        var django_due_date = date_to_django_datetime(unprotected_date);
+
+        if ( django_due_date.indexOf('NaN') !== -1 ) {
+            failure_callback("{% trans 'Please enter a due date.' %}");
+            return;
+        }
+
         get_tenant_task(
             {{ task.id }},
             function(task) {
-                // Extract the string.
-                var raw_text_date = $('#id_due').val() ;
+                // Update "name".
+                task['name'] = name;
 
-                // Convert the string to a javascript "Date" object.
-                var unprotected_date = new Date(raw_text_date);
+                // Update "description".
+                task['description'] = description;
 
-                //BUGFIX: It appears when we converted our date, we lost a day.
-                //        Therefore, add a single day to our converted date.
-                unprotected_date.setDate(unprotected_date.getDate() + 1);
+                // Update "due" date.
+                task['due'] = django_due_date;
 
-                // Format our "Date" object to a format django "DatetimeField"
-                // to support.
-                var django_date = date_to_django_datetime(unprotected_date);
+               // Update "opening" or "tags".
+                var assignees = $('#select2-1').val()
+                if (task['type_of'] == {{ constants.TASK_BY_CUSTOM_TYPE }}) {
+                    if (assignees) {
+                        task['opening'] = assignees;
+                    }
+                }
+                if (task['type_of'] == {{ constants.TASK_BY_TAG_TYPE }}) {
+                    if (assignees) {
+                        task['tags'] = assignees;
+                    }
+                }
 
-                task['due'] = django_date;
-
+                // Save.
                 set_tenant_tasks(
                     task,
                     function(json_result) {
-
                         tenant_task_log_event(
                             {{ task.id }},
                             'Updated task.',
@@ -129,7 +178,7 @@
         ); // end INCOMPLETE TASK
     }
 
-    function ajax_cancel() {
+    function ajax_back() {
         $('#id_cancel_btn').prop("disabled", true);
         window.location = "{% url 'tenant_task_master_open' %}";
     }

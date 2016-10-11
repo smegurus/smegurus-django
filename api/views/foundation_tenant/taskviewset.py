@@ -211,7 +211,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         try:
             task = self.get_object()  # Get Task and update it's status.
             task.opening.remove(request.tenant_me)
-            task.closure.add(request.tenant_me)
+            task.closures.add(request.tenant_me)
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
             return response.Response(
@@ -225,7 +225,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         try:
             task = self.get_object()  # Get Task and update it's status.
             task.opening.add(request.tenant_me)
-            task.closure.remove(request.tenant_me)
+            task.closures.remove(request.tenant_me)
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
             return response.Response(
