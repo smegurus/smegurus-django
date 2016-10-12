@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from tenant_schemas.test.cases import TenantTestCase
 from tenant_schemas.test.client import TenantClient
-from foundation_public.models.organization import PublicOrganization, PublicDomain
+from foundation_public.models.organization import PublicOrganization
 from smegurus import constants
 
 

@@ -11,6 +11,8 @@ from smegurus import constants
 from foundation_public.models.banned import BannedDomain
 from foundation_public.models.banned import BannedIP
 from foundation_public.models.banned import BannedWord
+from foundation_public.models.countryoption import CountryOption
+from foundation_public.models.provinceoption import ProvinceOption
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.abstract_thing import AbstractPublicThing
@@ -24,7 +26,6 @@ from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
 from foundation_public.models.abstract_person import AbstractPlacePerson
 from foundation_public.models.organization import PublicOrganization
-from foundation_public.models.organization import PublicDomain
 from foundation_public.models.visitor import PublicVisitor
 
 
@@ -35,17 +36,8 @@ TEST_USER_FIRST_NAME = "Ledo"
 TEST_USER_LAST_NAME = ""
 
 
-class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
+class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase):
     fixtures = []
-
-    def setup_tenant(self, tenant):
-        """Public Schema"""
-        tenant.schema_name = 'test'
-        tenant.name = "Galactic Alliance of Humankind"
-        tenant.has_perks=True
-        tenant.has_mentors=True
-        tenant.how_discovered = "Command HQ"
-        tenant.how_many_served = 1
 
     @classmethod
     def setUpTestData(cls):
@@ -58,20 +50,18 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
             Group(id=constants.CLIENT_MANAGER_GROUP_ID, name="Client Manager",),
             Group(id=constants.SYSTEM_ADMIN_GROUP_ID, name="System Admin",),
         ])
+        CountryOption.objects.create(id=1, name='Canada')
+        ProvinceOption.objects.create(id=1, name='Ontario', country_id=1)
 
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(FoundationPublicModelsWithPublicSchemaTestCases, self).setUp()
-        self.c = TenantClient(self.tenant)
 
     @transaction.atomic
     def tearDown(self):
-        pass
-        # users = User.objects.all()
-        # for user in users.all():
-        #     user.delete()
-        # super(FoundationPublicModelsWithPublicSchemaTestCases, self).tearDown()
+        users = User.objects.all()
+        for user in users.all():
+            user.delete()
 
     @transaction.atomic
     def test_banned_domain_to_string(self):
@@ -150,9 +140,15 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_postaladdress_to_string(self):
         obj = PublicPostalAddress.objects.create(
-            name='Chambers',
+            suite_number=102,
+            street_number=120,
+            street_name='Centre Street',
+            locality='London',
+            region_id=1,
+            country_id=1,
+            postal_code='N6J4X4'
         )
-        self.assertIn(str(obj), 'Chambers')
+        self.assertIn(str(obj), '102-120 Centre Street London, Ontario, Canada, N6J4X4')
 
     @transaction.atomic
     def test_postaladdress_delete_all(self):
@@ -170,9 +166,18 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase, TenantTestCas
         )
         self.assertIn(str(obj), 'Chambers')
 
-    @transaction.atomic
-    def test_organization_to_string(self):
-        self.assertIn(str(self.tenant), "Galactic Alliance of Humankind")
+    # @transaction.atomic
+    # def test_organization_to_string(self):
+    #     public_tenant = PublicOrganization(
+    #         domain_url='mikasoftware.smegurus.xyz',
+    #         schema_name='mikasoftware',
+    #         name='SMEGurus',
+    #     )
+    #     try:
+    #         public_tenant.save()
+    #     except Exception as e:
+    #         print(e)
+    #     self.assertIn(str(public_tenant), 'public')
 
     @transaction.atomic
     def test_public_visitor_to_string(self):

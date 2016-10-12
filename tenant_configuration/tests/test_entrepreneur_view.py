@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from tenant_schemas.test.cases import TenantTestCase
 from tenant_schemas.test.client import TenantClient
-from foundation_public.models.organization import PublicOrganization, PublicDomain
+from foundation_public.models.organization import PublicOrganization
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint

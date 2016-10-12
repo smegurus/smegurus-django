@@ -6,7 +6,7 @@ from django.utils import translation
 from tenant_schemas.test.cases import TenantTestCase
 from tenant_schemas.test.client import TenantClient
 from rest_framework.test import APITestCase
-from foundation_public.models.organization import PublicOrganization, PublicDomain
+from foundation_public.models.organization import PublicOrganization
 from foundation_public.templatetags.foundation_public_tags import tenant_url
 from foundation_public.utils import get_unique_username_from_email
 from foundation_public.utils import get_pretty_formatted_date

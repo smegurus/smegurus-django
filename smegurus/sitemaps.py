@@ -1,7 +1,6 @@
 from django.contrib import sitemaps
 from django.core.urlresolvers import reverse
 # from foundation_public.models.organization import PublicOrganization
-# from foundation_public.models.organization import PublicDomain
 
 
 class StaticViewSitemap(sitemaps.Sitemap):

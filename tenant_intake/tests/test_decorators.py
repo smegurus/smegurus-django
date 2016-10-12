@@ -11,7 +11,7 @@ from smegurus import constants
 from foundation_tenant.models.countryoption import CountryOption
 from foundation_tenant.models.provinceoption import ProvinceOption
 from foundation_tenant.models.cityoption import CityOption
-from foundation_public.models.organization import PublicOrganization, PublicDomain
+from foundation_public.models.organization import PublicOrganization
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
 from foundation_tenant.models.contactpoint import ContactPoint
