@@ -103,11 +103,11 @@ class RegisterViewSet(SendEmailViewMixin, generics.ListCreateAPIView):
         # User was regisered from the Tenant or on the Public schema.
         group = None
         if self.request.tenant.schema_name == 'public' or self.request.tenant.schema_name == 'test':
-            group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-            user.groups.add(group)
+            user.groups.add(Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID))
+            user.groups.add(Group.objects.get(id=constants.ORGANIZATION_MANAGER_GROUP))
+            user.groups.add(Group.objects.get(id=constants.ADVISOR_GROUP))
             self.send_org_admin_activation(user)  # Send our email.
         else:
-            group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
-            user.groups.add(group)
+            user.groups.add(Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID))
             self.request.tenant.users.add(user)
             self.send_entrepreneur_activation(user)  # Send our email.
