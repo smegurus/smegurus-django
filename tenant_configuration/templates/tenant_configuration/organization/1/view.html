@@ -31,11 +31,11 @@
                         <div class="form-group has-feedback">
                             <label for="signupInputText1" class="text-muted">{% trans 'Country' %}</label>
                             <select id="id_country" class="form-control">
-                                {% if not address.country %}
+                                {% if not request.tenant.address.country %}
                                     <option value="">{% trans 'Please select your country' %}</option>
                                 {% endif %}
                                 {% for country in countries.all %}
-                                    <option value="{{ country.id }}" {% if address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+                                    <option value="{{ country.id }}" {% if request.tenant.address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
                                 {% endfor %}
                             </select>
                             <span class="fa fa-map-marker form-control-feedback text-muted"></span>
@@ -44,9 +44,9 @@
                         <!-- PROVINCE -->
                         <div class="form-group has-feedback">
                             <label for="signupInputText1" class="text-muted">{% trans 'Province/State' %}</label>
-                            <select id="id_region" class="form-control" {% if not address.region %}disabled{% endif %}>
+                            <select id="id_region" class="form-control" {% if not request.tenant.address.region %}disabled{% endif %}>
                                 {% for province in provinces.all %}
-                                    <option value="{{ province.id }}" {% if province == address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
+                                    <option value="{{ province.id }}" {% if province == request.tenant.address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
                                 {% empty %}
                                     <option value="" selected="selected">{% trans 'Please select a province/state' %}</option>
                                 {% endfor %}
@@ -57,7 +57,7 @@
                         <!-- CITY -->
                         <div class="form-group" id="id_locality_div">
                             <label for="id_locality">{% trans 'City' %}</label>
-                            <input class="form-control" id="id_locality" maxlength="127" name="locality" placeholder="{% trans 'Enter the city.' %}" type="text" value="{{ address.locality }}">
+                            <input class="form-control" id="id_locality" maxlength="127" name="locality" placeholder="{% trans 'Enter the city.' %}" type="text" value="{{ request.tenant.address.locality }}">
                             <br>
 
                         </div>

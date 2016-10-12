@@ -30,21 +30,16 @@ def config_org_step_one_page(request):
     # the tenant metadata is stored.
     from django.db import connection
     connection.set_schema_to_public()
-    address, created = PublicPostalAddress.objects.get_or_create(
-        name=request.tenant.name+" Address",
-        owner=request.user,
-    )
-
+        
     # Fetch all the provinces for this Address.
-    provinces = [] if not address.country else ProvinceOption.objects.filter(country=address.country)
+    provinces = [] if not request.tenant.address.country else ProvinceOption.objects.filter(country=request.tenant.address.country)
 
     # Connection will turn back to the Tenant from the Public b/c of the
     # "django-tenants" middleware we are using.
     return render(request, 'tenant_configuration/organization/1/view.html',{
         'countries': CountryOption.objects.all(),
         'provinces': provinces,
-        'address': address,
-        'form': PublicPostalAddressForm(instance=address),
+        'form': PublicPostalAddressForm(instance=request.tenant.address),
         'accepted_fields': [
             'id_postal_code', 'id_street_number', 'id_suffix', 'id_street_name',
             'id_suite_number', 'id_address_line_2', 'id_address_line_3',

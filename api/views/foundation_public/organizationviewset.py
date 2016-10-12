@@ -8,6 +8,8 @@ from api.serializers.foundation_public import PublicOrganizationSerializer
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrReadOnly
 from foundation_public.models.organization import PublicOrganization
+from foundation_public.models.contactpoint import PublicContactPoint
+from foundation_public.models.postaladdress import PublicPostalAddress
 from smegurus.settings import env_var
 
 
@@ -31,9 +33,16 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
         object associated with the newely created Organization. This Domain
         object is needed for "django-tenants" library to have.
         """
+        contact_point = PublicContactPoint.objects.create(owner=self.request.user)
+        address = PublicPostalAddress.objects.create(owner=self.request.user)
+
         # Pre-save action: Include the owner attribute directly, rather
         # than from request data.
-        org = serializer.save(owner=self.request.user)
+        org = serializer.save(
+            owner=self.request.user,
+            contact_point=contact_point,
+            address=address,
+        )
 
         # Perform a custom post-save action.
         if org:

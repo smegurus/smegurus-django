@@ -86,7 +86,7 @@
 
         disable_btn(); // Disable the button so no multiple presses happen.
         get_public_postaladdress(
-            {{ address.id }},
+            {{ request.tenant.address.id }},
             function(postal_address) {
                 postal_address['country'] = parseInt(country_id);
                 postal_address['region'] = parseInt(region_id);
@@ -106,7 +106,7 @@
                     postal_address,
                     function(json_result) {
                         rebuild_geo_data_public_postaladdress(
-                            {{ address.id }},
+                            {{ request.tenant.address.id }},
                             function(json_result) {
                                 window.location = "{% url 'foundation_auth_config_org_step_two' %}";
                             },

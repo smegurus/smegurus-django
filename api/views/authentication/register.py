@@ -104,8 +104,8 @@ class RegisterViewSet(SendEmailViewMixin, generics.ListCreateAPIView):
         group = None
         if self.request.tenant.schema_name == 'public' or self.request.tenant.schema_name == 'test':
             user.groups.add(Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID))
-            user.groups.add(Group.objects.get(id=constants.ORGANIZATION_MANAGER_GROUP))
-            user.groups.add(Group.objects.get(id=constants.ADVISOR_GROUP))
+            user.groups.add(Group.objects.get(id=constants.ORGANIZATION_MANAGER_GROUP_ID))
+            user.groups.add(Group.objects.get(id=constants.ADVISOR_GROUP_ID))
             self.send_org_admin_activation(user)  # Send our email.
         else:
             user.groups.add(Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID))

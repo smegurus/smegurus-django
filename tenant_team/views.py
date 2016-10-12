@@ -62,6 +62,28 @@ def master_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def create_page(request):
     """Function will create a new emplee and redirect to the page of updating data."""
+    country_id = 0
+    # Connection needs first to be at the public schema, as this is where
+    # the tenant metadata is stored.
+    from django.db import connection
+    connection.set_schema_to_public() # Switch to Public.
+
+    country_id = int(request.tenant.address.country.id)
+    region_id = int(request.tenant.address.region.id)
+    locality = str(request.tenant.address.locality)
+    postal_code = str(request.tenant.address.postal_code)
+    street_number = str(request.tenant.address.street_number)
+    suffix = str(request.tenant.address.suffix)
+    street_name = str(request.tenant.address.street_name)
+    suite_number = str(request.tenant.address.suite_number)
+    address_line_2 = str(request.tenant.address.address_line_2)
+    address_line_3 = str(request.tenant.address.address_line_3)
+    telephone = str(request.tenant.contact_point.telephone)
+
+    # Connection will set it back to our tenant.
+    connection.set_schema(request.tenant.schema_name, True) # Switch back to Tenant.
+
+    # Begin...
     random_password = random_text(8)
     user = User.objects.create_user(
         username=random_text(30),
@@ -71,10 +93,21 @@ def create_page(request):
     address = PostalAddress.objects.create(
         owner=user,
         name='User #' + str(user.id) + ' Address',
+        country_id=country_id,
+        region_id=region_id,
+        locality=locality,
+        postal_code=postal_code,
+        street_number=street_number,
+        suffix=suffix,
+        street_name=street_name,
+        suite_number=suite_number,
+        address_line_2=address_line_2,
+        address_line_3=address_line_3,
     )
     contact_point = ContactPoint.objects.create(
         owner=user,
         name='User #' + str(user.id) + ' Contact Point',
+        telephone=telephone,
     )
     me = TenantMe.objects.create(
         owner=user,
