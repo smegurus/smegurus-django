@@ -185,7 +185,9 @@
 
                 <!-- SUBMIT -->
                 <div class="pull-left">
-                    <button id="id_del_btn" onclick="ajax_cancel();" type="button" class="btn btn-danger btn-lg">{% trans 'Delete' %}</button>
+                    {% if me != request.tenant_me %}
+                        <button id="id_del_btn" onclick="ajax_cancel();" type="button" class="btn btn-danger btn-lg">{% trans 'Delete' %}</button>
+                    {% endif %}
                 </div>
                 <div class="pull-right">
                     <button id="id_next_btn" onclick="ajax_protected_next();" type="button" class="btn btn-primary btn-lg">{% trans 'Update' %}</button>

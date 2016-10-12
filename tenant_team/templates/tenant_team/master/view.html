@@ -75,7 +75,9 @@
                                         </td>
                                         <td>
                                             <!-- BUTTON -->
-                                            <button id="id_delete_{{ team_member.id }}_btn" onclick="ajax_delete_employee({{ team_member.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
+                                            {% if team_member != request.tenant_me %}
+                                                <button id="id_delete_{{ team_member.id }}_btn" onclick="ajax_delete_employee({{ team_member.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
+                                            {% endif %}
                                             <button id="id_edit_{{ team_member.id }}_btn" onclick="ajax_edit_employee({{ team_member.id }});" type="button" class="btn btn-labeled btn-warning">{% trans 'Edit' %}</button>
                                             <!-- end BUTTON -->
                                         </td>
