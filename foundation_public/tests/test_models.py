@@ -5,8 +5,8 @@ from django.contrib.auth.models import User, Group
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from rest_framework.test import APITestCase
-from django_tenants.test.cases import TenantTestCase
-from django_tenants.test.client import TenantClient
+from tenant_schemas.test.cases import TenantTestCase
+from tenant_schemas.test.client import TenantClient
 from smegurus import constants
 from foundation_public.models.banned import BannedDomain
 from foundation_public.models.banned import BannedIP

@@ -11,8 +11,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
-from django_tenants.test.cases import TenantTestCase
-from django_tenants.test.client import TenantClient
+from tenant_schemas.test.cases import TenantTestCase
+from tenant_schemas.test.client import TenantClient
 from foundation_public.models.countryoption import CountryOption
 from foundation_public.models.provinceoption import ProvinceOption
 from foundation_public.models.cityoption import CityOption

@@ -10,8 +10,8 @@ from rest_framework import status
 from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
-from django_tenants.test.cases import TenantTestCase
-from django_tenants.test.client import TenantClient
+from tenant_schemas.test.cases import TenantTestCase
+from tenant_schemas.test.client import TenantClient
 from django.core.management import call_command
 from foundation_tenant.models.me import TenantMe
 from smegurus import constants

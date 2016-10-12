@@ -4,8 +4,8 @@ from django.core.urlresolvers import resolve, reverse
 from django.utils import translation
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
-from django_tenants.test.cases import TenantTestCase
-from django_tenants.test.client import TenantClient
+from tenant_schemas.test.cases import TenantTestCase
+from tenant_schemas.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization, PublicDomain
 from smegurus import constants
 
