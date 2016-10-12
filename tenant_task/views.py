@@ -57,7 +57,6 @@ def task_closed_master_page(request):
             Q(closures=request.tenant_me)
         )
     ).distinct('id')
-    print(tasks)
     return render(request, 'tenant_task/master/view.html',{
         'page': 'tasks',
         'sub_page': 'complete',
