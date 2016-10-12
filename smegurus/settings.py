@@ -123,24 +123,23 @@ TENANT_APPS = (
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
-    # 'smegurus.middleware.SMEGurusIPAddressMiddleware',              # Custom
-    # 'foundation_public.middleware.PublicBanEnforcingMiddleware',    # Custom
-    # 'foundation_public.middleware.PublicVisitorMiddleware',         # Custom
-    # 'foundation_public.middleware.PublicTrapURLMiddleware',         # Custom
-    'tenant_schemas.middleware.TenantMiddleware',                   # Third Party
+    'smegurus.middleware.AttachIPAddressMiddleware',               # Custom
+    'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
+    'foundation_public.middleware.TrapURLBanningMiddleware',       # Custom
+    'tenant_schemas.middleware.TenantMiddleware',                  # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'corsheaders.middleware.CorsMiddleware',                        # Third Party
+    'corsheaders.middleware.CorsMiddleware',                       # Third Party
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    # 'smegurus.middleware.SMEGurusAuthTokenMiddleware',              # Custom
-    # 'foundation_tenant.middleware.TenantTimezoneMiddleware',        # Custom
-    # 'foundation_tenant.middleware.TenantMeMiddleware',              # Custom
-    # 'foundation_tenant.middleware.TenantVisitorMiddleware',         # Custom
+    'smegurus.middleware.AttachTokenMiddleware',                   # Custom
+    'foundation_tenant.middleware.TenantTimezoneMiddleware',       # Custom
+    'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
+    'foundation_tenant.middleware.TenantVisitorMiddleware',        # Custom
 ]
 
 ROOT_URLCONF = 'smegurus.urls'
@@ -354,3 +353,9 @@ THUMBNAIL_FORCE_OVERWRITE = True
 # https://github.com/ottoyiu/django-cors-headers
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+# SMEGurus App
+#
+
+SMEGURUS_APP_DOMAIN = env_var('SMEGURUS_APP_DOMAIN')

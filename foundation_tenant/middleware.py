@@ -8,24 +8,32 @@ from foundation_tenant.models.visitor import TenantVisitor
 
 
 class TenantTimezoneMiddleware(object):
-    def process_request(self, request):
-        """Sets the timezone per Organization."""
+    """Sets the timezone per Organization."""
+    
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
         if not request.tenant.schema_name in ['public', 'test']:
             # Source:
             # https://docs.djangoproject.com/en/dev/topics/i18n/timezones/#selecting-the-current-time-zone
             tzname = request.tenant.time_zone
             timezone.activate(pytz.timezone(tzname))
-        return None  # Finish our middleware handler.
+        return self.get_response(request)
 
 
 class TenantMeMiddleware(object):
-    def process_request(self, request):
-        """
+    """
         The purpose of this middleware is to lookup the 'Me' object for
         the authenticated user and attach it to the request. If the user
         is authenticated and does not have a 'Me' object then it will be
         created in this middleware.
-        """
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
         if not request.tenant.schema_name in ['public', 'test']:
             if request.user.is_authenticated():
                 # STEP 1: Get or create a TenantMe.
@@ -50,12 +58,16 @@ class TenantMeMiddleware(object):
                         owner=request.user,
                     )
                     tenant_me.save()
-        return None
+        return self.get_response(request)
 
 
 class TenantVisitorMiddleware(object):
-    def process_request(self, request):
-        """The purpose of this middleware is to save what the User sees."""
+    """The purpose of this middleware is to save what the User sees."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
         if not request.tenant.schema_name in ['public', 'test']:
             if request.user.is_authenticated():
                 TenantVisitor.objects.create(
@@ -63,4 +75,4 @@ class TenantVisitorMiddleware(object):
                     path=request.path,
                     ip_address=request.ip_address
                 )
-        return {}
+        return self.get_response(request)

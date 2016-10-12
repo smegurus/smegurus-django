@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import ugettext_lazy as _
 from django.core.management import call_command
 from foundation_public.models.organization import PublicOrganization
-from smegurus.settings import env_var
+from smegurus import settings
 
 
 class Command(BaseCommand):
@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         #create your public tenant
         public_tenant = PublicOrganization(
-            domain_url='smegurus.xyz',
+            domain_url=settings.SMEGURUS_APP_DOMAIN,
             schema_name='public',
             name='SMEGurus',
             paid_until='2016-12-05',
@@ -33,7 +33,7 @@ class Command(BaseCommand):
 
         # First tenant.
         tenant = PublicOrganization(
-            domain_url='smegurus.xyz',
+            domain_url='demo.'+str(settings.SMEGURUS_APP_DOMAIN),
             schema_name='demo',
             name='SMEGurus Demo',
             paid_until='2016-12-05',

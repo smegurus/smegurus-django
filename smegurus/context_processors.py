@@ -1,4 +1,3 @@
-from smegurus.settings import env_var
 from smegurus import constants
 
 

@@ -116,8 +116,8 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
     class Meta:
         model = PublicOrganization
         fields = ('id', 'created', 'last_modified', 'owner', 'url', 'on_trial',
-                  'paid_until', 'name', 'schema_name', 'address', 'brands',
-                  'contact_point', 'dissolution_date', 'duns', 'email',
+                  'paid_until', 'name', 'domain_url', 'schema_name', 'address',
+                  'brands', 'contact_point', 'dissolution_date', 'duns', 'email',
                   'fax_number', 'founding_date', 'founding_location',
                   'global_location_number', 'isic_v4', 'legal_name', 'logo',
                   'naics', 'tax_id', 'telephone', 'vat_id', 'how_many_served',

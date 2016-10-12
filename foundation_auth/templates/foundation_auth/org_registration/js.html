@@ -41,8 +41,10 @@
      */
     function api_organization(success_callback, error_callback) {
         // Generate the Organization object from User input.
+        var schema_name = $('#id_schema_name').val().toLowerCase();
         var data = {
-            'schema_name': $('#id_schema_name').val().toLowerCase(),
+            'domain_url': schema_name+'.'+'{{ constants.SMEGURUS_APP_DOMAIN }}',
+            'schema_name': schema_name,
             'name': $('#id_name').val(),
             'alternate_name': $('#id_name').val(),
             'legal_name': $('#id_name').val(),

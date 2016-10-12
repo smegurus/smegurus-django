@@ -1,4 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
+from smegurus.settings import env_var
+
+
+# The domain of our application.
+SMEGURUS_APP_DOMAIN = env_var('SMEGURUS_APP_DOMAIN')
 
 
 # Constants assign identification to groups.
