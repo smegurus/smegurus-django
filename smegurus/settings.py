@@ -66,7 +66,7 @@ SECURE_SSL_REDIRECT = env_var("SECURE_SSL_REDIRECT")
 
 SHARED_APPS = (
   # everything below here is mandatory
-  'tenant_schemas',  # mandatory
+  'django_tenants',  # mandatory
   'django.contrib.contenttypes', # mandatory
   'foundation_public', # you must list the app where your tenant model resides in
 
@@ -126,7 +126,7 @@ MIDDLEWARE = [
     'smegurus.middleware.AttachIPAddressMiddleware',               # Custom
     'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
     'foundation_public.middleware.TrapURLBanningMiddleware',       # Custom
-    'tenant_schemas.middleware.TenantMiddleware',                  # Third Party
+    'django_tenants.middleware.TenantMiddleware',                  # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -153,6 +153,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'smegurus.context_processors.base_constants',           # Custom
@@ -169,7 +170,7 @@ WSGI_APPLICATION = 'smegurus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'tenant_schemas.postgresql_backend',
+        'ENGINE': 'django_tenants.postgresql_backend',
         "NAME": env_var("DB_NAME"),
         "USER": env_var("DB_USER"),
         "PASSWORD": env_var("DB_PASSWORD"),
@@ -179,11 +180,12 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = (
-    'tenant_schemas.routers.TenantSyncRouter',
+    'django_tenants.routers.TenantSyncRouter',
 )
 
 TENANT_MODEL = "foundation_public.PublicOrganization" # app.Model
 
+TENANT_DOMAIN_MODEL = "foundation_public.PublicDomain"  # app.Model
 TENANT_LIMIT_SET_CALLS = True
 
 

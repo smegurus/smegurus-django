@@ -3,8 +3,8 @@ from datetime import datetime, timedelta
 from django.db import transaction
 from django.contrib.auth.models import User
 from django.utils import translation
-from tenant_schemas.test.cases import TenantTestCase
-from tenant_schemas.test.client import TenantClient
+from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.templatetags import foundation_public_tags
 from smegurus import constants

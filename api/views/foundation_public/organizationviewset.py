@@ -46,6 +46,15 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
 
         # Perform a custom post-save action.
         if org:
+            # Our tenant requires a domain so create it here.
+            from django.contrib.sites.models import Site
+            from foundation_public.models.organization import PublicDomain
+            domain = PublicDomain()
+            domain.domain = org.schema_name + '.' + Site.objects.get_current().domain
+            domain.tenant = org
+            domain.is_primary = False
+            domain.save()
+            
             # Override custom default values.
             org.has_mentors = True
             org.has_perks = True

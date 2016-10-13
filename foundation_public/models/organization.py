@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from tenant_schemas.models import TenantMixin
+from django_tenants.models import TenantMixin, DomainMixin
 from smegurus import constants
 from foundation_public.models.abstract_thing import AbstractPublicThing
 from foundation_public.models.imageupload import PublicImageUpload
@@ -350,3 +350,13 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
             return http_protocol + self.schema_name + '.%s' % Site.objects.get_current().domain + reverse(view_name)
         else:
             return http_protocol + '%s' % Site.objects.get_current().domain + reverse(view_name)
+
+
+class PublicDomain(DomainMixin):
+    class Meta:
+        app_label = 'foundation_public'
+        db_table = 'biz_domains'
+        verbose_name = 'Domain'
+        verbose_name_plural = 'Domains'
+
+    pass

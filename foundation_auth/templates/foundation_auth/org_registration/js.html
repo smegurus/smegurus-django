@@ -43,7 +43,6 @@
         // Generate the Organization object from User input.
         var schema_name = $('#id_schema_name').val().toLowerCase();
         var data = {
-            'domain_url': schema_name+'.'+'{{ constants.SMEGURUS_APP_DOMAIN }}',
             'schema_name': schema_name,
             'name': $('#id_name').val(),
             'alternate_name': $('#id_name').val(),

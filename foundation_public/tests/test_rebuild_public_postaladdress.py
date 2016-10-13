@@ -2,8 +2,8 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.utils import translation
 from django.core.management import call_command
-from tenant_schemas.test.cases import TenantTestCase
-from tenant_schemas.test.client import TenantClient
+from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.client import TenantClient
 from foundation_public.models.countryoption import CountryOption
 from foundation_public.models.provinceoption import ProvinceOption
 from foundation_public.models.postaladdress import PublicPostalAddress
