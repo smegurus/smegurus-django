@@ -127,6 +127,7 @@ MIDDLEWARE = [
     'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
     'foundation_public.middleware.TrapURLBanningMiddleware',       # Custom
     'django_tenants.middleware.TenantMiddleware',                  # Third Party
+    'htmlmin.middleware.HtmlMinifyMiddleware',                     # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -140,6 +141,7 @@ MIDDLEWARE = [
     'foundation_tenant.middleware.TenantTimezoneMiddleware',       # Custom
     'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
     'foundation_tenant.middleware.TenantVisitorMiddleware',        # Custom
+    'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
 ]
 
 ROOT_URLCONF = 'smegurus.urls'
