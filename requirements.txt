@@ -10,7 +10,7 @@ django-filter==0.15.2
 django-htmlmin==0.9.1
 django-mailgun==0.9.1
 django-storages==1.5.1
-django-tenants==1.1.8
+django-tenants==1.1.9
 djangorestframework==3.4.7
 googlemaps==2.4.4
 gunicorn==19.6.0
