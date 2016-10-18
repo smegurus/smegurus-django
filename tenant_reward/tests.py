@@ -5,7 +5,7 @@ from django.core.urlresolvers import resolve, reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
-from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.cases import FastTenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.me import TenantMe
@@ -20,8 +20,12 @@ TEST_USER_FIRST_NAME = "Ledo"
 TEST_USER_LAST_NAME = ""
 
 
-class TenantRewardTestCases(APITestCase, TenantTestCase):
+class TenantRewardTestCases(APITestCase, FastTenantTestCase):
     fixtures = []
+
+    @staticmethod
+    def get_test_schema_name():
+        return 'galacticalliance'
 
     def setup_tenant(self, tenant):
         """Tenant Schema"""
@@ -66,7 +70,8 @@ class TenantRewardTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(TenantRewardTestCases, self).setUp()
+        # super(TenantRewardTestCases, self).setUp()
+
         # Initialize our test data.
         self.user = User.objects.get(username=TEST_USER_USERNAME)
         token = Token.objects.get(user=self.user)

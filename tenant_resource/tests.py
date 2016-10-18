@@ -5,7 +5,7 @@ from django.core.urlresolvers import resolve, reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
-from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.cases import FastTenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.postaladdress import PostalAddress
@@ -21,8 +21,12 @@ TEST_USER_FIRST_NAME = "Ledo"
 TEST_USER_LAST_NAME = ""
 
 
-class TenantResourceTestCases(APITestCase, TenantTestCase):
+class TenantResourceTestCases(APITestCase, FastTenantTestCase):
     fixtures = []
+
+    @staticmethod
+    def get_test_schema_name():
+        return 'galacticalliance'
 
     def setup_tenant(self, tenant):
         """Tenant Schema"""
@@ -67,7 +71,7 @@ class TenantResourceTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(TenantResourceTestCases, self).setUp()
+
         # Initialize our test data.
         self.user = User.objects.get(username=TEST_USER_USERNAME)
         token = Token.objects.get(user=self.user)
@@ -84,11 +88,6 @@ class TenantResourceTestCases(APITestCase, TenantTestCase):
         self.tenant.users.add(self.user)
         self.tenant.save()
 
-        # Setup User.
-        TenantMe.objects.create(
-            owner=self.user,
-        )
-
     @transaction.atomic
     def tearDown(self):
         PostalAddress.objects.delete_all()
@@ -98,7 +97,6 @@ class TenantResourceTestCases(APITestCase, TenantTestCase):
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(TenantResourceTestCases, self).tearDown()
 
     @transaction.atomic
     def test_resource_master_page(self):

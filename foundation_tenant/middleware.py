@@ -9,7 +9,7 @@ from foundation_tenant.models.visitor import TenantVisitor
 
 class TenantTimezoneMiddleware(object):
     """Sets the timezone per Organization."""
-    
+
     def __init__(self, get_response):
         self.get_response = get_response
 

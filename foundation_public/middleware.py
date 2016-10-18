@@ -14,9 +14,8 @@ class TrapURLBanningMiddleware(object):
 
     def __call__(self, request):
         if request.path in constants.SUSPICIOUS_PATHS:
-            ip_addr = self.get_client_ip(request)
             BannedIP.objects.create(
-                address=ip_addr,
+                address=request.ip_address,
                 reason=request.path
             )
             return HttpResponseForbidden('You are banned.')
