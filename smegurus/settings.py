@@ -50,7 +50,7 @@ DEBUG = env_var("IS_DEBUG")
 # Note: https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-USE_X_FORWARDED_HOST
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = [env_var("ALLOWED_HOSTS")]
+ALLOWED_HOSTS = ['*',]
 
 # The person to contact on error when DEBUG=False
 ADMINS = [(env_var("ADMIN_NAME"), env_var("ADMIN_EMAIL")),]
