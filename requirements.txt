@@ -8,6 +8,7 @@ django-compressor==2.1
 django-cors-headers==1.2.2
 django-filter==0.15.2
 django-html==0.1.0
+django-htmlmin==0.10.0
 django-mailgun==0.9.1
 django-storages==1.5.1
 django-tenants==1.1.9
