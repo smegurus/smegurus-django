@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress thumbnail %}
 {% block content %}
 {% compress js inline %}
     {% include 'tenant_customer/details/js.html' %}
@@ -11,11 +11,11 @@
             <div class="panel panel-default">
                 <div class="panel-body text-center">
                     <div class="pv-lg">
-                        {% if me.image != None and me.image != '' %}
-                            <img src="{{ me.image.imagefile.url }}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle img-thumbnail thumb96">
-                        {% else %}
-                            <img src="{% static 'app/img/dummy.png' %}" alt="Avatar" width="60" height="60" class="center-block img-responsive img-circle img-thumbnail thumb96">
-                        {% endif %}
+                      {% thumbnail me.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                          <img src="{{ im.url }}" alt="{% trans 'Contact' %}" width="{{ im.width }}" height="{{ im.height }}" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                      {% empty %}
+                          <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ me.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="center-block img-responsive img-circle img-thumbnail thumb96">
+                      {% endthumbnail %}
                     </div>
                     <h3 class="m0 text-bold">{{ me.name }}</h3>
                     <div class="mv-lg">
@@ -115,7 +115,7 @@
                                         <textarea id="id_description" class="form-control" name="textarea" rows="6">{{ me.description }}</textarea>
                                     </div>
                                 </div>
-    
+
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button id="id_update_btn"
