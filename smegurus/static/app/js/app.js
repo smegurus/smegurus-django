@@ -44,26 +44,26 @@
 })(window, document, window.jQuery);
 
 // Start Bootstrap JS
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
   $(function(){
 
     // POPOVER
-    // ----------------------------------- 
+    // -----------------------------------
 
     $('[data-toggle="popover"]').popover();
 
     // TOOLTIP
-    // ----------------------------------- 
+    // -----------------------------------
 
     $('[data-toggle="tooltip"]').tooltip({
       container: 'body'
     });
 
     // DROPDOWN INPUTS
-    // ----------------------------------- 
+    // -----------------------------------
     $('.dropdown input').on('click focus', function(event){
       event.stopPropagation();
     });
@@ -72,948 +72,6 @@
 
 })(window, document, window.jQuery);
 
-// Custom jQuery
-// ----------------------------------- 
-
-
-(function(window, document, $, undefined){
-
-  if(!$.fn.fullCalendar) return;
-
-  // When dom ready, init calendar and events
-  $(function() {
-
-      // The element that will display the calendar
-      var calendar = $('#calendar');
-
-      var demoEvents = createDemoEvents();
-
-      initExternalEvents(calendar);
-
-      initCalendar(calendar, demoEvents);
-
-  });
-
-
-  // global shared var to know what we are dragging
-  var draggingEvent = null;
-
-  /**
-   * ExternalEvent object
-   * @param jQuery Object elements Set of element as jQuery objects
-   */
-  var ExternalEvent = function (elements) {
-      
-      if (!elements) return;
-      
-      elements.each(function() {
-          var $this = $(this);
-          // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-          // it doesn't need to have a start or end
-          var calendarEventObject = {
-              title: $.trim($this.text()) // use the element's text as the event title
-          };
-
-          // store the Event Object in the DOM element so we can get to it later
-          $this.data('calendarEventObject', calendarEventObject);
-
-          // make the event draggable using jQuery UI
-          $this.draggable({
-              zIndex: 1070,
-              revert: true, // will cause the event to go back to its
-              revertDuration: 0  //  original position after the drag
-          });
-
-      });
-  };
-
-  /**
-   * Invoke full calendar plugin and attach behavior
-   * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
-   * @param  EventObject [events] An object with the event list to load when the calendar displays
-   */
-  function initCalendar(calElement, events) {
-
-      // check to remove elements from the list
-      var removeAfterDrop = $('#remove-after-drop');
-
-      calElement.fullCalendar({
-          // isRTL: true,
-          header: {
-              left:   'prev,next today',
-              center: 'title',
-              right:  'month,agendaWeek,agendaDay'
-          },
-          buttonIcons: { // note the space at the beginning
-              prev:    ' fa fa-caret-left',
-              next:    ' fa fa-caret-right'
-          },
-          buttonText: {
-              today: 'today',
-              month: 'month',
-              week:  'week',
-              day:   'day'
-          },
-          editable: true,
-          droppable: true, // this allows things to be dropped onto the calendar 
-          drop: function(date, allDay) { // this function is called when something is dropped
-              
-              var $this = $(this),
-                  // retrieve the dropped element's stored Event Object
-                  originalEventObject = $this.data('calendarEventObject');
-
-              // if something went wrong, abort
-              if(!originalEventObject) return;
-
-              // clone the object to avoid multiple events with reference to the same object
-              var clonedEventObject = $.extend({}, originalEventObject);
-
-              // assign the reported date
-              clonedEventObject.start = date;
-              clonedEventObject.allDay = allDay;
-              clonedEventObject.backgroundColor = $this.css('background-color');
-              clonedEventObject.borderColor = $this.css('border-color');
-
-              // render the event on the calendar
-              // the last `true` argument determines if the event "sticks" 
-              // (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-              calElement.fullCalendar('renderEvent', clonedEventObject, true);
-              
-              // if necessary remove the element from the list
-              if(removeAfterDrop.is(':checked')) {
-                $this.remove();
-              }
-          },
-          eventDragStart: function (event, js, ui) {
-            draggingEvent = event;
-          },
-          // This array is the events sources
-          events: events
-      });
-  }
-
-  /**
-   * Inits the external events panel
-   * @param  jQuery [calElement] The calendar dom element wrapped into jQuery
-   */
-  function initExternalEvents(calElement){
-    // Panel with the external events list
-    var externalEvents = $('.external-events');
-
-    // init the external events in the panel
-    new ExternalEvent(externalEvents.children('div'));
-
-    // External event color is danger-red by default
-    var currColor = '#f6504d';
-    // Color selector button
-    var eventAddBtn = $('.external-event-add-btn');
-    // New external event name input
-    var eventNameInput = $('.external-event-name');
-    // Color switchers
-    var eventColorSelector = $('.external-event-color-selector .circle');
-
-    // Trash events Droparea 
-    $('.external-events-trash').droppable({
-      accept:       '.fc-event',
-      activeClass:  'active',
-      hoverClass:   'hovered',
-      tolerance:    'touch',
-      drop: function(event, ui) {
-        
-        // You can use this function to send an ajax request
-        // to remove the event from the repository
-        
-        if(draggingEvent) {
-          var eid = draggingEvent.id || draggingEvent._id;
-          // Remove the event
-          calElement.fullCalendar('removeEvents', eid);
-          // Remove the dom element
-          ui.draggable.remove();
-          // clear
-          draggingEvent = null;
-        }
-      }
-    });
-
-    eventColorSelector.click(function(e) {
-        e.preventDefault();
-        var $this = $(this);
-
-        // Save color
-        currColor = $this.css('background-color');
-        // De-select all and select the current one
-        eventColorSelector.removeClass('selected');
-        $this.addClass('selected');
-    });
-
-    eventAddBtn.click(function(e) {
-        e.preventDefault();
-        
-        // Get event name from input
-        var val = eventNameInput.val();
-        // Dont allow empty values
-        if ($.trim(val) === '') return;
-        
-        // Create new event element
-        var newEvent = $('<div/>').css({
-                            'background-color': currColor,
-                            'border-color':     currColor,
-                            'color':            '#fff'
-                        })
-                        .html(val);
-
-        // Prepends to the external events list
-        externalEvents.prepend(newEvent);
-        // Initialize the new event element
-        new ExternalEvent(newEvent);
-        // Clear input
-        eventNameInput.val('');
-    });
-  }
-
-  /**
-   * Creates an array of events to display in the first load of the calendar
-   * Wrap into this function a request to a source to get via ajax the stored events
-   * @return Array The array with the events
-   */
-  function createDemoEvents() {
-    // Date for the calendar events (dummy data)
-    var date = new Date();
-    var d = date.getDate(),
-        m = date.getMonth(),
-        y = date.getFullYear();
-
-    return  [
-              {
-                  title: 'All Day Event',
-                  start: new Date(y, m, 1),
-                  backgroundColor: '#f56954', //red 
-                  borderColor: '#f56954' //red
-              },
-              {
-                  title: 'Long Event',
-                  start: new Date(y, m, d - 5),
-                  end: new Date(y, m, d - 2),
-                  backgroundColor: '#f39c12', //yellow
-                  borderColor: '#f39c12' //yellow
-              },
-              {
-                  title: 'Meeting',
-                  start: new Date(y, m, d, 10, 30),
-                  allDay: false,
-                  backgroundColor: '#0073b7', //Blue
-                  borderColor: '#0073b7' //Blue
-              },
-              {
-                  title: 'Lunch',
-                  start: new Date(y, m, d, 12, 0),
-                  end: new Date(y, m, d, 14, 0),
-                  allDay: false,
-                  backgroundColor: '#00c0ef', //Info (aqua)
-                  borderColor: '#00c0ef' //Info (aqua)
-              },
-              {
-                  title: 'Birthday Party',
-                  start: new Date(y, m, d + 1, 19, 0),
-                  end: new Date(y, m, d + 1, 22, 30),
-                  allDay: false,
-                  backgroundColor: '#00a65a', //Success (green)
-                  borderColor: '#00a65a' //Success (green)
-              },
-              {
-                  title: 'Open Google',
-                  start: new Date(y, m, 28),
-                  end: new Date(y, m, 29),
-                  url: '//google.com/',
-                  backgroundColor: '#3c8dbc', //Primary (light-blue)
-                  borderColor: '#3c8dbc' //Primary (light-blue)
-              }
-          ];
-  }
-
-})(window, document, window.jQuery);
-
-
-
-// Easypie chart
-// -----------------------------------
-
-(function(window, document, $, undefined) {
-
-    $(function() {
-
-        if(! $.fn.easyPieChart ) return;
-
-        var pieOptions1 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: APP_COLORS['success'],
-            trackColor: false,
-            scaleColor: false,
-            lineWidth: 10,
-            lineCap: 'circle'
-        };
-        $('#easypie1').easyPieChart(pieOptions1);
-
-        var pieOptions2 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: APP_COLORS['warning'],
-            trackColor: false,
-            scaleColor: false,
-            lineWidth: 4,
-            lineCap: 'circle'
-        };
-        $('#easypie2').easyPieChart(pieOptions2);
-
-        var pieOptions3 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: APP_COLORS['danger'],
-            trackColor: false,
-            scaleColor: APP_COLORS['gray'],
-            lineWidth: 15,
-            lineCap: 'circle'
-        };
-        $('#easypie3').easyPieChart(pieOptions3);
-
-        var pieOptions4 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: APP_COLORS['danger'],
-            trackColor: APP_COLORS['yellow'],
-            scaleColor: APP_COLORS['gray-dark'],
-            lineWidth: 15,
-            lineCap: 'circle'
-        };
-        $('#easypie4').easyPieChart(pieOptions4);
-
-    });
-
-})(window, document, window.jQuery);
-// Knob chart
-// -----------------------------------
-
-(function(window, document, $, undefined){
-
-  $(function(){
-
-        if(! $.fn.knob ) return;
-
-        var knobLoaderOptions1 = {
-            width: '50%', // responsive
-            displayInput: true,
-            fgColor: APP_COLORS['info']
-        };
-        $('#knob-chart1').knob(knobLoaderOptions1);
-
-        var knobLoaderOptions2 = {
-            width: '50%', // responsive
-            displayInput: true,
-            fgColor: APP_COLORS['purple'],
-            readOnly: true
-        };
-        $('#knob-chart2').knob(knobLoaderOptions2);
-
-        var knobLoaderOptions3 = {
-            width: '50%', // responsive
-            displayInput: true,
-            fgColor: APP_COLORS['info'],
-            bgColor: APP_COLORS['gray'],
-            angleOffset: -125,
-            angleArc: 250
-        };
-        $('#knob-chart3').knob(knobLoaderOptions3);
-
-        var knobLoaderOptions4 = {
-            width: '50%', // responsive
-            displayInput: true,
-            fgColor: APP_COLORS['pink'],
-            displayPrevious: true,
-            thickness: 0.1,
-            lineCap: 'round'
-        };
-        $('#knob-chart4').knob(knobLoaderOptions4);
-
-  });
-
-})(window, document, window.jQuery);
-
-// Start Bootstrap JS
-// ----------------------------------- 
-
-(function(window, document, $, undefined){
-
-  $(function(){
-
-    if ( typeof Chart === 'undefined' ) return;
-
-    // random values for demo
-    var rFactor = function(){ return Math.round(Math.random()*100); };
-
-
-  // Line chart
-  // ----------------------------------- 
-
-    var lineData = {
-        labels : ['January','February','March','April','May','June','July'],
-        datasets : [
-          {
-            label: 'My First dataset',
-            fillColor : 'rgba(114,102,186,0.2)',
-            strokeColor : 'rgba(114,102,186,1)',
-            pointColor : 'rgba(114,102,186,1)',
-            pointStrokeColor : '#fff',
-            pointHighlightFill : '#fff',
-            pointHighlightStroke : 'rgba(114,102,186,1)',
-            data : [rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()]
-          },
-          {
-            label: 'My Second dataset',
-            fillColor : 'rgba(35,183,229,0.2)',
-            strokeColor : 'rgba(35,183,229,1)',
-            pointColor : 'rgba(35,183,229,1)',
-            pointStrokeColor : '#fff',
-            pointHighlightFill : '#fff',
-            pointHighlightStroke : 'rgba(35,183,229,1)',
-            data : [rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()]
-          }
-        ]
-      };
-
-
-    var lineOptions = {
-      scaleShowGridLines : true,
-      scaleGridLineColor : 'rgba(0,0,0,.05)',
-      scaleGridLineWidth : 1,
-      bezierCurve : true,
-      bezierCurveTension : 0.4,
-      pointDot : true,
-      pointDotRadius : 4,
-      pointDotStrokeWidth : 1,
-      pointHitDetectionRadius : 20,
-      datasetStroke : true,
-      datasetStrokeWidth : 2,
-      datasetFill: true,
-      responsive: true
-    };
-
-    var linectx = document.getElementById("chartjs-linechart").getContext("2d");
-    var lineChart = new Chart(linectx).Line(lineData, lineOptions);
-
-  // Bar chart
-  // ----------------------------------- 
-
-    var barData = {
-        labels : ['January','February','March','April','May','June','July'],
-        datasets : [
-          {
-            fillColor : '#23b7e5',
-            strokeColor : '#23b7e5',
-            highlightFill: '#23b7e5',
-            highlightStroke: '#23b7e5',
-            data : [rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()]
-          },
-          {
-            fillColor : '#5d9cec',
-            strokeColor : '#5d9cec',
-            highlightFill : '#5d9cec',
-            highlightStroke : '#5d9cec',
-            data : [rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()]
-          }
-        ]
-    };
-    
-    var barOptions = {
-      scaleBeginAtZero : true,
-      scaleShowGridLines : true,
-      scaleGridLineColor : 'rgba(0,0,0,.05)',
-      scaleGridLineWidth : 1,
-      barShowStroke : true,
-      barStrokeWidth : 2,
-      barValueSpacing : 5,
-      barDatasetSpacing : 1,
-      responsive: true
-    };
-
-    var barctx = document.getElementById("chartjs-barchart").getContext("2d");
-    var barChart = new Chart(barctx).Bar(barData, barOptions);
-
-  //  Doughnut chart
-  // ----------------------------------- 
-    
-    var doughnutData = [
-          {
-            value: 300,
-            color: '#7266ba',
-            highlight: '#7266ba',
-            label: 'Purple'
-          },
-          {
-            value: 50,
-            color: '#23b7e5',
-            highlight: '#23b7e5',
-            label: 'Info'
-          },
-          {
-            value: 100,
-            color: '#fad732',
-            highlight: '#fad732',
-            label: 'Yellow'
-          }
-        ];
-
-    var doughnutOptions = {
-      segmentShowStroke : true,
-      segmentStrokeColor : '#fff',
-      segmentStrokeWidth : 2,
-      percentageInnerCutout : 85,
-      animationSteps : 100,
-      animationEasing : 'easeOutBounce',
-      animateRotate : true,
-      animateScale : false,
-      responsive: true
-    };
-
-    var doughnutctx = document.getElementById("chartjs-doughnutchart").getContext("2d");
-    var doughnutChart = new Chart(doughnutctx).Doughnut(doughnutData, doughnutOptions);
-
-  // Pie chart
-  // ----------------------------------- 
-
-    var pieData =[
-          {
-            value: 300,
-            color: '#7266ba',
-            highlight: '#7266ba',
-            label: 'Purple'
-          },
-          {
-            value: 40,
-            color: '#fad732',
-            highlight: '#fad732',
-            label: 'Yellow'
-          },
-          {
-            value: 120,
-            color: '#23b7e5',
-            highlight: '#23b7e5',
-            label: 'Info'
-          }
-        ];
-
-    var pieOptions = {
-      segmentShowStroke : true,
-      segmentStrokeColor : '#fff',
-      segmentStrokeWidth : 2,
-      percentageInnerCutout : 0, // Setting this to zero convert a doughnut into a Pie
-      animationSteps : 100,
-      animationEasing : 'easeOutBounce',
-      animateRotate : true,
-      animateScale : false,
-      responsive: true
-    };
-
-    var piectx = document.getElementById("chartjs-piechart").getContext("2d");
-    var pieChart = new Chart(piectx).Pie(pieData, pieOptions);
-
-  // Polar chart
-  // ----------------------------------- 
-    
-    var polarData = [
-          {
-            value: 300,
-            color: '#f532e5',
-            highlight: '#f532e5',
-            label: 'Red'
-          },
-          {
-            value: 50,
-            color: '#7266ba',
-            highlight: '#7266ba',
-            label: 'Green'
-          },
-          {
-            value: 100,
-            color: '#f532e5',
-            highlight: '#f532e5',
-            label: 'Yellow'
-          },
-          {
-            value: 140,
-            color: '#7266ba',
-            highlight: '#7266ba',
-            label: 'Grey'
-          },
-        ];
-
-    var polarOptions = {
-      scaleShowLabelBackdrop : true,
-      scaleBackdropColor : 'rgba(255,255,255,0.75)',
-      scaleBeginAtZero : true,
-      scaleBackdropPaddingY : 1,
-      scaleBackdropPaddingX : 1,
-      scaleShowLine : true,
-      segmentShowStroke : true,
-      segmentStrokeColor : '#fff',
-      segmentStrokeWidth : 2,
-      animationSteps : 100,
-      animationEasing : 'easeOutBounce',
-      animateRotate : true,
-      animateScale : false,
-      responsive: true
-    };
-
-    var polarctx = document.getElementById("chartjs-polarchart").getContext("2d");
-    var polarChart = new Chart(polarctx).PolarArea(polarData, polarOptions);
-
-  // Radar chart
-  // ----------------------------------- 
-
-    var radarData = {
-      labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-      datasets: [
-        {
-          label: 'My First dataset',
-          fillColor: 'rgba(114,102,186,0.2)',
-          strokeColor: 'rgba(114,102,186,1)',
-          pointColor: 'rgba(114,102,186,1)',
-          pointStrokeColor: '#fff',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(114,102,186,1)',
-          data: [65,59,90,81,56,55,40]
-        },
-        {
-          label: 'My Second dataset',
-          fillColor: 'rgba(151,187,205,0.2)',
-          strokeColor: 'rgba(151,187,205,1)',
-          pointColor: 'rgba(151,187,205,1)',
-          pointStrokeColor: '#fff',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(151,187,205,1)',
-          data: [28,48,40,19,96,27,100]
-        }
-      ]
-    };
-
-    var radarOptions = {
-      scaleShowLine : true,
-      angleShowLineOut : true,
-      scaleShowLabels : false,
-      scaleBeginAtZero : true,
-      angleLineColor : 'rgba(0,0,0,.1)',
-      angleLineWidth : 1,
-      pointLabelFontFamily : "'Arial'",
-      pointLabelFontStyle : 'bold',
-      pointLabelFontSize : 10,
-      pointLabelFontColor : '#565656',
-      pointDot : true,
-      pointDotRadius : 3,
-      pointDotStrokeWidth : 1,
-      pointHitDetectionRadius : 20,
-      datasetStroke : true,
-      datasetStrokeWidth : 2,
-      datasetFill : true,
-      responsive: true
-    };
-
-    var radarctx = document.getElementById("chartjs-radarchart").getContext("2d");
-    var radarChart = new Chart(radarctx).Radar(radarData, radarOptions);
-
-  });
-
-})(window, document, window.jQuery);
-
-// Chartist
-// ----------------------------------- 
-
-(function(window, document, $, undefined){
-
-  $(function(){
-
-    if ( typeof Chartist === 'undefined' ) return;
-
-    // Bar bipolar
-    // ----------------------------------- 
-    var data1 = {
-      labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10'],
-      series: [
-        [1, 2, 4, 8, 6, -2, -1, -4, -6, -2]
-      ]
-    };
-
-    var options1 = {
-      high: 10,
-      low: -10,
-      height: 280,
-      axisX: {
-        labelInterpolationFnc: function(value, index) {
-          return index % 2 === 0 ? value : null;
-        }
-      }
-    };
-
-    new Chartist.Bar('#ct-bar1', data1, options1);
-
-    // Bar Horizontal
-    // ----------------------------------- 
-    new Chartist.Bar('#ct-bar2', {
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      series: [
-        [5, 4, 3, 7, 5, 10, 3],
-        [3, 2, 9, 5, 4, 6, 4]
-      ]
-    }, {
-      seriesBarDistance: 10,
-      reverseData: true,
-      horizontalBars: true,
-      height: 280,
-      axisY: {
-        offset: 70
-      }
-    });
-
-    // Line
-    // ----------------------------------- 
-    new Chartist.Line('#ct-line1', {
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      series: [
-        [12, 9, 7, 8, 5],
-        [2, 1, 3.5, 7, 3],
-        [1, 3, 4, 5, 6]
-      ]
-    }, {
-      fullWidth: true,
-      height: 280,
-      chartPadding: {
-        right: 40
-      }
-    });
-
-
-    // SVG Animation
-    // ----------------------------------- 
-
-    var chart1 = new Chartist.Line('#ct-line3', {
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      series: [
-        [1, 5, 2, 5, 4, 3],
-        [2, 3, 4, 8, 1, 2],
-        [5, 4, 3, 2, 1, 0.5]
-      ]
-    }, {
-      low: 0,
-      showArea: true,
-      showPoint: false,
-      fullWidth: true,
-      height: 300
-    });
-
-    chart1.on('draw', function(data) {
-      if(data.type === 'line' || data.type === 'area') {
-        data.element.animate({
-          d: {
-            begin: 2000 * data.index,
-            dur: 2000,
-            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-            to: data.path.clone().stringify(),
-            easing: Chartist.Svg.Easing.easeOutQuint
-          }
-        });
-      }
-    });
-
-
-    // Slim animation
-    // ----------------------------------- 
-
-
-    var chart = new Chartist.Line('#ct-line2', {
-      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-      series: [
-        [12, 9, 7, 8, 5, 4, 6, 2, 3, 3, 4, 6],
-        [4,  5, 3, 7, 3, 5, 5, 3, 4, 4, 5, 5],
-        [5,  3, 4, 5, 6, 3, 3, 4, 5, 6, 3, 4],
-        [3,  4, 5, 6, 7, 6, 4, 5, 6, 7, 6, 3]
-      ]
-    }, {
-      low: 0,
-      height: 300
-    });
-
-    // Let's put a sequence number aside so we can use it in the event callbacks
-    var seq = 0,
-      delays = 80,
-      durations = 500;
-
-    // Once the chart is fully created we reset the sequence
-    chart.on('created', function() {
-      seq = 0;
-    });
-
-    // On each drawn element by Chartist we use the Chartist.Svg API to trigger SMIL animations
-    chart.on('draw', function(data) {
-      seq++;
-
-      if(data.type === 'line') {
-        // If the drawn element is a line we do a simple opacity fade in. This could also be achieved using CSS3 animations.
-        data.element.animate({
-          opacity: {
-            // The delay when we like to start the animation
-            begin: seq * delays + 1000,
-            // Duration of the animation
-            dur: durations,
-            // The value where the animation should start
-            from: 0,
-            // The value where it should end
-            to: 1
-          }
-        });
-      } else if(data.type === 'label' && data.axis === 'x') {
-        data.element.animate({
-          y: {
-            begin: seq * delays,
-            dur: durations,
-            from: data.y + 100,
-            to: data.y,
-            // We can specify an easing function from Chartist.Svg.Easing
-            easing: 'easeOutQuart'
-          }
-        });
-      } else if(data.type === 'label' && data.axis === 'y') {
-        data.element.animate({
-          x: {
-            begin: seq * delays,
-            dur: durations,
-            from: data.x - 100,
-            to: data.x,
-            easing: 'easeOutQuart'
-          }
-        });
-      } else if(data.type === 'point') {
-        data.element.animate({
-          x1: {
-            begin: seq * delays,
-            dur: durations,
-            from: data.x - 10,
-            to: data.x,
-            easing: 'easeOutQuart'
-          },
-          x2: {
-            begin: seq * delays,
-            dur: durations,
-            from: data.x - 10,
-            to: data.x,
-            easing: 'easeOutQuart'
-          },
-          opacity: {
-            begin: seq * delays,
-            dur: durations,
-            from: 0,
-            to: 1,
-            easing: 'easeOutQuart'
-          }
-        });
-      } else if(data.type === 'grid') {
-        // Using data.axis we get x or y which we can use to construct our animation definition objects
-        var pos1Animation = {
-          begin: seq * delays,
-          dur: durations,
-          from: data[data.axis.units.pos + '1'] - 30,
-          to: data[data.axis.units.pos + '1'],
-          easing: 'easeOutQuart'
-        };
-
-        var pos2Animation = {
-          begin: seq * delays,
-          dur: durations,
-          from: data[data.axis.units.pos + '2'] - 100,
-          to: data[data.axis.units.pos + '2'],
-          easing: 'easeOutQuart'
-        };
-
-        var animations = {};
-        animations[data.axis.units.pos + '1'] = pos1Animation;
-        animations[data.axis.units.pos + '2'] = pos2Animation;
-        animations['opacity'] = {
-          begin: seq * delays,
-          dur: durations,
-          from: 0,
-          to: 1,
-          easing: 'easeOutQuart'
-        };
-
-        data.element.animate(animations);
-      }
-    });
-
-    // For the sake of the example we update the chart every time it's created with a delay of 10 seconds
-    chart.on('created', function() {
-      if(window.__exampleAnimateTimeout) {
-        clearTimeout(window.__exampleAnimateTimeout);
-        window.__exampleAnimateTimeout = null;
-      }
-      window.__exampleAnimateTimeout = setTimeout(chart.update.bind(chart), 12000);
-    });
-
-
-  });
-
-})(window, document, window.jQuery);
-
-// CLASSYLOADER
-// ----------------------------------- 
-
-(function(window, document, $, undefined){
-
-  $(function(){
-
-    var $scroller       = $(window),
-        inViewFlagClass = 'js-is-in-view'; // a classname to detect when a chart has been triggered after scroll
-
-    $('[data-classyloader]').each(initClassyLoader);
-    
-    function initClassyLoader() {
-    
-      var $element = $(this),
-          options  = $element.data();
-      
-      // At lease we need a data-percentage attribute
-      if(options) {
-        if( options.triggerInView ) {
-
-          $scroller.scroll(function() {
-            checkLoaderInVIew($element, options);
-          });
-          // if the element starts already in view
-          checkLoaderInVIew($element, options);
-        }
-        else
-          startLoader($element, options);
-      }
-    }
-    function checkLoaderInVIew(element, options) {
-      var offset = -20;
-      if( ! element.hasClass(inViewFlagClass) &&
-          $.Utils.isInView(element, {topoffset: offset}) ) {
-        startLoader(element, options);
-      }
-    }
-    function startLoader(element, options) {
-      element.ClassyLoader(options).addClass(inViewFlagClass);
-    }
-
-  });
-
-})(window, document, window.jQuery);
 
 /**=========================================================
  * Module: clear-storage.js
@@ -1028,7 +86,7 @@
   $(document).on('click', Selector, function (e) {
       e.preventDefault();
       var key = $(this).data('resetKey');
-      
+
       if(key) {
         $.localStorage.remove(key);
         // reload the page
@@ -1068,7 +126,7 @@
 })(window, document, window.jQuery);
 
 // GLOBAL CONSTANTS
-// ----------------------------------- 
+// -----------------------------------
 
 
 (function(window, document, $, undefined){
@@ -1091,7 +149,7 @@
     'gray-light':             '#e4eaec',
     'gray-lighter':           '#edf1f2'
   };
-  
+
   window.APP_MEDIAQUERY = {
     'desktopLG':             1200,
     'desktop':                992,
@@ -1103,7 +161,7 @@
 
 
 // MARKDOWN DOCS
-// ----------------------------------- 
+// -----------------------------------
 
 
 (function(window, document, $, undefined){
@@ -1113,7 +171,7 @@
     $('.flatdoc').each(function(){
 
       Flatdoc.run({
-        
+
         fetcher: Flatdoc.file('documentation/readme.md'),
 
         // Setup custom element selectors (markup validates)
@@ -1132,7 +190,7 @@
 })(window, document, window.jQuery);
 
 // FULLSCREEN
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -1156,9 +214,9 @@
         e.preventDefault();
 
         if (screenfull.enabled) {
-          
+
           screenfull.toggle();
-          
+
           // Switch icon indicator
           toggleFSIcon( $fsToggler );
 
@@ -1209,9 +267,9 @@
 
   if($.fn.gMap) {
       var gMapRefs = [];
-      
+
       $(mapSelector).each(function(){
-          
+
           var $this   = $(this),
               addresses = $this.data('address') && $this.data('address').split(';'),
               titles    = $this.data('title') && $this.data('title').split(';'),
@@ -1254,7 +312,7 @@
 
             // set the styles
             if($this.data('styled') !== undefined) {
-              
+
               ref.setOptions({
                 styles: MapStyles
               });
@@ -1489,19 +547,19 @@
 
 })(window, document, window.jQuery);
 // LOAD CUSTOM CSS
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
   $(function(){
 
     $('[data-load-css]').on('click', function (e) {
-        
+
       var element = $(this);
 
       if(element.is('a'))
         e.preventDefault();
-      
+
       var uri = element.data('loadCss'),
           link;
 
@@ -1539,7 +597,7 @@
 })(window, document, window.jQuery);
 
 // TRANSLATION
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -1573,7 +631,7 @@
       currLang = $(this).data('setLang');
 
       if ( currLang ) {
-        
+
         opts.language = currLang;
 
         setLanguage(opts);
@@ -1582,7 +640,7 @@
       }
 
     });
-    
+
 
     function setLanguage(options) {
       $("[data-localize]").localize(packName, options);
@@ -1601,8 +659,8 @@
 
 })(window, document, window.jQuery);
 
-// JVECTOR MAP 
-// ----------------------------------- 
+// JVECTOR MAP
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -1614,7 +672,7 @@
   };
 
   window.VectorMap = function(element, seriesData, markersData) {
-    
+
     if ( ! element || !element.length) return;
 
     var attrs       = element.data(),
@@ -1627,13 +685,13 @@
           regionFill:   attrs.regionFill   || defaultColors.regionFill,
           mapName:      attrs.mapName      || 'world_mill_en'
         };
-    
+
     element.css('height', mapHeight);
-    
+
     init( element , options, seriesData, markersData);
-    
+
     function init($element, opts, series, markers) {
-        
+
         $element.vectorMap({
           map:             opts.mapName,
           backgroundColor: opts.bgColor,
@@ -1684,7 +742,7 @@
 })(window, document, window.jQuery);
 
 // Morris
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -1709,7 +767,7 @@
     ];
 
     // Line Chart
-    // ----------------------------------- 
+    // -----------------------------------
 
     new Morris.Line({
       element: 'morris-line',
@@ -1722,7 +780,7 @@
     });
 
     // Donut Chart
-    // ----------------------------------- 
+    // -----------------------------------
     new Morris.Donut({
       element: 'morris-donut',
       data: donutdata,
@@ -1731,7 +789,7 @@
     });
 
     // Bar Chart
-    // ----------------------------------- 
+    // -----------------------------------
     new Morris.Bar({
       element: 'morris-bar',
       data: chartdata,
@@ -1744,7 +802,7 @@
     });
 
     // Area Chart
-    // ----------------------------------- 
+    // -----------------------------------
     new Morris.Area({
       element: 'morris-area',
       data: chartdata,
@@ -1867,7 +925,7 @@
 
       if(!message)
         $.error('Notify: No message specified');
-     
+
       $.notify(message, options || {});
   }
 
@@ -2046,7 +1104,7 @@
 }(jQuery, window, document));
 
 // NOW TIMER
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -2063,7 +1121,7 @@
 
       updateTime();
       setInterval(updateTime, 1000);
-    
+
     });
   });
 
@@ -2078,13 +1136,13 @@
  =========================================================*/
 (function($, window, document){
   'use strict';
-  
+
   var panelSelector = '[data-tool="panel-dismiss"]',
       removeEvent   = 'panel.remove',
       removedEvent  = 'panel.removed';
 
   $(document).on('click', panelSelector, function () {
-    
+
     // find the first parent panel
     var parent = $(this).closest('.panel');
     var deferred = new $.Deferred();
@@ -2103,7 +1161,7 @@
 
     function destroyPanel() {
       var col = parent.parent();
-      
+
       $.when(parent.trigger(removedEvent, [parent]))
        .done(function(){
           parent.remove();
@@ -2116,7 +1174,7 @@
           }).remove();
        });
 
-      
+
 
     }
 
@@ -2146,7 +1204,7 @@
         collapseOpts = {toggle: false},
         iconElement  = $this.children('em'),
         panelId      = parent.attr('id');
-    
+
     // if wrapper not added, add it
     // we need a wrapper to avoid jumping due to the paddings
     if( ! wrapper.length) {
@@ -2183,7 +1241,7 @@
 
   // finally catch clicks to toggle panel collapse
   $(document).on('click', panelSelector, function () {
-    
+
     var parent = $(this).closest('.panel');
     var wrapper = parent.find('.panel-wrapper');
 
@@ -2261,21 +1319,21 @@
 /**=========================================================
  * Module: play-animation.js
  * Provides a simple way to run animation with a trigger
- * Targeted elements must have 
+ * Targeted elements must have
  *   [data-animate"]
- *   [data-target="Target element affected by the animation"] 
+ *   [data-target="Target element affected by the animation"]
  *   [data-play="Animation name (http://daneden.github.io/animate.css/)"]
  *
  * Requires animo.js
  =========================================================*/
- 
+
 (function($, window, document){
   'use strict';
 
   var Selector = '[data-animate]';
 
   $(function() {
-    
+
     var $scroller = $(window).add('body, .wrapper');
 
     // Parse animations params and attach trigger to scroll
@@ -2284,9 +1342,9 @@
           offset    = $this.data('offset'),
           delay     = $this.data('delay')     || 100, // milliseconds
           animation = $this.data('play')      || 'bounce';
-      
+
       if(typeof offset !== 'undefined') {
-        
+
         // test if the element starts visible
         testAnimation($this);
         // test on scroll
@@ -2325,7 +1383,7 @@
       if(target && target.length) {
         target.animo( { animation: animation } );
       }
-      
+
     });
 
   });
@@ -2373,9 +1431,9 @@
   });
 
   function savePortletOrder(event, ui) {
-    
+
     var data = $.localStorage.get(storageKeyName);
-    
+
     if(!data) { data = {}; }
 
     data[this.id] = $(this).sortable('toArray');
@@ -2383,21 +1441,21 @@
     if(data) {
       $.localStorage.set(storageKeyName, data);
     }
-    
+
   }
 
   function loadPortletOrder() {
-    
+
     var data = $.localStorage.get(storageKeyName);
 
     if(data) {
-      
+
       var porletId = this.id,
           panels   = data[porletId];
 
       if(panels) {
         var portlet = $('#'+porletId);
-        
+
         $.each(panels, function(index, value) {
            $('#'+value).appendTo(portlet);
         });
@@ -2411,12 +1469,12 @@
 
 
 // Rickshaw
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
   $(function(){
-    
+
     if ( typeof Rickshaw === 'undefined' ) return;
 
     var seriesData = [ [], [], [] ];
@@ -2443,16 +1501,16 @@
     ];
 
     var graph1 = new Rickshaw.Graph( {
-        element: document.querySelector("#rickshaw1"), 
+        element: document.querySelector("#rickshaw1"),
         series:series1,
         renderer: 'area'
     });
-     
+
     graph1.render();
 
 
     // Graph 2
-    // ----------------------------------- 
+    // -----------------------------------
 
     var graph2 = new Rickshaw.Graph( {
       element: document.querySelector("#rickshaw2"),
@@ -2470,7 +1528,7 @@
     graph2.render();
 
     // Graph 3
-    // ----------------------------------- 
+    // -----------------------------------
 
 
     var graph3 = new Rickshaw.Graph({
@@ -2488,13 +1546,13 @@
 
 
     // Graph 4
-    // ----------------------------------- 
+    // -----------------------------------
 
 
     var graph4 = new Rickshaw.Graph( {
       element: document.querySelector("#rickshaw4"),
       renderer: 'bar',
-      series: [ 
+      series: [
         {
           data: [ { x: 0, y: 40 }, { x: 1, y: 49 }, { x: 2, y: 38 }, { x: 3, y: 30 }, { x: 4, y: 32 } ],
           color: '#fad732'
@@ -2719,7 +1777,7 @@
 
 })(window, document, window.jQuery);
 // SKYCONS
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -2728,7 +1786,7 @@
     $('[data-skycon]').each(function(){
       var element = $(this),
           skycons = new Skycons({'color': (element.data('color') || 'white')});
-      
+
       element.html('<canvas width="' + element.data('width') + '" height="' + element.data('height') + '"></canvas>');
 
       skycons.add(element.children()[0], element.data('skycon'));
@@ -2740,7 +1798,7 @@
 
 })(window, document, window.jQuery);
 // SLIMSCROLL
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -2750,18 +1808,18 @@
 
       var element = $(this),
           defaultHeight = 250;
-      
+
       element.slimScroll({
           height: (element.data('height') || defaultHeight)
       });
-      
+
     });
   });
 
 })(window, document, window.jQuery);
 
 // SPARKLINE
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -2790,7 +1848,7 @@
 })(window, document, window.jQuery);
 
 // Sweet Alert
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -2856,7 +1914,7 @@
 })(window, document, window.jQuery);
 
 // Custom jQuery
-// ----------------------------------- 
+// -----------------------------------
 
 
 (function(window, document, $, undefined){
@@ -2987,7 +2045,7 @@
 })(window, document, window.jQuery);
 
 // Bootstrap Tour
-// ----------------------------------- 
+// -----------------------------------
 
 (function(window, document, $, undefined){
 
@@ -3021,7 +2079,7 @@
       // Initialize the tour
       tour.init();
 
-      
+
       $('#start-tour').on('click', function(){
         // Start the tour
         tour.restart();
@@ -3057,13 +2115,13 @@
 })(window, document, window.jQuery);
 /**=========================================================
  * Module: utils.js
- * jQuery Utility functions library 
+ * jQuery Utility functions library
  * adapted from the core of UIKit
  =========================================================*/
 
 (function($, window, doc){
     'use strict';
-    
+
     var $html = $("html"), $win = $(window);
 
     $.support.transition = (function() {
@@ -3222,7 +2280,7 @@
 
 }(jQuery, window, document));
 // Custom jQuery
-// ----------------------------------- 
+// -----------------------------------
 
 
 (function(window, document, $, undefined){
