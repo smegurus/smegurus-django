@@ -74,6 +74,38 @@
 
                       <br /><br />
 
+                      <!-- FILE UPLOADS -->
+                      <div class="form-group">
+                           <!-- TEMP -->
+                           <input id="id_hidden_file_id" type="hidden" />
+                           <!-- end TEMP -->
+
+                           <label class="col-sm-2 control-label">File input</label>
+                           <div class="col-sm-10">
+                             <!-- FILE INPUT -->
+                             <label class="form-control btn btn-success mt10 curp" id="id_hidden_file_label">
+                             <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
+                             <input onchange="ajax_upload_file();"
+                                          id="id_file"
+                                        type="file"
+                                       class="form-control mb10 hide" />
+                             </label>
+                             <!-- end FILE INPUT -->
+
+                             <!-- FILE LIST -->
+                             <p id="id_hidden_files_list" style="display: none;">
+                                 <a id="id_hidden_file_url" target="_blank">File Uploaded</a>
+                             </p>
+                             <!-- end FILE LIST -->
+
+
+                          </div>
+                      </div>
+                      <!-- end FILE UPLOADS -->
+
+
+                      <br /><br />
+
                       <!-- ASSIGNEES -->
                       {% if type_of == constants.TASK_BY_CUSTOM_TYPE %}
                       <!-- BY CUSTOM -->

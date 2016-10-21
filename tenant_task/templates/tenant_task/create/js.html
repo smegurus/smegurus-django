@@ -84,7 +84,13 @@
             'name': name,
             'description': description,
             'due': django_due_date,
+            'uploads': [],
         };
+
+        var upload_id = $('#id_hidden_file_id').val();
+        if (upload_id) {
+            task['uploads'].push(parseInt(upload_id)); // Add our file upload.
+        }
 
         // Attach our pending to or object.
         {% if type_of == constants.TASK_BY_TAG_TYPE %}
@@ -109,6 +115,37 @@
                 failure_callback(error_json_result);
             }
         ); // end Set Task.
+    }
+
+    /**
+     *  Function will asynchronously upload the file.
+     */
+    function ajax_upload_file() {
+        if ($('#id_file').val() == "") {
+            alert(_("Please select a file to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var file = document.getElementById('id_file').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+        console.log("upload_id: "+upload_id);
+
+        // Insert or Update.
+        set_tenant_fileupload(upload_id, file, function(file_upload) {
+
+            // UPDATE THE UI.
+            $('#id_add_file_btn').prop('disabled', false); // enable the add button.
+            $('#id_hidden_file_label').hide();
+            $('#id_hidden_files_list').show();
+
+            // SAVE TEMPORARY LINK TO FILE.
+            $('#id_hidden_file_id').val(file_upload['id']);
+
+            // Render link to file.
+            $("#id_hidden_file_url").attr("href", file_upload['datafile']);
+        }); // end UPLOAD
     }
 
     function ajax_cancel(type_of) {
