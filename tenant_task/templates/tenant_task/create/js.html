@@ -55,12 +55,12 @@
     }
 
     function ajax_task(success_callback, failure_callback) {
-
         // Get our variables.
         var name = $('#id_name').val();
         var description = $('#id_description').val();
         var finish = $('#id_finish').val();
         var unprotected_finish_date = new Date(finish);
+        var is_due = $('input[id=is_due]').is(':checked');
         var django_due_date = date_to_django_datetime(unprotected_finish_date);
         var assignees = $('#select2-1').val()
 
@@ -73,9 +73,13 @@
             alert("{% trans 'Please enter a description.' %}");
             return;
         }
-        if ( django_due_date.indexOf('NaN') !== -1 ) {
-            alert("{% trans 'Please enter a due date.' %}");
-            return;
+        if (is_due) {
+            if ( django_due_date.indexOf('NaN') !== -1 ) {
+                alert("{% trans 'Please enter a due date.' %}");
+                return;
+            }
+        } else {
+            django_due_date = '';
         }
 
         // Set our object variables.
@@ -83,6 +87,7 @@
             'type_of': {{ type_of }},
             'name': name,
             'description': description,
+            'is_due': is_due,
             'due': django_due_date,
             'uploads': [],
         };

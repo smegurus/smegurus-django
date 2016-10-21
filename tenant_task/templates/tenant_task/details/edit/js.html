@@ -125,6 +125,8 @@
             return;
         }
 
+        var is_due = $('input[id=is_due]').is(':checked');
+
         // Extract the string.
         var raw_text_date = $('#id_due').val() ;
 
@@ -140,8 +142,10 @@
         var django_due_date = date_to_django_datetime(unprotected_date);
 
         if ( django_due_date.indexOf('NaN') !== -1 ) {
-            failure_callback("{% trans 'Please enter a due date.' %}");
-            return;
+            if (is_due) {
+                failure_callback("{% trans 'Please enter a due date.' %}");
+                return;
+            }
         }
 
         get_tenant_task(
@@ -154,7 +158,13 @@
                 task['description'] = description;
 
                 // Update "due" date.
-                task['due'] = django_due_date;
+                if (is_due) {
+                    task['is_due'] = true;
+                    task['due'] = django_due_date;
+                } else {
+                   task['is_due'] = false;
+                   task['due'] = '';
+                }
 
                // Update "opening" or "tags".
                 var assignees = $('#select2-1').val()
