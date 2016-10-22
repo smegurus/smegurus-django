@@ -1,0 +1,58 @@
+[
+{
+    "model": "foundation_tenant.inforesourcecategory",
+    "pk": 1,
+    "fields": {
+        "created": "1980-01-01 00:00:00",
+        "last_modified": "1980-01-01 00:00:00",
+        "order_num": 1,
+        "name": "Video",
+        "icon": "fa-youtube-play",
+        "colour": "#ce0000"
+    }
+},{
+    "model": "foundation_tenant.inforesourcecategory",
+    "pk": 2,
+    "fields": {
+        "created": "1980-01-01 00:00:00",
+        "last_modified": "1980-01-01 00:00:00",
+        "order_num": 2,
+        "name": "Templates",
+        "icon": "fa-briefcase",
+        "colour": "#1b6015"
+    }
+},{
+    "model": "foundation_tenant.inforesourcecategory",
+    "pk": 3,
+    "fields": {
+        "created": "1980-01-01 00:00:00",
+        "last_modified": "1980-01-01 00:00:00",
+        "order_num": 3,
+        "name": "Forms",
+        "icon": "fa-file-text",
+        "colour": "#1e73be"
+    }
+},{
+    "model": "foundation_tenant.inforesourcecategory",
+    "pk": 4,
+    "fields": {
+        "created": "1980-01-01 00:00:00",
+        "last_modified": "1980-01-01 00:00:00",
+        "order_num": 4,
+        "name": "Article",
+        "icon": "fa-book",
+        "colour": "#f26523"
+    }
+},{
+    "model": "foundation_tenant.inforesourcecategory",
+    "pk": 5,
+    "fields": {
+        "created": "1980-01-01 00:00:00",
+        "last_modified": "1980-01-01 00:00:00",
+        "order_num": 5,
+        "name": "Article",
+        "icon": "fa-external-link",
+        "colour": "#8224e3"
+    }
+}
+]

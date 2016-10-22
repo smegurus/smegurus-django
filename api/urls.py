@@ -53,6 +53,7 @@ from api.views.foundation_tenant.communityadvertisementviewset import CommunityA
 from api.views.foundation_tenant.messageviewset import MessageViewSet
 from api.views.foundation_tenant.noteviewset import NoteViewSet
 from api.views.foundation_tenant.taskviewset import TaskViewSet
+from api.views.foundation_tenant.inforesourcecategoryviewset import InfoResourceCategoryViewSet
 from api.views.foundation_tenant.inforesourceviewset import InfoResourceViewSet
 from api.views.foundation_tenant.functionviewset import FinalizeTenantSetupFunctionViewSet
 from api.views.foundation_tenant.meviewset import TenantMeViewSet
@@ -103,6 +104,7 @@ router.register(r'tenantcommunityadvertisement', CommunityAdvertisementViewSet)
 router.register(r'tenantmessage', MessageViewSet)
 router.register(r'tenantnote', NoteViewSet)
 router.register(r'tenanttask', TaskViewSet)
+router.register(r'tenantinforesourcecategory', InfoResourceCategoryViewSet)
 router.register(r'tenantinforesource', InfoResourceViewSet)
 router.register(r'tenantme', TenantMeViewSet)
 

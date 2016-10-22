@@ -1,0 +1,62 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+{% include 'tenant_resource/master/category/js.html' with constants=constants %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+<!-- MENU -->
+<div class="pull-right">
+    <div class="btn-group">
+        <button data-toggle="dropdown" class="btn btn-link">
+        <em class="fa fa-plus fa-lg"></em>
+        </button>
+        <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+            <li>
+                <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERAL_URL_TYPE }});">
+                <em class="fa fa-fw fa-link mr"></em>
+                <span>{% trans 'Create Internal Resource' %}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- end MENU -->
+<!-- TITLE & BREADCRUMBS -->
+<h3>
+    <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Resources' %}
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+        </li>
+        <li class="active">{% trans 'Resource' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+</h3>
+<!-- end TITLE & BREADCRUMBS -->
+<!-- CONTENT -->
+<div class="container container-md">
+    <div class="row">
+        {% for category in categories.all %}
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="{% url 'tenant_resource_master' category.id %}" class="link-unstyled" style="color:{{ category.colour }};">
+                        <em class="fa fa-5x {{ category.icon }} mb-lg"></em>
+                        <br>
+                        <span class="h4">{{ category.name }}</span>
+                        <br>
+                        <small class="text-muted">View all &rarr;</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

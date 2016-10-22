@@ -38,6 +38,7 @@ from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.inforesource import InfoResource
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
@@ -289,10 +290,16 @@ class NAICSOptionSerializer(serializers.ModelSerializer):
         fields = ('id', 'seq_num', 'name', 'parent', 'year')
 
 
+class InfoResourceCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InfoResourceCategory
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url',)
+
+
 class InfoResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoResource
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'type_of', 'upload',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'category', 'upload',)
 
     def validate(self, data):
         """
@@ -301,15 +308,6 @@ class InfoResourceSerializer(serializers.ModelSerializer):
         full_url = data.get('url')
         description = data.get('description')
         name = data.get('name')
-        type_of = data.get('type_of')
-
-        # Ensure that if internal URL was used that it contains our domain.
-        if type_of == int_or_none(constants.INFO_RESOURCE_INTERAL_URL_TYPE):
-            if 'smegurus' not in full_url:
-                raise serializers.ValidationError("The URL needs to have our domain.")
-        if type_of == int_or_none(constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE):
-            if 'https://www.youtube.com/embed/' not in full_url:
-                raise serializers.ValidationError("The URL is not embedded.")
 
         # Validate to ensure the description isn't using a 'bad word'.
         bad_words = BannedWord.objects.all()

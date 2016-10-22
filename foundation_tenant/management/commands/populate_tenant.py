@@ -31,7 +31,8 @@ class Command(BaseCommand):
             'provinceoption.json',
             'cityoption.json',
             'governmentbenefitoption.json',
-            'identifyoption.json'
+            'identifyoption.json',
+            'inforesourcecategory.json'
         ]
 
         # Iterate through all the filenames and load them into database.

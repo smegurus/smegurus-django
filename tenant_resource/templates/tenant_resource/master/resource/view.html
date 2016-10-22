@@ -4,7 +4,7 @@
 
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_resource/master/js.html' with constants=constants %}
+    {% include 'tenant_resource/master/resource/js.html' with constants=constants %}
 {% endcompress %}
 <!-- end PAGE JS -->
 
@@ -14,7 +14,7 @@
     <div class="pull-right">
         <div class="btn-group">
             <button data-toggle="dropdown" class="btn btn-link">
-            <em class="fa fa-plus fa-lg"></em>
+                <em class="fa fa-plus fa-lg"></em>
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
                 <li>
@@ -49,9 +49,13 @@
        <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Resources' %}
        <!-- BREADCRUMBS -->
        <ol class="breadcrumb">
-           <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+           <li>
+             <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
            </li>
-           <li class="active">{% trans 'Resource' %}</li>
+           <li>
+             <a href="{% url 'tenant_resource_category_master' %}">{% trans 'Resource' %}</a>
+           </li>
+           <li class="active">{{ category.name }}</li>
        </ol>
        <!-- end BREADCRUMBS -->
    </h3>
