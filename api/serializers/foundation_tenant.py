@@ -305,7 +305,6 @@ class InfoResourceSerializer(serializers.ModelSerializer):
         """
         Perform our own custom validation.
         """
-        full_url = data.get('url')
         description = data.get('description')
         name = data.get('name')
 
