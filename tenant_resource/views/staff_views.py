@@ -55,8 +55,6 @@ def staff_category_details_page(request, category_id):
     })
 
 
-
-
 @login_required(login_url='/en/login')
 @tenant_reception_required
 @tenant_intake_required
@@ -69,4 +67,16 @@ def staff_resource_details_page(request, category_id, resource_id):
         'page': 'resource',
         'category': category,
         'inforesources': InfoResource.objects.filter(category=category)
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_reception_required
+@tenant_intake_required
+@tenant_configuration_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def staff_resource_create_page(request):
+    return render(request, 'tenant_resource/staff/resource/create/view.html',{
+        'page': 'resource',
     })

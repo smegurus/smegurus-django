@@ -87,7 +87,7 @@
         set_tenant_inforesource(
             resource,
             function(json_result) {
-                window.location = "{% url 'tenant_resource_category_master' %}";
+                window.location = "";
             },
             function(error_json_result) {
                 $("id_accept_btn").removeAttr("disabled");

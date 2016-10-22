@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_resource/create/js.html' with type_of=type_of constants=constants %}
+    {% include 'tenant_resource/staff/resource/create/js.html' %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -11,7 +11,7 @@
     <!-- TITLE -->
     <h3>
         <!-- TEXT -->
-        <em class="fa fa-fw fa-link mr"></em>{% trans 'New Resource' %}
+        <em class="fa fa-fw fa-cloud-upload mr"></em>{% trans 'New Resource' %}
         <!-- end TEXT -->
 
         <!-- BREADCRUMBS -->
@@ -20,7 +20,7 @@
                 <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
             </li>
             <li>
-                <a href="{% url 'tenant_resource_category_master' %}">{% trans 'Resource' %}</a>
+                <a href="{% url 'tenant_resource_staff_launchpad_master' %}">{% trans 'Resource (Staff)' %}</a>
             </li>
             <li class="active">
                 {% trans 'New Resource' %}
