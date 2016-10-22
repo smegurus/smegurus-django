@@ -57,6 +57,7 @@
         var is_for_entrepreneur = $("#id_is_for_entrepreneur").is(':checked');
         var is_for_staff = $("#id_is_for_staff").is(':checked');
         var stage_num = $('input[name=stage_num]:checked').val();
+        var tags = $('#select2-1').val()
 
         // Defensive Code.
         if (name <= 0) {
@@ -93,6 +94,7 @@
             'is_for_entrepreneur': is_for_entrepreneur,
             'is_for_staff': is_for_staff,
             'stage_num': stage_num,
+            'tags': tags
         };
 
         if (upload_id > 0) {

@@ -12,6 +12,7 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.inforesource import InfoResource
+from foundation_tenant.models.tag import Tag
 from smegurus import constants
 
 
@@ -79,5 +80,6 @@ def staff_resource_details_page(request, category_id, resource_id):
 def staff_resource_create_page(request):
     return render(request, 'tenant_resource/staff/resource/create/view.html',{
         'page': 'resource',
-        'categories': InfoResourceCategory.objects.all()
+        'categories': InfoResourceCategory.objects.all(),
+        'tags': Tag.objects.all()
     })

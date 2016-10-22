@@ -125,6 +125,19 @@
                                 </div>
                                 <!-- end URL -->
                                 <br /><br />
+                                <!-- TAGS -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Tags' %}</label>
+                                    <div class="col-sm-10">
+                                        <select id="select2-1" multiple="multiple" class="form-control">
+                                            {% for tag in tags %}
+                                                <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- end TAGS -->
+                                <br /><br />
                                 <!-- FILE UPLOAD -->
                                 {% if type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE or type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
                                 <div id="id_upload_div">
