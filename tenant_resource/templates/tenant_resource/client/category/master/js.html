@@ -4,8 +4,9 @@
         // Do nothing.
     });
 
-    function ajax_create_resource(type_of) {
-        window.location = "{% url 'tenant_resource_create' %}?type_of="+type_of;
+    function ajax_create_resource(category_id) {
+        window.location = '';
+        var url = "{% url 'tenant_resource_create' 'placeholder' %}";
     }
 
     function ajax_delete_resource(id) {

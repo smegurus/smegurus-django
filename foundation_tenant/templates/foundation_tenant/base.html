@@ -273,7 +273,7 @@
 
                             <!-- RESOURCES -->
                             <li {% if page == 'resource' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_resource_category_master' %}" title="{% trans 'Resources' %}">
+                                <a href="{% if request.tenant_me.is_entrepreneur %}{% url 'tenant_resource_client_category_master' %}{% else %}{% url 'tenant_resource_staff_launchpad_master' %}{% endif %}" title="{% trans 'Resources' %}">
                                     <em class="icon-notebook"></em>
                                     <span data-localize="sidebar.nav.RESOURCES">{% trans 'Resources' %}</span>
                                 </a>

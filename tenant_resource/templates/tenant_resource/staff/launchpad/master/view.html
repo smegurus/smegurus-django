@@ -1,0 +1,73 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_resource/staff/launchpad/master/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+<!-- TITLE & BREADCRUMBS -->
+<h3>
+    <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Resources' %}
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+        </li>
+        <li class="active">{% trans 'Resource (Staff)' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+</h3>
+<!-- end TITLE & BREADCRUMBS -->
+<!-- CONTENT -->
+<div class="container container-md">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="{% url 'tenant_resource_staff_category_master' %}" class="link-unstyled" style="color:#1b6015;">
+                        <em class="fa fa-5x fa-user mb-lg"></em>
+                        <br>
+                            <span class="h4" style="color:black;">{% trans 'Advisor Resources' %}</span>
+                        <br>
+                        <small class="text-muted">{% trans 'View all' %} &rarr;</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="{% url 'tenant_resource_client_category_master' %}" class="link-unstyled" style="color:#ce0000;">
+                        <em class="fa fa-5x fa-users mb-lg"></em>
+                        <br>
+                            <span class="h4" style="color:black;">{% trans 'Entrepreneur Resources' %}</span>
+                        <br>
+                        <small class="text-muted">{% trans 'View all' %} &rarr;</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="" class="link-unstyled" style="color:#1e73be;">
+                        <em class="fa fa-5x fa-cloud-upload  mb-lg"></em>
+                        <br>
+                            <span class="h4" style="color:black;">{% trans 'Add' %}</span>
+                        <br>
+                        <small class="text-muted">{% trans 'View all' %} &rarr;</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

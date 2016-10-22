@@ -28,7 +28,7 @@ class InfoResourceCategory(AbstractThing):
     )
     icon = models.CharField(
         _("Icon"),
-        max_length=16,
+        max_length=31,
         help_text=_('The icon of this category.'),
         blank=True,
         null=True,

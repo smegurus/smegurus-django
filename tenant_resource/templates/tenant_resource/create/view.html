@@ -11,17 +11,7 @@
     <!-- TITLE -->
     <h3>
         <!-- TEXT -->
-        {% if type_of == constants.INFO_RESOURCE_INTERAL_URL_TYPE %}
-            <em class="fa fa-fw fa-link mr"></em>{% trans 'New Internal Resource' %}
-        {% elif type_of == constants.INFO_RESOURCE_EXTERNAL_URL_TYPE %}
-            <em class="fa fa-fw fa-external-link mr"></em>{% trans 'New External Resource' %}
-        {% elif type_of == constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE %}
-            <em class="fa fa-fw fa-youtube mr"></em>{% trans 'New Embedded YouTube Video Resource' %}
-        {% elif type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
-            <em class="fa fa-fw fa-video-camera mr"></em>{% trans 'New Video Resource' %}
-        {% elif type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
-            <em class="fa fa-fw fa-download mr"></em>{% trans 'New File Download Resource' %}
-        {% endif %}
+        <em class="fa fa-fw fa-link mr"></em>{% trans 'New Resource' %}
         <!-- end TEXT -->
 
         <!-- BREADCRUMBS -->

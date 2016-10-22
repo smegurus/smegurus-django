@@ -21,8 +21,20 @@ from smegurus import constants
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def resource_category_master_page(request):
-    return render(request, 'tenant_resource/master/category/view.html',{
+def staff_launchpad_page(request):
+    return render(request, 'tenant_resource/staff/launchpad/master/view.html',{
+        'page': 'resource',
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_reception_required
+@tenant_intake_required
+@tenant_configuration_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def staff_category_master_page(request):
+    return render(request, 'tenant_resource/staff/category/master/view.html',{
         'page': 'resource',
         'categories': InfoResourceCategory.objects.all(),
     })
@@ -34,26 +46,15 @@ def resource_category_master_page(request):
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def resource_master_page(request, category_id):
+def staff_category_details_page(request, category_id):
     category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
-    return render(request, 'tenant_resource/master/resource/view.html',{
+    return render(request, 'tenant_resource/staff/category/details/view.html',{
         'page': 'resource',
         'category': category,
         'inforesources': InfoResource.objects.filter(category=category)
     })
 
 
-@login_required(login_url='/en/login')
-@tenant_reception_required
-@tenant_intake_required
-@tenant_configuration_required
-@tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
-def resource_create_page(request):
-    return render(request, 'tenant_resource/create/view.html',{
-        'page': 'resource',
-        'type_of': int_or_none(request.GET.get('type_of')),
-    })
 
 
 @login_required(login_url='/en/login')
@@ -62,23 +63,10 @@ def resource_create_page(request):
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def resource_edit_details_page(request, id):
-    inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
-    return render(request, 'tenant_resource/details/edit/view.html',{
+def staff_resource_details_page(request, category_id, resource_id):
+    category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
+    return render(request, 'tenant_resource/staff/category/details/view.html',{
         'page': 'resource',
-        'inforesource': inforesource
-    })
-
-
-@login_required(login_url='/en/login')
-@tenant_reception_required
-@tenant_intake_required
-@tenant_configuration_required
-@tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
-def resource_info_details_page(request, id):
-    inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
-    return render(request, 'tenant_resource/details/info/view.html',{
-        'page': 'resource',
-        'inforesource': inforesource
+        'category': category,
+        'inforesources': InfoResource.objects.filter(category=category)
     })

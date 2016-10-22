@@ -4,46 +4,12 @@
 
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_resource/master/resource/js.html' with constants=constants %}
+    {% include 'tenant_resource/staff/category/details/js.html' with constants=constants %}
 {% endcompress %}
 <!-- end PAGE JS -->
 
 <!-- PAGE HTML -->
 <div class="content-wrapper">
-    <!-- MENU -->
-    <div class="pull-right">
-        <div class="btn-group">
-            <button data-toggle="dropdown" class="btn btn-link">
-                <em class="fa fa-plus fa-lg"></em>
-            </button>
-            <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
-                <li>
-                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERAL_URL_TYPE }});">
-                        <em class="fa fa-fw fa-link mr"></em>
-                        <span>{% trans 'Create Internal Resource' %}</span>
-                    </a>
-                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_EXTERNAL_URL_TYPE }});">
-                        <em class="fa fa-fw fa-external-link mr"></em>
-                        <span>{% trans 'Create External Resource' %}</span>
-                    </a>
-                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE }});">
-                        <em class="fa fa-fw fa-youtube mr"></em>
-                        <span>{% trans 'Create Embedded YouTube Video Resource' %}</span>
-                    </a>
-                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE }});">
-                        <em class="fa fa-fw fa-video-camera mr"></em>
-                        <span>{% trans 'Create Video Resource' %}</span>
-                    </a>
-                    <a onclick="ajax_create_resource({{ constants.INFO_RESOURCE_INTERNAL_FILE_TYPE }});">
-                        <em class="fa fa-fw fa-download mr"></em>
-                        <span>{% trans 'Create Downloadable File Resource' %}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-   <!-- end MENU -->
-
    <!-- TITLE & BREADCRUMBS -->
    <h3>
        <em class="fa fa-fw ffa icon-notebook mr"></em>{% trans 'Resources' %}
@@ -53,7 +19,10 @@
              <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
            </li>
            <li>
-             <a href="{% url 'tenant_resource_category_master' %}">{% trans 'Resource' %}</a>
+             <a href="{% url 'tenant_resource_staff_launchpad_master' %}">{% trans 'Resource (Staff)' %}</a>
+           </li>
+           <li>
+             <a href="{% url 'tenant_resource_staff_category_master' %}">{% trans 'Category (Advisor)' %}</a>
            </li>
            <li class="active">{{ category.name }}</li>
        </ol>

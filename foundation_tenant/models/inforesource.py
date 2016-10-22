@@ -30,6 +30,11 @@ class InfoResource(AbstractThing):
         related_name="info_resource_category",
         on_delete=models.SET_NULL
     )
+    is_private = models.BooleanField(
+        _("Is this resource available to the staff only"),
+        default=False,
+        help_text=_('Variable controls whether entrepreneurs can see this resource.'),
+    )
     type_of = models.PositiveSmallIntegerField(
         _("Type of resource"),
         choices=constants.INFO_RESOURCE_TYPE_OPTIONS,

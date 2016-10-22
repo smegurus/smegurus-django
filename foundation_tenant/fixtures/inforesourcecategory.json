@@ -50,9 +50,20 @@
         "created": "1980-01-01 00:00:00",
         "last_modified": "1980-01-01 00:00:00",
         "order_num": 5,
-        "name": "Article",
+        "name": "Web Links",
         "icon": "fa-external-link",
         "colour": "#8224e3"
+    }
+},{
+    "model": "foundation_tenant.inforesourcecategory",
+    "pk": 6,
+    "fields": {
+        "created": "1980-01-01 00:00:00",
+        "last_modified": "1980-01-01 00:00:00",
+        "order_num": 6,
+        "name": "Learning",
+        "icon": "fa-graduation-cap",
+        "colour": "#e0c01f"
     }
 }
 ]
