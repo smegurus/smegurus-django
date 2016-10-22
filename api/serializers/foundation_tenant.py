@@ -155,7 +155,7 @@ class TenantMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = TenantMe
         fields = ('id', 'owner', 'is_admitted', 'tags', 'image', 'description',
-                  'url', 'telephone', 'is_tos_signed',
+                  'url', 'telephone', 'is_tos_signed', 'stage_num',
                   'is_setup', 'is_locked', 'notify_when_task_had_an_interaction',
                   'notify_when_new_messages', 'notify_when_due_tasks',
                   'address', 'address', 'contact_point', 'given_name',
@@ -299,7 +299,7 @@ class InfoResourceCategorySerializer(serializers.ModelSerializer):
 class InfoResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoResource
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'category', 'upload',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'category', 'uploads', 'is_for_staff', 'is_for_entrepreneur', 'stage_num', 'tags',)
 
     def validate(self, data):
         """

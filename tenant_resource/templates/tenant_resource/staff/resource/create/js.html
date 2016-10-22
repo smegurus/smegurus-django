@@ -1,6 +1,18 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        // Hide the entrepreneur number access question on startup.
+        $('#id_entrepreneur_access_div').hide();
+
+        // Detect if "entrepreneur" is selected and if was hide or show the "entrepreneur access" question.
+        $("#id_is_for_entrepreneur").change(function() {
+            if(this.checked) {
+                $('#id_entrepreneur_access_div').show();
+            } else {
+                $('#id_entrepreneur_access_div').hide();
+            }
+        });
+
         // Keypress for enter.
         $(document).keypress(function(event){
             if(event.keyCode == 13){
@@ -37,10 +49,14 @@
 
     function ajax_create() {
         // Get our variables.
+        var category_id = $('#id_category').val();
         var name = $('#id_name').val();
         var description = $('#id_description').val();
         var website_url = $('#id_url').val();
         var upload_id = $('#id_hidden_upload_id').val();
+        var is_for_entrepreneur = $("#id_is_for_entrepreneur").is(':checked');
+        var is_for_staff = $("#id_is_for_staff").is(':checked');
+        var stage_num = $('input[name=stage_num]:checked').val();
 
         // Defensive Code.
         if (name <= 0) {
@@ -58,7 +74,6 @@
         }
         {% endif %}
 
-
         // Defensive Code: If the user doesn't include 'http' then automatically
         //                 include it into the URL. Also handle situations where
         //                 Twitter username is entered and replace it with the
@@ -71,10 +86,13 @@
 
         // Set our object variables.
         var resource = {
-            'type_of': {{ type_of }},
+            'category': category_id,
             'name': name,
             'description': description,
             'url': website_url,
+            'is_for_entrepreneur': is_for_entrepreneur,
+            'is_for_staff': is_for_staff,
+            'stage_num': stage_num,
         };
 
         if (upload_id > 0) {

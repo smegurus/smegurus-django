@@ -79,4 +79,5 @@ def staff_resource_details_page(request, category_id, resource_id):
 def staff_resource_create_page(request):
     return render(request, 'tenant_resource/staff/resource/create/view.html',{
         'page': 'resource',
+        'categories': InfoResourceCategory.objects.all()
     })

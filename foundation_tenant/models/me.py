@@ -47,6 +47,12 @@ class TenantMe(AbstractPerson):
         blank=True,
         related_name="tenant_me_tags_%(app_label)s_%(class)s_related"
     )
+    stage_num = models.PositiveSmallIntegerField(            # CONTROLLED BY SYSTEM
+        _("Stage Number"),
+        help_text=_('Track what stage this User is in the system (If they are an entrepreneur).'),
+        default=1,
+        db_index=True,
+    )
 
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),

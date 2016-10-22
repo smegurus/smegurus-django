@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_resource/staff/resource/create/js.html' %}
+{% include 'tenant_resource/staff/resource/create/js.html' %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -13,7 +13,6 @@
         <!-- TEXT -->
         <em class="fa fa-fw fa-cloud-upload mr"></em>{% trans 'New Resource' %}
         <!-- end TEXT -->
-
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li>
@@ -41,11 +40,69 @@
                         <form method="get" action="/" class="form-horizontal">
                             <fieldset>
                                 <legend>{% trans 'Details' %}</legend>
+                                <!-- CATEGORY -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Category' %}</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control form-control" id="id_category">
+                                            {% for category in categories.all %}
+                                            <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- end CATEGORY -->
+
+                                <br /><br />
+
+                                <!-- STAGE -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Viewable by' %}</label>
+                                    <div class="col-sm-10">
+                                        <label class="checkbox-inline"><input type="checkbox" value="option1" id="id_is_for_entrepreneur">{% trans 'Entrepreneurs' %}</label>
+                                        <label class="checkbox-inline"><input type="checkbox" value="option2" id="id_is_for_staff">{% trans 'Staff' %}</label>
+                                    </div>
+                                </div>
+                                <!-- end STAGE -->
+
+                                <br /><br />
+
+                                <!-- ENTREPRNEUR ACCESS -->
+                                <div class="form-group" id="id_entrepreneur_access_div">
+                                    <label class="col-sm-2 control-label">Entrepreneur Access</label>
+                                    <div class="col-sm-10">
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_1" type="radio" name="stage_num" value="1" checked="" />Stage 1 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_2" type="radio" name="stage_num" value="2" />Stage 2 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_3" type="radio" name="stage_num" value="3" />Stage 3 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_4" type="radio" name="stage_num" value="4">Stage 4 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_5" type="radio" name="stage_num" value="5">Stage 5 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="6">Stage 6 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="7">Stage 7 or greater</label>
+                                        </div>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                                <!-- end ENTREPRNEUR ACCESS -->
+
                                 <!-- NAME -->
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}">
+                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}" maxlength="100" />
                                     </div>
                                 </div>
                                 <!-- end NAME -->
@@ -54,7 +111,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
                                     <div class="col-sm-10">
-                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}"></textarea>
+                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}" maxlength="250"></textarea>
                                     </div>
                                 </div>
                                 <!-- end DESCRIPTION -->
@@ -67,28 +124,24 @@
                                     </div>
                                 </div>
                                 <!-- end URL -->
-
                                 <br /><br />
-
                                 <!-- FILE UPLOAD -->
                                 {% if type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE or type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
-                                    <div id="id_upload_div">
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">{% trans 'File' %}</label>
-                                            <div class="col-sm-10">
-
+                                <div id="id_upload_div">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
+                                        <div class="col-sm-10">
                                             <!-- Upload ID -->
                                             <input type="hidden" id="id_hidden_upload_id" />
                                             <input type="hidden" id="id_hidden_url" />
                                             <!-- /.Upload ID -->
-
                                             <!-- File Upload Button -->
                                             <label class="form-control btn btn-success mt10 curp" >
-                                                <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
-                                                <input onchange="ajax_upload_file();"
-                                                             id="id_file"
-                                                           type="file"
-                                                          class="form-control mb10 hide" />
+                                            <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
+                                            <input onchange="ajax_upload_file();"
+                                                id="id_file"
+                                                type="file"
+                                                class="form-control mb10 hide" />
                                             </label>
                                             <!-- /.File Upload Button -->
                                         </div>
@@ -96,7 +149,6 @@
                                 </div>
                                 <div id="id_upload_finished_div" style="display: none;">
                                     <div class="form-group">
-
                                         <label class="col-sm-2 control-label"></label>
                                         <div class="col-sm-10">
                                             <!-- SUCCESS PANEL -->
@@ -112,7 +164,6 @@
                                             </div>
                                         </div>
                                         <!-- end SUCCESS PANEL -->
-
                                     </div>
                                 </div>
                                 <br /><br />

@@ -4,6 +4,7 @@ from foundation_tenant.models.abstract_thing import AbstractThing
 from foundation_tenant.models.imageupload import TenantImageUpload
 from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
+from foundation_tenant.models.tag import Tag
 from smegurus import constants
 
 
@@ -30,24 +31,33 @@ class InfoResource(AbstractThing):
         related_name="info_resource_category",
         on_delete=models.SET_NULL
     )
-    is_private = models.BooleanField(
-        _("Is this resource available to the staff only"),
+    is_for_staff = models.BooleanField(
+        _("Is this resource available to the staff"),
         default=False,
-        help_text=_('Variable controls whether entrepreneurs can see this resource.'),
+        help_text=_('Variable controls whether staff will see this resource.'),
     )
-    type_of = models.PositiveSmallIntegerField(
-        _("Type of resource"),
-        choices=constants.INFO_RESOURCE_TYPE_OPTIONS,
-        help_text=_('The type of resource this is.'),
-        default=constants.INFO_RESOURCE_INTERAL_URL_TYPE
+    is_for_entrepreneur = models.BooleanField(
+        _("Is this resource available to the entrepreneur"),
+        default=False,
+        help_text=_('Variable controls whether entrepreneurs will see this resource.'),
     )
-    upload = models.ForeignKey(
+    stage_num = models.PositiveSmallIntegerField(
+        _("Stage Number"),
+        help_text=_('Track what stage this resource is accessible for the entrepreneur.'),
+        default=1,
+        db_index=True,
+    )
+    uploads = models.ManyToManyField(
         TenantFileUpload,
-        help_text=_('The uploaded file.'),
-        null=True,
+        help_text=_('The files uploaded by a User.'),
         blank=True,
-        related_name="info_resource_uploaded_file",
-        on_delete=models.SET_NULL
+        related_name='info_resources_uploads_%(app_label)s_%(class)s_related',
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        help_text=_('The tags that this User belongs to.'),
+        blank=True,
+        related_name="info_resources_tags_%(app_label)s_%(class)s_related"
     )
 
     def __str__(self):

@@ -13,7 +13,7 @@ from foundation_tenant.models.inforesource import InfoResource
 class InfoResourceFilter(django_filters.FilterSet):
     class Meta:
         model = InfoResource
-        fields = ['created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'type_of', 'upload',]
+        fields = ['created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'uploads', 'is_for_staff', 'is_for_entrepreneur', 'stage_num', 'tags',]
 
 
 class InfoResourceViewSet(viewsets.ModelViewSet):
