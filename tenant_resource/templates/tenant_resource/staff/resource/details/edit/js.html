@@ -1,7 +1,22 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
-        // Do nothing.
+        // Detect if "entrepreneur" is selected and if was hide or show the "entrepreneur access" question.
+        $("#id_is_for_entrepreneur").change(function() {
+            if(this.checked) {
+                $('#id_entrepreneur_access_div').show();
+            } else {
+                $('#id_entrepreneur_access_div').hide();
+            }
+        });
+
+        $("#id_category").change(function() {
+            if(this.value == {{ constants.INFO_RESOURCE_CATEGORY_WEBLINK_ID }}) {
+                $('#id_upload_div').hide();
+            } else {
+                $('#id_upload_div').show();
+            }
+        });
     }); // end DOCUMENT START
 
     /**
@@ -29,7 +44,7 @@
     }
 
     function ajax_cancel() {
-        window.location = "";
+        window.location = "{% url 'tenant_resource_staff_details' resource.category.id %}";
     }
 
     function ajax_update() {
@@ -48,12 +63,13 @@
             alert("{% trans 'Please enter a description.' %}");
             return;
         }
-        {% if inforesource.type_of != constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
-        if (website_url <= 0) {
-            alert("{% trans 'Please enter a url.' %}");
-            return;
+        if (category_id == {{ constants.INFO_RESOURCE_CATEGORY_VIDEO_ID}} ||
+            category_id == {{ constants.INFO_RESOURCE_CATEGORY_WEBLINK_ID}}) {
+            if (website_url <= 0) {
+                alert("{% trans 'Please enter a url.' %}");
+                return;
+            }
         }
-        {% endif %}
 
         // Defensive Code: If the user doesn't include 'http' then automatically
         //                 include it into the URL. Also handle situations where
@@ -69,19 +85,19 @@
 
         // Set our object variables.
         get_tenant_inforesource(
-            {{ inforesource.id }},
-            function(inforesource) {
-                inforesource['name'] = name;
-                inforesource['description'] = description;
-                inforesource['url'] = website_url;
+            {{ resource.id }},
+            function(resource) {
+                resource['name'] = name;
+                resource['description'] = description;
+                resource['url'] = website_url;
                 if (upload_id > 0 ) {
                     console.log(upload_id)
-                    inforesource['upload'] = parseInt(upload_id);
+                    resource['upload'] = parseInt(upload_id);
                 }
                 set_tenant_inforesource(
-                    inforesource,
+                    resource,
                     function(json_result) {
-                        window.location = "";
+                        window.location = "{% url 'tenant_resource_staff_details' resource.category.id %}";
                     },
                     function(error_json_result) {
                         $("id_accept_btn").removeAttr("disabled");
