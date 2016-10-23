@@ -22,26 +22,33 @@
     /**
      *  Function will asynchronously upload the file.
      */
-     function ajax_upload_file() {
-        if ($('#id_file').val() == "") {
-            alert(_("Please select a file to upload"));
-            // $.notify("Please select an image to upload", "danger");
-            return false;
-        }
-
+    function ajax_upload_file() {
         // Extract the information.
         var file = document.getElementById('id_file').files[0];
         var upload_id = $('#id_hidden_upload_id').val();
-        console.log("upload_id: "+upload_id);
 
-        $('#id_upload_div').hide()
-
-         // Insert or Update.
+        // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(json_result) {
             console.log(json_result);
-            $('#id_hidden_url').attr('src', json_result['datafile']);
-            $('#id_hidden_upload_id').val(json_result['id']);
-            $('#id_upload_finished_div').show()
+            // Create the "download" button.
+            var download_url = json_result['datafile'];
+            var download_btn = "";
+            download_btn += "<a href=\"" + download_url + "\" target=\"_blank\">";
+            download_btn += "<button type=\"button\" class=\"btn btn-labeled btn-default\">";
+            download_btn += "<em class=\"fa fa-fw fa-download mr\"></em>{% trans 'Download' %}";
+            download_btn += "</button>";
+            download_btn += "</a>";
+
+            // Get ID
+            var id = json_result['id'];
+
+            // Get filename.
+            var temp_array = test.split("/upload/");
+            var filename = temp_array[1];
+
+            // Create the table row.
+            var html_row = "<tr id=\"" + id + "\"><td>"+filename+"</td><td>"+download_btn+"</td></tr>";
+            $("#id_uploads_table > tbody").append(html_row);
         });
     }
 
@@ -105,9 +112,14 @@
                 resource['is_for_staff'] = is_for_staff;
                 resource['stage_num'] = parseInt(stage_num);
                 resource['tags'] = tags;
-                if (upload_id > 0) {
-                    resource['uploads'].push(upload_id); // Add our file upload.
-                }
+
+                // Iterate through the table array and add our files.
+                $('#id_uploads_table tr').each(function () {
+                    if (this.id > 0) {
+                        var upload_ip = parseInt(this.id);
+                        resource['uploads'].push(upload_ip)
+                    }
+                });
 
                 // SET RESOURCE
                 set_tenant_inforesource(

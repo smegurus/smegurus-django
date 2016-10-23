@@ -157,36 +157,52 @@
                                             <input type="hidden" id="id_hidden_url" />
                                             <!-- /.Upload ID -->
                                             <!-- File Upload Button -->
-                                            <label class="form-control btn btn-success mt10 curp" >
+
+
+                                            <!-- TABLE CONTENT -->
+                                            <div class="panel-body">
+                                               <div class="table-responsive">
+                                                  <table class="table table-striped" id="id_uploads_table">
+                                                     <thead>
+                                                        <tr>
+                                                           <th>{% trans 'Name' %}</th>
+                                                           <th>{% trans 'Options' %}</th>
+                                                        </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                        {% for upload in resource.uploads.all %}
+                                                            <tr id="{{ upload.id }}">
+                                                                <td>{{ upload }}</td>
+                                                                <td>
+                                                                    <a href="{{ upload.get_s3_url }}" target="_blank">
+                                                                        <button type="button" class="btn btn-labeled btn-default">
+                                                                            <em class="fa fa-fw fa-download mr"></em>{% trans 'Download' %}
+                                                                        </button>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                     </tbody>
+                                                  </table>
+                                               </div>
+                                            </div>
+                                            <!-- end TABLE CONTENT -->
+
+
+                                            <label class="form-control btn btn-success curp" >
                                             <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
                                             <input onchange="ajax_upload_file();"
                                                 id="id_file"
                                                 type="file"
-                                                class="form-control mb10 hide" />
+                                                class="form-control hide" />
                                             </label>
-                                            <!-- /.File Upload Button -->
+
+
                                         </div>
                                     </div>
                                 </div>
-                                <div id="id_upload_finished_div" style="display: none;">
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-10">
-                                            <!-- SUCCESS PANEL -->
-                                            <div class="col-lg-4">
-                                                <!-- START panel-->
-                                                <div id="panelDemo9" class="panel panel-success">
-                                                    <div class="panel-heading">{% trans 'Successful Upload!' %}</div>
-                                                    <div class="panel-body">
-                                                        <p>{% trans 'You have succesfully uploaded the file.' %}</p>
-                                                    </div>
-                                                </div>
-                                                <!-- END panel-->
-                                            </div>
-                                        </div>
-                                        <!-- end SUCCESS PANEL -->
-                                    </div><br /><br />
-                                </div>
+
+
                                 <!-- end FILE UPLOAD -->
                             </fieldset>
                             <!-- SUBMISSION -->

@@ -38,9 +38,10 @@ class TenantFileUpload(models.Model):
     )
 
     def __str__(self):
-        return str(self.datafile)
+        temp_filename = str(self.datafile)
+        return temp_filename.replace("upload/", "")
 
-    def get_s3_url(self): 
+    def get_s3_url(self):
         return "https://" + env_var('AWS_STORAGE_BUCKET_NAME') + ".s3.amazonaws.com/media/"+str(self.datafile)
 
     # def delete(self, *args, **kwargs):
