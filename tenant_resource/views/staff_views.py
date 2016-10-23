@@ -64,7 +64,7 @@ def staff_category_details_page(request, category_id):
 # @condition(last_modified_func=my_last_modified_func)
 def staff_resource_details_page(request, category_id, resource_id):
     category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
-    return render(request, 'tenant_resource/staff/category/details/view.html',{
+    return render(request, 'tenant_resource/staff/resource/details/edit/view.html',{
         'page': 'resource',
         'category': category,
         'inforesources': InfoResource.objects.filter(category=category)

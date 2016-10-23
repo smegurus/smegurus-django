@@ -1,0 +1,110 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+        // Do nothing.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will asynchronously upload the file.
+     */
+    function ajax_upload_file() {
+        if ($('#id_file').val() == "") {
+            alert(_("Please select a file to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var file = document.getElementById('id_file').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+        console.log("upload_id: "+upload_id);
+
+        // Insert or Update.
+        set_tenant_fileupload(upload_id, file, function(json_result) {
+            console.log(json_result);
+            $('#id_hidden_url').attr('src', json_result['datafile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['datafile']);
+        });
+    }
+
+    function ajax_cancel() {
+        window.location = "";
+    }
+
+    function ajax_update() {
+        // Get our variables.
+        var name = $('#id_name').val();
+        var description = $('#id_description').val();
+        var website_url = $('#id_url').val();
+        var upload_id = $('#id_hidden_upload_id').val();
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the resource name.' %}");
+            return;
+        }
+        if (description <= 0) {
+            alert("{% trans 'Please enter a description.' %}");
+            return;
+        }
+        {% if inforesource.type_of != constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+        if (website_url <= 0) {
+            alert("{% trans 'Please enter a url.' %}");
+            return;
+        }
+        {% endif %}
+
+        // Defensive Code: If the user doesn't include 'http' then automatically
+        //                 include it into the URL. Also handle situations where
+        //                 Twitter username is entered and replace it with the
+        //                 full Twitter URL.
+        if (website_url > 0) {
+            if (website_url.indexOf("http") < 0) {
+                website_url = 'http://' + website_url;
+            }
+        }
+
+        $("#id_accept_btn").prop("disabled",true);
+
+        // Set our object variables.
+        get_tenant_inforesource(
+            {{ inforesource.id }},
+            function(inforesource) {
+                inforesource['name'] = name;
+                inforesource['description'] = description;
+                inforesource['url'] = website_url;
+                if (upload_id > 0 ) {
+                    console.log(upload_id)
+                    inforesource['upload'] = parseInt(upload_id);
+                }
+                set_tenant_inforesource(
+                    inforesource,
+                    function(json_result) {
+                        window.location = "";
+                    },
+                    function(error_json_result) {
+                        $("id_accept_btn").removeAttr("disabled");
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        if (string.indexOf('valid URL') > -1) {
+                            alert("{% trans 'Please enter a valid URL.' %}");
+                        } else if (string.indexOf('he URL is not embedded') > -1) {
+                            alert("{% trans 'Please enter the embedded YouTube URL.' %}");
+                        } else if (string.indexOf('The URL needs to have our domain') > -1) {
+                            alert("{% trans 'Please enter a URL using only smegurus.com in it. This is because you have chosen a INTERNAL resource type.' %}");
+                        } else {
+                            alert(string);
+                        }
+                    }
+                ); // end SET.
+            },
+            function(error_json_result) {
+                $("id_accept_btn").removeAttr("disabled");
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET
+    }
+</script>

@@ -22,9 +22,9 @@
              <a href="{% url 'tenant_resource_staff_launchpad_master' %}">{% trans 'Resource (Staff)' %}</a>
            </li>
            <li>
-             <a href="{% url 'tenant_resource_staff_category_master' %}">{% trans 'Category (Advisor)' %}</a>
+             <a href="{% url 'tenant_resource_staff_category_master' %}">{% trans 'Category (Staff)' %}</a>
            </li>
-           <li class="active">{{ category.name }}</li>
+           <li class="active">{{ category.name }}&nbsp;{% trans '(Staff)' %}</li>
        </ol>
        <!-- end BREADCRUMBS -->
    </h3>
@@ -53,17 +53,7 @@
                                {% for resource in inforesources.all %}
                                    <tr class="gradeA">
                                        <td>
-                                           {% if resource.type_of == constants.INFO_RESOURCE_INTERAL_URL_TYPE %}
-                                               <em class="fa fa-fw fa-link mr"></em>
-                                           {% elif resource.type_of == constants.INFO_RESOURCE_EXTERNAL_URL_TYPE %}
-                                               <em class="fa fa-fw fa-external-link mr"></em>
-                                           {% elif resource.type_of == constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE %}
-                                               <em class="fa fa-fw fa-youtube mr"></em>
-                                           {% elif resource.type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
-                                               <em class="fa fa-fw fa-video-camera mr"></em>
-                                           {% elif resource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
-                                               <em class="fa fa-fw fa-download mr"></em>
-                                           {% endif %}
+                                           <em class="fa fa-fw {{ resource.category.icon }} mr"></em>
                                        </td>
                                        <td>
                                            {{ resource.name }}
@@ -71,7 +61,7 @@
                                        <td>
                                            {% if request.tenant_me.is_employee %}
                                            <button id="id_delete_{{ resource.id }}_btn" onclick="ajax_delete_resource({{ resource.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
-                                           <a href="{% url 'tenant_resource_details_edit' resource.id %}">
+                                           <a href="{% url 'tenant_resource_staff_resource_details' resource.category.id resource.id %}">
                                                <button type="button" class="btn btn-labeled btn-warning">{% trans 'Edit' %}</button>
                                            </a>
                                            {% endif %}

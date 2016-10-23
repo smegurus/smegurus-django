@@ -1,0 +1,122 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_resource/staff/resource/details/edit/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE -->
+    <h3>
+        <!-- TEXT -->
+        <em class="fa fa-fw {{ category.icon }} mr"></em>Edit Task
+        <!-- end TEXT -->
+
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+              <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+              <a href="{% url 'tenant_resource_staff_launchpad_master' %}">{% trans 'Resource (Staff)' %}</a>
+            </li>
+            <li>
+              <a href="{% url 'tenant_resource_staff_category_master' %}">{% trans 'Category (Staff)' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_resource_staff_details' category.id %}">{{ category.name }}&nbsp;{% trans '(Staff)' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'Edit Resource' %}&nbsp;{% trans '(Staff)' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE -->
+    <!-- CONTENT -->
+    <div class="table-grid table-grid-desktop">
+        <!-- ROW -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- FORM -->
+                        <form method="get" action="/" class="form-horizontal">
+                            <fieldset>
+                                <legend>{% trans 'Details' %}</legend>
+                                <!-- NAME -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}" value="{{ inforesource.name|safe }}">
+                                    </div>
+                                </div>
+                                <!-- end NAME -->
+                                <br /><br />
+                                <!-- DESCRIPTION -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}">{{ inforesource.description|safe }}</textarea>
+                                    </div>
+                                </div>
+                                <!-- end DESCRIPTION -->
+                                <br /><br />
+                                <!-- URL -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}" value="{{ inforesource.url|safe }}">
+                                    </div>
+                                </div>
+                                <!-- end URL -->
+                                <br /><br />
+                                <!-- FILE UPLOAD -->
+                                {% if inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE or inforesource.type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
+                                        <div class="col-sm-10">
+                                            {% if inforesource.upload %}
+                                                <p>{% trans 'File' %}: <a href="{{ inforesource.upload.get_s3_url }}" target="_blank">{{ inforesource.upload }}</a></p>
+                                            {% endif %}
+
+                                        <!-- Upload ID -->
+                                        <input type="hidden" id="id_hidden_upload_id" value="{% if inforesource.upload %}{{ inforesource.upload.id }}{% endif %}" />
+                                        <input type="hidden" id="id_hidden_url" value="{% if inforesource.upload %}{% if inforesource.upload.datefile %}{{ inforesource.upload.datefile.url }}{% endif %}{% endif %}" />
+                                        <!-- /.Upload ID -->
+
+                                        <!-- File Upload Button -->
+                                        <label class="form-control btn btn-success mt10 curp" >
+                                        <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
+                                        <input onchange="ajax_upload_file();"
+                                                     id="id_file"
+                                                   type="file"
+                                                  class="form-control mb10 hide" />
+                                        </label>
+                                        <!-- /.File Upload Button -->
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                {% endif %}
+                                <!-- end FILE UPLOAD -->
+                            </fieldset>
+                            <!-- SUBMISSION -->
+                            <div class="pull-right">
+                                <button onclick="ajax_cancel();" type="button" class="btn btn-default btn-lg" id="id_cancel_btn">{% trans 'Cancel' %}</button>
+                                <button onclick="ajax_update();" type="button" class="btn btn-warning btn-lg" id="id_accept_btn">{% trans 'Update' %}</button>
+                            </div>
+                            <!-- end SUBMISSION -->
+                        </form>
+                        <!-- end FORM -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end ROW -->
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}
