@@ -26,10 +26,12 @@
         // Extract the information.
         var file = document.getElementById('id_file').files[0];
         var upload_id = $('#id_hidden_upload_id').val();
+        $("#id_upload_btn_label").prop("disabled",true); // Disable button.
 
         // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(json_result) {
-            console.log(json_result);
+            $("id_accept_btn").removeAttr("disabled"); // Enable button.
+            
             // Create the "download" button.
             var download_url = json_result['datafile'];
             var download_btn = "";
@@ -43,7 +45,7 @@
             var id = json_result['id'];
 
             // Get filename.
-            var temp_array = test.split("/upload/");
+            var temp_array = download_url.split("/upload/");
             var filename = temp_array[1];
 
             // Create the table row.
