@@ -62,10 +62,27 @@ def staff_category_details_page(request, category_id):
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def staff_resource_details_page(request, category_id, resource_id):
+def staff_resource_details_edit_page(request, category_id, resource_id):
     curr_category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
     curr_resource = get_object_or_404(InfoResource, id=int_or_none(resource_id))
     return render(request, 'tenant_resource/staff/resource/details/edit/view.html',{
+        'page': 'resource',
+        'resource': curr_resource,
+        'categories': InfoResourceCategory.objects.all(),
+        'tags': Tag.objects.all()
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_reception_required
+@tenant_intake_required
+@tenant_configuration_required
+@tenant_profile_required
+# @condition(last_modified_func=my_last_modified_func)
+def staff_resource_details_info_page(request, category_id, resource_id):
+    curr_category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
+    curr_resource = get_object_or_404(InfoResource, id=int_or_none(resource_id))
+    return render(request, 'tenant_resource/staff/resource/details/info/view.html',{
         'page': 'resource',
         'resource': curr_resource,
         'categories': InfoResourceCategory.objects.all(),

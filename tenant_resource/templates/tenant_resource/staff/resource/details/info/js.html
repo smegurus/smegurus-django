@@ -1,0 +1,13 @@
+{% load i18n %}
+<script>
+    $(document).ready(function () {
+    }); // end DOCUMENT START
+
+    function ajax_cancel() {
+        window.location = "{% url 'tenant_resource_staff_details' resource.category.id %}";
+    }
+
+    function ajax_ok() {
+        window.location = "{% url 'tenant_resource_staff_details' resource.category.id %}";
+    }
+</script>

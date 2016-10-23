@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_resource/staff/resource/details/edit/js.html' %}
+    {% include 'tenant_resource/staff/resource/details/info/js.html' %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -11,7 +11,7 @@
     <!-- TITLE -->
     <h3>
         <!-- TEXT -->
-        <em class="fa fa-fw {{ resource.category.icon }} mr"></em>{% trans 'Edit Resource' %}
+        <em class="fa fa-fw {{ resource.category.icon }} mr"></em>{% trans 'View Resource' %}
         <!-- end TEXT -->
 
         <!-- BREADCRUMBS -->
@@ -29,7 +29,7 @@
                 <a href="{% url 'tenant_resource_staff_details' resource.category.id %}">{{ resource.category.name }}&nbsp;{% trans '(Staff)' %}</a>
             </li>
             <li class="active">
-                {% trans 'Edit Resource' %}&nbsp;{% trans '(Staff)' %}
+                {% trans 'View Resource' %}&nbsp;{% trans '(Staff)' %}
             </li>
         </ol>
         <!-- end BREADCRUMBS -->
@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'Category' %}</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control form-control" id="id_category">
+                                        <select class="form-control form-control" id="id_category" disabled="true">
                                             {% for category in categories.all %}
                                                 <option value="{{ category.id }}" {% if category == resource.category %}selected{% endif %}>{{ category.name }}</option>
                                             {% endfor %}
@@ -66,10 +66,10 @@
                                     <label class="col-sm-2 control-label">{% trans 'Viewable by' %}</label>
                                     <div class="col-sm-10">
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" value="option1" id="id_is_for_entrepreneur" {% if resource.is_for_entrepreneur %}checked=""{% endif %} />{% trans 'Entrepreneurs' %}
+                                            <input type="checkbox" value="option1" id="id_is_for_entrepreneur" {% if resource.is_for_entrepreneur %}checked=""{% endif %} disabled="true" />{% trans 'Entrepreneurs' %}
                                         </label>
                                         <label class="checkbox-inline">
-                                            <input type="checkbox" value="option2" id="id_is_for_staff" {% if resource.is_for_staff %}checked=""{% endif %} />{% trans 'Staff' %}
+                                            <input type="checkbox" value="option2" id="id_is_for_staff" {% if resource.is_for_staff %}checked=""{% endif %} disabled="true" />{% trans 'Staff' %}
                                         </label>
                                     </div>
                                 </div>
@@ -82,25 +82,25 @@
                                     <label class="col-sm-2 control-label">Entrepreneur Access</label>
                                     <div class="col-sm-10">
                                         <div class="radio">
-                                            <label><input id="id_is_stage_1" type="radio" name="stage_num" value="1" {% if resource.stage_num == 1 %}checked=""{% endif %} />Stage 1 or greater</label>
+                                            <label><input id="id_is_stage_1" type="radio" name="stage_num" value="1" {% if resource.stage_num == 1 %}checked=""{% endif %} disabled="true" />Stage 1 or greater</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input id="id_is_stage_2" type="radio" name="stage_num" value="2" {% if resource.stage_num == 2 %}checked=""{% endif %} />Stage 2 or greater</label>
+                                            <label><input id="id_is_stage_2" type="radio" name="stage_num" value="2" {% if resource.stage_num == 2 %}checked=""{% endif %} disabled="true" />Stage 2 or greater</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input id="id_is_stage_3" type="radio" name="stage_num" value="3" {% if resource.stage_num == 3 %}checked=""{% endif %} />Stage 3 or greater</label>
+                                            <label><input id="id_is_stage_3" type="radio" name="stage_num" value="3" {% if resource.stage_num == 3 %}checked=""{% endif %} disabled="true" />Stage 3 or greater</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input id="id_is_stage_4" type="radio" name="stage_num" value="4" {% if resource.stage_num == 4 %}checked=""{% endif %} />Stage 4 or greater</label>
+                                            <label><input id="id_is_stage_4" type="radio" name="stage_num" value="4" {% if resource.stage_num == 4 %}checked=""{% endif %} disabled="true" />Stage 4 or greater</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input id="id_is_stage_5" type="radio" name="stage_num" value="5" {% if resource.stage_num == 5 %}checked=""{% endif %} />Stage 5 or greater</label>
+                                            <label><input id="id_is_stage_5" type="radio" name="stage_num" value="5" {% if resource.stage_num == 5 %}checked=""{% endif %} disabled="true" />Stage 5 or greater</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="6" {% if resource.stage_num == 6 %}checked=""{% endif %} />Stage 6 or greater</label>
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="6" {% if resource.stage_num == 6 %}checked=""{% endif %} disabled="true" />Stage 6 or greater</label>
                                         </div>
                                         <div class="radio">
-                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="7" {% if resource.stage_num == 7 %}checked=""{% endif %} />Stage 7 or greater</label>
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="7" {% if resource.stage_num == 7 %}checked=""{% endif %} disabled="true" />Stage 7 or greater</label>
                                         </div>
                                         <br />
                                         <br />
@@ -112,7 +112,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}" maxlength="100" value="{{ resource.name }}" />
+                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}" maxlength="100" value="{{ resource.name }}"  readonly="true" />
                                     </div>
                                 </div>
                                 <!-- end NAME -->
@@ -121,7 +121,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
                                     <div class="col-sm-10">
-                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}" maxlength="250">{{ resource.description }}</textarea>
+                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}" maxlength="250" readonly="true">{{ resource.description }}</textarea>
                                     </div>
                                 </div>
                                 <!-- end DESCRIPTION -->
@@ -130,7 +130,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}" value="{{ resource.url }}" />
+                                        <input type="text" class="form-control form-control" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}" value="{{ resource.url }}" readonly="true" />
                                     </div>
                                 </div>
                                 <!-- end URL -->
@@ -139,7 +139,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'Tags' %}</label>
                                     <div class="col-sm-10">
-                                        <select id="select2-1" multiple="multiple" class="form-control">
+                                        <select id="select2-1" multiple="multiple" class="form-control" disabled="true">
                                             {% for tag in tags %}
                                                 <option value="{{ tag.id }}" {% if tag in resource.tags.all %}selected=""{% endif %}>{{ tag.name }}</option>
                                             {% endfor %}
@@ -157,38 +157,10 @@
                                             <input type="hidden" id="id_hidden_upload_id" />
                                             <input type="hidden" id="id_hidden_url" />
                                             <!-- /.Upload ID -->
-                                            <!-- File Upload Button -->
-                                            <label class="form-control btn btn-success mt10 curp" >
-                                            <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
-                                            <input onchange="ajax_upload_file();"
-                                                         id="id_file"
-                                                       type="file"
-                                                      class="form-control mb10 hide" />
-                                            </label>
-                                            <!-- /.File Upload Button -->
+
                                         </div>
                                     </div>
                                 </div>
-                                <div id="id_upload_finished_div" style="display: none;">
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"></label>
-                                        <div class="col-sm-10">
-                                            <!-- SUCCESS PANEL -->
-                                            <div class="col-lg-4">
-                                                <!-- START panel-->
-                                                <div id="panelDemo9" class="panel panel-success">
-                                                    <div class="panel-heading">{% trans 'Successful Upload!' %}</div>
-                                                    <div class="panel-body">
-                                                        <p>{% trans 'You have succesfully uploaded the file.' %}</p>
-                                                    </div>
-                                                </div>
-                                                <!-- END panel-->
-                                            </div>
-                                        </div>
-                                        <!-- end SUCCESS PANEL -->
-                                    </div><br /><br />
-                                </div>
-
                                 <!-- end FILE UPLOAD -->
                             </fieldset>
                             <!-- SUBMISSION -->
@@ -196,7 +168,7 @@
                                 <button onclick="ajax_cancel();" type="button" class="btn btn-default btn-lg" id="id_accept_btn">{% trans 'Cancel' %}</button>
                             </div>
                             <div class="pull-right">
-                                <button onclick="ajax_create();" type="button" class="btn btn-warning btn-lg" id="id_accept_btn">{% trans 'Update' %}</button>
+                                <button onclick="ajax_ok();" type="button" class="btn btn-warning btn-lg" id="id_accept_btn">{% trans 'Ok' %}</button>
                             </div>
                             <!-- end SUBMISSION -->
                         </form>

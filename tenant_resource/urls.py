@@ -10,7 +10,8 @@ urlpatterns = (
 
 
     # STAFF
-    url(r'^staff/resource/category/(.*)/item/(.*)/$', staff_views.staff_resource_details_page, name='tenant_resource_staff_resource_details'),
+    url(r'^staff/resource/category/(.*)/info/(.*)/$', staff_views.staff_resource_details_info_page, name='tenant_resource_staff_resource_info_details'),
+    url(r'^staff/resource/category/(.*)/edit/(.*)/$', staff_views.staff_resource_details_edit_page, name='tenant_resource_staff_resource_edit_details'),
     url(r'^staff/resource/category/(.*)/$', staff_views.staff_category_details_page, name='tenant_resource_staff_details'),
     url(r'^staff/resource/category$', staff_views.staff_category_master_page, name='tenant_resource_staff_category_master'),
     url(r'^staff/resource/create$', staff_views.staff_resource_create_page, name='tenant_resource_staff_resource_create'),
