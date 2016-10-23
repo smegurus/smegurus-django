@@ -12,6 +12,7 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.inforesource import InfoResource
+from foundation_tenant.models.tag import Tag
 from smegurus import constants
 
 
@@ -21,23 +22,11 @@ from smegurus import constants
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def client_category_master_page(request):
+def category_master_page(request):
     return render(request, 'tenant_resource/client/category/master/view.html',{
         'page': 'resource',
         'categories': InfoResourceCategory.objects.all(),
     })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @login_required(login_url='/en/login')
@@ -46,9 +35,9 @@ def client_category_master_page(request):
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def master_page(request, category_id):
+def category_details_page(request, category_id):
     category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
-    return render(request, 'tenant_resource/master/resource/view.html',{
+    return render(request, 'tenant_resource/client/category/details/view.html',{
         'page': 'resource',
         'category': category,
         'inforesources': InfoResource.objects.filter(category=category)
@@ -61,37 +50,12 @@ def master_page(request, category_id):
 @tenant_configuration_required
 @tenant_profile_required
 # @condition(last_modified_func=my_last_modified_func)
-def create_page(request, category_id):
-    category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
-    return render(request, 'tenant_resource/create/view.html',{
+def info_page(request, category_id, resource_id):
+    curr_category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
+    curr_resource = get_object_or_404(InfoResource, id=int_or_none(resource_id))
+    return render(request, 'tenant_resource/client/resource/details/info/view.html',{
         'page': 'resource',
-        'category': category,
-    })
-
-
-@login_required(login_url='/en/login')
-@tenant_reception_required
-@tenant_intake_required
-@tenant_configuration_required
-@tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
-def edit_details_page(request, id):
-    inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
-    return render(request, 'tenant_resource/details/edit/view.html',{
-        'page': 'resource',
-        'inforesource': inforesource
-    })
-
-
-@login_required(login_url='/en/login')
-@tenant_reception_required
-@tenant_intake_required
-@tenant_configuration_required
-@tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
-def info_details_page(request, id):
-    inforesource = get_object_or_404(InfoResource, id=int_or_none(id))
-    return render(request, 'tenant_resource/details/info/view.html',{
-        'page': 'resource',
-        'inforesource': inforesource
+        'resource': curr_resource,
+        'categories': InfoResourceCategory.objects.all(),
+        'tags': Tag.objects.all()
     })

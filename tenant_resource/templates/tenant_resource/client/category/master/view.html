@@ -20,7 +20,7 @@
             {% if not request.tenant_me.is_entrepreneur %}
                 <a href="{% url 'tenant_resource_staff_launchpad_master' %}">{% trans 'Resource (Staff)' %}</a>
             {% else %}
-                <a href="{% url 'tenant_resource_staff_category_master' %}">{% trans 'Resource' %}</a>
+                <a href="{% url 'tenant_resource_client_category_master' %}">{% trans 'Resource' %}</a>
             {% endif %}
         </li>
         <li class="active">{% trans 'Category' %}&nbsp;{% if not request.tenant_me.is_entrepreneur %}(Entrepeneur){% endif %}</li>
@@ -35,7 +35,7 @@
         <div class="col-md-4">
             <div class="panel b">
                 <div class="panel-body text-center">
-                    <a href="{% url 'tenant_resource_staff_details' category.id %}" class="link-unstyled" style="color:{{ category.colour }};">
+                    <a href="{% url 'tenant_resource_client_details' category.id %}" class="link-unstyled" style="color:{{ category.colour }};">
                         <em class="fa fa-5x {{ category.icon }} mb-lg"></em>
                         <br>
                             <span class="h4" style="color:black;">{{ category.name }}</span>

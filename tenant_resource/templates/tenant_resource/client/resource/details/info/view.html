@@ -1,0 +1,222 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    <script>
+        $(document).ready(function () {
+            // Do nothing.
+        }); // end DOCUMENT START
+
+        function ajax_cancel() {
+            window.location = "{% url 'tenant_resource_client_details' resource.category.id %}";
+        }
+
+        function ajax_ok() {
+            window.location = "{% url 'tenant_resource_client_details' resource.category.id %}";
+        }
+    </script>
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE -->
+    <h3>
+        <!-- TEXT -->
+        <em class="fa fa-fw {{ resource.category.icon }} mr"></em>{% trans 'View Resource' %}
+        <!-- end TEXT -->
+
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+              <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+              <a href="{% url 'tenant_resource_staff_launchpad_master' %}">{% trans 'Resource (Staff)' %}</a>
+            </li>
+            <li>
+              <a href="{% url 'tenant_resource_client_category_master' %}">{% trans 'Category (Entrepeneur)' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_resource_client_details' resource.category.id %}">{{ resource.category.name }}&nbsp;{% trans '(Entrepeneur)' %}</a>
+            </li>
+            <li class="active">
+                {% trans 'View Resource' %}&nbsp;{% trans '(Entrepeneur)' %}
+            </li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE -->
+    <!-- CONTENT -->
+    <div class="table-grid table-grid-desktop">
+        <!-- ROW -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- FORM -->
+                        <form method="get" action="/" class="form-horizontal">
+                            <fieldset>
+                                <legend>{% trans 'Details' %}</legend>
+                                <!-- CATEGORY -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Category' %}</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control form-control" id="id_category" disabled="true">
+                                            {% for category in categories.all %}
+                                                <option value="{{ category.id }}" {% if category == resource.category %}selected{% endif %}>{{ category.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- end CATEGORY -->
+
+                                <br /><br />
+
+                                <!-- STAGE -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Viewable by' %}</label>
+                                    <div class="col-sm-10">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="option1" id="id_is_for_entrepreneur" {% if resource.is_for_entrepreneur %}checked=""{% endif %} disabled="true" />{% trans 'Entrepreneurs' %}
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="option2" id="id_is_for_staff" {% if resource.is_for_staff %}checked=""{% endif %} disabled="true" />{% trans 'Staff' %}
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- end STAGE -->
+
+                                <br /><br />
+
+                                <!-- ENTREPRNEUR ACCESS -->
+                                <div class="form-group" id="id_entrepreneur_access_div" {% if not resource.is_for_entrepreneur %}style="display: none;"{% endif %}>
+                                    <label class="col-sm-2 control-label">Entrepreneur Access</label>
+                                    <div class="col-sm-10">
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_1" type="radio" name="stage_num" value="1" {% if resource.stage_num == 1 %}checked=""{% endif %} disabled="true" />Stage 1 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_2" type="radio" name="stage_num" value="2" {% if resource.stage_num == 2 %}checked=""{% endif %} disabled="true" />Stage 2 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_3" type="radio" name="stage_num" value="3" {% if resource.stage_num == 3 %}checked=""{% endif %} disabled="true" />Stage 3 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_4" type="radio" name="stage_num" value="4" {% if resource.stage_num == 4 %}checked=""{% endif %} disabled="true" />Stage 4 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_5" type="radio" name="stage_num" value="5" {% if resource.stage_num == 5 %}checked=""{% endif %} disabled="true" />Stage 5 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="6" {% if resource.stage_num == 6 %}checked=""{% endif %} disabled="true" />Stage 6 or greater</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="7" {% if resource.stage_num == 7 %}checked=""{% endif %} disabled="true" />Stage 7 or greater</label>
+                                        </div>
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                                <!-- end ENTREPRNEUR ACCESS -->
+
+                                <!-- NAME -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}" maxlength="100" value="{{ resource.name }}"  readonly="true" />
+                                    </div>
+                                </div>
+                                <!-- end NAME -->
+                                <br /><br />
+                                <!-- DESCRIPTION -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}" maxlength="250" readonly="true">{{ resource.description }}</textarea>
+                                    </div>
+                                </div>
+                                <!-- end DESCRIPTION -->
+                                <br /><br />
+                                <!-- URL -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}" value="{{ resource.url }}" readonly="true" />
+                                    </div>
+                                </div>
+                                <!-- end URL -->
+                                <br /><br />
+                                <!-- TAGS -->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{% trans 'Tags' %}</label>
+                                    <div class="col-sm-10">
+                                        <select id="select2-1" multiple="multiple" class="form-control" disabled="true">
+                                            {% for tag in tags %}
+                                                <option value="{{ tag.id }}" {% if tag in resource.tags.all %}selected=""{% endif %}>{{ tag.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- end TAGS -->
+                                <br /><br />
+                                <!-- FILE UPLOAD -->
+                                <div id="id_upload_div">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
+                                        <div class="col-sm-10">
+
+                                            <!-- TABLE CONTENT -->
+                                            <div class="panel-body">
+                                               <div class="table-responsive">
+                                                  <table class="table table-striped">
+                                                     <thead>
+                                                        <tr>
+                                                           <th>{% trans 'Name' %}</th>
+                                                           <th>{% trans 'Options' %}</th>
+                                                        </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                        {% for upload in resource.uploads.all %}
+                                                            <tr>
+                                                                <td>{{ upload }}</td>
+                                                                <td>
+                                                                    <a href="{{ upload.get_s3_url }}" target="_blank">
+                                                                        <button type="button" class="btn btn-labeled btn-default">
+                                                                            <em class="fa fa-fw fa-download mr"></em>{% trans 'Download' %}
+                                                                        </button>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                     </tbody>
+                                                  </table>
+                                               </div>
+                                            </div>
+                                            <!-- end TABLE CONTENT -->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end FILE UPLOAD -->
+                            </fieldset>
+                            <!-- SUBMISSION -->
+                            <div class="pull-left">
+                                <button onclick="ajax_cancel();" type="button" class="btn btn-default btn-lg" id="id_accept_btn">{% trans 'Cancel' %}</button>
+                            </div>
+                            <div class="pull-right">
+                                <button onclick="ajax_ok();" type="button" class="btn btn-warning btn-lg" id="id_accept_btn">{% trans 'Ok' %}</button>
+                            </div>
+                            <!-- end SUBMISSION -->
+                        </form>
+                        <!-- end FORM -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end ROW -->
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}
