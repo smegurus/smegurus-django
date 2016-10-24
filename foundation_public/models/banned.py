@@ -28,6 +28,10 @@ class BannedIP(models.Model):
     def __str__(self):
         return str(self.address)
 
+# DEVELOPER NOTE:
+# Run the following code in your server to get the latest IP list of banned users.
+# PROD: python manage.py dumpdata --indent 4 --format=json foundation_public.BannedIP > ~/banned_ip.json
+
 
 class BannedWord(models.Model):
     text = models.CharField(max_length=63, db_index=True, unique=True)
