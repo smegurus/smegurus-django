@@ -167,6 +167,7 @@
             'is_due': is_due,
             'due': django_due_date,
             'uploads': [],
+            'resources': []
         };
 
         var upload_id = $('#id_hidden_file_id').val();
@@ -178,7 +179,7 @@
         $('#id_resources_table tr').each(function () {
             if (this.id > 0) {
                 var resource_id = parseInt(this.id);
-                resource['resources'].push(resource_id)
+                task['resources'].push(resource_id)
             }
         });
 
