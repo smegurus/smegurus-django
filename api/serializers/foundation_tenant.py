@@ -297,9 +297,11 @@ class InfoResourceCategorySerializer(serializers.ModelSerializer):
 
 
 class InfoResourceSerializer(serializers.ModelSerializer):
+    category_icon = serializers.CharField(read_only=True, source="category.icon")
+    category_name = serializers.CharField(read_only=True, source="category.name")
     class Meta:
         model = InfoResource
-        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'category', 'uploads', 'is_for_staff', 'is_for_entrepreneur', 'stage_num', 'tags',)
+        fields = ('id', 'created', 'last_modified', 'owner', 'name', 'alternate_name', 'description', 'url', 'category', 'uploads', 'is_for_staff', 'is_for_entrepreneur', 'stage_num', 'tags', 'category_icon', 'category_name')
 
     def validate(self, data):
         """

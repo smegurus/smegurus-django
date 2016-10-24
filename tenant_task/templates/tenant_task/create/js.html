@@ -1,6 +1,8 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+        $('#searchResourcesModal').appendTo("body")
+
         // Keypress for enter.
         $(document).keypress(function(event){
             if(event.keyCode == 13){
@@ -39,6 +41,81 @@
             }
         });
     }); // end DOCUMENT START
+
+    // DATA TABLE
+    (function(window, document, $, undefined){
+
+      $(function(){
+
+        //
+        // Zero configuration
+        //
+
+        $('#datatable1').dataTable({
+            'paging':   true,  // Table pagination
+            'ordering': true,  // Column ordering
+            'info':     true,  // Bottom left status text
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch:      'Search all columns:',
+                sLengthMenu:  '_MENU_ records per page',
+                info:         'Showing page _PAGE_ of _PAGES_',
+                zeroRecords:  'Nothing found - sorry',
+                infoEmpty:    'No records available',
+                infoFiltered: '(filtered from _MAX_ total records)'
+            }
+        });
+      });
+
+    })(window, document, window.jQuery);
+    // end DATA TABLE
+
+    function deselect_resource(resource_id) {
+        $('#id_resources_table tr[id='+resource_id+']').remove(); // Removes the row at the id.
+    }
+
+    function select_resource(resource_id) {
+        get_tenant_inforesource(
+            resource_id,
+            function(resource) {
+                console.log(resource);
+
+                // Create our resource icon.
+                var icon = "<em class=\"fa fa-fw " + resource['category_icon'] + " mr\">";
+
+                // Create our resource category name.
+                var category_name = resource['category_name'];
+
+                // Create our resource name.
+                var name = resource['name'];
+
+                // Create our remove button.
+                var js = "deselect_resource("+resource_id+");";
+                var deselect_btn = "";
+                deselect_btn += "<button onclick=\"" + js + "\" type=\"button\" class=\"btn btn-labeled btn-danger\">";
+                deselect_btn += "<em class=\"fa fa-fw fa-minus mr\"></em>{% trans 'Deselect' %}";
+                deselect_btn += "</button>";
+
+                // Create our HTML row.
+                var html_row = "<tr id=\"" + resource_id + "\">";
+                html_row += "<td>"+icon+"</td>";
+                html_row += "<td>"+category_name+"</td>";
+                html_row += "<td>"+name+"</td>";
+                html_row += "<td>" + deselect_btn + "</td>";
+                html_row += "</tr>";
+
+                // ADD HTML ROW TO OUR PAGE.
+                $("#id_resources_table > tbody").append(html_row);
+
+                // Hide this modal.
+                $('#searchResourcesModal').modal('toggle');
+            },
+            function(json_error_result) {
+
+            }
+        ); // end GET RESOURCE.
+    }
 
     function disable_btn() {
         $('#id_accept_btn').prop("disabled", true);
@@ -96,6 +173,14 @@
         if (upload_id) {
             task['uploads'].push(parseInt(upload_id)); // Add our file upload.
         }
+
+        // Iterate through the table array and add our files.
+        $('#id_resources_table tr').each(function () {
+            if (this.id > 0) {
+                var resource_id = parseInt(this.id);
+                resource['resources'].push(resource_id)
+            }
+        });
 
         // Attach our pending to or object.
         {% if type_of == constants.TASK_BY_TAG_TYPE %}
