@@ -1,0 +1,57 @@
+{% extends 'tenant_reception/base.html' %}
+{% load staticfiles i18n compress foundation_tenant_tags %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_reception/resource/master/category/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
+        </li>
+        <li class="active">{% trans 'Resources' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+
+    <div class="unwrap">
+       <div class="bg-cover">
+          <div class="container container-md pv-lg">
+             <div class="text-center mb-lg pb-lg">
+                <div class="h1 text-bold">{% trans 'Resources' %}</div>
+                <p>{% trans 'You can find useful resources here.' %}</p>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container-fluid">
+        <div class="row">
+            {% for category in categories.all %}
+            <div class="col-md-4">
+                <div class="panel b">
+                    <div class="panel-body text-center">
+                        <a href="{% url 'tenant_reception_resource_master' category.id %}" class="link-unstyled" style="color:{{ category.colour }};">
+                            <em class="fa fa-5x {{ category.icon }} mb-lg"></em>
+                            <br>
+                                <span class="h4" style="color:black;">{{ category.name }}</span>
+                            <br>
+                            <small class="text-muted">View all &rarr;</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- end CONTENT -->
+    </div>
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}
