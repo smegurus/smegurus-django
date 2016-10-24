@@ -96,7 +96,7 @@ def task_edit_details_page(request, id):
         # CalendarEvent
         'calendar_items': CalendarEvent.objects.filter(start__gte=timezone.now()),
         # Resources
-        'resources': InfoResource.objects.all(),
+        'inforesources': InfoResource.objects.all(),
         # Members.
         'all_profiles': TenantMe.objects.all(),
     })
