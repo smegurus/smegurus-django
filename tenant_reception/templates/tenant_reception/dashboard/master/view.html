@@ -3,7 +3,6 @@
 {% block content %}
 <!-- PAGE CONTENT -->
 <div class="content-wrapper">
-
     <!-- BREADCRUMBS -->
     <ol class="breadcrumb">
         <li>
@@ -12,93 +11,140 @@
         <li class="active">{% trans 'Reception' %}</li>
     </ol>
     <!-- end BREADCRUMBS -->
-
     <div class="row">
         <div class="col-lg-12">
             <!-- JUMBOTRON -->
             <div class="jumbotron">
                 <h1>{% trans 'Reception' %}</h1>
                 <p>{% trans 'Welcome to our reception! You are welcome to ask us questions and look at our available resources.' %}</p>
-
             </div>
             <!-- end JUMBOTRON -->
         </div>
     </div>
+    <!-- ROW -->
     <div class="row">
-        {% comment %}
-        <!-- ASK QUESTION -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>{% trans 'Ask Question' %}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg">Learn more</a>
-                </p>
+        <!-- QUESTION -->
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="#" class="link-unstyled text-primary">
+                    <em class="fa fa-5x fa-question-circle-o mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'I want to ask a question' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %} →</small>
+                    </a>
+                </div>
             </div>
         </div>
-        <!-- end ASK QUESTION -->
-
-        <!-- FAQ -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>Frequently Asked Questions</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg">Learn more</a>
-                </p>
-            </div>
-        </div>
-        <!-- end FAQ -->
-
+        <!-- end QUESTION -->
         <!-- RESOURCES -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>Resources</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg">Learn more</a>
-                </p>
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="#" class="link-unstyled text-info">
+                    <em class="fa fa-5x fa-cloud-download mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'I want to access resources' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %} →</small>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- end RESOURCES -->
-        {% endcomment %}
-
-        <!-- CALENDAR -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>{% trans 'Calendar' %}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_reception_calendar_master' %}">{% trans 'View' %}</a>
-                </p>
-            </div>
-        </div>
-        <!-- end CALENDAR -->
-
         <!-- TASKS -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>{% trans 'Tasks' %}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_reception_tasks_master' %}">{% trans 'View' %}</a>
-                </p>
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="{% url 'tenant_reception_tasks_master' %}" class="link-unstyled text-purple">
+                    <em class="fa fa-5x fa-check-square-o mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'Tasks' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %} →</small>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- end TASKS -->
-
-        <!-- RESOURCE -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>{% trans 'Resource' %}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                <p>
-                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_reception_resource_master' %}">{% trans 'View' %}</a>
-                </p>
+        <!-- TEMPLATES -->
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="#" class="link-unstyled text-warning">
+                    <em class="fa fa-5x fa-briefcase mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'Templates' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %} →</small>
+                    </a>
+                </div>
             </div>
         </div>
-        <!-- end RESOURCE -->
+        <!-- end TEMPLATES -->
+        <!-- FORMS -->
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="#" class="link-unstyled text-danger">
+                    <em class="fa fa-5x fa-book mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'Forms' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %} →</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end FORMS -->
+        <!-- LEARNING -->
+        <div class="col-md-4">
+            <div class="panel b">
+                <div class="panel-body text-center">
+                    <a href="#" class="link-unstyled text-success">
+                    <em class="fa fa-5x fa-graduation-cap mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'Learning Materials' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %} →</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end LEARNING -->
+        <!-- CALENDAR -->
+        <div class="col-md-4">
+           <div class="panel b">
+              <div class="panel-body text-center">
+                 <a href="{% url 'tenant_reception_calendar_master' %}" class="link-unstyled text-pink">
+                    <em class="fa fa-5x fa-calendar mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'Calendar' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %}&nbsp;&rarr;</small>
+                 </a>
+              </div>
+           </div>
+        </div>
+        <!-- end CALENDAR -->
+        <!-- OTHER -->
+        <div class="col-md-4">
+           <div class="panel b">
+              <div class="panel-body text-center">
+                 <a href="#" class="link-unstyled text-dark">
+                    <em class="fa fa-5x fa-lightbulb-o mb-lg"></em>
+                    <br>
+                    <span class="h4">{% trans 'Other' %}</span>
+                    <br>
+                    <small class="text-muted">{% trans 'View all' %}&nbsp;&rarr;</small>
+                 </a>
+              </div>
+           </div>
+        </div>
+        <!-- end OTHER -->
     </div>
+    <!-- end ROW -->
 </div>
 <!-- end PAGE CONTENT -->
 {% endblock content %}
