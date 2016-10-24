@@ -104,6 +104,13 @@
         }); // end UPLOAD
     }
 
+    function view_resource(category_id, resource_id) {
+        var url = "{% url 'tenant_resource_client_resource_info_details' 'placeholder_x' 'placeholder_y' %}";
+        var details_url = url.replace("placeholder_y", resource_id);
+        details_url = details_url.replace("placeholder_x", category_id);
+        window.location = details_url;
+    }
+
     function ajax_close() {
         $('#id_close_btn').prop("disabled", true);
         tenant_task_close(
