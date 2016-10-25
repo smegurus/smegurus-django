@@ -123,26 +123,27 @@ TENANT_APPS = (
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
-    'smegurus.middleware.AttachIPAddressMiddleware',               # Custom
-    'foundation_public.middleware.BanEnforcingMiddleware',         # Custom
-    'foundation_public.middleware.TrapURLBanningMiddleware',       # Custom
-    'django_tenants.middleware.TenantMiddleware',                  # Third Party
-    'htmlmin.middleware.HtmlMinifyMiddleware',                     # Third Party
+    'smegurus.middleware.AttachIPAddressMiddleware',                  # Custom
+    'foundation_public.middleware.BanEnforcingMiddleware',            # Custom
+    'foundation_public.middleware.TrapURLBanningMiddleware',          # Custom
+    'django_tenants.middleware.TenantMiddleware',                     # Third Party
+    'htmlmin.middleware.HtmlMinifyMiddleware',                        # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'corsheaders.middleware.CorsMiddleware',                       # Third Party
+    'corsheaders.middleware.CorsMiddleware',                          # Third Party
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'smegurus.middleware.AttachTokenMiddleware',                   # Custom
-    'foundation_public.middleware.NoSniffMiddleware',              # Custom
-    'foundation_tenant.middleware.TenantTimezoneMiddleware',       # Custom
-    'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
-    'foundation_tenant.middleware.TenantVisitorMiddleware',        # Custom
-    'htmlmin.middleware.MarkRequestMiddleware',                    # Third Party
+    'smegurus.middleware.AttachTokenMiddleware',                      # Custom
+    'foundation_public.middleware.NoSniffMiddleware',                 # Custom
+    'foundation_public.middleware.DefaultLanguageRedirectMiddleware', # Custom
+    'foundation_tenant.middleware.TenantTimezoneMiddleware',          # Custom
+    'foundation_tenant.middleware.TenantMeMiddleware',                # Custom
+    'foundation_tenant.middleware.TenantVisitorMiddleware',           # Custom
+    'htmlmin.middleware.MarkRequestMiddleware',                       # Third Party
 ]
 
 ROOT_URLCONF = 'smegurus.urls'
