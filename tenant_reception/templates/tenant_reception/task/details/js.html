@@ -70,28 +70,28 @@
     }); // end Document Start
 
     function ajax_complete_task() {
-        $('#id_complete_btn').prop("disabled", true);
-        tenant_task_complete_task(
+        $('#id_close_btn').prop("disabled", true);
+        tenant_task_close(
             {{ task.id }},
             function(json_result) {
                 window.location = "{% url 'tenant_reception_tasks_master' %}";
             },
             function(error_json_result) {
-                $('#id_complete_btn').prop("disabled", false);
+                $('#id_close_btn').prop("disabled", false);
                 print_error_handler(error_json_result);
             }
         ); // end COMPLETE TASK
     }
 
-    function ajax_incomplete_task() {
-        $('#id_incomplete_btn').prop("disabled", true);
-        tenant_task_incomplete_task(
+    function ajax_reopen_task() {
+        $('#id_reopen_btn').prop("disabled", true);
+        tenant_task_open(
             {{ task.id }},
             function(json_result) {
                 window.location = "{% url 'tenant_reception_tasks_master' %}";
             },
             function(error_json_result) {
-                $('#id_incomplete_btn').prop("disabled", false);
+                $('#id_reopen_btn').prop("disabled", false);
                 print_error_handler(error_json_result);
             }
         ); // end INCOMPLETE TASK

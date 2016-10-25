@@ -50,6 +50,8 @@
                         </span>
                     </h4>
                     <!-- end TITLE -->
+                </div>
+                <div class="panel-body">
 
                     <!-- EDITOR CONTENT -->
                     <div id="editor" contenteditable="false" style="overflow:scroll; height:250px;max-height:250px" class="form-control wysiwyg mt-lg">
@@ -58,6 +60,25 @@
                         {% endif %}
                     </div>
                     <!-- end EDITOR CONTENT -->
+
+                    <br />
+
+                    <!-- TASK CONTROL -->
+                    <div class="pull-right">
+                        {% if task.status == constants.OPEN_TASK_STATUS %}
+                        <button id="id_close_btn" onclick="ajax_complete_task();" type="button" class="btn btn-labeled btn-success">
+                           <span class="btn-label"><i class="fa fa-check"></i>
+                           </span>{% trans 'Close Task' %}
+                       </button>
+                       {% elif task.status == constants.CLOSED_TASK_STATUS %}
+                       <button id="id_reopen_btn" onclick="ajax_reopen_task();" type="button" class="btn btn-labeled btn-warning">
+                           <span class="btn-label"><i class="fa fa-warning"></i>
+                           </span>{% trans 'Re-open Task' %}
+                       </button>
+                       {% endif %}
+
+                    </div>
+                    <!-- end TASK CONTROL -->
 
                 </div>
 
@@ -183,49 +204,10 @@
                 </table>
                 <!-- end BODY OF TASK SIDEBAR -->
 
-
-                <div class="panel-body bb">
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <button id="id_complete_btn" onclick="ajax_complete_task();" type="button" class="btn btn-success btn-oval">
-                                <em class="fa fa-check"></em>
-                                <span>{% trans 'Complete' %}</span>
-                            </button>
-                        </div>
-                        <div class="pull-right">
-                            <button id="id_incomplete_btn" onclick="ajax_incomplete_task();" type="button" class="btn btn-danger btn-oval">
-                                <em class="fa fa-close"></em>
-                                <span>{% trans 'Incomplete' %}</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <p class="text-right">
                     <a href="" class="btn btn-link">{% trans 'Open help ticket' %}</a>
                 </p>
             </div>
-
-
-{% comment %}
-            {% if task.status == constants.UNASSIGNED_TASK_STATUS or task.status == constants.ASSIGNED_TASK_STATUS or task.status == constants.INCOMPLETE_TASK_STATUS %}
-
-                <!-- TEXT SIDEBAR -->
-                {% if task.type_of == constants.TASK_BASIC_TYPE %}
-                    {% include 'tenant_reception/task/details/basic_sidebar.html' with task=task %}
-                {% endif %}
-                <!-- end TEXT SIDEBAR -->
-
-                <!-- CALENDAR SIDEBAR -->
-                {% if task.type_of == constants.TASK_CALENDAR_TYPE %}
-                    {% include 'tenant_reception/task/details/calendar_sidebar.html' with task=task %}
-                {% endif %}
-                <!-- end CALENDAR SIDEBAR -->
-
-            {% else %}
-
-            {% endif %}
-{% endcomment %}
 
         </div>
         <!-- end SIDEBAR CONTENT -->
