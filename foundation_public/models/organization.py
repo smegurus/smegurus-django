@@ -22,9 +22,9 @@ HOW_DISCOVERED_OPTIONS = (
 )
 
 HOW_MANY_SERVED_OPTIONS = (
-    (1, _('1-10')),
-    (2, _('11-50')),
-    (3, _('50+')),
+    (1, _('Up to 50 Entrepreneurs and 10 Advisors')),
+    (2, _('Up to 200 Entrepreneurs and 25 advisors')),
+    (3, _('Up to 400 Entrepreneurs and 50 advisors')),
 )
 
 
