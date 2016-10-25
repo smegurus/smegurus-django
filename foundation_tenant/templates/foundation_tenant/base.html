@@ -390,15 +390,6 @@
                         </li>
                         <!-- end SETTINGS -->
 
-                        <!-- FULLSCREEN -->
-                        <li class=" ">
-                            <a href="#" title="{% trans 'Go Full Screen' %}" data-toggle-fullscreen="" style="cursor: pointer;">
-                                <em class="fa fa-expand"></em>
-                                <span data-localize="offsidebar.nav.FULLSCREEN">{% trans 'Go Full Screen' %}</span>
-                            </a>
-                        </li>
-                        <!-- end FULLSCREEN -->
-
                         <!-- LOCK -->
                         <li class=" ">
                             <a href="{% url 'tenant_profile_lock' %}" title="{% trans 'Lock Screen' %}">
@@ -494,8 +485,6 @@
                 <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
                 <!-- SLIMSCROLL-->
                 <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
-                <!-- SCREENFULL-->
-                <script src="{% static 'vendor/screenfull/dist/screenfull.js' %}"></script>
                 {% comment %}
                 <!-- LOCALIZE-->
                 <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
