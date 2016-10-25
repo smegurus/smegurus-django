@@ -35,9 +35,11 @@
         var upload_id = $('#id_hidden_upload_id').val();
         $("#id_upload_btn_label").prop("disabled",true); // Disable button.
 
+        $("#id_accept_btn").prop("disabled",true); // Disable button.
+
         // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(json_result) {
-            $("id_accept_btn").removeAttr("disabled"); // Enable button.
+            $("#id_accept_btn").removeAttr("disabled"); // Enable button.
 
             // Create the "download" button.
             var download_url = json_result['datafile'];
@@ -105,8 +107,6 @@
                 website_url = "";
             }
         }
-        console.log("Final "+website_url);
-        return;
 
         // Set our object variables.
         var resource = {
@@ -138,7 +138,7 @@
                 window.location = "{% url 'tenant_resource_staff_launchpad_master' %}";
             },
             function(error_json_result) {
-                $("id_accept_btn").removeAttr("disabled");
+                $("#id_accept_btn").removeAttr("disabled");
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
 
