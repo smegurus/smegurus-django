@@ -109,6 +109,7 @@
             comment,
             false,
             function(json_result) {
+                $('#id_accept_btn').prop("disabled", false);
                 window.location = "{% url 'tenant_intake_employee_master' %}";
             },
             function(error_json_result) {
