@@ -17,7 +17,7 @@ class BIZNAICSOptionImporter:
         self.file_path = file_path
 
     def begin_import(self):
-        with open(self.file_path) as f:
+        with open(self.file_path, encoding='utf-8') as f:
             reader = csv.reader(f)
             for row in reader:
                 if row[0] != 'Seq. No.':  # Skip header row.
