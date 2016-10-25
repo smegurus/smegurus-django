@@ -190,22 +190,24 @@
     }
 
     function ajax_save_and_continue() {
+        var has_biz_idea = $('#id_has_business_idea').is(":checked");
         var naics_depth_one = $('#id_naics_depth_one').val();
         var naics_depth_two = $('#id_naics_depth_two').val();
         var naics_depth_three = $('#id_naics_depth_three').val();
         var naics_depth_four = $('#id_naics_depth_four').val();
         var naics_depth_five = $('#id_naics_depth_five').val();
-
-        if (naics_depth_one <= 0 || naics_depth_one == '----') {
-            alert("Please select at minimum depth one.");
-            return;
+        
+        if (has_biz_idea) {
+            if (naics_depth_one <= 0 || naics_depth_one == '----') {
+                alert("Please select at minimum depth one.");
+                return;
+            }
         }
 
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_intake(
             {{ intake.id }},
             function(intake) {
-                var has_biz_idea = $('#id_has_business_idea').is(":checked");
                 if (has_biz_idea) {
                     intake['naics_depth_one'] = parseInt(naics_depth_one);
                 } else {

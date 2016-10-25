@@ -35,7 +35,7 @@ def entrepreneur_func(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_reception_required
 def intake_entr_round_one_step_one_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -48,7 +48,7 @@ def intake_entr_round_one_step_one_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_reception_required
 def intake_entr_round_one_step_two_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -61,7 +61,7 @@ def intake_entr_round_one_step_two_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_reception_required
 def intake_entr_round_one_step_three_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -74,7 +74,7 @@ def intake_entr_round_one_step_three_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_reception_required
 def intake_entr_round_one_step_four_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -87,7 +87,7 @@ def intake_entr_round_one_step_four_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_reception_required
 def intake_entr_round_one_step_five_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
@@ -99,7 +99,7 @@ def intake_entr_round_one_step_five_page(request):
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-@condition(last_modified_func=entrepreneur_func)
+# @condition(last_modified_func=entrepreneur_func)
 @tenant_reception_required
 def intake_entr_round_one_step_six_page(request):
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
