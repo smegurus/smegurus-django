@@ -62,12 +62,6 @@
                 infoFiltered: '(filtered from _MAX_ total records)'
             }
         });
-
-        // On input keyup trigger filtering
-        columnInputs
-          .keyup(function () {
-              dtInstance2.fnFilter(this.value, columnInputs.index(this));
-          });
       });
 
     })(window, document, window.jQuery);

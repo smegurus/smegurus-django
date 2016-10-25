@@ -24,8 +24,7 @@
         <link rel="stylesheet" href="{% static 'vendor/datatables/media/css/dataTables.bootstrap.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/dataTables.fontAwesome/index.css' %}">
         <!-- FULLCALENDAR-->
-        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.css' %}">
-        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/fullcalendar.print.css' %}" media='print' />
+        <link rel="stylesheet" href="{% static 'vendor/fullcalendar/dist/fullcalendar.css' %}">
         <!-- CHOSEN-->
         <link rel="stylesheet" href="{% static 'vendor/chosen_v1.2.0/chosen.min.css' %}">
         <!-- DATETIMEPICKER-->
@@ -147,11 +146,8 @@
         {% compress js %}
         <!-- =============== PAGE VENDOR SCRIPTS ===============-->
         <!-- JQUERY UI-->
-        <script src="{% static 'vendor/jquery-ui/ui/core.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
-        <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script>
-        <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/datepicker.js' %}"></script>
         <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
@@ -162,8 +158,8 @@
         <!-- MOMENT JS-->
         <script src="{% static 'vendor/moment/min/moment-with-locales.min.js' %}"></script>
         <!-- FULLCALENDAR-->
-        <script src="{% static 'vendor/fullcalendar/fullcalendar.min.js' %}"></script>
-        <script src="{% static 'vendor/fullcalendar/gcal.js' %}"></script>
+        <script src="{% static 'vendor/fullcalendar/dist/fullcalendar.min.js' %}"></script>
+        <script src="{% static 'vendor/fullcalendar/dist/gcal.js' %}"></script>
         <!-- SELECT2-->
         <script src="{% static 'vendor/select2/dist/js/select2.js' %}"></script>
         <!-- DATATABLES-->

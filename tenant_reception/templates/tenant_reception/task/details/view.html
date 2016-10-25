@@ -64,26 +64,9 @@
             </div>
             <!-- end Main panel-->
 
-
-            <!-- CALENDAR PANEL-->
-            {% if task.type_of == constants.TASK_CALENDAR_TYPE %}
-            <div class="panel panel-default">
-               <div class="panel-body">
-                  <!-- START calendar-->
-                  <div id="calendar"></div>
-                  <!-- END calendar-->
-               </div>
-            </div>
-            {% endif %}
-            <!-- end CALENDAR PANEL-->
-
-
             <!-- RESOURCE PANEL-->
-            {% if task.type_of == constants.TASK_RESOURCE_TYPE %}
-                {% include 'tenant_reception/task/details/resource_panel.html' with task=task constants=constants %}
-            {% endif %}
+            <!-- TODO -->
             <!-- end RESOURCE PANEL -->
-
 
             <!-- Team messages-->
             <div class="panel b">
