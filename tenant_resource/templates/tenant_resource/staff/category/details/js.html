@@ -4,10 +4,6 @@
         // Do nothing.
     });
 
-    function ajax_create_resource(type_of) {
-        window.location = "{% url 'tenant_resource_create' category.id %}";
-    }
-
     function ajax_delete_resource(id) {
         $("#id_delete_"+id+"_btn").prop("disabled",true);
         delete_tenant_inforesource(
