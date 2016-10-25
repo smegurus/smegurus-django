@@ -120,7 +120,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         # Create "Ticket created" log event and attach it this Task.
         log_event = SortedLogEventByCreated.objects.create(
             me=self.request.tenant_me,
-            text='Created Task #'+str(task.id)
+            text='Created \"'+str(task.name)+"\" task."
         )
         task.log_events.add(log_event)
 
