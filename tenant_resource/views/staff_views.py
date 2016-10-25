@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.views.decorators.http import condition
+from foundation_public.decorators import group_required
 from rest_framework.authtoken.models import Token
 from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.utils import int_or_none
@@ -17,6 +18,13 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_reception_required
 @tenant_intake_required
 @tenant_configuration_required
@@ -29,6 +37,13 @@ def staff_launchpad_page(request):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_reception_required
 @tenant_intake_required
 @tenant_configuration_required
@@ -42,6 +57,13 @@ def staff_category_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_reception_required
 @tenant_intake_required
 @tenant_configuration_required
@@ -57,6 +79,13 @@ def staff_category_details_page(request, category_id):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_reception_required
 @tenant_intake_required
 @tenant_configuration_required
@@ -74,6 +103,13 @@ def staff_resource_details_edit_page(request, category_id, resource_id):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_reception_required
 @tenant_intake_required
 @tenant_configuration_required
@@ -91,6 +127,13 @@ def staff_resource_details_info_page(request, category_id, resource_id):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_reception_required
 @tenant_intake_required
 @tenant_configuration_required
