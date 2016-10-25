@@ -4,7 +4,7 @@ from django.core.urlresolvers import resolve, reverse
 from django.utils import translation
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
-from django_tenants.test.cases import TenantTestCase
+from django_tenants.test.cases import FastTenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
 from smegurus import constants
@@ -17,12 +17,16 @@ TEST_USER_FIRSTNAME = "Ledo"
 TEST_USER_LASTNAME = ""
 
 
-class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTestCase):
+class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, FastTenantTestCase):
     """
     DEVELOPERS NOTE:
         - This unit test is dependent on the "public_index" app.
     """
     fixtures = []
+
+    @staticmethod
+    def get_test_schema_name():
+        return 'galacticalliance'
 
     def setup_tenant(self, tenant):
         """Public Schema"""
@@ -47,17 +51,14 @@ class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
 
     @transaction.atomic
     def setUp(self):
-        super(FoundationPublicMiddlewareWithPublicSchemaTestCase, self).setUp()
-        self.c = TenantClient(self.tenant)
+        self.client = TenantClient(self.tenant)
 
     @transaction.atomic
     def tearDown(self):
-        pass
-        # users = User.objects.all()
-        # for user in users.all():
-        #     user.delete()
-        # super(FoundationPublicMiddlewareWithPublicSchemaTestCase, self).tearDown()
+        users = User.objects.all()
+        for user in users.all():
+            user.delete()
 
     @transaction.atomic
-    def test_ppass(self):
+    def test_pass(self):
         pass

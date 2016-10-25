@@ -19,6 +19,6 @@
     }
 
     function ajax_cancel() {
-        window.location = "{% url 'tenant_reception_resource_master' %}";
+        window.location = "{% url 'tenant_reception_resource_master' resource.category.id %}";
     }
 </script>

@@ -138,6 +138,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'smegurus.middleware.AttachTokenMiddleware',                   # Custom
+    'foundation_public.middleware.NoSniffMiddleware',              # Custom
     'foundation_tenant.middleware.TenantTimezoneMiddleware',       # Custom
     'foundation_tenant.middleware.TenantMeMiddleware',             # Custom
     'foundation_tenant.middleware.TenantVisitorMiddleware',        # Custom

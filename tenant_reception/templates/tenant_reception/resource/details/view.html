@@ -17,7 +17,10 @@
             <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
         </li>
         <li>
-            <a href="{% url 'tenant_reception_resource_master' %}">{% trans 'Resources' %}</a>
+            <a href="{% url 'tenant_reception_resource_category_master' %}">{% trans 'Resources' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception_resource_master' resource.category.id %}">{{ resource.category.name }}</a>
         </li>
         <li class="active">{{ resource.name }}</li>
     </ol>
@@ -52,16 +55,7 @@
                                 <!-- end DESCRIPTION -->
                                 <br /><br />
 
-                                {% comment %}
-                                    INFO_RESOURCE_INTERAL_URL_TYPE = 1
-                                    INFO_RESOURCE_EXTERNAL_URL_TYPE = 2
-                                    INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE = 3
-                                    INFO_RESOURCE_INTERNAL_VIDEO_TYPE = 4
-                                    INFO_RESOURCE_INTERNAL_FILE_TYPE = 5
-                                {% endcomment %}
-
                                 <!-- URL -->
-                                {% if resource.type_of == constants.INFO_RESOURCE_EXTERNAL_URL_TYPE or resource.type_of == constants.INFO_RESOURCE_INTERAL_URL_TYPE%}
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
                                     <div class="col-sm-10">
@@ -69,22 +63,17 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control" value="{{ resource.url|safe }}" readonly="true" />
                                             <span class="input-group-btn">
-                                                {% if resource.type_of == constants.INFO_RESOURCE_INTERAL_URL_TYPE %}
-                                                    <button onclick="visit_internal_url('{{ resource.url|safe }}');" type="button" class="btn btn-default">{% trans 'Go!' %}'</button>
-                                                {% elif resource.type_of == constants.INFO_RESOURCE_EXTERNAL_URL_TYPE %}
-                                                    <button onclick="visit_external_url('{{ resource.url|safe }}');" type="button" class="btn btn-default">{% trans 'Go!' %}'</button>
-                                                {% endif %}
+                                                <button onclick="visit_external_url('{{ resource.url|safe }}');" type="button" class="btn btn-default">{% trans 'Go!' %}</button>
                                             </span>
                                         </div>
                                         <!-- end GROUP -->
                                     </div>
                                 </div>
                                 <br /><br />
-                                {% endif %}
                                 <!-- end URL -->
 
                                 <!-- FILE UPLOAD -->
-                                {% if resource.type_of == constants.INFO_RESOURCE_INTERNAL_FILE_TYPE %}
+                                {% if resource.category.id != constants.INFO_RESOURCE_CATEGORY_WEBLINK_ID %}
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">{% trans 'File' %}</label>
                                         <div class="col-sm-10">
@@ -96,30 +85,6 @@
                                     <br /><br />
                                 {% endif %}
                                 <!-- end FILE UPLOAD -->
-                                <!-- VIDEO UPLOAD -->
-                                {% if resource.type_of == constants.INFO_RESOURCE_INTERNAL_VIDEO_TYPE %}
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'File' %}</label>
-                                    <div class="col-sm-10">
-                                        <video width="480" height="320" controls="controls">
-                                            <source src="{{ resource.upload.get_s3_url }}" type="video/mp4">
-                                        </video>
-                                    </div>
-                                    <br /><br />
-                                </div>
-                                {% endif %}
-                                <!-- end VIDEO UPLOAD -->
-                                <!-- YOUTUBE -->
-                                {% if resource.type_of == constants.INFO_RESOURCE_EMBEDDED_YOUTUBE_VIDEO_TYPE %}
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'YouTube Video' %}</label>
-                                    <div class="col-sm-10">
-                                        <iframe width="560" height="315" src="{{ resource.url }}" frameborder="0" allowfullscreen></iframe>
-                                    </div>
-                                    <br /><br />
-                                </div>
-                                {% endif %}
-                                <!-- end YOUTUBE -->
 
                             </fieldset>
                             <!-- SUBMISSION -->
