@@ -74,6 +74,7 @@ def task_master_create_page(request):
         'page': 'tasks',
         'sub_page': 'create',
         'type_of': int_or_none(request.GET.get('type_of')),
+        'default_me': int_or_none(request.GET.get('default_me')),
         'all_profiles': TenantMe.objects.all(),
         'tags': Tag.objects.filter(is_program=True),
         'inforesources': InfoResource.objects.all(),

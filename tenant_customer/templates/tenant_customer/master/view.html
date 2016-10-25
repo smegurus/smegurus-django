@@ -61,7 +61,7 @@
                         <a href="{% url 'tenant_customer_details' intake.me.id %}" class="btn btn-xs btn-info">
                             {% trans 'Details' %} <i class="fa fa-info-circle"></i>
                         </a>
-                        <a href="#" class="btn btn-xs btn-danger" disabled>
+                        <a href="{% url 'tenant_task_master_create' %}?type_of={{ constants.TASK_BY_CUSTOM_TYPE }}&default_me={{ intake.me.id }}" class="btn btn-xs btn-danger">
                             {% trans 'Assign task' %}
                         </a>
                         <a href="{% url 'tenant_note_create' intake.me.id %}" class="btn btn-xs btn-success">
