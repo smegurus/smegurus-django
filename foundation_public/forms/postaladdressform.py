@@ -48,9 +48,8 @@ class PublicPostalAddressForm(forms.ModelForm):
             'locality': Select(attrs={
                 'class': u'form-control',
             }),
-            'suffix': TextInput(attrs={
+            'suffix': Select(attrs={
                 'class': u'form-control',
-                'placeholder': _('Enter the suffix (Option).')
             }),
             'suite_number': TextInput(attrs={
                 'class': u'form-control',

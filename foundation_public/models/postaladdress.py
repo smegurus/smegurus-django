@@ -69,6 +69,8 @@ class PublicPostalAddress(AbstractPublicThing):
         null=True,
     )
     suffix = models.CharField(
+        _("Suffix"),
+        choices=constants.POSTALADDRESS_SUFFIX_OPTIONS,
         max_length=1,
         help_text=_('The suffix.'),
         blank=True,
