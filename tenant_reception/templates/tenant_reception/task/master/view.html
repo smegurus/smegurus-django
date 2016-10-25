@@ -38,10 +38,10 @@
                                     <tr class="gradeX">
                                         <td>{{ task.id }}</td>
                                         <td>
-                                            {% if task.status == constants.OPEN_TASK_STATUS %}
-                                                <div class="inline wd-xxs label label-success">{% trans 'open' %}</div>
-                                            {% elif task.status == constants.CLOSED_TASK_STATUS %}
+                                            {% if request.tenant_me in task.closures.all %}
                                                 <div class="inline wd-xxs label label-danger">{% trans 'closed' %}</div>
+                                            {% else %}
+                                                <div class="inline wd-xxs label label-success">{% trans 'open' %}</div>
                                             {% endif %}
                                         </td>
                                         <td>{% if task.name %}{{ task.name }}{% else %}{% trans '-' %}{% endif %}</td>

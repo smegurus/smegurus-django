@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from foundation_tenant.forms.tagform import TagForm
@@ -15,7 +16,10 @@ from smegurus import constants
 
 @login_required(login_url='/en/login')
 def reception_tasks_master_page(request):
-    tasks = Task.objects.filter(opening__id=request.tenant_me.id)
+    tasks = Task.objects.filter(
+        Q(opening__id=request.tenant_me.id) |
+        Q(closures__id=request.tenant_me.id)
+    )
     return render(request, 'tenant_reception/task/master/view.html',{
         'page': 'reception-tasks-master',
         'tasks': tasks,

@@ -65,18 +65,17 @@
 
                     <!-- TASK CONTROL -->
                     <div class="pull-right">
-                        {% if task.status == constants.OPEN_TASK_STATUS %}
-                        <button id="id_close_btn" onclick="ajax_complete_task();" type="button" class="btn btn-labeled btn-success">
-                           <span class="btn-label"><i class="fa fa-check"></i>
-                           </span>{% trans 'Close Task' %}
-                       </button>
-                       {% elif task.status == constants.CLOSED_TASK_STATUS %}
-                       <button id="id_reopen_btn" onclick="ajax_reopen_task();" type="button" class="btn btn-labeled btn-warning">
-                           <span class="btn-label"><i class="fa fa-warning"></i>
-                           </span>{% trans 'Re-open Task' %}
-                       </button>
-                       {% endif %}
-
+                        {% if request.tenant_me in task.closures.all %}
+                            <button id="id_reopen_btn" onclick="ajax_reopen_task();" type="button" class="btn btn-labeled btn-warning">
+                                <span class="btn-label"><i class="fa fa-warning"></i>
+                                </span>{% trans 'Re-open Task' %}
+                            </button>
+                        {% else %}
+                            <button id="id_close_btn" onclick="ajax_complete_task();" type="button" class="btn btn-labeled btn-success">
+                                <span class="btn-label"><i class="fa fa-check"></i>
+                                </span>{% trans 'Close Task' %}
+                            </button>
+                        {% endif %}
                     </div>
                     <!-- end TASK CONTROL -->
 
