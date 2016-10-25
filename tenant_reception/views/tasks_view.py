@@ -15,7 +15,7 @@ from smegurus import constants
 
 @login_required(login_url='/en/login')
 def reception_tasks_master_page(request):
-    tasks = Task.objects.filter(assignee=request.tenant_me)
+    tasks = Task.objects.filter(opening__id=request.tenant_me.id)
     return render(request, 'tenant_reception/task/master/view.html',{
         'page': 'reception-tasks-master',
         'tasks': tasks,
