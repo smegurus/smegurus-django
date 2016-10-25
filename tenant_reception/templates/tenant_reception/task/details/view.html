@@ -124,6 +124,37 @@
             </div>
             <!-- end RESOURCE PANEL -->
 
+            <!-- FILE UPLOADS PANEL -->
+            <div id="panelDemo8" class="panel panel-purple">
+                <div class="panel-heading">{% trans 'File(s)' %}</div>
+                <div class="panel-body">
+                    <!-- START table-responsive-->
+                    <div class="table-responsive">
+                       <table class="table table-striped">
+                          <tbody>
+                              {% for upload in task.uploads.all %}
+                                  <tr>
+                                      <td style="width:1%"><em class="fa fa-fw fa-paperclip mr"></td>
+                                      <td>{{ upload }}</td>
+                                      <td class="pull-right">
+                                          <a href="{{ upload.get_s3_url }}">
+                                              <button type="button" class="btn btn-labeled btn-purple">
+                                                  <span class="btn-label"><i class="fa fa-download"></i>
+                                                  </span>{% trans 'Download' %}
+                                              </button>
+                                          </a>
+                                      </td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                       </table>
+                    </div>
+                    <!-- END table-responsive-->
+                </div>
+
+            </div>
+            <!-- end FILE UPLOADS PANEL -->
+
             <!-- Team messages-->
             <div class="panel b">
                 <div class="panel-heading">
