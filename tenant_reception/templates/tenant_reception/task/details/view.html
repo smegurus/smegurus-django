@@ -85,7 +85,43 @@
             <!-- end Main panel-->
 
             <!-- RESOURCE PANEL-->
-            <!-- TODO -->
+            <div id="panelDemo8" class="panel panel-info">
+                <div class="panel-heading">{% trans 'Resource(s)' %}</div>
+                <div class="panel-body">
+                    <!-- START table-responsive-->
+                    <div class="table-responsive">
+                       <table class="table table-striped">
+                          {% comment %}
+                          <thead>
+                             <tr>
+                                <th>&nbsp;</th>
+                                <th>{% trans 'Name' %}</th>
+                                <th>&nbsp;</th>
+                             </tr>
+                          </thead>
+                          {% endcomment %}
+                          <tbody>
+                              {% for resource in task.resources.all %}
+                                  <tr>
+                                      <td style="width:1%"><em class="fa fa-fw {{ resource.category.icon }} mr"></td>
+                                      <td>{{ resource.name }}</td>
+                                      <td class="pull-right">
+                                          <a href="{% url 'tenant_reception_resource_details' resource.category.id resource.id %}">
+                                              <button type="button" class="btn btn-labeled btn-info">
+                                                  <span class="btn-label"><i class="fa fa-link"></i>
+                                                  </span>{% trans 'View' %}
+                                              </button>
+                                          </a>
+                                      </td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>
+                       </table>
+                    </div>
+                    <!-- END table-responsive-->
+                </div>
+
+            </div>
             <!-- end RESOURCE PANEL -->
 
             <!-- Team messages-->
