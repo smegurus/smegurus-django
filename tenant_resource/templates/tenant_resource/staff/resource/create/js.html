@@ -108,6 +108,11 @@
             }
         }
 
+        // If no "tags" have been selected then just create an empty array.
+        if (tags == null) {
+            tags = [];
+        }
+
         // Set our object variables.
         var resource = {
             'category': category_id,

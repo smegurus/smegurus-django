@@ -103,6 +103,11 @@
             }
         }
 
+        // If no "tags" have been selected then just create an empty array.
+        if (tags == null) {
+            tags = [];
+        }
+
         $("#id_accept_btn").prop("disabled",true);
 
         // GET RESOURCE
