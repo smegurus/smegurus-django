@@ -9,15 +9,11 @@
     }
 
     function disable_btn() {
-        // Profile
-        $('#id_post_btn').val("{% trans 'Please Wait...' %}");
-        $('#id_post_btn').prop("disabled", true);
+        $('#id_post_btn').attr("disabled","disabled");
     }
 
     function enable_btn() {
-        // Profile.
         $('#id_post_btn').prop("disabled", false);
-        $('#id_post_btn').val("{% trans 'Update' %}");
     }
 
     function ajax_create_message() {
@@ -27,12 +23,22 @@
             'recipient': recipient,
             'description': text,
         };
+
+        if (text <= 0) {
+            alert("{% trans 'Please enter a message text before sending.' %}");
+            return;
+        }
+        return;
+
+        disable_btn(); // Disable button.
+
+        // Send a message.
         set_tenant_message(
             message,
             function(json_result) {
                 enable_btn();
-                // window.location = "{% url 'tenant_message_inbox' %}";
-                window.location(reload); // Reload this page.
+                alert("{% trans 'Message sent.' %}");
+                location.reload();
             },
             function(error_json_result) {
                 enable_btn();
