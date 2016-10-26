@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress thumbnail %}
+{% load staticfiles i18n compress thumbnail foundation_tenant_tags %}
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="time">
                                         {% if message.date_read %}
-                                            <em>{{ message.date_read }}</em>
+                                            <em>{{ message.date_read|pretty_formatted_date }}</em>
                                         {% else %}
                                             <em>Not Read</em>
                                         {% endif %}

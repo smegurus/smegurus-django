@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="time">
                                         {% if message.date_read %}
-                                            <em>{{ message.date_read }}</em>
+                                            <em>{{ message.date_read|pretty_formatted_date }}</em>
                                         {% else %}
                                             <em>Not Read</em>
                                         {% endif %}

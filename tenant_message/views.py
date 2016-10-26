@@ -23,7 +23,7 @@ from smegurus import constants
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
