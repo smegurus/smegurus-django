@@ -23,7 +23,7 @@
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
                     <h2 class="text-center pv">{% trans 'Great! You\'re Almost There!' %}</h2>
                     <p class="text-center pv">{% trans 'We just need a few more details to finish setting up your profile. We need you to do this to get started, but don\'t worry, you can always change these settings later. Let\'s get started!' %}</p>
-                    <p class="text-center pv">{% trans 'First, let\'s upload your logo. This will help you to brand and customize SME Gurus for your clients. If you don\'t have your logo handy, you can skip this step, but we highly recommended that you add one now.' %}</p>
+                    <p class="text-center pv">{% trans 'First, let\'s upload your profile picture. This will help you to brand and customize SME Gurus for your clients. If you don\'t have your profile picture handy, you can skip this step, but we highly recommended that you add one now.' %}</p>
 
                     <br/>
 
@@ -38,14 +38,14 @@
                         <img id="id_image_placeholder"
                             src="{{ im.url }}"
                           style="height:200px;width:200px;"
-                            alt="{{ request.tenant.name }}'s Logo"
+                            alt="{{ request.tenant.name }}'s Profile Picture"
                           class="img-thumbnail center-block mb0 add-cover-image"
                            name="product-image" />
                          {% empty %}
                          <img id="id_image_placeholder"
                              src="{% static 'app/img/dummy200x200.png' %}"
                            style="height:200px;width:200px;"
-                             alt="{{ request.tenant.name }}'s Logo"
+                             alt="{{ request.tenant.name }}'s Profile Picture"
                            class="img-thumbnail center-block mb0 add-cover-image"
                             name="product-image" />
                          {% endthumbnail %}
@@ -55,7 +55,7 @@
 
                         <!-- Image Upload Button -->
                         <label class="form-control btn btn-success mt10 curp" >
-                            <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Logo Image...' %}
+                            <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Profile Picture...' %}
                             <input onchange="ajax_upload_image();"
                                          id="id_image"
                                        type="file"
