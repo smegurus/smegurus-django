@@ -31,6 +31,11 @@ class InfoResource(AbstractThing):
         related_name="info_resource_category",
         on_delete=models.SET_NULL
     )
+    is_stock = models.BooleanField(
+        _("Is this resource a stock resource"),
+        default=False,
+        help_text=_('Variable controls whether this resource was created by the system and cannot be deleted.'),
+    )
     is_for_staff = models.BooleanField(
         _("Is this resource available to the staff"),
         default=False,

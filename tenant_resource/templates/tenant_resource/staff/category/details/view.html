@@ -62,11 +62,11 @@
                                            <a href="{% url 'tenant_resource_staff_resource_info_details' resource.category.id resource.id %}">
                                                <button type="button" class="btn btn-labeled btn-info">{% trans 'View' %}</button>
                                            </a>
-                                           {% if request.tenant_me.is_employee %}
                                            <a href="{% url 'tenant_resource_staff_resource_edit_details' resource.category.id resource.id %}">
                                                <button type="button" class="btn btn-labeled btn-warning">{% trans 'Edit' %}</button>
                                            </a>
-                                           <button id="id_delete_{{ resource.id }}_btn" onclick="ajax_delete_resource({{ resource.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
+                                           {% if not resource.is_stock %}
+                                               <button id="id_delete_{{ resource.id }}_btn" onclick="ajax_delete_resource({{ resource.id }});" type="button" class="btn btn-labeled btn-danger">{% trans 'Delete' %}</button>
                                            {% endif %}
                                        </td>
                                    </tr>

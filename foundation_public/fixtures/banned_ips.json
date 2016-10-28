@@ -129,8 +129,8 @@
     "model": "foundation_public.bannedip",
     "pk": 15,
     "fields": {
-        "address": "177.83.15.115",
-        "banned_on": "37.187.114.171",
+        "address": "37.187.114.171",
+        "banned_on": "2016-10-29",
         "reason": "/OA_HTML/OA.jsp"
     }
 }
