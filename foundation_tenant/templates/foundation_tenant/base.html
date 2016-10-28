@@ -401,24 +401,10 @@
 
                         <!-- HELP -->
                         <li class=" ">
-                            <a id="help-block-toggle" href="#help-block" data-toggle="collapse" title="{% trans 'Help' %}" >
+                            <a href="{% url 'tenant_faq' %}" title="{% trans 'Help' %}">
                                 <em class="icon-question"></em>
-                                <span data-localize="offsidebar.nav.HELP">{% trans 'Help' %}</span>
+                                <span data-localize="offsidebar.nav.LOCK">{% trans 'Help' %}</span>
                             </a>
-                        </li>
-                        <li class="has-help-block">
-                            <div id="help-block" class="collapse">
-                                <div class="item logout-block">
-                                    <p>{% trans 'What can we help you with?' %}</p>
-                                    <button onclick="ajax_load_faq_page();"
-                                               type="button"
-                                              class="mb-sm btn label-green-v2 pull-left">{% trans 'FAQ' %}</button>
-                                    <button onclick="ajax_load_help_page();"
-                                               type="button"
-                                              class="mb-sm btn label-red-v2 pull-right">{% trans 'QUESTION' %}</button>
-                                    <br /><br />
-                                </div>
-                            </div>
                         </li>
                         <!-- end HELP -->
 
@@ -570,14 +556,6 @@
                                     console.log(error_result);
                                 }
                             );
-                        }
-
-                        function ajax_load_faq_page() {
-                            window.location = "{% url 'tenant_faq' %}";
-                        }
-
-                        function ajax_load_help_page() {
-                            window.location = "{% url 'tenant_help_master' %}";
                         }
 
                         function ajax_me_update_logout_dialog() {
