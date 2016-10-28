@@ -133,5 +133,14 @@
         "banned_on": "2016-10-29",
         "reason": "/OA_HTML/OA.jsp"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 16,
+    "fields": {
+        "address": "120.88.152.6",
+        "banned_on": "2016-10-29",
+        "reason": "https://github.com/robertdavidgraham/masscan"
+    }
 }
 ]
