@@ -88,5 +88,50 @@
         "banned_on": "2016-10-23",
         "reason": "/cgi/common.cgi"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 11,
+    "fields": {
+        "address": "198.154.63.90",
+        "banned_on": "2016-10-25",
+        "reason": "/phpMyAdmin/scripts/setup.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 12,
+    "fields": {
+        "address": "179.210.176.135",
+        "banned_on": "2016-10-26",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 13,
+    "fields": {
+        "address": "180.97.106.162",
+        "banned_on": "2016-10-26",
+        "reason": "/check_proxy"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 14,
+    "fields": {
+        "address": "177.83.15.115",
+        "banned_on": "2016-10-28",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 15,
+    "fields": {
+        "address": "177.83.15.115",
+        "banned_on": "37.187.114.171",
+        "reason": "/OA_HTML/OA.jsp"
+    }
 }
 ]
