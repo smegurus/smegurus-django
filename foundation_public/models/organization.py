@@ -227,7 +227,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True
     )
     how_many_served = models.PositiveSmallIntegerField(
-        _("How many entrepreneurs served"),
+        _("Which SME Gurus package would you like?"),
         help_text=_('Pick the choice which best describes how many entrepreneurs are served.'),
         choices=HOW_MANY_SERVED_OPTIONS,
         null=True,
