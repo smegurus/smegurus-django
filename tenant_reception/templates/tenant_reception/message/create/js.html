@@ -29,7 +29,8 @@
             message,
             function(json_result) {
                 enable_btn();
-                window.location = "{% url 'tenant_message_inbox' %}";
+                alert("Message sent!");
+                window.location = "{% url 'tenant_reception_message_master' %}";
             },
             function(error_json_result) {
                 enable_btn();

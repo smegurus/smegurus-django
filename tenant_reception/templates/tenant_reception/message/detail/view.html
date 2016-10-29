@@ -1,0 +1,103 @@
+{% extends 'tenant_reception/base.html' %}
+{% load staticfiles i18n compress foundation_tenant_tags thumbnail %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_reception/message/detail/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- BREADCRUMBS -->
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'tenant_reception_message_master' %}">{% trans 'Message' %}</a>
+        </li>
+        <li class="active">{% trans 'Conversation' %}</li>
+    </ol>
+    <!-- end BREADCRUMBS -->
+    <!-- CONTENT -->
+    <!-- CONVERSATION LOG -->
+    <div class="panel panel-default">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
+            <div data-height="450" data-scrollable="" class="panel-body" style="overflow: hidden; width: auto; height: auto;">
+                <div class="conversation-wrapper">
+                    <div class="conversation-content">
+                        <div class="conversation-inner">
+                            {% for message in messages.all %}
+
+                                {% if message.recipient == request.tenant_me %}
+                                    <div class="conversation-item item-left clearfix" id="{{ message.id }}">
+                                {% else %}
+                                    <div class="conversation-item item-right clearfix" id="{{ message.id }}">
+                                {% endif %}
+
+                                <div class="conversation-user">
+                                    {% thumbnail message.sender.image.imagefile "64x64" format='JPEG' background="#ffffff" as im %}
+                                        <img src="{{ im.url }}" alt="{% trans 'Mail Avatar' %}" width="{{ im.width }}" height="{{ im.height }}" class="img-circle thumb64">
+                                    {% empty %}
+                                        <img src="{% static 'app/img/dummy64x64.png' %}" alt="{{ intake.me.name }} Avatar" width="{{ im.width }}" height="{{ im.height }}" class="img-circle thumb64">
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="conversation-body">
+                                    <div class="name">
+                                        {{ message.sender.owner.first_name }} {{ message.sender.owner.last_name }}
+                                    </div>
+                                    <div class="time">
+                                        {% if message.date_read %}
+                                            <em>{{ message.date_read|pretty_formatted_date }}</em>
+                                        {% else %}
+                                            <em>Not Read</em>
+                                        {% endif %}
+                                    </div>
+                                    <div class="text">
+                                        <p>{{ message.description }}</p>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- end CONVERSATION LOG -->
+
+    <!-- COMMUNICATOR -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+            <fieldset>
+                <div class="form-group">
+                    <label for="input-id-1" class="col-sm-2 control-label">{% trans 'Message' %}</label>
+                    <div class="col-sm-10">
+                        <textarea id="id_description" type="text" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <button id="id_cancel_btn" onclick="ajax_cancel();" type="button" class="btn btn-default">{% trans 'Cancel' %}</button>
+                        <button id="id_post_btn" onclick="ajax_create_message();" type="button" class="btn btn-primary">{% trans 'Send' %}</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        </dvi>
+    </div>
+    <!-- end COMMUNICATOR -->
+    <!-- CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

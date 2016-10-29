@@ -5,7 +5,7 @@
     });
 
     function ajax_cancel() {
-        window.location = "{% url 'tenant_reception' %}";
+        window.location = "{% url 'tenant_reception_message_master' %}";
     }
 
     function disable_btn() {
@@ -31,13 +31,13 @@
 
         disable_btn(); // Disable button.
 
-        // Send a message.
+        // Send the message.
         set_tenant_message(
             message,
             function(json_result) {
                 enable_btn();
                 alert("{% trans 'Message sent.' %}");
-                location.reload();
+                window.location = "{% url 'tenant_reception_message_master' %}";
             },
             function(error_json_result) {
                 enable_btn();

@@ -11,16 +11,38 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
-def message_master_page(request):
-    admin_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-    admin = TenantMe.objects.get(owner__groups=admin_group)
+def inbox_page(request):
+    # Fetch all the Messages and only get a single message per sender. Also ensure
+    # that deleted messages are not returned.
+    messages = Message.objects.filter(
+        recipient=request.tenant_me,
+        participants=request.tenant_me
+    ).distinct('participants')
+    return render(request, 'tenant_reception/message/master/view.html',{
+        'page': 'inbox',
+        'messages': messages,
+    })
+
+
+@login_required(login_url='/en/login')
+def compose_page(request):
+    admins = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+    return render(request, 'tenant_reception/message/create/view.html',{
+        'page': 'composer',
+        'admins': admins,
+        'recipient_id': 0,
+    })
+
+
+@login_required(login_url='/en/login')
+def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(
             recipient=request.tenant_me,
-            sender_id=int(admin.id),
+            sender_id=int(sender_id),
             participants=request.tenant_me
         ) | Q(
-            recipient_id=int(admin.id),
+            recipient_id=int(sender_id),
             sender_id=request.tenant_me,
             participants=request.tenant_me
         )
@@ -33,8 +55,8 @@ def message_master_page(request):
             message.date_read = timezone.now()
             message.save()
 
-    return render(request, 'tenant_reception/message/master/view.html',{
+    return render(request, 'tenant_reception/message/detail/view.html',{
         'page': 'inbox',
         'messages': messages,
-        'sender_id': admin.id,
+        'sender_id': sender_id,
     })

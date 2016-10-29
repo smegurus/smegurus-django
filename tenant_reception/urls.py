@@ -20,7 +20,9 @@ urlpatterns = (
     url(r'^reception/resource$', resource_view.category_master_page, name='tenant_reception_resource_category_master'),
 
     # Messenger
-    url(r'^reception/message$', message_view.message_master_page, name='tenant_reception_message_master'),
+    url(r'^reception/conversation/(.*)/$', message_view.conversation_page, name='tenant_reception_message_detail'),
+    url(r'^reception/composer$', message_view.compose_page, name='tenant_reception_message_create'),
+    url(r'^reception/inbox$', message_view.inbox_page, name='tenant_reception_message_master'),
 
     # Dashboard
     url(r'^reception$', dashboard_view.reception_dashboard_master_page, name='tenant_reception'),
