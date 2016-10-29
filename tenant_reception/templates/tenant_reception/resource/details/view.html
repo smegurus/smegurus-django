@@ -10,18 +10,9 @@
 <div class="content-wrapper">
     <!-- BREADCRUMBS -->
     <ol class="breadcrumb">
-        <li>
-            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'tenant_reception_resource_category_master' %}">{% trans 'Resources' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'tenant_reception_resource_master' resource.category.id %}">{{ resource.category.name }}</a>
-        </li>
+        <li><a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a></li>
+        <li><a href="{% url 'tenant_reception_resource_category_master' %}">{% trans 'Resources' %}</a></li>
+        <li><a href="{% url 'tenant_reception_resource_master' resource.category.id %}">{{ resource.category.name }}</a></li>
         <li class="active">{{ resource.name }}</li>
     </ol>
     <!-- end BREADCRUMBS -->

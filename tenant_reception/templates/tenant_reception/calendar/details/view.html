@@ -49,15 +49,8 @@
 <div class="content-wrapper">
     <!-- BREADCRUMBS -->
     <ol class="breadcrumb">
-        <li>
-            <a href="{% url 'public_index' %}">{% trans 'Home' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a>
-        </li>
-        <li>
-            <a href="{% url 'tenant_reception_calendar_master' %}">{% trans 'Calendar' %}</a>
-        </li>
+        <li><a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a></li>
+        <li><a href="{% url 'tenant_reception_calendar_master' %}">{% trans 'Calendar' %}</a></li>
         <li class="active">{% trans 'Event' %}</li>
     </ol>
     <!-- end BREADCRUMBS -->
