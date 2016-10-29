@@ -16,7 +16,8 @@ from rest_framework import exceptions, serializers
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission
 from api.serializers.foundation_tenant import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
-from api.serializers.misc import DateTimeSerializer
+from api.serializers.misc import DateTimeSerializer, IntegerSerializer
+from foundation_tenant.models.fileupload import TenantFileUpload
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.logevent import SortedLogEventByCreated
@@ -275,6 +276,31 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             task.log_events.add(log_event)
             self.send_notification(task, log_event)  # Send email notification for log event.
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def attach_file(self, request, pk=None):
+        """Function will place the User into the opening list from the closure list."""
+        try:
+            serializer = IntegerSerializer(data=request.data)
+            if serializer.is_valid():
+                # Lookup file.
+                upload_id = serializer.data['value']
+                file_upload = TenantFileUpload.objects.get(id=upload_id)
+
+                # Attach file.
+                task = self.get_object()
+                task.uploads.add(file_upload)
+                task.save()
+
+                # Return the success indicator.
+                return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
         except Exception as e:
             return response.Response(
                 data=str(e),

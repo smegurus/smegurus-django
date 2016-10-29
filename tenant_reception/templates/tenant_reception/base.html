@@ -39,9 +39,8 @@
         <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
         <!-- =============== CUSTOM STYLES ===============-->
         <link rel="stylesheet" href="{% static 'vendor/jquery-tag/jquery.tagsinput.min.css' %}">
-        <!-- https://github.com/xoxco/jQuery-Tags-Input -->
-        <!-- =============== CUSTOM STYLES ===============-->
         <link rel="stylesheet" href="{% static 'vendor/jquery-tag/jquery.tagsinput.min.css' %}">
+        <!-- https://github.com/xoxco/jQuery-Tags-Input -->
         {% endcompress %}
         {% compress js %}
         <!-- JQUERY-->
@@ -144,10 +143,33 @@
             </footer>
         </div>
         {% compress js %}
+        <!-- =============== VENDOR SCRIPTS ===============-->
+        <!-- MODERNIZR-->
+        <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
+        <!-- MATCHMEDIA POLYFILL-->
+        <script src="{% static 'vendor/matchMedia/matchMedia.js' %}"></script>
+        <!-- JQUERY-->
+        <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+        <!-- BOOTSTRAP-->
+        <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
+        <!-- STORAGE API-->
+        <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
+        <!-- JQUERY EASING-->
+        <script src="{% static 'vendor/jquery.easing/js/jquery.easing.js' %}"></script>
+        <!-- ANIMO-->
+        <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
+        <!-- SLIMSCROLL-->
+        <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+        {% comment %}
+        <!-- LOCALIZE-->
+        <script src="{% static 'vendor/jquery-localize-i18n/dist/jquery.localize.js' %}"></script>
+        {% endcomment %}
         <!-- =============== PAGE VENDOR SCRIPTS ===============-->
         <!-- JQUERY UI-->
         <script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/mouse.js' %}"></script>
+        <!-- <script src="{% static 'vendor/jquery-ui/ui/draggable.js' %}"></script> -->
+        <script src="{% static 'vendor/jquery-ui/ui/droppable.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/sortable.js' %}"></script>
         <script src="{% static 'vendor/jquery-ui/ui/datepicker.js' %}"></script>
         <script src="{% static 'vendor/jqueryui-touch-punch/jquery.ui.touch-punch.min.js' %}"></script>
@@ -171,6 +193,10 @@
         <!-- WYSIWYG -->
         <script src="{% static 'vendor/bootstrap-wysiwyg/bootstrap-wysiwyg.js' %}"></script>
         <script src="{% static 'vendor/bootstrap-wysiwyg/external/jquery.hotkeys.js' %}"></script>
+        <!-- DATEPICKER -->
+        <script type="text/javascript" src="{% static 'vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
+        <!-- CLASSY LOADER-->
+        <script src="{% static 'vendor/jquery-classyloader/js/jquery.classyloader.min.js' %}"></script>
         <!-- ANIMO-->
         <script src="{% static 'vendor/animo.js/animo.js' %}"></script>
         <!-- SLIMSCROLL-->
@@ -191,6 +217,7 @@
             {% include "api/js/public_imageupload.html" %}
             {% include "api/js/tenant_tag.html" %}
             {% include "api/js/tenant_imageupload.html" %}
+            {% include "api/js/tenant_fileupload.html" %}
             {% include "api/js/tenant_naicsoption.html" %}
             {% include "api/js/tenant_businessidea.html" %}
             {% include "api/js/tenant_tellusyourneed.html" %}

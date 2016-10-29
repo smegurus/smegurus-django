@@ -69,6 +69,42 @@
         })
     }); // end Document Start
 
+    /**
+     *  Function will asynchronously upload the file.
+     */
+    function ajax_upload_file() {
+        if ($('#id_file').val() == "") {
+            alert(_("Please select a file to upload"));
+            // $.notify("Please select an image to upload", "danger");
+            return false;
+        }
+
+        // Extract the information.
+        var file = document.getElementById('id_file').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+        console.log("upload_id: "+upload_id);
+
+        $('#id_file_label').attr('disabled','disabled'); // Disable button.
+
+        // Insert or Update.
+        set_tenant_fileupload(upload_id, file, function(file_upload) {
+            var file_id = file_upload['id']; // Get the newly uploaded file id.
+            var file_url = file_upload['datafile'];
+            tenant_task_attach_file(
+                {{ task.id }},
+                file_id,
+                function(task) {
+                    $('#id_file_label').removeAttr('disabled'); // Enable button.
+                    location.reload(true);
+                },
+                function(json_error_result) {
+                    $('#id_file_label').removeAttr('disabled'); // Enable button.
+                    print_error_handler(json_error_result);
+                }
+            ); // end GET
+        }); // end UPLOAD
+    }
+
     function ajax_complete_task() {
         $('#id_close_btn').prop("disabled", true);
         tenant_task_close(
