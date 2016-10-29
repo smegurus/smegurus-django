@@ -85,12 +85,13 @@ def create_page(request):
         contact_point=contact_point,
         is_admitted=True,
         is_setup=True,
+        temporary_password=random_password
     )
     Intake.objects.create(
         me=me,
         status=constants.CREATED_STATUS,
     )
-    url = reverse('tenant_customer_create_step_1', args=[me.id,]) + "?pass="+random_password
+    url = reverse('tenant_customer_create_step_1', args=[me.id,])
     return HttpResponseRedirect(url)
 
 
@@ -104,8 +105,7 @@ def create_step_one_page(request, pk):
     # Render our View.
     return render(request, 'tenant_customer/create/1/view.html',{
         'page': 'client',
-        'me': get_object_or_404(TenantMe, pk=pk),
-        'temporary_password': request.GET.get('pass'),
+        'me': get_object_or_404(TenantMe, pk=pk)
     })
 
 

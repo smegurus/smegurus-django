@@ -30,12 +30,12 @@
     </h3>
     <!-- end TITLE & BREADCRUMBS -->
     <!-- CONTENT -->
-    {% if temporary_password %}
+    {% if me.temporary_password != None %}
     <div id="panelDemo12" class="panel panel-danger">
         <div class="panel-heading">{% trans 'Temporary Password Generated' %}</div>
             <div class="panel-body">
                 <p>{% trans 'A temporary password has been generated for this entrepreneur. Please give this password to the entrepreneur ask them to change their password once they login with it.' %}</p>
-                <p><h1>{{ temporary_password }}</h1></p>
+                <p><h1>{{ me.temporary_password }}</h1></p>
             </div>
         <div class="panel-footer">{% trans 'Remember: Help keep this password safe by not sharing it with anyone else.' %}</div>
     </div>

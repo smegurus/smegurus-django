@@ -40,6 +40,17 @@
                 </div>
             </div>
             <!-- end OPTIONS -->
+
+            {% if me.temporary_password != None %}
+            <div id="panelDemo12" class="panel panel-danger">
+                <div class="panel-heading">{% trans 'Temporary Password' %}</div>
+                    <div class="panel-body">
+                        <p>{% trans 'Please give this to the client and ask them to change their password.' %}</p>
+                        <p><h1>{{ me.temporary_password }}</h1></p>
+                    </div>
+                <div class="panel-footer">{% trans 'Remember: Help keep this password safe by not sharing it with anyone else.' %}</div>
+            </div>
+            {% endif %}
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
