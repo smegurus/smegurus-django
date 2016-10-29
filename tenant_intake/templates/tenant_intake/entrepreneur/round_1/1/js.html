@@ -7,15 +7,6 @@
             }
         });
 
-        // Initial setup.
-        {% if intake.how_can_we_help != 6 %}
-            $('#id_how_can_we_help_other_div').hide();
-        {% endif %}
-
-        {% if intake.how_can_we_help != 1 %}
-            $('#id_how_can_we_help_tag_div').hide();
-        {% endif %}
-
         // Page functions.
         $("#id_how_can_we_help").change(function () {
             var end = this.value;

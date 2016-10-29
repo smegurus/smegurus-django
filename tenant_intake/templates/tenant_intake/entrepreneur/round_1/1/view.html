@@ -1,9 +1,12 @@
 {% extends 'tenant_intake/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+    <!-- PAGE JS -->
     {% compress js inline %}
         {% include 'tenant_intake/entrepreneur/round_1/1/js.html' %}
     {% endcompress %}
+    <!-- end PAGE JS -->
+    <!-- PAGE CONTENT -->
     <div class="content-wrapper">
 <div class="panel panel-default">
     <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round One' %}</div>
@@ -16,18 +19,35 @@
 
             <!-- PAGE CONTENT -->
             <div class="content clearfix">
-                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
+                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">{% trans 'Round One' %}</h4>
                 <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    {% for field in form %}
-                    {% if field.id_for_label == 'id_how_can_we_help' or field.id_for_label == 'id_how_can_we_help_other' or field.id_for_label == 'id_how_can_we_help_tag' %}
-                    <div class="form-group has-feedback" id="{{ field.id_for_label }}_div">
-                        <label for="signupInputText1" class="text-muted">{{ field.label_tag }}</label>
-                        {{ field }}
-                        {{ field.errors }}<br/>
+                    <div class="form-group has-feedback" id="id_how_can_we_help_div">
+                        <label for="signupInputText1" class="text-muted"><label for="id_how_can_we_help">{% trans 'How can we help you' %}:</label></label>
+                        <select class="form-control" id="id_how_can_we_help" name="how_can_we_help" required="">
+                            <option value="1" {% if intake.how_can_we_help == 1 %}selected="selected"{% endif %}>{% trans 'I am interested in one of your programs' %}</option>
+                            <option value="2" {% if intake.how_can_we_help == 2 %}selected="selected"{% endif %}>{% trans 'I am interested in one of your services' %}</option>
+                            <option value="3" {% if intake.how_can_we_help == 3 %}selected="selected"{% endif %}>{% trans 'I want to find out how to start a business' %}</option>
+                            <option value="4" {% if intake.how_can_we_help == 4 %}selected="selected"{% endif %}>{% trans 'I have an existing business I need help with' %}</option>
+                            <option value="5" {% if intake.how_can_we_help == 5 %}selected="selected"{% endif %}>{% trans 'I want to find out about grants and loans' %}</option>
+                            <option value="6" {% if intake.how_can_we_help == 6 %}selected="selected"{% endif %}>{% trans 'Other' %}</option>
+                        </select>
+                        <br>
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                    {{ form.non_field_errors }}
+                    <div class="form-group has-feedback" id="id_how_can_we_help_other_div" {% if not intake.how_can_we_help == 6 %}style="display: none;"{% endif %}>
+                        <label for="signupInputText1" class="text-muted"><label for="id_how_can_we_help_other">{% trans 'Other' %}:</label></label>
+                        <input class="form-control" id="id_how_can_we_help_other" maxlength="255" name="how_can_we_help_other" type="text" value="{{ intake.how_can_we_help_other }}">
+                        <br>
+                    </div>
+                    <div class="form-group has-feedback" id="id_how_can_we_help_tag_div" {% if not intake.how_can_we_help == 1 %}style="display: none;"{% endif %}>
+                        <label for="signupInputText1" class="text-muted"><label for="id_how_can_we_help_tag">{% trans 'Which program are you interested in?' %}</label></label>
+                        <select class="form-control" id="id_how_can_we_help_tag" name="how_can_we_help_tag">
+                            <option value="">---------</option>
+                            {% for tag in tags.all %}
+                                <option value="{{ tag.id }}" {% if intake.how_can_we_help_tag == tag %}selected="selected"{% endif %}>{{ tag }}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                    </div>
                 </section>
             </div>
             <!-- end PAGE CONTENT -->
@@ -42,7 +62,5 @@
         </div>
     </div>
 </div>
-
-
-
+<!-- end PAGE CONTENT -->
 {% endblock content %}
