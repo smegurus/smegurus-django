@@ -26,6 +26,11 @@ CLIENT_MANAGER_GROUP = _("Client Manager")
 SYSTEM_ADMIN_GROUP = _("System Administrator")
 
 
+# The maximum stage number.
+ME_MIN_STAGE_NUM = 1
+ME_MAX_STAGE_NUM = 7
+
+
 # Constant lists all the roles belonging to the employee system of the
 # application.
 EMPLOYEE_GROUPS = [

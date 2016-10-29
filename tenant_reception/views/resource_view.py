@@ -22,7 +22,10 @@ def resource_master_page(request, category_id):
     return render(request, 'tenant_reception/resource/master/resource/view.html',{
         'page': 'reception-resource-master',
         'category': category,
-        'inforesources': InfoResource.objects.filter(category=category)
+        'inforesources': InfoResource.objects.filter(
+            category=category,
+            stage_num__lte=request.tenant_me.stage_num,
+        )
     })
 
 

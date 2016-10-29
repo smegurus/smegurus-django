@@ -37,10 +37,15 @@ def category_master_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def category_details_page(request, category_id):
     category = get_object_or_404(InfoResourceCategory, id=int_or_none(category_id))
+    inforesources = None
+    if request.tenant_me.is_employee():
+        inforesources = InfoResource.objects.filter(category=category)
+    else:
+        inforesources = InfoResource.objects.filter(category=category, stage_num__lte=request.tenant_me.stage_num,)
     return render(request, 'tenant_resource/client/category/details/view.html',{
         'page': 'resource',
         'category': category,
-        'inforesources': InfoResource.objects.filter(category=category)
+        'inforesources': inforesources
     })
 
 
