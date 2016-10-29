@@ -165,7 +165,7 @@
                          <div class="col-sm-10">
                              <select id="select2-1" multiple="multiple" class="form-control">
                                  {% for me in all_profiles %}
-                                     <option value="{{ me.id }}" {% if me.id == default_me %}selected=""{% endif %}>{{ me.name }}{% if me == request.tenant_me %}&nbsp;{% trans '(Me)' %}{% endif %}</option>
+                                     <option value="{{ me.id }}" {% if me.id == default_me %}selected=""{% endif %}>{{ me.name }}{% if me == request.tenant_me %}&nbsp;{% trans '(Me)' %}{% else %}{% if me.is_employee %}&nbsp;{% trans '(Staff)'%}{% endif %}{% endif %}</option>
                                  {% endfor %}
                              </select>
                          </div>
