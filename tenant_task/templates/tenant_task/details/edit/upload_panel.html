@@ -50,12 +50,12 @@
                         <td>
                             <div class="pull-right">
                                 <!-- DOWNLOAD -->
-                                <button onclick="load_new_tab('{{ file_upload.get_s3_url }}');"
-                                    type="button"
-                                    class="btn btn-default">
-                                <em class="fa fa-fw fa-download mr"></em>
-                                {% trans 'Download' %}
-                                </button>
+                                <a href="{{ file_upload.get_s3_url }}" download>
+                                    <button type="button" class="btn btn-default">
+                                        <em class="fa fa-fw fa-download mr"></em>
+                                        {% trans 'Download' %}
+                                    </button>
+                                </a>
                                 <!-- end DOWNLOAD -->
                             </div>
                         </td>
