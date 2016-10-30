@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
         // Detect if "entrepreneur" is selected and if was hide or show the "entrepreneur access" question.
@@ -26,12 +26,18 @@
         // Extract the information.
         var file = document.getElementById('id_file').files[0];
         var upload_id = $('#id_hidden_upload_id').val();
-        $("#id_upload_btn_label").prop("disabled",true); // Disable button.
 
+        $("#id_upload_btn_label").prop("disabled",true); // Disable button.
         $("#id_accept_btn").prop("disabled",true); // Disable button.
+
+        // Turn on the 'loading' animation.
+        var lb = new $.LoadingBox({
+            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
+        });
 
         // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(json_result) {
+            lb.close(); // Turn off the 'loading' animation.
             $("#id_accept_btn").removeAttr("disabled"); // Enable button.
 
             // Create the "download" button.

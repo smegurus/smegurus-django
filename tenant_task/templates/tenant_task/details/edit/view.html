@@ -4,6 +4,7 @@
 
 <!-- PAGE JS -->
 {% compress js inline %}
+    {% include 'foundation_public/loadingbox_js.html' %}
     {% include 'tenant_task/details/edit/js.html' with task=task %}
 {% endcompress %}
 <!-- end PAGE JS -->

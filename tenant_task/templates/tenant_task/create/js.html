@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     $(document).ready(function () {
         $('#searchResourcesModal').appendTo("body")
@@ -223,8 +223,14 @@
         var upload_id = $('#id_hidden_upload_id').val();
         console.log("upload_id: "+upload_id);
 
+        // Turn on the 'loading' animation.
+        var lb = new $.LoadingBox({
+            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
+        });
+
         // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(file_upload) {
+            lb.close(); // Turn off the 'loading' animation.
 
             // UPDATE THE UI.
             $('#id_add_file_btn').prop('disabled', false); // enable the add button.

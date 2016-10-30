@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load staticfiles i18n %}
 <script>
     function print_error_handler(error_json_result) {
         var string = JSON.stringify( error_json_result );
@@ -161,6 +161,11 @@
         var upload_id = $('#id_hidden_upload_id').val();
         console.log("upload_id: "+upload_id);
 
+        // Turn on the 'loading' animation.
+        var lb = new $.LoadingBox({
+            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
+        });
+
         // Insert or Update.
         set_tenant_fileupload(upload_id, file, function(file_upload) {
 
@@ -175,6 +180,7 @@
                     set_tenant_tasks(
                         task,
                         function(json_result) {
+                            lb.close(); // Turn off the 'loading' animation.
                             location.reload(true); // Reload the page.
                         },
                         function(error_json_result) {

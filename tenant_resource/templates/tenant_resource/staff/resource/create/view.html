@@ -3,7 +3,8 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-{% include 'tenant_resource/staff/resource/create/js.html' %}
+    {% include 'foundation_public/loadingbox_js.html' %}
+    {% include 'tenant_resource/staff/resource/create/js.html' %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
