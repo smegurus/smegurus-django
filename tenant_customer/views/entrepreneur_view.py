@@ -10,6 +10,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
+from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
 from foundation_tenant.utils import my_last_modified_func, int_or_none
 from foundation_tenant.models.me import TenantMe
@@ -25,6 +26,13 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -33,12 +41,19 @@ from smegurus import constants
 def master_page(request):
     intakes = Intake.objects.filter(status=constants.APPROVED_STATUS)
     return render(request, 'tenant_customer/entrepreneur/master/view.html',{
-        'page': 'client',
+        'page': 'client-entrepreneur',
         'intakes': intakes,
     })
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -47,7 +62,7 @@ def master_page(request):
 def details_page(request, id):
     me = get_object_or_404(TenantMe, pk=id)
     return render(request, 'tenant_customer/entrepreneur/details/view.html',{
-        'page': 'client',
+        'page': 'client-entrepreneur',
         'me': me,
     })
 
@@ -56,6 +71,13 @@ def details_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -96,6 +118,13 @@ def create_page(request):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -104,12 +133,19 @@ def create_page(request):
 def create_step_one_page(request, pk):
     # Render our View.
     return render(request, 'tenant_customer/entrepreneur/create/1/view.html',{
-        'page': 'client',
+        'page': 'client-entrepreneur',
         'me': get_object_or_404(TenantMe, pk=pk)
     })
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -123,7 +159,7 @@ def create_step_two_page(request, pk):
 
     # Render our View.
     return render(request, 'tenant_customer/entrepreneur/create/2/view.html',{
-        'page': 'client',
+        'page': 'client-entrepreneur',
         'me': me,
         'form': PostalAddressForm(instance=me.address),
         'countries': CountryOption.objects.all(),
@@ -137,6 +173,13 @@ def create_step_two_page(request, pk):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -183,7 +226,7 @@ def create_step_three_page(request, pk):
 
     # Render our View.
     return render(request, 'tenant_customer/entrepreneur/create/3/view.html',{
-        'page': 'client',
+        'page': 'client-entrepreneur',
         'me': me,
         'form': IntakeForm(instance=intake),
         'constants': constants,
@@ -201,6 +244,13 @@ def create_step_three_page(request, pk):
 
 
 @login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -215,7 +265,7 @@ def update_page(request, pk):
 
     # Render our View.
     return render(request, 'tenant_customer/entrepreneur/update/view.html',{
-        'page': 'client',
+        'page': 'client-entrepreneur',
         'constants': constants,
         'me': me,
         'intake_form': IntakeForm(instance=intake),
