@@ -97,6 +97,11 @@
                         </fieldset>
 
                         <!-- SUBMISSION -->
+                        <div class="pull-left">
+                            <a href="{% url 'tenant_intake_employee_master' %}">
+                                <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
+                            </a>
+                        </div>
                         <div style="float: right;">
                             <button onclick="ajax_reject();" type="button" class="btn btn-danger btn-lg" id="id_reject_btn">{% trans 'Reject' %}</button>
                             <button onclick="ajax_accept();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Accept' %}</button>
