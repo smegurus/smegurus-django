@@ -40,6 +40,6 @@ SUSPICIOUS_PATHS = [
     '/wp-includes/js/wp-util.js',
     '/benutzer/env.cgi',
     '/1phpmyadmin/',
-    '/cgi-bin/nobody/Machine.cgi',
+    '/cgi-bin/nobody',
     '/OA_HTML/OA.jsp'
 ]

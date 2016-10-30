@@ -142,5 +142,14 @@
         "banned_on": "2016-10-29",
         "reason": "https://github.com/robertdavidgraham/masscan"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 17,
+    "fields": {
+        "address": "192.99.238.190",
+        "banned_on": "2016-10-30",
+        "reason": "/manager/html"
+    }
 }
 ]
