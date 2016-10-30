@@ -10,7 +10,7 @@
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
                 <li>
-                    <a href="{% url 'tenant_customer_create' %}">
+                    <a href="{% url 'tenant_customer_entrepreneur_create' %}">
                     <em class="fa fa-fw fa-plus mr"></em>
                     <span>{% trans 'New entrepreneur' %}</span>
                     </a>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="panel-footer clearfix">
                     <div class="text-center">
-                        <a href="{% url 'tenant_customer_details' intake.me.id %}" class="btn btn-xs btn-info">
+                        <a href="{% url 'tenant_customer_entrepreneur_details' intake.me.id %}" class="btn btn-xs btn-info">
                             {% trans 'Details' %} <i class="fa fa-info-circle"></i>
                         </a>
                         <a href="{% url 'tenant_task_master_create' %}?type_of={{ constants.TASK_BY_CUSTOM_TYPE }}&default_me={{ intake.me.id }}" class="btn btn-xs btn-danger">

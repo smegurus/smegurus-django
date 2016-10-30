@@ -82,7 +82,7 @@
                 set_tenant_me(
                     me,
                     function(json_result) {
-                        window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
+                        window.location = "{% url 'tenant_customer_entrepreneur_master' %}"; // Return to the client's list page.
                     },
                     function(error_json_result) {
                         $('#id_update_btn').prop("disabled", false);

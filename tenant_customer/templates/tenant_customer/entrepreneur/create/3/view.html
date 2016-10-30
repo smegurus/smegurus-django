@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_customer/create/3/js.html' %}
+    {% include 'tenant_customer/entrepreneur/create/3/js.html' %}
 {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -20,7 +20,7 @@
                 <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
             </li>
             <li>
-                <a href="{% url 'tenant_customer_master' %}">{% trans 'Clients' %}</a>
+                <a href="{% url 'tenant_customer_entrepreneur_master' %}">{% trans 'Clients' %}</a>
             </li>
             <li class="active">
                 {% trans 'Create - Step 3' %}

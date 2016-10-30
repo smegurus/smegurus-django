@@ -34,7 +34,7 @@
     }
 
     function ajax_back() {
-        window.location = "{% url 'tenant_customer_create_step_1' me.id %}";
+        window.location = "{% url 'tenant_customer_entrepreneur_create_step_1' me.id %}";
     }
 
     function ajax_protected_next() {
@@ -106,10 +106,10 @@
                         rebuild_geo_data_tenant_postaladdress(
                             {{ me.address.id }},
                             function(json_result) {
-                                window.location = "{% url 'tenant_customer_create_step_3' me.id %}";
+                                window.location = "{% url 'tenant_customer_entrepreneur_create_step_3' me.id %}";
                             },
                             function(error_json_result) {
-                                window.location = "{% url 'tenant_customer_create_step_3' me.id %}";
+                                window.location = "{% url 'tenant_customer_entrepreneur_create_step_3' me.id %}";
                             }
                         ); // end GEO UPDATE.
                     },

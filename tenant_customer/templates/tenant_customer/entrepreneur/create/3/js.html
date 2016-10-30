@@ -149,7 +149,7 @@
     }
 
     function ajax_back() {
-        window.location = "{% url 'tenant_customer_create_step_2' me.id %}";
+        window.location = "{% url 'tenant_customer_entrepreneur_create_step_2' me.id %}";
     }
 
     function ajax_finalize_submit() {
@@ -160,7 +160,7 @@
             comment,
             true,
             function(json_result) {
-                window.location = "{% url 'tenant_customer_master' %}"; // Return to the client's list page.
+                window.location = "{% url 'tenant_customer_entrepreneur_master' %}"; // Return to the client's list page.
             },
             function(error_json_result) {
                 enable_btn(); // enable button.

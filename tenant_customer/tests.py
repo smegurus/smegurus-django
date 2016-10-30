@@ -104,7 +104,7 @@ class TenantCustomerTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_customer_master_page_with_200(self):
-        url = reverse('tenant_customer_master')
+        url = reverse('tenant_customer_entrepreneur_master')
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
@@ -112,7 +112,7 @@ class TenantCustomerTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_customer_details_page_with_404(self):
-        url = reverse('tenant_customer_details', args=[666])
+        url = reverse('tenant_customer_entrepreneur_details', args=[666])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)
@@ -136,7 +136,7 @@ class TenantCustomerTestCases(APITestCase, TenantTestCase):
         )
 
         # Run test and verify.
-        url = reverse('tenant_customer_details', args=[intake.id,])
+        url = reverse('tenant_customer_entrepreneur_details', args=[intake.id,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

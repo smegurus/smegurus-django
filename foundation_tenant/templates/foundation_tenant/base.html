@@ -210,6 +210,40 @@
                             </li>
                             <!-- end TASKS -->
 
+                            {% if request.tenant_me.is_employee == True %}
+                            <!-- CLIENTS -->
+                            <li class=" ">
+                                <a href="#inbox" title="{% trans 'Messages' %}" data-toggle="collapse">
+                                    <em class="icon-people"></em>
+                                    <span data-localize="sidebar.nav.MESSAGES">{% trans 'Clients' %}</span>
+                                </a>
+                                <ul id="inbox" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">{% trans 'Clients' %}</li>
+                                    <li {% if page == 'inbox' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_customer_entrepreneur_master' %}" title="{% trans 'Entrepreneurs' %}">
+                                        <span>{% trans 'Entrepreneur' %}</span>
+                                        </a>
+                                    </li>
+                                    <li {% if page == 'archive' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_archive_inbox' %}" title="{% trans 'Contact' %}">
+                                        <span>{% trans 'Contact' %}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- end CLIENTS -->
+
+                            <!-- INTAKE -->
+                            <li {% if page == 'intake' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_intake_employee_master' %}" title="{% trans 'Intake' %}">
+                                    <em class="fa fa-random"></em>
+                                    <div class="pull-right label label-success">{% count_new_intakes %}</div
+                                    <span data-localize="sidebar.nav.CLIENTS">{% trans 'Intake' %}</span>
+                                </a>
+                            </li>
+                            <!-- end INTAKE -->
+                            {% endif %}
+
                             <!-- TEAM -->
                             {% if request.tenant_me.is_manager %}
                                 <li {% if page == 'team' %}class=" active"{% endif %}>
@@ -288,27 +322,6 @@
                                 </a>
                             </li>
                             <!-- end REWARDS -->
-
-                            {% if request.tenant_me.is_employee == True %}
-                            <!-- CLIENTS -->
-                            <li {% if page == 'client' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_customer_master' %}" title="{% trans 'Clients' %}">
-                                    <em class="icon-people"></em>
-                                    <span data-localize="sidebar.nav.CLIENTS">{% trans 'Clients' %}</span>
-                                </a>
-                            </li>
-                            <!-- end CLIENTS -->
-
-                            <!-- INTAKE -->
-                            <li {% if page == 'intake' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_intake_employee_master' %}" title="{% trans 'Intake' %}">
-                                    <em class="fa fa-random"></em>
-                                    <div class="pull-right label label-success">{% count_new_intakes %}</div
-                                    <span data-localize="sidebar.nav.CLIENTS">{% trans 'Intake' %}</span>
-                                </a>
-                            </li>
-                            <!-- end INTAKE -->
-                            {% endif %}
 
                             <!-- MESSAGE -->
                             <li class=" ">

@@ -32,7 +32,7 @@ from smegurus import constants
 @condition(last_modified_func=my_last_modified_func)
 def master_page(request):
     intakes = Intake.objects.filter(status=constants.APPROVED_STATUS)
-    return render(request, 'tenant_customer/master/view.html',{
+    return render(request, 'tenant_customer/entrepreneur/master/view.html',{
         'page': 'client',
         'intakes': intakes,
     })
@@ -46,7 +46,7 @@ def master_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def details_page(request, id):
     me = get_object_or_404(TenantMe, pk=id)
-    return render(request, 'tenant_customer/details/view.html',{
+    return render(request, 'tenant_customer/entrepreneur/details/view.html',{
         'page': 'client',
         'me': me,
     })
@@ -103,7 +103,7 @@ def create_page(request):
 # @condition(last_modified_func=my_last_modified_func)
 def create_step_one_page(request, pk):
     # Render our View.
-    return render(request, 'tenant_customer/create/1/view.html',{
+    return render(request, 'tenant_customer/entrepreneur/create/1/view.html',{
         'page': 'client',
         'me': get_object_or_404(TenantMe, pk=pk)
     })
@@ -122,7 +122,7 @@ def create_step_two_page(request, pk):
     provinces = [] if not me.address.country else ProvinceOption.objects.filter(country=me.address.country)
 
     # Render our View.
-    return render(request, 'tenant_customer/create/2/view.html',{
+    return render(request, 'tenant_customer/entrepreneur/create/2/view.html',{
         'page': 'client',
         'me': me,
         'form': PostalAddressForm(instance=me.address),
@@ -182,7 +182,7 @@ def create_step_three_page(request, pk):
             depth_five_results = NAICSOption.objects.filter(parent=intake.naics_depth_four)
 
     # Render our View.
-    return render(request, 'tenant_customer/create/3/view.html',{
+    return render(request, 'tenant_customer/entrepreneur/create/3/view.html',{
         'page': 'client',
         'me': me,
         'form': IntakeForm(instance=intake),
@@ -214,7 +214,7 @@ def update_page(request, pk):
     provinces = [] if not me.address.country else ProvinceOption.objects.filter(country=me.address.country)
 
     # Render our View.
-    return render(request, 'tenant_customer/update/view.html',{
+    return render(request, 'tenant_customer/entrepreneur/update/view.html',{
         'page': 'client',
         'constants': constants,
         'me': me,
