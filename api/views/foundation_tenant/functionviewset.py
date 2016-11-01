@@ -11,6 +11,7 @@ class FinalizeTenantSetupFunctionViewSet(views.APIView):
 
     def post(self, request):
         call_command('populate_tenant')
+        call_command('populate_bizmula')
         call_command('naics_import')
 
         return response.Response(

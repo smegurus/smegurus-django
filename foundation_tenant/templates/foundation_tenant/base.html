@@ -287,13 +287,13 @@
                                 <a href="#learning" title="{% trans 'Learning' %}" data-toggle="collapse">
                                     <div class="pull-right label label-success">2</div>
                                     <em class="icon-graduation"></em>
-                                    <span>Learning</span>
+                                    <span>{% trans 'Learning' %}</span>
                                 </a>
                                 <ul id="learning" class="nav sidebar-subnav collapse">
                                     <li class="sidebar-subnav-header">{% trans 'Learning' %}</li>
                                     <li class=" ">
-                                        <a href="#" title="{% trans 'Modules' %}">
-                                        <span>Modules</span>
+                                        <a href="{% url 'tenant_bizmula_module_master' %}" title="{% trans 'Modules' %}">
+                                        <span>{% trans 'Modules' %}</span>
                                         </a>
                                     </li>
                                     <li class=" ">

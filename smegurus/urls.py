@@ -51,7 +51,6 @@ urlpatterns += i18n_patterns(
     url(r'^', include('tenant_calendar.urls')),
     url(r'^', include('tenant_community.urls')),
     url(r'^', include('tenant_goal.urls')),
-    url(r'^', include('tenant_learning.urls')),
     url(r'^', include('tenant_mywork.urls')),
     url(r'^', include('tenant_progress.urls')),
     url(r'^', include('tenant_resource.urls')),
@@ -62,6 +61,7 @@ urlpatterns += i18n_patterns(
     url(r'^', include('tenant_customer.urls')),
     url(r'^', include('tenant_help.urls')),
     url(r'^', include('tenant_team.urls')),
+    url(r'^', include('tenant_bizmula.urls')),
     url(r'^', include('tenant_dashboard.urls')),
 )
 

@@ -1,0 +1,13 @@
+[
+{
+    "model": "tenant_bizmula.lecture",
+    "pk": 1,
+    "fields": {
+        "stage_num": 1,
+        "title": "Stage 1",
+        "description": "test",
+        "icon": "fa-television",
+        "colour": ""
+    }
+}
+]

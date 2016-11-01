@@ -1,0 +1,40 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa fa-cubes mr"></em>{% trans 'Modules' %}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+            <li class="active">{% trans 'Modules' %}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="container container-md">
+        <div class="row">
+            {% for lecture in lectures.all %}
+            <div class="col-md-4">
+                <div class="panel b">
+                    <div class="panel-body text-center">
+                        <a href="{% url 'tenant_bizmula_lecture_master' lecture.stage_num %}" class="link-unstyled text-primary">
+                            <em class="fa fa-5x {{ lecture.icon }} mb-lg"></em>
+                            <br>
+                            <span class="h4">{{ lecture.title }}</span>
+                            <br>
+                            <small class="text-muted">{% trans 'View all' %}&nbsp;&rarr;</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

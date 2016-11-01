@@ -106,7 +106,6 @@ TENANT_APPS = (
   'tenant_calendar',
   'tenant_community',
   'tenant_goal',
-  'tenant_learning',
   'tenant_mywork',
   'tenant_progress',
   'tenant_resource',
@@ -117,6 +116,7 @@ TENANT_APPS = (
   'tenant_help',
   'tenant_note',
   'tenant_team',
+  'tenant_bizmula',
   'tenant_dashboard',
 )
 

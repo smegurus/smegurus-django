@@ -16,10 +16,8 @@ from foundation_tenant.utils import my_last_modified_func
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-@condition(last_modified_func=my_last_modified_func)
-def learning_page(request):
-    # print("TENANT", request.tenant.schema_name)
-    # print("USER", request.token)
-    return render(request, 'tenant_learning/view.html',{
-        'page': 'learning',
+# @condition(last_modified_func=my_last_modified_func)
+def master_page(request, stage_num):
+    return render(request, 'tenant_bizmula/lectures/master/view.html',{
+        'page': 'bizmula-module',
     })
