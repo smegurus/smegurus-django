@@ -1,14 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
+from foundation_tenant.utils import int_or_none
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
-from foundation_tenant.utils import my_last_modified_func
+from tenant_bizmula.models.lecture import Lecture
+from smegurus import constants
 
 
 @login_required(login_url='/en/login')
@@ -16,8 +18,22 @@ from foundation_tenant.utils import my_last_modified_func
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-# @condition(last_modified_func=my_last_modified_func)
 def master_page(request, stage_num):
+    lecture = get_object_or_404(Lecture, stage_num=int_or_none(stage_num))
     return render(request, 'tenant_bizmula/lectures/master/view.html',{
         'page': 'bizmula-module',
+        'lecture': lecture
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+def detail_page(request, stage_num, slide_num):
+    lecture = get_object_or_404(Lecture, stage_num=int_or_none(stage_num))
+    return render(request, 'tenant_bizmula/lectures/master/view.html',{
+        'page': 'bizmula-module',
+        'lecture': lecture
     })

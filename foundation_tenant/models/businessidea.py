@@ -21,7 +21,7 @@ class BusinessIdeaManager(models.Manager):
 class BusinessIdea(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_business_ideas'
+        db_table = 'smeg_business_ideas'
         verbose_name = 'Business Idea'
         verbose_name_plural = 'Business Ideas'
 

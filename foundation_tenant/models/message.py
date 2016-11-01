@@ -20,7 +20,7 @@ class Message(AbstractCreativeWork):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_messages'
+        db_table = 'smeg_messages'
         verbose_name = 'Message'
         verbose_name_plural = 'Messages'
 

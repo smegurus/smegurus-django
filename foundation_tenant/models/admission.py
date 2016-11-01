@@ -14,7 +14,7 @@ class AdmissionManager(models.Manager):
 class Admission(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_admission'
+        db_table = 'smeg_admission'
         verbose_name = 'Admission'
         verbose_name_plural = 'Admissions'
 

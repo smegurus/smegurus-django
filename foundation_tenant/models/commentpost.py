@@ -14,7 +14,7 @@ class CommentPostManager(models.Manager):
 class CommentPost(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_comment_posts'
+        db_table = 'smeg_comment_posts'
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
 
@@ -36,7 +36,7 @@ class SortedCommentPostByCreated(CommentPost):
     class Meta:
         proxy = True
         app_label = 'foundation_tenant'
-        db_table = 'biz_sorted_comment_posts_by_created'
+        db_table = 'smeg_sorted_comment_posts_by_created'
         ordering = ('created',)
         verbose_name = 'Sorted Comment by Created'
         verbose_name_plural = 'Sorted Comments by Created'

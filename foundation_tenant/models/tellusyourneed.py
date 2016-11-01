@@ -13,7 +13,7 @@ class TellUsYourNeedManager(models.Manager):
 class TellUsYourNeed(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tell_us_your_needs'
+        db_table = 'smeg_tell_us_your_needs'
         verbose_name = 'Tell Us Your Need'
         verbose_name_plural = 'Tell Us Your Needs'
 

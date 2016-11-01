@@ -11,7 +11,7 @@ class PublicGeoCoordinate(AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_geocoordinates'
+        db_table = 'smeg_geocoordinates'
         verbose_name = 'GeoCoordinate'
         verbose_name_plural = 'GeoCoordinates'
 

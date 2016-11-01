@@ -13,7 +13,7 @@ class TagManager(models.Manager):
 class Tag(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tags'
+        db_table = 'smeg_tags'
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
 

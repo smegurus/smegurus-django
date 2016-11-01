@@ -22,7 +22,7 @@ class PublicPostalAddress(AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_postal_addresses'
+        db_table = 'smeg_postal_addresses'
         verbose_name = 'Postal Address'
         verbose_name_plural = 'Postal Addresses'
 

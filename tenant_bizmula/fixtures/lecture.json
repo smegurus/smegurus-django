@@ -5,7 +5,7 @@
     "fields": {
         "stage_num": 1,
         "title": "Stage 1",
-        "description": "test",
+        "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>",
         "icon": "fa-television",
         "colour": ""
     }

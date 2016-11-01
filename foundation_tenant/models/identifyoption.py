@@ -13,7 +13,7 @@ class IdentifyOption(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         ordering = ('order_number',)
-        db_table = 'biz_identify_options'
+        db_table = 'smeg_identify_options'
         verbose_name = 'Identify Option'
         verbose_name_plural = 'Identify Options'
 

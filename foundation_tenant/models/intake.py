@@ -69,7 +69,7 @@ class IntakeManager(models.Manager):
 class Intake(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_intakes'
+        db_table = 'smeg_intakes'
         verbose_name = 'Intake'
         verbose_name_plural = 'Intakes'
 

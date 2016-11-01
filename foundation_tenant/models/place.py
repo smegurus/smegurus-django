@@ -18,7 +18,7 @@ class Place(AbstractPlace):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_places'
+        db_table = 'smeg_places'
         verbose_name = 'Place'
         verbose_name_plural = 'Places'
 

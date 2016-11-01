@@ -15,7 +15,7 @@ class TenantVisitor(models.Model):
     """The model used to store what URL location was visted and from what User/IP."""
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tenant_visitors'
+        db_table = 'smeg_tenant_visitors'
         verbose_name = 'Tenant Visitor'
         verbose_name_plural = 'Tenant Visitors'
 

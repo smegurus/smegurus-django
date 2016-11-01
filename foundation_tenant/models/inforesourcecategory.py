@@ -16,7 +16,7 @@ class InfoResourceCategoryManager(models.Manager):
 class InfoResourceCategory(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_info_resource_categories'
+        db_table = 'smeg_info_resource_categories'
         verbose_name = 'Information Resource Category'
         verbose_name_plural = 'Information Resources Category'
 

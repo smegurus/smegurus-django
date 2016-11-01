@@ -15,7 +15,7 @@ class TenantFileUpload(models.Model):
     """A file uploaded object restricted to specific tenants only."""
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tenant_file_uploads'
+        db_table = 'smeg_tenant_file_uploads'
         verbose_name = 'File Upload'
         verbose_name_plural = 'File Uploads'
 

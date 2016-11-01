@@ -27,7 +27,7 @@ class Task(AbstractThing):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tasks'
+        db_table = 'smeg_tasks'
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
 

@@ -17,7 +17,7 @@ class CommunityPost(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         ordering = ('-created',)
-        db_table = 'biz_community_posts'
+        db_table = 'smeg_community_posts'
         verbose_name = 'Community Post'
         verbose_name_plural = 'Community Posts'
 

@@ -17,7 +17,7 @@ class LogEvent(models.Model):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_log_events'
+        db_table = 'smeg_log_events'
         verbose_name = _('Log Event')
         verbose_name_plural = _('Log Events')
 
@@ -48,7 +48,7 @@ class SortedLogEventByCreated(LogEvent):
     class Meta:
         proxy = True
         app_label = 'foundation_tenant'
-        db_table = 'biz_sorted_log_events_by_created'
+        db_table = 'smeg_sorted_log_events_by_created'
         ordering = ('created',)
         verbose_name = _('Sorted by Created Log Event')
         verbose_name_plural = _('Sorted by Created Log Events')

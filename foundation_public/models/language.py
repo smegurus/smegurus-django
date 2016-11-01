@@ -11,7 +11,7 @@ class PublicLanguage(AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_languages'
+        db_table = 'smeg_languages'
         verbose_name = 'Language'
         verbose_name_plural = 'Languages'
 

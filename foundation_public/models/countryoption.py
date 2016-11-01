@@ -12,7 +12,7 @@ class CountryOptionManager(models.Manager):
 class CountryOption(models.Model):
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_country_options'
+        db_table = 'smeg_country_options'
         verbose_name = 'Country Option'
         verbose_name_plural = 'Country Options'
 

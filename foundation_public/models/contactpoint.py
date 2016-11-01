@@ -13,7 +13,7 @@ class PublicContactPoint(AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_contact_points'
+        db_table = 'smeg_contact_points'
         verbose_name = 'Contact Point'
         verbose_name_plural = 'Contact Points'
 

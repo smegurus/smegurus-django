@@ -19,7 +19,7 @@ class Brand(AbstractThing):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_brands'
+        db_table = 'smeg_brands'
         verbose_name = 'Brand'
         verbose_name_plural = 'Brands'
 

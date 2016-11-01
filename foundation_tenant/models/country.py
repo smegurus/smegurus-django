@@ -18,7 +18,7 @@ class Country(AbstractPlace):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_countries'
+        db_table = 'smeg_countries'
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
 

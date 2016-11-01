@@ -16,7 +16,7 @@ class CityOptionManager(models.Manager):
 class CityOption(models.Model):
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_city_options'
+        db_table = 'smeg_city_options'
         verbose_name = 'City Option'
         verbose_name_plural = 'City Options'
 

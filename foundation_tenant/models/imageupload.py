@@ -19,7 +19,7 @@ class TenantImageUpload(models.Model):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tenant_image_uploads'
+        db_table = 'smeg_tenant_image_uploads'
         verbose_name = 'Image Upload'
         verbose_name_plural = 'Image Uploads'
 

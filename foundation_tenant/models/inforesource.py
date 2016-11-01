@@ -18,7 +18,7 @@ class InfoResourceManager(models.Manager):
 class InfoResource(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_info_resources'
+        db_table = 'smeg_info_resources'
         verbose_name = 'Information Resource'
         verbose_name_plural = 'Information Resources'
 

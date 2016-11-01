@@ -16,7 +16,7 @@ class NAICSOption(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         ordering = ['seq_num',]
-        db_table = 'biz_naics_options'
+        db_table = 'smeg_naics_options'
         verbose_name = 'NAICS Option'
         verbose_name_plural = 'NAICS Options'
 

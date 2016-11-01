@@ -52,7 +52,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_organizations'
+        db_table = 'smeg_organizations'
         verbose_name = 'Organization'
         verbose_name_plural = 'Organizations'
 
@@ -355,7 +355,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
 class PublicDomain(DomainMixin):
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_domains'
+        db_table = 'smeg_domains'
         verbose_name = 'Domain'
         verbose_name_plural = 'Domains'
 

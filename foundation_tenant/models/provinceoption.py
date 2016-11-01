@@ -15,7 +15,7 @@ class ProvinceOptionManager(models.Manager):
 class ProvinceOption(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_province_options'
+        db_table = 'smeg_province_options'
         verbose_name = 'Province Option'
         verbose_name_plural = 'Province Options'
 

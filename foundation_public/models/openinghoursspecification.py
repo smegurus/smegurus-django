@@ -11,7 +11,7 @@ class PublicOpeningHoursSpecification(AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_opening_hours_specifications'
+        db_table = 'smeg_opening_hours_specifications'
         verbose_name = 'Opening Hours Specification'
         verbose_name_plural = 'Opening Hours Specifications'
 

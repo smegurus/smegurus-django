@@ -18,13 +18,34 @@ class Lecture(models.Model):
         verbose_name = 'Lecture'
         verbose_name_plural = 'Lectures'
 
+    # ------------
+    #   GENERIC
+    # ------------
+
     objects = LectureManager()
+
+    # ------------
+    #  NAVIGATION
+    # ------------
+
     stage_num = models.PositiveSmallIntegerField(
         _("Stage Number"),
         help_text=_('Track what stage this lecture belongs to.'),
         default=1,
         db_index=True,
     )
+    start_slide_id = models.PositiveSmallIntegerField(
+        _("Start Slide ID"),
+        help_text=_('The start slide ID to begin with.'),
+        default=0,
+        blank=True,
+        null=True,
+    )
+
+    # ------------
+    #  CONTENT
+    # ------------
+
     title = models.CharField(
         _("Title"),
         max_length=127,
@@ -53,6 +74,10 @@ class Lecture(models.Model):
         blank=True,
         null=True,
     )
+
+    # ------------
+    #  FUNCTIONS
+    # ------------
 
     def __str__(self):
         return str(self.title)

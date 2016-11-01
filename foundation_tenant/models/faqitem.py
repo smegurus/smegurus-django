@@ -15,7 +15,7 @@ class FAQItem(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         ordering = ('created',)
-        db_table = 'biz_faq_items'
+        db_table = 'smeg_faq_items'
         verbose_name = 'FAQ Item'
         verbose_name_plural = 'FAQ Items'
 

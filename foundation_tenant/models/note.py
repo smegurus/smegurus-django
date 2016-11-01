@@ -14,7 +14,7 @@ class NoteManager(models.Manager):
 class Note(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_notes'
+        db_table = 'smeg_notes'
         verbose_name = _('Note')
         verbose_name_plural = _('Notes')
 

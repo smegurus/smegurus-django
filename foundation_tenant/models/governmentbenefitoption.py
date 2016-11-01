@@ -13,7 +13,7 @@ class GovernmentBenefitOption(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         ordering = ('order_number',)
-        db_table = 'biz_government_benefit_options'
+        db_table = 'smeg_government_benefit_options'
         verbose_name = 'Government Benefit Option'
         verbose_name_plural = 'Government Benefit Options'
 

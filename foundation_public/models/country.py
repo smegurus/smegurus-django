@@ -11,7 +11,7 @@ class PublicCountry(AbstractPublicPlace):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_countries'
+        db_table = 'smeg_countries'
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
 

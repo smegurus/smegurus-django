@@ -9,7 +9,7 @@ class BannedDomain(models.Model):
     class Meta:
         app_label = 'foundation_public'
         ordering = ('name',)
-        db_table = 'biz_banned_domains'
+        db_table = 'smeg_banned_domains'
 
     def __str__(self):
         return str(self.name)

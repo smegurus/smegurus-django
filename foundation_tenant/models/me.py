@@ -31,7 +31,7 @@ class TenantMe(AbstractPerson):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_tenant_mes'
+        db_table = 'smeg_tenant_mes'
         verbose_name = 'Tenant Me'
         verbose_name_plural = 'Tenant Mes'
 

@@ -17,7 +17,7 @@ class CalendarEventManager(models.Manager):
 class CalendarEvent(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_calendar_events'
+        db_table = 'smeg_calendar_events'
         verbose_name = 'Calendar Event'
         verbose_name_plural = 'Calendar Events'
 
@@ -78,7 +78,7 @@ class SortedCalendarEventByCreated(CalendarEvent):
     class Meta:
         proxy = True
         app_label = 'foundation_tenant'
-        db_table = 'biz_sorted_calendar_events_by_created'
+        db_table = 'smeg_sorted_calendar_events_by_created'
         ordering = ('-created',)
         verbose_name = _('Sorted by Created Calendar Event')
         verbose_name_plural = _('Sorted by Created Calendar Events')

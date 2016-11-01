@@ -15,7 +15,7 @@ class PublicVisitor(models.Model):
     """The model used to store what URL location was visted and from what a IP."""
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_public_visitors'
+        db_table = 'smeg_public_visitors'
         verbose_name = 'Public Visitor'
         verbose_name_plural = 'Public Visitors'
 

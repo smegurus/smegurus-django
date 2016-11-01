@@ -12,7 +12,7 @@ class PublicBrand(AbstractPublicThing):
     """
     class Meta:
         app_label = 'foundation_public'
-        db_table = 'biz_brands'
+        db_table = 'smeg_brands'
         verbose_name = 'Brand'
         verbose_name_plural = 'Brands'
 
