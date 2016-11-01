@@ -4,25 +4,25 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
-class LectureManager(models.Manager):
+class ModuleManager(models.Manager):
     def delete_all(self):
-        items = Lecture.objects.all()
+        items = Module.objects.all()
         for item in items.all():
             item.delete()
 
 
-class Lecture(models.Model):
+class Module(models.Model):
     class Meta:
         app_label = 'tenant_bizmula'
-        db_table = 'biz_lectures'
-        verbose_name = 'Lecture'
-        verbose_name_plural = 'Lectures'
+        db_table = 'biz_modules'
+        verbose_name = 'Module'
+        verbose_name_plural = 'Modules'
 
     # ------------
     #   GENERIC
     # ------------
 
-    objects = LectureManager()
+    objects = ModuleManager()
 
     # ------------
     #  NAVIGATION
@@ -30,7 +30,7 @@ class Lecture(models.Model):
 
     stage_num = models.PositiveSmallIntegerField(
         _("Stage Number"),
-        help_text=_('Track what stage this lecture belongs to.'),
+        help_text=_('Track what stage this Module belongs to.'),
         default=1,
         db_index=True,
     )

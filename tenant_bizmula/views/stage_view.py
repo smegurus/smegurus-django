@@ -9,8 +9,7 @@ from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.utils import my_last_modified_func
-from tenant_bizmula.models.lecture import Lecture
-# from tenant_bizmula.models.slide import Slide
+from tenant_bizmula.models.module import Module
 
 
 @login_required(login_url='/en/login')
@@ -20,8 +19,9 @@ from tenant_bizmula.models.lecture import Lecture
 @tenant_configuration_required
 # @condition(last_modified_func=my_last_modified_func)
 def master_page(request):
-    lectures = Lecture.objects.filter(stage_num__lte=request.tenant_me.stage_num)
-    return render(request, 'tenant_bizmula/modules/master/view.html',{
+    modules = Module.objects.filter(stage_num__lte=request.tenant_me.stage_num)
+    print(modules)
+    return render(request, 'tenant_bizmula/stage/master/view.html',{
         'page': 'bizmula-module',
-        'lectures': lectures
+        'modules': modules
     })

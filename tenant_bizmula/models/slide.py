@@ -2,7 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from tenant_bizmula.models.lecture import Lecture
+from tenant_bizmula.models.module import Module
 
 
 class SlideManager(models.Manager):
@@ -25,12 +25,12 @@ class Slide(models.Model):
     # ------------
 
     objects = SlideManager()
-    lecture = models.ForeignKey(
-        Lecture,
-        help_text=_('The lecture this slide belongs to.'),
+    module = models.ForeignKey(
+        Module,
+        help_text=_('The module this slide belongs to.'),
         blank=True,
         null=True,
-        related_name="slide_lecture_%(app_label)s_%(class)s_related",
+        related_name="slide_module_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
 
@@ -61,7 +61,7 @@ class Slide(models.Model):
     )
     page_num = models.PositiveSmallIntegerField(
         _("Page Number"),
-        help_text=_('The page number in the slides for the lecture.'),
+        help_text=_('The page number in the slides for the module.'),
         default=1,
         db_index=True,
     )

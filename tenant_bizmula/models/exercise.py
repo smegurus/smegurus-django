@@ -2,7 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from tenant_bizmula.models.lecture import Lecture
+from tenant_bizmula.models.module import Module
 
 
 class ExerciseManager(models.Manager):
@@ -15,7 +15,7 @@ class ExerciseManager(models.Manager):
 class Exercise(models.Model):
     class Meta:
         app_label = 'tenant_bizmula'
-        db_table = 'biz_Exercises'
+        db_table = 'biz_exercises'
         verbose_name = 'Exercise'
         verbose_name_plural = 'Exercises'
 
@@ -24,12 +24,12 @@ class Exercise(models.Model):
     # ------------
 
     objects = ExerciseManager()
-    lecture = models.ForeignKey(
-        Lecture,
-        help_text=_('The lecture this Exercise belongs to.'),
+    module = models.ForeignKey(
+        Module,
+        help_text=_('The module this Exercise belongs to.'),
         blank=True,
         null=True,
-        related_name="exercise_lecture_%(app_label)s_%(class)s_related",
+        related_name="exercise_module_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
 

@@ -9,7 +9,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
-from tenant_bizmula.models.lecture import Lecture
+from tenant_bizmula.models.module import Module
 from smegurus import constants
 
 
@@ -19,10 +19,10 @@ from smegurus import constants
 @tenant_profile_required
 @tenant_configuration_required
 def master_page(request, stage_num):
-    lecture = get_object_or_404(Lecture, stage_num=int_or_none(stage_num))
+    module = get_object_or_404(Module, stage_num=int_or_none(stage_num))
     return render(request, 'tenant_bizmula/lectures/master/view.html',{
         'page': 'bizmula-module',
-        'lecture': lecture
+        'module': module
     })
 
 
@@ -31,9 +31,9 @@ def master_page(request, stage_num):
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-def detail_page(request, stage_num, slide_num):
-    lecture = get_object_or_404(Lecture, stage_num=int_or_none(stage_num))
+def detail_page(request, stage_num, slide_id):
+    module = get_object_or_404(Module, stage_num=int_or_none(stage_num))
     return render(request, 'tenant_bizmula/lectures/master/view.html',{
         'page': 'bizmula-module',
-        'lecture': lecture
+        'module': module
     })

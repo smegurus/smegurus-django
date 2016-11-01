@@ -23,7 +23,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # The filename of all the objects to be imported.
         ordered_file_names = [
-            'lecture.json',
+            'module.json',
         ]
 
         # Iterate through all the filenames and load them into database.
