@@ -1,3 +1,6 @@
+#------------
+#    BASE
+#------------
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.imageupload import TenantImageUpload
 from foundation_tenant.models.base.abstract_creativework import AbstractCreativeWork
@@ -38,3 +41,9 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.visitor import TenantVisitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
+
+#------------
+#  BIZMULA
+#------------
+from foundation_tenant.models.bizmula.workspace import Workspace
+from foundation_tenant.models.bizmula.document import Document
