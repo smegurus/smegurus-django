@@ -6,7 +6,7 @@ from django.forms.widgets import EmailInput
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.tellusyourneed import TellUsYourNeed
+from foundation_tenant.models.base.tellusyourneed import TellUsYourNeed
 
 
 class TellUsYourNeedForm(forms.ModelForm):

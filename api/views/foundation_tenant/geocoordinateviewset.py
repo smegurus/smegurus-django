@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers.foundation_tenant import GeoCoordinateSerializer
-from foundation_tenant.models.geocoordinate import GeoCoordinate
+from foundation_tenant.models.base.geocoordinate import GeoCoordinate
 
 
 class GeoCoordinateFilter(django_filters.FilterSet):

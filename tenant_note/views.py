@@ -9,8 +9,8 @@ from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.utils import my_last_modified_func
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.note import Note
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.note import Note
 from foundation_tenant.forms.noteform import NoteForm
 from smegurus import constants
 

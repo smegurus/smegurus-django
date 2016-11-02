@@ -14,8 +14,8 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission, IsOwner, ManagerPermission
 from api.serializers.foundation_tenant import TenantMeSerializer
 from api.serializers.misc import JSONDictionarySerializer
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants

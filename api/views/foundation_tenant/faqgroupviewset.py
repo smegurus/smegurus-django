@@ -6,7 +6,7 @@ from rest_framework import filters
 from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import FAQGroupSerializer
-from foundation_tenant.models.faqgroup import FAQGroup
+from foundation_tenant.models.base.faqgroup import FAQGroup
 
 
 class FAQGroupFilter(django_filters.FilterSet):

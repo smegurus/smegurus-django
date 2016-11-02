@@ -9,7 +9,7 @@ from rest_framework.decorators import detail_route
 from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import FAQItemSerializer
-from foundation_tenant.models.faqitem import FAQItem
+from foundation_tenant.models.base.faqitem import FAQItem
 
 
 class FAQItemFilter(django_filters.FilterSet):

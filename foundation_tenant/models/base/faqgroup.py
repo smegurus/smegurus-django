@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.faqitem import FAQItem
+from foundation_tenant.models.base.faqitem import FAQItem
 from smegurus import constants
 
 

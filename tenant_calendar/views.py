@@ -12,9 +12,9 @@ from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.utils import int_or_none
-from foundation_tenant.models.calendarevent import CalendarEvent
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.calendarevent import CalendarEvent
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
 
 

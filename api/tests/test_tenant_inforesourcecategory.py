@@ -13,8 +13,8 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import FastTenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.banned import BannedWord
-from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.fileupload import TenantFileUpload

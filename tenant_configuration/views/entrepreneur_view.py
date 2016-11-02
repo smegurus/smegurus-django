@@ -13,10 +13,10 @@ from foundation_public.models.organization import PublicOrganization
 from foundation_public.decorators import group_required
 from foundation_tenant.forms.businessideaform import BusinessIdeaForm
 from foundation_tenant.forms.tellusyourneedform import TellUsYourNeedForm
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.businessidea import BusinessIdea
-from foundation_tenant.models.tellusyourneed import TellUsYourNeed
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.businessidea import BusinessIdea
+from foundation_tenant.models.base.tellusyourneed import TellUsYourNeed
+from foundation_tenant.models.base.tag import Tag
 from foundation_public.models.postaladdress import PublicPostalAddress
 from smegurus import constants
 

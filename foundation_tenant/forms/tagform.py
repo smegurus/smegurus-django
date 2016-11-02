@@ -6,7 +6,7 @@ from django.forms.widgets import EmailInput, Select
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.tag import Tag
 
 
 class TagForm(forms.ModelForm):

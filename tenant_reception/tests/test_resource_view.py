@@ -10,16 +10,16 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.message import Message
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.logevent import SortedLogEventByCreated
-from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.inforesource import InfoResource
-from foundation_tenant.models.visitor import TenantVisitor
+from foundation_tenant.models.base.message import Message
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.note import Note
+from foundation_tenant.models.base.logevent import SortedLogEventByCreated
+from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
+from foundation_tenant.models.base.inforesource import InfoResource
+from foundation_tenant.models.base.visitor import TenantVisitor
 from smegurus import constants
 
 

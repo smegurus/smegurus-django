@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import EmployeePermission
 from api.serializers.foundation_tenant import NoteSerializer
-from foundation_tenant.models.note import Note
+from foundation_tenant.models.base.note import Note
 
 
 class NoteFilter(django_filters.FilterSet):

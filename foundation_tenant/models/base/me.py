@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
 from smegurus import constants
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.abstract_person import AbstractPerson
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.abstract_person import AbstractPerson
 
 
 TASK_EMAIL_FREQUENCY_OPTIONS = (

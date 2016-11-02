@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsAdminUserOrReadOnly
 from api.serializers.foundation_tenant import CountrySerializer
-from foundation_tenant.models.country import Country
+from foundation_tenant.models.base.country import Country
 
 
 class CountryFilter(django_filters.FilterSet):

@@ -4,9 +4,9 @@ from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from foundation_tenant.utils import int_or_none
-from foundation_tenant.models.calendarevent import CalendarEvent
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.calendarevent import CalendarEvent
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
 
 

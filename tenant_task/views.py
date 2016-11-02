@@ -14,13 +14,13 @@ from tenant_configuration.decorators import tenant_configuration_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.task import Task
-from foundation_tenant.models.calendarevent import CalendarEvent
-from foundation_tenant.models.inforesource import InfoResource
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.note import Note
+from foundation_tenant.models.base.task import Task
+from foundation_tenant.models.base.calendarevent import CalendarEvent
+from foundation_tenant.models.base.inforesource import InfoResource
 from smegurus import constants
 
 

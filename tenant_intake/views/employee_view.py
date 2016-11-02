@@ -9,9 +9,9 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.forms.intakeform import IntakeForm
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption

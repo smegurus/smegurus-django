@@ -9,7 +9,7 @@ from rest_framework.decorators import detail_route
 from api.permissions import EmployeePermission, IsOwner, IsOwnerOrReadOnly
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import CommunityPostSerializer
-from foundation_tenant.models.communitypost import CommunityPost
+from foundation_tenant.models.base.communitypost import CommunityPost
 
 
 class CommunityPostViewSet(viewsets.ModelViewSet):

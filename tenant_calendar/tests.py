@@ -10,10 +10,10 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.base.calendarevent import CalendarEvent
 from smegurus import constants
 
 

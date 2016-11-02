@@ -9,7 +9,7 @@ from rest_framework.decorators import detail_route
 from api.permissions import EmployeePermission, IsOwner, IsOwnerOrReadOnly
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import CommunityAdvertisementSerializer
-from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
+from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 
 
 class CommunityAdvertisementViewSet(viewsets.ModelViewSet):

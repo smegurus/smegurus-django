@@ -6,7 +6,7 @@ from django.forms.widgets import EmailInput, Select, CheckboxSelectMultiple
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.base.intake import Intake
 
 
 class IntakeForm(forms.ModelForm):

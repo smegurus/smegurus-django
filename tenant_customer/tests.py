@@ -8,13 +8,13 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.intake import Intake
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.intake import Intake
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

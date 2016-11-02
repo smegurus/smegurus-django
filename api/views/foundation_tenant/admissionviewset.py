@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
 from api.serializers.foundation_tenant  import AdmissionSerializer
-from foundation_tenant.models.admission import Admission
+from foundation_tenant.models.base.admission import Admission
 
 
 class AdmissionFilter(django_filters.FilterSet):

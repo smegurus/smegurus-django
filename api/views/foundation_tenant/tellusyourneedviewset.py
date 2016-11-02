@@ -6,7 +6,7 @@ from rest_framework import permissions
 from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant  import TellUsYourNeedSerializer
-from foundation_tenant.models.tellusyourneed import TellUsYourNeed
+from foundation_tenant.models.base.tellusyourneed import TellUsYourNeed
 
 
 class TellUsYourNeedFilter(django_filters.FilterSet):

@@ -16,9 +16,9 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant  import CalendarEventSerializer
 from api.serializers.misc  import IntegerSerializer
-from foundation_tenant.models.calendarevent import CalendarEvent
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.calendarevent import CalendarEvent
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.tag import Tag
 from smegurus.settings import env_var
 from smegurus import constants
 

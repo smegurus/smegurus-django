@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.abstract_thing import AbstractThing
+from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.base.postaladdress import PostalAddress
-from foundation_tenant.models.place import Place
+from foundation_tenant.models.base.place import Place
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.country import Country
-from foundation_tenant.models.brand import Brand
+from foundation_tenant.models.base.country import Country
+from foundation_tenant.models.base.brand import Brand
 from foundation_tenant.models.base.imageupload import TenantImageUpload
 
 

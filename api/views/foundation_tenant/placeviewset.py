@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers.foundation_tenant import PlaceSerializer
-from foundation_tenant.models.place import Place
+from foundation_tenant.models.base.place import Place
 
 
 class PlaceFilter(django_filters.FilterSet):

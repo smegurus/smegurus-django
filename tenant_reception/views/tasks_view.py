@@ -6,11 +6,11 @@ from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.task import Task
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.note import Note
+from foundation_tenant.models.base.task import Task
 from smegurus import constants
 
 

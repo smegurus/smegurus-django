@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.abstract_thing import AbstractThing
+from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.base.language import Language
 from foundation_tenant.models.base.openinghoursspecification import OpeningHoursSpecification
 

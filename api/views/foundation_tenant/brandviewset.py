@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers.foundation_tenant  import BrandSerializer
-from foundation_tenant.models.brand import Brand
+from foundation_tenant.models.base.brand import Brand
 
 
 class BrandFilter(django_filters.FilterSet):

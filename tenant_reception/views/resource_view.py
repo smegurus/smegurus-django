@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from foundation_tenant.utils import int_or_none
-from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
-from foundation_tenant.models.inforesource import InfoResource
+from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
+from foundation_tenant.models.base.inforesource import InfoResource
 from smegurus import constants
 
 

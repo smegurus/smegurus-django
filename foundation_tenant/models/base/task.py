@@ -1,14 +1,14 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
-from foundation_tenant.models.abstract_thing import AbstractThing
+from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.base.fileupload import TenantFileUpload
-from foundation_tenant.models.tag import Tag
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.calendarevent import CalendarEvent
-from foundation_tenant.models.logevent import SortedLogEventByCreated
-from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.inforesource import InfoResource
+from foundation_tenant.models.base.tag import Tag
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.calendarevent import CalendarEvent
+from foundation_tenant.models.base.logevent import SortedLogEventByCreated
+from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
+from foundation_tenant.models.base.inforesource import InfoResource
 from smegurus import constants
 
 

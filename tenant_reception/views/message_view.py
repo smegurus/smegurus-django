@@ -5,8 +5,8 @@ from django.db.models import Q
 from django.utils.translation import get_language
 from django.contrib.auth.models import User, Group
 from foundation_tenant.utils import int_or_none
-from foundation_tenant.models.message import Message
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.message import Message
+from foundation_tenant.models.base.me import TenantMe
 from smegurus import constants
 
 

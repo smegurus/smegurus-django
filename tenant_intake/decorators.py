@@ -4,8 +4,8 @@ from django.core.urlresolvers import resolve, reverse
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from smegurus import constants
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.me import TenantMe
 
 
 def tenant_intake_required(view_func):

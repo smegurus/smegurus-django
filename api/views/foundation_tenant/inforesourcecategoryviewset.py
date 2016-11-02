@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import EmployeePermission
 from api.serializers.foundation_tenant  import InfoResourceCategorySerializer
-from foundation_tenant.models.inforesourcecategory import InfoResourceCategory
+from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 
 
 class InfoResourceCategoryFilter(django_filters.FilterSet):

@@ -14,13 +14,13 @@ from foundation_tenant.templatetags.foundation_tenant_tags import count_new_inta
 from foundation_tenant.templatetags.foundation_tenant_tags import is_note_protected
 from foundation_tenant.templatetags.foundation_tenant_tags import count_pending_tasks
 from foundation_tenant.templatetags.foundation_tenant_tags import pretty_formatted_date
-from foundation_tenant.models.message import Message
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.message import Message
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.task import Task
-from foundation_tenant.models.note import Note
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.task import Task
+from foundation_tenant.models.base.note import Note
 from smegurus import constants
 
 

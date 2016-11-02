@@ -17,8 +17,8 @@ from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsMeOrIsAnEmployee, IsMe, EmployeePermission
 from api.serializers.foundation_tenant  import IntakeSerializer
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.note import Note
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.note import Note
 from smegurus.settings import env_var
 from smegurus import constants
 

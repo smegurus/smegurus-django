@@ -2,9 +2,9 @@
 from django import template
 from django.db.models import Q
 from django.contrib.auth.models import User
-from foundation_tenant.models.message import Message
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.task import Task
+from foundation_tenant.models.base.message import Message
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.task import Task
 from foundation_tenant.utils import get_pretty_formatted_date
 from smegurus import constants
 

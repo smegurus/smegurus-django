@@ -11,9 +11,9 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
-from foundation_tenant.models.communitypost import CommunityPost
-from foundation_tenant.models.communityadvertisement import CommunityAdvertisement
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.communitypost import CommunityPost
+from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
+from foundation_tenant.models.base.tag import Tag
 
 
 @login_required(login_url='/en/login')

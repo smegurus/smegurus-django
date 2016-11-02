@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
 from api.serializers.foundation_tenant  import TagSerializer
-from foundation_tenant.models.tag import Tag
+from foundation_tenant.models.base.tag import Tag
 
 
 class TagFilter(django_filters.FilterSet):

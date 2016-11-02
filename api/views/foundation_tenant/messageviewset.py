@@ -16,7 +16,7 @@ from rest_framework.decorators import detail_route
 from api.permissions import IsMessageObjectPermission
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import MessageSerializer
-from foundation_tenant.models.message import Message
+from foundation_tenant.models.base.message import Message
 from smegurus.settings import env_var
 from smegurus import constants
 

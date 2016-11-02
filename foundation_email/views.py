@@ -6,14 +6,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import condition
-from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.intake import Intake
-from foundation_tenant.models.message import Message
-from foundation_tenant.models.note import Note
-from foundation_tenant.models.task import Task
-from foundation_tenant.models.logevent import SortedLogEventByCreated
-from foundation_tenant.models.commentpost import SortedCommentPostByCreated
-from foundation_tenant.models.calendarevent import CalendarEvent
+from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.intake import Intake
+from foundation_tenant.models.base.message import Message
+from foundation_tenant.models.base.note import Note
+from foundation_tenant.models.base.task import Task
+from foundation_tenant.models.base.logevent import SortedLogEventByCreated
+from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
+from foundation_tenant.models.base.calendarevent import CalendarEvent
 from smegurus.settings import env_var
 from smegurus import constants
 

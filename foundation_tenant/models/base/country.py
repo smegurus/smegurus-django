@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.abstract_place import AbstractPlace
+from foundation_tenant.models.base.abstract_place import AbstractPlace
 
 
 class CountryManager(models.Manager):

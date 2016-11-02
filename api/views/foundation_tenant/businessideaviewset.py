@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers.foundation_tenant  import BusinessIdeaSerializer
-from foundation_tenant.models.businessidea import BusinessIdea
+from foundation_tenant.models.base.businessidea import BusinessIdea
 
 
 class BusinessIdeaFilter(django_filters.FilterSet):

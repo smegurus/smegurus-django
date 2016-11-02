@@ -14,7 +14,7 @@ from tenant_reception.decorators import tenant_reception_required
 from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
 from foundation_tenant.utils import my_last_modified_func
-from foundation_tenant.models.me import TenantMe
+from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
