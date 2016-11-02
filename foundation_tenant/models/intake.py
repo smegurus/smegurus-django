@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
-from foundation_tenant.models.identifyoption import IdentifyOption
+from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.note import Note
-from foundation_tenant.models.naicsoption import NAICSOption
+from foundation_tenant.models.base.naicsoption import NAICSOption
 from smegurus import constants
 
 

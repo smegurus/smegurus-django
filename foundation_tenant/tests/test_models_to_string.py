@@ -8,15 +8,15 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.fileupload import TenantFileUpload
-from foundation_tenant.models.imageupload import TenantImageUpload
-from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
-from foundation_tenant.models.identifyoption import IdentifyOption
-from foundation_tenant.models.language import Language
-from foundation_tenant.models.postaladdress import PostalAddress
-from foundation_tenant.models.naicsoption import NAICSOption
-from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
-from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.base.identifyoption import IdentifyOption
+from foundation_tenant.models.base.language import Language
+from foundation_tenant.models.base.postaladdress import PostalAddress
+from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_tenant.models.base.openinghoursspecification import OpeningHoursSpecification
+from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.geocoordinate import GeoCoordinate
 from foundation_tenant.models.abstract_place import AbstractPlace
 from foundation_tenant.models.country import Country
@@ -40,9 +40,9 @@ from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.logevent import SortedLogEventByCreated
 from foundation_tenant.models.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.task import Task
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
-from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.base.countryoption import CountryOption
+from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.cityoption import CityOption
 from foundation_tenant.models.visitor import TenantVisitor
 from foundation_tenant.models.inforesource import InfoResource
 

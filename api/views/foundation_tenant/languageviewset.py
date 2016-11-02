@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsAdminUserOrReadOnly
 from api.serializers.foundation_tenant  import LanguageSerializer
-from foundation_tenant.models.language import Language
+from foundation_tenant.models.base.language import Language
 
 
 class LanguageFilter(django_filters.FilterSet):

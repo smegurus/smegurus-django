@@ -9,15 +9,15 @@ from foundation_public.decorators import group_required
 from foundation_public.utils import latest_date_between
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.forms.intakeform import IntakeForm
-from foundation_tenant.models.naicsoption import NAICSOption
+from foundation_tenant.models.base.naicsoption import NAICSOption
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.governmentbenefitoption import GovernmentBenefitOption
-from foundation_tenant.models.identifyoption import IdentifyOption
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
-from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
+from foundation_tenant.models.base.identifyoption import IdentifyOption
+from foundation_tenant.models.base.countryoption import CountryOption
+from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.cityoption import CityOption
 from smegurus import constants
 
 

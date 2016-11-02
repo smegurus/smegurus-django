@@ -12,9 +12,9 @@ from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
-from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.base.countryoption import CountryOption
+from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.cityoption import CityOption
 from smegurus import constants
 
 

@@ -6,7 +6,7 @@ from rest_framework import filters
 from api.permissions import IsOwnerOrReadOnly
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant import TenantFileUploadSerializer
-from foundation_tenant.models.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import TenantFileUpload
 
 
 class TenantFileUploadFilter(django_filters.FilterSet):

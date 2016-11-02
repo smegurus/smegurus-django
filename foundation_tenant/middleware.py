@@ -1,9 +1,9 @@
 import pytz
 from django.utils import timezone
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.postaladdress import PostalAddress
-from foundation_tenant.models.contactpoint import ContactPoint
-from foundation_tenant.models.imageupload import TenantImageUpload
+from foundation_tenant.models.base.postaladdress import PostalAddress
+from foundation_tenant.models.base.contactpoint import ContactPoint
+from foundation_tenant.models.base.imageupload import TenantImageUpload
 from foundation_tenant.models.visitor import TenantVisitor
 
 

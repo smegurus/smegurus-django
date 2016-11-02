@@ -8,7 +8,7 @@ from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.base.postaladdress import PostalAddress
 from smegurus.settings import env_var
 
 

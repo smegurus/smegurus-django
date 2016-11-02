@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsAdminUserOrReadOnly
 from api.serializers.foundation_tenant  import NAICSOptionSerializer
-from foundation_tenant.models.naicsoption import NAICSOption
+from foundation_tenant.models.base.naicsoption import NAICSOption
 
 
 class NAICSOptionFilter(django_filters.FilterSet):

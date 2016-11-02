@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.abstract_thing import AbstractThing
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
-from foundation_tenant.models.cityoption import CityOption
+from foundation_tenant.models.base.countryoption import CountryOption
+from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.cityoption import CityOption
 from smegurus import constants
 
 

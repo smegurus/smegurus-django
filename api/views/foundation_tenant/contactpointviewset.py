@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant  import ContactPointSerializer
-from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.base.contactpoint import ContactPoint
 
 
 class ContactPointFilter(django_filters.FilterSet):

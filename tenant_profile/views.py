@@ -11,10 +11,10 @@ from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
-from foundation_tenant.models.cityoption import CityOption
-from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.base.countryoption import CountryOption
+from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.cityoption import CityOption
+from foundation_tenant.models.base.postaladdress import PostalAddress
 
 
 @login_required(login_url='/en/login')

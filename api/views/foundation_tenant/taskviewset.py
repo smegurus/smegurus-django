@@ -17,7 +17,7 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission
 from api.serializers.foundation_tenant import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from api.serializers.misc import DateTimeSerializer, IntegerSerializer
-from foundation_tenant.models.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.me import TenantMe
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.logevent import SortedLogEventByCreated

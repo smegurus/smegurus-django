@@ -11,7 +11,7 @@ from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant import PostalAddressSerializer
-from foundation_tenant.models.postaladdress import PostalAddress
+from foundation_tenant.models.base.postaladdress import PostalAddress
 
 
 class PostalAddressFilter(django_filters.FilterSet):

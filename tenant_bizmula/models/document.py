@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.abstract_thing import AbstractThing
-from foundation_tenant.models.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import TenantImageUpload
 
 
 class DocumentManager(models.Manager):

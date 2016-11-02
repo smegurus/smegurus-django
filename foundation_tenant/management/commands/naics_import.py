@@ -4,7 +4,7 @@ import csv
 import xml.etree.ElementTree as ET
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from foundation_tenant.models.naicsoption import NAICSOption
+from foundation_tenant.models.base.naicsoption import NAICSOption
 
 
 # Constant stores how many characters the code needs to for the code to

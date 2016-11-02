@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.abstract_creativework import AbstractCreativeWork
+from foundation_tenant.models.base.abstract_creativework import AbstractCreativeWork
 
 
 class AbstractMediaObject(AbstractCreativeWork):

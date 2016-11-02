@@ -7,7 +7,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrReadOnly
 from api.serializers.foundation_tenant import OpeningHoursSpecificationSerializer
-from foundation_tenant.models.openinghoursspecification import OpeningHoursSpecification
+from foundation_tenant.models.base.openinghoursspecification import OpeningHoursSpecification
 
 
 class OpeningHoursSpecificationFilter(django_filters.FilterSet):

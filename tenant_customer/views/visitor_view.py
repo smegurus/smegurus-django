@@ -14,14 +14,14 @@ from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
 from foundation_tenant.utils import my_last_modified_func, int_or_none
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.postaladdress import PostalAddress
-from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.base.postaladdress import PostalAddress
+from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
-from foundation_tenant.models.countryoption import CountryOption
-from foundation_tenant.models.provinceoption import ProvinceOption
-from foundation_tenant.models.naicsoption import NAICSOption
+from foundation_tenant.models.base.countryoption import CountryOption
+from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.naicsoption import NAICSOption
 from smegurus import constants
 
 

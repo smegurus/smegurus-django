@@ -10,8 +10,8 @@ from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.note import Note
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.postaladdress import PostalAddress
-from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.base.postaladdress import PostalAddress
+from foundation_tenant.models.base.contactpoint import ContactPoint
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

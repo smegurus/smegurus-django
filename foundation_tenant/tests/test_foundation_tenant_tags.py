@@ -16,8 +16,8 @@ from foundation_tenant.templatetags.foundation_tenant_tags import count_pending_
 from foundation_tenant.templatetags.foundation_tenant_tags import pretty_formatted_date
 from foundation_tenant.models.message import Message
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.postaladdress import PostalAddress
-from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.base.postaladdress import PostalAddress
+from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.intake import Intake
 from foundation_tenant.models.task import Task
 from foundation_tenant.models.note import Note

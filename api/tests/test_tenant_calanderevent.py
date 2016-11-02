@@ -16,8 +16,8 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.tag import Tag
 from foundation_tenant.models.calendarevent import CalendarEvent
 from foundation_tenant.models.me import TenantMe
-from foundation_tenant.models.postaladdress import PostalAddress
-from foundation_tenant.models.contactpoint import ContactPoint
+from foundation_tenant.models.base.postaladdress import PostalAddress
+from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants
 
 
