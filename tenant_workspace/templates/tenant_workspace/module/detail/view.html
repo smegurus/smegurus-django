@@ -11,7 +11,8 @@
         <ol class="breadcrumb">
             <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
             <li><a href="{% url 'tenant_workspace_master' workspace.id %}">{{ workspace.name }}</a></li>
-            <li class="active">{{ module }}</li>
+            <li><a href="{% url 'tenant_workspace_module_master' workspace.id module.id %}">{{ module }}</a></li>
+            <li class="active">Slide #{{ slide.page_num }}</li>
         </ol>
         <!-- end BREADCRUMBS -->
     </h3>
