@@ -207,26 +207,26 @@
         <script src="{% static 'vendor/jquery-tag/jquery.tagsinput.min.js' %}"></script> <!-- https://github.com/xoxco/jQuery-Tags-Input -->
         <!-- =============== API SCRIPTS ===============-->
         {% include "foundation_public/common_js.html" %}
-        {% include "api/js/auth_activation.html" %}
-        {% include "api/js/auth_login.html" %}
-        {% include "api/js/auth_register.html" %}
-        {% include "api/js/auth_password_reset.html" %}
+        {% include "api/public/auth_activation.html" %}
+        {% include "api/public/auth_login.html" %}
+        {% include "api/public/auth_register.html" %}
+        {% include "api/public/auth_password_reset.html" %}
         {% if request.user.is_authenticated %}
-            {% include "api/js/public_organization.html" %}
-            {% include "api/js/public_postaladdress.html" %}
-            {% include "api/js/public_imageupload.html" %}
-            {% include "api/js/tenant_tag.html" %}
-            {% include "api/js/tenant_imageupload.html" %}
-            {% include "api/js/tenant_fileupload.html" %}
-            {% include "api/js/tenant_naicsoption.html" %}
-            {% include "api/js/tenant_businessidea.html" %}
-            {% include "api/js/tenant_tellusyourneed.html" %}
-            {% include "api/js/tenant_intake.html" %}
-            {% include "api/js/tenant_postaladdress.html" %}
-            {% include "api/js/tenant_task.html" %}
-            {% include "api/js/tenant_message.html" %}
-            {% include "api/js/tenant_calendarevent.html" %}
-            {% include "api/js/tenant_me.html" %}
+            {% include "api/public/public_organization.html" %}
+            {% include "api/public/public_postaladdress.html" %}
+            {% include "api/public/public_imageupload.html" %}
+            {% include "api/tenant/base/tenant_tag.html" %}
+            {% include "api/tenant/base/tenant_imageupload.html" %}
+            {% include "api/tenant/base/tenant_fileupload.html" %}
+            {% include "api/tenant/base/tenant_naicsoption.html" %}
+            {% include "api/tenant/base/tenant_businessidea.html" %}
+            {% include "api/tenant/base/tenant_tellusyourneed.html" %}
+            {% include "api/tenant/base/tenant_intake.html" %}
+            {% include "api/tenant/base/tenant_postaladdress.html" %}
+            {% include "api/tenant/base/tenant_task.html" %}
+            {% include "api/tenant/base/tenant_message.html" %}
+            {% include "api/tenant/base/tenant_calendarevent.html" %}
+            {% include "api/tenant/base/tenant_me.html" %}
         {% endif %}
         <script>
             function ajax_logout() {

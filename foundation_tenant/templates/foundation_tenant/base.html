@@ -537,37 +537,37 @@
                 <script src="{% static 'app/js/app.js' %}"></script>
                 <!-- =============== API SCRIPTS ===============-->
                 {% include "foundation_public/common_js.html" %}
-                {% include "api/js/auth_activation.html" %}
-                {% include "api/js/auth_login.html" %}
-                {% include "api/js/auth_register.html" %}
-                {% include "api/js/auth_password_reset.html" %}
+                {% include "api/public/auth_activation.html" %}
+                {% include "api/public/auth_login.html" %}
+                {% include "api/public/auth_register.html" %}
+                {% include "api/public/auth_password_reset.html" %}
                 {% if request.user.is_authenticated %}
-                    {% include "api/js/public_organization.html" %}
-                    {% include "api/js/public_postaladdress.html" %}
-                    {% include "api/js/public_imageupload.html" %}
-                    {% include "api/js/public_function.html" %}
-                    {% include "api/js/tenant_countryoption.html" %}
-                    {% include "api/js/tenant_provinceoption.html" %}
-                    {% include "api/js/tenant_cityoption.html" %}
-                    {% include "api/js/tenant_naicsoption.html" %}
-                    {% include "api/js/tenant_tag.html" %}
-                    {% include "api/js/tenant_imageupload.html" %}
-                    {% include "api/js/tenant_fileupload.html" %}
-                    {% include "api/js/tenant_businessidea.html" %}
-                    {% include "api/js/tenant_tellusyourneed.html" %}
-                    {% include "api/js/tenant_calendarevent.html" %}
-                    {% include "api/js/tenant_postaladdress.html" %}
-                    {% include "api/js/tenant_contantpoint.html" %}
-                    {% include "api/js/tenant_faqgroup.html" %}
-                    {% include "api/js/tenant_faqitem.html" %}
-                    {% include "api/js/tenant_communitypost.html" %}
-                    {% include "api/js/tenant_message.html" %}
-                    {% include "api/js/tenant_intake.html" %}
-                    {% include "api/js/tenant_note.html" %}
-                    {% include "api/js/tenant_task.html" %}
-                    {% include "api/js/tenant_inforesource.html" %}
-                    {% include "api/js/tenant_me.html" %}
-                    {% include "api/js/tenant_function.html" %}
+                    {% include "api/public/public_organization.html" %}
+                    {% include "api/public/public_postaladdress.html" %}
+                    {% include "api/public/public_imageupload.html" %}
+                    {% include "api/public/public_function.html" %}
+                    {% include "api/tenant/base/tenant_countryoption.html" %}
+                    {% include "api/tenant/base/tenant_provinceoption.html" %}
+                    {% include "api/tenant/base/tenant_cityoption.html" %}
+                    {% include "api/tenant/base/tenant_naicsoption.html" %}
+                    {% include "api/tenant/base/tenant_tag.html" %}
+                    {% include "api/tenant/base/tenant_imageupload.html" %}
+                    {% include "api/tenant/base/tenant_fileupload.html" %}
+                    {% include "api/tenant/base/tenant_businessidea.html" %}
+                    {% include "api/tenant/base/tenant_tellusyourneed.html" %}
+                    {% include "api/tenant/base/tenant_calendarevent.html" %}
+                    {% include "api/tenant/base/tenant_postaladdress.html" %}
+                    {% include "api/tenant/base/tenant_contantpoint.html" %}
+                    {% include "api/tenant/base/tenant_faqgroup.html" %}
+                    {% include "api/tenant/base/tenant_faqitem.html" %}
+                    {% include "api/tenant/base/tenant_communitypost.html" %}
+                    {% include "api/tenant/base/tenant_message.html" %}
+                    {% include "api/tenant/base/tenant_intake.html" %}
+                    {% include "api/tenant/base/tenant_note.html" %}
+                    {% include "api/tenant/base/tenant_task.html" %}
+                    {% include "api/tenant/base/tenant_inforesource.html" %}
+                    {% include "api/tenant/base/tenant_me.html" %}
+                    {% include "api/tenant/base/tenant_function.html" %}
                     <script>
                         function ajax_logout() {
                             sign_off(

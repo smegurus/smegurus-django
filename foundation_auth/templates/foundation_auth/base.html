@@ -92,23 +92,23 @@
 
         <!-- =============== API SCRIPTS ===============-->
         {% include "foundation_public/common_js.html" %}
-        {% include "api/js/auth_activation.html" %}
-        {% include "api/js/auth_login.html" %}
-        {% include "api/js/auth_register.html" %}
-        {% include "api/js/auth_password_reset.html" %}
+        {% include "api/public/auth_activation.html" %}
+        {% include "api/public/auth_login.html" %}
+        {% include "api/public/auth_register.html" %}
+        {% include "api/public/auth_password_reset.html" %}
 
         {% if request.user.is_authenticated %}
-            {% include "api/js/public_function.html" %}
-            {% include "api/js/public_countryoption.html" %}
-            {% include "api/js/public_provinceoption.html" %}
-            {% include "api/js/public_cityoption.html" %}
-            {% include "api/js/public_organization.html" %}
-            {% include "api/js/public_postaladdress.html" %}
-            {% include "api/js/public_imageupload.html" %}
-            {% include "api/js/tenant_tag.html" %}
-            {% include "api/js/tenant_imageupload.html" %}
-            {% include "api/js/tenant_businessidea.html" %}
-            {% include "api/js/tenant_me.html" %}
+            {% include "api/public/public_function.html" %}
+            {% include "api/public/public_countryoption.html" %}
+            {% include "api/public/public_provinceoption.html" %}
+            {% include "api/public/public_cityoption.html" %}
+            {% include "api/public/public_organization.html" %}
+            {% include "api/public/public_postaladdress.html" %}
+            {% include "api/public/public_imageupload.html" %}
+            {% include "api/tenant/base/tenant_tag.html" %}
+            {% include "api/tenant/base/tenant_imageupload.html" %}
+            {% include "api/tenant/base/tenant_businessidea.html" %}
+            {% include "api/tenant/base/tenant_me.html" %}
         {% endif %}
     {% endcompress %}
 </body>
