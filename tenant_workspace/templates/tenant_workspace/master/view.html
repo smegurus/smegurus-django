@@ -1,0 +1,34 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+
+<!-- PAGE JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // Nothing.
+    }); // end Document Start
+</script>
+{% endcompress %}
+<!-- end PAGE JS -->
+
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-briefcase mr"></em>{{ workspace.name }}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li class="active">{{ workspace.name }}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+
+{% endblock content %}

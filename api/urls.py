@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework.authtoken import views
+
+# PUBLIC
 from api.views.authentication.login import LoginViewSet
 from api.views.authentication.logout import LogoutViewSet
 from api.views.authentication.register import RegisterViewSet
@@ -8,7 +10,6 @@ from api.views.authentication.emailactivation import EmailActivationView
 from api.views.authentication.activation import ActivationView
 from api.views.authentication.emailpasswordreset import EmailPasswordResetViewSet
 from api.views.authentication.changepassword import ChangePasswordViewSet
-
 from api.views.foundation_public.publicfileuploadviewset import PublicFileUploadViewSet
 from api.views.foundation_public.publicimageuploadviewset import PublicImageUploadViewSet
 from api.views.foundation_public.countryoptionviewset import PublicCountryOptionViewSet
@@ -26,6 +27,7 @@ from api.views.foundation_public.organizationviewset import PublicOrganizationVi
 from api.views.foundation_public.functionviewset import IsEmailUniqueViewSet
 from api.views.foundation_public.functionviewset import IsOrganizationSchemaNameUniqueViewSet
 
+# TENANT - BASE
 from api.views.foundation_tenant_base.tenantfileuploadviewset import TenantFileUploadViewSet
 from api.views.foundation_tenant_base.tenantimageuploadviewset import TenantImageUploadViewSet
 from api.views.foundation_tenant_base.countryoptionviewset import TenantCountryOptionViewSet
@@ -58,10 +60,12 @@ from api.views.foundation_tenant_base.inforesourceviewset import InfoResourceVie
 from api.views.foundation_tenant_base.functionviewset import FinalizeTenantSetupFunctionViewSet
 from api.views.foundation_tenant_base.meviewset import TenantMeViewSet
 
+# TENANT - BIZMULA
 from api.views.foundation_tenant_bizmula.workspaceviewset import WorkspaceViewSet
 
 
 # URL Generator.
+# PUBLIC
 router = routers.DefaultRouter()
 router.register(r'publicfileupload', PublicFileUploadViewSet)
 router.register(r'publicimageupload', PublicImageUploadViewSet)
@@ -78,6 +82,7 @@ router.register(r'publicplace', PublicPlaceViewSet)
 router.register(r'publiccountry', PublicCountryViewSet)
 router.register(r'publicorganization', PublicOrganizationViewSet)
 
+# TENANT - BASE
 router.register(r'tenantfileupload', TenantFileUploadViewSet)
 router.register(r'tenantimageupload', TenantImageUploadViewSet)
 router.register(r'tenantcountryoption', TenantCountryOptionViewSet)
@@ -109,6 +114,8 @@ router.register(r'tenanttask', TaskViewSet)
 router.register(r'tenantinforesourcecategory', InfoResourceCategoryViewSet)
 router.register(r'tenantinforesource', InfoResourceViewSet)
 router.register(r'tenantme', TenantMeViewSet)
+
+# TENANT - BIZMULA
 router.register(r'tenantworkspace', WorkspaceViewSet)
 
 

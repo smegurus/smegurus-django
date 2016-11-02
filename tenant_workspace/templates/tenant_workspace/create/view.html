@@ -5,6 +5,55 @@
 <!-- PAGE JS -->
 {% compress js inline %}
 <script>
+    $(document).ready(function () {
+        // Nothing.
+    }); // end Document Start
+
+    function ajax_workspace(success_callback, failure_callback) {
+        // Get our variables.
+        var name = $('#id_name').val();
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the task name.' %}");
+            return;
+        }
+
+        // Set our object variables.
+        var workspace = {
+            'name': name,
+        };
+
+        $('#id_submit_btn').prop("disabled", true); // Disable the button.
+
+        set_tenant_workspace(
+            workspace,
+            function(json_result) {
+                $('#id_submit_btn').prop("disabled", false); // Enable the button.
+                success_callback(json_result);
+            },
+            function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false); // Enable the button.
+                failure_callback(error_json_result);
+            }
+        ); // end Set Task.
+    }
+
+    function ajax_create_workspace() {
+        ajax_workspace(
+            function(json_result) {
+                var workspace_id = parseInt(json_result['id']);
+                var url = "{% url 'tenant_workspace_master' 'placeholder' %}";
+                var url = url.replace("placeholder", workspace_id);
+                window.location  = url;
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
 </script>
 {% endcompress %}
 <!-- end PAGE JS -->
@@ -40,7 +89,7 @@
     <div class="panel panel-default">
        <div class="panel-heading">{% trans 'Workspace' %}</div>
        <div class="panel-body">
-          <form method="get" action="/" class="form-horizontal">
+          <form class="form-horizontal">
              <!-- FIELDS -->
              <fieldset>
                 <div class="form-group">
@@ -54,7 +103,7 @@
              <!-- end FIELDS -->
              <!-- SUBMIT BUTTON -->
              <div class="pull-right">
-                 <button type="submit" class="btn btn-sm btn-default">{% trans 'Submit' %}</button>
+                 <button id="id_submit_btn" type="button" class="btn btn-sm btn-default" onclick="ajax_create_workspace();">{% trans 'Submit' %}</button>
              </div>
              <!-- end SUBMIT BUTTON -->
          </form>

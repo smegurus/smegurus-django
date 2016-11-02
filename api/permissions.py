@@ -188,3 +188,24 @@ class IsMeOrIsAnEmployee(permissions.BasePermission):
             # Step 3: Allow accesss to the owners of the object.
             # Instance must have an attribute named `owner`.
             return obj.me == request.tenant_me
+
+
+#
+# class IsWorkspaceObjectPermission(permissions.BasePermission):
+#     """
+#     Object-level permission to only allow Sender read/edit it while the
+#     Recipient can only read the message.
+#
+#     (1) Assume User is authenticated.
+#     (2) Assume this model object has 'sender' and 'receipient'.
+#     (3) Assume request has a 'me' object which was authenticated.
+#     """
+#     message = 'Only owners of the object are allowed to read/write.'
+#     def has_object_permission(self, request, view, obj):
+#         if request.user.is_anonymous():
+#             return False
+#         else:
+#             if "PUT" in request.method:
+#                 return obj.sender == request.tenant_me
+#
+#             return obj.sender == request.tenant_me or obj.recipient == request.tenant_me

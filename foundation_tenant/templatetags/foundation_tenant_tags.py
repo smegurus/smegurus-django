@@ -60,3 +60,16 @@ def count_pending_tasks(me):
 @register.filter
 def pretty_formatted_date(date):
     return get_pretty_formatted_date(date)
+
+
+from foundation_tenant.models.bizmula.workspace import Workspace
+from foundation_tenant.models.bizmula.document import Document
+
+
+@register.inclusion_tag('templatetags/render_sidebar_workspace_node.html')
+def render_workspace_sidebar_node(me):
+    """Function will generate menu node for workspaces."""
+    workspaces = Workspace.objects.filter(owners__id=me.owner.id)
+    return {
+        'workspaces': workspaces
+    }

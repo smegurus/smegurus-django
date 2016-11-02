@@ -28,11 +28,17 @@ class Workspace(models.Model):
         blank=True,
         null=True,
     )
+    stage_num = models.PositiveSmallIntegerField(
+        _("Stage Number"),
+        help_text=_('Track what stage this Module belongs to.'),
+        default=1,
+    )
     owners = models.ManyToManyField(
         User,
         help_text=_('The owners of this workspace.'),
         blank=True,
-        related_name="workspace_owners_%(app_label)s_%(class)s_related"
+        related_name="workspace_owners_%(app_label)s_%(class)s_related",
+        db_index=True,
     )
 
     def __str__(self):

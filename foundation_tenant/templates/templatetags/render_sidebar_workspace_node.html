@@ -1,0 +1,31 @@
+{% load i18n %}
+<li class=" ">
+    <a href="#workspace" title="{% trans 'Workspace' %}" data-toggle="collapse">
+        <!-- <div class="pull-right label label-success">{{ workspaces.count }}</div> -->
+        <em class="icon-briefcase"></em>
+        <span>{% trans 'Workspace' %}</span>
+    </a>
+    <ul id="workspace" class="nav sidebar-subnav collapse">
+        <!-- TITLE -->
+        <li class="sidebar-subnav-header">{% trans 'Workspace' %}</li>
+        <!-- end TITLE -->
+
+        <!-- ADD WORKSPACE -->
+        <li class=" ">
+            <a href="{% url 'tenant_workspace_create' %}" title="{% trans 'Modules' %}">
+            <span>{% trans 'Add Workspace' %}</span>
+            </a>
+        </li>
+        <!-- end ADD WORKSPACE -->
+
+        <!-- LIST WORKSPACE(S) -->
+        {% for workspace in workspaces.all %}
+        <li class=" ">
+            <a href="{% url 'tenant_workspace_master' workspace.id %}" title="{{ workspace.name }}">
+            <span>{{ workspace.name }}</span>
+            </a>
+        </li>
+        {% endfor %}
+        <!-- end LIST WORKSPACE(S) -->
+    </ul>
+</li>
