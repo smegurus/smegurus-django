@@ -13,7 +13,7 @@ class ModuleManager(models.Manager):
 
 class Module(models.Model):
     class Meta:
-        app_label = 'tenant_bizmula'
+        app_label = 'foundation_tenant'
         db_table = 'biz_modules'
         verbose_name = 'Module'
         verbose_name_plural = 'Modules'

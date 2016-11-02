@@ -16,7 +16,7 @@ from foundation_tenant.utils import my_last_modified_func
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-@condition(last_modified_func=my_last_modified_func)
+# @condition(last_modified_func=my_last_modified_func)
 def dashboard_page(request):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',

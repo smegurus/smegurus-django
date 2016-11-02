@@ -2,7 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from tenant_bizmula.models.module import Module
+from foundation_tenant.models.bizmula.module import Module
 
 
 class ExerciseManager(models.Manager):
@@ -14,7 +14,7 @@ class ExerciseManager(models.Manager):
 
 class Exercise(models.Model):
     class Meta:
-        app_label = 'tenant_bizmula'
+        app_label = 'foundation_tenant'
         db_table = 'biz_exercises'
         verbose_name = 'Exercise'
         verbose_name_plural = 'Exercises'

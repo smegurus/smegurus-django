@@ -6,7 +6,12 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // Nothing.
+        // Detect "Enter" button clicked and then auto-click on our submit button.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_submit_btn").click();
+            }
+        });
     }); // end Document Start
 
     function ajax_workspace(success_callback, failure_callback) {
@@ -44,8 +49,7 @@
             function(json_result) {
                 var workspace_id = parseInt(json_result['id']);
                 var url = "{% url 'tenant_workspace_master' 'placeholder' %}";
-                var url = url.replace("placeholder", workspace_id);
-                window.location  = url;
+                window.location = url.replace("placeholder", workspace_id);
             },
             function(error_json_result) {
                 var string = JSON.stringify( error_json_result );

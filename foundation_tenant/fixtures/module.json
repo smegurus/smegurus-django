@@ -1,6 +1,6 @@
 [
 {
-    "model": "tenant_bizmula.module",
+    "model": "foundation_tenant.module",
     "pk": 1,
     "fields": {
         "stage_num": 1,

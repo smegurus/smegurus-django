@@ -47,3 +47,6 @@ from foundation_tenant.models.base.inforesource import InfoResource
 #------------
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
+from foundation_tenant.models.bizmula.module import Module
+from foundation_tenant.models.bizmula.slide import Slide
+from foundation_tenant.models.bizmula.exercise import Exercise

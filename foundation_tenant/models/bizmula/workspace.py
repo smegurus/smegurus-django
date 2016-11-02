@@ -30,7 +30,7 @@ class Workspace(models.Model):
     )
     stage_num = models.PositiveSmallIntegerField(
         _("Stage Number"),
-        help_text=_('Track what stage this Module belongs to.'),
+        help_text=_('Track what stage this Workspace belongs to.'),
         default=1,
     )
     owners = models.ManyToManyField(

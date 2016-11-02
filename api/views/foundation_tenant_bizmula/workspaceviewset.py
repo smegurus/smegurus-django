@@ -1,4 +1,5 @@
 import django_filters
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework import filters
@@ -7,6 +8,7 @@ from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant_bizmula import WorkspaceSerializer
 from foundation_tenant.models.bizmula.workspace import Workspace
+from foundation_tenant.models.bizmula.document import Document
 
 
 class WorkspaceFilter(django_filters.FilterSet):
@@ -26,6 +28,13 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Add owner to the object when being created for the first time"""
         # Include the owner attribute directly, rather than from request data.
-        instance = serializer.save()
-        instance.owners.add(self.request.user)
-        instance.save()
+        workspace = serializer.save()
+        workspace.owners.add(self.request.user)
+        workspace.save()
+
+        # Create the documents.
+        Document.objects.create(
+            workspace=workspace,
+            name=_("Business Plan"),
+            is_ready=False
+        )
