@@ -15,10 +15,22 @@ from foundation_tenant.models.bizmula.exercise import Exercise
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
-def master_page(request, workspace_id, module_id):
+def start_master_page(request, workspace_id, module_id):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     module = get_object_or_404(Module, pk=int_or_none(module_id))
-    return render(request, 'tenant_workspace/module/master/view.html',{
+    return render(request, 'tenant_workspace/module/master/start/view.html',{
+        'page': 'workspace',
+        'workspace': workspace,
+        'module': module
+    })
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+def finish_master_page(request, workspace_id, module_id):
+    workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
+    module = get_object_or_404(Module, pk=int_or_none(module_id))
+    return render(request, 'tenant_workspace/module/master/finish/view.html',{
         'page': 'workspace',
         'workspace': workspace,
         'module': module

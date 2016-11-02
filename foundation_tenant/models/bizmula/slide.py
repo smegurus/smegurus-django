@@ -52,8 +52,15 @@ class Slide(models.Model):
         blank=True,
         null=True,
     )
+    previous_exercise_id = models.PositiveSmallIntegerField(
+        _("Previous Exercise ID"),
+        help_text=_('The previous exercise ID to load up.'),
+        default=0,
+        blank=True,
+        null=True,
+    )
     next_exercise_id = models.PositiveSmallIntegerField(
-        _("Exercise ID"),
+        _("Next Exercise ID"),
         help_text=_('The exercise ID to load up next.'),
         default=0,
         blank=True,
