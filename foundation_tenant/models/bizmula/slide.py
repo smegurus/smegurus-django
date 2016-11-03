@@ -91,10 +91,9 @@ class Slide(models.Model):
         null=True,
         default='',
     )
-    video = models.FileField(
-        _("Video"),
-        help_text=_('An file of the upload.'),
-        upload_to='upload',
+    video_url = models.URLField(
+        _("Video URL"),
+        help_text=_('The URL of our video for this slide.'),
         null=True,
         blank=True
     )

@@ -25,6 +25,15 @@
                <div id="panelDemo7" class="panel panel-default">
                   <div class="panel-heading">{{ slide.title }}</div>
                   <div class="panel-body">
+                     <!-- VIDEO PLAYER -->
+                     {% if slide.video_url %}
+                         <video src="{{ slide.video_url }}" controls>
+                             {% trans 'Your browser does not support the <code>video</code> element.' %}
+                         </video>
+                         <br /> <br />
+                     {% endif %}
+                     <!-- end VIDEO PLAYER -->
+
                      <!-- BODY TEXT -->
                      {{ slide.description|escape|safe }}
                      <!-- end BODY TEXT -->

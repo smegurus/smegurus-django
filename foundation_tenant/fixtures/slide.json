@@ -11,7 +11,7 @@
         "page_num": 1,
         "title": "This is slide #1 title.",
         "description": "This is slide #1 description.",
-        "video": ""
+        "video_url": ""
     }
 },{
     "model": "foundation_tenant.slide",
@@ -25,7 +25,7 @@
         "page_num": 2,
         "title": "This is slide #2 title.",
         "description": "This is slide #2 description.",
-        "video": ""
+        "video_url": "https://s3.amazonaws.com/smegurus-dev/static/mov/module_01_01.mp4"
     }
 }
 ]
