@@ -34,7 +34,9 @@ class Command(BaseCommand):
             'identifyoption.json',
             'inforesourcecategory.json',
             'module.json',
-            'slide.json'
+            'slide.json',
+            'documenttype.json',
+            'question.json'
         ]
 
         # Iterate through all the filenames and load them into database.

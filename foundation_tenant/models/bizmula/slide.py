@@ -16,8 +16,8 @@ class Slide(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_slides'
-        verbose_name = 'Slide'
-        verbose_name_plural = 'Slides'
+        verbose_name = _('Slide')
+        verbose_name_plural = _('Slides')
         ordering = ('page_num',)
 
     # ------------
@@ -79,7 +79,7 @@ class Slide(models.Model):
 
     title = models.CharField(
         _("Introduction Title"),
-        max_length=255,
+        max_length=127,
         help_text=_('The name of the City.'),
         blank=True,
         null=True,

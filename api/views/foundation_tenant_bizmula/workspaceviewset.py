@@ -9,6 +9,7 @@ from api.pagination import LargeResultsSetPagination
 from api.serializers.foundation_tenant_bizmula import WorkspaceSerializer
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
+from foundation_tenant.models.bizmula.documenttype import DocumentType
 
 
 class WorkspaceFilter(django_filters.FilterSet):
@@ -32,9 +33,12 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
         workspace.owners.add(self.request.user)
         workspace.save()
 
-        # Create the documents.
-        Document.objects.create(
-            workspace=workspace,
-            name=_("Business Plan"),
-            is_ready=False
-        )
+        # Create the documents for our system.
+        document_types = DocumentType.objects.all()
+        for document_type in document_types.all():
+            Document.objects.create(
+                workspace=workspace,
+                document_type=document_type,
+                name=str(document_type),
+                is_ready=False
+            )

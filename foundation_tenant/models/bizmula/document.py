@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.bizmula.workspace import Workspace
+from foundation_tenant.models.bizmula.documenttype import DocumentType
 
 
 class DocumentManager(models.Manager):
@@ -20,8 +21,8 @@ class Document(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_documents'
-        verbose_name = 'Document'
-        verbose_name_plural = 'Documents'
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')
 
     objects = DocumentManager()
     workspace = models.ForeignKey(
@@ -30,6 +31,14 @@ class Document(AbstractThing):
         blank=True,
         null=True,
         related_name="document_workspace_%(app_label)s_%(class)s_related",
+        on_delete=models.CASCADE
+    )
+    document_type = models.ForeignKey(
+        DocumentType,
+        help_text=_('The document type this document is.'),
+        blank=True,
+        null=True,
+        related_name="document_document_type%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
     is_ready = models.BooleanField(

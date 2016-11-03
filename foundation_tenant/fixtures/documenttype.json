@@ -1,0 +1,9 @@
+[
+{
+    "model": "foundation_tenant.documenttype",
+    "pk": 1,
+    "fields": {
+        "text": "Entrepreneur Self Assessment"
+    }
+}
+]

@@ -6,11 +6,25 @@
         "module": 1,
         "previous_slide_id": 0,
         "next_slide_id": 2,
-        "previous_exercise_id": 0
+        "previous_exercise_id": 0,
         "next_exercise_id": 0,
         "page_num": 1,
         "title": "This is slide #1 title.",
         "description": "This is slide #1 description.",
+        "video": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 2,
+    "fields": {
+        "module": 1,
+        "previous_slide_id": 1,
+        "next_slide_id": 0,
+        "previous_exercise_id": 0,
+        "next_exercise_id": 0,
+        "page_num": 2,
+        "title": "This is slide #2 title.",
+        "description": "This is slide #2 description.",
         "video": ""
     }
 }

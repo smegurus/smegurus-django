@@ -17,8 +17,8 @@ class Workspace(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_workspaces'
-        verbose_name = 'Workspace'
-        verbose_name_plural = 'Workspaces'
+        verbose_name = _('Workspace')
+        verbose_name_plural = _('Workspaces')
 
     objects = WorkspaceManager()
     name = models.CharField(

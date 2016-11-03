@@ -1,0 +1,20 @@
+[
+{
+    "model": "foundation_tenant.question",
+    "pk": 1,
+    "fields": {
+        "document_type": 1,
+        "number": 1,
+        "title": "When I have something to work on, nobody ever needs to tell me what to do. I can figure it out for myself",
+        "help": "",
+        "options": {
+            "1": "Not Me",
+            "2": "Sometimes me.",
+            "3": "Me most of the time.",
+            "4": "Me all the time."
+        },
+        "content": {},
+        "template_id": 1
+    }
+}
+]

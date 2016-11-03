@@ -45,8 +45,12 @@ from foundation_tenant.models.base.inforesource import InfoResource
 #------------
 #  BIZMULA
 #------------
+from foundation_tenant.models.bizmula.documenttype import DocumentType
+from foundation_tenant.models.bizmula.question import Question
+from foundation_tenant.models.bizmula.questionoption import QuestionOption
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.slide import Slide
 from foundation_tenant.models.bizmula.exercise import Exercise
+from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer

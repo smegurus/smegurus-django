@@ -15,8 +15,8 @@ class Module(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_modules'
-        verbose_name = 'Module'
-        verbose_name_plural = 'Modules'
+        verbose_name = _('Module')
+        verbose_name_plural = _('Modules')
 
     # ------------
     #   GENERIC
@@ -49,13 +49,13 @@ class Module(models.Model):
     title = models.CharField(
         _("Title"),
         max_length=127,
-        help_text=_('The name of the City.'),
+        help_text=_('The title of this Module.'),
         blank=True,
         null=True,
     )
     description = models.TextField(
         _("Description"),
-        help_text=_('A short description of the item.'),
+        help_text=_('A description of this Module.'),
         blank=True,
         null=True,
         default='',
@@ -63,14 +63,14 @@ class Module(models.Model):
     icon = models.CharField(
         _("Icon"),
         max_length=31,
-        help_text=_('The name of the City.'),
+        help_text=_('The icon to display for this Module.'),
         blank=True,
         null=True,
     )
     colour = models.CharField(
         _("Colour"),
         max_length=31,
-        help_text=_('The name of the City.'),
+        help_text=_('The colour to display for this Module.'),
         blank=True,
         null=True,
     )

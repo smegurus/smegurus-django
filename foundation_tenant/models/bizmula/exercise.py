@@ -16,8 +16,8 @@ class Exercise(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'biz_exercises'
-        verbose_name = 'Exercise'
-        verbose_name_plural = 'Exercises'
+        verbose_name = _('Exercise')
+        verbose_name_plural = _('Exercises')
 
     # ------------
     #   GENERIC
