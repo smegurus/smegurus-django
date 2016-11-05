@@ -38,4 +38,3 @@ class CachedS3BotoStorage(S3BotoStorage):
         if self.exists(name):
             self.delete(name)
         return name
-

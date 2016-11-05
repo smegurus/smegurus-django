@@ -27,5 +27,19 @@
         "description": "This is slide #2 description.",
         "video_url": "https://s3.amazonaws.com/smegurus-dev/static/mov/module_01_01.mp4"
     }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 3,
+    "fields": {
+        "module": 1,
+        "previous_slide_id": 0,
+        "next_slide_id": 0,
+        "previous_exercise_id": 1,
+        "next_exercise_id": 0,
+        "page_num": 3,
+        "title": "This is final slide #3 title.",
+        "description": "You have finished!.",
+        "video_url": ""
+    }
 }
 ]

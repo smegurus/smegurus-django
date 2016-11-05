@@ -104,3 +104,15 @@ class Exercise(models.Model):
             if question_id < start_question_id:
                 return question_id
         return start_question_id
+
+
+    def last_question_id(self):
+        """
+        Function will iterate through the question IDs and find the last
+        question ID.
+        """
+        last_question_id = 0
+        for question_id in self.question_ids:
+            if question_id >= last_question_id:
+                last_question_id = question_id
+        return last_question_id

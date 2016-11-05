@@ -4,8 +4,9 @@ from tenant_workspace.views import workspace_view, module_view, exercise_view
 
 urlpatterns = (
     # EXERCISE
+    url(r'^workspace/(.*)/exercise/(.*)/question/last/$', exercise_view.last_detail_page_redirect, name='tenant_workspace_exercise_last_detail_redirect'),
     url(r'^workspace/(.*)/exercise/(.*)/question/(.*)/$', exercise_view.detail_page, name='tenant_workspace_exercise_detail'),
-    url(r'^workspace/(.*)/exercise/(.*)/$', exercise_view.master_page, name='tenant_workspace_exercise_master'),
+    url(r'^workspace/(.*)/exercise/(.*)/$', exercise_view.master_page_redirect, name='tenant_workspace_exercise_master_redirect'),
 
     # MODULE
     url(r'^workspace/(.*)/module/(.*)/slide/(.*)/$', module_view.detail_page, name='tenant_workspace_module_detail'),

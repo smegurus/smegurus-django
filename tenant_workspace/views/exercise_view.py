@@ -17,7 +17,7 @@ from foundation_tenant.models.bizmula.question import Question
 
 @login_required(login_url='/en/login')
 @tenant_configuration_required
-def master_page(request, workspace_id, exercise_id):
+def master_page_redirect(request, workspace_id, exercise_id):
     # Find the start question to begin our exercise on.
     exercise = get_object_or_404(Exercise, pk=int_or_none(exercise_id))
     start_question_id = exercise.next_question_id(0)
@@ -51,3 +51,19 @@ def detail_page(request, workspace_id, exercise_id, question_id):
         'next_question_id': next_question_id,
         'previous_question_id': previous_question_id
     })
+
+
+
+@login_required(login_url='/en/login')
+@tenant_configuration_required
+def last_detail_page_redirect(request, workspace_id, exercise_id):
+    # Find the last question in our Exercise.
+    exercise = get_object_or_404(Exercise, pk=int_or_none(exercise_id))
+    question_id = exercise.last_question_id()
+
+    # Get the last question.
+    question = get_object_or_404(Question, pk=question_id)
+
+    # Redirect to the last question.
+    url = reverse('tenant_workspace_exercise_detail', args=[workspace_id, exercise_id, question_id])
+    return redirect(url)

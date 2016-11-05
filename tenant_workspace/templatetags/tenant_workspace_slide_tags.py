@@ -11,11 +11,14 @@ register = template.Library()
 
 @register.simple_tag
 def reverse_previous_slide(workspace, module, slide):
-    # if slide.previous_exercise_id > 0:  #TODO: IMPLEMENT
-    #     return reverse('tenant_workspace_module_master', args=[workspace.id, module.id,])
+    # CASE 1 of 3: Generate EXERCISE url.
+    if slide.previous_exercise_id > 0:
+        return reverse('tenant_workspace_exercise_last_detail_redirect', args=[workspace.id, slide.previous_exercise_id])
 
+    # CASE 2 of 3: Generate previous SLIDE url.
     if slide.previous_slide_id > 0:
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, slide.previous_slide_id,])
+    # CASE 3 of 3: Generate "start" MODULE url.
     else:
         return reverse('tenant_workspace_module_start_master', args=[workspace.id, module.id,])
 
@@ -24,11 +27,11 @@ def reverse_previous_slide(workspace, module, slide):
 def reverse_next_slide(workspace, module, slide):
     # CASE 1 of 3: Generate EXERCISE url.
     if slide.next_exercise_id > 0:
-        return reverse('tenant_workspace_exercise_master', args=[workspace.id, slide.next_exercise_id])
+        return reverse('tenant_workspace_exercise_master_redirect', args=[workspace.id, slide.next_exercise_id])
 
     # CASE 2 of 3: Generate next SLIDE url.
     if slide.next_slide_id > 0:
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, slide.next_slide_id,])
-    # CASE 3 of 3: Generate FINISH MODULE url.
+    # CASE 3 of 3: Generate "finish" MODULE url.
     else:
         return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id,])
