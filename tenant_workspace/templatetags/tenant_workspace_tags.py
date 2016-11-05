@@ -22,10 +22,13 @@ def reverse_previous_slide(workspace, module, slide):
 
 @register.simple_tag
 def reverse_next_slide(workspace, module, slide):
-    # if slide.next_exercise_id > 0:  #TODO: IMPLEMENT
-    #     return reverse('tenant_workspace_module_master', args=[workspace.id, module.id,])
+    # CASE 1 of 3: Generate EXERCISE url.
+    if slide.next_exercise_id > 0:
+        return reverse('tenant_workspace_exercise_master', args=[workspace.id, slide.next_exercise_id])
 
+    # CASE 2 of 3: Generate next SLIDE url.
     if slide.next_slide_id > 0:
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, slide.next_slide_id,])
+    # CASE 3 of 3: Generate FINISH MODULE url.
     else:
         return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id,])

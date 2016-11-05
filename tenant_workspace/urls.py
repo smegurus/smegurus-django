@@ -1,10 +1,11 @@
 from django.conf.urls import include, url
-from tenant_workspace.views import workspace_view, module_view
+from tenant_workspace.views import workspace_view, module_view, exercise_view
 
 
 urlpatterns = (
     # EXERCISE
-    # url(r'^workspace/(.*)/module/(.*)/exercise/(.*)/$', exercise_view.master_page, name='tenant_workspace_exercise_master'),
+    url(r'^workspace/(.*)/exercise/(.*)/$', exercise_view.master_page, name='tenant_workspace_exercise_master'),
+    url(r'^workspace/(.*)/exercise/(.*)/$', exercise_view.master_page, name='tenant_workspace_exercise_master'),
 
     # MODULE
     url(r'^workspace/(.*)/module/(.*)/slide/(.*)/$', module_view.detail_page, name='tenant_workspace_module_detail'),

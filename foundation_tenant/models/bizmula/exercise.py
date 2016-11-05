@@ -1,8 +1,8 @@
-import os
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.bizmula.module import Module
+from foundation_tenant.models.bizmula.documenttype import DocumentType
 
 
 class ExerciseManager(models.Manager):
@@ -32,6 +32,14 @@ class Exercise(models.Model):
         related_name="exercise_module_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
+    document_type = models.ForeignKey(
+        DocumentType,
+        help_text=_('The document type that this Exercises questions belongs to.'),
+        blank=True,
+        null=True,
+        related_name="exercise_document_type_%(app_label)s_%(class)s_related",
+        on_delete=models.CASCADE
+    )
 
     # ------------
     #  NAVIGATION
@@ -58,8 +66,14 @@ class Exercise(models.Model):
 
     title = models.CharField(
         _("Introduction Title"),
-        max_length=255,
-        help_text=_('The name of the City.'),
+        max_length=127,
+        help_text=_('The name of this exercise.'),
+        blank=True,
+        null=True,
+    )
+    question_ids = ArrayField(
+        models.PositiveSmallIntegerField(),
+        help_text=_('The question IDs that belong to this exercise.'),
         blank=True,
         null=True,
     )
@@ -69,4 +83,4 @@ class Exercise(models.Model):
     # ------------
 
     def __str__(self):
-        return str(self.name)
+        return str(self.title)

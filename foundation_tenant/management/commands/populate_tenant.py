@@ -36,7 +36,8 @@ class Command(BaseCommand):
             'module.json',
             'slide.json',
             'documenttype.json',
-            'question.json'
+            'question.json',
+            'exercise.json'
         ]
 
         # Iterate through all the filenames and load them into database.

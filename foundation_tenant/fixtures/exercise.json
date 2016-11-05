@@ -1,0 +1,14 @@
+[
+{
+    "model": "foundation_tenant.exercise",
+    "pk": 1,
+    "fields": {
+        "module": 1,
+        "document_type": 1,
+        "previous_slide_id": 2,
+        "next_slide_id": 0,
+        "title": "This is slide #1 title.",
+        "question_ids": [1]
+    }
+}
+]

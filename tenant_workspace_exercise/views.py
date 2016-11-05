@@ -14,22 +14,24 @@ from foundation_tenant.models.bizmula.exercise import Exercise
 
 
 @login_required(login_url='/en/login')
-@tenant_configuration_required
-def master_page(request, workspace_id, exercise_id):
-    workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
-    exercise = get_object_or_404(Exercise, pk=int_or_none(exercise_id))
-    return render(request, 'tenant_workspace/exercise/master/view.html',{
+# @tenant_configuration_required
+def client_master_page(request, workspace_id, exercise_id):
+    print("OKAY!!!")
+    print(workspace_id)
+    # workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
+    # exercise = get_object_or_404(Exercise, pk=int_or_none(exercise_id))
+    return render(request, 'tenant_workspace_exercise/client/master/view.html',{
         'page': 'workspace',
-        'workspace': workspace,
-        'exercise': exercise,
+        'workspace': "workspace",
+        'exercise': "exercise",
     })
 
 
 @login_required(login_url='/en/login')
-@tenant_configuration_required
-def detail_page(request, workspace_id, exercise_id):
+# @tenant_configuration_required
+def client_detail_page(request, workspace_id, exercise_id):
 
-    return render(request, 'tenant_workspace/exercise/master/view.html',{
+    return render(request, 'tenant_workspace_exercise/client/master/view.html',{
         'page': 'workspace',
         'workspace': 0,
         'module': 0,
