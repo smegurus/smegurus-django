@@ -84,3 +84,23 @@ class Exercise(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def next_question_id(self, start_question_id):
+        """
+        Function will iterate through the question IDs and find the next
+        question ID from the inputted param.
+        """
+        for question_id in self.question_ids:
+            if question_id > start_question_id:
+                return question_id
+        return start_question_id
+
+    def previous_question_id(self, start_question_id):
+        """
+        Function will iterate through the question IDs and find the previous
+        question ID from the inputted param.
+        """
+        for question_id in self.question_ids:
+            if question_id < start_question_id:
+                return question_id
+        return start_question_id
