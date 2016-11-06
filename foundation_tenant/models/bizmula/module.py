@@ -1,4 +1,4 @@
-import os
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -38,6 +38,12 @@ class Module(models.Model):
         _("Start Slide ID"),
         help_text=_('The start slide ID to begin with.'),
         default=0,
+        blank=True,
+        null=True,
+    )
+    nodes = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
+        _("Nodes"),
+        help_text=_('The slides and Questions nodes to be processed by this module.'),
         blank=True,
         null=True,
     )
@@ -81,3 +87,6 @@ class Module(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def get_node_data(self, target_id):
+        return self.nodes[target_id]

@@ -1,0 +1,58 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress tenant_workspace_tags %}
+{% block content %}
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa fa-cube mr"></em>{% trans 'Question' %} #{{ node.order_num }}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'tenant_workspace_master' workspace.id %}">{{ workspace }}</a></li>
+            <li><a href="{% url 'tenant_workspace_module_start_master' workspace.id module.id %}">{{ module }}</a></li>
+            <li class="active">{% trans 'Question' %} #{{ node.order_num }}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+    <!-- CONTENT -->
+    <div class="container-fluid">
+        <div class="panel panel-default">
+
+           <div class="panel-body">
+              <form method="get" action="/" class="form-horizontal">
+                 <!-- QUESTION CONTENT -->
+                 {% if question.template_id == 1 %}
+                     {% render_question_001 workspace module node question %}
+                 {% endif %}
+                 <!-- end QUESTION CONTENT -->
+
+                 <!-- PREVIOUS BUTTON -->
+                 <div class="pull-left">
+                     <a href="{% reverse_previous_node workspace module node %}">
+                     <button type="button" class="mb-sm btn btn-default">
+                         {% trans 'Back' %}
+                     </button>
+                     </a>
+                 </div>
+                 <!-- end PREVIOUS BUTTON -->
+                 <!-- NEXT BUTTON -->
+                 <div class="pull-right">
+                     <a href="{% reverse_next_node workspace module node %}">
+                     <button type="button" class="mb-sm btn btn-primary">
+                     {% trans 'Next' %}
+                     </button>
+                     </a>
+                 </div>
+                 <!-- end NEXT BUTTON -->
+
+             </form>
+         </div>
+         <div class="panel-footer">
+         </div>
+     </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}

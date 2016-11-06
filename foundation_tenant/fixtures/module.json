@@ -1,14 +1,50 @@
 [
-{
-    "model": "foundation_tenant.module",
-    "pk": 1,
-    "fields": {
-        "stage_num": 1,
-        "start_slide_id": 1,
-        "title": "Stage 1",
-        "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>",
-        "icon": "fa-television",
-        "colour": ""
+    {
+        "model": "foundation_tenant.module",
+        "pk": 1,
+        "fields": {
+            "stage_num": 1,
+            "start_slide_id": 1,
+            "nodes": [
+                {
+                    "previous": -1,
+                    "next": 1,
+                    "id": 1,
+                    "type": "slide"
+                },
+                {
+                    "previous": 0,
+                    "next": 2,
+                    "id": 2,
+                    "type": "slide"
+                },
+                {
+                    "previous": 1,
+                    "next": 3,
+                    "id": 1,
+                    "type": "question",
+                    "document": 1,
+                    "order_num": 1
+                },
+                {
+                    "previous": 2,
+                    "next": 4,
+                    "id": 2,
+                    "type": "question",
+                    "document": 1,
+                    "order_num": 2
+                },
+                {
+                    "previous": 3,
+                    "next": -1,
+                    "id": 3,
+                    "type": "slide"
+                }
+            ],
+            "title": "Stage 1",
+            "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
+            "icon": "fa-television",
+            "colour": ""
+        }
     }
-}
 ]

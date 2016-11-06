@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress tenant_workspace_slide_tags %}
+{% load staticfiles i18n compress tenant_workspace_tags %}
 {% block content %}
 <!-- PAGE HTML -->
 <div class="content-wrapper">
@@ -42,7 +42,7 @@
 
                      <!-- PREVIOUS BUTTON -->
                      <div class="pull-left">
-                         <a href="{% reverse_previous_slide workspace module slide %}">
+                         <a href="{% reverse_previous_node workspace module node %}">
                              <button type="button" class="mb-sm btn btn-default">
                                  {% trans 'Back' %}
                              </button>
@@ -52,7 +52,7 @@
 
                      <!-- NEXT BUTTON -->
                      <div class="pull-right">
-                         <a href="{% reverse_next_slide workspace module slide %}">
+                         <a href="{% reverse_next_node workspace module node %}">
                              <button type="button" class="mb-sm btn btn-primary">
                                  {% trans 'Next' %}
                              </button>

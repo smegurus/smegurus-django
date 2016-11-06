@@ -51,7 +51,7 @@ class QuestionAnswer(models.Model):
     content = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
         _("content"),
         help_text=_('The content to populate the QuestionAnswer with.'),
-        blank={},
+        blank=True,
         null=True,
     )
 
