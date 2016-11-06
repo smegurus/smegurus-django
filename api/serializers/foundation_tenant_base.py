@@ -40,10 +40,6 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.visitor import TenantVisitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
-
-from foundation_tenant.models.bizmula.workspace import Workspace
-from foundation_tenant.models.bizmula.document import Document
-
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -323,9 +319,3 @@ class InfoResourceSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Cannot us a banned word: "+str(bad_word)+" in name.")
 
         return super(InfoResourceSerializer, self).validate(data)
-
-
-class WorkspaceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Workspace
-        fields = ('id', 'name', 'owners')

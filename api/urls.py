@@ -62,7 +62,7 @@ from api.views.foundation_tenant_base.meviewset import TenantMeViewSet
 
 # TENANT - BIZMULA
 from api.views.foundation_tenant_bizmula.workspaceviewset import WorkspaceViewSet
-
+from api.views.foundation_tenant_bizmula.questionanswerviewset import QuestionAnswerViewSet
 
 # URL Generator.
 # PUBLIC
