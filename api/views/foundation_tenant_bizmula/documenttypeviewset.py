@@ -6,25 +6,24 @@ from rest_framework import filters
 from rest_framework import permissions
 from rest_framework import authentication
 from api.pagination import LargeResultsSetPagination
-from api.serializers.foundation_tenant_bizmula import QuestionAnswerSerializer
-from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
-from foundation_tenant.models.bizmula.document import Document
+from api.serializers.foundation_tenant_bizmula import DocumentTypeSerializer
 from foundation_tenant.models.bizmula.documenttype import DocumentType
+from foundation_tenant.models.bizmula.document import Document
 
 
-class QuestionAnswerFilter(django_filters.FilterSet):
+class DocumentTypeFilter(django_filters.FilterSet):
     class Meta:
-        model = QuestionAnswer
-        fields = ['workspace', 'document', 'question',]
+        model = DocumentType
+        fields = ['text',]
 
 
-class QuestionAnswerViewSet(viewsets.ModelViewSet):
-    queryset = QuestionAnswer.objects.all()
-    serializer_class = QuestionAnswerSerializer
+class DocumentTypeViewSet(viewsets.ModelViewSet):
+    queryset = DocumentType.objects.all()
+    serializer_class = DocumentTypeSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
-    filter_class = QuestionAnswerFilter
+    filter_class = DocumentTypeFilter
 
     # def perform_create(self, serializer):
     #     """Add owner to the object when being created for the first time"""

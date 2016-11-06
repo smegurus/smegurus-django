@@ -17,10 +17,28 @@ from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
 
+class DocumentTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DocumentType
+        fields = ('id', 'text',)
+
+
+class DocumentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Document
+        fields = ('id', 'workspace', 'document_type', 'is_ready')
+
+
 class WorkspaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workspace
         fields = ('id', 'name', 'owners')
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ('id', 'document_type', 'number', 'title', 'help', 'template_id', )
 
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):

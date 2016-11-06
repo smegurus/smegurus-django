@@ -62,7 +62,10 @@ from api.views.foundation_tenant_base.meviewset import TenantMeViewSet
 
 # TENANT - BIZMULA
 from api.views.foundation_tenant_bizmula.workspaceviewset import WorkspaceViewSet
+from api.views.foundation_tenant_bizmula.questionviewset import QuestionViewSet
 from api.views.foundation_tenant_bizmula.questionanswerviewset import QuestionAnswerViewSet
+from api.views.foundation_tenant_bizmula.documenttypeviewset import DocumentTypeViewSet
+from api.views.foundation_tenant_bizmula.documentviewset import DocumentViewSet
 
 # URL Generator.
 # PUBLIC
@@ -117,7 +120,10 @@ router.register(r'tenantme', TenantMeViewSet)
 
 # TENANT - BIZMULA
 router.register(r'tenantworkspace', WorkspaceViewSet)
-
+router.register(r'tenantdocumenttype', DocumentTypeViewSet)
+router.register(r'tenantdocument', DocumentViewSet)
+router.register(r'tenantquestion', QuestionViewSet)
+router.register(r'tenantquestionanswer', QuestionAnswerViewSet)
 
 # The API URLs are now determined automatically by the router.
 # Additionally, we include the login URLs for the browsable API.
