@@ -47,7 +47,7 @@ def detail_page(request, workspace_id, module_id, node_id):
             'slide': get_object_or_404(Slide, pk=int_or_none(node['id'])),
             "node": node,
         })
-        
+
     elif node['type'] == "question":
         question = get_object_or_404(Question, pk=int_or_none(node['id']))
         document_type = get_object_or_404(DocumentType, pk=int_or_none(node['document_type']))
@@ -55,7 +55,7 @@ def detail_page(request, workspace_id, module_id, node_id):
             workspace=workspace,
             document_type=document_type
         )
-        answer = QuestionAnswer.objects.get_or_create(
+        answer, created = QuestionAnswer.objects.get_or_create(
             workspace=workspace,
             document=document,
             question=question

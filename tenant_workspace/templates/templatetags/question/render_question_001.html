@@ -3,8 +3,42 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // Pass.
-    });
+
+        // Detect User clicking on one of the Radio buttons.
+        $("input[name=optionsRadios]").click(function(){
+
+            // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+            // from our Database and convert it to JSON object.
+            get_tenant_questionanswer(
+                {{ answer.id }},
+                function(question_answer) {
+
+                    // Set the JSON object with our picked value and stringify it.
+                    question_answer['content'] = JSON.stringify({
+                        'value': parseInt(this.value)
+                    });
+
+                    // Save our "QuestionAnswer" model object.
+                    set_tenant_questionanswer(
+                        question_answer,
+                        function(json_result) {
+                            console.log(json_result); // Do nothing besides report to conosle.
+                        },
+                        function(error_json_result) {
+                            var string = JSON.stringify( error_json_result );
+                            console.log(string);
+                            alert(string);
+                        }
+                    ); // end SET ANSWER
+                },
+                function(error_json_result) {
+                    var string = JSON.stringify( error_json_result );
+                    console.log(string);
+                    alert(string);
+                }
+            ); // end GET ANSWER
+        }); // end RADIO CLICK DETECTION HANDLER
+    }); // end DOCUMENT START
 </script>
 {% endcompress %}
 <!-- end JS -->

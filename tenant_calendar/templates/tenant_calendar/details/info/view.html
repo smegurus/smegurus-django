@@ -47,13 +47,17 @@
                     },
                     function(error_json_result) {
                         $('#id_reject_btn').prop("id_reject_btn", false);
-                        console.log(error_json_result);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
                     }
                 ); // end SET CALENDAR EVENT.
             },
-            function(error_result) {
+            function(error_json_result) {
                 $('#id_reject_btn').prop("id_reject_btn", false);
-                console.log(error_result);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
             }
         ); // end GET CALENDAR EVENT.
     }
@@ -91,13 +95,17 @@
                     },
                     function(error_json_result) {
                         $('#id_accept_btn').prop("id_accept_btn", false);
-                        console.log(error_json_result);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
                     }
                 ); // end SET CALENDAR EVENT.
             },
-            function(error_result) {
+            function(error_json_result) {
                 $('#id_accept_btn').prop("id_accept_btn", false);
-                console.log(error_result);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
             }
         ); // end GET CALENDAR EVENT.
     }

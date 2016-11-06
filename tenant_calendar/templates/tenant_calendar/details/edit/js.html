@@ -108,12 +108,16 @@
                         window.location = "{% url 'tenant_calendar_master' %}";
                     },
                     function(error_json_result) {
-                        console.log(error_json_result);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
                     }
                 ); // end SET CALENDAR EVENT.
             },
-            function(error_result) {
-                console.log(error_result);
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
             }
         ); // end GET CALENDAR EVENT.
     }
