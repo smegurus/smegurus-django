@@ -7,11 +7,13 @@ from rest_framework.authtoken.models import Token
 from foundation_tenant.utils import int_or_none
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.slide import Slide
 from foundation_tenant.models.bizmula.question import Question
+from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 
 
 @login_required(login_url='/en/login')
@@ -45,16 +47,30 @@ def detail_page(request, workspace_id, module_id, node_id):
             'slide': get_object_or_404(Slide, pk=int_or_none(node['id'])),
             "node": node,
         })
+        
     elif node['type'] == "question":
+        question = get_object_or_404(Question, pk=int_or_none(node['id']))
+        document_type = get_object_or_404(DocumentType, pk=int_or_none(node['document_type']))
+        document = Document.objects.get(
+            workspace=workspace,
+            document_type=document_type
+        )
+        answer = QuestionAnswer.objects.get_or_create(
+            workspace=workspace,
+            document=document,
+            question=question
+        )
         return render(request, 'tenant_workspace/module/detail/question_view.html',{
             'page': 'workspace',
             'workspace': workspace,
             'module': module,
-            'question': get_object_or_404(Question, pk=int_or_none(node['id'])),
+            'question': question,
+            "answer": answer,
             "node": node
         })
 
-    raise Http404("Unsupported node detected.")
+    # Generate a 404 error if the node reached does not have a supported format.
+    raise Http404(_("Unsupported node format detected."))
 
 
 @login_required(login_url='/en/login')

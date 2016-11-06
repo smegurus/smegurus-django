@@ -18,43 +18,43 @@
                     "previous": 1, "next": 3,
                     "id": 1,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 1
                 },{
                     "previous": 2, "next": 4,
                     "id": 2,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 2
                 },{
                     "previous": 3, "next": 5,
                     "id": 3,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 3
                 },{
                     "previous": 4, "next": 6,
                     "id": 4,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 4
                 },{
                     "previous": 5, "next": 7,
                     "id": 5,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 5
                 },{
                     "previous": 6, "next": 8,
                     "id": 6,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 6
                 },{
                     "previous": 7, "next": 9,
                     "id": 7,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 7
                 },{
                     "previous": 8, "next": 10,
@@ -66,13 +66,13 @@
                     "previous": 9, "next": 11,
                     "id": 9,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 9
                 },{
                     "previous": 10, "next": 12,
                     "id": 10,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 10
                 },{
                     "previous": 11, "next": -1,

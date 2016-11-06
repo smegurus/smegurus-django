@@ -3,6 +3,7 @@ from django import template
 from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from smegurus import constants
 
 
@@ -26,10 +27,11 @@ def reverse_next_node(workspace, module, node):
 
 
 @register.inclusion_tag('templatetags/question/render_question_001.html')
-def render_question_001(workspace, module, node, question):
+def render_question_001(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
-        'question': question
+        'question': question,
+        'answer': answer
     }
