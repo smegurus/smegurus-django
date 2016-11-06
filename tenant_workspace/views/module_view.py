@@ -24,8 +24,7 @@ def start_master_page(request, workspace_id, module_id):
     return render(request, 'tenant_workspace/module/master/start/view.html',{
         'page': 'workspace',
         'workspace': workspace,
-        'module': module,
-        'next_node_id': 0
+        'module': module
     })
 
 
@@ -39,22 +38,19 @@ def detail_page(request, workspace_id, module_id, node_id):
 
     # Either load up a "Slide" or load up the "Exercise".
     if node['type'] == "slide":
-        slide = get_object_or_404(Slide, pk=int_or_none(node['id']))
         return render(request, 'tenant_workspace/module/detail/slice_view.html',{
             'page': 'workspace',
             'workspace': workspace,
             'module': module,
-            'slide': slide,
+            'slide': get_object_or_404(Slide, pk=int_or_none(node['id'])),
             "node": node,
         })
-
-    if node['type'] == "question":
-        question = get_object_or_404(Question, pk=int_or_none(node['id']))
+    elif node['type'] == "question":
         return render(request, 'tenant_workspace/module/detail/question_view.html',{
             'page': 'workspace',
             'workspace': workspace,
             'module': module,
-            'question': question,
+            'question': get_object_or_404(Question, pk=int_or_none(node['id'])),
             "node": node
         })
 

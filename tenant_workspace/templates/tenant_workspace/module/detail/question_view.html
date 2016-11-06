@@ -31,22 +31,18 @@
                  <!-- PREVIOUS BUTTON -->
                  <div class="pull-left">
                      <a href="{% reverse_previous_node workspace module node %}">
-                     <button type="button" class="mb-sm btn btn-default">
-                         {% trans 'Back' %}
-                     </button>
+                     <button type="button" class="mb-sm btn btn-default">{% trans 'Back' %}</button>
                      </a>
                  </div>
                  <!-- end PREVIOUS BUTTON -->
+
                  <!-- NEXT BUTTON -->
                  <div class="pull-right">
                      <a href="{% reverse_next_node workspace module node %}">
-                     <button type="button" class="mb-sm btn btn-primary">
-                     {% trans 'Next' %}
-                     </button>
+                     <button type="button" class="mb-sm btn btn-primary">{% trans 'Next' %}</button>
                      </a>
                  </div>
                  <!-- end NEXT BUTTON -->
-
              </form>
          </div>
          <div class="panel-footer">
