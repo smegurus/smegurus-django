@@ -1,10 +1,20 @@
 {% load staticfiles i18n compress %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // Pass.
+    });
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
 <fieldset>
     <legend>
         {{ node.order_num }}. {{ question.title }}
     </legend>
     <div class="form-group">
-        <label class="col-sm-2 control-label">{% trans 'Does this sound like you?' %}</label>
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
             {% for option in question.options %}
             <div class="radio">
@@ -16,3 +26,4 @@
         </div>
     </div>
 </fieldset>
+<!-- end HTML -->
