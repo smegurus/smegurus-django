@@ -22,7 +22,7 @@ def reverse_previous_node(workspace, module, node):
 @register.simple_tag
 def reverse_next_node(workspace, module, node):
     if node['next'] == -1:
-        return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id,])
+        return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id, 0])
     else:
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['next'],])
 
