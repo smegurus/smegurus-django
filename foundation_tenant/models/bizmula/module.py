@@ -88,5 +88,18 @@ class Module(models.Model):
     def __str__(self):
         return str(self.title)
 
-    def get_node_data(self, target_id):
+    def get_node(self, target_id):
         return self.nodes[target_id]
+
+    def get_first_node(self):
+        try:
+            return self.nodes[0]
+        except Exception as e:
+            return None
+
+    def get_last_node(self):
+        last_index = len(self.nodes)
+        if last_index >= 0:
+            return self.nodes[last_index-1]
+        else:
+            return None

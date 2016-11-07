@@ -13,18 +13,18 @@ register = template.Library()
 
 @register.simple_tag
 def reverse_previous_node(workspace, module, node):
-    if node['previous'] == -1:
+    if node['previous_position'] == -1:
         return reverse('tenant_workspace_module_start_master', args=[workspace.id, module.id,])
     else:
-        return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['previous'],])
+        return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['previous_position'],])
 
 
 @register.simple_tag
 def reverse_next_node(workspace, module, node):
-    if node['next'] == -1:
+    if node['next_position'] == -1:
         return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id, 0])
     else:
-        return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['next'],])
+        return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['next_position'],])
 
 
 @register.inclusion_tag('templatetags/question/render_question_001.html')
