@@ -52,7 +52,7 @@ class QuestionAnswer(models.Model):
         _("content"),
         help_text=_('The content to populate the QuestionAnswer with.'),
         blank=True,
-        null=True,
+        default="{}"
     )
 
     def __str__(self):

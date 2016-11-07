@@ -9,19 +9,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -39,19 +39,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -69,19 +69,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -99,19 +99,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -129,19 +129,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -159,19 +159,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -189,19 +189,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -219,19 +219,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -249,19 +249,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],
@@ -279,19 +279,19 @@
             "help": "",
             "options": [
                 {
-                    "value": "1",
+                    "value": 1,
                     "text": "Not Me"
                 },
                 {
-                    "value": "2",
+                    "value": 2,
                     "text": "Sometimes me."
                 },
                 {
-                    "value": "3",
+                    "value": 3,
                     "text": "Me most of the time."
                 },
                 {
-                    "value": "4",
+                    "value": 4,
                     "text": "Me all the time."
                 }
             ],

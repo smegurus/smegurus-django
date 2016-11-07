@@ -45,7 +45,7 @@ class Module(models.Model):
         _("Nodes"),
         help_text=_('The slides and Questions nodes to be processed by this module.'),
         blank=True,
-        null=True,
+        default="[]"
     )
 
     # ------------

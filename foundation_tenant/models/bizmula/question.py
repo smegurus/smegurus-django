@@ -56,13 +56,13 @@ class Question(models.Model):
         _("Options"),
         help_text=_('The options to populate the question with.'),
         blank=True,
-        null=True,
+        default="[]"
     )
     content = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
         _("Content"),
         help_text=_('The content to populate the question with.'),
         blank=True,
-        null=True,
+        default="{}"
     )
     template_id = models.PositiveSmallIntegerField(
         _("Template ID"),

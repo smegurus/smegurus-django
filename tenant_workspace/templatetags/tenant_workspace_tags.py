@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from django import template
 from django.db.models import Q
 from django.core.urlresolvers import reverse
@@ -33,5 +34,6 @@ def render_question_001(workspace, module, node, question, answer):
         'module': module,
         'node': node,
         'question': question,
-        'answer': answer
+        'answer': answer,
+        'picked': json.loads(answer.content)
     }

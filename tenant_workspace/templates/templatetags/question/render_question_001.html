@@ -1,4 +1,4 @@
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress foundation_public_tags %}
 <!-- JS -->
 {% compress js inline %}
 <script>
@@ -6,6 +6,8 @@
 
         // Detect User clicking on one of the Radio buttons.
         $("input[name=optionsRadios]").click(function(){
+            // Get the option selected.
+            var value = this.value;
 
             // Fetch our pre-created (or previously-saved) "QuestionAnswer"
             // from our Database and convert it to JSON object.
@@ -15,7 +17,7 @@
 
                     // Set the JSON object with our picked value and stringify it.
                     question_answer['content'] = JSON.stringify({
-                        'value': parseInt(this.value)
+                        'value': parseInt(value)
                     });
 
                     // Save our "QuestionAnswer" model object.
@@ -53,7 +55,10 @@
             {% for option in question.options %}
             <div class="radio">
                 <label>
-                    <input id="optionsRadios{{ option.value }}" type="radio" name="optionsRadios" value="{{ option.value }}" />{{ option.text }}
+                    <input id="optionsRadios{{ option.value }}" {% if picked.value == option.value %}checked="checked"{% endif %}
+                         type="radio"
+                         name="optionsRadios"
+                        value="{{ option.value }}" />{{ option.text|escape|safe }}
                 </label>
             </div>
             {% endfor %}
