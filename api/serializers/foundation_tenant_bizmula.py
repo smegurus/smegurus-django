@@ -26,7 +26,7 @@ class DocumentTypeSerializer(serializers.ModelSerializer):
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ('id', 'workspace', 'document_type', 'is_ready')
+        fields = ('id', 'workspace', 'document_type', 'status')
 
 
 class WorkspaceSerializer(serializers.ModelSerializer):

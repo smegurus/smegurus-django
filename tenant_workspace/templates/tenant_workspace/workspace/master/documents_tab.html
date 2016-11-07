@@ -13,26 +13,22 @@
             </thead>
             <tbody>
                 {% for document in documents.all %}
-                    {% if document.is_ready %}
+                    {% if document.status == constants.DOCUMENT_READY_STATUS %}
                         <tr class="success">
-                    {% else %}
-                        {% if document.has_pending_review %}
-                            <tr class="warning">
-                        {% else %}
-                            <tr class="danger">
-                        {% endif %}
+                    {% elif document.status == constants.DOCUMENT_PENDING_REVIEW_STATUS %}
+                        <tr class="warning">
+                    {% elif document.status == constants.DOCUMENT_CREATED_STATUS %}
+                        <tr class="danger">
                     {% endif %}
                     <td>{{ document.id }}</td>
                     <td>{{ document|escape|safe }}</td>
                     <td>
-                        {% if document.is_ready %}
+                        {% if document.status == constants.DOCUMENT_READY_STATUS %}
                             {% trans 'Ready' %}
-                        {% else %}
-                            {% if document.has_pending_review %}
-                                {% trans 'Pending advisor review' %}
-                            {% else %}
-                                {% trans 'Needs to be done' %}
-                            {% endif %}
+                        {% elif document.status == constants.DOCUMENT_PENDING_REVIEW_STATUS %}
+                            {% trans 'Pending Review' %}
+                        {% elif document.status == constants.DOCUMENT_CREATED_STATUS %}
+                            {% trans 'Needs to be done' %}
                         {% endif %}
                     </td>
                     <td>&nbsp;</td>
