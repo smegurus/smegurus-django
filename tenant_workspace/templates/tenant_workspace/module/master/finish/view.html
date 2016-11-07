@@ -1,7 +1,43 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-
+<!-- PAGE JS -->
+{% compress js inline %}
+<script>
+    function ajax_submit() {
+        $("#id_submit_btn").attr('disabled','disabled'); // Disable button.
+        // start RUN_DOCGEN
+        tenant_document_run_docgen(
+            {{ document.id }},
+            function(json_result) {
+                // start HAS_PENDING_REVIEW
+                tenant_document_has_pending_review(
+                    {{ document.id }},
+                    true,
+                    function(json_result) {
+                        $("#id_submit_btn").removeAttr('disabled'); // Enable button.
+                        alert("{% trans 'You have submitted your results! Please wait while an advisor will look at your work.' %}")
+                        window.location = "{% url 'tenant_workspace_master' workspace.id %}";
+                    },
+                    function(error_json_result) {
+                        $("#id_submit_btn").removeAttr('disabled'); // Enable button.
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end HAS_PENDING_REVIEW
+            },
+            function(error_json_result) {
+                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end RUN_DOCGEN
+    }
+</script>
+{% endcompress %}
+<!-- end PAGE JS -->
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
@@ -27,7 +63,7 @@
                     <a role="button" class="btn btn-default btn-lg" href="{% url 'tenant_workspace_module_detail' workspace.id module.id last_node.current_position %}">
                         {% trans 'Back' %}
                     </a>
-                    <a role="button" class="btn btn-success btn-lg" href="{% url 'tenant_workspace_module_detail' workspace.id module.id 0 %}">
+                    <a id="id_submit_btn" role="button" class="btn btn-success btn-lg" onclick="ajax_submit();">
                         {% trans 'Submit' %}
                     </a>
                 </p>

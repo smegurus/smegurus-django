@@ -77,11 +77,22 @@ def detail_page(request, workspace_id, module_id, node_id):
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 def finish_master_page(request, workspace_id, module_id, previous_node_id):
+    # Fetch our associated models.
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     module = get_object_or_404(Module, pk=int_or_none(module_id))
+
+    # Fetch the document associated with this Module.
+    document_type_id = module.get_document_type_id()
+    document = Document.objects.get(
+        workspace=workspace,
+        document_type_id=document_type_id
+    )
+
+    # Render the template.
     return render(request, 'tenant_workspace/module/master/finish/view.html',{
         'page': 'workspace',
         'workspace': workspace,
         'module': module,
-        'last_node': module.get_last_node()
+        'last_node': module.get_last_node(),
+        'document': document
     })

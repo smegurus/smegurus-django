@@ -105,7 +105,6 @@ class Exercise(models.Model):
                 return question_id
         return start_question_id
 
-
     def last_question_id(self):
         """
         Function will iterate through the question IDs and find the last

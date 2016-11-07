@@ -115,4 +115,56 @@
             }
         });
     }
+
+    function tenant_document_run_docgen(id, success_callback, error_callback) {
+        var url = "/api/tenantdocument/" + id + "/run_docgen/?format=json";
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'PUT',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    function tenant_document_has_pending_review(id, bool_value, success_callback, error_callback) {
+        var url = "/api/tenantdocument/" + id + "/has_pending_review/?format=json";
+        jQuery.ajax({
+            url: url,
+            data: JSON.stringify({
+                'value': bool_value,
+            }),
+            dataType: 'text',
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            processData: false,
+            type: 'PUT',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>

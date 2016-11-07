@@ -41,6 +41,12 @@ class Document(AbstractThing):
         related_name="document_document_type%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
     )
+    has_pending_review = models.BooleanField(
+        _("Has Pending Review"),
+        help_text=_('Indicates whether this document needs to be reviewed by staff member.'),
+        default=False,
+        blank=True,
+    )
     is_ready = models.BooleanField(
         _("Is Ready"),
         help_text=_('Indicates whether this document has been generated and ready for consumption or not.'),

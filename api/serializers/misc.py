@@ -10,6 +10,10 @@ class IntegerSerializer(serializers.Serializer):
     value = serializers.IntegerField()
 
 
+class BooleanSerializer(serializers.Serializer):
+    value = serializers.BooleanField()
+
+
 class DateTimeSerializer(serializers.Serializer):
     datetime = serializers.DateTimeField()
 
