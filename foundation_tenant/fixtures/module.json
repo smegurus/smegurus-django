@@ -60,7 +60,7 @@
                     "previous": 8, "next": 10,
                     "id": 8,
                     "type": "question",
-                    "document": 1,
+                    "document_type": 1,
                     "order_num": 8
                 },{
                     "previous": 9, "next": 11,
