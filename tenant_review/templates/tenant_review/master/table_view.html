@@ -1,0 +1,33 @@
+{% load staticfiles i18n thumbnail %}
+<div class="table-responsive">
+    <!-- DATA TABLE -->
+    <table id="datatable1" class="table table-striped table-hover">
+       <thead>
+          <tr>
+              <th class="sort-alpha">{% trans 'Title' %}</th>
+              <th class="sort-alpha">{% trans 'Owner(s)' %}</th>
+              <th>&nbsp;</th>
+          </tr>
+       </thead>
+       <tbody>
+          <!-- TABLE ROWS -->
+          {% for document in documents.all %}
+          <tr>
+             <td>{{ document.name }}</td>
+             <td>
+                 {% for owner in document.workspace.owners.all %}
+                     {{ owner.first_name }}&nbsp;{{ owner.last_name }}{% if not forloop.last %}&nbsp;&#44;{% endif %}
+                 {% endfor %}
+             </td>
+             <td>
+                 <a href="{% url 'tenant_review_detail' document.id %}" class="btn btn-xs btn-info">{% trans 'View' %}&nbsp;<i class="fa fa-info-circle"></i></a>
+             </td>
+          </tr>
+          {% endfor %}
+          <!-- end TABLE ROWS -->
+
+       </tbody>
+    </table>
+    <!-- end DATA TABLE -->
+
+</div>

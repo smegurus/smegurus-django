@@ -202,7 +202,19 @@
 
                             <!-- WORKSPACE -->
                             {% render_workspace_sidebar_node request.tenant_me %}
-                            <!-- WORKSPACE -->
+                            <!-- end WORKSPACE -->
+
+                            <!-- DOCUMENT_REVIEW -->
+                            {% if request.tenant_me.is_employee == True %}
+                            <li {% if page == 'review' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_review_master' %}" title="{% trans 'Reviews' %}">
+                                    <div class="pull-right label label-purple">{% count_has_pending_reviews request.tenant_me %}</div>
+                                    <em class="icon-docs"></em>
+                                    <span data-localize="sidebar.nav.REVIEWS">{% trans 'Reviews' %}</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            <!-- end DOCUMENT_REVIEW -->
 
                             <!-- TASKS -->
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>

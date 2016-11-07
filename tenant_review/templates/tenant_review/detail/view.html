@@ -1,0 +1,46 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress thumbnail %}
+{% block content %}
+<!-- PAGE JS -->
+{% compress js inline %}
+    {% include 'tenant_review/master/js.html' %}
+{% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+    <!-- TITLE & BREADCRUMBS -->
+    <h3>
+        <em class="fa fa-fw ffa icon-doc mr"></em>{% trans 'Document' %}&nbsp;#{{ document.id }}
+        <!-- BREADCRUMBS -->
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'tenant_review_master' %}">{% trans 'Reviews' %}</a>
+            </li>
+            <li class="active">{% trans 'Document' %}&nbsp;#{{ document.id }}</li>
+        </ol>
+        <!-- end BREADCRUMBS -->
+    </h3>
+    <!-- end TITLE & BREADCRUMBS -->
+
+    <!-- CONTENT -->
+    <div class="row">
+        <!-- DOCUMENT -->
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <!-- PANEL BODY -->
+                <div class="panel-body">
+
+                </div>
+                <!-- end PANEL BODY -->
+            </div>
+        </div>
+        <!-- end DOCUMENT -->
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE CONTENT -->
+
+{% endblock content %}

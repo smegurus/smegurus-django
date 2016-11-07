@@ -73,3 +73,10 @@ def render_workspace_sidebar_node(me):
     return {
         'workspaces': workspaces
     }
+
+
+@register.simple_tag
+def count_has_pending_reviews(me):
+    return Document.objects.filter(
+        status=constants.DOCUMENT_PENDING_REVIEW_STATUS,
+    ).count()
