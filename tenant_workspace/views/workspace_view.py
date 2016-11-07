@@ -8,6 +8,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.module import Module
+from foundation_tenant.models.bizmula.document import Document
 
 
 @login_required(login_url='/en/login')
@@ -23,8 +24,10 @@ def create_page(request):
 def master_page(request, workspace_id):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     modules = Module.objects.filter(stage_num__lte=workspace.stage_num)
+    documents = Document.objects.all()
     return render(request, 'tenant_workspace/workspace/master/view.html',{
         'page': 'workspace',
         'workspace': workspace,
-        'modules': modules
+        'modules': modules,
+        'documents': documents
     })

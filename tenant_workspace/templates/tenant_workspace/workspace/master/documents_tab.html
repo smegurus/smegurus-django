@@ -1,2 +1,44 @@
 {% load staticfiles i18n compress %}
-Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+<!-- <div class="panel-heading">Context Classes</div> -->
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID #</th>
+                    <th>{% trans 'Document Name' %}</th>
+                    <th>{% trans 'Status' %}</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for document in documents.all %}
+                    {% if document.is_ready %}
+                        <tr class="success">
+                    {% else %}
+                        {% if document.has_pending_review %}
+                            <tr class="warning">
+                        {% else %}
+                            <tr class="danger">
+                        {% endif %}
+                    {% endif %}
+                    <td>{{ document.id }}</td>
+                    <td>{{ document|escape|safe }}</td>
+                    <td>
+                        {% if document.is_ready %}
+                            {% trans 'Ready' %}
+                        {% else %}
+                            {% if document.has_pending_review %}
+                                {% trans 'Pending advisor review' %}
+                            {% else %}
+                                {% trans 'Needs to be done' %}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
