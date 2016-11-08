@@ -104,12 +104,12 @@
     }
 
     function ajax_accept() {
-        $('#id_accept_btn').prop("disabled", true);
         var comment = $.trim($('#id_review').val());
         if (comment <=0) {
             alert("{% trans 'Please leave a comment why you accepted this User.' %}");
             return;
         }
+        $('#id_accept_btn').prop("disabled", true);
         tenant_intake_judge(
             {{ intake.id }},
             {{ constants.APPROVED_STATUS }},

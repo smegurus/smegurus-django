@@ -9,8 +9,9 @@ from rest_framework import status
 from rest_framework import response
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
+from api.permissions import EmployeePermission
 from api.serializers.foundation_tenant_bizmula import DocumentSerializer
-from api.serializers.misc import IntegerSerializer
+from api.serializers.misc import JudgementSerializer
 from foundation_tenant.models.bizmula.document import Document
 from smegurus import constants
 
@@ -51,31 +52,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-    # @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    # def has_pending_review(self, request, pk=None):
-    #     try:
-    #         serializer = IntegerSerializer(data=request.data)
-    #         if serializer.is_valid():
-    #             # Update the document.
-    #             document = self.get_object()
-    #             bool_value = serializer.data['value']
-    #             if bool_value:
-    #                 document.status = constants.DOCUMENT_READY_STATUS
-    #             else:
-    #                 document.status = constants.DOCUMENT_CREATED_STATUS
-    #             document.save()
-    #
-    #             # Send success response.
-    #             return response.Response(status=status.HTTP_200_OK)
-    #         else:
-    #             raise Exception('Inputted data is not valid.')
-    #     except Exception as e:
-    #         return response.Response(
-    #             data=str(e),
-    #             status=status.HTTP_400_BAD_REQUEST
-    #         )
-
-
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def has_pending_review(self, request, pk=None):
         try:
@@ -83,6 +59,28 @@ class DocumentViewSet(viewsets.ModelViewSet):
             document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
             document.save()
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission,])
+    def judge(self, request, pk=None):
+        """Grant employee the ability to set the status of this document."""
+        try:
+            serializer = JudgementSerializer(data=request.data)
+            if serializer.is_valid():
+                # Update the document.
+                document = self.get_object()
+                document.status = serializer.data['status']
+                document.description = serializer.data['comment']
+                document.save()
+
+                # Send success response.
+                return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
         except Exception as e:
             return response.Response(
                 data=str(e),

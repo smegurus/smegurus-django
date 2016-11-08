@@ -1,0 +1,53 @@
+{% load i18n %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Pass
+    });
+
+    function ajax_reject() {
+        var comment = $.trim($('#id_review').val());
+        if (comment <=0) {
+            alert("{% trans 'Please leave a comment why you rejected this User\'s document.' %}");
+            return;
+        }
+        $('#id_reject_btn').prop("disabled", true);
+        tenant_document_judge(
+            {{ document.id }},
+            {{ constants.DOCUMENT_CREATED_STATUS }},
+            comment,
+            function(json_result) {
+                window.location = "{% url 'tenant_review_master' %}";
+            },
+            function(error_json_result) {
+                $('#id_how_can_we_help').prop("id_reject_btn", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Review
+    }
+
+    function ajax_accept() {
+        var comment = $.trim($('#id_review').val());
+        if (comment <=0) {
+            alert("{% trans 'Please leave a comment why you accepted this User.' %}");
+            return;
+        }
+        $('#id_accept_btn').prop("disabled", true);
+        tenant_document_judge(
+            {{ document.id }},
+            {{ constants.DOCUMENT_READY_STATUS }},
+            comment,
+            function(json_result) {
+                $('#id_accept_btn').prop("disabled", false);
+                window.location = "{% url 'tenant_review_master' %}";
+            },
+            function(error_json_result) {
+                $('#id_accept_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end Review
+    }
+</script>
