@@ -38,7 +38,7 @@
     <!-- end TITLE & BREADCRUMBS -->
     <!-- CONTENT -->
     <div class="row">
-        <!-- CLIENT -->
+        <!-- ENTREPRENEURS -->
         {% for intake in intakes.all %}
         <div class="col-md-4">
             <div class="panel panel-default">
@@ -86,7 +86,7 @@
                     <div class="mb-lg">
                         <em class="fa fa-exclamation-triangle fa-5x text-muted"></em>
                     </div>
-                    <h4>{% trans 'No Clients' %}</h4>
+                    <h4>{% trans 'No Entrepreneurs' %}</h4>
                     <p></p>
                 </div>
                 <div class="panel-footer clearfix">
@@ -97,7 +97,7 @@
             </div>
         </div>
         {% endfor %}
-        <!-- end CLIENT -->
+        <!-- end ENTREPRENEURS -->
     </div>
 </div>
 {% endblock content %}
