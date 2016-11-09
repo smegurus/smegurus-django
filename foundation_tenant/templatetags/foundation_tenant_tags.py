@@ -24,7 +24,7 @@ def count_unread_messages(me):
 @register.simple_tag
 def count_new_intakes():
     return Intake.objects.filter(
-        Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.REJECTED_STATUS)
+        Q(status=constants.PENDING_REVIEW_STATUS) | Q(status=constants.IN_REVIEW_STATUS)
     ).count()
 
 

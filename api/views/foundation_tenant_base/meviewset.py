@@ -14,6 +14,7 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission, IsOwner, ManagerPermission
 from api.serializers.foundation_tenant_base import TenantMeSerializer
 from api.serializers.misc import JSONDictionarySerializer
+from api.serializers.misc import IntegerSerializer
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.postaladdress import PostalAddress
@@ -129,7 +130,6 @@ class TenantMeViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-
     @detail_route(methods=['put'], permission_classes=[ManagerPermission,])
     def set_roles(self, request, pk=None):
         """Function allows setting the roles an employee belongs to by the manager."""
@@ -144,6 +144,27 @@ class TenantMeViewSet(viewsets.ModelViewSet):
             return response.Response(
                 status=status.HTTP_200_OK
             )
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission])
+    def set_stage_num(self, request, pk=None):
+        """Function will set the 'stage_num' for this TenantMe."""
+        try:
+            serializer = IntegerSerializer(data=request.data)
+            if serializer.is_valid():
+                # Update the document.
+                me = self.get_object()
+                me.stage_num = int(serializer.data['value'])
+                womerkspace.save()
+
+                # Send success response.
+                return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
         except Exception as e:
             return response.Response(
                 data=str(e),

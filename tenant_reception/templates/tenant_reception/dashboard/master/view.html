@@ -79,6 +79,7 @@
         </div>
         <!-- end CALENDAR -->
         <!-- LEARNING -->
+        {% if request.tenant_me.stage_num > 0 %}
         <div class="col-md-4">
             <div class="panel b">
                 <div class="panel-body text-center">
@@ -92,6 +93,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         <!-- end LEARNING -->
     </div>
     <!-- end ROW -->

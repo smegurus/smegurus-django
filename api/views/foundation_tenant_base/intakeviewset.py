@@ -220,8 +220,14 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 intake.save()
 
                 # Update 'Me' model.
-                intake.me.is_admitted = (intake.status == constants.APPROVED_STATUS)
-                intake.me.save()
+                if intake.status == constants.APPROVED_STATUS:
+                    intake.me.is_admitted = True
+                    intake.me.stage_num = constants.ME_ONBOARDING_STAGE_NUM
+                    intake.me.save()
+                else:
+                    intake.me.is_admitted = False
+                    intake.me.stage_num = constants.ME_MIN_STAGE_NUM
+                    intake.me.save()
 
                 # Update or create 'judgement_note' model.
                 description = serializer.data['comment']

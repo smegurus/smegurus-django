@@ -43,7 +43,7 @@ def master_page(request):
     return render(request, 'tenant_customer/visitor/master/view.html',{
         'page': 'client-visitor',
         'visitors': TenantMe.objects.filter(
-            stage_num=1,
+            stage_num=constants.ME_MIN_STAGE_NUM,
             owner__groups__id=constants.ENTREPRENEUR_GROUP_ID
         ),
     })

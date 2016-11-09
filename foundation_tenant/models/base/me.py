@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
-from smegurus import constants
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.abstract_person import AbstractPerson
+from smegurus import constants
 
 
 TASK_EMAIL_FREQUENCY_OPTIONS = (
@@ -50,7 +50,7 @@ class TenantMe(AbstractPerson):
     stage_num = models.PositiveSmallIntegerField(            # CONTROLLED BY SYSTEM
         _("Stage Number"),
         help_text=_('Track what stage this User is in the system (If they are an entrepreneur).'),
-        default=1,
+        default=constants.ME_MIN_STAGE_NUM,
         db_index=True,
     )
     temporary_password = models.CharField(# CONTROLLED BY SYSTEM & PRIVATE FROM API.
