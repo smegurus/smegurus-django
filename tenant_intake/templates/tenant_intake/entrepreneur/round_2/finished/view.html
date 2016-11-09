@@ -3,6 +3,15 @@
 {% block content %}
 <!-- PAGE JS -->
 <script>
+    $(document).ready(function () {
+        // Keypress for enter.
+        $(document).keypress(function(event){
+            if(event.keyCode == 13){
+                $("#id_continue_btn").click();
+            }
+        }); // end Keypress
+    }); // end DOCUMENT START
+
     function ajax_continue() {
         window.location = "{{ dashboard_url }}";
     }
