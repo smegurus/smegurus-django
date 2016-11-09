@@ -151,5 +151,122 @@
         "banned_on": "2016-10-30",
         "reason": "/manager/html"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 18,
+    "fields": {
+        "address": "154.16.199.144",
+        "banned_on": "2016-10-31",
+        "reason": "/xmlrpc.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 19,
+    "fields": {
+        "address": "118.178.228.150",
+        "banned_on": "2016-10-31",
+        "reason": "/phpmyadmin"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 20,
+    "fields": {
+        "address": "189.4.153.114",
+        "banned_on": "2016-10-31",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 21,
+    "fields": {
+        "address": "212.129.52.211",
+        "banned_on": "2016-11-01",
+        "reason": "/muieblackcat"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 22,
+    "fields": {
+        "address": "187.2.73.53",
+        "banned_on": "2016-11-02",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 23,
+    "fields": {
+        "address": "180.97.106.37",
+        "banned_on": "2016-11-02",
+        "reason": "/check_proxy"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 24,
+    "fields": {
+        "address": "212.92.127.214",
+        "banned_on": "2016-11-04",
+        "reason": "/pma/scripts/setup.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 25,
+    "fields": {
+        "address": "219.101.38.13",
+        "banned_on": "2016-11-04",
+        "reason": "/manager/html"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 26,
+    "fields": {
+        "address": "191.181.31.217",
+        "banned_on": "2016-11-06",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 27,
+    "fields": {
+        "address": "142.54.189.163",
+        "banned_on": "2016-11-07",
+        "reason": "/wp-login.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 28,
+    "fields": {
+        "address": "62.16.53.150",
+        "banned_on": "2016-11-07",
+        "reason": "/administrator/index.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 29,
+    "fields": {
+        "address": "188.187.48.98",
+        "banned_on": "2016-11-07",
+        "reason": "/administrator/index.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 30,
+    "fields": {
+        "address": "178.124.160.185",
+        "banned_on": "2016-11-07",
+        "reason": "/administrator/index.php"
+    }
 }
 ]
