@@ -115,4 +115,32 @@
             }
         });
     }
+
+    function tenant_workspace_set_stage_num(id, stage_num, success_callback, error_callback) {
+        var url = "/api/tenantworkspace/" + id + "/set_stage_num/?format=json";
+        jQuery.ajax({
+            url: url,
+            data: JSON.stringify({
+                'value': stage_num,
+            }),
+            dataType: 'text',
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            processData: false,
+            type: 'PUT',
+            success: function(json_results){
+                success_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>

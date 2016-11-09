@@ -32,7 +32,7 @@ class DocumentSerializer(serializers.ModelSerializer):
 class WorkspaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workspace
-        fields = ('id', 'name', 'owners')
+        fields = ('id', 'name', 'owners', 'stage_num')
 
 
 class QuestionSerializer(serializers.ModelSerializer):

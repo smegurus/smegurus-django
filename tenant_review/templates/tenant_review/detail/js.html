@@ -39,8 +39,21 @@
             {{ constants.DOCUMENT_READY_STATUS }},
             comment,
             function(json_result) {
-                $('#id_accept_btn').prop("disabled", false);
-                window.location = "{% url 'tenant_review_master' %}";
+                tenant_workspace_set_stage_num(
+                    {{ document.workspace.id }},
+                    {{ document.workspace.stage_num|add:1 }},
+                    function(json_result2) {
+                        $('#id_accept_btn').prop("disabled", false);
+                        window.location = "{% url 'tenant_review_master' %}";
+                    },
+                    function(error_json_result) {
+                        $('#id_accept_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET_STAGE_NUM
+
             },
             function(error_json_result) {
                 $('#id_accept_btn').prop("disabled", false);

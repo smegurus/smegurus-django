@@ -5,8 +5,13 @@ from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
 from rest_framework import authentication
+from rest_framework import status
+from rest_framework import response
+from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
+from api.permissions import EmployeePermission
 from api.serializers.foundation_tenant_bizmula import WorkspaceSerializer
+from api.serializers.misc import IntegerSerializer
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.documenttype import DocumentType
@@ -15,7 +20,7 @@ from foundation_tenant.models.bizmula.documenttype import DocumentType
 class WorkspaceFilter(django_filters.FilterSet):
     class Meta:
         model = Workspace
-        fields = ['id', 'name', 'owners',]
+        fields = ['id', 'name', 'owners', 'stage_num']
 
 
 class WorkspaceViewSet(viewsets.ModelViewSet):
@@ -41,4 +46,25 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
                 document_type=document_type,
                 name=str(document_type),
                 is_ready=False
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission])
+    def set_stage_num(self, request, pk=None):
+        """Function will set the 'stage_num' for this workspace."""
+        try:
+            serializer = IntegerSerializer(data=request.data)
+            if serializer.is_valid():
+                # Update the document.
+                workspace = self.get_object()
+                workspace.stage_num = int(serializer.data['value'])
+                workspace.save()
+
+                # Send success response.
+                return response.Response(status=status.HTTP_200_OK)
+            else:
+                raise Exception('Inputted data is not valid.')
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
             )
