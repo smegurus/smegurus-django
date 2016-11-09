@@ -4,11 +4,6 @@
     "pk": 1,
     "fields": {
         "module": 1,
-        "previous_slide_id": 0,
-        "next_slide_id": 2,
-        "previous_exercise_id": 0,
-        "next_exercise_id": 0,
-        "page_num": 1,
         "title": "This is slide #1 title.",
         "description": "This is slide #1 description.",
         "video_url": ""
@@ -18,10 +13,6 @@
     "pk": 2,
     "fields": {
         "module": 1,
-        "previous_slide_id": 1,
-        "next_slide_id": 0,
-        "previous_exercise_id": 0,
-        "next_exercise_id": 1,
         "page_num": 2,
         "title": "This is slide #2 title.",
         "description": "This is slide #2 description.",
@@ -32,10 +23,6 @@
     "pk": 3,
     "fields": {
         "module": 1,
-        "previous_slide_id": 0,
-        "next_slide_id": 0,
-        "previous_exercise_id": 1,
-        "next_exercise_id": 0,
         "page_num": 3,
         "title": "This is final slide #3 title.",
         "description": "You have finished!.",

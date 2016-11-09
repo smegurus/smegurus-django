@@ -33,10 +33,13 @@ class Command(BaseCommand):
             'governmentbenefitoption.json',
             'identifyoption.json',
             'inforesourcecategory.json',
-            'module.json',
-            'slide.json',
+            'module_01.json',
+            'module_02.json',
+            'slide_01.json',
+            'slide_02.json',
             'documenttype.json',
-            'question.json',
+            'question_01.json',
+            'question_02.json',
             'exercise.json'
         ]
 

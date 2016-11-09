@@ -34,13 +34,6 @@ class Module(models.Model):
         default=1,
         db_index=True,
     )
-    start_slide_id = models.PositiveSmallIntegerField(
-        _("Start Slide ID"),
-        help_text=_('The start slide ID to begin with.'),
-        default=0,
-        blank=True,
-        null=True,
-    )
     nodes = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
         _("Nodes"),
         help_text=_('The slides and Questions nodes to be processed by this module.'),
@@ -105,7 +98,7 @@ class Module(models.Model):
             return None
 
     def get_document_type_id(self):
-        """Return the 'document_type' identification of this model.""" 
+        """Return the 'document_type' identification of this model."""
         for node in self.nodes:
             if node['type'] == "question":
                 return node['document_type']

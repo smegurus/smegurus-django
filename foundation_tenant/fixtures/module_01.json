@@ -4,7 +4,6 @@
         "pk": 1,
         "fields": {
             "stage_num": 1,
-            "start_slide_id": 1,
             "nodes": [
                 {
                     "previous_position": -1,
