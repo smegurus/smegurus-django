@@ -1,6 +1,9 @@
 {% load i18n %}
 <script type="text/javascript">
     $(document).ready(function () {
+        // REQUIRED: Necessary for modals.
+        $('#staffModal').appendTo("body");
+
         // Prevent the Advisor from making any modifications on the Entrepreneur inputted data.
         $('#id_how_can_we_help').prop("disabled", true);
         $('#id_how_can_we_help_other').prop("disabled", true);
@@ -103,12 +106,41 @@
         ); // end Review
     }
 
-    function ajax_accept() {
+    function ajax_do_me_in_chain(callback) {
+        var advisor_id = $('#id_advisor').val();
+        var tags = $('#select2-1').val();
+
+        $('#id_accept_btn').prop("disabled", true);
+        get_tenant_me(
+            {{ intake.me.id }},
+            function(me) {
+                me['tags'] = tags;
+                me['managed_by'] = parseInt(advisor_id);
+                set_tenant_me(
+                    me,
+                    function(me_updated) {
+                        $('#id_accept_btn').prop("disabled", false);
+                        callback(me_updated);
+                    },
+                    function(error_json_result) {
+                        $('#id_accept_btn').prop("disabled", false);
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ME
+            },
+            function(error_json_result) {
+                $('#id_accept_btn').prop("disabled", false);
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end ME
+    }
+
+    function ajax_do_intake_in_chain(callback) {
         var comment = $.trim($('#id_review').val());
-        if (comment <=0) {
-            alert("{% trans 'Please leave a comment why you accepted this User.' %}");
-            return;
-        }
         $('#id_accept_btn').prop("disabled", true);
         tenant_intake_judge(
             {{ intake.id }},
@@ -117,7 +149,7 @@
             false,
             function(json_result) {
                 $('#id_accept_btn').prop("disabled", false);
-                window.location = "{% url 'tenant_intake_employee_master' %}";
+                callback(json_result);
             },
             function(error_json_result) {
                 $('#id_accept_btn').prop("disabled", false);
@@ -126,5 +158,26 @@
                 alert(string);
             }
         ); // end Review
+    }
+
+    function ajax_do_chain() {
+        ajax_do_me_in_chain(function(json_result) {
+            ajax_do_intake_in_chain(function(json_result) {
+                window.location = "{% url 'tenant_intake_employee_master' %}";
+            }); // end ME
+        }); // end COMPLETE INTAKE
+    }
+
+    /**
+     *  Function will make sure the staff member enter a comment before loading up the modal.
+     */
+    function ajax_pre_accept() {
+        var comment = $.trim($('#id_review').val());
+        if (comment <=0) {
+            alert("{% trans 'Please leave a comment why you accepted this User.' %}");
+            return;
+        } else {
+            $('#staffModal').modal({show:true});
+        }
     }
 </script>

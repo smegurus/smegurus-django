@@ -1,13 +1,11 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-
 <!-- PAGE JS -->
 {% compress js inline %}
-    {% include 'tenant_intake/employee/details/js.html' %}
+{% include 'tenant_intake/employee/details/js.html' %}
 {% endcompress %}
 <!-- end PAGE JS -->
-
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
@@ -22,7 +20,6 @@
         <!-- end BREADCRUMBS -->
     </h3>
     <!-- end TITLE & BREADCRUMBS -->
-
     <!-- CONTENT -->
     <div class="table-grid table-grid-desktop">
         <div class="col col-md">
@@ -65,7 +62,6 @@
                             <br />
                         </fieldset>
                         <!-- end CONTACT INFOMRATION -->
-
                         <!-- INTAKE -->
                         <fieldset>
                             <legend>{% trans 'Submission' %}</legend>
@@ -77,12 +73,10 @@
                                     {{ field.errors }}<br/>
                                 </div>
                             </div>
-
                             {% endfor %}
                             {{ form.non_field_errors }}
                         </fieldset>
                         <!-- end INTAKE -->
-
                         <!-- CONTACT INFOMRATION -->
                         <fieldset>
                             <legend>{% trans 'Review' %}</legend>
@@ -95,19 +89,17 @@
                             </div>
                             <br />
                         </fieldset>
-
                         <!-- SUBMISSION -->
                         <div class="pull-left">
                             <a href="{% url 'tenant_intake_employee_master' %}">
-                                <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
+                            <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
                             </a>
                         </div>
                         <div style="float: right;">
                             <button onclick="ajax_reject();" type="button" class="btn btn-danger btn-lg" id="id_reject_btn">{% trans 'Reject' %}</button>
-                            <button onclick="ajax_accept();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Accept' %}</button>
+                            <button onclick="ajax_pre_accept();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Accept' %}</button>
                         </div>
                         <!-- end SUBMISSION -->
-
                     </form>
                 </div>
             </div>
@@ -117,4 +109,65 @@
     <!-- end CONTENT -->
 </div>
 <!-- end PAGE HTML -->
+<!-- CREATE MODAL -->
+<div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-labelledby="staffModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="wstaffModalLabel">{% trans 'Assign Entrepreneur' %}</h4>
+            </div>
+            <div class="modal-body">
+                <!-- FORM -->
+                <form class="form-horizontal">
+                    <!-- FIELDS -->
+                    <fieldset>
+                        <!-- ADVISOR -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{% trans 'Advisor' %}</label>
+                            <div class="col-sm-10">
+                                <select id="id_advisor" class="input-md form-control">
+                                    {% for advisor in advisors.all %}
+                                        <option value="{{ advisor.id }}">
+                                            {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <span class="help-block m-b-none">{% trans 'Select a user you want to message.' %}</span>
+                            </div>
+                        </div>
+                        <!-- end ADVISOR -->
+                    </fieldset>
+                    <fieldset>
+                        <!-- BY TAG -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{% trans 'Tags' %}</label>
+                            <div class="col-sm-10">
+                                <select id="select2-1" multiple="multiple" class="form-control input-md">
+                                    {% for tag in tags %}
+                                    <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end BY TAG -->
+                    </fieldset>
+                    <!-- end FIELDS -->
+                </form>
+                <!-- end FORM -->
+            </div>
+            <div class="modal-footer">
+                <!-- BACK BUTTON -->
+                <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Cancel' %}</button>
+                <!-- end BACK BUTTON -->
+                <!-- SUBMIT BUTTON -->
+                <div class="pull-right">
+                    <button id="id_submit_btn" type="button" class="btn btn-sm btn-default" onclick="ajax_do_chain();">{% trans 'Submit' %}</button>
+                </div>
+                <!-- end SUBMIT BUTTON -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CREATE MODAL -->
 {% endblock content %}

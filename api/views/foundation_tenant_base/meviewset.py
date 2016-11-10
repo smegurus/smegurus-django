@@ -25,7 +25,7 @@ from smegurus import constants
 class TenantMeFilter(django_filters.FilterSet):
     class Meta:
         model = TenantMe
-        fields = ['owner', 'tags', 'stage_num',]
+        fields = ['owner', 'tags', 'stage_num', 'managed_by',]
 
 
 class TenantMeViewSet(viewsets.ModelViewSet):

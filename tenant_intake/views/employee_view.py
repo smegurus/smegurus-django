@@ -54,8 +54,12 @@ def intake_master_page(request):
 @tenant_profile_required
 def intake_details_page(request, id):
     intake = get_object_or_404(Intake, pk=id)
+    advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+    tags = Tag.objects.filter(is_program=True)
     return render(request, 'tenant_intake/employee/details/view.html',{
         'page': 'intake',
         'intake': intake,
         'form': IntakeForm(instance=intake),
+        'advisors': advisors,
+        'tags': tags
     })

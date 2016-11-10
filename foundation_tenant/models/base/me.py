@@ -100,6 +100,14 @@ class TenantMe(AbstractPerson):
         default=True,
         help_text=_('Variable indicates whether Users are prompted with a dialog during logout.'),
     )
+    managed_by = models.ForeignKey(
+        'self',
+        help_text=_('The Users whom manages this User.'),
+        blank=True,
+        null=True,
+        related_name="tenant_me_managed_by_%(app_label)s_%(class)s_related",
+        on_delete=models.SET_NULL
+    )
 
     def is_entrepreneur(self):
         for my_group in self.owner.groups.all():
