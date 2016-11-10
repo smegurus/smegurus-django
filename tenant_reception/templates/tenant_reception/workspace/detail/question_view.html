@@ -4,7 +4,7 @@
 <!-- PAGE JS -->
 <script>
     $(document).ready(function () {
-        $('#workspaceModal').appendTo("body");
+        // Pass.
     });
 </script>
 <!-- end PAGE JS -->
@@ -21,23 +21,27 @@
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form method="get" action="/" class="form-horizontal">
+            <form id="questionForm" method="get" action="/" class="form-horizontal">
                 <!-- QUESTION CONTENT -->
                 {% if question.template_id == 1 %}
-                {% render_question_001 workspace module node question answer %}
+                    {% render_question_001 workspace module node question answer %}
                 {% endif %}
                 <!-- end QUESTION CONTENT -->
                 <!-- PREVIOUS BUTTON -->
                 <div class="pull-left">
                     <a href="{% reception_reverse_previous_node workspace node %}">
-                    <button type="button" class="mb-sm btn btn-default">{% trans 'Back' %}</button>
+                        <button type="button" class="mb-sm btn btn-default">
+                            {% trans 'Back' %}
+                        </button>
                     </a>
                 </div>
                 <!-- end PREVIOUS BUTTON -->
                 <!-- NEXT BUTTON -->
                 <div class="pull-right">
-                    <a href="{% reception_reverse_next_node workspace node %}">
-                    <button type="button" class="mb-sm btn btn-primary">{% trans 'Next' %}</button>
+                    <a onclick="question_answer_protected_next('{% reception_reverse_next_node workspace node %}');">
+                        <button type="button" class="mb-sm btn btn-primary">
+                            {% trans 'Next' %}
+                        </button>
                     </a>
                 </div>
                 <!-- end NEXT BUTTON -->

@@ -41,6 +41,24 @@
             ); // end GET ANSWER
         }); // end RADIO CLICK DETECTION HANDLER
     }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Detect checked value.
+        var form = $('#questionForm');
+        var value = form.find('input[name=optionsRadios]:checked').val();
+
+        // Either load up an error telling the user to pick an option
+        // or load up the next page.
+        if (typeof value === "undefined") {
+            alert("{% trans 'Please select an option.' %}");
+        } else {
+            window.location = next_url;
+        }
+    }
 </script>
 {% endcompress %}
 <!-- end JS -->

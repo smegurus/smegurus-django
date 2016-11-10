@@ -21,7 +21,7 @@
         <div class="panel panel-default">
 
            <div class="panel-body">
-              <form method="get" action="/" class="form-horizontal">
+              <form id="questionForm" method="get" action="/" class="form-horizontal">
                  <!-- QUESTION CONTENT -->
                  {% if question.template_id == 1 %}
                      {% render_question_001 workspace module node question answer %}
@@ -38,7 +38,7 @@
 
                  <!-- NEXT BUTTON -->
                  <div class="pull-right">
-                     <a href="{% reverse_next_node workspace module node %}">
+                     <a onclick="question_answer_protected_next('{% reverse_next_node workspace module node %}');">
                      <button type="button" class="mb-sm btn btn-primary">{% trans 'Next' %}</button>
                      </a>
                  </div>
