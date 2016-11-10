@@ -7,6 +7,7 @@ urlpatterns = (
     url(r'^reception/is_required$', decorator_view.is_required_page, name='tenant_reception_is_required'),
 
     # Workspace
+    url(r'^reception/workspace/(.*)/(.*)/$', workspace_view.workspace_detail_page, name='tenant_reception_workspace_detail'),
     url(r'^reception/workspace/(.*)/$', workspace_view.workspace_master_page, name='tenant_reception_workspace_master'),
 
     # Calendar
