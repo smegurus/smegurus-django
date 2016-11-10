@@ -6,26 +6,12 @@
 <script>
     function ajax_submit() {
         $("#id_submit_btn").attr('disabled','disabled'); // Disable button.
-        // start RUN_DOCGEN
-        tenant_document_run_docgen(
-            {{ document.id }},
+        tenant_module_finish(
+            {{ module.id }},
             function(json_result) {
-                // start HAS_PENDING_REVIEW
-                tenant_document_has_pending_review(
-                    {{ document.id }},
-                    true,
-                    function(json_result) {
-                        $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                        alert("{% trans 'You have submitted your results! Please wait while an advisor will look at your work.' %}")
-                        window.location = "{% url 'tenant_workspace_master' workspace.id %}";
-                    },
-                    function(error_json_result) {
-                        $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                        var string = JSON.stringify( error_json_result );
-                        console.log(string);
-                        alert(string);
-                    }
-                ); // end HAS_PENDING_REVIEW
+                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
+                alert("{% trans 'You have submitted your results! Please wait while an advisor will look at your work.' %}")
+                window.location = "{% url 'tenant_workspace_master' workspace.id %}";
             },
             function(error_json_result) {
                 $("#id_submit_btn").removeAttr('disabled'); // Enable button.
@@ -33,7 +19,7 @@
                 console.log(string);
                 alert(string);
             }
-        ); // end RUN_DOCGEN
+        ); // end FINISH
     }
 </script>
 {% endcompress %}

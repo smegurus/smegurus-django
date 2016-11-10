@@ -23,6 +23,12 @@ class DocumentTypeSerializer(serializers.ModelSerializer):
         fields = ('id', 'text',)
 
 
+class ModuleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Module
+        fields = ('id', 'stage_num', 'nodes', 'title', 'description', 'icon', 'colour')
+
+
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document

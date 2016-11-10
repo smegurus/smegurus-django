@@ -22,6 +22,6 @@ def reception_reverse_previous_node(workspace, node):
 @register.simple_tag
 def reception_reverse_next_node(workspace, node):
     if node['next_position'] == -1:
-        return reverse('tenant_reception_workspace_finish_master', args=[workspace.id,])
+        return reverse('tenant_reception_workspace_finish_master', args=[workspace.id, node['current_position'],])
     else:
         return reverse('tenant_reception_workspace_detail', args=[workspace.id, node['next_position'],])

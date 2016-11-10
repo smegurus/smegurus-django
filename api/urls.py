@@ -62,6 +62,7 @@ from api.views.foundation_tenant_base.meviewset import TenantMeViewSet
 
 # TENANT - BIZMULA
 from api.views.foundation_tenant_bizmula.workspaceviewset import WorkspaceViewSet
+from api.views.foundation_tenant_bizmula.moduleviewset import ModuleViewSet
 from api.views.foundation_tenant_bizmula.questionviewset import QuestionViewSet
 from api.views.foundation_tenant_bizmula.questionanswerviewset import QuestionAnswerViewSet
 from api.views.foundation_tenant_bizmula.documenttypeviewset import DocumentTypeViewSet
@@ -120,6 +121,7 @@ router.register(r'tenantme', TenantMeViewSet)
 
 # TENANT - BIZMULA
 router.register(r'tenantworkspace', WorkspaceViewSet)
+router.register(r'tenantmodule', ModuleViewSet)
 router.register(r'tenantdocumenttype', DocumentTypeViewSet)
 router.register(r'tenantdocument', DocumentViewSet)
 router.register(r'tenantquestion', QuestionViewSet)

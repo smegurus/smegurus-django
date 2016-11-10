@@ -72,13 +72,13 @@ def workspace_detail_page(request, workspace_id, node_id=0):
 
 
 @login_required(login_url='/en/login')
-def finish_master_page(request, workspace_id):
-    workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
-    modules = Module.objects.filter(stage_num__lte=workspace.stage_num)
-    documents = Document.objects.all()
+def finish_master_page(request, workspace_id, node_id=0):
+    module = get_object_or_404(Module, stage_num=constants.ME_ONBOARDING_STAGE_NUM)
+    node_id = int_or_none(node_id)
+    node = module.get_node(node_id)
     return render(request, 'tenant_reception/workspace/master/finish_view.html',{
         'page': 'workspace',
-        'workspace': workspace,
-        'modules': modules,
-        'documents': documents
+        'workspace_id': workspace_id,
+        'module': module,
+        'node_current_position': node_id
     })

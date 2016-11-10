@@ -7,7 +7,7 @@ urlpatterns = (
     url(r'^reception/is_required$', decorator_view.is_required_page, name='tenant_reception_is_required'),
 
     # Workspace
-    url(r'^reception/workspace/(.*)/finish$', workspace_view.finish_master_page, name='tenant_reception_workspace_finish_master'),
+    url(r'^reception/workspace/(.*)/(.*)/finish$', workspace_view.finish_master_page, name='tenant_reception_workspace_finish_master'),
     url(r'^reception/workspace/(.*)/start$', workspace_view.start_master_page, name='tenant_reception_workspace_start_master'),
     url(r'^reception/workspace/(.*)/(.*)/$', workspace_view.workspace_detail_page, name='tenant_reception_workspace_detail'),
 
