@@ -20,7 +20,7 @@ from foundation_tenant.models.bizmula.documenttype import DocumentType
 class WorkspaceFilter(django_filters.FilterSet):
     class Meta:
         model = Workspace
-        fields = ['id', 'name', 'owners', 'stage_num']
+        fields = ['id', 'name', 'mes', 'stage_num']
 
 
 class WorkspaceViewSet(viewsets.ModelViewSet):
@@ -35,7 +35,7 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
         """Add owner to the object when being created for the first time"""
         # Include the owner attribute directly, rather than from request data.
         workspace = serializer.save()
-        workspace.owners.add(self.request.user)
+        workspace.mes.add(self.request.tenant_me)
         workspace.save()
 
         # Create the documents for our system.

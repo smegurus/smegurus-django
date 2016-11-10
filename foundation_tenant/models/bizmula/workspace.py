@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
+from foundation_tenant.models.base.me import TenantMe
 
 
 class WorkspaceManager(models.Manager):
@@ -33,11 +34,11 @@ class Workspace(models.Model):
         help_text=_('Track what stage this Workspace belongs to.'),
         default=1,
     )
-    owners = models.ManyToManyField(
-        User,
-        help_text=_('The owners of this workspace.'),
+    mes = models.ManyToManyField(
+        TenantMe,
+        help_text=_('The User profile owners of this workspace.'),
         blank=True,
-        related_name="workspace_owners_%(app_label)s_%(class)s_related",
+        related_name="workspace_mes_%(app_label)s_%(class)s_related",
         db_index=True,
     )
 

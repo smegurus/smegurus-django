@@ -69,14 +69,15 @@ from foundation_tenant.models.bizmula.document import Document
 @register.inclusion_tag('templatetags/render_sidebar_workspace_node.html')
 def render_workspace_sidebar_node(me):
     """Function will generate menu node for workspaces."""
-    workspaces = Workspace.objects.filter(owners__id=me.owner.id)
+    workspaces = Workspace.objects.filter(mes__id=me.id)
     return {
         'workspaces': workspaces
     }
 
 
 @register.simple_tag
-def count_has_pending_reviews(me):
+def count_has_pending_reviews(staff_me):
     return Document.objects.filter(
         status=constants.DOCUMENT_PENDING_REVIEW_STATUS,
+        workspace__mes__managed_by__id=staff_me.id
     ).count()

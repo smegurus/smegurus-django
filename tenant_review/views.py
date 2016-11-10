@@ -31,6 +31,7 @@ from smegurus import constants
 def master_page(request):
     documents = Document.objects.filter(
         status=constants.DOCUMENT_PENDING_REVIEW_STATUS,
+        workspace__mes__managed_by__id=request.tenant_me.id
     )
     return render(request, 'tenant_review/master/view.html',{
         'page': 'review',
