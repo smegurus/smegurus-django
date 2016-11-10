@@ -18,9 +18,10 @@ from smegurus import constants
 
 
 class DocumentTypeSerializer(serializers.ModelSerializer):
+    is_master = serializers.BooleanField(read_only=True)
     class Meta:
         model = DocumentType
-        fields = ('id', 'text',)
+        fields = ('id', 'text', 'is_master',)
 
 
 class ModuleSerializer(serializers.ModelSerializer):

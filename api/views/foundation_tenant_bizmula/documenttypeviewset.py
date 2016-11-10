@@ -14,7 +14,7 @@ from foundation_tenant.models.bizmula.document import Document
 class DocumentTypeFilter(django_filters.FilterSet):
     class Meta:
         model = DocumentType
-        fields = ['text',]
+        fields = ['text', 'is_master',]
 
 
 class DocumentTypeViewSet(viewsets.ModelViewSet):

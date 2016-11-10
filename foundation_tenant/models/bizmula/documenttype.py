@@ -27,6 +27,11 @@ class DocumentType(models.Model):
         blank=True,
         null=True,
     )
+    is_master = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
+        _("Is Master"),
+        default=False,
+        help_text=_('Variable controls whether the Module this Document belongs to is the master document of the Module.'),
+    )
 
     def __str__(self):
         return str(self.text)

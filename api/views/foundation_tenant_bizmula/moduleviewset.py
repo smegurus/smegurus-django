@@ -12,6 +12,8 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
 from api.serializers.foundation_tenant_bizmula import ModuleSerializer
 from foundation_tenant.models.bizmula.module import Module
+from foundation_tenant.models.bizmula.workspace import Workspace
+from foundation_tenant.models.bizmula.document import Document
 from smegurus import constants
 
 
@@ -42,10 +44,26 @@ class ModuleViewSet(viewsets.ModelViewSet):
         Function will iterate through all the Documents for this Module.
         """
         try:
+            # Get our Module object.
             module = self.get_object()
-            print(module)
 
-            #TODO: IMPLEMENT.
+            # Fetch all the Documents for this Module belonging to the
+            # currently authenticated User.
+            documents = Document.objects.filter(
+                workspace__stage_num=module.stage_num,
+                workspace__owners__id=request.user.id
+            )
+
+            # Iterate through all the documents inside this Module belonging
+            # to the authenticated User and process the Document.
+            for document in documents.all():
+                document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
+                document.save()
+
+                # If the document is a master document for this Module then
+                # send a notification email to the assigned Advisor.
+                if document.document_type.is_master:
+                    pass  #TODO: Implement. notification for Advisors.
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:

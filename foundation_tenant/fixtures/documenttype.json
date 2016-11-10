@@ -3,7 +3,8 @@
     "model": "foundation_tenant.documenttype",
     "pk": 1,
     "fields": {
-        "text": "Entrepreneur Self Assessment"
+        "text": "Entrepreneur Self Assessment",
+        "is_master": true
     }
 }
 ]
