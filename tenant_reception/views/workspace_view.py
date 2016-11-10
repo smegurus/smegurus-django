@@ -16,11 +16,17 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
-def workspace_master_page(request, workspace_id):
+def start_master_page(request, workspace_id):
     module = get_object_or_404(Module, stage_num=constants.ME_ONBOARDING_STAGE_NUM)
     first_node = module.get_first_node()
-    url = reverse('tenant_reception_workspace_detail', args=[workspace_id, first_node['id']])
-    return HttpResponseRedirect(url)
+    return render(request, 'tenant_reception/workspace/master/start_view.html',{
+        'page': 'workspace',
+        'workspace_id': workspace_id,
+        'module': module,
+        'node_current_position': first_node['current_position']
+    })
+    # url = reverse('tenant_reception_workspace_detail', args=[workspace_id, first_node['current_position']])
+    # return HttpResponseRedirect(url)
 
 
 @login_required(login_url='/en/login')
@@ -42,9 +48,10 @@ def workspace_detail_page(request, workspace_id, node_id=0):
     elif node['type'] == "question":
         question = get_object_or_404(Question, pk=int_or_none(node['id']))
         document_type = get_object_or_404(DocumentType, pk=int_or_none(node['document_type']))
-        document = Document.objects.get(
+        document, created = Document.objects.get_or_create(
             workspace=workspace,
-            document_type=document_type
+            document_type=document_type,
+            name=str(document_type)
         )
         answer, created = QuestionAnswer.objects.get_or_create(
             workspace=workspace,
@@ -62,3 +69,16 @@ def workspace_detail_page(request, workspace_id, node_id=0):
 
     # Generate a 404 error if the node reached does not have a supported format.
     raise Http404(_("Unsupported node format detected."))
+
+
+@login_required(login_url='/en/login')
+def finish_master_page(request, workspace_id):
+    workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
+    modules = Module.objects.filter(stage_num__lte=workspace.stage_num)
+    documents = Document.objects.all()
+    return render(request, 'tenant_reception/workspace/master/finish_view.html',{
+        'page': 'workspace',
+        'workspace': workspace,
+        'modules': modules,
+        'documents': documents
+    })

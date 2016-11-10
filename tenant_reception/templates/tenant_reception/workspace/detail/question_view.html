@@ -1,0 +1,52 @@
+{% extends 'tenant_reception/base.html' %}
+{% load staticfiles i18n compress tenant_workspace_tags tenant_reception_tags %}
+{% block content %}
+<!-- PAGE JS -->
+<script>
+    $(document).ready(function () {
+        $('#workspaceModal').appendTo("body");
+    });
+</script>
+<!-- end PAGE JS -->
+<!-- PAGE CONTENT -->
+<div class="content-wrapper">
+<!-- BREADCRUMBS -->
+<ol class="breadcrumb">
+    <li><a href="{% url 'tenant_reception' %}">{% trans 'Reception' %}</a></li>
+    <li><a href="{% url 'tenant_reception_workspace_start_master' workspace.id %}">{% trans 'Learning' %}</a></li>
+    <li class="active">{% trans 'Module' %}&nbsp;-&nbsp;{{ module.title }}</li>
+</ol>
+<!-- end BREADCRUMBS -->
+<!-- CONTENT -->
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form method="get" action="/" class="form-horizontal">
+                <!-- QUESTION CONTENT -->
+                {% if question.template_id == 1 %}
+                {% render_question_001 workspace module node question answer %}
+                {% endif %}
+                <!-- end QUESTION CONTENT -->
+                <!-- PREVIOUS BUTTON -->
+                <div class="pull-left">
+                    <a href="{% reception_reverse_previous_node workspace node %}">
+                    <button type="button" class="mb-sm btn btn-default">{% trans 'Back' %}</button>
+                    </a>
+                </div>
+                <!-- end PREVIOUS BUTTON -->
+                <!-- NEXT BUTTON -->
+                <div class="pull-right">
+                    <a href="{% reception_reverse_next_node workspace node %}">
+                    <button type="button" class="mb-sm btn btn-primary">{% trans 'Next' %}</button>
+                    </a>
+                </div>
+                <!-- end NEXT BUTTON -->
+            </form>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+    <!-- end CONTENT -->
+</div>
+<!-- end PAGE CONTENT -->
+{% endblock content %}

@@ -42,7 +42,7 @@
         ajax_workspace(
             function(json_result) {
                 var workspace_id = parseInt(json_result['id']);
-                var url = "{% url 'tenant_reception_workspace_master' 'placeholder' %}";
+                var url = "{% url 'tenant_reception_workspace_start_master' 'placeholder' %}";
                 window.location = url.replace("placeholder", workspace_id);
             },
             function(error_json_result) {
@@ -137,7 +137,7 @@
         <div class="col-md-4" {% if not workspace %}data-toggle="modal" data-target="#workspaceModal"{% endif %}>
             <div class="panel b">
                 <div class="panel-body text-center">
-                    <a class="link-unstyled text-pink" {% if workspace %}href="{% url 'tenant_reception_workspace_master' workspace.id %}"{% endif %}>
+                    <a class="link-unstyled text-pink" {% if workspace %}href="{% url 'tenant_reception_workspace_start_master' workspace.id %}"{% endif %}>
                         <em class="fa fa-5x fa-graduation-cap mb-lg"></em>
                         <br>
                         <span class="h4" style="color:black;">{% trans 'Learning' %}</span>
