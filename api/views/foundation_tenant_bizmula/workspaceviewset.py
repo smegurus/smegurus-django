@@ -44,8 +44,7 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
             Document.objects.create(
                 workspace=workspace,
                 document_type=document_type,
-                name=str(document_type),
-                is_ready=False
+                name=str(document_type)
             )
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission])

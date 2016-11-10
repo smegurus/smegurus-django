@@ -1,10 +1,13 @@
 from django.conf.urls import include, url
-from tenant_reception.views import dashboard_view, decorator_view, tasks_view, calendar_view, resource_view, message_view
+from tenant_reception.views import dashboard_view, decorator_view, tasks_view, calendar_view, resource_view, message_view, workspace_view
 
 
 urlpatterns = (
     # Decorator
     url(r'^reception/is_required$', decorator_view.is_required_page, name='tenant_reception_is_required'),
+
+    # Workspace
+    url(r'^reception/workspace/(.*)/$', workspace_view.workspace_master_page, name='tenant_reception_workspace_master'),
 
     # Calendar
     url(r'^reception/calendar/(.*)/$', calendar_view.reception_calendar_details_page, name='tenant_reception_calendar_details'),
