@@ -280,3 +280,29 @@ def rejected_document_page(request, document_id):
         'url': url,
         'web_view_url': web_view_extra_url,
     })
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_intake_details)
+def accepted_document_page(request, document_id):
+    # Fetch the data.
+    template_url = 'tenant_review/accepted_doc_review.html'
+    document = get_object_or_404(Document, pk=int(document_id))
+    url =  resolve_full_url_with_subdmain(
+        request.tenant.schema_name,
+        'foundation_auth_user_login',
+        []
+    )
+    web_view_extra_url = resolve_full_url_with_subdmain(
+        request.tenant.schema_name,
+        'foundation_email_accepted_document',
+        [document.id,]
+    )
+
+    # Render our email templated message.
+    return render(request, template_url,{
+        'user': request.user,
+        'document': document,
+        'url': url,
+        'web_view_url': web_view_extra_url,
+    })

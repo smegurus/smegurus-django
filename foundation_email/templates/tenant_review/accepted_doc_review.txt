@@ -1,0 +1,10 @@
+{% load staticfiles i18n compress %}
+{% trans 'A document you submitted was accepted: ' %}
+{{ document.name }}
+
+{% trans 'With comments: ' %}
+{{ document.description|escape|safe }}
+
+{% trans 'View document' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

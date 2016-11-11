@@ -23,7 +23,7 @@ from smegurus import constants
 class SendEmailViewMixin(object):
     def send_rejected_document_review_notification(self, document):
         """
-        Function will send a "Pending Document Review" email to the Documents
+        Function will send a "Rejected Document Review" email to the Documents
         assigned Advisor.
         """
         # Iterate through all owners of this document and generate the contact
@@ -54,6 +54,49 @@ class SendEmailViewMixin(object):
         # Plug-in the data into our templates and render the data.
         text_content = render_to_string('tenant_review/rejected_doc_review.txt', param)
         html_content = render_to_string('tenant_review/rejected_doc_review.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+        to = contact_list
+
+        # Send the email.
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+    def send_accepted_document_review_notification(self, document):
+        """
+        Function will send a "Accepted Document Review" email to the Documents
+        assigned Advisor.
+        """
+        # Iterate through all owners of this document and generate the contact
+        # list for all the Entrepreneurs.
+        contact_list = []
+        for me in document.workspace.mes.all():
+            contact_list.append(me.owner.email)
+
+        # Generate the data.
+        url =  resolve_full_url_with_subdmain(
+            self.request.tenant.schema_name,
+            'foundation_auth_user_login',
+            []
+        )
+        web_view_extra_url = resolve_full_url_with_subdmain(
+            self.request.tenant.schema_name,
+            'foundation_email_accepted_document',
+            [document.id,]
+        )
+        subject = "Accepted Document"
+        param = {
+            'user': self.request.user,
+            'document': document,
+            'url': url,
+            'web_view_url': web_view_extra_url,
+        }
+
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('tenant_review/accepted_doc_review.txt', param)
+        html_content = render_to_string('tenant_review/accepted_doc_review.html', param)
 
         # Generate our address.
         from_email = env_var('DEFAULT_FROM_EMAIL')
@@ -103,9 +146,7 @@ class DocumentViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission,])
     def judge(self, request, pk=None):
-        """
-        Grant employee the ability to set the status of this document.
-        """
+        """Grant staff the ability to set the status of this document."""
         try:
             serializer = JudgementSerializer(data=request.data)
             if serializer.is_valid():
@@ -115,9 +156,10 @@ class DocumentViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 document.description = serializer.data['comment']
                 document.save()
 
-                # Send acceptance notification.
+                # Send acceptance notification & increment "stage_num".
                 if document.status == constants.DOCUMENT_READY_STATUS:
-                    # self.send_document_reviewed_notification(document)  #TODO: IMPLEMENT NOTIFICATION
+                    # Send email.
+                    self.send_accepted_document_review_notification(document)
 
                     # If the document is a master document for this Module then
                     # send a notification email to the assigned Advisor.
