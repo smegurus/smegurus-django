@@ -291,15 +291,6 @@
                             </li>
                             <!-- end PROGRESS -->
 
-                            <!-- GOALS -->
-                            <li {% if page == 'goal' %}class=" active"{% endif %}>
-                            <a href="{% url 'tenant_goal' %}" title="{% trans 'Goals' %}">
-                            <em class="icon-check"></em>
-                            <span data-localize="sidebar.nav.GOALS">{% trans 'Goals' %}</span>
-                            </a>
-                            </li>
-                            <!-- end GOALS -->
-
                             <!-- RESOURCES -->
                             <li {% if page == 'resource' %}class=" active"{% endif %}>
                                 <a href="{% if request.tenant_me.is_entrepreneur %}{% url 'tenant_resource_client_category_master' %}{% else %}{% url 'tenant_resource_staff_launchpad_master' %}{% endif %}" title="{% trans 'Resources' %}">
