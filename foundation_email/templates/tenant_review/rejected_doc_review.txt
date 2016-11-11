@@ -1,0 +1,10 @@
+{% load staticfiles i18n compress %}
+{% trans 'A document you submitted was rejected: ' %}
+{{ document.name }}
+
+{% trans 'The reason: ' %}
+{{ document.description|escape|safe }}
+
+{% trans 'View document' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

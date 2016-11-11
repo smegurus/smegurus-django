@@ -10,4 +10,5 @@ urlpatterns = (
     url(r'^email/message/(.*)/$', views.message_page, name='foundation_email_message'),
     url(r'^email/calendar/pending/(.*)/$', views.calendar_pending_event_page, name='foundation_email_calendar_pending_event'),
     url(r'^email/document/pending/(.*)/$', views.pending_document_page, name='foundation_email_pending_document'),
+    url(r'^email/document/rejected/(.*)/$', views.rejected_document_page, name='foundation_email_rejected_document'),
 )

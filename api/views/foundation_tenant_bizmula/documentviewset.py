@@ -20,13 +20,58 @@ from smegurus.settings import env_var
 from smegurus import constants
 
 
+class SendEmailViewMixin(object):
+    def send_rejected_document_review_notification(self, document):
+        """
+        Function will send a "Pending Document Review" email to the Documents
+        assigned Advisor.
+        """
+        # Iterate through all owners of this document and generate the contact
+        # list for all the Entrepreneurs.
+        contact_list = []
+        for me in document.workspace.mes.all():
+            contact_list.append(me.owner.email)
+
+        # Generate the data.
+        url =  resolve_full_url_with_subdmain(
+            self.request.tenant.schema_name,
+            'foundation_auth_user_login',
+            []
+        )
+        web_view_extra_url = resolve_full_url_with_subdmain(
+            self.request.tenant.schema_name,
+            'foundation_email_rejected_document',
+            [document.id,]
+        )
+        subject = "Rejected Document"
+        param = {
+            'user': self.request.user,
+            'document': document,
+            'url': url,
+            'web_view_url': web_view_extra_url,
+        }
+
+        # Plug-in the data into our templates and render the data.
+        text_content = render_to_string('tenant_review/rejected_doc_review.txt', param)
+        html_content = render_to_string('tenant_review/rejected_doc_review.html', param)
+
+        # Generate our address.
+        from_email = env_var('DEFAULT_FROM_EMAIL')
+        to = contact_list
+
+        # Send the email.
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+
 class DocumentFilter(django_filters.FilterSet):
     class Meta:
         model = Document
         fields = ['workspace', 'document_type', 'status']
 
 
-class DocumentViewSet(viewsets.ModelViewSet):
+class DocumentViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     pagination_class = LargeResultsSetPagination
@@ -70,15 +115,22 @@ class DocumentViewSet(viewsets.ModelViewSet):
                 document.description = serializer.data['comment']
                 document.save()
 
-                # If the document is a master document for this Module then
-                # send a notification email to the assigned Advisor.
-                if document.document_type.is_master:
-                    document.workspace.stage_num += 1
-                    document.workspace.save()
-                    for me in document.workspace.mes.all():
-                        me.stage_num += 1
-                        me.save()
-                        # self.send_document_reviewed_notification(document)  #TODO: IMPLEMENT NOTIFICATION
+                # Send acceptance notification.
+                if document.status == constants.DOCUMENT_READY_STATUS:
+                    # self.send_document_reviewed_notification(document)  #TODO: IMPLEMENT NOTIFICATION
+
+                    # If the document is a master document for this Module then
+                    # send a notification email to the assigned Advisor.
+                    if document.document_type.is_master:
+                        document.workspace.stage_num += 1
+                        document.workspace.save()
+                        for me in document.workspace.mes.all():
+                            me.stage_num += 1
+                            me.save()
+
+                # Send rejection notification.
+                if document.status == constants.DOCUMENT_CREATED_STATUS:
+                    self.send_rejected_document_review_notification(document)
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)
