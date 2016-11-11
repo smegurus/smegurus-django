@@ -129,7 +129,7 @@
                                 <select id="id_advisor" class="input-md form-control">
                                     {% for advisor in advisors.all %}
                                         <option value="{{ advisor.id }}">
-                                            {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}
+                                            {{ advisor.owner.first_name }} {{ advisor.owner.last_name }}{% if me == request.tenant_me %}&nbsp;{% trans '(Me)' %}{% endif %}
                                         </option>
                                     {% endfor %}
                                 </select>
