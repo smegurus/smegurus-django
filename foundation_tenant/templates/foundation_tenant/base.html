@@ -273,24 +273,6 @@
                             {% endif %}
                             <!-- end TEAM -->
 
-                            <!-- PROGRESS -->
-                            <li class=" ">
-                                <a href="#progress" title="{% trans 'Progress' %}" data-toggle="collapse">
-                                    <!-- <div class="pull-right label label-info">1</div> -->
-                                    <em class="icon-graph"></em>
-                                    <span data-localize="sidebar.nav.PROGRESS">{% trans 'Progress' %}</span>
-                                </a>
-                                <ul id="progress" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">{% trans 'Progress' %}</li>
-                                    <li class=" ">
-                                        <a href="#" title="History">
-                                        <span>History</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- end PROGRESS -->
-
                             <!-- RESOURCES -->
                             <li {% if page == 'resource' %}class=" active"{% endif %}>
                                 <a href="{% if request.tenant_me.is_entrepreneur %}{% url 'tenant_resource_client_category_master' %}{% else %}{% url 'tenant_resource_staff_launchpad_master' %}{% endif %}" title="{% trans 'Resources' %}">
