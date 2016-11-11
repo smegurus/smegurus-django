@@ -24,14 +24,14 @@ from smegurus import constants
 
 
 class SendEmailViewMixin(object):
-    def get_web_view(self, calendar_event):
+    def get_web_view(self, calendar_event): #TODO: REMOVE
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
         url += reverse('foundation_email_calendar_pending_event', args=[calendar_event.id,])
         return url
 
-    def get_calendar_event_url(self, calendar_event):
+    def get_calendar_event_url(self, calendar_event): #TODO: REMOVE
         """Function will return the URL to the calendar_event page through the sub-domain of the organization."""
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
@@ -53,8 +53,8 @@ class SendEmailViewMixin(object):
         param = {
             'user': self.request.user,
             'calendar_event': calendar_event,
-            'url': self.get_calendar_event_url(calendar_event),
-            'web_view_url': self.get_web_view(calendar_event),
+            'url': self.get_calendar_event_url(calendar_event), #TODO: Replace w/ resolve_full_url_with_subdmain
+            'web_view_url': self.get_web_view(calendar_event), #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.

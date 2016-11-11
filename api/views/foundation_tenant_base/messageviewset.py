@@ -22,14 +22,14 @@ from smegurus import constants
 
 
 class SendEmailViewMixin(object):
-    def get_web_view(self, message):
+    def get_web_view(self, message):  #TODO: REMOVE
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
         url += reverse('foundation_email_message', args=[message.id,])
         return url
 
-    def get_message_url(self, message):
+    def get_message_url(self, message):  #TODO: REMOVE
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
         url += get_current_site(self.request).domain
@@ -43,8 +43,8 @@ class SendEmailViewMixin(object):
         param = {
             'user': self.request.user,
             'message': message,
-            'url': self.get_message_url(message),
-            'web_view_url': self.get_web_view(message),
+            'url': self.get_message_url(message), #TODO: Replace w/ resolve_full_url_with_subdmain
+            'web_view_url': self.get_web_view(message), #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.

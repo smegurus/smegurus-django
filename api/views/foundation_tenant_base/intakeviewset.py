@@ -30,7 +30,7 @@ class JudgeIntakeSerializer(serializers.Serializer):
 
 
 class SendEmailViewMixin(object):
-    def get_url_with_subdomain(self, additonal_url=None):
+    def get_url_with_subdomain(self, additonal_url=None): #TODO: REMOVE
         """Utility function to get the current url"""
         url = 'https://' if self.request.is_secure() else 'http://'
         url += self.request.tenant.schema_name + "."
@@ -40,7 +40,7 @@ class SendEmailViewMixin(object):
             url = url.replace("/None/","/en/")
         return url
 
-    def get_login_url(self):
+    def get_login_url(self): #TODO: REMOVE
         """Function will return the URL to the login page through the sub-domain of the organization."""
         url = reverse('foundation_auth_user_login')
         return self.get_url_with_subdomain(url)
@@ -51,9 +51,9 @@ class SendEmailViewMixin(object):
         web_view_url = reverse('foundation_email_approved_intake', args=[intake.id,])
         param = {
             'user': intake.me.owner,
-            'url': self.get_login_url(),
+            'url': self.get_login_url(), #TODO: Replace w/ resolve_full_url_with_subdmain
             'intake': intake,
-            'web_view_url': self.get_url_with_subdomain(web_view_url),
+            'web_view_url': self.get_url_with_subdomain(web_view_url), #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.
@@ -76,8 +76,8 @@ class SendEmailViewMixin(object):
         param = {
             'user': intake.me.owner,
             'intake': intake,
-            'url': self.get_login_url(),
-            'web_view_url': self.get_url_with_subdomain(web_view_url),
+            'url': self.get_login_url(), #TODO: Replace w/ resolve_full_url_with_subdmain
+            'web_view_url': self.get_url_with_subdomain(web_view_url), #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.
@@ -101,9 +101,9 @@ class SendEmailViewMixin(object):
         web_view_url = reverse('foundation_email_pending_intake', args=[intake.id,])
         param = {
             'user': intake.me.owner,
-            'url': self.get_url_with_subdomain(url),
+            'url': self.get_url_with_subdomain(url), #TODO: Replace w/ resolve_full_url_with_subdmain
             'intake': intake,
-            'web_view_url': self.get_url_with_subdomain(web_view_url),
+            'web_view_url': self.get_url_with_subdomain(web_view_url), #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.

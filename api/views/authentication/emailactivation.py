@@ -11,7 +11,7 @@ from rest_framework.authtoken.models import Token
 
 
 class SendEmailViewMixin(object):
-    def activation_url(self, email):
+    def activation_url(self, email):  #TODO: REMOVE
         """Function will get the User ID and Token and generate a URL."""
         # Fetch the User.
         user = User.objects.get(email=email)
@@ -30,7 +30,7 @@ class SendEmailViewMixin(object):
         contact_list = [env_var('DEFAULT_TO_EMAIL')]
         name = "Test Name"
         subject = "Den Activation"
-        message = "To activate your account, please click this url: " + self.activation_url(email)
+        message = "To activate your account, please click this url: " + self.activation_url(email)  #TODO: Replace w/ resolve_full_url_with_subdmain
 
         send_mail(
             subject,

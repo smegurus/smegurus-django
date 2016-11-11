@@ -17,7 +17,7 @@ from django.template.loader import render_to_string    # HTML to TXT
 
 
 class SendEmailViewMixin(object):
-    def get_url_with_subdomain(self, additonal_url=None):
+    def get_url_with_subdomain(self, additonal_url=None):  #TODO: REMOVE
         """Utility function to get the current url"""
         url = 'https://' if self.request.is_secure() else 'http://'
         schema_name = self.request.tenant.schema_name
@@ -48,7 +48,7 @@ class SendEmailViewMixin(object):
         subject = 'Account Activation - SME Gurus for your Organization'
         param = {
             'user': user,
-            'url': self.get_activation_url(user), # Generate our activation URL.
+            'url': self.get_activation_url(user), # Generate our activation URL. #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.
@@ -69,7 +69,7 @@ class SendEmailViewMixin(object):
         subject = 'Account Activation - SME Gurus'
         param = {
             'user': user,
-            'url': self.get_activation_url(user), # Generate our activation URL.
+            'url': self.get_activation_url(user), # Generate our activation URL. #TODO: Replace w/ resolve_full_url_with_subdmain
         }
 
         # Plug-in the data into our templates and render the data.
