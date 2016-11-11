@@ -110,22 +110,22 @@
                             function(json_result) {
                                 window.location = "{% url 'foundation_auth_config_org_step_two' %}";
                             },
-                            function(error_json_result) {
+                            function(json_error_result) {
                                 window.location = "{% url 'foundation_auth_config_org_step_two' %}";
                             }
                         ); // end GEO UPDATE.
                     },
                     function(json_error_result) {
                         enable_btn();
-                        var string = JSON.stringify( error_result );
+                        var string = JSON.stringify( json_error_result );
                         console.log(error_result);
                         alert(string);
                     }
                 ); // end SET POSTALADDRESS
             },
-            function(json_result) {
+            function(json_error_result) {
                 enable_btn();
-                var string = JSON.stringify( error_result );
+                var string = JSON.stringify( json_error_result );
                 console.log(error_result);
                 alert(string);
             }

@@ -68,6 +68,7 @@ def create_page(request):
     from django.db import connection
     connection.set_schema_to_public() # Switch to Public.
 
+    # Fetch the data.
     country_id = int(request.tenant.address.country.id)
     region_id = int(request.tenant.address.region.id)
     locality = str(request.tenant.address.locality)
@@ -80,16 +81,22 @@ def create_page(request):
     address_line_3 = str(request.tenant.address.address_line_3)
     telephone = str(request.tenant.contact_point.telephone)
 
-    # Connection will set it back to our tenant.
-    connection.set_schema(request.tenant.schema_name, True) # Switch back to Tenant.
-
-    # Begin...
+    # Generate User.
     random_password = random_text(8)
     user = User.objects.create_user(
         username=random_text(30),
         email=random_text(100) + "@" + random_text(100) + ".com",
         password=random_password
     )
+
+    # Attach our new User into our Organization.
+    request.tenant.users.add(user)
+    request.tenant.save()
+
+    # Connection will set it back to our tenant.
+    connection.set_schema(request.tenant.schema_name, True) # Switch back to Tenant.
+
+    # Begin...
     address = PostalAddress.objects.create(
         owner=user,
         name='User #' + str(user.id) + ' Address',
