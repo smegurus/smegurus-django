@@ -159,18 +159,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="workspaceModalLabel">{% trans 'Workspace' %}</h4>
+        <h4 class="modal-title" id="workspaceModalLabel">{% trans 'Welcome to Stage 1!' %}</h4>
       </div>
       <div class="modal-body">
           <!-- FORM -->
           <form class="form-horizontal">
              <!-- FIELDS -->
              <fieldset>
+               <p>In order to get started, we need you to create a workspace on the next screen. All you need to do is give your idea a name. If you don't have a company name, you can just use something like "Jim's Company" or "Jim's Business Idea".</p>
+               <br />
                 <div class="form-group">
-                   <label class="col-sm-2 control-label">{% trans 'Company Name' %}</label>
+                   <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
                    <div class="col-sm-10">
                       <input id="id_name" type="text" class="form-control" />
-                      <span class="help-block m-b-none">{% trans 'Please write the company name.' %}</span>
+                      <span class="help-block m-b-none">{% trans 'Please write the idea name.' %}</span>
                    </div>
                 </div>
              </fieldset>

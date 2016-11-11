@@ -15,8 +15,8 @@
           <tr>
              <td>{{ document.name }}</td>
              <td>
-                 {% for owner in document.workspace.owners.all %}
-                     {{ owner.first_name }}&nbsp;{{ owner.last_name }}{% if not forloop.last %}&nbsp;&#44;{% endif %}
+                 {% for me in document.workspace.mes.all %}
+                     {{ me.owner.first_name }}&nbsp;{{ me.owner.last_name }}{% if not forloop.last %}&nbsp;&#44;{% endif %}
                  {% endfor %}
              </td>
              <td>

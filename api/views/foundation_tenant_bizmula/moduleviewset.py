@@ -51,7 +51,7 @@ class ModuleViewSet(viewsets.ModelViewSet):
             # currently authenticated User.
             documents = Document.objects.filter(
                 workspace__stage_num=module.stage_num,
-                workspace__owners__id=request.user.id
+                workspace__mes__id=request.tenant_me.id
             )
 
             # Iterate through all the documents inside this Module belonging
