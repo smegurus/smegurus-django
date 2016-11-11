@@ -41,7 +41,9 @@ class ModuleViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def finish(self, request, pk=None):
         """
-        Function will iterate through all the Documents for this Module.
+        Function will iterate through all the submitted Documents for this
+        Module and set them to be reviewed by the advisor. Note: Advisor will
+        only get a notification when a master document is detected.
         """
         try:
             # Get our Module object.

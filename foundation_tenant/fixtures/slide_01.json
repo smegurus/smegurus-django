@@ -13,7 +13,6 @@
     "pk": 2,
     "fields": {
         "module": 1,
-        "page_num": 2,
         "title": "This is slide #2 title.",
         "description": "This is slide #2 description.",
         "video_url": "https://s3.amazonaws.com/smegurus-dev/static/mov/module_01_01.mp4"
@@ -23,7 +22,6 @@
     "pk": 3,
     "fields": {
         "module": 1,
-        "page_num": 3,
         "title": "This is final slide #3 title.",
         "description": "You have finished!.",
         "video_url": ""

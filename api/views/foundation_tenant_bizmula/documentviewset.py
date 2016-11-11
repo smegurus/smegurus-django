@@ -67,7 +67,9 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission,])
     def judge(self, request, pk=None):
-        """Grant employee the ability to set the status of this document."""
+        """
+        Grant employee the ability to set the status of this document.
+        """
         try:
             serializer = JudgementSerializer(data=request.data)
             if serializer.is_valid():
@@ -76,6 +78,16 @@ class DocumentViewSet(viewsets.ModelViewSet):
                 document.status = serializer.data['status']
                 document.description = serializer.data['comment']
                 document.save()
+
+                # If the document is a master document for this Module then
+                # send a notification email to the assigned Advisor.
+                if document.document_type.is_master:
+                    document.workspace.stage_num += 1
+                    document.workspace.save()
+                    for me in document.workspace.mes.all():
+                        me.stage_num += 1
+                        me.save()
+                        pass  #TODO: IMPLEMENT NOTIFICATION
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)

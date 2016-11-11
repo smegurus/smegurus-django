@@ -10,7 +10,11 @@
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
     <h3>
-        <em class="fa fa-fw ffa icon-doc mr"></em>{% trans 'Document' %}&nbsp;#{{ document.id }}
+        <!-- TITLE -->
+        <em class="fa fa-fw ffa icon-doc mr"></em>
+        {{ document.name }}&nbsp;{% trans 'by' %}&nbsp;{% for me in document.workspace.mes.all %}{{ me.owner.first_name }}&nbsp;{{ me.owner.last_name }}{% if not forloop.last %}&nbsp;&#44;{% endif %}{% endfor %}
+        <!-- end TITLE -->
+
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li>
@@ -19,7 +23,7 @@
             <li>
                 <a href="{% url 'tenant_review_master' %}">{% trans 'Reviews' %}</a>
             </li>
-            <li class="active">{% trans 'Document' %}&nbsp;#{{ document.id }}</li>
+            <li class="active">{% trans 'Document Review' %}&nbsp;{% if document.document_type.is_master %}<i>{% trans '(Master)' %}</i>{% endif %}</li>
         </ol>
         <!-- end BREADCRUMBS -->
     </h3>
