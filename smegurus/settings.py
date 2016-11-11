@@ -355,9 +355,3 @@ THUMBNAIL_FORCE_OVERWRITE = True
 # https://github.com/ottoyiu/django-cors-headers
 
 CORS_ORIGIN_ALLOW_ALL = True
-
-
-# SMEGurus App
-#
-
-SMEGURUS_APP_DOMAIN = env_var('SMEGURUS_APP_DOMAIN')

@@ -33,7 +33,7 @@ class Command(BaseCommand):
 
         # Add one or more domains for the tenant
         domain = PublicDomain()
-        domain.domain = 'smegurus.xyz' # don't add your port or www here! on a local server you'll want to use localhost here
+        domain.domain = env_var('SMEGURUS_APP_HTTP_DOMAIN') # don't add your port or www here! on a local server you'll want to use localhost here
         domain.tenant = public_tenant
         domain.is_primary = True
         try:
@@ -60,7 +60,7 @@ class Command(BaseCommand):
 
         # Add one or more domains for the tenant
         domain = PublicDomain()
-        domain.domain = 'demo.smegurus.xyz' # don't add your port or www here!
+        domain.domain = 'demo.'+env_var('SMEGURUS_APP_HTTP_DOMAIN') # don't add your port or www here!
         domain.tenant = tenant
         domain.is_primary = True
         try:

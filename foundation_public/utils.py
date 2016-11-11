@@ -1,9 +1,12 @@
 import random
 import base64
 import hashlib
+from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from datetime import datetime, timedelta
+from smegurus.settings import env_var
+from smegurus import constants
 
 
 def get_unique_username_from_email(email):
@@ -19,7 +22,7 @@ def get_unique_username_from_email(email):
 def get_pretty_formatted_date(created):
     if created == None:
         return "-"
-        
+
     today = timezone.now()
     dt = (today - created).days
     if dt == 0:
@@ -49,3 +52,15 @@ def random_text(size):
     """Randomly generate text"""
     alphabet_and_numbers = 'abcdefghijklmnopqrstuvwqyz1234567890'
     return(''.join(random.choice(alphabet_and_numbers) for _ in range(size)))
+
+
+def resolve_full_url_with_subdmain(schema_name, reverse_url_id, resolve_url_args): #TODO: Write Unit Tests for this.
+    """
+    Enhanced "reverse" function which will include the HTTP PROTOCAL and HTTP
+    DOMAIN for the reversed link with subdomain
+    """
+    url = env_var('SMEGURUS_APP_HTTP_PROTOCOL')
+    url += schema_name + "."
+    url += env_var('SMEGURUS_APP_HTTP_DOMAIN')
+    url += reverse(reverse_url_id, args=resolve_url_args)
+    return url

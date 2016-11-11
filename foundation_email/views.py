@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import condition
+from foundation_public.utils import resolve_full_url_with_subdmain
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.message import Message
@@ -14,11 +15,12 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.calendarevent import CalendarEvent
+from foundation_tenant.models.bizmula.document import Document
 from smegurus.settings import env_var
 from smegurus import constants
 
 
-def get_url_with_subdmain(request, additonal_url=None):
+def get_url_with_subdmain(request, additonal_url=None):  #TODO: Delete when ready.
     """Function will return the URL to the login page through the sub-domain of the organization."""
     url = 'https://' if request.is_secure() else 'http://'
     url += request.tenant.schema_name + "."
@@ -82,8 +84,8 @@ def pending_intake_page(request, id):
     return render(request, template_url,{
         'user': request.user,
         'intake': intake,
-        'url': get_url_with_subdmain(request, url),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+        'url': get_url_with_subdmain(request, url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
     })
 
 
@@ -105,7 +107,7 @@ def approved_intake_page(request, id):
         'user': request.user,
         'intake': intake,
         'url': get_login_url(request),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
     })
 
 
@@ -127,7 +129,7 @@ def rejected_intake_page(request, id):
         'user': request.user,
         'intake': intake,
         'url': get_login_url(request),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
     })
 
 
@@ -156,7 +158,7 @@ def message_page(request, id):
         'user': request.user,
         'message': message,
         'url': get_message_url(request, message),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
     })
 
 
@@ -187,7 +189,7 @@ def task_page(request, task_id, log_event_id):
         'task': task,
         'log_event': log_event,
         'url': get_task_url(request, task),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
     })
 
 
@@ -220,5 +222,31 @@ def calendar_pending_event_page(request, calendar_event_id):
         'me': request.tenant_me,
         'calendar_event': calendar_event,
         'url': get_calendar_info_url(request, calendar_event),
-        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),
+        'web_view_url': get_url_with_subdmain(request, web_view_extra_url),  #TODO: Replace w/ "resolve_full_url_with_subdmain"
+    })
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_intake_details)
+def pending_document_page(request, document_id):
+    # Fetch the data.
+    template_url = 'tenant_review/pending_doc_review.html'
+    document = get_object_or_404(Document, pk=int(document_id))
+    url =  resolve_full_url_with_subdmain(
+        request.tenant.schema_name,
+        'tenant_review_detail',
+        [document.id,]
+    )
+    web_view_extra_url = resolve_full_url_with_subdmain(
+        request.tenant.schema_name,
+        'foundation_email_pending_document',
+        [document.id,]
+    )
+
+    # Render our email templated message.
+    return render(request, template_url,{
+        'user': request.user,
+        'document': document,
+        'url': url,
+        'web_view_url': web_view_extra_url,
     })

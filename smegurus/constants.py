@@ -3,7 +3,8 @@ from smegurus.settings import env_var
 
 
 # The domain of our application.
-SMEGURUS_APP_DOMAIN = env_var('SMEGURUS_APP_DOMAIN')
+SMEGURUS_APP_HTTP_PROTOCOL = env_var('SMEGURUS_APP_HTTP_PROTOCOL')
+SMEGURUS_APP_HTTP_DOMAIN = env_var('SMEGURUS_APP_HTTP_DOMAIN')
 
 
 # Constants assign identification to groups.

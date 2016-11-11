@@ -1,0 +1,7 @@
+{% load staticfiles i18n compress %}
+{% trans 'A document requires your review: ' %}
+{{ document.name }}
+
+{% trans 'View document' %} {{ url }}
+
+{% trans 'View in browser at' %} {{ web_view_url }}

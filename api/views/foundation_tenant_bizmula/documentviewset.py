@@ -1,6 +1,8 @@
 import django_filters
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.template.loader import render_to_string    # HTML to TXT
+from django.core.mail import EmailMultiAlternatives    # EMAILER
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -12,7 +14,9 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import EmployeePermission
 from api.serializers.foundation_tenant_bizmula import DocumentSerializer
 from api.serializers.misc import JudgementSerializer
+from foundation_public.utils import resolve_full_url_with_subdmain
 from foundation_tenant.models.bizmula.document import Document
+from smegurus.settings import env_var
 from smegurus import constants
 
 
@@ -52,19 +56,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    def has_pending_review(self, request, pk=None):
-        try:
-            document = self.get_object()
-            document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-            document.save()
-            return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
-        except Exception as e:
-            return response.Response(
-                data=str(e),
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission,])
     def judge(self, request, pk=None):
         """
@@ -87,7 +78,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
                     for me in document.workspace.mes.all():
                         me.stage_num += 1
                         me.save()
-                        pass  #TODO: IMPLEMENT NOTIFICATION
+                        # self.send_document_reviewed_notification(document)  #TODO: IMPLEMENT NOTIFICATION
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)
