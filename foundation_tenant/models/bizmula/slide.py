@@ -18,7 +18,6 @@ class Slide(models.Model):
         db_table = 'biz_slides'
         verbose_name = _('Slide')
         verbose_name_plural = _('Slides')
-        ordering = ('page_num',)
 
     # ------------
     #   GENERIC
@@ -32,45 +31,6 @@ class Slide(models.Model):
         null=True,
         related_name="slide_module_%(app_label)s_%(class)s_related",
         on_delete=models.CASCADE
-    )
-
-    # ------------
-    #  NAVIGATION
-    # ------------
-
-    previous_slide_id = models.PositiveSmallIntegerField(
-        _("Previous Slide ID"),
-        help_text=_('The previous slide ID.'),
-        default=0,
-        blank=True,
-        null=True,
-    )
-    next_slide_id = models.PositiveSmallIntegerField(
-        _("Next Slide ID"),
-        help_text=_('The next slide ID.'),
-        default=0,
-        blank=True,
-        null=True,
-    )
-    previous_exercise_id = models.PositiveSmallIntegerField(
-        _("Previous Exercise ID"),
-        help_text=_('The previous exercise ID to load up.'),
-        default=0,
-        blank=True,
-        null=True,
-    )
-    next_exercise_id = models.PositiveSmallIntegerField(
-        _("Next Exercise ID"),
-        help_text=_('The exercise ID to load up next.'),
-        default=0,
-        blank=True,
-        null=True,
-    )
-    page_num = models.PositiveSmallIntegerField(
-        _("Page Number"),
-        help_text=_('The page number in the slides for the module.'),
-        default=1,
-        db_index=True,
     )
 
     # ------------

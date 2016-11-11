@@ -37,7 +37,7 @@ def workspace_detail_page(request, workspace_id, node_id=0):
     node_id = int_or_none(node_id)
     node = module.get_node(node_id)
 
-    # Either load up a "Slide" or load up the "Exercise".
+    # Either load up a "Slide" or load up the "Question".
     if node['type'] == "slide":
         return render(request, 'tenant_reception/workspace/detail/slide_view.html',{
             'page': 'workspace',

@@ -40,7 +40,6 @@ class Command(BaseCommand):
             'documenttype.json',
             'question_01.json',
             'question_02.json',
-            'exercise.json'
         ]
 
         # Iterate through all the filenames and load them into database.

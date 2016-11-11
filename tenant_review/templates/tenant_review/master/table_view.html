@@ -5,6 +5,7 @@
        <thead>
           <tr>
               <th class="sort-alpha">{% trans 'Title' %}</th>
+              <th class="sort-alpha">{% trans 'Workspace' %}</th>
               <th class="sort-alpha">{% trans 'Owner(s)' %}</th>
               <th>&nbsp;</th>
           </tr>
@@ -14,6 +15,7 @@
           {% for document in documents.all %}
           <tr>
              <td>{{ document.name }}</td>
+             <td>{{ document.workspace|escape|safe }}</td>
              <td>
                  {% for me in document.workspace.mes.all %}
                      {{ me.owner.first_name }}&nbsp;{{ me.owner.last_name }}{% if not forloop.last %}&nbsp;&#44;{% endif %}

@@ -27,7 +27,7 @@ def create_page(request):
 def master_page(request, workspace_id):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     modules = Module.objects.filter(stage_num__lte=workspace.stage_num)
-    documents = Document.objects.all()
+    documents = Document.objects.filter(workspace_id=workspace_id)
     return render(request, 'tenant_workspace/workspace/master/view.html',{
         'page': 'workspace',
         'workspace': workspace,

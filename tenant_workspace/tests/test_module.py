@@ -14,7 +14,6 @@ from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.slide import Slide
-from foundation_tenant.models.bizmula.exercise import Exercise
 
 
 TEST_USER_EMAIL = "ledo@gah.com"
@@ -96,7 +95,6 @@ class TenantWorkspaceModuleTestCases(APITestCase, FastTenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        Exercise.objects.delete_all()
         Slide.objects.delete_all()
         Workspace.objects.delete_all()
         Module.objects.delete_all()
