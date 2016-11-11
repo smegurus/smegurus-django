@@ -32,5 +32,6 @@ def master_page(request, workspace_id):
         'page': 'workspace',
         'workspace': workspace,
         'modules': modules,
-        'documents': documents
+        'documents': documents,
+        'mes': TenantMe.objects.all()
     })

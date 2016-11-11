@@ -6,16 +6,26 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        $('#renameWorkspaceModal').appendTo("body");
+        $('#editWorkspaceModal').appendTo("body");
     }); // end Document Start
 
     function ajax_workspace(success_callback, failure_callback) {
         // Get our variables.
         var name = $('#id_name').val();
+        var co_owners = $('#select2-1').val();
+        if (co_owners == null) {
+            co_owners = [];
+        }
 
         // Defensive Code.
         if (name <= 0) {
             alert("{% trans 'Please enter the task name.' %}");
+            return;
+        }
+        var my_id = "{{ request.tenant_me }}";
+        var has_it = $.inArray(my_id, co_owners);
+        if (has_it < 0) {
+            alert("{% trans 'You cannot yourself from ownership. Please add it back and try again.' %}");
             return;
         }
 
@@ -83,9 +93,9 @@
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
                 <li>
-                    <a data-toggle="modal" data-target="#renameWorkspaceModal">
+                    <a data-toggle="modal" data-target="#editWorkspaceModal">
                         <em class="fa fa-fw fa-edit mr"></em>
-                        <span>{% trans 'Rename' %}</span>
+                        <span>{% trans 'Edit Workspace' %}</span>
                     </a>
                 </li>
                 <li>
@@ -153,17 +163,17 @@
 </div>
 <!-- end PAGE HTML -->
 <!-- MODAL -->
-<div class="modal fade" id="renameWorkspaceModal" tabindex="-1" role="dialog" aria-labelledby="renameWorkspaceModalLabel">
+<div class="modal fade" id="editWorkspaceModal" tabindex="-1" role="dialog" aria-labelledby="editWorkspaceModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="renameWorkspaceModalLabel">{% trans 'Rename Idea' %}</h4>
+        <h4 class="modal-title" id="editWorkspaceModalLabel">{% trans 'Edit Workspace' %}</h4>
       </div>
       <div class="modal-body">
           <!-- FORM -->
           <form class="form-horizontal">
-             <!-- FIELDS -->
+             <!-- NAME -->
              <fieldset>
                 <div class="form-group">
                    <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
@@ -173,7 +183,22 @@
                    </div>
                 </div>
              </fieldset>
-             <!-- end FIELDS -->
+             <!-- end NAME -->
+             <!-- CO-OWNERS -->
+             <div class="form-group">
+                 <label class="col-sm-2 control-label">{% trans 'Co-Owners' %}</label>
+                 <div class="col-sm-10">
+                     <select id="select2-1" multiple="multiple" class="form-control input-md">
+                         {% for me in mes.all %}
+                             <option value="{{ me.id }}" {% if me in workspace.mes.all %}selected="selected"{% endif %}>
+                                 {{ me.owner.first_name }} {{ me.owner.last_name }}{% if me == request.tenant_me %}&nbsp;{% trans '(Me)' %}{% endif %}
+                            </option>
+                         {% endfor %}
+                     </select>
+                      <span class="help-block m-b-none">{% trans 'Select other users whom you want to share ownership with.' %}</span>
+                 </div>
+             </div>
+             <!-- end CO-OWNERS -->
          </form>
          <!-- end FORM -->
       </div>
