@@ -63,4 +63,5 @@ def resolve_full_url_with_subdmain(schema_name, reverse_url_id, resolve_url_args
     url += schema_name + "."
     url += env_var('SMEGURUS_APP_HTTP_DOMAIN')
     url += reverse(reverse_url_id, args=resolve_url_args)
+    url = url.replace("None","en")
     return url
