@@ -6,8 +6,55 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // Nothing.
+        $('#renameWorkspaceModal').appendTo("body");
     }); // end Document Start
+
+    function ajax_workspace(success_callback, failure_callback) {
+        // Get our variables.
+        var name = $('#id_name').val();
+
+        // Defensive Code.
+        if (name <= 0) {
+            alert("{% trans 'Please enter the task name.' %}");
+            return;
+        }
+
+        $('#id_submit_btn').prop("disabled", true); // Disable the button.
+        get_tenant_workspace(
+            {{ workspace.id }},
+            function(workspace) {
+                workspace['name'] = name;  // Set our object variables.
+                set_tenant_workspace(
+                    workspace,
+                    function(json_result) {
+                        $('#id_submit_btn').prop("disabled", false); // Enable the button.
+                        success_callback(json_result);
+                    },
+                    function(error_json_result) {
+                        $('#id_submit_btn').prop("disabled", false); // Enable the button.
+                        failure_callback(error_json_result);
+                    }
+                ); // end SET
+            },
+            function(error_json_result) {
+                $('#id_submit_btn').prop("disabled", false); // Enable the button.
+                failure_callback(error_json_result);
+            }
+        ); // end GET
+    }
+
+    function ajax_rename_workspace() {
+        ajax_workspace(
+            function(json_result) {
+                location.reload(true);
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        );
+    }
 
     function ajax_delete_workspace(workspace_id) {
         delete_tenant_workspace(
@@ -35,6 +82,12 @@
             <em class="fa icon-options-vertical fa-lg"></em>
             </button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                <li>
+                    <a data-toggle="modal" data-target="#renameWorkspaceModal">
+                        <em class="fa fa-fw fa-edit mr"></em>
+                        <span>{% trans 'Rename' %}</span>
+                    </a>
+                </li>
                 <li>
                     <a onclick="ajax_delete_workspace({{ workspace.id }});">
                         <em class="fa fa-fw icon-trash mr"></em>
@@ -99,5 +152,43 @@
     <!-- end CONTENT -->
 </div>
 <!-- end PAGE HTML -->
-
+<!-- MODAL -->
+<div class="modal fade" id="renameWorkspaceModal" tabindex="-1" role="dialog" aria-labelledby="renameWorkspaceModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="renameWorkspaceModalLabel">{% trans 'Rename Idea' %}</h4>
+      </div>
+      <div class="modal-body">
+          <!-- FORM -->
+          <form class="form-horizontal">
+             <!-- FIELDS -->
+             <fieldset>
+                <div class="form-group">
+                   <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+                   <div class="col-sm-10">
+                      <input id="id_name" type="text" class="form-control" value="{{ workspace.name }}" />
+                      <span class="help-block m-b-none">{% trans 'Please write the idea name.' %}</span>
+                   </div>
+                </div>
+             </fieldset>
+             <!-- end FIELDS -->
+         </form>
+         <!-- end FORM -->
+      </div>
+      <div class="modal-footer">
+        <!-- BACK BUTTON -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        <!-- end BACK BUTTON -->
+        <!-- SUBMIT BUTTON -->
+        <div class="pull-right">
+            <button id="id_submit_btn" type="button" class="btn btn-sm btn-primary" onclick="ajax_rename_workspace();">{% trans 'Submit' %}</button>
+        </div>
+        <!-- end SUBMIT BUTTON -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end MODAL -->
 {% endblock content %}

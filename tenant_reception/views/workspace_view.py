@@ -17,11 +17,12 @@ from smegurus import constants
 
 @login_required(login_url='/en/login')
 def start_master_page(request, workspace_id):
+    workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     module = get_object_or_404(Module, stage_num=constants.ME_ONBOARDING_STAGE_NUM)
     first_node = module.get_first_node()
     return render(request, 'tenant_reception/workspace/master/start_view.html',{
         'page': 'workspace',
-        'workspace_id': workspace_id,
+        'workspace': workspace,
         'module': module,
         'node_current_position': first_node['current_position']
     })
