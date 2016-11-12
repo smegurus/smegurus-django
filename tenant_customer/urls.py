@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from tenant_customer.views import entrepreneur_view, visitor_view
+from tenant_customer.views import entrepreneur_view
 
 
 urlpatterns = (
@@ -11,8 +11,4 @@ urlpatterns = (
     url(r'^client/entrepreneur/create$', entrepreneur_view.create_page, name='tenant_customer_entrepreneur_create'),
     url(r'^client/entrepreneur/(.*)/$', entrepreneur_view.details_page, name='tenant_customer_entrepreneur_details'),
     url(r'^client/entrepreneur$', entrepreneur_view.master_page, name='tenant_customer_entrepreneur_master'),
-
-    # VISITORS
-    url(r'^client/visitor/(.*)/$', visitor_view.details_page, name='tenant_customer_visitor_detail'),
-    url(r'^client/visitor$', visitor_view.master_page, name='tenant_customer_visitor_master'),
 )

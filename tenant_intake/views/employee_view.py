@@ -27,13 +27,35 @@ from smegurus import constants
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-def intake_master_page(request):
+def pending_intake_master_page(request):
     intakes = Intake.objects.filter(
         Q(status=constants.PENDING_REVIEW_STATUS) |
         Q(status=constants.IN_REVIEW_STATUS)
     )
     return render(request, 'tenant_intake/employee/master/view.html',{
-        'page': 'intake',
+        'page': 'intake-pending',
+        'intakes': intakes,
+    })
+
+
+@login_required(login_url='/en/login')
+@group_required([
+    constants.ADVISOR_GROUP_ID,
+    constants.ORGANIZATION_MANAGER_GROUP_ID,
+    constants.ORGANIZATION_ADMIN_GROUP_ID,
+    constants.CLIENT_MANAGER_GROUP_ID,
+    constants.SYSTEM_ADMIN_GROUP_ID,
+])
+@tenant_configuration_required
+@tenant_intake_required
+@tenant_profile_required
+def held_intake_master_page(request):
+    intakes = Intake.objects.filter(
+        Q(status=constants.REJECTED_STATUS) |
+        Q(status=constants.IN_REVIEW_STATUS)
+    )
+    return render(request, 'tenant_intake/employee/master/view.html',{
+        'page': 'intake-held',
         'intakes': intakes,
     })
 

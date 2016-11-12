@@ -202,12 +202,25 @@
 
                             <!-- INTAKE -->
                             {% if request.tenant_me.is_org_admin %}
-                            <li {% if page == 'intake' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_intake_employee_master' %}" title="{% trans 'Intake' %}">
+                            <li class=" ">
+                                <a href="#intakes" title="{% trans 'Intakes' %}" data-toggle="collapse">
                                     <em class="fa fa-random"></em>
                                     <div class="pull-right label label-success">{% count_new_intakes %}</div
-                                    <span data-localize="sidebar.nav.INTAKE">{% trans 'Intake' %}</span>
+                                    <span data-localize="sidebar.nav.INTAKES">{% trans 'Intakes' %}</span>
                                 </a>
+                                <ul id="intakes" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">{% trans 'Intakes' %}</li>
+                                    <li {% if page == 'intake-pending' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_intake_employee_pending_master' %}" title="{% trans 'Pending' %}">
+                                        <span>{% trans 'Pending' %}</span>
+                                        </a>
+                                    </li>
+                                    <li {% if page == 'intake-held' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_intake_employee_held_master' %}" title="{% trans 'Held' %}">
+                                        <span>{% trans 'Held' %}</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             {% endif %}
                             <!-- end INTAKE -->
@@ -240,24 +253,11 @@
 
                             <!-- CLIENTS -->
                             {% if request.tenant_me.is_employee == True %}
-                            <li class=" ">
-                                <a href="#clients" title="{% trans 'Clients' %}" data-toggle="collapse">
+                            <li {% if page == 'client-entrepreneur' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_customer_entrepreneur_master' %}" title="{% trans 'Clients' %}">
                                     <em class="icon-people"></em>
                                     <span data-localize="sidebar.nav.CLIENTS">{% trans 'Clients' %}</span>
                                 </a>
-                                <ul id="clients" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">{% trans 'Clients' %}</li>
-                                    <li {% if page == 'client-entrepreneur' %}class=" active"{% endif %}>
-                                        <a href="{% url 'tenant_customer_entrepreneur_master' %}" title="{% trans 'Entrepreneurs' %}">
-                                        <span>{% trans 'Entrepreneur' %}</span>
-                                        </a>
-                                    </li>
-                                    <li {% if page == 'client-visitor' %}class=" active"{% endif %}>
-                                        <a href="{% url 'tenant_customer_visitor_master' %}" title="{% trans 'Visitors' %}">
-                                        <span>{% trans 'Visitors' %}</span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             {% endif %}
                             <!-- end CLIENTS -->

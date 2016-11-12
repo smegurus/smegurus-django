@@ -25,6 +25,7 @@ urlpatterns = (
     url(r'^intake/entrepreneur/finished$', entrepreneur_view.intake_round_two_finished_page, name='tenant_intake_finished'),
 
     # Employee - Intake Review
-    url(r'^intake$', employee_view.intake_master_page, name='tenant_intake_employee_master'),
+    url(r'^intake-pending$', employee_view.pending_intake_master_page, name='tenant_intake_employee_pending_master'),
+    url(r'^intake-held$', employee_view.held_intake_master_page, name='tenant_intake_employee_held_master'),
     url(r'^intake/(.*)/$', employee_view.intake_details_page, name='tenant_intake_employee_details'),
 )
