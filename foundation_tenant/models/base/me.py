@@ -129,5 +129,12 @@ class TenantMe(AbstractPerson):
                     return True
         return False
 
+    def is_org_admin(self):
+        for my_group in self.owner.groups.all():
+            for admin_group_id in constants.ORG_ADMIN_GROUP_IDS:
+                if admin_group_id == my_group.id:
+                    return True
+        return False
+
     def __str__(self):
         return str(self.id)

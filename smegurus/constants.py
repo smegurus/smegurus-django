@@ -60,6 +60,13 @@ MANAGEMENT_EMPLOYEE_GROUP_IDS = [
     SYSTEM_ADMIN_GROUP_ID
 ]
 
+# This array of ID's is used for grouping all "management" staff for our app.
+ORG_ADMIN_GROUP_IDS = [
+    ORGANIZATION_ADMIN_GROUP_ID,
+    CLIENT_MANAGER_GROUP_ID,
+    SYSTEM_ADMIN_GROUP_ID
+]
+
 
 # These constants are used for Employee-Customer reviewing process.
 CREATED_STATUS = 1
