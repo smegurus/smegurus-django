@@ -1,5 +1,5 @@
 {% load staticfiles i18n compress %}
 
-{% trans 'You have been accepted! Click the following link to begin:' %} {{ url }}
+{% trans 'You have been accepted into the next stage of SME Gurus! Click the following link to continue.' %} {{ url }}
 
 {% trans 'View in browser at' %} {{ web_view_url }}
