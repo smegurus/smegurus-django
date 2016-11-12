@@ -17,7 +17,7 @@ from smegurus import constants
 @tenant_configuration_required
 def create_page(request):
     return render(request, 'tenant_workspace/workspace/create/view.html',{
-        'page': 'workspace',
+        'page': 'workspace-add',
         'mes': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
     })
 

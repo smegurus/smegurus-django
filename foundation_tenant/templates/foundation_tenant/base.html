@@ -238,36 +238,36 @@
                             </li>
                             <!-- end TASKS -->
 
-                            {% if request.tenant_me.is_employee == True %}
                             <!-- CLIENTS -->
+                            {% if request.tenant_me.is_employee == True %}
                             <li class=" ">
-                                <a href="#clients" title="{% trans 'Messages' %}" data-toggle="collapse">
+                                <a href="#clients" title="{% trans 'Clients' %}" data-toggle="collapse">
                                     <em class="icon-people"></em>
-                                    <span data-localize="sidebar.nav.MESSAGES">{% trans 'Clients' %}</span>
+                                    <span data-localize="sidebar.nav.CLIENTS">{% trans 'Clients' %}</span>
                                 </a>
                                 <ul id="clients" class="nav sidebar-subnav collapse">
                                     <li class="sidebar-subnav-header">{% trans 'Clients' %}</li>
-                                    <li {% if page == 'clients' %}class=" active"{% endif %}>
+                                    <li {% if page == 'client-entrepreneur' %}class=" active"{% endif %}>
                                         <a href="{% url 'tenant_customer_entrepreneur_master' %}" title="{% trans 'Entrepreneurs' %}">
                                         <span>{% trans 'Entrepreneur' %}</span>
                                         </a>
                                     </li>
-                                    <li {% if page == 'archive' %}class=" active"{% endif %}>
+                                    <li {% if page == 'client-visitor' %}class=" active"{% endif %}>
                                         <a href="{% url 'tenant_customer_visitor_master' %}" title="{% trans 'Visitors' %}">
                                         <span>{% trans 'Visitors' %}</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            <!-- end CLIENTS -->
                             {% endif %}
+                            <!-- end CLIENTS -->
 
                             <!-- TEAM -->
                             {% if request.tenant_me.is_manager %}
                                 <li {% if page == 'team' %}class=" active"{% endif %}>
-                                    <a href="{% url 'tenant_team_master' %}" title="{% trans 'Goals' %}">
+                                    <a href="{% url 'tenant_team_master' %}" title="{% trans 'Team' %}">
                                         <em class="fa fa-sitemap"></em>
-                                        <span data-localize="sidebar.nav.GOALS">{% trans 'Team' %}</span>
+                                        <span data-localize="sidebar.nav.TEAM">{% trans 'Team' %}</span>
                                     </a>
                                 </li>
                             {% endif %}
@@ -286,7 +286,7 @@
                             <li {% if page == 'reward' %}class=" active"{% endif %}>
                                 <a href="{% url 'tenant_reward' %}" title="{% trans 'Perks' %}">
                                     <em class="icon-trophy"></em>
-                                    <span data-localize="sidebar.nav.REWARDS">{% trans 'Perks' %}</span>
+                                    <span data-localize="sidebar.nav.PERKS">{% trans 'Perks' %}</span>
                                 </a>
                             </li>
                             <!-- end REWARDS -->
