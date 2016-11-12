@@ -67,11 +67,12 @@ from foundation_tenant.models.bizmula.document import Document
 
 
 @register.inclusion_tag('templatetags/render_sidebar_workspace_node.html')
-def render_workspace_sidebar_node(me):
+def render_workspace_sidebar_node(me, page):
     """Function will generate menu node for workspaces."""
     workspaces = Workspace.objects.filter(mes__id=me.id)
     return {
-        'workspaces': workspaces
+        'workspaces': workspaces,
+        'page': page
     }
 
 

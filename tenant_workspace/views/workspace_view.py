@@ -29,7 +29,7 @@ def master_page(request, workspace_id):
     modules = Module.objects.filter(stage_num__lte=workspace.stage_num)
     documents = Document.objects.filter(workspace_id=workspace_id)
     return render(request, 'tenant_workspace/workspace/master/view.html',{
-        'page': 'workspace',
+        'page': str(workspace),
         'workspace': workspace,
         'modules': modules,
         'documents': documents,

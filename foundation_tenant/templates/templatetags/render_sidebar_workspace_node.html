@@ -1,4 +1,17 @@
 {% load i18n %}
+{% comment %}
+            <a href="{% url 'tenant_message_inbox' %}" title="{% trans 'Inbox' %}">
+            <span>{% trans 'Inbox' %}</span>
+            </a>
+        </li>
+        <li {% if page == 'archive' %}class=" active"{% endif %}>
+            <a href="{% url 'tenant_archive_inbox' %}" title="{% trans 'Archive' %}">
+            <span>{% trans 'Archive' %}</span>
+            </a>
+        </li>
+    </ul>
+</li>
+{% endcomment %}
 <li class=" ">
     <a href="#workspace" title="{% trans 'Workspace' %}" data-toggle="collapse">
         <!-- <div class="pull-right label label-success">{{ workspaces.count }}</div> -->
@@ -11,7 +24,7 @@
         <!-- end TITLE -->
 
         <!-- ADD WORKSPACE -->
-        <li class=" ">
+        <li {% if page == 'workspace-add' %}class=" active"{% endif %}>
             <a href="{% url 'tenant_workspace_create' %}" title="{% trans 'Modules' %}">
             <span>{% trans 'Add Workspace' %}</span>
             </a>
@@ -20,7 +33,7 @@
 
         <!-- LIST WORKSPACE(S) -->
         {% for workspace in workspaces.all %}
-        <li class=" ">
+        <li {% if page == workspace.name %}class=" active"{% endif %}>
             <a href="{% url 'tenant_workspace_master' workspace.id %}" title="{{ workspace.name }}">
             <span>{{ workspace.name }}</span>
             </a>

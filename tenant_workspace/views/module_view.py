@@ -24,7 +24,7 @@ def start_master_page(request, workspace_id, module_id):
 
     # Render our template with our variables.
     return render(request, 'tenant_workspace/module/master/start/view.html',{
-        'page': 'workspace',
+        'page': str(workspace),
         'workspace': workspace,
         'module': module,
         'first_node': module.get_first_node()
@@ -42,7 +42,7 @@ def detail_page(request, workspace_id, module_id, node_id):
     # Either load up a "Slide" or load up the "Question".
     if node['type'] == "slide":
         return render(request, 'tenant_workspace/module/detail/slice_view.html',{
-            'page': 'workspace',
+            'page': str(workspace),
             'workspace': workspace,
             'module': module,
             'slide': get_object_or_404(Slide, pk=int_or_none(node['id'])),
@@ -62,7 +62,7 @@ def detail_page(request, workspace_id, module_id, node_id):
             question=question
         )
         return render(request, 'tenant_workspace/module/detail/question_view.html',{
-            'page': 'workspace',
+            'page': str(workspace),
             'workspace': workspace,
             'module': module,
             'question': question,
@@ -90,7 +90,7 @@ def finish_master_page(request, workspace_id, module_id, previous_node_id):
 
     # Render the template.
     return render(request, 'tenant_workspace/module/master/finish/view.html',{
-        'page': 'workspace',
+        'page': str(workspace),
         'workspace': workspace,
         'module': module,
         'last_node': module.get_last_node(),
