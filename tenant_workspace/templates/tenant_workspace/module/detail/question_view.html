@@ -21,6 +21,8 @@
         <div class="panel panel-default">
 
            <div class="panel-body">
+              <img src="{% static 'app/img/contact_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="show_contact({{ question.id }});" />
+              <img src="{% static 'app/img/question_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="show_help({{ question.id }});" />
               <form id="questionForm" method="get" action="/" class="form-horizontal">
                  <!-- QUESTION CONTENT -->
                  {% if question.template_id == 1 %}
@@ -31,7 +33,7 @@
                  <!-- PREVIOUS BUTTON -->
                  <div class="pull-left">
                      <a href="{% reverse_previous_node workspace module node %}">
-                     <button type="button" class="mb-sm btn btn-default">{% trans 'Back' %}</button>
+                         <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
                      </a>
                  </div>
                  <!-- end PREVIOUS BUTTON -->
@@ -39,7 +41,7 @@
                  <!-- NEXT BUTTON -->
                  <div class="pull-right">
                      <a onclick="question_answer_protected_next('{% reverse_next_node workspace module node %}');">
-                     <button type="button" class="mb-sm btn btn-primary">{% trans 'Next' %}</button>
+                         <button type="button" class="btn btn-primary btn-lg">{% trans 'Next' %}</button>
                      </a>
                  </div>
                  <!-- end NEXT BUTTON -->
