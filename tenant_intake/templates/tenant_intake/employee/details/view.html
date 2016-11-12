@@ -10,11 +10,22 @@
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
     <h3>
-        <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake' %}
+        <!-- TITLE -->
+        {% if type == 'pending' %}
+            <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake - Pending' %}
+        {% elif type == 'held'  %}
+            <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake - Held' %}
+        {% endif %}
+        <!-- end TITLE -->
+        
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
-            <li><a href="{% url 'tenant_intake_employee_master' %}">{% trans 'Intake' %}</a></li>
+            {% if type == 'pending' %}
+                <li><a href="{% url 'tenant_intake_employee_pending_master' %}">{% trans 'Intake' %}</a></li>
+            {% elif type == 'held'  %}
+                <li><a href="{% url 'tenant_intake_employee_held_master' %}">{% trans 'Intake' %}</a></li>
+            {% endif %}
             <li class="active">{% trans 'Intake Details' %}</li>
         </ol>
         <!-- end BREADCRUMBS -->
@@ -91,9 +102,15 @@
                         </fieldset>
                         <!-- SUBMISSION -->
                         <div class="pull-left">
-                            <a href="{% url 'tenant_intake_employee_master' %}">
-                            <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
-                            </a>
+                            {% if type == 'pending' %}
+                                <a href="{% url 'tenant_intake_employee_pending_master' %}">
+                                    <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
+                                </a>
+                            {% elif type == 'held'  %}
+                                <a href="{% url 'tenant_intake_employee_held_master' %}">
+                                    <button type="button" class="btn btn-default btn-lg">{% trans 'Back' %}</button>
+                                </a>
+                            {% endif %}
                         </div>
                         <div style="float: right;">
                             <button onclick="ajax_reject();" type="button" class="btn btn-danger btn-lg" id="id_reject_btn">{% trans 'Reject' %}</button>

@@ -12,7 +12,14 @@
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
     <h3>
-        <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake' %}
+        <!-- TITLE -->
+        {% if type == 'pending' %}
+            <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake - Pending' %}
+        {% elif type == 'held'  %}
+            <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake - Held' %}
+        {% endif %}
+        <!-- end TITLE -->
+
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a>
@@ -67,14 +74,21 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a href="{% url 'tenant_intake_employee_details' intake.id %}">
-                                            <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
-                                        </a>
+                                        {% if type == 'pending' %}
+                                            <a href="{% url 'tenant_intake_employee_pending_details' intake.id %}">
+                                                <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
+                                            </a>
+                                        {% elif type == 'held'  %}
+                                            <a href="{% url 'tenant_intake_employee_held_details' intake.id %}">
+                                                <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
+                                            </a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+
                 </div>
                 <!-- end PANEL BODY -->
             </div>

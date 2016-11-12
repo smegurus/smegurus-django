@@ -95,7 +95,11 @@
             comment,
             false,
             function(json_result) {
-                window.location = "{% url 'tenant_intake_employee_master' %}";
+                {% if type == 'pending' %}
+                    window.location = "{% url 'tenant_intake_employee_pending_master' %}";
+                {% elif type == 'held'  %}
+                    window.location = "{% url 'tenant_intake_employee_held_master' %}";
+                {% endif %}
             },
             function(error_json_result) {
                 $('#id_how_can_we_help').prop("id_reject_btn", false);
@@ -163,7 +167,11 @@
     function ajax_do_chain() {
         ajax_do_me_in_chain(function(json_result) {
             ajax_do_intake_in_chain(function(json_result) {
-                window.location = "{% url 'tenant_intake_employee_master' %}";
+                {% if type == 'pending' %}
+                    window.location = "{% url 'tenant_intake_employee_pending_master' %}";
+                {% elif type == 'held'  %}
+                    window.location = "{% url 'tenant_intake_employee_held_master' %}";
+                {% endif %}
             }); // end ME
         }); // end COMPLETE INTAKE
     }
