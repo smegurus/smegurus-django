@@ -138,7 +138,8 @@ class TenantMeViewSet(viewsets.ModelViewSet):
             if serializer.is_valid():
                 me = self.get_object()
                 roles = serializer.data['array']
-                for group_id in roles:
+                me.owner.groups.clear() # Delete previous group membership.
+                for group_id in roles:  # Add new group membership.
                     me.owner.groups.add(int(group_id))
                 me.save()
             return response.Response(

@@ -311,6 +311,7 @@
             ajax_contant_point(function(callback_result) {
                 // UPDATE ADDRESS.
                 ajax_address(function(result) {
+                    enable_btn(); // Enable the button.
                     window.location = "{% url 'tenant_team_master' %}";
                 }); // end UPDATE ADDRESS
             }); // End UPDATE CONTACT POINT.
