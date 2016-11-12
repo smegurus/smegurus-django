@@ -1,7 +1,8 @@
 {% load staticfiles i18n compress %}
+{% trans 'Rejected Intake' %}
 {% trans 'You have been rejected! The reason is:' %}
 
-"{{ reason }}"
+"{{ intake.judgement_note.description|escape|safe }}"
 
 {% trans 'Please re-apply again.' %} {{ url }}
 

@@ -17,7 +17,7 @@
             <em class="fa fa-fw ffa fa-random mr"></em>{% trans 'Intake - Held' %}
         {% endif %}
         <!-- end TITLE -->
-        
+
         <!-- BREADCRUMBS -->
         <ol class="breadcrumb">
             <li><a href="{% url 'tenant_dashboard' %}">{% trans 'Home' %}</a></li>
@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{% trans 'Comment' %}</label>
                                 <div class="col-sm-10">
-                                    <textarea id="id_review" class="form-control" name="textarea" rows="6">{% if intake.note %}{{ intake.note.description }}{% endif %}</textarea>
+                                    <textarea id="id_review" class="form-control" name="textarea" rows="6">{% if intake.judgement_note %}{{ intake.judgement_note.description }}{% endif %}</textarea>
                                     <span class="help-block m-b-none">This is a private comment to associate with this intake. The Entrepreneur will not be able to read this comment. </span>
                                 </div>
                             </div>
