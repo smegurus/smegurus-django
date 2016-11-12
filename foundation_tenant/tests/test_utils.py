@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from django.utils import translation
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.utils import get_pretty_formatted_date
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
@@ -46,10 +45,6 @@ class FoundationTenantUtilsWithTenantSchemaTestCase(TenantTestCase):
         for user in users.all():
             user.delete()
         super(FoundationTenantUtilsWithTenantSchemaTestCase, self).tearDown()
-
-    @transaction.atomic
-    def test_my_last_modified_func(self):
-        pass  #TODO: Implement.
 
     @transaction.atomic
     def test_get_pretty_formatted_date(self):

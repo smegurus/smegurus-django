@@ -4,10 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
-from django.views.decorators.http import condition
 from django.db.models import Q
 from rest_framework.authtoken.models import Token
-from foundation_tenant.utils import my_last_modified_func
 from tenant_intake.decorators import tenant_intake_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_configuration.decorators import tenant_configuration_required
@@ -28,7 +26,6 @@ from smegurus import constants
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
 def task_open_master_page(request):
     tasks = Task.objects.filter(
         Q(
@@ -48,7 +45,6 @@ def task_open_master_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
 def task_closed_master_page(request):
     tasks = Task.objects.filter(
         Q(
@@ -68,7 +64,6 @@ def task_closed_master_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
 def task_master_create_page(request):
     return render(request, 'tenant_task/create/view.html',{
         'page': 'tasks',
@@ -85,7 +80,6 @@ def task_master_create_page(request):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
 def task_edit_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/edit/view.html',{
@@ -107,7 +101,6 @@ def task_edit_details_page(request, id):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
 def task_info_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/edit/view.html',{
@@ -129,7 +122,6 @@ def task_info_details_page(request, id):
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
-# @condition(last_modified_func=my_last_modified_func)
 def task_info_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     return render(request, 'tenant_task/details/info/view.html',{

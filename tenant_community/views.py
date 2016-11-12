@@ -4,9 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
-from foundation_tenant.utils import my_last_modified_func
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
@@ -21,7 +19,6 @@ from foundation_tenant.models.base.tag import Tag
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-@condition(last_modified_func=my_last_modified_func)
 def community_page(request):
     """List of all the community posts in a paginated mannor."""
     filter_tag_id = request.GET.get('tag')

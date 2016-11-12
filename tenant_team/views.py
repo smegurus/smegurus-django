@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve, reverse
 from django.contrib.auth.models import User, Group
 from django.utils.translation import get_language
-from django.views.decorators.http import condition
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from rest_framework.authtoken.models import Token
@@ -13,7 +12,6 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
-from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
@@ -34,7 +32,6 @@ from smegurus import constants
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-# @condition(last_modified_func=my_last_modified_func)
 def master_page(request):
     team_members = TenantMe.objects.filter(
         Q(owner__groups__id=constants.MENTOR_GROUP_ID) |
@@ -59,7 +56,6 @@ def master_page(request):
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-# @condition(last_modified_func=my_last_modified_func)
 def create_page(request):
     """Function will create a new emplee and redirect to the page of updating data."""
     country_id = 0
@@ -138,7 +134,6 @@ def create_page(request):
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-# @condition(last_modified_func=my_last_modified_func)
 def update_page(request, pk):
     # Fetch the user.
     me = get_object_or_404(TenantMe, pk=pk)

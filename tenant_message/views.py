@@ -12,7 +12,6 @@ from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from tenant_configuration.decorators import tenant_configuration_required
-from foundation_tenant.utils import my_last_modified_func
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.me import TenantMe
 from smegurus import constants
@@ -23,7 +22,6 @@ from smegurus import constants
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-# @condition(last_modified_func=my_last_modified_func)
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
@@ -101,7 +99,6 @@ def latest_conversation_details(request, sender_id):
 @tenant_reception_required
 @tenant_profile_required
 @tenant_configuration_required
-# @condition(last_modified_func=my_last_modified_func)
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(
