@@ -48,7 +48,7 @@ class SendEmailViewMixin(object):
     def send_intake_was_accepted(self, intake):
         # Generate the data.
         subject = "Application Reviewed: Accepted"
-        web_view_url = reverse('foundation_email_approved_intake', args=[intake.id,])
+        web_view_url = reverse('foundation_email_approved_intake', args=[intake.id])
         param = {
             'user': intake.me.owner,
             'url': self.get_login_url(), #TODO: Replace w/ resolve_full_url_with_subdmain
@@ -72,7 +72,7 @@ class SendEmailViewMixin(object):
     def send_intake_was_rejected(self, intake):
         # Generate the data.
         subject = "Application Reviewed: Rejected"
-        web_view_url = reverse('foundation_email_rejected_intake', args=[intake.id,])
+        web_view_url = reverse('foundation_email_rejected_intake', args=[intake.id])
         param = {
             'user': intake.me.owner,
             'intake': intake,
@@ -97,7 +97,7 @@ class SendEmailViewMixin(object):
         """Function will send pending new intake needs to be reviewed email."""
         # Generate the data.
         subject = "New Entrepreneur Application!"
-        url = reverse('tenant_intake_employee_details', args=[intake.id])
+        url = reverse('tenant_intake_employee_pending_details', args=[intake.id])
         web_view_url = reverse('foundation_email_pending_intake', args=[intake.id])
         param = {
             'user': intake.me.owner,
