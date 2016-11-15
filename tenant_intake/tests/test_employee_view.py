@@ -161,7 +161,7 @@ class TenantIntakeEmployeeTestCases(APITestCase, TenantTestCase):
         )
 
         # Run test and verify.
-        url = reverse('tenant_intake_employee_details', args=[intake.id,])
+        url = reverse('tenant_intake_employee_details', args=[intake.id])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(len(response.content) > 1)

@@ -97,8 +97,8 @@ class SendEmailViewMixin(object):
         """Function will send pending new intake needs to be reviewed email."""
         # Generate the data.
         subject = "New Entrepreneur Application!"
-        url = reverse('tenant_intake_employee_details', args=[intake.id,])
-        web_view_url = reverse('foundation_email_pending_intake', args=[intake.id,])
+        url = reverse('tenant_intake_employee_details', args=[intake.id])
+        web_view_url = reverse('foundation_email_pending_intake', args=[intake.id])
         param = {
             'user': intake.me.owner,
             'url': self.get_url_with_subdomain(url), #TODO: Replace w/ resolve_full_url_with_subdmain

@@ -36,7 +36,7 @@ def pending_intake_page(request, id):
     url =  resolve_full_url_with_subdmain(
         request.tenant.schema_name,
         'tenant_intake_employee_details',
-        [intake.id,]
+        [intake.id]
     )
     web_view_extra_url = resolve_full_url_with_subdmain(
         request.tenant.schema_name,
