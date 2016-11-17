@@ -1,0 +1,50 @@
+[
+    {
+        "model": "foundation_tenant.module",
+        "pk": 1,
+        "fields": {
+            "stage_num": 1,
+            "nodes": [
+                {
+                    "previous_position": -1,
+                    "current_position": 0,
+                    "next_position": 1,
+                    "id": 1,
+                    "type": "slide"
+                },{
+                    "previous_position": 0,
+                    "current_position": 1,
+                    "next_position": 2,
+                    "id": 2,
+                    "type": "slide"
+                },{
+                    "previous_position": 1,
+                    "current_position": 2,
+                    "next_position": 3,
+                    "id": 1,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 1
+                },{
+                    "previous_position": 2,
+                    "current_position": 3,
+                    "next_position": 4,
+                    "id": 2,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 2
+                },{
+                    "previous_position": 3,
+                    "current_position": 4,
+                    "next_position": -1,
+                    "id": 3,
+                    "type": "slide"
+                }
+            ],
+            "title": "Stage 1 - development",
+            "description": "<p>Sample bizmula questions.<\/p>",
+            "icon": "fa-television",
+            "colour": ""
+        }
+    }
+]

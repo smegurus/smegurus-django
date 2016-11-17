@@ -37,3 +37,15 @@ def render_question_001(workspace, module, node, question, answer):
         'answer': answer,
         'picked': json.loads(answer.content)
     }
+
+
+@register.inclusion_tag('templatetags/question/render_question_002.html')
+def render_question_002(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': json.loads(answer.content)
+    }

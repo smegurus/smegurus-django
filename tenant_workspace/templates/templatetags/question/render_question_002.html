@@ -1,0 +1,115 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // Pass
+    });
+
+    function ajax_do_chain(callback) {
+        // Detect checked value.
+        var form = $('#questionForm');
+        var textfield_one = form.find('#id_textfield_one').val();
+        var boolfield = form.find('#id_boolfield').is(":checked")
+        var textfield_two = form.find('#id_textfield_two').val();
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'textfield_one': textfield_one,
+                    'boolfield': boolfield,
+                    'textfield_two': textfield_two
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Detect checked value.
+        var form = $('#questionForm');
+        var textfield_one = form.find('#id_textfield_one').val();
+        var boolfield = form.find('#id_boolfield').is(":checked")
+        var textfield_two = form.find('#id_textfield_two').val();
+
+        // Either load up an error telling the user to pick an option
+        // or load up the next page.
+        if (textfield_one == "") {
+            alert("{% trans 'Please fill in' %} \"{{ question.content.label_one }}\"");
+            return;
+        }
+        if (boolfield == true) {
+            if (textfield_two == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.label_two }}\"");
+                return;
+            }
+        }
+
+        ajax_do_chain(function(json_result) {  // Update our model.
+            window.location = next_url;
+        });
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-10">
+            <fieldset>
+                <!-- ROW 1 -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{ question.content.label_one }}</label>
+                    <div class="col-sm-10">
+                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.textfield_one }}" value="{{ picked.textfield_one }}" />
+                    </div>
+                </div>
+                <!-- end ROW 1 -->
+                <br />
+                <!-- ROW 2 -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{ question.content.label_two }}</label>
+                    <div class="col-sm-10">
+                        <label class="checkbox checkbox-inline">
+                            <input id="id_boolfield" type="checkbox" value="option1" {% if picked.boolfield %}checked="checked"{% endif %} />
+                            {{ question.content.boolfield_label }}
+                        </label>
+                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.textfield_two }}" value="{{ picked.textfield_two }}" />
+                    </div>
+                </div>
+                <!-- end ROW 2 -->
+            </fieldset>
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->

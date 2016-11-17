@@ -27,6 +27,8 @@
                  <!-- QUESTION CONTENT -->
                  {% if question.template_id == 1 %}
                      {% render_question_001 workspace module node question answer %}
+                 {% elif question.template_id == 2 %}
+                     {% render_question_002 workspace module node question answer %}
                  {% endif %}
                  <!-- end QUESTION CONTENT -->
 
