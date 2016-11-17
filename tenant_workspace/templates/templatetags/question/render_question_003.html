@@ -84,31 +84,67 @@
         {{ node.order_num }}. {{ question.title }}
     </legend>
     <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
-            <fieldset>
+        <div class="col-sm-12">
+            <div class="panel-body">
                 <!-- ROW 1 -->
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.row_1.obj_1.text }}</label>
-                    <div class="col-sm-10">
-                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.row_1.obj_2.placeholder }}" value="{{ picked.textfield_one }}" />
-                    </div>
+                <div class="table-responsive">
+                    <!-- TABLE -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ question.content.row_1.obj_1.header.col1 }}</th>
+                                <th>{{ question.content.row_1.obj_1.header.col2 }}</th>
+                                <th>{{ question.content.row_1.obj_1.header.col3 }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- end TABLE -->
                 </div>
-                <!-- end ROW 1 -->
+                <!-- ROW 1 -->
                 <br />
-                <!-- ROW 2 -->
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.row_2.obj_1.text }}</label>
-                    <div class="col-sm-10">
-                        <label class="checkbox checkbox-inline">
-                            <input id="id_boolfield" type="checkbox" value="option1" {% if picked.boolfield %}checked="checked"{% endif %} />
-                            {{ question.content.row_2.obj_2.text }}
-                        </label>
-                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.row_2.obj_3.placeholder }}" value="{{ picked.textfield_two }}" />
+                <fieldset>
+                    <!-- ROW 2 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.row_2.obj_1.text }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.row_2.obj_2.placeholder }}" value="{{ picked.textfield_one }}" />
+                        </div>
                     </div>
-                </div>
-                <!-- end ROW 2 -->
-            </fieldset>
+                    <!-- end ROW 2 -->
+                    <br />
+                    <!-- ROW 3 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.row_3.obj_1.text }}</label>
+                        <div class="col-sm-10">
+                            <!-- OPTIONS -->
+                            <select id="id_select_opt1" class="form-control">
+                                {% for item in question.options.opt1 %}
+                                    <option value="{{ item.value }}">{{ item.text }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- end OPTIONS -->
+                            <!-- OTHER -->
+                            <br />
+                            <input id="id_other" type="text" class="form-control" placeholder="" value="" />
+                            <!-- end OTHER -->
+                        </div>
+                    </div>
+                    <!-- end ROW 3 -->
+                    <br />
+                    <!-- ROW 4 -->
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.row_4.obj_1.text }}</button>
+                    </div>
+                    <!-- end ROW 4 -->
+                </fieldset>
+            </div>
         </div>
     </div>
 </fieldset>

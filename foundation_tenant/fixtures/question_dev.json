@@ -39,13 +39,122 @@
             "help": "",
             "options": [],
             "content": {
-                "label_one": "Legal Name",
-                "textfield_one": "ex: ABC Trucking LTD.",
-                "label_two": "Do you use a short name?",
-                "boolfield_label": "Yes",
-                "textfield_two": "ex: ABC Trucking"
+                "row_1": {
+                    "obj_1": {
+                        "type": "labelfield",
+                        "text": "Legal Name"
+                    },
+                    "obj_2": {
+                        "type": "textfield",
+                        "placeholder": "ex: ABC Trucking LTD."
+                    }
+                },
+                "row_2": {
+                    "obj_1": {
+                        "type": "labelfield",
+                        "text": "Do you use a short name?"
+                    },
+                    "obj_2": {
+                        "type": "booleanfield",
+                        "text": "Yes"
+                    },
+                    "obj_3": {
+                        "type": "textfield",
+                        "placeholder": "ex: ABC Trucking"
+                    }
+                }
             },
             "template_id": 2
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 3,
+        "fields": {
+            "document_type": 1,
+            "number": 3,
+            "title": "Please list at least 1, or up to 10 owners of the company and the percentage of shares that they own",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": 0,
+                        "text": "Select"
+                    },{
+                        "value": 10,
+                        "text": "10"
+                    },{
+                        "value": 20,
+                        "text": "20"
+                    },{
+                        "value": 30,
+                        "text": "30"
+                    },{
+                        "value": 40,
+                        "text": "40"
+                    },{
+                        "value": 50,
+                        "text": "50"
+                    },{
+                        "value": 60,
+                        "text": "60"
+                    },{
+                        "value": 70,
+                        "text": "70"
+                    },{
+                        "value": 80,
+                        "text": "80"
+                    },{
+                        "value": 90,
+                        "text": "90"
+                    },{
+                        "value": 100,
+                        "text": "100"
+                    },{
+                        "value": "other",
+                        "text": "Other"
+                    }
+                ]
+            },
+            "content": {
+                "row_1": {
+                    "obj_1": {
+                        "type": "table",
+                        "header": {
+                            "col1": "Owner Name",
+                            "col2": "Ownership",
+                            "col3": "Edit / Remove"
+                        }
+                    }
+                },
+                "row_2": {
+                    "obj_1": {
+                        "type": "labelfield",
+                        "text": "Owner Name"
+                    },
+                    "obj_2": {
+                        "type": "textfield",
+                        "placeholder": "ex: John Doe"
+                    }
+                },
+                "row_3": {
+                    "obj_1": {
+                        "type": "textfield",
+                        "text": "Ownership Percentage"
+                    },
+                    "obj_2": {
+                        "type": "selectfield",
+                        "placeholder": "ex: John Doe"
+                    }
+                },
+                "row_4": {
+                    "obj_1": {
+                        "type": "button",
+                        "text": "Add Owner"
+                    }
+                }
+            },
+            "template_id": 3
         }
     }
 ]
