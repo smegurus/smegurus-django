@@ -93,4 +93,11 @@
 
         return location.protocol + "//" + domain + append_url;
     }
+
+    function convert_to_slug(Text) {
+        return Text
+            .toLowerCase()
+            .replace(/ /g,'-')
+            .replace(/[^\w-]+/g,'');
+    }
 </script>

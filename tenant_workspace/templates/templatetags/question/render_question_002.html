@@ -61,12 +61,12 @@
         // Either load up an error telling the user to pick an option
         // or load up the next page.
         if (textfield_one == "") {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.label_one }}\"");
+            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
             return;
         }
         if (boolfield == true) {
             if (textfield_two == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.label_two }}\"");
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2.value }}\"");
                 return;
             }
         }
@@ -89,22 +89,22 @@
             <fieldset>
                 <!-- ROW 1 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.row_1.obj_1.text }}</label>
+                    <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
                     <div class="col-sm-10">
-                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.row_1.obj_2.placeholder }}" value="{{ picked.textfield_one }}" />
+                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.stub_2.value }}" value="{{ picked.textfield_one }}" />
                     </div>
                 </div>
                 <!-- end ROW 1 -->
                 <br />
                 <!-- ROW 2 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.row_2.obj_1.text }}</label>
+                    <label class="col-sm-2 control-label">{{ question.content.stub_3.value }}</label>
                     <div class="col-sm-10">
                         <label class="checkbox checkbox-inline">
                             <input id="id_boolfield" type="checkbox" value="option1" {% if picked.boolfield %}checked="checked"{% endif %} />
-                            {{ question.content.row_2.obj_2.text }}
+                            {{ question.content.stub_4 }}
                         </label>
-                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.row_2.obj_3.placeholder }}" value="{{ picked.textfield_two }}" />
+                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.stub_5.value }}" value="{{ picked.textfield_two }}" />
                     </div>
                 </div>
                 <!-- end ROW 2 -->

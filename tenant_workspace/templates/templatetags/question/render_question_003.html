@@ -2,17 +2,23 @@
 <!-- JS -->
 {% compress js inline %}
 <script>
+    var row_index = {{ picked_count }};
+
     $(document).ready(function () {
-        // Pass
+        $('#id_textfield_two').hide();
+
+        // Show "Other" field if the "Other" option was selected.
+        $(document).on('change','#id_selectfield',function(){
+            var integerfield = $('#id_selectfield').val();
+            if (integerfield == "other") {
+                $('#id_textfield_two').show();
+            } else {
+                $('#id_textfield_two').hide();
+            }
+        });
     });
 
-    function ajax_do_chain(callback) {
-        // Detect checked value.
-        var form = $('#questionForm');
-        var textfield_one = form.find('#id_textfield_one').val();
-        var boolfield = form.find('#id_boolfield').is(":checked")
-        var textfield_two = form.find('#id_textfield_two').val();
-
+    function ajax_do_chain(new_arr, callback) {
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
         get_tenant_questionanswer(
@@ -20,11 +26,7 @@
             function(question_answer) {
 
                 // Set the JSON object with our picked value and stringify it.
-                question_answer['content'] = JSON.stringify({
-                    'textfield_one': textfield_one,
-                    'boolfield': boolfield,
-                    'textfield_two': textfield_two
-                });
+                question_answer['content'] = JSON.stringify(new_arr);
 
                 // Save our "QuestionAnswer" model object.
                 set_tenant_questionanswer(
@@ -47,33 +49,113 @@
         ); // end GET ANSWER
     };
 
-    /**
-     *  Function will load up the next URL after checking to see if the
-     *  option was selected for this question.
-     */
-    function question_answer_protected_next(next_url) {
-        // Detect checked value.
+    function delete_row(id) {
+        $('#'+id).remove();
+    }
+
+    function add_row() {
+        // GET VALUES
         var form = $('#questionForm');
         var textfield_one = form.find('#id_textfield_one').val();
-        var boolfield = form.find('#id_boolfield').is(":checked")
+        var integerfield = form.find('#id_selectfield').val();
         var textfield_two = form.find('#id_textfield_two').val();
 
         // Either load up an error telling the user to pick an option
         // or load up the next page.
         if (textfield_one == "") {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.label_one }}\"");
+            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\"");
             return;
         }
-        if (boolfield == true) {
+        if (integerfield == "other") {
             if (textfield_two == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.label_two }}\"");
+                alert("{% trans 'Please fill in' %} \"Other\"");
+                return;
+            }
+        } else {
+            if (integerfield == "0") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_6 }}\"");
                 return;
             }
         }
 
-        ajax_do_chain(function(json_result) {  // Update our model.
-            window.location = next_url;
+        // CREATE HTML ROW.
+        var html_row = "<tr id=\""+row_index+"\">";
+        html_row += "<td>"+textfield_one+"</td>";
+        if (integerfield == "other") {
+            html_row += "<td>"+textfield_two+"</td>";
+        } else {
+            html_row += "<td>"+integerfield+"</td>";
+        }
+        html_row += "<td>";
+        var onclick_js = "delete_row("+row_index+")";
+        html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
+        html_row += "</td>";
+        html_row += "</tr>";
+
+        // ADD HTML ROW TO OUR PAGE.
+        $("#id_table > tbody").append(html_row);
+
+        // CLEAR FIELDS.
+        $('#id_textfield_one').val("");
+        $('#id_selectfield option[value=0]').attr('selected','selected');
+        $('#id_textfield_two').val("");
+        $('#id_textfield_two').hide();
+        row_index += 1;
+    }
+
+    function get_table_data() {
+        var data = [];
+        $('#id_table').find('tr').each(function (rowIndex, r) {
+            var cols = [];
+            $(this).find('th,td').each(function (colIndex, c) {
+                cols.push(c.textContent);
+            });
+            data.push(cols);
         });
+        return data;
+    }
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Fetch the table array.
+        var arr = get_table_data();
+
+        // Defensive Code: Check to see if any rows exist?
+        var count = arr.length;
+        if (count == 1) {
+            alert("Please add an owner before continuing.");
+            return;
+        }
+
+        // Variable used to generate our new array.
+        var new_arr = [];
+
+        // Iterate through the table and generate our new array.
+        for(var i=1; i < count; i++) {
+            var row = arr[i];
+            var name = row[0];
+            var percent = row[1];
+            new_arr.push({
+                "id": i,
+                "name": name,
+                "percent": percent
+            });
+        }
+
+        // DEBUGGING PURPOSES ONLY.
+        console.log(new_arr);
+
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            new_arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
     }
 </script>
 {% endcompress %}
@@ -89,20 +171,26 @@
                 <!-- ROW 1 -->
                 <div class="table-responsive">
                     <!-- TABLE -->
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="id_table">
                         <thead>
                             <tr>
-                                <th>{{ question.content.row_1.obj_1.header.col1 }}</th>
-                                <th>{{ question.content.row_1.obj_1.header.col2 }}</th>
-                                <th>{{ question.content.row_1.obj_1.header.col3 }}</th>
+                                <th>{{ question.content.stub_1 }}</th>
+                                <th>{{ question.content.stub_2 }}</th>
+                                <th>{{ question.content.stub_3 }}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
+                            <!-- CONTENT -->
+                            {% for pick in picked %}
+                                <tr id="{{ pick.id }}">
+                                    <td>{{ pick.name }}</td>
+                                    <td>{{ pick.percent }}</td>
+                                    <td>
+                                        <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.id }});">{% trans 'Delete' %}</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <!-- end CONTENT -->
                         </tbody>
                     </table>
                     <!-- end TABLE -->
@@ -112,19 +200,19 @@
                 <fieldset>
                     <!-- ROW 2 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.row_2.obj_1.text }}</label>
+                        <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
                         <div class="col-sm-10">
-                            <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.row_2.obj_2.placeholder }}" value="{{ picked.textfield_one }}" />
+                            <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.textfield_one }}" />
                         </div>
                     </div>
                     <!-- end ROW 2 -->
                     <br />
                     <!-- ROW 3 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.row_3.obj_1.text }}</label>
+                        <label class="col-sm-2 control-label">{{ question.content.stub_6 }}</label>
                         <div class="col-sm-10">
                             <!-- OPTIONS -->
-                            <select id="id_select_opt1" class="form-control">
+                            <select id="id_selectfield" class="form-control">
                                 {% for item in question.options.opt1 %}
                                     <option value="{{ item.value }}">{{ item.text }}</option>
                                 {% endfor %}
@@ -132,15 +220,15 @@
                             <!-- end OPTIONS -->
                             <!-- OTHER -->
                             <br />
-                            <input id="id_other" type="text" class="form-control" placeholder="" value="" />
+                            <input id="id_textfield_two" type="text" class="form-control" placeholder="" value="" />
                             <!-- end OTHER -->
                         </div>
                     </div>
                     <!-- end ROW 3 -->
                     <br />
                     <!-- ROW 4 -->
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-success btn-lg">{{ question.content.row_4.obj_1.text }}</button>
+                    <div class="pull-right" onclick="add_row();">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_8 }}</button>
                     </div>
                     <!-- end ROW 4 -->
                 </fieldset>

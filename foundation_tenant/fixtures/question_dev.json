@@ -39,30 +39,11 @@
             "help": "",
             "options": [],
             "content": {
-                "row_1": {
-                    "obj_1": {
-                        "type": "labelfield",
-                        "text": "Legal Name"
-                    },
-                    "obj_2": {
-                        "type": "textfield",
-                        "placeholder": "ex: ABC Trucking LTD."
-                    }
-                },
-                "row_2": {
-                    "obj_1": {
-                        "type": "labelfield",
-                        "text": "Do you use a short name?"
-                    },
-                    "obj_2": {
-                        "type": "booleanfield",
-                        "text": "Yes"
-                    },
-                    "obj_3": {
-                        "type": "textfield",
-                        "placeholder": "ex: ABC Trucking"
-                    }
-                }
+                "stub_1": "Legal Name",
+                "stub_2": "ex: ABC Trucking LTD.",
+                "stub_3": "Do you use a short name?",
+                "stub_4": "Yes",
+                "stub_5": "ex: ABC Trucking"
             },
             "template_id": 2
         }
@@ -117,42 +98,14 @@
                 ]
             },
             "content": {
-                "row_1": {
-                    "obj_1": {
-                        "type": "table",
-                        "header": {
-                            "col1": "Owner Name",
-                            "col2": "Ownership",
-                            "col3": "Edit / Remove"
-                        }
-                    }
-                },
-                "row_2": {
-                    "obj_1": {
-                        "type": "labelfield",
-                        "text": "Owner Name"
-                    },
-                    "obj_2": {
-                        "type": "textfield",
-                        "placeholder": "ex: John Doe"
-                    }
-                },
-                "row_3": {
-                    "obj_1": {
-                        "type": "textfield",
-                        "text": "Ownership Percentage"
-                    },
-                    "obj_2": {
-                        "type": "selectfield",
-                        "placeholder": "ex: John Doe"
-                    }
-                },
-                "row_4": {
-                    "obj_1": {
-                        "type": "button",
-                        "text": "Add Owner"
-                    }
-                }
+                "stub_1": "Owner Name",
+                "stub_2": "Ownership",
+                "stub_3": "Options",
+                "stub_4": "Owner Name",
+                "stub_5": "ex: John Doe",
+                "stub_6": "Ownership Percentage",
+                "stub_7": "ex: John Doe",
+                "stub_8": "Add Owner"
             },
             "template_id": 3
         }
