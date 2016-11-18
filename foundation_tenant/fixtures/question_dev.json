@@ -109,5 +109,47 @@
             },
             "template_id": 3
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 4,
+        "fields": {
+            "document_type": 1,
+            "number": 4,
+            "title": "What is the legal structure of your company?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "select",
+                        "text": "Select"
+                    },
+                    {
+                        "value": "a sole proprietorship",
+                        "text": "a sole proprietorship"
+                    },
+                    {
+                        "value": "a partnership",
+                        "text": "a partnership"
+                    },
+                    {
+                        "value": "an incorporated entity",
+                        "text": "an incorporated entity"
+                    },
+                    {
+                        "value": "a social enterprise",
+                        "text": "a social enterprise"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ]
+            },
+            "content": {
+                "stub_1": "Legal Structure"
+            },
+            "template_id": 4
+        }
     }
 ]

@@ -1,0 +1,113 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // Show "Other" field if the "Other" option was selected.
+        $(document).on('change','#id_selectfield',function(){
+            var selectfield = $('#id_selectfield').val();
+            if (selectfield == "other") {
+                $('#id_textfield').show();
+            } else {
+                $('#id_textfield').hide();
+                $('#id_textfield').val("");
+            }
+        });
+    });
+
+    function ajax_do_chain(callback) {
+        // Detect checked value.
+        var selectfield = $('#id_selectfield').val();
+        var textfield = $('#id_textfield').val();
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'selectfield': selectfield,
+                    'textfield': textfield
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        var selectfield = $('#id_selectfield').val();
+        var textfield = $('#id_textfield').val();
+        if (selectfield == "other") {
+            if (textfield == "") {
+                alert("{% trans 'Please fill in' %} \"Other\"");
+                return;
+            }
+        } else {
+            if (selectfield == "select") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
+                return;
+            }
+        }
+
+        ajax_do_chain(function(json_result) {  // Update our model.
+            window.location = next_url;
+        });
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-10">
+            <fieldset>
+                <!-- ROW 1 -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
+                    <div class="col-sm-10">
+                        <!-- OPTIONS -->
+                        <select id="id_selectfield" class="form-control">
+                            {% for item in question.options.opt1 %}
+                                <option value="{{ item.value }}" {% if item.value == picked.selectfield %}selected="selected"{% endif %}>{{ item.text }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- end OPTIONS -->
+                        <!-- OTHER -->
+                        <br />
+                        <input id="id_textfield" type="text" class="form-control" placeholder="" value="{{ picked.textfield }}" {% if picked.textfield == None or picked.textfield == ""  %}style="display: none;"{% endif %} />
+                        <!-- end OTHER -->
+                    </div>
+                </div>
+                <!-- end ROW 1 -->
+            </fieldset>
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->
