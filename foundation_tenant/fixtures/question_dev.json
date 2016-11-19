@@ -61,37 +61,48 @@
                     {
                         "value": 0,
                         "text": "Select"
-                    },{
+                    },
+                    {
                         "value": 10,
                         "text": "10"
-                    },{
+                    },
+                    {
                         "value": 20,
                         "text": "20"
-                    },{
+                    },
+                    {
                         "value": 30,
                         "text": "30"
-                    },{
+                    },
+                    {
                         "value": 40,
                         "text": "40"
-                    },{
+                    },
+                    {
                         "value": 50,
                         "text": "50"
-                    },{
+                    },
+                    {
                         "value": 60,
                         "text": "60"
-                    },{
+                    },
+                    {
                         "value": 70,
                         "text": "70"
-                    },{
+                    },
+                    {
                         "value": 80,
                         "text": "80"
-                    },{
+                    },
+                    {
                         "value": 90,
                         "text": "90"
-                    },{
+                    },
+                    {
                         "value": 100,
                         "text": "100"
-                    },{
+                    },
+                    {
                         "value": "other",
                         "text": "Other"
                     }
@@ -150,6 +161,39 @@
                 "stub_1": "Legal Structure"
             },
             "template_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 5,
+        "fields": {
+            "document_type": 1,
+            "number": 5,
+            "title": "Where will your company be located?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "United States",
+                    "Canada",
+                    "Mexico"
+                ],
+                "opt2": [
+                    {
+                        "parent": "Canada",
+                        "choices": ["Ontario", "Quebec", "Manitoba"]
+                    }, {
+                        "parent": "United States",
+                        "choices": ["California", "Washington State", "Montana", "York State"]
+                    }
+                ]
+            },
+            "content": {
+                "stub_1": "Street Address",
+                "stub_2": "City / Town",
+                "stub_3": "Country",
+                "stub_4": "Province / State"
+            },
+            "template_id": 5
         }
     }
 ]
