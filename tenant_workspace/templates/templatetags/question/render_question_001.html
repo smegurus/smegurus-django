@@ -17,7 +17,7 @@
 
                     // Set the JSON object with our picked value and stringify it.
                     question_answer['content'] = JSON.stringify({
-                        'value': parseInt(value)
+                        'var_1': parseInt(value)
                     });
 
                     // Save our "QuestionAnswer" model object.
@@ -73,7 +73,7 @@
             {% for option in question.options %}
             <div class="radio">
                 <label>
-                    <input id="optionsRadios{{ option.value }}" {% if picked.value == option.value %}checked="checked"{% endif %}
+                    <input id="optionsRadios{{ option.value }}" {% if picked.var_1 == option.value %}checked="checked"{% endif %}
                          type="radio"
                          name="optionsRadios"
                         value="{{ option.value }}" />{{ option.text|escape|safe }}

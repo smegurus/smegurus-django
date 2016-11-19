@@ -21,9 +21,9 @@
 
                 // Set the JSON object with our picked value and stringify it.
                 question_answer['content'] = JSON.stringify({
-                    'textfield_one': textfield_one,
-                    'boolfield': boolfield,
-                    'textfield_two': textfield_two
+                    'var_1': textfield_one,
+                    'var_2': boolfield,
+                    'var_3': textfield_two
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -66,7 +66,7 @@
         }
         if (boolfield == true) {
             if (textfield_two == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2.value }}\"");
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\"");
                 return;
             }
         }
@@ -91,20 +91,20 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
                     <div class="col-sm-10">
-                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.stub_2.value }}" value="{{ picked.textfield_one }}" />
+                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.stub_2 }}" value="{{ picked.var_1 }}" />
                     </div>
                 </div>
                 <!-- end ROW 1 -->
                 <br />
                 <!-- ROW 2 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_3.value }}</label>
+                    <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
                     <div class="col-sm-10">
                         <label class="checkbox checkbox-inline">
-                            <input id="id_boolfield" type="checkbox" value="option1" {% if picked.boolfield %}checked="checked"{% endif %} />
+                            <input id="id_boolfield" type="checkbox" value="option1" {% if picked.var_2 %}checked="checked"{% endif %} />
                             {{ question.content.stub_4 }}
                         </label>
-                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.stub_5.value }}" value="{{ picked.textfield_two }}" />
+                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.var_3 }}" />
                     </div>
                 </div>
                 <!-- end ROW 2 -->
