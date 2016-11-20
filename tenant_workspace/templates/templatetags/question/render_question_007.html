@@ -1,0 +1,212 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $(document).on('change','#id_input_1',function(){
+            // CASE 1 OF 2:
+            // Show or hide the "id_input_1_other_div" code depending on whether
+            // the user selected "{{ OTHER_TEXT }}" or not.
+            var input_1 = $('#id_input_1').val();
+            if (input_1 == "{{ OTHER_TEXT }}") {
+                $('#id_input_1_other_div').show();
+            } else {
+                $('#id_input_1_other_div').hide();
+                $('#id_input_1_other').val("");
+            } // end CASE 1
+
+            // CASE 2 OF 2:
+            // Unlock all the "id_input_2" options. Get the picked result from
+            // "id_input_1" and lock that choice from the "id_input_2" choices.
+            if (input_1 != "" && input_1 != "{{ OTHER_TEXT }}") {
+                $("#id_input_2 > option").each(function() {
+                    $(this).removeAttr('disabled');
+                });
+                var select_option = $("#id_input_2 option[value='"+input_1+"']")
+                select_option.attr('disabled','disabled');
+            } //end CASE 2
+        });
+
+        //
+        // Detect changes with "id_input_2" input field.
+        //
+        $(document).on('change','#id_input_2',function(){
+            // CASE 1 OF 2:
+            // Show or hide the "id_input_2_other_div" code depending on whether
+            // the user selected "{{ OTHER_TEXT }}" or not.
+            var input_2 = $('#id_input_2').val();
+            if (input_2 == "{{ OTHER_TEXT }}") {
+                $('#id_input_2_other_div').show();
+            } else {
+                $('#id_input_2_other_div').hide();
+                $('#id_input_2_other').val("");
+            } // end CASE 1
+
+            // CASE 2 OF 2:
+            // Unlock all the "id_input_1" options. Get the picked result from
+            // "id_input_2" and lock that choice from the "id_input_1" choices.
+            if (input_2 != "" && input_2 != "{{ OTHER_TEXT }}") {
+                $("#id_input_1 > option").each(function() {
+                    $(this).removeAttr('disabled');
+                });
+                var select_option = $("#id_input_1 option[value='"+input_2+"']")
+                select_option.attr('disabled','disabled');
+            } // end CASE 2
+        });
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Get inputs to valid.
+        var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
+        var input_2 = $('#id_input_2').val();
+        var input_2_other = $('#id_input_2_other').val();
+
+        // Perform validation.
+        if (input_1 == "{{ OTHER_TEXT }}") {
+            if (input_1_other == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\".");
+                return;
+            }
+        } else {
+            if (input_1 == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\".");
+                return;
+            }
+        }
+
+        if (input_2 == "{{ OTHER_TEXT }}") {
+            if (input_2_other == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
+                return;
+            }
+        } else {
+            if (input_2 == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
+                return;
+            }
+        }
+
+        // Update our model.
+        ajax_do_chain(function(json_result) {
+            window.location = next_url;
+        });
+    }
+
+    function ajax_do_chain(callback) {
+        // Get inputs to valid.
+        var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
+        var input_2 = $('#id_input_2').val();
+        var input_2_other = $('#id_input_2_other').val();
+
+        // Prevent loading "Other" if not picked.
+        if (input_1 != "{{ OTHER_TEXT }}") {
+            input_1_other = "";
+        }
+        if (input_2 != "{{ OTHER_TEXT }}") {
+            input_2_other = "";
+        }
+
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_1': input_1,
+                    'var_1_other': input_1_other,
+                    'var_2': input_2,
+                    'var_2_other': input_2_other
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+    <!-- ROW 1 -->
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-10">
+
+            <!-- INPUT 1 -->
+            <select id="id_input_1" class="form-control m-b">
+                <option value="">{% trans 'Select' %}</option>
+                {% for option in question.options.opt1 %}
+                    <option value="{{ option }}" {% if picked.var_1 == option %}selected="selected"{% endif %} {% if picked.var_2 == option and picked.var_2 != OTHER_TEXT %}disabled="disabled"{% endif %}>{{ option }}</option>
+                {% endfor %}
+            </select>
+            <!-- end INPUT 1 -->
+
+            <!-- OTHER 1 -->
+            <div id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+                <br />
+                <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
+            </div>
+            <!-- end OTHER 1 -->
+
+            <br>
+        </div>
+    </div>
+    <!-- end ROW 1 -->
+    <!-- ROW 2 -->
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ question.content.stub_2 }}</label>
+        <div class="col-sm-10">
+
+            <!-- INPUT 2 -->
+            <select id="id_input_2" class="form-control m-b">
+                <option value="">{% trans 'Select' %}</option>
+                {% for option in question.options.opt1 %}
+                    <option value="{{ option }}" {% if picked.var_2 == option %}selected="selected"{% endif %} {% if picked.var_1 == option and picked.var_1 != OTHER_TEXT %}disabled="disabled"{% endif %}>{{ option }}</option>
+                {% endfor %}
+            </select>
+            <!-- end INPUT 2 -->
+
+            <!-- OTHER 2 -->
+            <div id="id_input_2_other_div" {% if not picked.var_2_other %}style="display: none;"{% endif %}>
+                <br />
+                <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_2_other }}" />
+            </div>
+            <!-- end OTHER 2 -->
+
+            <br>
+        </div>
+    </div>
+    <!-- end ROW 2-->
+</fieldset>
+<!-- end HTML -->

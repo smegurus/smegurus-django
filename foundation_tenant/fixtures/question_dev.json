@@ -338,5 +338,42 @@
             },
             "template_id": 6
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 7,
+        "fields": {
+            "document_type": 1,
+            "number": 7,
+            "title": "What are the two main benefits of your company's location?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "has good exposure",
+                    "is in a high traffic area",
+                    "is near the target market",
+                    "has good operational suitability",
+                    "is close to suppliers",
+                    "is close to customers",
+                    "is close to highways",
+                    "has good visibility",
+                    "is close to my home",
+                    "is within my home",
+                    "is a newer structure",
+                    "is turn-key",
+                    "is secure",
+                    "is well-equipped",
+                    "is close to retail areas",
+                    "is close to distributors",
+                    "is close to industrial areas",
+                    "Other (Please Specify)"
+                ]
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2"
+            },
+            "template_id": 7
+        }
     }
 ]
