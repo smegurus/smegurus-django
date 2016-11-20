@@ -3,7 +3,23 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // FILL IN.
+        {% if previous_picked.var_1 == question.options.opt_4 %}
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $(document).on('change','#id_input_1',function(){
+            // CASE 1 OF 2:
+            // Show or hide the "id_input_1_other_div" code depending on whether
+            // the user selected "{{ OTHER_TEXT }}" or not.
+            var input_1 = $('#id_input_1').val();
+            if (input_1 == "{{ OTHER_TEXT }}") {
+                $('#id_input_1_other_div').show();
+            } else {
+                $('#id_input_1_other_div').hide();
+                $('#id_input_1_other').val("");
+            } // end CASE 1
+         });
+        {% endif %}
     }); // end DOCUMENT START
 
     /**
@@ -13,27 +29,22 @@
     function question_answer_protected_next(next_url) {
         // Get inputs to valid.
         var input_1 = $('#id_input_1').val();
-        // var input_1_other = $('#id_input_1_other').val();
+        var input_1_other = $('#id_input_1_other').val();
         // var input_2 = $('#id_input_2').val();
         // var input_2_other = $('#id_input_2_other').val();
 
         // Perform validation.
-        if (input_1 == "") {
-            alert("{% trans 'Please fill in your answer.' %}");
-            return;
+        if (input_1 == "{{ OTHER_TEXT }}") {
+            if (input_1_other == "") {
+                alert("{% trans 'Please fill in question' %}");
+                return;
+            }
+        } else {
+            if (input_1 == "") {
+                alert("{% trans 'Please fill in question' %}");
+                return;
+            }
         }
-
-        // if (input_2 == "{{ OTHER_TEXT }}") {
-        //     if (input_2_other == "") {
-        //         alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
-        //         return;
-        //     }
-        // } else {
-        //     if (input_2 == "") {
-        //         alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
-        //         return;
-        //     }
-        // }
 
         // // Update our model.
         ajax_do_chain(function(json_result) {
@@ -44,18 +55,12 @@
     function ajax_do_chain(callback) {
         // Get inputs to valid.
         var input_1 = $('#id_input_1').val();
-        // var input_1_other = $('#id_input_1_other').val();
-        // var input_2 = $('#id_input_2').val();
-        // var input_2_other = $('#id_input_2_other').val();
+        var input_1_other = $('#id_input_1_other').val();
 
-        // // Prevent loading "Other" if not picked.
-        // if (input_1 != "{{ OTHER_TEXT }}") {
-        //     input_1_other = "";
-        // }
-        // if (input_2 != "{{ OTHER_TEXT }}") {
-        //     input_2_other = "";
-        // }
-
+        // Prevent loading "Other" if not picked.
+        if (input_1 != "{{ OTHER_TEXT }}") {
+            input_1_other = "";
+        }
 
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
@@ -67,7 +72,7 @@
                 question_answer['content'] = JSON.stringify({
                     'var_0': "{{ previous_picked.var_1 }}",
                     'var_1': input_1,
-                    // 'var_1_other': input_1_other,
+                    'var_1_other': input_1_other,
                     // 'var_2': input_2,
                     // 'var_2_other': input_2_other
                 });
@@ -106,7 +111,7 @@
             <!-- NEIGHBOURHOOD -->
             {% if previous_picked.var_1 == question.options.opt_1 %}
             <div class="form-group">
-                <label class="col-sm-2 control-label">{% trans 'Neighbourhood' %}</label>
+                <label class="col-sm-2 control-label">{{ question.options.opt_1 }}</label>
                 <div class="col-sm-10">
                     <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_1 }}" value="{% if picked.var_0 == question.options.opt_1 %}{{ picked.var_1 }}{% endif %}" />
                     <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
@@ -117,7 +122,7 @@
             <!-- CITY -->
             {% elif previous_picked.var_1 == question.options.opt_2 %}
             <div class="form-group">
-                <label class="col-sm-2 control-label">{% trans 'City' %}</label>
+                <label class="col-sm-2 control-label">{{ question.options.opt_2 }}</label>
                 <div class="col-sm-10">
                     <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_2 }}" value="{% if picked.var_0 == question.options.opt_2 %}{{ picked.var_1 }}{% endif %}" />
                     <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
@@ -128,7 +133,7 @@
             <!-- REGION -->
             {% elif previous_picked.var_1 == question.options.opt_3 %}
             <div class="form-group">
-                <label class="col-sm-2 control-label">{% trans 'Region' %}</label>
+                <label class="col-sm-2 control-label">{{ question.options.opt_3 }}</label>
                 <div class="col-sm-10">
                     <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_3 }}" value="{% if picked.var_0 == question.options.opt_3 %}{{ picked.var_1 }}{% endif %}" />
                     <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
@@ -136,10 +141,27 @@
             </div>
             <!-- end REGION -->
 
-            <!--  -->
+            <!-- PROVINCE / STATE -->
             {% elif previous_picked.var_1 == question.options.opt_4 %}
-            test
-            <!-- end -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{ question.options.opt_4 }}</label>
+                <div class="col-sm-10">
+                    <!-- OPTIONS -->
+                    <select id="id_input_1" class="form-control">
+                        {% for option in question.options.opt_9 %}
+                            <option value="{{ option }}" {% if picked.var_1 == option %}selected="selected"{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    <!-- end OPTIONS -->
+                    <!-- OTHER -->
+                    <div id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+                        <br />
+                        <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{% if picked.var_0 == question.options.opt_4 %}{{ picked.var_1_other }}{% endif %}" />
+                    </div>
+                    <!-- end OTHER -->
+                </div>
+            </div>
+            <!-- end PROVINCE / STATE -->
 
             <!--  -->
             {% elif previous_picked.var_1 == question.options.opt_5 %}
