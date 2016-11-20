@@ -70,6 +70,12 @@ class Question(models.Model):
         blank=True,
         default="{}"
     )
+    validation = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
+        _("Validation"),
+        help_text=_('The validation identification used for this question.'),
+        blank=True,
+        default="{}"
+    )
     template_id = models.PositiveSmallIntegerField(
         _("Template ID"),
         help_text=_('The template ID to load up for the view.'),

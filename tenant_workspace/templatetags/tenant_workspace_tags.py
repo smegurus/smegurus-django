@@ -163,3 +163,18 @@ def render_question_009(workspace, module, node, question, answer):
         'previous_picked': json.loads(previous_question_answer.content),  # Convert string to JSON dictionary.
         "OTHER_TEXT": "Other (Please Specify)"
     }
+
+
+@register.inclusion_tag('templatetags/question/render_question_010.html')
+def render_question_010(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked),
+        "OTHER_TEXT": "Other (Please Specify)"
+    }
