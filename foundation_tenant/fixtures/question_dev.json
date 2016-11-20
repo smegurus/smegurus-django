@@ -379,5 +379,40 @@
             },
             "template_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 9,
+        "fields": {
+            "document_type": 1,
+            "number": 9,
+            "title": "What do you need the money for? Select 3 reasons from the list below or enter your own reason, then enter the amounts you need into the chart",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "Purchase equipment",
+                    "Get start-up funding",
+                    "Get an operating loan",
+                    "Purchase a building",
+                    "Increase the size of your business",
+                    "Develop a prototype",
+                    "Seek a patent/trademark",
+                    "Fund a licensing agreement",
+                    "Inventory", "Hire staff",
+                    "Build a technology solution",
+                    "Other (Please Specify)"
+                ]
+            },
+            "content": {
+                "stub_1": "Funds purpose",
+                "stub_2": "Amount",
+                "stub_3": "Remove",
+                "stub_4": "Funds purpose",
+                "stub_5": "Amount Needed",
+                "stub_6": "ex: 1000",
+                "stub_7": "Add Use of Funds"
+            },
+            "template_id": 8
+        }
     }
 ]
