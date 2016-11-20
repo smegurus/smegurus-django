@@ -386,7 +386,7 @@
         "fields": {
             "document_type": 1,
             "number": 9,
-            "title": "What do you need the money for? Select 3 reasons from the list below or enter your own reason, then enter the amounts you need into the chart",
+            "title": "What do you need the money for? Select up to 10 reasons from the list below or enter your own reason, then enter the amounts you need into the chart",
             "help": "",
             "options": {
                 "opt1": [
