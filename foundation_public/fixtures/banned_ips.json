@@ -268,5 +268,32 @@
         "banned_on": "2016-11-07",
         "reason": "/administrator/index.php"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 31,
+    "fields": {
+        "address": "191.184.188.202",
+        "banned_on": "2016-11-17",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 32,
+    "fields": {
+        "address": "201.22.7.11",
+        "banned_on": "2016-11-18",
+        "reason": "/manager/html"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 33,
+    "fields": {
+        "address": "198.167.140.207",
+        "banned_on": "2016-11-19",
+        "reason": "/muieblackcat"
+    }
 }
 ]

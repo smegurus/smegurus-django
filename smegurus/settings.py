@@ -94,6 +94,7 @@ SHARED_APPS = (
 
 TENANT_APPS = (
   # your tenant-specific apps
+  'corsheaders',
   'foundation_tenant',
   'api',
   'foundation_auth',
@@ -128,8 +129,8 @@ MIDDLEWARE = [
     'htmlmin.middleware.HtmlMinifyMiddleware',                        # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',                          # Third Party
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
