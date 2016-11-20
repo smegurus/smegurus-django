@@ -639,5 +639,34 @@
             },
             "template_id": 9
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 12,
+        "fields": {
+            "document_type": 1,
+            "number": 12,
+            "title": "Does your business mainly offer products, services, or both?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Products",
+                        "text": "Products"
+                    },
+                    {
+                        "value": "Services",
+                        "text": "Services"
+                    },
+                    {
+                        "value": "Products and Services",
+                        "text": "Products and Services"
+                    }
+                ]
+            },
+            "content": {},
+            "dependency": {},
+            "template_id": 1
+        }
     }
 ]
