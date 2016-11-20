@@ -76,6 +76,14 @@
                 },{
                     "previous_position": 8,
                     "current_position": 9,
+                    "next_position": 10,
+                    "id": 8,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 8
+                },{
+                    "previous_position": 9,
+                    "current_position": 10,
                     "next_position": -1,
                     "id": 3,
                     "type": "slide"

@@ -35,7 +35,8 @@ def render_question_001(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content)
+        'picked': json.loads(answer.content),
+        "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
@@ -47,7 +48,8 @@ def render_question_002(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content)
+        'picked': json.loads(answer.content),
+        "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
@@ -61,7 +63,8 @@ def render_question_003(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        'picked_count': len(picked)
+        'picked_count': len(picked),
+        "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
@@ -75,7 +78,8 @@ def render_question_004(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        'picked_count': len(picked)
+        'picked_count': len(picked),
+        "OTHER_TEXT": "other"
     }
 
 
@@ -88,6 +92,7 @@ def render_question_005(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': json.loads(answer.content),
+        "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
@@ -101,7 +106,8 @@ def render_question_006(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        'picked_count': len(picked)
+        'picked_count': len(picked),
+        "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
@@ -114,5 +120,5 @@ def render_question_007(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': json.loads(answer.content),
-        "OTHER_TEXT": "Other (Please Specify)"
+        "OTHER_TEXT": "other"
     }

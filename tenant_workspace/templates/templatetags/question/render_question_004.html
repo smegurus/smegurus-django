@@ -3,22 +3,24 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // Show "Other" field if the "Other" option was selected.
-        $(document).on('change','#id_selectfield',function(){
-            var selectfield = $('#id_selectfield').val();
-            if (selectfield == "other") {
-                $('#id_textfield').show();
+        //
+        //  Detect input changes for "id_input_1" field.
+        //
+        $(document).on('change','#id_input_1',function(){
+            var input_1 = $('#id_input_1').val();
+            if (input_1 == "{{ OTHER_TEXT }}") {
+                $('#id_input_1_other').show();
             } else {
-                $('#id_textfield').hide();
-                $('#id_textfield').val("");
+                $('#id_input_1_other').hide();
+                $('#id_input_1_other').val("");
             }
         });
     });
 
     function ajax_do_chain(callback) {
         // Detect checked value.
-        var selectfield = $('#id_selectfield').val();
-        var textfield = $('#id_textfield').val();
+        var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
 
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
@@ -28,8 +30,8 @@
 
                 // Set the JSON object with our picked value and stringify it.
                 question_answer['content'] = JSON.stringify({
-                    'var_1': selectfield,
-                    'var_1_other': textfield
+                    'var_1': input_1,
+                    'var_1_other': input_1_other
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -58,15 +60,15 @@
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        var selectfield = $('#id_selectfield').val();
-        var textfield = $('#id_textfield').val();
-        if (selectfield == "other") {
-            if (textfield == "") {
+        var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
+        if (input_1 == "{{ OTHER_TEXT }}") {
+            if (input_1_other == "") {
                 alert("{% trans 'Please fill in' %} \"Other\"");
                 return;
             }
         } else {
-            if (selectfield == "select") {
+            if (input_1 == "select") {
                 alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
                 return;
             }
@@ -93,15 +95,16 @@
                     <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
                     <div class="col-sm-10">
                         <!-- OPTIONS -->
-                        <select id="id_selectfield" class="form-control">
+                        <select id="id_input_1" class="form-control">
+                            <option value="">{% trans 'select' %}</option>
                             {% for item in question.options.opt1 %}
-                                <option value="{{ item.value }}" {% if item.value == picked.var_1 %}selected="selected"{% endif %}>{{ item.text }}</option>
+                                <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
                             {% endfor %}
                         </select>
                         <!-- end OPTIONS -->
                         <!-- OTHER -->
                         <br />
-                        <input id="id_textfield" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} />
+                        <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} />
                         <!-- end OTHER -->
                     </div>
                 </div>
