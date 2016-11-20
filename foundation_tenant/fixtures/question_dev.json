@@ -775,5 +775,57 @@
             "validation": {},
             "template_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 17,
+        "fields": {
+            "document_type": 1,
+            "number": 17,
+            "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Yes",
+                        "text": "Yes"
+                    },
+                    {
+                        "value": "No",
+                        "text": "No"
+                    }
+                ]
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "template_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 18,
+        "fields": {
+            "document_type": 1,
+            "number": 18,
+            "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Yes",
+                        "text": "Yes"
+                    },
+                    {
+                        "value": "No",
+                        "text": "No"
+                    }
+                ]
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "template_id": 1
+        }
     }
 ]
