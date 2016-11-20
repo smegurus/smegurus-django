@@ -3,7 +3,7 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        {% if previous_picked.var_1 == question.options.opt_4 %}
+        {% if previous_picked.var_1 == question.options.opt_4 or previous_picked.var_1 == question.options.opt_5 %}
         //
         // Detect changes with "id_input_1" input field.
         //
@@ -163,31 +163,42 @@
             </div>
             <!-- end PROVINCE / STATE -->
 
-            <!--  -->
+            <!-- COUNTRY -->
             {% elif previous_picked.var_1 == question.options.opt_5 %}
-            Province or State
-            <!-- end -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{{ question.options.opt_5 }}</label>
+                <div class="col-sm-10">
+                    <!-- OPTIONS -->
+                    <select id="id_input_1" class="form-control">
+                        <option value="">{% trans 'Select' %}</option>
+                        {% for option in question.options.opt_10 %}
+                            <option value="{{ option }}" {% if picked.var_1 == option %}selected="selected"{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    <!-- end OPTIONS -->
+                    <!-- OTHER -->
+                    <div id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+                        <br />
+                        <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{% if picked.var_0 == question.options.opt_5 %}{{ picked.var_1_other }}{% endif %}" />
+                    </div>
+                    <!-- end OTHER -->
+                </div>
+            </div>
+            <!-- end COUNTRY -->
 
-            <!--  -->
+            <!-- GLBOAL -->
             {% elif previous_picked.var_1 == question.options.opt_6 %}
-            Country
+            <!-- end GLBOAL -->
 
-            <!-- end -->
-            <!--  -->
+            <!-- ONLINE -->
             {% elif previous_picked.var_1 == question.options.opt_7 %}
-            Global
+            <!-- end ONLINE -->
 
-            <!-- end -->
-            <!--  -->
+            <!-- CUSTOM -->
             {% elif previous_picked.var_1 == question.options.opt_8 %}
-            Online
-
-            <!-- end -->
-            <!--  -->
-            {% elif previous_picked.var_1 == question.options.opt_9 %}
             Other (Please Specify
             {% endif %}
-            <!-- end -->
+            <!-- end CUSTOM -->
         </div>
     </div>
 </fieldset>
