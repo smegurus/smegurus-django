@@ -8,7 +8,7 @@
         $("input[name=optionsRadios]").click(function(){
             // Get the option selected.
             var value = this.value;
-
+    
             // Fetch our pre-created (or previously-saved) "QuestionAnswer"
             // from our Database and convert it to JSON object.
             get_tenant_questionanswer(
@@ -17,7 +17,7 @@
 
                     // Set the JSON object with our picked value and stringify it.
                     question_answer['content'] = JSON.stringify({
-                        'var_1': parseInt(value)
+                        'var_1': value
                     });
 
                     // Save our "QuestionAnswer" model object.
@@ -70,7 +70,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
-            {% for option in question.options %}
+            {% for option in question.options.opt1 %}
             <div class="radio">
                 <label>
                     <input id="optionsRadios{{ option.value }}" {% if picked.var_1 == option.value %}checked="checked"{% endif %}

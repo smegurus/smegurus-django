@@ -5,15 +5,15 @@
     var row_index = {{ picked_count }};
 
     $(document).ready(function () {
-        $('#id_textfield_two').hide();
+        $('#id_input_2_other').hide();
 
         // Show "Other" field if the "Other" option was selected.
-        $(document).on('change','#id_selectfield',function(){
-            var integerfield = $('#id_selectfield').val();
-            if (integerfield == "other") {
-                $('#id_textfield_two').show();
+        $(document).on('change','#id_input_2',function(){
+            var input_2 = $('#id_input_2').val();
+            if (input_2 == "other") {
+                $('#id_input_2_other').show();
             } else {
-                $('#id_textfield_two').hide();
+                $('#id_input_2_other').hide();
             }
         });
     });
@@ -56,23 +56,23 @@
     function add_row() {
         // GET VALUES
         var form = $('#questionForm');
-        var textfield_one = form.find('#id_textfield_one').val();
-        var integerfield = form.find('#id_selectfield').val();
-        var textfield_two = form.find('#id_textfield_two').val();
+        var input_1 = form.find('#id_input_1').val();
+        var input_2 = form.find('#id_input_2').val();
+        var input_2_other = form.find('#id_input_2_other').val();
 
         // Either load up an error telling the user to pick an option
         // or load up the next page.
-        if (textfield_one == "") {
+        if (input_1 == "") {
             alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\"");
             return;
         }
-        if (integerfield == "other") {
-            if (textfield_two == "") {
+        if (input_2 == "other") {
+            if (input_2_other == "") {ß
                 alert("{% trans 'Please fill in' %} \"Other\"");
                 return;
             }
         } else {
-            if (integerfield == "0") {
+            if (input_2 == "0") {
                 alert("{% trans 'Please fill in' %} \"{{ question.content.stub_6 }}\"");
                 return;
             }
@@ -80,11 +80,11 @@
 
         // CREATE HTML ROW.
         var html_row = "<tr id=\""+row_index+"\">";
-        html_row += "<td>"+textfield_one+"</td>";
-        if (integerfield == "other") {
-            html_row += "<td>"+textfield_two+"</td>";
+        html_row += "<td>"+input_1+"</td>";
+        if (input_2 == "other") {
+            html_row += "<td>"+input_2_other+"</td>";
         } else {
-            html_row += "<td>"+integerfield+"</td>";
+            html_row += "<td>"+input_2+"</td>";
         }
         html_row += "<td>";
         var onclick_js = "delete_row("+row_index+")";
@@ -96,10 +96,10 @@
         $("#id_table > tbody").append(html_row);
 
         // CLEAR FIELDS.
-        $('#id_textfield_one').val("");
-        $('#id_selectfield option[value=0]').attr('selected','selected');
-        $('#id_textfield_two').val("");
-        $('#id_textfield_two').hide();
+        $('#id_input_1').val("");
+        $('#id_input_2 option[value=0]').attr('selected','selected');
+        $('#id_input_2_other').val("");
+        $('#id_input_2_other').hide();
         row_index += 1;
     }
 
@@ -139,9 +139,9 @@
             var name = row[0];
             var percent = row[1];
             new_arr.push({
-                "id": i,
-                "name": name,
-                "percent": percent
+                "var_1": i,
+                "var_2": name,
+                "var_3": percent
             });
         }
 
@@ -182,11 +182,11 @@
                         <tbody>
                             <!-- CONTENT -->
                             {% for pick in picked %}
-                                <tr id="{{ pick.id }}">
-                                    <td>{{ pick.name }}</td>
-                                    <td>{{ pick.percent }}</td>
+                                <tr id="{{ pick.var_1 }}">
+                                    <td>{{ pick.var_2 }}</td>
+                                    <td>{{ pick.var_3 }}</td>
                                     <td>
-                                        <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.id }});">{% trans 'Delete' %}</button>
+                                        <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -202,7 +202,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
                         <div class="col-sm-10">
-                            <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.textfield_one }}" />
+                            <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.input_1 }}" />
                         </div>
                     </div>
                     <!-- end ROW 2 -->
@@ -212,7 +212,7 @@
                         <label class="col-sm-2 control-label">{{ question.content.stub_6 }}</label>
                         <div class="col-sm-10">
                             <!-- OPTIONS -->
-                            <select id="id_selectfield" class="form-control">
+                            <select id="id_input_2" class="form-control">
                                 {% for item in question.options.opt1 %}
                                     <option value="{{ item.value }}">{{ item.text }}</option>
                                 {% endfor %}
@@ -220,7 +220,7 @@
                             <!-- end OPTIONS -->
                             <!-- OTHER -->
                             <br />
-                            <input id="id_textfield_two" type="text" class="form-control" placeholder="" value="" />
+                            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="" />
                             <!-- end OTHER -->
                         </div>
                     </div>

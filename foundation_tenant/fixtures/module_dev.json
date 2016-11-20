@@ -100,6 +100,14 @@
                 },{
                     "previous_position": 11,
                     "current_position": 12,
+                    "next_position": 13,
+                    "id": 11,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 11
+                },{
+                    "previous_position": 12,
+                    "current_position": 13,
                     "next_position": -1,
                     "id": 3,
                     "type": "slide"

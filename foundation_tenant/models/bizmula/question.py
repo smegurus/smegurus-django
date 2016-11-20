@@ -56,11 +56,17 @@ class Question(models.Model):
         _("Options"),
         help_text=_('The options to populate the question with.'),
         blank=True,
-        default="[]"
+        default="{}"
     )
     content = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
         _("Content"),
         help_text=_('The content to populate the question with.'),
+        blank=True,
+        default="{}"
+    )
+    dependency = JSONField( # https://docs.djangoproject.com/en/dev/ref/contrib/postgres/fields/#jsonfield
+        _("Dependency"),
+        help_text=_('The dependency code this question has to link with other questions.'),
         blank=True,
         default="{}"
     )

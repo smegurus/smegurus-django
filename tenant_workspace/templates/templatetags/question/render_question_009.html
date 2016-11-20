@@ -11,8 +11,87 @@
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        // FILL IN.
+        // Get inputs to valid.
+        var input_1 = $('#id_input_1').val();
+        // var input_1_other = $('#id_input_1_other').val();
+        // var input_2 = $('#id_input_2').val();
+        // var input_2_other = $('#id_input_2_other').val();
+
+        // Perform validation.
+        if (input_1 == "") {
+            alert("{% trans 'Please fill in your answer.' %}");
+            return;
+        }
+
+        // if (input_2 == "{{ OTHER_TEXT }}") {
+        //     if (input_2_other == "") {
+        //         alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
+        //         return;
+        //     }
+        // } else {
+        //     if (input_2 == "") {
+        //         alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
+        //         return;
+        //     }
+        // }
+
+        // // Update our model.
+        ajax_do_chain(function(json_result) {
+            window.location = next_url;
+        });
     }
+
+    function ajax_do_chain(callback) {
+        // Get inputs to valid.
+        var input_1 = $('#id_input_1').val();
+        // var input_1_other = $('#id_input_1_other').val();
+        // var input_2 = $('#id_input_2').val();
+        // var input_2_other = $('#id_input_2_other').val();
+
+        // // Prevent loading "Other" if not picked.
+        // if (input_1 != "{{ OTHER_TEXT }}") {
+        //     input_1_other = "";
+        // }
+        // if (input_2 != "{{ OTHER_TEXT }}") {
+        //     input_2_other = "";
+        // }
+
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_0': "{{ previous_picked.var_1 }}",
+                    'var_1': input_1,
+                    // 'var_1_other': input_1_other,
+                    // 'var_2': input_2,
+                    // 'var_2_other': input_2_other
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -24,7 +103,69 @@
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
-            <!-- FILL IN -->
+            <!-- NEIGHBOURHOOD -->
+            {% if previous_picked.var_1 == question.options.opt_1 %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{% trans 'Neighbourhood' %}</label>
+                <div class="col-sm-10">
+                    <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_1 }}" value="{% if picked.var_0 == question.options.opt_1 %}{{ picked.var_1 }}{% endif %}" />
+                    <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                </div>
+            </div>
+            <!-- end NEIGHBOURHOOD -->
+
+            <!-- CITY -->
+            {% elif previous_picked.var_1 == question.options.opt_2 %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{% trans 'City' %}</label>
+                <div class="col-sm-10">
+                    <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_2 }}" value="{% if picked.var_0 == question.options.opt_2 %}{{ picked.var_1 }}{% endif %}" />
+                    <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                </div>
+            </div>
+            <!-- end CITY -->
+
+            <!-- REGION -->
+            {% elif previous_picked.var_1 == question.options.opt_3 %}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">{% trans 'Region' %}</label>
+                <div class="col-sm-10">
+                    <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_3 }}" value="{% if picked.var_0 == question.options.opt_3 %}{{ picked.var_1 }}{% endif %}" />
+                    <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
+                </div>
+            </div>
+            <!-- end REGION -->
+
+            <!--  -->
+            {% elif previous_picked.var_1 == question.options.opt_4 %}
+            test
+            <!-- end -->
+
+            <!--  -->
+            {% elif previous_picked.var_1 == question.options.opt_5 %}
+            Province or State
+            <!-- end -->
+
+            <!--  -->
+            {% elif previous_picked.var_1 == question.options.opt_6 %}
+            Country
+
+            <!-- end -->
+            <!--  -->
+            {% elif previous_picked.var_1 == question.options.opt_7 %}
+            Global
+
+            <!-- end -->
+            <!--  -->
+            {% elif previous_picked.var_1 == question.options.opt_8 %}
+            Online
+
+            <!-- end -->
+            <!--  -->
+            {% elif previous_picked.var_1 == question.options.opt_9 %}
+            Other (Please Specify
+            {% endif %}
+            <!-- end -->
         </div>
     </div>
 </fieldset>
