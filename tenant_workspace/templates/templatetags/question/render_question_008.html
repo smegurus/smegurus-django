@@ -34,7 +34,6 @@
         // Detect changes with "id_input_1" input field.
         //
         $(document).on('change','#id_input_1',function(){
-            // CASE 1 OF 2:
             // Show or hide the "id_input_1_other_div" code depending on whether
             // the user selected "{{ OTHER_TEXT }}" or not.
             var input_1 = $('#id_input_1').val();
@@ -44,16 +43,6 @@
                 $('#id_input_1_other_div').hide();
                 $('#id_input_1_other').val("");
             } // end CASE 1
-
-            // CASE 2 OF 2:
-            // Get the picked result from  "id_input_1" and lock that choice.
-            if (input_1 != "" && input_1 != "{{ OTHER_TEXT }}") {
-                $("#id_input_1 > option").each(function() {
-                    $(this).removeAttr('disabled');
-                });
-                var select_option = $("#id_input_1 option[value='"+input_1+"']")
-                select_option.attr('disabled','disabled');
-            } //end CASE 2
         });
     }); // end DOCUMENT START
 
@@ -112,6 +101,13 @@
         $('#id_input_1_other').val("");
         $('#id_input_1_other_div').hide();
         row_index += 1;
+
+        // LOCK OPTION.
+        // Get the picked result from  "id_input_1" and lock that choice so it can't be used in the futue.
+        if (input_1 != "" && input_1 != "{{ OTHER_TEXT }}") {
+            var select_option = $("#id_input_1 option[value='"+input_1+"']")
+            select_option.attr('disabled','disabled');
+        } //end CASE 2
     }
 
     function get_table_data() {
