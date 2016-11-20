@@ -709,5 +709,24 @@
             },
             "template_id": 10
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 14,
+        "fields": {
+            "document_type": 1,
+            "number": 14,
+            "title": "Please upload images of your product and business idea",
+            "help": "",
+            "options": {},
+            "content": {
+                "stub_1": "Please upload a picture of a product"
+            },
+            "dependency": {},
+            "validation": {
+                "no_image_uploaded_error_message": "Please upload a file before continuing."
+            },
+            "template_id": 11
+        }
     }
 ]

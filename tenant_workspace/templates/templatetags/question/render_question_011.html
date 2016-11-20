@@ -1,0 +1,143 @@
+{% load staticfiles i18n compress foundation_public_tags thumbnail %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will asynchronously upload the cover image.
+     */
+    function ajax_upload_image() {
+        // Extract the information.
+        var image = document.getElementById('id_image').files[0];
+        var upload_id = $('#id_hidden_upload_id').val();
+
+        // Insert or Update.
+        set_tenant_imageupload(upload_id, image, function(json_result) {
+            $('#id_hidden_url').attr('src', json_result['imagefile']);
+            $('#id_hidden_upload_id').val(json_result['id']);
+            $('#id_image_placeholder').attr('src', json_result['imagefile']);
+        });
+    }
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // FETCH INPUT(S).
+        var upload_id = parseInt( $('#id_hidden_upload_id').val() );
+        var upload_url = $('#id_hidden_url').attr("src");
+
+        // VALUDATION.
+        if (upload_id <= 0 || upload_id == null || isNaN(upload_id) ) {
+            alert("{{ question.validation.no_image_uploaded_error_message }}")
+            return;
+        }
+
+        // DEBUGGING PURPOSES ONLY.
+        console.log(upload_id);
+        console.log(upload_url);
+
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            upload_id,
+            upload_url,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
+    }
+
+    function ajax_do_chain(upload_id, upload_url, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_1': upload_id,
+                    'var_2': upload_url
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-10">
+            <!-- IMAGE UPLOAD FORM-->
+            <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                <!-- Upload ID -->
+                <input type="hidden" id="id_hidden_upload_id" value="{% if imageupload %}{{ imageupload.id }}{% endif %}"/>
+                <input type="hidden" id="id_hidden_url" value="{% if imageupload %}{{ imageupload.imagefile.url }}{% endif %}"/>
+                <!-- /.Upload ID -->
+
+                <!-- Image Placeholder -->
+                {% thumbnail imageupload.imagefile "200x200" format='JPEG' background="#ffffff" as im %}
+                <img id="id_image_placeholder"
+                    src="{{ im.url }}"
+                  style="height:200px;width:200px;"
+                    alt="{% trans 'Uploaded file.' %}"
+                  class="img-thumbnail center-block mb0 add-cover-image"
+                   name="product-image" />
+                 {% empty %}
+                 <img id="id_image_placeholder"
+                     src="{% static 'app/img/dummy200x200.png' %}"
+                   style="height:200px;width:200px;"
+                     alt="{% trans 'Uploaded file.' %}"
+                   class="img-thumbnail center-block mb0 add-cover-image"
+                    name="product-image" />
+                 {% endthumbnail %}
+                <!-- /.Image Placeholder -->
+
+                <br/>
+
+                <!-- Image Upload Button -->
+                <label class="form-control btn btn-success mt10 curp" >
+                    <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Profile Picture...' %}
+                    <input onchange="ajax_upload_image();"
+                                 id="id_image"
+                               type="file"
+                              class="form-control mb10 hide"
+                               name="product-image" />
+                </label>
+                <!-- /.Image Upload Button -->
+
+                <br/>
+            </form>
+            <!-- end IMAGE UPLOAD FORM -->
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->

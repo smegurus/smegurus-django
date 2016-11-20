@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from foundation_tenant.utils import int_or_none
+from foundation_tenant.models.base.imageupload import TenantImageUpload
 from foundation_tenant.models.bizmula.question import Question
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from smegurus import constants
@@ -176,5 +177,28 @@ def render_question_010(workspace, module, node, question, answer):
         'answer': answer,
         'picked': picked,
         'picked_count': len(picked),
+        "OTHER_TEXT": "Other (Please Specify)"
+    }
+
+
+@register.inclusion_tag('templatetags/question/render_question_011.html')
+def render_question_011(workspace, module, node, question, answer):
+    # Convert JSON string into python dictionary.
+    picked = json.loads(answer.content)
+
+    # Fetch the image that is associated with this question's answer.
+    imageupload = None
+    if bool(picked):
+        upload_id = int_or_none(picked['var_1'])
+        imageupload = TenantImageUpload.objects.get(id=upload_id)
+
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'imageupload': imageupload,
         "OTHER_TEXT": "Other (Please Specify)"
     }
