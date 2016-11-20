@@ -484,23 +484,23 @@
             "number": 11,
             "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
             "help": "",
-            "options": {
-                "opt_1": {
+            "options": [
+                {
                     "name": "Neighbourhood",
                     "type": "textfield",
                     "placeholder": "ex: Downtown, SOHO"
                 },
-                "opt_2": {
+                {
                     "name": "City",
                     "type": "textfield",
                     "placeholder": "ex: London"
                 },
-                "opt_3": {
+                {
                     "name": "Region",
                     "type": "textfield",
                     "placeholder": "ex: SW Ontario, East Texas"
                 },
-                "opt_4": {
+                {
                     "name": "Province or State",
                     "type": "selectionfield",
                     "choices": [
@@ -607,7 +607,7 @@
                         "Other (Please Specify)"
                     ]
                 },
-                "opt_5": {
+                {
                     "name": "Country",
                     "type": "selectionfield",
                     "choices": [
@@ -617,20 +617,22 @@
                         "Other (Please Specify)"
                     ]
                 },
-                "opt_6": {
+                {
                     "name": "Global",
-                    "type": "blank"
+                    "type": "blankfield",
+                    "stub": "You have selected \"Global\", that means the whole phisical and online world is your geographic target. If you are certain, press the \"Next\" button to continue."
                 },
-                "opt_7": {
+                {
                     "name": "Online",
-                    "type": "blank"
+                    "type": "blankfield",
+                    "stub": "You have selected \"Global\", that means the whole online world is your geographic target. If you are certain, press the \"Next\" button to continue."
                 },
-                "opt_8": {
+                {
                     "name": "Other (Please Specify)",
                     "type": "textfield",
                     "placeholder": "ex: Downtown, SOHO"
                 }
-            },
+            ],
             "content": {},
             "dependency": {
                 "previous_question_id": 10
