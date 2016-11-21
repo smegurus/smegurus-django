@@ -303,3 +303,16 @@ def render_question_012(workspace, module, node, question, answer):
             "OTHER_TEXT": OTHER_TEXT,
             'default_mission_statement': mission_statement
         }
+
+
+@register.inclusion_tag('templatetags/question/render_question_013.html')
+def render_question_013(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': json.loads(answer.content),
+        "OTHER_TEXT": "Other (Please Specify)"
+    }

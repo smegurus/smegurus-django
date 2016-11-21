@@ -843,5 +843,41 @@
             "validation": {},
             "template_id": 13
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 19,
+        "fields": {
+            "document_type": 1,
+            "number": 19,
+            "title": "Choose 3 reasons why your company will be unique",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "Excellent customer service",
+                    "Unique or niche product",
+                    "Specialized service and industry knowledge",
+                    "Knowledgeable and experienced staff",
+                    "Excellent management",
+                    "Organizational efficiency",
+                    "Great location",
+                    "Strong relationships within the industry",
+                    "Competitive prices",
+                    "Welcoming atmosphere",
+                    "Cutting-edge technology",
+                    "Unique web experience",
+                    "Unique business model",
+                    "Other (Please Specify)"
+                ]
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3"
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 13
+        }
     }
 ]
