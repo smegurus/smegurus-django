@@ -253,6 +253,53 @@ def render_question_012(workspace, module, node, question, answer):
         'default_mission_statement': mission_statement
     }
 
-#  If "No" selected: "To provide customers of (companyname) in the (companymarket)
-#  market with the best possible value and customer experience, maintaining operational
-#  efficiency and providing a reasonable return for our shareholders and owners.",
+
+    @register.inclusion_tag('templatetags/question/render_question_012.html')
+    def render_question_013(workspace, module, node, question, answer):
+        """
+        DEPENDENCY:
+        - template #002 | QID: 02 | company name
+        - template #001 | QID: 10 | geographic market
+        - template #009 | QID: 11 | geographic market
+        """
+        # Convert JSON string into python dictionary.
+        picked = json.loads(answer.content)
+        OTHER_TEXT = "Other (Please Specify)"
+
+        # For this particular document and module, find the previous questions.
+        q1_qid = int_or_none(question.dependency['q1_qid'])
+        q2_qid = int_or_none(question.dependency['q2_qid'])
+        q3_qid = int_or_none(question.dependency['q3_qid'])
+        a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+        a1 = json.loads(a1_raw.content)
+        a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+        a2 = json.loads(a2_raw.content)
+        a3_raw = get_object_or_404(QuestionAnswer, question_id=q3_qid)
+        a3 = json.loads(a3_raw.content)
+
+        # Generate custom text from previous questions.
+        # 1. Generate company name.
+        company_name = a1['var_1']
+        has_short_name = bool(a1['var_2'])
+        if has_short_name:
+            company_name = a1['var_3']
+
+        # 2. Generate geographic info.
+        company_market = a3['var_1']
+
+        #TODO: GET THE "COMPANY INDUSTRY" FROM NIACS question.
+
+        # 3. Generate text.
+        mission_statement = _("To become the company of choice in the %(comapnyindustry)s in the %(companymarket)s market.") % {'comapnyindustry': company_name, 'companymarket': company_market}
+
+        # Render.
+        return {
+            'workspace': workspace,
+            'module': module,
+            'node': node,
+            'question': question,
+            'answer': answer,
+            'picked': picked,
+            "OTHER_TEXT": OTHER_TEXT,
+            'default_mission_statement': mission_statement
+        }
