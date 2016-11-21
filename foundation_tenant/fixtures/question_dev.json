@@ -785,21 +785,30 @@
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
             "help": "",
             "options": {
-                "opt1": [
-                    {
-                        "value": "Yes",
-                        "text": "Yes"
-                    },
-                    {
-                        "value": "No",
-                        "text": "No"
-                    }
-                ]
+                "yes_opt": {
+                    "value": "Yes",
+                    "text": "Yes",
+                    "has_other": true
+                },
+                "no_opt": {
+                    "value": "No",
+                    "text": "No",
+                    "has_other": false
+                },
+                "other_opt": "Please enter your mission statement"
             },
-            "content": {},
-            "dependency": {},
+            "content": {
+                "stub_1": "Yes",
+                "stub_2": "No",
+                "stub_3": "Please enter your mission statement"
+            },
+            "dependency": {
+                "q1_qid": 2,
+                "q2_qid": 10,
+                "q3_qid": 11
+            },
             "validation": {},
-            "template_id": 1
+            "template_id": 12
         }
     },
     {
@@ -811,21 +820,28 @@
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
             "help": "",
             "options": {
-                "opt1": [
-                    {
-                        "value": "Yes",
-                        "text": "Yes"
-                    },
-                    {
-                        "value": "No",
-                        "text": "No"
-                    }
-                ]
+                "yes_opt": {
+                    "value": "Yes",
+                    "text": "Yes"
+                },
+                "no_opt": {
+                    "value": "No",
+                    "text": "No"
+                },
+                "other_opt": "Please enter your vision statement"
             },
-            "content": {},
-            "dependency": {},
+            "content": {
+                "stub_1": "Yes",
+                "stub_2": "No",
+                "stub_3": "Please enter your vision statement"
+            },
+            "dependency": {
+                "q1_qid": 2,
+                "q2_qid": 10,
+                "q3_qid": 11
+            },
             "validation": {},
-            "template_id": 1
+            "template_id": 12
         }
     }
 ]

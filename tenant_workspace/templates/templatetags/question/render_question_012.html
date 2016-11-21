@@ -1,0 +1,129 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $("input[name=optionsRadios]").click(function(){
+            // Get the option selected.
+            var value = this.value;
+
+            if (value == "{{ question.options.yes_opt.value }}") {
+                $('#id_other_div').show();
+                $('#id_input_2').val("");
+            }
+            if (value == "{{ question.options.no_opt.value }}") {
+                $('#id_other_div').hide();
+                $('#id_input_2').val("");
+            }
+        });
+
+
+        $(document).on('change','#optionsRadios1',function(){
+            // pass
+         });
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // FETCH INPUT(S).
+        var input_1 = $('input[name=optionsRadios]:checked').val()
+        var input_2 = $('#id_input_2').val();
+
+        // // VALUDATION.
+        if (input_1  === undefined) {
+            alert("{% trans 'Please pick a choice.' %}")
+            return;
+        }
+        if (input_1 == "No") {
+            input_2 = "{{ default_mission_statement }}";
+        }
+
+        // DEBUGGING PURPOSES ONLY.
+        console.log(input_1);
+        console.log(input_2);
+
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            input_1,
+            input_2,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
+    }
+
+    function ajax_do_chain(input_1, input_2, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_1': input_1,
+                    'var_2': input_2
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-10">
+            <!-- OPTION YES -->
+            <div class="radio">
+                <label>
+                    <input id="optionsRadios1" type="radio" name="optionsRadios" value="{{ question.options.yes_opt.value }}" {% if picked.var_1 == question.options.yes_opt.value %}checked="checked"{% endif %}>{{ question.options.yes_opt.text }}
+                </label>
+            </div>
+            <!-- end OPTION YES -->
+
+            <!-- OPTION NO -->
+            <div class="radio">
+                <label>
+                    <input id="optionsRadios2" type="radio" name="optionsRadios" value="{{ question.options.no_opt.value }}" {% if picked.var_1 == question.options.no_opt.value %}checked="checked"{% endif %}>{{ question.options.no_opt.text }}
+                </label>
+            </div>
+            <!-- end OPTION NO -->
+
+            <div id="id_other_div" {% if picked.var_1 == question.options.no_opt.value %}style="display: none;"{% endif %}>
+                <br />
+                <textarea id="id_input_2" rows="4" cols="50" class="form-control" placeholder="{{ question.options.other_opt }}">{{ picked.var_2 }}</textarea>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->
