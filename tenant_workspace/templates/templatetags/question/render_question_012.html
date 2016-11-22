@@ -3,27 +3,163 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        //
-        // Detect changes with "id_input_1" input field.
-        //
-        $("input[name=optionsRadios]").click(function(){
-            // Get the option selected.
-            var value = this.value;
+        {% if picked.var_1 == False %}
+            $('#id_how_can_we_help_div').hide();
+        {% endif %}
 
-            if (value == "{{ question.options.yes_opt.value }}") {
-                $('#id_other_div').show();
-                $('#id_input_2').val("");
-            }
-            if (value == "{{ question.options.no_opt.value }}") {
-                $('#id_other_div').hide();
-                $('#id_input_2').val("");
-            }
-        });
+        {% if picked.var_2 == None %}
+            $('#id_depth_two_fieldset').hide();
+        {% endif %}
 
+        {% if picked.var_3 == None %}
+            $('#id_depth_three_fieldset').hide();
+        {% endif %}
 
-        $(document).on('change','#optionsRadios1',function(){
-            // pass
-         });
+        {% if picked.var_4 == None %}
+            $('#id_depth_four_fieldset').hide();
+        {% endif %}
+
+        {% if picked.var_5 == None %}
+            $('#id_depth_five_fieldset').hide();
+        {% endif %}
+
+        // NAICS DEPTH ONE
+        $("#id_naics_depth_one").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_one').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_two').prop("disabled", false);
+                    $('#id_depth_two_fieldset').show();
+                    $('#id_naics_depth_three').prop("disabled", true);
+                    $('#id_depth_three_fieldset').hide();
+                    $('#id_naics_depth_four').prop("disabled", true);
+                    $('#id_depth_four_fieldset').hide();
+                    $('#id_naics_depth_five').prop("disabled", true);
+                    $('#id_depth_five_fieldset').hide();
+
+                    // Update the UI.
+                    $('#id_naics_depth_two').html('');       // Clear selection
+                    $('#id_naics_depth_three').html('');     // Clear selection
+                    $('#id_naics_depth_four').html('');      // Clear selection
+                    $('#id_naics_depth_five').html('');      // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI.
+                    $(html).appendTo('#id_naics_depth_two'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH ONE
+
+        // NAICS DEPTH TWO
+        $("#id_naics_depth_two").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_two').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_three').prop("disabled", false);
+                    $('#id_depth_three_fieldset').show();
+                    $('#id_naics_depth_four').prop("disabled", true);
+                    $('#id_depth_four_fieldset').hide();
+                    $('#id_naics_depth_five').prop("disabled", true);
+                    $('#id_depth_five_fieldset').hide();
+
+                    // Update the UI.
+                    $('#id_naics_depth_three').html('');     // Clear selection
+                    $('#id_naics_depth_four').html('');      // Clear selection
+                    $('#id_naics_depth_five').html('');      // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI.
+                    $(html).appendTo('#id_naics_depth_three'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH TWO
+
+        // NAICS DEPTH THREE
+        $("#id_naics_depth_three").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_three').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_four').prop("disabled", false);
+                    $('#id_depth_four_fieldset').show();
+                    $('#id_naics_depth_five').prop("disabled", true);
+                    $('#id_depth_five_fieldset').hide();
+
+                    // Update the UI.
+                    $('#id_naics_depth_four').html('');       // Clear selection
+                    $('#id_naics_depth_five').html('');       // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Generate UI
+                    $(html).appendTo('#id_naics_depth_four'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH THREE
+
+        // NAICS DEPTH FOUR
+        $("#id_naics_depth_four").change(function () {
+            var end = this.value;
+            var parent_id = $('#id_naics_depth_four').val();
+            var criteria = Array();
+            criteria.push({
+                'parent': parent_id,
+            });
+            filter_naicsoptions(
+                criteria,
+                function(json_result) {
+                    // Activate the second depth UI.
+                    $('#id_naics_depth_five').prop("disabled", false);
+                    $('#id_depth_five_fieldset').show();
+
+                    // Update the UI.
+                    $('#id_naics_depth_five').html('');       // Clear selection
+
+                    // Generate the UI.
+                    html = "<option value=\"0\">----</option>";
+                    $(json_result).each(function(iter,val2){
+                        $(val2['results']).each(function(index, column){
+                            html += "<option value=\"" + column['id']+ "\">" + column['name'] + "</option>";
+                        });
+                    }); // end Iterate Provinces
+                    $(html).appendTo('#id_naics_depth_five'); // Load new selection
+                }
+            ); // end Filter Category
+        }); // end NAICS DEPTH FOUR
     }); // end DOCUMENT START
 
     /**
@@ -32,26 +168,26 @@
      */
     function question_answer_protected_next(next_url) {
         // FETCH INPUT(S).
-        var input_1 = $('input[name=optionsRadios]:checked').val()
-        var input_2 = $('#id_input_2').val();
-
-        // // VALUDATION.
-        if (input_1  === undefined) {
-            alert("{% trans 'Please pick a choice.' %}")
-            return;
-        }
-        if (input_1 == "No") {
-            input_2 = "{{ default_mission_statement }}";
-        }
+        var naics_depth_one = parseInt($('#id_naics_depth_one').val());
+        var naics_depth_two = parseInt($('#id_naics_depth_two').val());
+        var naics_depth_three = parseInt($('#id_naics_depth_three').val());
+        var naics_depth_four = parseInt($('#id_naics_depth_four').val());
+        var naics_depth_five = parseInt($('#id_naics_depth_five').val());
 
         // DEBUGGING PURPOSES ONLY.
-        console.log(input_1);
-        console.log(input_2);
+        console.log(naics_depth_one);
+        console.log(naics_depth_two);
+        console.log(naics_depth_three);
+        console.log(naics_depth_four);
+        console.log(naics_depth_five);
 
         // SAVE OUR RESULTS.
         ajax_do_chain(
-            input_1,
-            input_2,
+            naics_depth_one,
+            naics_depth_two,
+            naics_depth_three,
+            naics_depth_four,
+            naics_depth_five,
             function(json_result) {
                 // LOAD UP THE NEXT SLIDE/QUESTION.
                 window.location = next_url;
@@ -59,7 +195,7 @@
         );
     }
 
-    function ajax_do_chain(input_1, input_2, callback) {
+    function ajax_do_chain(naics_depth_one, naics_depth_two, naics_depth_three, naics_depth_four, naics_depth_five, callback) {
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
         get_tenant_questionanswer(
@@ -68,8 +204,11 @@
 
                 // Set the JSON object with our picked value and stringify it.
                 question_answer['content'] = JSON.stringify({
-                    'var_1': input_1,
-                    'var_2': input_2
+                    'var_1': naics_depth_one,
+                    'var_2': naics_depth_two,
+                    'var_3': naics_depth_three,
+                    'var_4': naics_depth_four,
+                    'var_5': naics_depth_five
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -100,30 +239,87 @@
     <legend>
         {{ node.order_num }}. {{ question.title }}
     </legend>
-    <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
-            <!-- OPTION YES -->
-            <div class="radio">
-                <label>
-                    <input id="optionsRadios1" type="radio" name="optionsRadios" value="{{ question.options.yes_opt.value }}" {% if picked.var_1 == question.options.yes_opt.value %}checked="checked"{% endif %}>{{ question.options.yes_opt.text }}
-                </label>
-            </div>
-            <!-- end OPTION YES -->
-
-            <!-- OPTION NO -->
-            <div class="radio">
-                <label>
-                    <input id="optionsRadios2" type="radio" name="optionsRadios" value="{{ question.options.no_opt.value }}" {% if picked.var_1 == question.options.no_opt.value %}checked="checked"{% endif %}>{{ question.options.no_opt.text }}
-                </label>
-            </div>
-            <!-- end OPTION NO -->
-
-            <div id="id_other_div" {% if picked.var_1 == question.options.no_opt.value %}style="display: none;"{% endif %}>
-                <br />
-                <textarea id="id_input_2" rows="4" cols="50" class="form-control" placeholder="{{ question.options.other_opt }}">{{ picked.var_2 }}</textarea>
-            </div>
-        </div>
-    </div>
 </fieldset>
+
+<!-- DEPTH ONE -->
+<fieldset id="id_depth_one_fieldset">
+   <div class="form-group mb">
+      <label class="col-sm-2 control-label mb">Depth One</label>
+      <div class="col-sm-10">
+          <select id="id_naics_depth_one" class="form-control">
+              <option value="">----</option>
+              {% for option in depth_one_results.all %}
+                  <option value="{{ option.id }}" {% if option.id == picked.var_1 %}selected="true"{% endif %}>{{ option.name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+   </div>
+</fieldset>
+<!-- end DEPTH ONE -->
+
+<!-- DEPTH TWO -->
+<fieldset id="id_depth_two_fieldset">
+   <div class="form-group mb">
+      <label class="col-sm-2 control-label mb">Depth Two</label>
+      <div class="col-sm-10">
+          <select id="id_naics_depth_two" class="form-control" {% if picked.var_2 == None and picked.var_1 == None %}disabled="true"{% endif %}>
+              <option>----</option>
+              {% for option in depth_two_results.all %}
+                  <option value="{{ option.id }}" {% if option.id == picked.var_2 %}selected="true"{% endif %}>{{ option.name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+   </div>
+</fieldset>
+<!-- end DEPTH TWO -->
+
+<!-- DEPTH THREE -->
+<fieldset id="id_depth_three_fieldset">
+   <div class="form-group mb">
+      <label class="col-sm-2 control-label mb">Depth Three</label>
+      <div class="col-sm-10">
+          <select id="id_naics_depth_three" class="form-control" {% if picked.var_3 == None and picked.var_2 == None %}disabled="true"{% endif %}>
+              <option>----</option>
+              {% for option in depth_three_results.all %}
+                  <option value="{{ option.id }}" {% if option.id == picked.var_3 %}selected="true"{% endif %}>{{ option.name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+   </div>
+</fieldset>
+<!-- end DEPTH THREE -->
+
+<!-- DEPTH FOUR -->
+<fieldset id="id_depth_four_fieldset">
+   <div class="form-group mb">
+      <label class="col-sm-2 control-label mb">Depth Four</label>
+      <div class="col-sm-10">
+          <select id="id_naics_depth_four" class="form-control" {% if picked.var_4 == None and picked.var_3 == None %}disabled="true"{% endif %}>
+              <option>----</option>
+              {% for option in depth_four_results.all %}
+                  <option value="{{ option.id }}" {% if option.id == picked.var_4 %}selected="true"{% endif %}>{{ option.name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+   </div>
+</fieldset>
+<!-- end DEPTH FOUR -->
+
+<!-- DEPTH FIVE -->
+<fieldset id="id_depth_five_fieldset">
+   <div class="form-group mb">
+      <label class="col-sm-2 control-label mb">Depth Five</label>
+      <div class="col-sm-10">
+          <select id="id_naics_depth_five" class="form-control" {% if picked.var_5 == None and picked.var_4 == None %}disabled="true"{% endif %}>
+              <option>----</option>
+              {% for option in depth_five_results.all %}
+                  <option value="{{ option.id }}" {% if option.id == picked.var_5 %}selected="true"{% endif %}>{{ option.name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+   </div>
+</fieldset>
+<!-- end DEPTH FIVE -->
+
+<br><br>
 <!-- end HTML -->

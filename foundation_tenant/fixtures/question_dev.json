@@ -782,6 +782,28 @@
         "fields": {
             "document_type": 1,
             "number": 17,
+            "title": "What sector does your current business idea mainly fall into?",
+            "help": "",
+            "options": {},
+            "content": {
+                "stub_1": "Category 1",
+                "stub_2": "Category 2",
+                "stub_3": "Category 3",
+                "stub_4": "Category 4",
+                "stub_5": "Category 5",
+                "stub_6": "Category 6"
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 12
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 18,
+        "fields": {
+            "document_type": 1,
+            "number": 18,
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
             "help": "",
             "options": {
@@ -808,15 +830,15 @@
                 "q3_qid": 11
             },
             "validation": {},
-            "template_id": 12
+            "template_id": 13
         }
     },
     {
         "model": "foundation_tenant.question",
-        "pk": 18,
+        "pk": 19,
         "fields": {
             "document_type": 1,
-            "number": 18,
+            "number": 19,
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
             "help": "",
             "options": {
@@ -846,10 +868,10 @@
     },
     {
         "model": "foundation_tenant.question",
-        "pk": 19,
+        "pk": 20,
         "fields": {
             "document_type": 1,
-            "number": 19,
+            "number": 20,
             "title": "Choose 3 reasons why your company will be unique",
             "help": "",
             "options": {

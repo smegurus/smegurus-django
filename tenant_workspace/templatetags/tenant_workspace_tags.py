@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from foundation_tenant.utils import int_or_none
+from foundation_tenant.models.base.naicsoption import NAICSOption
 from foundation_tenant.models.base.imageupload import TenantImageUpload
 from foundation_tenant.models.bizmula.question import Question
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
@@ -209,9 +210,84 @@ def render_question_011(workspace, module, node, question, answer):
 def render_question_012(workspace, module, node, question, answer):
     """
     DEPENDENCY:
+    - NAICSOption
+    """
+    # Convert JSON string into python dictionary.
+    picked = json.loads(answer.content)
+
+    # If the answer was not created then we will pre-create the format.
+    if not bool(picked):
+        picked = {
+            'var_1': '',
+            'var_2': '',
+            'var_3': '',
+            'var_4': '',
+            'var_5': '',
+            'var_6': ''
+        }
+
+    # Get the first depth.
+    depth_one_results = NAICSOption.objects.filter(parent=None)
+
+    # Get the second depth.
+    depth_two_results = None
+    if picked['var_2']:
+        depth_two_results = NAICSOption.objects.filter(parent=picked['var_1'])
+    else:
+        if picked['var_1']:
+            depth_two_results = NAICSOption.objects.filter(parent=picked['var_1'])
+
+    print(depth_two_results)
+
+    # # Get the three depth.
+    depth_three_results = None
+    if picked['var_3']:
+        depth_three_results = NAICSOption.objects.filter(parent=picked['var_2'])
+    else:
+        if picked['var_2']:
+            depth_three_results = NAICSOption.objects.filter(parent=picked['var_2'])
+
+    # # Get the four depth.
+    depth_four_results = None
+    if picked['var_4']:
+        depth_four_results = NAICSOption.objects.filter(parent=picked['var_3'])
+    else:
+        if picked['var_3']:
+            depth_four_results = NAICSOption.objects.filter(parent=picked['var_3'])
+
+    # # Get the five depth.
+    depth_five_results = None
+    if picked['var_5']:
+        depth_five_results = NAICSOption.objects.filter(parent=picked['var_4'])
+    else:
+        if picked['var_4']:
+            depth_five_results = NAICSOption.objects.filter(parent=picked['var_4'])
+
+    # Render template.
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': json.loads(answer.content),
+        "OTHER_TEXT": "Other (Please Specify)",
+        'depth_one_results': depth_one_results,
+        'depth_two_results': depth_two_results,
+        'depth_three_results': depth_three_results,
+        'depth_four_results': depth_four_results,
+        'depth_five_results': depth_five_results
+    }
+
+
+@register.inclusion_tag('templatetags/question/render_question_013.html')
+def render_question_013(workspace, module, node, question, answer):
+    """
+    DEPENDENCY:
     - template #002 | QID: 02 | company name
     - template #001 | QID: 10 | geographic market
     - template #009 | QID: 11 | geographic market
+    - NAICSOption
     """
     # Convert JSON string into python dictionary.
     picked = json.loads(answer.content)
@@ -254,8 +330,8 @@ def render_question_012(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_012.html')
-def render_question_013(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/render_question_013.html')
+def render_question_014(workspace, module, node, question, answer):
     """
     DEPENDENCY:
     - template #002 | QID: 02 | company name
@@ -305,8 +381,8 @@ def render_question_013(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_013.html')
-def render_question_014(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/render_question_014.html')
+def render_question_015(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,

@@ -6,41 +6,24 @@
         //
         // Detect changes with "id_input_1" input field.
         //
-        $(document).on('change','#id_input_1',function(){
-            var input_1 = $('#id_input_1').val();
-            if (input_1 == "{{ OTHER_TEXT }}") {
-                $('#id_input_1_other_div').show();
-            } else {
-                $('#id_input_1_other_div').hide();
-                $('#id_input_1_other').val("");
+        $("input[name=optionsRadios]").click(function(){
+            // Get the option selected.
+            var value = this.value;
+
+            if (value == "{{ question.options.yes_opt.value }}") {
+                $('#id_other_div').show();
+                $('#id_input_2').val("");
+            }
+            if (value == "{{ question.options.no_opt.value }}") {
+                $('#id_other_div').hide();
+                $('#id_input_2').val("");
             }
         });
 
-        //
-        // Detect changes with "id_input_2" input field.
-        //
-        $(document).on('change','#id_input_2',function(){
-            var input_2 = $('#id_input_2').val();
-            if (input_2 == "{{ OTHER_TEXT }}") {
-                $('#id_input_2_other_div').show();
-            } else {
-                $('#id_input_2_other_div').hide();
-                $('#id_input_2_other').val("");
-            }
-        });
 
-        //
-        // Detect changes with "id_input_3" input field.
-        //
-        $(document).on('change','#id_input_3',function(){
-            var input_3 = $('#id_input_3').val();
-            if (input_3 == "{{ OTHER_TEXT }}") {
-                $('#id_input_3_other_div').show();
-            } else {
-                $('#id_input_3_other_div').hide();
-                $('#id_input_3_other').val("");
-            }
-        });
+        $(document).on('change','#optionsRadios1',function(){
+            // pass
+         });
     }); // end DOCUMENT START
 
     /**
@@ -48,77 +31,35 @@
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        // Get inputs to valid.
-        var input_1 = $('#id_input_1').val();
-        var input_1_other = $('#id_input_1_other').val();
+        // FETCH INPUT(S).
+        var input_1 = $('input[name=optionsRadios]:checked').val()
         var input_2 = $('#id_input_2').val();
-        var input_2_other = $('#id_input_2_other').val();
-        var input_3 = $('#id_input_3').val();
-        var input_3_other = $('#id_input_3_other').val();
 
-        // Perform validation.
-        if (input_1 == "{{ OTHER_TEXT }}") {
-            if (input_1_other == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\".");
-                return;
-            }
-        } else {
-            if (input_1 == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\".");
-                return;
-            }
+        // // VALUDATION.
+        if (input_1  === undefined) {
+            alert("{% trans 'Please pick a choice.' %}")
+            return;
+        }
+        if (input_1 == "No") {
+            input_2 = "{{ default_mission_statement }}";
         }
 
-        if (input_2 == "{{ OTHER_TEXT }}") {
-            if (input_2_other == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
-                return;
-            }
-        } else {
-            if (input_2 == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
-                return;
-            }
-        }
+        // DEBUGGING PURPOSES ONLY.
+        console.log(input_1);
+        console.log(input_2);
 
-        if (input_3 == "{{ OTHER_TEXT }}") {
-            if (input_3_other == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_3 }}\".");
-                return;
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            input_1,
+            input_2,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
             }
-        } else {
-            if (input_3 == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_3 }}\".");
-                return;
-            }
-        }
-
-        // Update our model.
-        ajax_do_chain(function(json_result) {
-            window.location = next_url;
-        });
+        );
     }
 
-    function ajax_do_chain(callback) {
-        // Get inputs to valid.
-        var input_1 = $('#id_input_1').val();
-        var input_1_other = $('#id_input_1_other').val();
-        var input_2 = $('#id_input_2').val();
-        var input_2_other = $('#id_input_2_other').val();
-        var input_3 = $('#id_input_3').val();
-        var input_3_other = $('#id_input_3_other').val();
-
-        // Prevent loading "Other" if not picked.
-        if (input_1 != "{{ OTHER_TEXT }}") {
-            input_1_other = "";
-        }
-        if (input_2 != "{{ OTHER_TEXT }}") {
-            input_2_other = "";
-        }
-        if (input_3 != "{{ OTHER_TEXT }}") {
-            input_3_other = "";
-        }
-
+    function ajax_do_chain(input_1, input_2, callback) {
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
         get_tenant_questionanswer(
@@ -128,11 +69,7 @@
                 // Set the JSON object with our picked value and stringify it.
                 question_answer['content'] = JSON.stringify({
                     'var_1': input_1,
-                    'var_1_other': input_1_other,
-                    'var_2': input_2,
-                    'var_2_other': input_2_other,
-                    'var_3': input_3,
-                    'var_3_other': input_3_other
+                    'var_2': input_2
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -163,80 +100,30 @@
     <legend>
         {{ node.order_num }}. {{ question.title }}
     </legend>
-    <!-- ROW 1 -->
     <div class="form-group">
-        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
-
-            <!-- INPUT 1 -->
-            <select id="id_input_1" class="form-control m-b">
-                <option value="">{% trans 'Select' %}</option>
-                {% for option in question.options.opt1 %}
-                    <option value="{{ option }}" {% if picked.var_1 == option %}selected="selected"{% endif %}>{{ option }}</option>
-                {% endfor %}
-            </select>
-            <!-- end INPUT 1 -->
-
-            <!-- OTHER 1 -->
-            <div id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-                <br />
-                <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
+            <!-- OPTION YES -->
+            <div class="radio">
+                <label>
+                    <input id="optionsRadios1" type="radio" name="optionsRadios" value="{{ question.options.yes_opt.value }}" {% if picked.var_1 == question.options.yes_opt.value %}checked="checked"{% endif %}>{{ question.options.yes_opt.text }}
+                </label>
             </div>
-            <!-- end OTHER 1 -->
+            <!-- end OPTION YES -->
 
-            <br>
+            <!-- OPTION NO -->
+            <div class="radio">
+                <label>
+                    <input id="optionsRadios2" type="radio" name="optionsRadios" value="{{ question.options.no_opt.value }}" {% if picked.var_1 == question.options.no_opt.value %}checked="checked"{% endif %}>{{ question.options.no_opt.text }}
+                </label>
+            </div>
+            <!-- end OPTION NO -->
+
+            <div id="id_other_div" {% if picked.var_1 == question.options.no_opt.value %}style="display: none;"{% endif %}>
+                <br />
+                <textarea id="id_input_2" rows="4" cols="50" class="form-control" placeholder="{{ question.options.other_opt }}">{{ picked.var_2 }}</textarea>
+            </div>
         </div>
     </div>
-    <!-- end ROW 1 -->
-    <!-- ROW 2 -->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">{{ question.content.stub_2 }}</label>
-        <div class="col-sm-10">
-
-            <!-- INPUT 2 -->
-            <select id="id_input_2" class="form-control m-b">
-                <option value="">{% trans 'Select' %}</option>
-                {% for option in question.options.opt1 %}
-                    <option value="{{ option }}" {% if picked.var_2 == option %}selected="selected"{% endif %}>{{ option }}</option>
-                {% endfor %}
-            </select>
-            <!-- end INPUT 2 -->
-
-            <!-- OTHER 2 -->
-            <div id="id_input_2_other_div" {% if not picked.var_2_other %}style="display: none;"{% endif %}>
-                <br />
-                <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_2_other }}" />
-            </div>
-            <!-- end OTHER 2 -->
-
-            <br>
-        </div>
-    </div>
-    <!-- end ROW 2-->
-    <!-- ROW 3 -->
-    <div class="form-group">
-        <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
-        <div class="col-sm-10">
-
-            <!-- INPUT 3 -->
-            <select id="id_input_3" class="form-control m-b">
-                <option value="">{% trans 'Select' %}</option>
-                {% for option in question.options.opt1 %}
-                    <option value="{{ option }}" {% if picked.var_3 == option %}selected="selected"{% endif %}>{{ option }}</option>
-                {% endfor %}
-            </select>
-            <!-- end INPUT 3 -->
-
-            <!-- OTHER 3 -->
-            <div id="id_input_3_other_div" {% if not picked.var_3_other %}style="display: none;"{% endif %}>
-                <br />
-                <input id="id_input_3_other" type="text" class="form-control" placeholder="" value="{{ picked.var_3_other }}" />
-            </div>
-            <!-- end OTHER 3 -->
-
-            <br>
-        </div>
-    </div>
-    <!-- end ROW 3 -->
 </fieldset>
 <!-- end HTML -->
