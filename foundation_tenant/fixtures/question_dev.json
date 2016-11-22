@@ -924,5 +924,57 @@
             "validation": {},
             "template_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 22,
+        "fields": {
+            "document_type": 1,
+            "number": 22,
+            "title": "Who are your competitors, and how will you compete against them? Fill in up to 5 in the chart below, you must fill in at least 2",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "0-5 km",
+                    "5-10 km",
+                    "10-25 km",
+                    "25-50 km",
+                    "50-100 km",
+                    "100 km+",
+                    "Location not relevant to industry",
+                    "Digital"
+                ],
+                "opt2": [
+                    "Strong management team",
+                    "Long history in the industry",
+                    "Dedicated customers",
+                    "Other (Please Specify)"
+                ],
+                "opt3": [
+                    "Niche target market",
+                    "Focus on diverse product",
+                    "Exceptional customer service",
+                    "Excellent management",
+                    "High Operational efficiency",
+                    "Other (Please Specify)"
+                ]
+            },
+            "content": {
+                "stub_1": "Competitor",
+                "stub_2": "Location/Proximity",
+                "stub_3": "Core Strength",
+                "stub_4": "Competitive Strategy",
+                "stub_5": "Remove",
+                "stub_6": "Competitor Name",
+                "stub_7": "ex: Dave's Bookstore",
+                "stub_8": "Location/Proximity",
+                "stub_9": "Core Strength",
+                "stub_10": "Competitive Strategy",
+                "stub_11": "Add Competitor"
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 16
+        }
     }
 ]

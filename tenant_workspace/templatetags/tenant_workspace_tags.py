@@ -388,3 +388,16 @@ def render_question_015(workspace, module, node, question, answer):
         'picked': json.loads(answer.content),
         "OTHER_TEXT": "Other (Please Specify)"
     }
+
+
+@register.inclusion_tag('templatetags/question/render_question_015.html')
+def render_question_016(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': json.loads(answer.content),
+        "OTHER_TEXT": "Other (Please Specify)"
+    }
