@@ -119,7 +119,7 @@
             </div>
             <!-- end OPTION NO -->
 
-            <div id="id_other_div" {% if picked.var_1 == question.options.no_opt.value %}style="display: none;"{% endif %}>
+            <div id="id_other_div" {% if picked.var_1 == question.options.no_opt.value or picked.var_1 == None %}style="display: none;"{% endif %}>
                 <br />
                 <textarea id="id_input_2" rows="4" cols="50" class="form-control" placeholder="{{ question.options.other_opt }}">{{ picked.var_2 }}</textarea>
             </div>

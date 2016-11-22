@@ -334,9 +334,9 @@ def render_question_013(workspace, module, node, question, answer):
 def render_question_014(workspace, module, node, question, answer):
     """
     DEPENDENCY:
-    - template #002 | QID: 02 | company name
     - template #001 | QID: 10 | geographic market
     - template #009 | QID: 11 | geographic market
+    - template #011 | QID: 12 | naics
     """
     # Convert JSON string into python dictionary.
     picked = json.loads(answer.content)
@@ -353,20 +353,16 @@ def render_question_014(workspace, module, node, question, answer):
     a3_raw = get_object_or_404(QuestionAnswer, question_id=q3_qid)
     a3 = json.loads(a3_raw.content)
 
-    # Generate custom text from previous questions.
-    # 1. Generate company name.
-    company_name = a1['var_1']
-    has_short_name = bool(a1['var_2'])
-    if has_short_name:
-        company_name = a1['var_3']
-
     # 2. Generate geographic info.
-    company_market = a3['var_1']
+    company_market = a2['var_1']
 
-    #TODO: GET THE "COMPANY INDUSTRY" FROM NIACS question.
+    # 3. Generate industry.
+    naics_id = int(a3['var_5'])
+    naic_option = NAICSOption.objects.get(id=naics_id)
+    companyindustry = naic_option.name
 
     # 3. Generate text.
-    mission_statement = _("To become the company of choice in the %(comapnyindustry)s in the %(companymarket)s market.") % {'comapnyindustry': company_name, 'companymarket': company_market}
+    mission_statement = _("To become the company of choice in %(companyindustry)s in the %(companymarket)s market.") % {'companyindustry': companyindustry, 'companymarket': company_market}
 
     # Render.
     return {
@@ -377,7 +373,7 @@ def render_question_014(workspace, module, node, question, answer):
         'answer': answer,
         'picked': picked,
         "OTHER_TEXT": OTHER_TEXT,
-        # 'default_mission_statement': mission_statement
+        'default_mission_statement': mission_statement
     }
 
 
