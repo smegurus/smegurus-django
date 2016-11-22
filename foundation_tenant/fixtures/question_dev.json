@@ -901,5 +901,28 @@
             "validation": {},
             "template_id": 15
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 21,
+        "fields": {
+            "document_type": 1,
+            "number": 21,
+            "title": "How competitive is your industry?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "very competitive",
+                    "moderately competitive",
+                    "emerging, with few competitors"
+                ]
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 4
+        }
     }
 ]
