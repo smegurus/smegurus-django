@@ -2,9 +2,9 @@
 <!-- JS -->
 {% compress js inline %}
 <script>
-    // Generate all the options to be selected for "id_input_4" input field.
-    // These options are dependent on "id_input_3" intput field.
-    var input_4_options = {
+    // Generate all the options to be selected for "id_input_2" input field.
+    // These options are dependent on "id_input_1" intput field.
+    var input_2_options = {
         {% for parent_item in question.options.opt2 %}
             "{{ parent_item.parent }}": [
                 {% for item in parent_item.choices %}
@@ -18,29 +18,29 @@
 
     $(document).ready(function () {
         //
-        // Detect changes with "id_input_3" input field.
+        // Detect changes with "id_input_1" input field.
         //
-        $(document).on('change','#id_input_3',function(){
+        $(document).on('change','#id_input_1',function(){
             // Fetch choices made and validate with the available options.
-            var parent = $('#id_input_3').val();
-            var has_options = input_4_options.hasOwnProperty(parent);
+            var parent = $('#id_input_1').val();
+            var has_options = input_2_options.hasOwnProperty(parent);
 
             //--------------//
             // CASE 1 OF 2: //
             //--------------//
-            // Parent exists in "id_input_4" so generate options for it.
+            // Parent exists in "id_input_2" so generate options for it.
             if (has_options) {
                 // Make GUI available.
-                $('#id_input_4_selectfield_div').show();
-                $('#id_input_4_textfield_div').hide();
-                $('#id_input_4b').val("");
+                $('#id_input_2_div').show();
+                $('#id_input_2_other_div').hide();
+                $('#id_input_2_other').val("");
 
                 // Generate the selectfield.
-                $("#id_input_4a").html("");
-                var options = input_4_options[parent];
+                $("#id_input_2").html("");
+                var options = input_2_options[parent];
                 for (var i = 0; i < options.length; i++) {
                     // Append the element
-                    $('#id_input_4a').append($('<option>', {
+                    $('#id_input_2').append($('<option>', {
                         value: options[i],
                         text: options[i]
                     }));
@@ -50,12 +50,12 @@
             //--------------//
             // CASE 2 OF 2: //
             //--------------//
-            // Parent doesn't exists in "id_input_4" so open new textfield.
+            // Parent doesn't exists in "id_input_2" so open new textfield.
             else {
                 // Make GUI available.
-                $('#id_input_4_selectfield_div').hide();
-                $('#id_input_4_textfield_div').show();
-                $("#id_input_4a").html("");
+                $('#id_input_2_div').hide();
+                $('#id_input_2_other_div').show();
+                $("#id_input_2").html("");
             } // end CASE 2.
         });
     });
@@ -67,10 +67,9 @@
     function question_answer_protected_next(next_url) {
         // Get inputs to valid.
         var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
         var input_2 = $('#id_input_2').val();
-        var input_3 = $('#id_input_3').val();
-        var input_4a = $('#id_input_4a').val();
-        var input_4b = $('#id_input_4b').val();
+        var input_2_other = $('#id_input_2_other').val();
 
         if (input_1 == "") {
             alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\".");
@@ -86,14 +85,14 @@
         }
 
         // Fetch choices made and validate with the available options.
-        var has_options = input_4_options.hasOwnProperty(input_3);
+        var has_options = input_2_options.hasOwnProperty(input_3);
         if (has_options) {
-            if (input_4a == "") {
+            if (input_2 == "") {
                 alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\".");
                 return;
             }
         } else {
-            if (input_4b == "") {
+            if (input_2_other == "") {
                 alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\".");
                 return;
             }
@@ -109,9 +108,9 @@
         // Get inputs to valid.
         var input_1 = $('#id_input_1').val();
         var input_2 = $('#id_input_2').val();
-        var input_3 = $('#id_input_3').val();
-        var input_4a = $('#id_input_4a').val();
-        var input_4b = $('#id_input_4b').val();
+        var input_3 = $('#id_input_1').val();
+        var input_2 = $('#id_input_2').val();
+        var input_2_other = $('#id_input_2_other').val();
 
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
@@ -124,8 +123,8 @@
                     'var_1': input_1,
                     'var_2': input_2,
                     'var_3': input_3,
-                    'var_4': input_4a,
-                    'var_4_other': input_4b
+                    'var_4': input_2,
+                    'var_4_other': input_2_other
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -161,7 +160,7 @@
         <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
         <div class="col-sm-10">
             <!-- OPTIONS -->
-            <select id="id_input_3" class="form-control">
+            <select id="id_input_1" class="form-control">
                 <option value="">---</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -173,11 +172,11 @@
     <!-- end ROW 1 -->
     <br />
     <!-- ROW 2 | SELECTFIELD -->
-    <div class="form-group" id="id_input_4_selectfield_div" {% if not picked.var_2 %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_2_div" {% if not picked.var_2 %}style="display: none;"{% endif %}>
         <label class="col-sm-2 control-label">{{ question.content.stub_2 }}</label>
         <div class="col-sm-10">
             <!-- SELECTIONFIELD -->
-            <select id="id_input_4a" class="form-control">
+            <select id="id_input_2" class="form-control">
                 <!-- OPTION -->
                 <option value="" selected="selected">---</option>
                 <!-- end OPTION -->
@@ -203,10 +202,10 @@
     <!-- end ROW 2 | SELECTFIELD -->
 
     <!-- ROW 3 | TEXTFIELD -->
-    <div class="form-group" id="id_input_4_textfield_div" {% if not picked.var_4_other %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_2_other_div" {% if not picked.var_4_other %}style="display: none;"{% endif %}>
         <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
         <div class="col-sm-10">
-            <input id="id_input_4b" type="text" class="form-control" placeholder="" value="{{ picked.var_4_other }}" />
+            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_4_other }}" />
         </div>
     </div>
     <!-- end ROW 3 | TEXTFIELD  -->
