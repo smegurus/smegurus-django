@@ -23,41 +23,42 @@
         $(document).on('change','#id_input_1',function(){
             // Fetch choices made and validate with the available options.
             var parent = $('#id_input_1').val();
-            var has_options = input_2_options.hasOwnProperty(parent);
 
-            //--------------//
-            // CASE 1 OF 2: //
-            //--------------//
-            // Parent exists in "id_input_2" so generate options for it.
-            if (has_options) {
-                // Make GUI available.
-                $('#id_input_2_div').show();
-                $('#id_input_2_other_div').hide();
-                $('#id_input_2_other').val("");
+            // Make GUI available.
+            $('#id_input_2_div').show();
+            $('#id_input_2_other_div').hide();
+            $('#id_input_2_other').val("");
 
-                // Generate the selectfield.
-                $("#id_input_2").html("");
-                var options = input_2_options[parent];
-                for (var i = 0; i < options.length; i++) {
-                    // Append the element
-                    $('#id_input_2').append($('<option>', {
-                        value: options[i],
-                        text: options[i]
-                    }));
-                }
-            } // end CASE 1.
+            // Generate the selectfield.
+            $("#id_input_2").html("");
+            var options = input_2_options[parent];
+            for (var i = 0; i < options.length; i++) {
+                // Append the element
+                $('#id_input_2').append($('<option>', {
+                    value: options[i],
+                    text: options[i]
+                }));
+            }
 
-            //--------------//
-            // CASE 2 OF 2: //
-            //--------------//
-            // Parent doesn't exists in "id_input_2" so open new textfield.
-            else {
-                // Make GUI available.
-                $('#id_input_2_div').hide();
-                $('#id_input_2_other_div').show();
-                $("#id_input_2").html("");
-            } // end CASE 2.
+            // Display OTHER gui.
+            if (parent == "{{ OTHER_TEXT }}") {
+                $('#id_input_1_other_div').show();
+            }
         });
+
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $(document).on('change','#id_input_2',function(){
+            // Fetch choices made and validate with the available options.
+            var input_2 = $('#id_input_2').val();
+
+            // Display OTHER gui.
+            if (input_2 == "{{ OTHER_TEXT }}") {
+                $('#id_input_2_other_div').show();
+            }
+        });
+
     });
 
     /**
@@ -65,40 +66,43 @@
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        // Get inputs to valid.
+        // GET INPUTS
+        //---------------
         var input_1 = $('#id_input_1').val();
         var input_1_other = $('#id_input_1_other').val();
         var input_2 = $('#id_input_2').val();
         var input_2_other = $('#id_input_2_other').val();
 
-        if (input_1 == "") {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\".");
-            return;
-        }
-        if (input_2 == "") {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\".");
-            return;
-        }
-        if (input_3 == "") {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_3 }}\".");
-            return;
-        }
-
-        // Fetch choices made and validate with the available options.
-        var has_options = input_2_options.hasOwnProperty(input_3);
-        if (has_options) {
-            if (input_2 == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\".");
+        // VALIDATION
+        //---------------
+        // ROW 1
+        if (input_1 == "{{ OTHER_TEXT }}") {
+            if (input_1_other == "") {
+                alert("{% trans 'Please fill in \"Other\".' %}");
                 return;
             }
         } else {
-            if (input_2_other == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\".");
+            if (input_1 == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
                 return;
             }
         }
 
-        // Update our model.
+        // ROW 2
+        if (input_2 == "{{ OTHER_TEXT }}") {
+            if (input_2_other == "") {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_2 == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\"");
+                return;
+            }
+        }
+
+        // UPDATE YOUR MODEL.
+        //---------------
         ajax_do_chain(function(json_result) {
             window.location = next_url;
         });
@@ -107,8 +111,7 @@
     function ajax_do_chain(callback) {
         // Get inputs to valid.
         var input_1 = $('#id_input_1').val();
-        var input_2 = $('#id_input_2').val();
-        var input_3 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
         var input_2 = $('#id_input_2').val();
         var input_2_other = $('#id_input_2_other').val();
 
@@ -121,10 +124,9 @@
                 // Set the JSON object with our picked value and stringify it.
                 question_answer['content'] = JSON.stringify({
                     'var_1': input_1,
+                    'var_1_other': input_1_other,
                     'var_2': input_2,
-                    'var_3': input_3,
-                    'var_4': input_2,
-                    'var_4_other': input_2_other
+                    'var_2_other': input_2_other
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -170,8 +172,21 @@
         </div>
     </div>
     <!-- end ROW 1 -->
+
+   <br />
+
+    <!-- ROW 1 | OTHER -->
+    <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+        <div class="col-sm-10">
+            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
+        </div>
+    </div>
+    <!-- end ROW 1 | OTHER -->
+
     <br />
-    <!-- ROW 2 | SELECTFIELD -->
+
+    <!-- ROW 2 -->
     <div class="form-group" id="id_input_2_div" {% if not picked.var_2 %}style="display: none;"{% endif %}>
         <label class="col-sm-2 control-label">{{ question.content.stub_2 }}</label>
         <div class="col-sm-10">
@@ -181,13 +196,13 @@
                 <option value="" selected="selected">---</option>
                 <!-- end OPTION -->
                 <!-- OPTION -->
-                {% if picked.var_3 and picked.var_4 %}
+                {% if picked.var_1 and picked.var_2 %}
                     <!-- ITEMS -->
                     {% for item in question.options.opt2 %}
-                        {% if item.parent == picked.var_3 %}
+                        {% if item.parent == picked.var_1 %}
                             <!-- CHOICES -->
                             {% for choice in item.choices %}
-                                <option value="{{ choice }}" {% if choice == picked.var_4 %}selected="selected"{% endif %}>{{ choice }}</option>
+                                <option value="{{ choice }}" {% if choice == picked.var_2 %}selected="selected"{% endif %}>{{ choice }}</option>
                             {% endfor %}
                             <!-- end CHOICES-->
                         {% endif %}
@@ -199,16 +214,18 @@
             <!-- end SELECTIONFIELD -->
         </div>
     </div>
-    <!-- end ROW 2 | SELECTFIELD -->
+    <!-- end ROW 2 -->
 
-    <!-- ROW 3 | TEXTFIELD -->
-    <div class="form-group" id="id_input_2_other_div" {% if not picked.var_4_other %}style="display: none;"{% endif %}>
-        <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
+    <br />
+
+    <!-- ROW 2 | OTHER -->
+    <div class="form-group" id="id_input_2_other_div" {% if not picked.var_2_other %}style="display: none;"{% endif %}>
+        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
         <div class="col-sm-10">
-            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_4_other }}" />
+            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_2_other }}" />
         </div>
     </div>
-    <!-- end ROW 3 | TEXTFIELD  -->
+    <!-- end ROW 2 | OTHER  -->
 
 </fieldset>
 <!-- end HTML -->
