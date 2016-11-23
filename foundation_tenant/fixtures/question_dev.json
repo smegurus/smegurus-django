@@ -1087,5 +1087,38 @@
             "validation": {},
             "template_id": 18
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 26,
+        "fields": {
+            "document_type": 1,
+            "number": 26,
+            "title": "How do you get your products or services to your clients?",
+            "help": "",
+            "options": {
+                "opt1": [
+                     "via direct deliveries to the client",
+                     "via air shipments",
+                     "via transport truck shipments",
+                     "vial rail shipments",
+                     "via boat shipments",
+                     "through wholesale sales",
+                     "at its place of operation",
+                     "through retail and wholesale sales",
+                     "at the client's location",
+                     "at several locations",
+                     "through the internet",
+                     "digital delivery",
+                     "other"
+                ]
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 4
+        }
     }
 ]
