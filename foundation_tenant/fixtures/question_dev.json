@@ -1071,12 +1071,12 @@
                     "Other (Please Specify)"
                 ],
                 "opt2": [
-                     "using an alternative product",
-                     "using a more expensive substitute",
-                     "establishing relationships with other suppliers",
-                     "researching other suppliers",
-                     "changing our business model so that we can work without the constrained item",
-                     "Other (Please Specify)"
+                    "using an alternative product",
+                    "using a more expensive substitute",
+                    "establishing relationships with other suppliers",
+                    "researching other suppliers",
+                    "changing our business model so that we can work without the constrained item",
+                    "Other (Please Specify)"
                 ]
             },
             "content": {
@@ -1098,19 +1098,19 @@
             "help": "",
             "options": {
                 "opt1": [
-                     "via direct deliveries to the client",
-                     "via air shipments",
-                     "via transport truck shipments",
-                     "vial rail shipments",
-                     "via boat shipments",
-                     "through wholesale sales",
-                     "at its place of operation",
-                     "through retail and wholesale sales",
-                     "at the client's location",
-                     "at several locations",
-                     "through the internet",
-                     "digital delivery",
-                     "other"
+                    "via direct deliveries to the client",
+                    "via air shipments",
+                    "via transport truck shipments",
+                    "vial rail shipments",
+                    "via boat shipments",
+                    "through wholesale sales",
+                    "at its place of operation",
+                    "through retail and wholesale sales",
+                    "at the client's location",
+                    "at several locations",
+                    "through the internet",
+                    "digital delivery",
+                    "other"
                 ]
             },
             "content": {
@@ -1119,6 +1119,136 @@
             "dependency": {},
             "validation": {},
             "template_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 27,
+        "fields": {
+            "document_type": 1,
+            "number": 27,
+            "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "variable costs",
+                    "the time associated with product delivery",
+                    "secure distribution digital of goods",
+                    "ensuring customers are aware of our location",
+                    "the risk of loss or theft",
+                    "our limited sales force",
+                    "our limited logistics capabilities",
+                    "our limited customer support capabilities",
+                    "the availability of a suitable location"
+                ],
+                "opt2": [
+                    {
+                        "parent": "variable costs",
+                        "choices": [
+                            "budgeting for increased costs as fuel prices increase",
+                            "investigating alternative fuels to power our vehicles",
+                            "upgrading our vehicles to more efficient models",
+                            "optimizing our delivery routes",
+                            "increasing vehicle maintenance to ensure peak efficiency",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "the time associated with product delivery",
+                        "choices": [
+                            "exploring alternative shipping methods",
+                            "optimizing delivery routes",
+                            "optimizing manufacturing/production times",
+                            "ensuring that customers are aware of delivery times",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "secure distribution digital of goods",
+                        "choices": [
+                            "creating a secure e-commerce system",
+                            "using a third party payment processor such as PayPal",
+                            "encrypting transactions",
+                            "communicating the importance of security and privacy to our clients",
+                            "we will build a strong technology platform",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "ensuring customers are aware of our location",
+                        "choices": [
+                            "establishing a strong marketing presence",
+                            "having good signage and visibility",
+                            "networking with other businesses in the area",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "ensuring safe delivery of physical goods",
+                        "choices": [
+                            "packaging products securely",
+                            "working with reliable third party delivery services",
+                            "offering guarantees to our clients if products are damaged in shipping",
+                            "insuring products in shipping",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "the risk of loss or theft",
+                        "choices": [
+                            "providing a secure environment for the transportation of goods to clients",
+                            "investing in security for our locations and vehicles",
+                            "insuring products in shipping",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "our limited sales force",
+                        "choices": [
+                            "we will develop Internet marketing and sales capacities",
+                            "we will outsource sales",
+                            "we will automate the sales process",
+                            "we will hire commission only staff",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "our limited logistics capabilities",
+                        "choices": [
+                            "we will outsource logistics",
+                            "we will investigate other methods",
+                            "we will at outsourcing a portion of our logistics",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "our limited customer support capabilities",
+                        "choices": [
+                            "we will streamline our operations",
+                            "we will offer online or E-Mail assistance only",
+                            "we will outsource our customer service",
+                            "we will hire overseas staff",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "the availability of a suitable location",
+                        "choices": [
+                            "we will work virtually until a location is available",
+                            "we will share space with another organization",
+                            "we will seek out low-cost locations",
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ]
+            },
+            "content": {
+                "stub_1": "Our biggest challenge is...",
+                "stub_2": "We'll overcome this by..."
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 19
         }
     }
 ]
