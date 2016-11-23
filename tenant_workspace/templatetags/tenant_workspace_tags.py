@@ -237,8 +237,6 @@ def render_question_012(workspace, module, node, question, answer):
         if picked['var_1']:
             depth_two_results = NAICSOption.objects.filter(parent=picked['var_1'])
 
-    print(depth_two_results)
-
     # # Get the three depth.
     depth_three_results = None
     if picked['var_3']:
@@ -392,12 +390,14 @@ def render_question_015(workspace, module, node, question, answer):
 
 @register.inclusion_tag('templatetags/question/render_question_015.html')
 def render_question_016(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
+        'picked': picked,
+        'picked_count': len(picked),
         "OTHER_TEXT": "Other (Please Specify)"
     }
