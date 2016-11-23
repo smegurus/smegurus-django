@@ -1053,5 +1053,39 @@
             "validation": {},
             "template_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 25,
+        "fields": {
+            "document_type": 1,
+            "number": 25,
+            "title": "What is your biggest supplier challenge, and how can you fix it?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "that few suppliers exist",
+                    "substitutes are expensive",
+                    "substitutes are non-existent",
+                    "suppliers are located far away",
+                    "Other (Please Specify)"
+                ],
+                "opt2": [
+                     "using an alternative product",
+                     "using a more expensive substitute",
+                     "establishing relationships with other suppliers",
+                     "researching other suppliers",
+                     "changing our business model so that we can work without the constrained item",
+                     "Other (Please Specify)"
+                ]
+            },
+            "content": {
+                "stub_1": "Our biggest challenge is...",
+                "stub_2": "We'll overcome this by..."
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 18
+        }
     }
 ]
