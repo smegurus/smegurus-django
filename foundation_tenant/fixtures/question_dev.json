@@ -1030,5 +1030,28 @@
             "validation": {},
             "template_id": 17
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 24,
+        "fields": {
+            "document_type": 1,
+            "number": 24,
+            "title": "In your industry how many suppliers exist?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "many suppliers",
+                    "few suppliers",
+                    "moderate amount of suppliers"
+                ]
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {},
+            "template_id": 4
+        }
     }
 ]
