@@ -30,7 +30,7 @@
             "content": {},
             "dependency": {},
             "validation": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -51,7 +51,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 2
+            "type_id": 2
         }
     },
     {
@@ -126,7 +126,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 3
+            "type_id": 3
         }
     },
     {
@@ -151,7 +151,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 4
+            "type_id": 4
         }
     },
     {
@@ -294,7 +294,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 5
+            "type_id": 5
         }
     },
     {
@@ -331,7 +331,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 6
+            "type_id": 6
         }
     },
     {
@@ -370,7 +370,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 7
+            "type_id": 7
         }
     },
     {
@@ -395,7 +395,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 4
+            "type_id": 4
         }
     },
     {
@@ -433,7 +433,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 8
+            "type_id": 8
         }
     },
     {
@@ -483,7 +483,7 @@
             "content": {},
             "dependency": {},
             "validation": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -648,7 +648,7 @@
                 "previous_question_id": 10
             },
             "validation": {},
-            "template_id": 9
+            "type_id": 9
         }
     },
     {
@@ -678,7 +678,7 @@
             "content": {},
             "dependency": {},
             "validation": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -707,7 +707,7 @@
                 "min_entries": 1,
                 "min_entries_error_message": "Please enter at least 1 entry."
             },
-            "template_id": 10
+            "type_id": 10
         }
     },
     {
@@ -726,7 +726,7 @@
             "validation": {
                 "no_image_uploaded_error_message": "Please upload a file before continuing."
             },
-            "template_id": 11
+            "type_id": 11
         }
     },
     {
@@ -745,7 +745,7 @@
             "validation": {
                 "no_image_uploaded_error_message": "Please upload a file before continuing."
             },
-            "template_id": 11
+            "type_id": 11
         }
     },
     {
@@ -773,7 +773,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 4
+            "type_id": 4
         }
     },
     {
@@ -795,7 +795,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 12
+            "type_id": 12
         }
     },
     {
@@ -830,7 +830,7 @@
                 "q3_qid": 11
             },
             "validation": {},
-            "template_id": 13
+            "type_id": 13
         }
     },
     {
@@ -863,7 +863,7 @@
                 "q3_qid": 17
             },
             "validation": {},
-            "template_id": 14
+            "type_id": 14
         }
     },
     {
@@ -899,7 +899,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 15
+            "type_id": 15
         }
     },
     {
@@ -922,7 +922,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 4
+            "type_id": 4
         }
     },
     {
@@ -974,7 +974,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 16
+            "type_id": 16
         }
     },
     {
@@ -1028,7 +1028,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 17
+            "type_id": 17
         }
     },
     {
@@ -1051,7 +1051,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 4
+            "type_id": 4
         }
     },
     {
@@ -1085,7 +1085,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 18
+            "type_id": 18
         }
     },
     {
@@ -1118,7 +1118,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 4
+            "type_id": 4
         }
     },
     {
@@ -1297,7 +1297,7 @@
             },
             "dependency": {},
             "validation": {},
-            "template_id": 19
+            "type_id": 19
         }
     }
 ]

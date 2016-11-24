@@ -33,8 +33,8 @@ def reverse_next_node(workspace, module, node):
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['next_position'],])
 
 
-@register.inclusion_tag('templatetags/question/render_question_001.html')
-def render_question_001(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_001.html')
+def render_question_type_001(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,
@@ -46,8 +46,8 @@ def render_question_001(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_002.html')
-def render_question_002(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_002.html')
+def render_question_type_002(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,
@@ -59,8 +59,8 @@ def render_question_002(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_003.html')
-def render_question_003(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_003.html')
+def render_question_type_003(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -74,8 +74,8 @@ def render_question_003(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_004.html')
-def render_question_004(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_004.html')
+def render_question_type_004(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -89,8 +89,8 @@ def render_question_004(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_005.html')
-def render_question_005(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_005.html')
+def render_question_type_005(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,
@@ -102,8 +102,8 @@ def render_question_005(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_006.html')
-def render_question_006(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_006.html')
+def render_question_type_006(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -117,8 +117,8 @@ def render_question_006(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_007.html')
-def render_question_007(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_007.html')
+def render_question_type_007(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,
@@ -130,8 +130,8 @@ def render_question_007(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_008.html')
-def render_question_008(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_008.html')
+def render_question_type_008(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -145,8 +145,8 @@ def render_question_008(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_009.html')
-def render_question_009(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_009.html')
+def render_question_type_009(workspace, module, node, question, answer):
     """
     DEPENDENCY:
     - template #001 | QID: 10 | geographic market
@@ -168,8 +168,8 @@ def render_question_009(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_010.html')
-def render_question_010(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_010.html')
+def render_question_type_010(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -183,8 +183,8 @@ def render_question_010(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_011.html')
-def render_question_011(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_011.html')
+def render_question_type_011(workspace, module, node, question, answer):
     # Convert JSON string into python dictionary.
     picked = json.loads(answer.content)
 
@@ -206,8 +206,8 @@ def render_question_011(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_012.html')
-def render_question_012(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_012.html')
+def render_question_type_012(workspace, module, node, question, answer):
     """
     DEPENDENCY:
     - NAICSOption
@@ -278,8 +278,8 @@ def render_question_012(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_013.html')
-def render_question_013(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_013.html')
+def render_question_type_013(workspace, module, node, question, answer):
     """
     DEPENDENCY:
     - template #002 | QID: 02 | company name
@@ -328,8 +328,8 @@ def render_question_013(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_013.html')
-def render_question_014(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_013.html')
+def render_question_type_014(workspace, module, node, question, answer):
     """
     DEPENDENCY:
     - template #001 | QID: 10 | geographic market
@@ -375,8 +375,8 @@ def render_question_014(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_014.html')
-def render_question_015(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_014.html')
+def render_question_type_015(workspace, module, node, question, answer):
     return {
         'workspace': workspace,
         'module': module,
@@ -388,8 +388,8 @@ def render_question_015(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_015.html')
-def render_question_016(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_015.html')
+def render_question_type_016(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -403,8 +403,8 @@ def render_question_016(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_016.html')
-def render_question_017(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_016.html')
+def render_question_type_017(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -418,8 +418,8 @@ def render_question_017(workspace, module, node, question, answer):
     }
 
 
-@register.inclusion_tag('templatetags/question/render_question_017.html')
-def render_question_018(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_017.html')
+def render_question_type_018(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,
@@ -434,8 +434,8 @@ def render_question_018(workspace, module, node, question, answer):
 
 
 
-@register.inclusion_tag('templatetags/question/render_question_018.html')
-def render_question_019(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_018.html')
+def render_question_type_019(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,

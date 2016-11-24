@@ -26,7 +26,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -56,7 +56,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -86,7 +86,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -116,7 +116,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -146,7 +146,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -176,7 +176,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -206,7 +206,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -236,7 +236,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -266,7 +266,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     },
     {
@@ -296,7 +296,7 @@
                 }
             ],
             "content": {},
-            "template_id": 1
+            "type_id": 1
         }
     }
 ]

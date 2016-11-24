@@ -76,9 +76,9 @@ class Question(models.Model):
         blank=True,
         default="{}"
     )
-    template_id = models.PositiveSmallIntegerField(
-        _("Template ID"),
-        help_text=_('The template ID to load up for the view.'),
+    type_id = models.PositiveSmallIntegerField(
+        _("Type ID"),
+        help_text=_('The question type ID to load up for the view.'),
         default=0,
         blank=True,
         null=True,

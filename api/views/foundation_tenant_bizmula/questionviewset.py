@@ -15,7 +15,7 @@ from foundation_tenant.models.bizmula.documenttype import DocumentType
 class QuestionFilter(django_filters.FilterSet):
     class Meta:
         model = Question
-        fields = ['document_type', 'number', 'title', 'help', 'template_id',]
+        fields = ['document_type', 'number', 'title', 'help', 'type_id',]
 
 
 class QuestionViewSet(viewsets.ModelViewSet):

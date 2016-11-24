@@ -25,44 +25,44 @@
               <img src="{% static 'app/img/question_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="show_help({{ question.id }});" />
               <form id="questionForm" method="get" action="/" class="form-horizontal">
                  <!-- QUESTION CONTENT -->
-                 {% if question.template_id == 1 %}
-                     {% render_question_001 workspace module node question answer %}
-                 {% elif question.template_id == 2 %}
-                     {% render_question_002 workspace module node question answer %}
-                 {% elif question.template_id == 3 %}
-                     {% render_question_003 workspace module node question answer %}
-                 {% elif question.template_id == 4 %}
-                     {% render_question_004 workspace module node question answer %}
-                 {% elif question.template_id == 5 %}
-                     {% render_question_005 workspace module node question answer %}
-                 {% elif question.template_id == 6 %}
-                     {% render_question_006 workspace module node question answer %}
-                 {% elif question.template_id == 7 %}
-                     {% render_question_007 workspace module node question answer %}
-                 {% elif question.template_id == 8 %}
-                     {% render_question_008 workspace module node question answer %}
-                 {% elif question.template_id == 9 %}
-                     {% render_question_009 workspace module node question answer %}
-                 {% elif question.template_id == 10 %}
-                     {% render_question_010 workspace module node question answer %}
-                 {% elif question.template_id == 11 %}
-                     {% render_question_011 workspace module node question answer %}
-                 {% elif question.template_id == 12 %}
-                     {% render_question_012 workspace module node question answer %}
-                 {% elif question.template_id == 13 %}
-                     {% render_question_013 workspace module node question answer %}
-                 {% elif question.template_id == 14 %}
-                     {% render_question_014 workspace module node question answer %}
-                 {% elif question.template_id == 15 %}
-                     {% render_question_015 workspace module node question answer %}
-                 {% elif question.template_id == 16 %}
-                     {% render_question_016 workspace module node question answer %}
-                 {% elif question.template_id == 17 %}
-                     {% render_question_017 workspace module node question answer %}
-                 {% elif question.template_id == 18 %}
-                     {% render_question_018 workspace module node question answer %}
-                 {% elif question.template_id == 19 %}
-                     {% render_question_019 workspace module node question answer %}
+                 {% if question.type_id == 1 %}
+                     {% render_question_type_001 workspace module node question answer %}
+                 {% elif question.type_id == 2 %}
+                     {% render_question_type_002 workspace module node question answer %}
+                 {% elif question.type_id == 3 %}
+                     {% render_question_type_003 workspace module node question answer %}
+                 {% elif question.type_id == 4 %}
+                     {% render_question_type_004 workspace module node question answer %}
+                 {% elif question.type_id == 5 %}
+                     {% render_question_type_005 workspace module node question answer %}
+                 {% elif question.type_id == 6 %}
+                     {% render_question_type_006 workspace module node question answer %}
+                 {% elif question.type_id == 7 %}
+                     {% render_question_type_007 workspace module node question answer %}
+                 {% elif question.type_id == 8 %}
+                     {% render_question_type_008 workspace module node question answer %}
+                 {% elif question.type_id == 9 %}
+                     {% render_question_type_009 workspace module node question answer %}
+                 {% elif question.type_id == 10 %}
+                     {% render_question_type_010 workspace module node question answer %}
+                 {% elif question.type_id == 11 %}
+                     {% render_question_type_011 workspace module node question answer %}
+                 {% elif question.type_id == 12 %}
+                     {% render_question_type_012 workspace module node question answer %}
+                 {% elif question.type_id == 13 %}
+                     {% render_question_type_013 workspace module node question answer %}
+                 {% elif question.type_id == 14 %}
+                     {% render_question_type_014 workspace module node question answer %}
+                 {% elif question.type_id == 15 %}
+                     {% render_question_type_015 workspace module node question answer %}
+                 {% elif question.type_id == 16 %}
+                     {% render_question_type_016 workspace module node question answer %}
+                 {% elif question.type_id == 17 %}
+                     {% render_question_type_017 workspace module node question answer %}
+                 {% elif question.type_id == 18 %}
+                     {% render_question_type_018 workspace module node question answer %}
+                 {% elif question.type_id == 19 %}
+                     {% render_question_type_019 workspace module node question answer %}
                  {% endif %}
                  <!-- end QUESTION CONTENT -->
 
