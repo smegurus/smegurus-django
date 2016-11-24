@@ -41,8 +41,7 @@ def render_question_type_001(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
-        "OTHER_TEXT": "Other (Please Specify)"
+        'picked': json.loads(answer.content)
     }
 
 
