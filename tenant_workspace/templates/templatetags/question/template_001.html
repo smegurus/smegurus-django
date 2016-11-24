@@ -3,42 +3,16 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-
         // Detect User clicking on one of the Radio buttons.
         $("input[name=optionsRadios]").click(function(){
             // Get the option selected.
             var value = this.value;
-    
-            // Fetch our pre-created (or previously-saved) "QuestionAnswer"
-            // from our Database and convert it to JSON object.
-            get_tenant_questionanswer(
-                {{ answer.id }},
-                function(question_answer) {
 
-                    // Set the JSON object with our picked value and stringify it.
-                    question_answer['content'] = JSON.stringify({
-                        'var_1': value
-                    });
-
-                    // Save our "QuestionAnswer" model object.
-                    set_tenant_questionanswer(
-                        question_answer,
-                        function(json_result) {
-                            console.log(json_result); // Do nothing besides report to conosle.
-                        },
-                        function(error_json_result) {
-                            var string = JSON.stringify( error_json_result );
-                            console.log(string);
-                            alert(string);
-                        }
-                    ); // end SET ANSWER
-                },
-                function(error_json_result) {
-                    var string = JSON.stringify( error_json_result );
-                    console.log(string);
-                    alert(string);
-                }
-            ); // end GET ANSWER
+            if (value == "{{ question.options.other_text }}") {
+                $('#id_input_1_other_div').show();
+            } else {
+                $('#id_input_1_other_div').hide();
+            }
         }); // end RADIO CLICK DETECTION HANDLER
     }); // end DOCUMENT START
 
@@ -49,16 +23,69 @@
     function question_answer_protected_next(next_url) {
         // Detect checked value.
         var form = $('#questionForm');
-        var value = form.find('input[name=optionsRadios]:checked').val();
+        var input_1 = form.find('input[name=optionsRadios]:checked').val();
+        var input_1_other = $('#id_input_1_other').val();
 
         // Either load up an error telling the user to pick an option
         // or load up the next page.
-        if (typeof value === "undefined") {
+        if (typeof input_1 === "undefined") {
             alert("{% trans 'Please select an option.' %}");
-        } else {
-            window.location = next_url;
+            return;
         }
+        if (input_1 == "{{ question.options.other_text }}") {
+            if (input_1_other == "") {
+                alert("{% trans 'Please fill in textfield.' %}");
+                return;
+            }
+        }
+
+        ajax_do_chain(input_1, input_1_other, function(json_result) {  // Update our model.
+            window.location = next_url;
+        });
     }
+
+    function ajax_do_chain(input_1, input_1_other, callback) {
+        // Debugging purposes.
+        console.log(input_1);
+        console.log(input_1_other);
+
+        // Prevent loading "Other" if not picked.
+        if (input_1 != "{{ question.options.other_text }}") {
+            input_1_other = "";
+        }
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_1': input_1,
+                    'var_1_other': input_1_other
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -67,6 +94,7 @@
     <legend>
         {{ node.order_num }}. {{ question.title }}
     </legend>
+    <!-- ROW 1 -->
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
@@ -82,5 +110,17 @@
             {% endfor %}
         </div>
     </div>
+    <!-- end ROW 1 -->
+
+    <br />
+
+    <!-- ROW 2 -->
+    <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+        <label class="col-sm-2 control-label">{{ question.options.other_text }}</label>
+        <div class="col-sm-10">
+            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
+        </div>
+    </div>
+    <!-- end ROW 2 -->
 </fieldset>
 <!-- end HTML -->
