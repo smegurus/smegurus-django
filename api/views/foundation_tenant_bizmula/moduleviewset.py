@@ -17,6 +17,7 @@ from foundation_public.utils import resolve_full_url_with_subdmain
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
+from foundation_tenant.models.base.me import TenantMe
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -27,11 +28,24 @@ class SendEmailViewMixin(object):
         Function will send a "Pending Document Review" email to the Documents
         assigned Advisor.
         """
+        # Fetch a single org admin user.
+        org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).latest('date_joined')
+        org_admin_me = TenantMe.objects.get(owner=org_admin_user)
+
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
         contact_list = []
         for me in document.workspace.mes.all():
-            contact_list.append(me.managed_by.owner.email)
+            # If this User profile has an assigned manager then add this person
+            # to the email.
+            if me.managed_by:
+                contact_list.append(me.managed_by.owner.email)
+
+            # If the user was not assigned a manager then assign a Org admin.
+            else:
+                contact_list.append(org_admin_user.email)
+                me.managed_by = org_admin_me
+                me.save()
 
         # Generate the data.
         url =  resolve_full_url_with_subdmain(

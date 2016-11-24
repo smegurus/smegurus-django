@@ -35,6 +35,7 @@ def reverse_next_node(workspace, module, node):
 
 @register.inclusion_tag('templatetags/question/template_001.html')
 def render_question_type_001(workspace, module, node, question, answer):
+    print(question)
     return {
         'workspace': workspace,
         'module': module,
