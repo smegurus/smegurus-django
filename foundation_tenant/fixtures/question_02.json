@@ -197,5 +197,48 @@
             "content": {},
             "type_id": 1
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 16,
+        "fields": {
+            "document_type": 1,
+            "number": 6,
+            "title": "Why do you want to be an entrepreneur?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "I want to work for myself",
+                        "text": "I want to work for myself"
+                    },
+                    {
+                        "value": "I want to control my own schedule",
+                        "text": "I want to control my own schedule"
+                    },
+                    {
+                        "value": "I want to make more money",
+                        "text": "I want to make more money"
+                    },
+                    {
+                        "value": "I want better work-life balance",
+                        "text": "I want better work-life balance"
+                    },
+                    {
+                        "value": "I have a business idea that I want to try out",
+                        "text": "I have a business idea that I want to try out"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "other_text": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
     }
 ]
