@@ -86,31 +86,28 @@
     <legend>
         {{ node.order_num }}. {{ question.title }}
     </legend>
+    <!-- ROW 1 -->
     <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        {% if question.content.stub_1 %}
+        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
         <div class="col-sm-10">
-            <fieldset>
-                <!-- ROW 1 -->
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-                    <div class="col-sm-10">
-                        <!-- OPTIONS -->
-                        <select id="id_input_1" class="form-control">
-                            <option value="">{% trans 'select' %}</option>
-                            {% for item in question.options.opt1 %}
-                                <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
-                            {% endfor %}
-                        </select>
-                        <!-- end OPTIONS -->
-                        <!-- OTHER -->
-                        <br />
-                        <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} />
-                        <!-- end OTHER -->
-                    </div>
-                </div>
-                <!-- end ROW 1 -->
-            </fieldset>
+        {% else %}
+        <div class="col-sm-12">
+        {% endif %}
+            <!-- OPTIONS -->
+            <select id="id_input_1" class="form-control">
+                <option value="">{% trans 'select' %}</option>
+                {% for item in question.options.opt1 %}
+                    <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
+                {% endfor %}
+            </select>
+            <!-- end OPTIONS -->
+            <!-- OTHER -->
+            <br />
+            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} />
+            <!-- end OTHER -->
         </div>
     </div>
+    <!-- end ROW 1 -->
 </fieldset>
 <!-- end HTML -->
