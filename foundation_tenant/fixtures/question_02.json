@@ -66,10 +66,6 @@
                     {
                         "value": "Professional degree",
                         "text": "Professional degree"
-                    },
-                    {
-                        "value": "Other",
-                        "text": "Other"
                     }
                 ],
                 "other_text": "Other"
