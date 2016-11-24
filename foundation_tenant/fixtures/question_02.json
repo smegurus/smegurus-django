@@ -114,5 +114,51 @@
             "validation": {},
             "type_id": 4
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 14,
+        "fields": {
+            "document_type": 1,
+            "number": 4,
+            "title": "Employment status:",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "employed full time",
+                        "text": "employed full time"
+                    },
+                    {
+                        "value": "employed part time",
+                        "text": "employed part time"
+                    },
+                    {
+                        "value": "underemployed",
+                        "text": "underemployed"
+                    },
+                    {
+                        "value": "unemployed",
+                        "text": "unemployed"
+                    },
+                    {
+                        "value": "receiving disability benefits",
+                        "text": "receiving disability benefits"
+                    },
+                    {
+                        "value": "retired",
+                        "text": "retired"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "other_text": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
     }
 ]
