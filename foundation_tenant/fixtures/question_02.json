@@ -289,5 +289,44 @@
             },
             "type_id": 20
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 18,
+        "fields": {
+            "document_type": 1,
+            "number": 8,
+            "title": "Please tell us which of these annual income brackets (include your entire household) you fall under",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "$0-$24,999",
+                        "text": "$0-$24,999"
+                    },
+                    {
+                        "value": "$25,000-$49,999",
+                        "text": "$25,000-$49,999"
+                    },
+                    {
+                        "value": "$50,000-$74,999",
+                        "text": "$50,000-$74,999"
+                    },
+                    {
+                        "value": "$75,000-$99,999",
+                        "text": "$75,000-$99,999"
+                    },
+                    {
+                        "value": "$100,000+",
+                        "text": "$100,000+"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
     }
 ]
