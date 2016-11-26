@@ -461,3 +461,17 @@ def render_question_type_020(workspace, module, node, question, answer):
         'picked_count': len(picked),
         'OTHER_TEXT': "Other (Please Specify)"
     }
+
+
+@register.inclusion_tag('templatetags/question/template_020.html')
+def render_question_type_021(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked)
+    }
