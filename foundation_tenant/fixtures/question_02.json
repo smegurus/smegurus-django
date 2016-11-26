@@ -456,5 +456,35 @@
             "validation": {},
             "type_id": 1
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 23,
+        "fields": {
+            "document_type": 1,
+            "number": 13,
+            "title": "Do you have a logo for your business?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Yes",
+                        "text": "Yes"
+                    },
+                    {
+                        "value": "No",
+                        "text": "No"
+                    }
+                ],
+                "opt1_other": "Yes"
+            },
+            "content": {
+                "opt1_other_stub": "Logo Upload",
+                "opt1_other_type": "imagefield"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 23
+        }
     }
 ]
