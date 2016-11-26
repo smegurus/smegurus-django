@@ -497,9 +497,16 @@ def render_question_type_022(workspace, module, node, question, answer):
 @register.inclusion_tag('templatetags/question/template_023.html')
 def render_question_type_023(workspace, module, node, question, answer):
     """
-    - Updates workspace as well.
+    - uploads an image.
     """
     picked = json.loads(answer.content)
+
+    # Fetch the image that is associated with this question's answer.
+    imageupload = None
+    if bool(picked):
+        upload_id = int_or_none(picked['var_2'])
+        imageupload = TenantImageUpload.objects.get(id=upload_id)
+
     return {
         'workspace': workspace,
         'module': module,
@@ -507,5 +514,6 @@ def render_question_type_023(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        'picked_count': len(picked)
+        'picked_count': len(picked),
+        'imageupload': imageupload
     }
