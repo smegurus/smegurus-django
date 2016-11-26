@@ -1,0 +1,108 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // Do nothing
+
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // FETCH OUR RESULTS.
+        var input_1 = $('#id_input_1').val();
+
+        // VALIDATION
+        if (input_1.length < {{ question.validation.min_length }}) {
+            alert("{{ question.validation.min_length_error_message }}");
+            return;
+        }
+        if (input_1.length > {{ question.validation.max_length }}) {
+            alert("{{ question.validation.max_length_error_message }}");
+            return;
+        }
+
+        ajax_do_chain(input_1, function(json_result) {  // Update our model.
+            window.location = next_url;
+        });
+    }
+
+    function ajax_do_chain(input_1, callback) {
+        // Debugging purposes.
+        console.log(input_1);
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_1': input_1
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        ajax_workspace_in_do_chain(input_1, callback);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+
+    function ajax_workspace_in_do_chain(input_1, callback) {
+        get_tenant_workspace(
+            {{ workspace.id }},
+            function(workspace) {
+                workspace['name'] = input_1;  // Set our object variables.
+                set_tenant_workspace(
+                    workspace,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        callback(json_result);
+                    }
+                ); // end SET
+            },
+            function(error_json_result) {
+                callback(json_result);
+            }
+        ); // end GET
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+
+    <!-- ROW 2 | OTHER -->
+    <div class="form-group" id="id_input_1_div">
+    <div class="col-sm-12">
+            <input id="id_input_1" type="text" class="form-control" placeholder="{{ workspace.name }}" value="{{ workspace.name }}" />
+        </div>
+    </div>
+    <!-- end ROW 2 | OTHER -->
+
+    <br />
+</fieldset>
+<!-- end HTML -->
