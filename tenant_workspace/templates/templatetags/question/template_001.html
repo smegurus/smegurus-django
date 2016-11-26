@@ -17,6 +17,14 @@
     }); // end DOCUMENT START
 
     /**
+     *  Validate to check something is an integer.
+     */
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
+    /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
      */
@@ -37,6 +45,15 @@
                 alert("{% trans 'Please fill in textfield.' %}");
                 return;
             }
+
+            {% if question.content.opt1_other_type == "integerfield" %}
+            // IF WE ARE TO USE "INTEGERFIELD" THEN VALIDATE THAT AN INTEGER
+            // WAS ENTERED.
+            if (is_int(input_1_other) == false) {
+                alert("{% trans 'Please enter integer answer.' %}");
+                return;
+            }
+            {% endif %}
         }
 
         ajax_do_chain(input_1, input_1_other, function(json_result) {  // Update our model.
@@ -116,7 +133,7 @@
 
     <!-- ROW 2 -->
     <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-        <label class="col-sm-2 control-label">{{ question.options.opt1_other }}</label>
+        <label class="col-sm-2 control-label">{{ question.content.opt1_other_stub }}</label>
         <div class="col-sm-10">
             <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
         </div>

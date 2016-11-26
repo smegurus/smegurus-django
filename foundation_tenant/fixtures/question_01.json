@@ -28,7 +28,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -61,7 +64,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -94,7 +100,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -127,7 +136,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -160,7 +172,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -193,7 +208,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -226,7 +244,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -259,7 +280,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -292,7 +316,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     },
@@ -325,7 +352,10 @@
                 ],
                 "opt1_other": "Other"
             },
-            "content": {},
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
             "type_id": 1
         }
     }
