@@ -103,7 +103,7 @@
 "Svalbard & Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tokelau", "Tonga", "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos Islands", "Tuvalu", "Uganda", "Ukraine",
 "United Arab Emirates", "United Kingdom", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam",
 "Virgin Islands, British", "Virgin Islands, U.S.", "Wallis & Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe",
-                    "other"
+                    "Other"
                 ],
                 "opt1_other": "Other"
             },
@@ -319,6 +319,37 @@
                     {
                         "value": "$100,000+",
                         "text": "$100,000+"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 19,
+        "fields": {
+            "document_type": 1,
+            "number": 9,
+            "title": "Have you ever owned a business before?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Yes",
+                        "text": "Yes"
+                    },
+                    {
+                        "value": "No",
+                        "text": "No"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
                     }
                 ],
                 "opt1_other": "Other"
