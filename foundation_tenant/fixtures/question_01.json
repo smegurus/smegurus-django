@@ -32,6 +32,12 @@
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
             },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -68,6 +74,12 @@
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
             },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -99,6 +111,12 @@
                     }
                 ],
                 "opt1_other": "Other"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "content": {
                 "opt1_other_stub": "Other",
@@ -140,6 +158,12 @@
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
             },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -175,6 +199,12 @@
             "content": {
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 1
         }
@@ -212,6 +242,12 @@
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
             },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -243,6 +279,12 @@
                     }
                 ],
                 "opt1_other": "Other"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "content": {
                 "opt1_other_stub": "Other",
@@ -284,6 +326,12 @@
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
             },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -315,6 +363,12 @@
                     }
                 ],
                 "opt1_other": "Other"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "content": {
                 "opt1_other_stub": "Other",
@@ -351,6 +405,12 @@
                     }
                 ],
                 "opt1_other": "Other"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "content": {
                 "opt1_other_stub": "Other",

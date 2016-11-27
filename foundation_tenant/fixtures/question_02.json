@@ -33,7 +33,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },{
@@ -78,7 +83,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },{
@@ -166,7 +176,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -206,6 +221,12 @@
             "content": {
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 1
         }
@@ -252,7 +273,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -343,7 +369,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -377,7 +408,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -453,7 +489,12 @@
                 "opt1_other_type": "integerfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -547,7 +588,12 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -703,7 +749,12 @@
             },
             "content": {},
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     },
@@ -771,7 +822,55 @@
                 "opt1_other_type": "textfield"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 33,
+        "fields": {
+            "document_type": 1,
+            "number": 23,
+            "title": "What is the opportunity you are taking advantage of or problem you seek to solve?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Something that can be made more efficient",
+                        "text": "Something that can be made more efficient"
+                    },
+                    {
+                        "value": "A market opportunity that exists because no other product or service like it",
+                        "text": "A market opportunity that exists because no other product or service like it"
+                    },
+                    {
+                        "value": "A problem you are solving",
+                        "text": "A problem you are solving"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 1
         }
     }
