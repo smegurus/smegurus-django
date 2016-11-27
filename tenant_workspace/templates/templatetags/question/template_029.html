@@ -1,0 +1,194 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    var row_index = {{ picked_count }};
+
+    $(document).ready(function () {
+        // Do nothing.
+    });
+
+    function delete_row(id) {
+        $('#'+id).remove();
+    }
+
+    function add_row() {
+        // GET VALUES
+        var form = $('#questionForm');
+        var input_1 = form.find('#id_input_1').val();
+
+        // Either load up an error telling the user to pick an option
+        // or load up the next page.
+        if (input_1 == "") {
+            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_3 }}\"");
+            return;
+        }
+
+        // CREATE HTML ROW.
+        var html_row = "<tr id=\""+row_index+"\">";
+        html_row += "<td>"+input_1+"</td>";
+        html_row += "<td>";
+        var onclick_js = "delete_row("+row_index+")";
+        html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
+        html_row += "</td>";
+        html_row += "</tr>";
+
+        // ADD HTML ROW TO OUR PAGE.
+        $("#id_table > tbody").append(html_row);
+
+        // CLEAR FIELDS.
+        $('#id_input_1').val("");
+        row_index += 1;
+    }
+
+    function get_table_data() {
+        var data = [];
+        $('#id_table').find('tr').each(function (rowIndex, r) {
+            var cols = [];
+            $(this).find('th,td').each(function (colIndex, c) {
+                cols.push(c.textContent);
+            });
+            data.push(cols);
+        });
+        return data;
+    }
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // FETCH THE TABLE ARRAY.
+        var arr = get_table_data();
+
+        // VALIDATION
+        // Defensive Code: Check to see if any rows exist?
+        var count = arr.length;
+        if (count < {{ question.validation.min }}) {
+            alert("{{ question.validation.min_error_message }}");
+            return;
+        }
+        if (count > {{ question.validation.max }}) {
+            alert("{{ question.validation.max_error_message }}");
+            return;
+        }
+
+        // Variable used to generate our new array.
+        var new_arr = [];
+
+        // Iterate through the table and generate our new array.
+        for(var i=1; i < count; i++) {
+            var row = arr[i];
+            var text = row[0];
+            new_arr.push({
+                "var_1": i,
+                "var_2": text
+            });
+        }
+
+        // DEBUGGING PURPOSES ONLY.
+        console.log(new_arr);
+
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            new_arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
+    }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title }}
+    </legend>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="panel-body">
+                <!-- ROW 1 -->
+                <div class="table-responsive">
+                    <!-- TABLE -->
+                    <table class="table table-striped" id="id_table">
+                        <thead>
+                            <tr>
+                                <th>{{ question.content.stub_1 }}</th>
+                                <th>{{ question.content.stub_2 }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- CONTENT -->
+                            {% for pick in picked %}
+                                <tr id="{{ pick.var_1 }}">
+                                    <td>{{ pick.var_2 }}</td>
+                                    <td>
+                                        <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <!-- end CONTENT -->
+                        </tbody>
+                    </table>
+                    <!-- end TABLE -->
+                </div>
+                <!-- ROW 1 -->
+
+                <br />
+
+                <fieldset>
+                    <!-- ROW 2 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_4 }}" value="{{ picked.input_1 }}" />
+                        </div>
+                    </div>
+                    <!-- end ROW 2 -->
+
+                    <br />
+
+                    <!-- ROW 4 -->
+                    <div class="pull-right" onclick="add_row();">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_5 }}</button>
+                    </div>
+                    <!-- end ROW 4 -->
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->

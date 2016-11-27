@@ -1064,5 +1064,31 @@
             },
             "type_id": 28
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 37,
+        "fields": {
+            "document_type": 1,
+            "number": 27,
+            "title": "Provide 5 specific sources (articles, websites, studies, statistics) where you have found information that supports your idea:",
+            "help": "",
+            "options": {},
+            "content": {
+                "stub_1": "Research Sources",
+                "stub_2": "Remove",
+                "stub_3": "Source",
+                "stub_4": "ex: Wikipedia",
+                "stub_5": "Add Source"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 sources for your research.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 sources for your research."
+            },
+            "type_id": 29
+        }
     }
 ]
