@@ -121,13 +121,19 @@
 "Virgin Islands, British", "Virgin Islands, U.S.", "Wallis & Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe",
                     "Other"
                 ],
-                "opt1_other": "Other"
+                "opt1_other": "Other",
+                "opt1_select": "Select"
             },
             "content": {
                 "stub_1":""
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
             "type_id": 4
         }
     },{
@@ -872,6 +878,38 @@
                 "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 34,
+        "fields": {
+            "document_type": 1,
+            "number": 24,
+            "title": "Why is no one else doing this yet?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "It is too expensive",
+                    "The market is very niche",
+                    "The industry has high barriers to entry",
+                    "The industry is misunderstood",
+                    "Other"
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1":""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
         }
     }
 ]
