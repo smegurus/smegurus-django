@@ -1053,6 +1053,10 @@
             },
             "dependency": {},
             "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 issues.",
+                "max": 10,
+                "max_error_message": "Please pick no more then 10 issues.",
                 "opt2_other_min_length": 2,
                 "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
                 "opt2_other_max_length": 63,

@@ -184,10 +184,15 @@
         // Fetch the table array.
         var arr = get_table_data();
 
+        // VALIDATION
         // Defensive Code: Check to see if any rows exist?
         var count = arr.length;
-        if (count == 1) {
-            alert("Please add an owner before continuing.");
+        if (count < {{ question.validation.min }}) {
+            alert("{{ question.validation.min_error_message }}");
+            return;
+        }
+        if (count > {{ question.validation.max }}) {
+            alert("{{ question.validation.max_error_message }}");
             return;
         }
 
@@ -197,12 +202,12 @@
         // Iterate through the table and generate our new array.
         for(var i=1; i < count; i++) {
             var row = arr[i];
-            var name = row[0];
-            var percent = row[1];
+            var input_1 = row[0];
+            var input_2 = row[1];
             new_arr.push({
                 "var_1": i,
-                "var_2": name,
-                "var_3": percent
+                "var_2": input_1,
+                "var_3": input_2
             });
         }
 
