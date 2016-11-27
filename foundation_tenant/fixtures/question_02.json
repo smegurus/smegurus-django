@@ -736,5 +736,43 @@
             },
             "type_id": 26
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 32,
+        "fields": {
+            "document_type": 1,
+            "number": 22,
+            "title": "What type of customer will your business serve?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "A type of person",
+                        "text": "A type of person"
+                    },
+                    {
+                        "value": "A business",
+                        "text": "A business"
+                    },
+                    {
+                        "value": "Group of people",
+                        "text": "Group of people"
+                    },
+                    {
+                        "value": "Government/Institutions",
+                        "text": "Government/Institutions"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
     }
 ]
