@@ -508,5 +508,47 @@
             "validation": {},
             "type_id": 12
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 25,
+        "fields": {
+            "document_type": 1,
+            "number": 1,
+            "title": "How many years of experience do you have in this industry?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "0-2",
+                        "text": "0-2"
+                    },
+                    {
+                        "value": "3-5",
+                        "text": "3-5"
+                    },
+                    {
+                        "value": "6-10",
+                        "text": "6-10"
+                    },
+                    {
+                        "value": "10-15",
+                        "text": "10-15"
+                    },
+                    {
+                        "value": "15+",
+                        "text": "15+"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
     }
 ]
