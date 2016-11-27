@@ -486,5 +486,27 @@
             "validation": {},
             "type_id": 23
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 24,
+        "fields": {
+            "document_type": 1,
+            "number": 14,
+            "title": "What sector does your current business idea mainly fall into?",
+            "help": "",
+            "options": {},
+            "content": {
+                "stub_1": "Category 1",
+                "stub_2": "Category 2",
+                "stub_3": "Category 3",
+                "stub_4": "Category 4",
+                "stub_5": "Category 5",
+                "stub_6": "Category 6"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 12
+        }
     }
 ]
