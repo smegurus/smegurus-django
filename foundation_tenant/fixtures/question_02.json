@@ -633,6 +633,9 @@
             },
             "dependency": {},
             "validation": {
+                "first_required": true,
+                "second_required": true,
+                "third_required": true,
                 "min_length": 1,
                 "min_length_error_message": "Please enter at minimum 1 characters.",
                 "max_length": 16,
@@ -702,6 +705,36 @@
             "dependency": {},
             "validation": {},
             "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 31,
+        "fields": {
+            "document_type": 1,
+            "number": 21,
+            "title": "Please list at least 1, but up to 3 product or service categories that you will offer.",
+            "help": "",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3"
+            },
+            "dependency": {},
+            "validation": {
+                "first_required": true,
+                "second_required": false,
+                "third_required": false,
+                "min_length": 1,
+                "min_length_error_message": "Please enter at minimum 1 characters.",
+                "max_length": 63,
+                "max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 26
         }
     }
 ]
