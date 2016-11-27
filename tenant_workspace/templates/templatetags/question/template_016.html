@@ -273,7 +273,7 @@
 <!-- HTML -->
 <fieldset>
     <legend>
-        {{ node.order_num }}. {{ question.title }}
+        {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
         <div class="col-sm-12">

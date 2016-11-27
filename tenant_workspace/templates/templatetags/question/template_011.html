@@ -91,7 +91,7 @@
 <!-- HTML -->
 <fieldset>
     <legend>
-        {{ node.order_num }}. {{ question.title }}
+        {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
         <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>

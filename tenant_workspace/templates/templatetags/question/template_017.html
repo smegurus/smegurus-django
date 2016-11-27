@@ -156,7 +156,7 @@
 <!-- HTML -->
 <fieldset>
     <legend>
-        {{ node.order_num }}. {{ question.title }}
+        {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <!-- ROW 1 -->
     <div class="form-group">
