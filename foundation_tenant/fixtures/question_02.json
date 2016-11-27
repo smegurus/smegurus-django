@@ -911,5 +911,65 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 35,
+        "fields": {
+            "document_type": 1,
+            "number": 25,
+            "title": "How will you solve the problem?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "a unique customer experience",
+                    "customizable products and services",
+                    "specialized products geared towards a consumer's lifestyle",
+                    "great food at a low cost", "great food in a family-friendly atmosphere",
+                    "great food and a good ambience",
+                    "a low cost technology solution",
+                    "a customer friendly technology solution",
+                    "a flexible technology solution",
+                    "low cost solutions",
+                    "solutions that improve the quality of life for the customer",
+                    "a great service for a reasonable cost",
+                    "a do-it-yourself (DIY) solution",
+                    "a direct to consumer solution",
+                    "a feasible solution that cuts costs",
+                    "a feasible solution that enhances service",
+                    "a feasible solution that is accessible to customers",
+                    "an inexpensive product or service",
+                    "a luxury solution for high-end customers",
+                    "replacing a complicated process with an app",
+                    "an experience where customers are treated as unique",
+                    "handmade local products", "homegrown local products",
+                    "tested solutions", "mature solutions",
+                    "simplified customer choices",
+                    "enhanced customer service",
+                    "a socially responsible solution",
+                    "a collaborative solution",
+                    "support for legacy technologies",
+                    "modernized processes",
+                    "efficient processes",
+                    "a solution that meets the needs of all customers",
+                    "a solution that meets the needs of the target market",
+                    "a locally sourced solution",
+                    "other"
+                ],
+                "opt1_other": "other",
+                "opt1_select": "select"
+            },
+            "content": {
+                "stub_1":""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
