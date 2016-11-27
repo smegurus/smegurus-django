@@ -671,5 +671,37 @@
             "validation": {},
             "type_id": 27
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 30,
+        "fields": {
+            "document_type": 1,
+            "number": 20,
+            "title": "Will you offer mainly products, services, or both?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Products",
+                        "text": "Products"
+                    },
+                    {
+                        "value": "Services",
+                        "text": "Services"
+                    },
+                    {
+                        "value": "Products and Services",
+                        "text": "Products and Services"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {},
+            "type_id": 1
+        }
     }
 ]

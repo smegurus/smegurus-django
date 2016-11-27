@@ -158,11 +158,19 @@
                 },{
                     "previous_position": 18,
                     "current_position": 19,
-                    "next_position": -1,
+                    "next_position": 20,
                     "id": 29,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 19
+                },{
+                    "previous_position": 19,
+                    "current_position": 20,
+                    "next_position": -1,
+                    "id": 30,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 20
                 }
             ],
             "title": "Stage 2",
