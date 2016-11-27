@@ -162,7 +162,7 @@
         {% endif %}
             <!-- OPTIONS -->
             <select id="id_input_1" class="form-control">
-                <option value="">{{ question.options.opt1_select }}</option>
+                <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
                 {% endfor %}
@@ -188,7 +188,7 @@
         {% endif %}
             <!-- OPTIONS -->
             <select id="id_input_2" class="form-control">
-                <option value="">{{ question.options.opt1_select }}</option>
+                <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_2 %}selected="selected"{% endif %}>{{ item }}</option>
                 {% endfor %}
@@ -214,7 +214,7 @@
         {% endif %}
             <!-- OPTIONS -->
             <select id="id_input_3" class="form-control">
-                <option value="">{{ question.options.opt1_select }}</option>
+                <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_3 %}selected="selected"{% endif %}>{{ item }}</option>
                 {% endfor %}
