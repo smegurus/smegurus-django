@@ -1407,7 +1407,7 @@
         "pk": 42,
         "fields": {
             "document_type": 1,
-            "number": 42,
+            "number": 32,
             "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
             "help": "",
             "options": {
@@ -1451,6 +1451,32 @@
                 "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 30
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 43,
+        "fields": {
+            "document_type": 1,
+            "number": 33,
+            "title": "WHow many <i>potential</i> customers exist in your market area for your product?",
+            "help": "",
+            "options": {
+                "opt1": ["1,000", "2,500", "5,000", "10,000", "25,000", "50,000", "100,000", "other"],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1":""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
         }
     }
 ]
