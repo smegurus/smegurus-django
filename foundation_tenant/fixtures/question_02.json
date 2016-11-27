@@ -438,10 +438,15 @@
             "content": {},
             "dependency": {},
             "validation": {
+                "type": "textfield",
                 "min_length": 5,
                 "min_length_error_message": "Please enter at minimum 5 characters.",
                 "max_length": 16,
-                "max_length_error_message": "Please enter at maximum 16 characters."
+                "max_length_error_message": "Please enter at maximum 16 characters.",
+                "min_num": 0,
+                "min_num_error_message": "-",
+                "max_num": 0,
+                "max_num_error_message": "-"
             },
             "type_id": 21
         }
@@ -1367,6 +1372,34 @@
             },
             "validation": {},
             "type_id": 9
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 41,
+        "fields": {
+            "document_type": 1,
+            "number": 31,
+            "title": "What is the total value of the industry in your target market area (expressed in dollars)?",
+            "help": "",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {
+                "type": "integerfield",
+                "min_length": 0,
+                "min_length_error_message": "-",
+                "max_length": 0,
+                "max_length_error_message": "-",
+                "min_num": 0,
+                "min_num_error_message": "Please enter a number greater then zero.",
+                "max_num": 9999999999,
+                "max_num_error_message": "Please enter a number less then 9999999999"
+            },
+            "type_id": 21
         }
     }
 ]

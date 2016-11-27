@@ -7,6 +7,11 @@
 
     }); // end DOCUMENT START
 
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
     /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
@@ -16,6 +21,8 @@
         var input_1 = $('#id_input_1').val();
 
         // VALIDATION
+        {% if question.validation.type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
         if (input_1.length < {{ question.validation.min_length }}) {
             alert("{{ question.validation.min_length_error_message }}");
             return;
@@ -24,6 +31,21 @@
             alert("{{ question.validation.max_length_error_message }}");
             return;
         }
+        {% elif question.validation.type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_1) == false) {
+            alert("{% trans 'Please enter integer answer.' %}");
+            return;
+        }
+        if (input_1 < {{ question.validation.min_num }}) {
+            alert("{{ question.validation.min_num_error_message }}");
+            return;
+        }
+        if (input_1 > {{ question.validation.max_num }}) {
+            alert("{{ question.validation.max_num_error_message }}");
+            return;
+        }
+        {% endif %}
 
         ajax_do_chain(input_1, function(json_result) {  // Update our model.
             window.location = next_url;
