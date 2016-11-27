@@ -949,11 +949,26 @@
             "help": "",
             "options": {
                 "opt1": [
-                    "It is too expensive",
-                    "The market is very niche",
-                    "The industry has high barriers to entry",
-                    "The industry is misunderstood",
-                    "Other"
+                    {
+                        "value": "It is too expensive",
+                        "text": "It is too expensive"
+                    },
+                    {
+                        "value": "The market is very niche",
+                        "text": "The market is very niche"
+                    },
+                    {
+                        "value": "The industry has high barriers to entry",
+                        "text": "The industry has high barriers to entry"
+                    },
+                    {
+                        "value": "The industry is misunderstood",
+                        "text": "The industry is misunderstood"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
                 ],
                 "opt1_other": "Other",
                 "opt1_select": "Select"
@@ -981,39 +996,115 @@
             "help": "",
             "options": {
                 "opt1": [
-                    "a unique customer experience",
-                    "customizable products and services",
-                    "specialized products geared towards a consumer's lifestyle",
-                    "great food at a low cost", "great food in a family-friendly atmosphere",
-                    "great food and a good ambience",
-                    "a low cost technology solution",
-                    "a customer friendly technology solution",
-                    "a flexible technology solution",
-                    "low cost solutions",
-                    "solutions that improve the quality of life for the customer",
-                    "a great service for a reasonable cost",
-                    "a do-it-yourself (DIY) solution",
-                    "a direct to consumer solution",
-                    "a feasible solution that cuts costs",
-                    "a feasible solution that enhances service",
-                    "a feasible solution that is accessible to customers",
-                    "an inexpensive product or service",
-                    "a luxury solution for high-end customers",
-                    "replacing a complicated process with an app",
-                    "an experience where customers are treated as unique",
-                    "handmade local products", "homegrown local products",
-                    "tested solutions", "mature solutions",
-                    "simplified customer choices",
-                    "enhanced customer service",
-                    "a socially responsible solution",
-                    "a collaborative solution",
-                    "support for legacy technologies",
-                    "modernized processes",
-                    "efficient processes",
-                    "a solution that meets the needs of all customers",
-                    "a solution that meets the needs of the target market",
-                    "a locally sourced solution",
-                    "other"
+                    {
+                        "value": "a unique customer experience",
+                        "text": "a unique customer experience"
+                    },{
+                        "value": "customizable products and services",
+                        "text": "customizable products and services"
+                    },{
+                        "value": "specialized products geared towards a consumer's lifestyle",
+                        "text": "specialized products geared towards a consumer's lifestyle"
+                    },{
+                        "value": "great food at a low cost",
+                        "text": "great food at a low cost"
+                    },{
+                        "value": "great food in a family-friendly atmosphere",
+                        "text": "great food in a family-friendly atmosphere"
+                    },{
+                        "value": "great food and a good ambience",
+                        "text": "great food and a good ambience"
+                    },{
+                        "value": "a low cost technology solution",
+                        "text": "a low cost technology solution"
+                    },{
+                        "value": "a customer friendly technology solution",
+                        "text": "a customer friendly technology solution"
+                    },{
+                        "value": "a flexible technology solution",
+                        "text": "a flexible technology solution"
+                    },{
+                        "value": "low cost solutions",
+                        "text": "low cost solutions"
+                    },{
+                        "value": "solutions that improve the quality of life for the customer",
+                        "text": "solutions that improve the quality of life for the customer"
+                    },{
+                        "value": "a great service for a reasonable cost",
+                        "text": "a great service for a reasonable cost"
+                    },{
+                        "value": "a do-it-yourself (DIY) solution",
+                        "text": "a do-it-yourself (DIY) solution"
+                    },{
+                        "value": "a direct to consumer solution",
+                        "text": "a direct to consumer solution"
+                    },{
+                        "value": "a feasible solution that cuts costs",
+                        "text": "a feasible solution that cuts costs"
+                    },{
+                        "value": "a feasible solution that enhances service",
+                        "text": "a feasible solution that enhances service"
+                    },{
+                        "value": "a feasible solution that is accessible to customers",
+                        "text": "a feasible solution that is accessible to customers"
+                    },{
+                        "value": "an inexpensive product or service",
+                        "text": "an inexpensive product or service"
+                    },{
+                        "value": "a luxury solution for high-end customers",
+                        "text": "a luxury solution for high-end customers"
+                    },{
+                        "value": "replacing a complicated process with an app",
+                        "text": "replacing a complicated process with an app"
+                    },{
+                        "value": "an experience where customers are treated as unique",
+                        "text": "an experience where customers are treated as unique"
+                    },{
+                        "value": "handmade local products",
+                        "text": "handmade local products"
+                    },{
+                        "value": "homegrown local products",
+                        "text": "homegrown local products"
+                    },{
+                        "value": "tested solutions",
+                        "text": "tested solutions"
+                    },{
+                        "value": "mature solutions",
+                        "text": "mature solutions"
+                    },{
+                        "value": "simplified customer choices",
+                        "text": "simplified customer choices"
+                    },{
+                        "value": "enhanced customer service",
+                        "text": "enhanced customer service"
+                    },{
+                        "value": "a socially responsible solution",
+                        "text": "a socially responsible solution"
+                    },{
+                        "value": "a collaborative solution",
+                        "text": "a collaborative solution"
+                    },{
+                        "value": "support for legacy technologies",
+                        "text": "support for legacy technologies"
+                    },{
+                        "value": "modernized processes",
+                        "text": "modernized processes"
+                    },{
+                        "value": "efficient processes",
+                        "text": "efficient processes"
+                    },{
+                        "value": "a solution that meets the needs of all customers",
+                        "text": "a solution that meets the needs of all customers"
+                    },{
+                        "value": "a solution that meets the needs of the target market",
+                        "text": "a solution that meets the needs of the target market"
+                    },{
+                        "value": "a locally sourced solution",
+                        "text": "a locally sourced solution"
+                    },{
+                        "value": "other",
+                        "text": "other"
+                    }
                 ],
                 "opt1_other": "other",
                 "opt1_select": "select"
@@ -1462,7 +1553,40 @@
             "title": "How many <i>potential</i> customers exist in your market area for your product?",
             "help": "",
             "options": {
-                "opt1": ["1,000", "2,500", "5,000", "10,000", "25,000", "50,000", "100,000", "other"],
+                "opt1": [
+                    {
+                        "value": "1,000",
+                        "text": "1,000"
+                    },
+                    {
+                        "value": "2,500",
+                        "text": "2,500"
+                    },
+                    {
+                        "value": "5,000",
+                        "text": "5,000"
+                    },
+                    {
+                        "value": "10,000",
+                        "text": "10,000"
+                    },
+                    {
+                        "value": "25,000",
+                        "text": "25,000"
+                    },
+                    {
+                        "value": "50,000",
+                        "text": "50,000"
+                    },
+                    {
+                        "value": "100,000",
+                        "text": "100,000"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
                 "opt1_other": "other",
                 "opt1_select": "Select"
             },
@@ -1488,7 +1612,24 @@
             "title": "How competitive is your industry?",
             "help": "",
             "options": {
-                "opt1": ["very competitive", "moderately competitive", "emerging, with few competitors"],
+                "opt1": [
+                    {
+                        "value": "very competitive",
+                        "text": "very competitive"
+                    },
+                    {
+                        "value": "moderately competitive",
+                        "text": "moderately competitive"
+                    },
+                    {
+                        "value": "emerging",
+                        "text": "emerging"
+                    },
+                    {
+                        "value": "with few competitors",
+                        "text": "with few competitors"
+                    }
+                ],
                 "opt1_other": "other",
                 "opt1_select": "Select"
             },
@@ -1514,7 +1655,55 @@
             "title": "This industry require levels of customer services that are...",
             "help": "",
             "options": {
-                "opt1": ["low", "medium", "high"],
+                "opt1": [
+                    {
+                        "value": "low",
+                        "text": "low"
+                    },{
+                        "value": "medium",
+                        "text": "medium"
+                    },{
+                        "value": "high",
+                        "text": "high"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1":""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 46,
+        "fields": {
+            "document_type": 1,
+            "number": 36,
+            "title": "How much do prices vary in this industry?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "little",
+                        "text": "little"
+                    },{
+                        "value": "significant",
+                        "text": "a lot"
+                    },{
+                        "value": "no",
+                        "text": "they do not vary"
+                    }
+                ],
                 "opt1_other": "other",
                 "opt1_select": "Select"
             },

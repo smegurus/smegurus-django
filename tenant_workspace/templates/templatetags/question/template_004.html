@@ -98,7 +98,7 @@
             <select id="id_input_1" class="form-control">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
-                    <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
+                    <option value="{{ item.value }}" {% if item.value == picked.var_1 %}selected="selected"{% endif %}>{{ item.text }}</option>
                 {% endfor %}
             </select>
             <!-- end OPTIONS -->
