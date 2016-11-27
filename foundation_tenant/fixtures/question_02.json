@@ -640,5 +640,36 @@
             },
             "type_id": 26
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 29,
+        "fields": {
+            "document_type": 1,
+            "number": 19,
+            "title": "List 3 people in your industry that you can talk to:",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "Competitors",
+                    "Suppliers",
+                    "Potential Customers",
+                    "Industry Experts",
+                    "Mentor",
+                    "Advisor",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 27
+        }
     }
 ]
