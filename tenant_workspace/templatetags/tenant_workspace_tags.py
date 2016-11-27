@@ -517,3 +517,17 @@ def render_question_type_023(workspace, module, node, question, answer):
         'picked_count': len(picked),
         'imageupload': imageupload
     }
+
+
+@register.inclusion_tag('templatetags/question/template_024.html')
+def render_question_type_024(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked)
+    }
