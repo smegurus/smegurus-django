@@ -573,5 +573,45 @@
             },
             "type_id": 24
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 27,
+        "fields": {
+            "document_type": 1,
+            "number": 7,
+            "title": "List 5 types of information, people you can speak with or tools you can use to research this idea:",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "National Census",
+                    "Industry statistics",
+                    "Industry publications",
+                    "Government Websites",
+                    "Trade association websites",
+                    "Books",
+                    "Websites",
+                    "Journals",
+                    "Industry blogs",
+                    "Industry Experts",
+                    "Suppliers",
+                    "Friends",
+                    "Wikipedia",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3",
+                "stub_4": "4",
+                "stub_5": "5"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 25
+        }
     }
 ]
