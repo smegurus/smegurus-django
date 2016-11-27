@@ -432,7 +432,6 @@ def render_question_type_018(workspace, module, node, question, answer):
     }
 
 
-
 @register.inclusion_tag('templatetags/question/template_018.html')
 def render_question_type_019(workspace, module, node, question, answer):
     picked = json.loads(answer.content)
@@ -572,4 +571,19 @@ def render_question_type_027(workspace, module, node, question, answer):
         'answer': answer,
         'picked': picked,
         'picked_count': len(picked)
+    }
+
+
+@register.inclusion_tag('templatetags/question/template_028.html')
+def render_question_type_028(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked),
+        'OTHER_TEXT': "Other (Please Specify)"
     }

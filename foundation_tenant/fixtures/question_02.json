@@ -971,5 +971,94 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 36,
+        "fields": {
+            "document_type": 1,
+            "number": 26,
+            "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "Political",
+                    "Economic",
+                    "Social",
+                    "Technological",
+                    "Environmental",
+                    "Other (Please Specify)"
+                ],
+                "opt2": [
+                    {
+                        "parent": "Political",
+                        "choices": [
+                            "Political Trend 1",
+                            "Political Trend 2",
+                            "Political Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Economic",
+                        "choices": [
+                            "Economic Trend 1",
+                            "Economic Trend 2",
+                            "Economic Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Social",
+                        "choices": [
+                            "Social Trend 1",
+                            "Social Trend 2",
+                            "Social Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Technological",
+                        "choices": [
+                            "Tech Trend 1",
+                            "Tech Trend 2",
+                            "Tech Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Environmental",
+                        "choices": [
+                            "Environmental Trend 1",
+                            "Environmental Trend 2",
+                            "Environmental Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ]
+            },
+            "content": {
+                "stub_1": "Major Issue",
+                "stub_2": "Trend",
+                "stub_3": "Remove",
+                "stub_4": "Please pick a major issue...",
+                "stub_5": "Please pick a trend...",
+                "stub_6": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 28
+        }
     }
 ]
