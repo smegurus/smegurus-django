@@ -1401,5 +1401,56 @@
             },
             "type_id": 21
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 42,
+        "fields": {
+            "document_type": 1,
+            "number": 42,
+            "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "increasing",
+                    "decreasing",
+                    "staying the same"
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "parent": "increasing",
+                        "choices": ["1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%", "10%", "15%", "20%", "25%", "other"]
+                    },
+                    {
+                        "parent": "decreasing",
+                        "choices": ["1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%", "10%", "15%", "20%", "25%", "other"]
+                    },
+                    {
+                        "parent": "staying the same",
+                        "choices": ["0"]
+                    }
+                ],
+                "opt2_other": "other",
+                "opt2_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 issues.",
+                "max": 10,
+                "max_error_message": "Please pick no more then 10 issues.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 30
+        }
     }
 ]
