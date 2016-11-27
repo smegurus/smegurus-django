@@ -140,7 +140,7 @@
     <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
         <label class="col-sm-2 control-label">{{ question.content.opt1_other_stub }}</label>
         <div class="col-sm-10">
-            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" maxlength="{{ question.validation.opt1_other_max_length }}" />
+            <input id="id_input_1_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ picked.var_1_other }}" maxlength="{{ question.validation.opt1_other_max_length }}" />
         </div>
     </div>
     <!-- end ROW 2 -->

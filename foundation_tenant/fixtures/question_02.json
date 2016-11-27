@@ -1144,5 +1144,229 @@
             },
             "type_id": 29
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 39,
+        "fields": {
+            "document_type": 1,
+            "number": 29,
+            "title": "What is the geographic market that your business will serve? (Part 1 of 2)",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Neighbourhood",
+                        "text": "Neighbourhood"
+                    },
+                    {
+                        "value": "City",
+                        "text": "City"
+                    },
+                    {
+                        "value": "Region",
+                        "text": "Region"
+                    },
+                    {
+                        "value": "Province or State",
+                        "text": "Province or State"
+                    },
+                    {
+                        "value": "Country",
+                        "text": "Country"
+                    },
+                    {
+                        "value": "Global",
+                        "text": "Global"
+                    },
+                    {
+                        "value": "Online",
+                        "text": "Online"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 40,
+        "fields": {
+            "document_type": 1,
+            "number": 30,
+            "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
+            "help": "",
+            "options": [
+                {
+                    "name": "Neighbourhood",
+                    "type": "textfield",
+                    "placeholder": "ex: Downtown, SOHO"
+                },
+                {
+                    "name": "City",
+                    "type": "textfield",
+                    "placeholder": "ex: London"
+                },
+                {
+                    "name": "Region",
+                    "type": "textfield",
+                    "placeholder": "ex: SW Ontario, East Texas"
+                },
+                {
+                    "name": "Province or State",
+                    "type": "selectionfield",
+                    "choices": [
+                        "Alberta",
+                        "British Columbia",
+                        "Manitoba",
+                        "New Brunswick",
+                        "Newfoundland and Labrador",
+                        "Nova Scotia",
+                        "Ontario",
+                        "Prince Edward Island",
+                        "Quebec",
+                        "Saskatchewan",
+                        "Northwest Territories",
+                        "Nunavut",
+                        "Yukon",
+                        "Alabama",
+                        "Alaska",
+                        "Arizona",
+                        "California",
+                        "Colorado",
+                        "Connecticut",
+                        "Delaware",
+                        "District of Columbia",
+                        "Florida",
+                        "Georgia",
+                        "Hawaii",
+                        "Idaho",
+                        "Illinois",
+                        "Indiana",
+                        "Iowa",
+                        "Kansas",
+                        "Kentucky",
+                        "Louisiana",
+                        "Maine",
+                        "Maryland",
+                        "Massachusetts",
+                        "Michigan",
+                        "Minnestoa",
+                        "Mississippi",
+                        "Missouri",
+                        "Montana",
+                        "Nebraska",
+                        "Nevada",
+                        "New Hampshire",
+                        "New Jersey",
+                        "New Mexico",
+                        "New York",
+                        "North Carolina",
+                        "North Dakota",
+                        "Ohio",
+                        "Oklahoma",
+                        "Oregon",
+                        "Pennsylvania",
+                        "Rhode Island",
+                        "South Carolina",
+                        "South Dakota",
+                        "Tennessee",
+                        "Texas",
+                        "Utah",
+                        "Vermont",
+                        "Washington",
+                        "Wester Virginia",
+                        "Wisconsin",
+                        "Wyoming",
+                        "Vermont",
+                        "American Samoa",
+                        "Guam",
+                        "Northern Mariana Islands",
+                        "Puerto Rico",
+                        "U.S. Virgin Islands",
+                        "Aguascalientes",
+                        "Baja California",
+                        "Baja California Sur",
+                        "Capeche",
+                        "Coahuila de Zaragoza",
+                        "Colima",
+                        "Chiapas",
+                        "Chihuahua",
+                        "Distrito Federal",
+                        "Durango",
+                        "Guanajuato",
+                        "Guerrero",
+                        "Hidalgo",
+                        "Jalisco",
+                        "México",
+                        "Michoacán de Ocampo",
+                        "Morelos",
+                        "Nayarit",
+                        "Nuevo León",
+                        "Oaxaca",
+                        "Puebla",
+                        "Querétaro",
+                        "Quintana Roo",
+                        "San Luis Potosí",
+                        "Sinaloa",
+                        "Sonora",
+                        "Tabasco",
+                        "Tamaulipas",
+                        "Tlaxcala",
+                        "Veracruz de Ignacio de la Llave",
+                        "Yucatán",
+                        "Zacatecas",
+                        "Other (Please Specify)"
+                    ]
+                },
+                {
+                    "name": "Country",
+                    "type": "selectionfield",
+                    "choices": [
+                        "United States",
+                        "Canada",
+                        "México",
+                        "Other (Please Specify)"
+                    ]
+                },
+                {
+                    "name": "Global",
+                    "type": "blankfield",
+                    "stub": "You have selected \"Global\", that means the whole phisical and online world is your geographic target. If you are certain, press the \"Next\" button to continue."
+                },
+                {
+                    "name": "Online",
+                    "type": "blankfield",
+                    "stub": "You have selected \"Global\", that means the whole online world is your geographic target. If you are certain, press the \"Next\" button to continue."
+                },
+                {
+                    "name": "Other (Please Specify)",
+                    "type": "textfield",
+                    "placeholder": "ex: Downtown, SOHO"
+                }
+            ],
+            "content": {},
+            "dependency": {
+                "previous_question_id": 39
+            },
+            "validation": {},
+            "type_id": 9
+        }
     }
 ]
