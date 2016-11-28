@@ -363,7 +363,8 @@
 { "value": "Western Sahara", "text": "Western Sahara" },
 { "value": "Yemen", "text": "Yemen" },
 { "value": "Zambia", "text": "Zambia" },
-{ "value": "Zimbabwe", "text": "Zimbabwe" }
+{ "value": "Zimbabwe", "text": "Zimbabwe" },
+{ "value": "Other", "text": "Other" }
                 ],
                 "opt1_other": "Other",
                 "opt1_select": "Select"
@@ -1962,6 +1963,89 @@
                 "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 47,
+        "fields": {
+            "document_type": 1,
+            "number": 37,
+            "title": "List up to 5 direct competitors",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "0-5 km",
+                    "5-10 km",
+                    "10-25 km",
+                    "25-50 km",
+                    "50-100 km",
+                    "100 km+",
+                    "online",
+                    "location not relevant to industry"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    "Major", "Minor"
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select",
+                "opt3": [
+                    "Average", "Value", "Premium"
+                ],
+                "opt3_other": "Other (Please Specify)",
+                "opt3_select": "Select",
+                "opt4": [
+                    "Low", "Medium", "High"
+                ],
+                "opt4_other": "Other (Please Specify)",
+                "opt4_select": "Select",
+                "opt5": [
+                    "Strong management team",
+                    "Long history in the industry",
+                    "Dedicated customers",
+                    "Other (Please Specify)"
+                ],
+                "opt5_other": "Other (Please Specify)",
+                "opt5_select": "Select",
+                "opt6": [
+                    "Niche target market",
+                    "Focus on diverse product",
+                    "Exceptional customer service",
+                    "Excellent management",
+                    "High Operational efficiency",
+                    "Other (Please Specify)"
+                ],
+                "opt6_other": "Other (Please Specify)",
+                "opt6_select": "Select"
+            },
+            "content": {
+                "stub_1": "Name",
+                "stub_2": "Proximityy",
+                "stub_3": "Market Share",
+                "stub_4": "Pricing",
+                "stub_5": "Customer Service",
+                "stub_6": "Main Strength",
+                "stub_7": "How We Will Compete",
+                "stub_8": "Name",
+                "stub_9": "ex: Dave's Bookstore",
+                "stub_10": "Proximityy",
+                "stub_11": "Market Share",
+                "stub_12": "Pricing",
+                "stub_13": "Customer Service",
+                "stub_14": "Main Strength",
+                "stub_15": "How We Will Compete",
+                "stub_16": "Add Competitor"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 competitors.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 competitors."
+            },
+            "type_id": 16
         }
     }
 ]

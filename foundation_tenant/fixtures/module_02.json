@@ -294,11 +294,19 @@
                 },{
                     "previous_position": 35,
                     "current_position": 36,
-                    "next_position": -1,
+                    "next_position": 37,
                     "id": 46,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 36
+                },{
+                    "previous_position": 36,
+                    "current_position": 37,
+                    "next_position": -1,
+                    "id": 47,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 37
                 }
             ],
             "title": "Stage 2",
