@@ -2169,5 +2169,56 @@
             },
             "type_id": 1
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 50,
+        "fields": {
+            "document_type": 1,
+            "number": 40,
+            "title": "How do customers make buying decisions in this industry",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "as an impulse buy",
+                        "text": "as an impulse buy"
+                    },
+                    {
+                        "value": "based on research",
+                        "text": "based on research"
+                    },
+                    {
+                        "value": "based on the cost",
+                        "text": "based on the cost"
+                    },
+                    {
+                        "value": "based on the value",
+                        "text": "based on the value"
+                    },
+                    {
+                        "value": "based on their unique needs",
+                        "text": "based on their unique needs"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
     }
 ]
