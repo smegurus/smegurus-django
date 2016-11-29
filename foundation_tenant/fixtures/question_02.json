@@ -2255,5 +2255,51 @@
             },
             "type_id": 1
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 52,
+        "fields": {
+            "document_type": 1,
+            "number": 42,
+            "title": "My target market will buy from me because I offer them...",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Superior value",
+                        "text": "Superior value"
+                    },{
+                        "value": "Best customer service",
+                        "text": "Best customer service"
+                    },{
+                        "value": "A unique solution",
+                        "text": "A unique solution"
+                    },{
+                        "value": "A better experience",
+                        "text": "A better experience"
+                    },{
+                        "value": "A unique expertise",
+                        "text": "A unique expertise"
+                    },{
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1":""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
