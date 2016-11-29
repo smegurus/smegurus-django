@@ -2352,5 +2352,64 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 54,
+        "fields": {
+            "document_type": 1,
+            "number": 44,
+            "title": "How will you reach people?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "I can talk to customers and ask them key questions relating to each of these assumptions",
+                        "text": "I can talk to customers and ask them key questions relating to each of these assumptions"
+                    },
+                    {
+                        "value": "I can set up a fake website that uses Google, LinkedIn, Facebook or Bing key words",
+                        "text": "I can set up a fake website that uses Google, LinkedIn, Facebook or Bing key words"
+                    },
+                    {
+                        "value": "I can talk to people in the industry, suppliers, partners and association members and ask their opinion",
+                        "text": "I can talk to people in the industry, suppliers, partners and association members and ask their opinion"
+                    },
+                    {
+                        "value": "I can talk to people who currently work in this sector and ask their opinion",
+                        "text": "I can talk to people who currently work in this sector and ask their opinion"
+                    },
+                    {
+                        "value": "I can survey friends and family and ask what they would pay",
+                        "text": "I can survey friends and family and ask what they would pay"
+                    },
+                    {
+                        "value": "I can survey people I don't know",
+                        "text": "I can survey people I don't know"
+                    },
+                    {
+                        "value": "I can set up an online survey and email it to people",
+                        "text": "I can set up an online survey and email it to people"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
     }
 ]
