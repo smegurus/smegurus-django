@@ -2301,5 +2301,56 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 53,
+        "fields": {
+            "document_type": 1,
+            "number": 43,
+            "title": "How many people will I contact or try to reach in total?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "10",
+                        "text": "10"
+                    },
+                    {
+                        "value": "20",
+                        "text": "20"
+                    },
+                    {
+                        "value": "30",
+                        "text": "30"
+                    },
+                    {
+                        "value": "40",
+                        "text": "40"
+                    },
+                    {
+                        "value": "50",
+                        "text": "50"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1":""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
