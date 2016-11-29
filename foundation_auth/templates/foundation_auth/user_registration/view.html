@@ -17,28 +17,38 @@
 <form id="id_register_form" role="form" data-parsley-validate="" novalidate="" class="mb-lg">
     <div class="form-group has-feedback">
        <label for="signupInputText1" class="text-muted">{% trans 'First Name' %}</label>
-       <input id="id_first_name" type="text" placeholder="{% trans 'Enter first name' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-user form-control-feedback text-muted"></span>
+        <div class="input-group input-group-lg m-b">
+            <span class="input-group-addon"><em class="fa fa-user"></em></span>
+            <input id="id_first_name" type="text" placeholder="{% trans 'Enter first name' %}" autocomplete="off" required class="form-control">
+        </div>
     </div>
     <div class="form-group has-feedback">
        <label for="signupInputText1" class="text-muted">{% trans 'Last Name' %}</label>
-       <input id="id_last_name" type="text" placeholder="{% trans 'Enter last name' %}" autocomplete="off" required class="form-control">
-       <span class="fa fa-user form-control-feedback text-muted"></span>
+        <div class="input-group input-group-lg m-b">
+            <span class="input-group-addon"><em class="fa fa-user"></em></span>
+            <input id="id_last_name" type="text" placeholder="{% trans 'Enter last name' %}" autocomplete="off" required class="form-control">
+        </div>
     </div>
    <div class="form-group has-feedback">
       <label for="signupInputEmail1" class="text-muted">{% trans 'Email address' %}</label>
-      <input id="id_email" type="email" placeholder="{% trans 'Enter email' %}" autocomplete="off" required class="form-control">
-      <span class="fa fa-envelope form-control-feedback text-muted"></span>
+       <div class="input-group input-group-lg m-b">
+           <span class="input-group-addon"><em class="fa fa-envelope"></em></span>
+           <input id="id_email" type="email" placeholder="{% trans 'Enter email' %}" autocomplete="off" required class="form-control">
+       </div>
    </div>
    <div class="form-group has-feedback">
       <label for="signupInputPassword1" class="text-muted">Password</label>
-      <input id="id_password" type="password" placeholder="{% trans 'Password' %}" autocomplete="off" required class="form-control">
-      <span class="fa fa-lock form-control-feedback text-muted"></span>
+       <div class="input-group input-group-lg m-b">
+           <span class="input-group-addon"><em class="fa fa-lock"></em></span>
+           <input id="id_password" type="password" placeholder="{% trans 'Password' %}" autocomplete="off" required class="form-control">
+       </div>
    </div>
    <div class="form-group has-feedback">
       <label for="signupInputRePassword1" class="text-muted">Retype Password</label>
-      <input id="id_password_repeated" type="password" placeholder="{% trans 'Retype Password' %}" autocomplete="off" required data-parsley-equalto="#signupInputPassword1" class="form-control">
-      <span class="fa fa-lock form-control-feedback text-muted"></span>
+       <div class="input-group input-group-lg m-b">
+           <span class="input-group-addon"><em class="fa fa-lock"></em></span>
+           <input id="id_password_repeated" type="password" placeholder="{% trans 'Retype Password' %}" autocomplete="off" required data-parsley-equalto="#signupInputPassword1" class="form-control">
+       </div>
    </div>
    <div class="clearfix">
       <div class="checkbox c-checkbox pull-left mt0">
@@ -48,8 +58,8 @@
          </label>
       </div>
    </div>
-   <button id="id_register_btn" onclick="ajax_register();" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Create account' %}</button>
+   <button id="id_register_btn" onclick="ajax_register();" type="button" class="btn btn-block btn-primary btn-lg mt-lg">{% trans 'Create account' %}</button>
 </form>
 <p class="pt-lg text-center">Have an account?</p>
-<a href="{% url 'foundation_auth_user_login' %}" class="btn btn-block btn-default">{% trans 'Login' %}</a>
+<a href="{% url 'foundation_auth_user_login' %}" class="btn btn-block btn-default btn-lg">{% trans 'Login' %}</a>
 {% endblock content %}
