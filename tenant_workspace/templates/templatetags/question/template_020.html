@@ -105,7 +105,7 @@
     {% else %}
         <div class="col-sm-12">
     {% endif %}
-            <input id="id_input_1" type="text" class="form-control" placeholder="" value="{{ picked.var_1 }}" />
+            <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_2|escape|safe }}" value="{{ picked.var_1 }}" />
         </div>
     </div>
     <!-- end ROW 2 | OTHER -->
