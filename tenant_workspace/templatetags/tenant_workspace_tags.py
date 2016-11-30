@@ -613,3 +613,42 @@ def render_question_type_030(workspace, module, node, question, answer):
         'picked': picked,
         'picked_count': len(picked)
     }
+
+
+@register.inclusion_tag('templatetags/question/template_031.html')
+def render_question_type_031(workspace, module, node, question, answer):
+    x_pk = question.dependency['x_pk'] # Given
+    y_pk = question.dependency['y_pk'] # Actual
+
+    x_question = Question.objects.get(pk=x_pk)
+    y_question = Question.objects.get(pk=y_pk)
+
+    print(x_question)
+    print(y_question)
+
+    x_answer = QuestionAnswer.objects.get(
+        workspace=workspace,
+        question_id=x_pk
+    )
+    y_answer = QuestionAnswer.objects.get(
+        workspace=workspace,
+        question_id=y_pk
+    )
+
+    x_picked = json.loads(x_answer.content)
+    y_picked = json.loads(y_answer.content)
+
+    print(x_picked)
+    print(y_picked)
+
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked),
+        # 'dependency_picked': dependency_picked
+    }

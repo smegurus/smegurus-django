@@ -1,0 +1,71 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        {% comment %}
+
+                {% if dependency_picked %}
+
+                // Get the previously picked value.
+                var var_1 = parseInt("{{ dependency_picked.var_1 }}");
+                var var_1_other = parseInt("{{ dependency_picked.var_1_other }}");
+
+                // Detect what "comparator" to use and apply it to our validation.
+                if ("{{ question.dependency.comparator }}" == "&lt;=") {
+
+                    console.log("Less then or equal to");
+
+                    // Process the comparison.
+                    if (isNaN(var_1_other)) { // None-Other value
+
+                        console.log("Processing var_1");
+
+                        if (input_1 <= var_1) {
+
+                            console.log(var_1);
+
+                        }
+
+                    } else { // Other Value
+
+                        console.log("Processing var_1_other");
+
+                        if (var_1_other <= var_1) {
+
+                            console.log(var_1 + " " + var_1_other);
+
+                        }
+
+                    }
+
+                }
+
+                {% endif %}
+
+        {% endcomment %}
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-10">
+            <!-- FILL IN -->
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->
