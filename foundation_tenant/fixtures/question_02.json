@@ -2504,14 +2504,40 @@
             "title": "What was the total number of people that you contacted? (Part 2 of 2)",
             "help": "",
             "options": {
-                "opt1": [],
-                "opt1_other": "Other"
+                "opt1": [
+                    {
+                        "value": "I was not able to get enough people",
+                        "text": "I was not able to get enough people"
+                    },
+                    {
+                        "value": "Not enough people clicked on my website",
+                        "text": "Not enough people clicked on my website"
+                    },
+                    {
+                        "value": "Not enough people answered my survey",
+                        "text": "Not enough people answered my survey"
+                    },
+                    {
+                        "value": "I could not find people that matched the criteria",
+                        "text": "I could not find people that matched the criteria"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
             },
-            "content": {},
+            "content": {
+                "stub_1": "Why below expectations?",
+                "stub_2": "Congradulations on the number you contacted. Click next to proceed."
+            },
             "dependency": {
                 "x_pk": 53,
                 "y_pk": 56,
-                "compare": "<="
+                "compare": "<=",
+                "note:" "Basically if x <= y then ask why they where below expectations."
             },
             "validation": {},
             "type_id": 31

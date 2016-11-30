@@ -619,13 +619,12 @@ def render_question_type_030(workspace, module, node, question, answer):
 def render_question_type_031(workspace, module, node, question, answer):
     x_pk = question.dependency['x_pk'] # Given
     y_pk = question.dependency['y_pk'] # Actual
+    compare = question.dependency['compare']
 
     x_question = Question.objects.get(pk=x_pk)
     y_question = Question.objects.get(pk=y_pk)
 
-    print(x_question)
-    print(y_question)
-
+    # Fetch the answer.
     x_answer = QuestionAnswer.objects.get(
         workspace=workspace,
         question_id=x_pk
@@ -635,11 +634,28 @@ def render_question_type_031(workspace, module, node, question, answer):
         question_id=y_pk
     )
 
+    # Extract the previously selected answer values.
     x_picked = json.loads(x_answer.content)
     y_picked = json.loads(y_answer.content)
 
-    print(x_picked)
-    print(y_picked)
+    # Get the values
+    x = 0
+    if x_picked['var_1_other']:
+        x = int(x_picked['var_1_other'])
+    else:
+        x = int(x_picked['var_1'])
+
+    y = 0
+    if y_picked['var_1_other']:
+        y = int(y_picked['var_1_other'])
+    else:
+        y = int(y_picked['var_1'])
+
+    # Perform our comparison.
+    x_compare_y_result = False
+    if compare == "<=":
+        if x <= y:
+            x_compare_y_result = True
 
     picked = json.loads(answer.content)
     return {
@@ -650,5 +666,5 @@ def render_question_type_031(workspace, module, node, question, answer):
         'answer': answer,
         'picked': picked,
         'picked_count': len(picked),
-        # 'dependency_picked': dependency_picked
+        'x_compare_y_result': x_compare_y_result,
     }
