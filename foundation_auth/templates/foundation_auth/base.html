@@ -20,6 +20,7 @@
         <!-- =============== APP STYLES ===============-->
         <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
         <!-- =============== CUSTOM STYLES ===============-->
+        <link id="autoloaded-stylesheet" rel="stylesheet" href="{% static 'app/css/theme-v2.css' %}">
         <link rel="stylesheet" href="{% static 'vendor/jquery-tag/jquery.tagsinput.min.css' %}">
         <!-- JQUERY AUTOCOMPLETE https://github.com/devbridge/jQuery-Autocomplete -->
         <style>
@@ -39,17 +40,17 @@
         <script type="text/javascript" src="{% static 'vendor/jQuery-Autocomplete/dist/jquery.autocomplete.min.js' %}"></script>
     {% endcompress %}
 </head>
-<body>
+<body style="background: #FFFFFF">
     <!-- CSRF Token -->
     {% csrf_token %}
 
     <div class="wrapper">
-       <div class="block-center mt-xl wd-xl">
+       <div class="block-center wd-xxl lg_screen">
           <!-- START panel-->
-          <div class="panel panel-dark panel-flat">
-             <div class="panel-heading text-center">
+          <div class="panel-flat">
+             <div class="text-center">
                 <a href="#">
-                   <img src="{% static 'app/img/logo.png' %}" alt="Image" class="block-center img-rounded">
+                   <img src="{% static 'app/img/bizmula-logo.png' %}" alt="Image" class="block-center img-rounded lg_logo">
                 </a>
              </div>
              <div class="panel-body">
@@ -66,8 +67,6 @@
           <!-- END panel-->
           <div class="p-lg text-center">
               <span>&copy;</span>
-              <span>2013</span>
-              <span>-</span>
               <span>{% now "Y" %}</span>
               <span>by</span>
               <span>SME Gurus.</span>

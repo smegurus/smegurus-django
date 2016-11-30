@@ -188,6 +188,11 @@ body,
     color: #ffffff;
     margin: 3px;
 }
+.site-title-v2-auth{
+    color: #ffffff;
+    margin: 3px;
+    padding: 0;
+}
 .offsidebar .nav{
       font-size: 14px;
   }
@@ -306,4 +311,27 @@ body,
 }
 #table-list-1 th:nth-child(1) {
     width: 5%;
+}
+
+.lg_screen{
+    margin-top: 40px;
+    font-size: 14px;
+}
+.lg_screen .lg_logo{
+    width: 160px;
+}
+.lg_screen .input-group-addon{
+    border-color: #727070;
+}
+.lg_screen .btn{
+    font-size: 18px;
+}
+.lg_screen .btn-default{
+    border-color: #727070;
+}
+.lg_screen .form-control{
+    border-top-color: #727070;
+    border-bottom-color: #727070;
+    border-right-color: #727070;
+    border-left-color: #727070;
 }
