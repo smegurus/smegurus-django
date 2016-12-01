@@ -387,10 +387,10 @@
    <br />
 
     <!-- ROW 1 | OTHER -->
-    <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_1_other_div" style="display: none;">
         <label class="col-sm-2 control-label">{{ question.options.opt1_other }}</label>
         <div class="col-sm-10">
-            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
+            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="" />
         </div>
     </div>
     <!-- end ROW 1 | OTHER -->
@@ -398,7 +398,7 @@
     <br />
 
     <!-- ROW 2 -->
-    <div class="form-group" id="id_input_2_div" {% if not picked.var_2 %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_2_div" style="display: none;">
         <label class="col-sm-2 control-label">{{ question.content.stub_6 }}</label>
         <div class="col-sm-10">
             <!-- SELECTIONFIELD -->
@@ -430,10 +430,10 @@
     <br />
 
     <!-- ROW 2 | OTHER -->
-    <div class="form-group" id="id_input_2_other_div" {% if not picked.var_2_other %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_2_other_div" style="display: none;">
         <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
         <div class="col-sm-10">
-            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_2_other }}" />
+            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="" />
         </div>
     </div>
     <!-- end ROW 2 | OTHER  -->
@@ -441,7 +441,7 @@
     <br />
 
     <!-- ROW 3 -->
-    <div class="form-group" id="id_input_3_div" {% if not picked.var_3 %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_3_div" style="display: none;">
         <label class="col-sm-2 control-label">{{ question.content.stub_7 }}</label>
         <div class="col-sm-10">
             <!-- SELECTIONFIELD -->
@@ -473,10 +473,10 @@
     <br />
 
     <!-- ROW 4 | OTHER -->
-    <div class="form-group" id="id_input_3_other_div" {% if not picked.var_3_other %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_3_other_div" style="display: none;">
         <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
         <div class="col-sm-10">
-            <input id="id_input_3_other" type="text" class="form-control" placeholder="{% trans 'Please write your answer here ...' %}" value="{{ picked.var_3_other }}" />
+            <input id="id_input_3_other" type="text" class="form-control" placeholder="{% trans 'Please write your answer here ...' %}" value="" />
         </div>
     </div>
     <!-- end ROW 4 | OTHER  -->
