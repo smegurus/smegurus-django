@@ -1,0 +1,53 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        window.location = next_url;
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <!-- TABLE -->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{{ question.content.stub_1|escape|safe }}</th>
+                    <th class="pull-right">{{ question.content.stub_2|escape|safe }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for option in question.options.opt1 %}
+                <tr>
+                    <td>{{ option.text }}</td>
+                    <td class="pull-right">
+                        <a href="{% url 'tenant_workspace_module_detail' workspace.id module.id option.question_id %}">
+                            <button type="button" class="btn btn-primary btn-xs">
+                                <span class="btn-label"><i class="fa icon-link"></i>
+                                </span>
+                                {{ question.content.stub_3|escape|safe }}
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- end TABLE -->
+</fieldset>
+<!-- end HTML -->
