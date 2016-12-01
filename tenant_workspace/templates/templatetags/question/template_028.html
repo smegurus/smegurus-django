@@ -18,6 +18,20 @@
         {% endfor %}
     };
 
+    // Generate all the options to be selected for "id_input_3" input field.
+    // These options are dependent on "id_input_2" intput field.
+    var input_3_options = {
+        {% for parent_item in question.options.opt3 %}
+            "{{ parent_item.parent }}": [
+                {% for item in parent_item.choices %}
+                    "{{ item }}"
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+            {% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+
     $(document).ready(function () {
         //
         // Detect changes with "id_input_1" input field.
@@ -33,6 +47,10 @@
 
             // Generate the selectfield.
             $("#id_input_2").html("");
+            $('#id_input_2').append($('<option>', {  // GENERATE A BLANK OPTION.
+                value: '{{ question.options.opt2_select }}',
+                text: '{{ question.options.opt2_select }}'
+            }));
             var options = input_2_options[parent];
             for (var i = 0; i < options.length; i++) {
                 // Append the element
@@ -43,21 +61,58 @@
             }
 
             // Display OTHER gui.
-            if (parent == "{{ OTHER_TEXT }}") {
+            if (parent == "{{ question.options.opt1_other }}") {
                 $('#id_input_1_other_div').show();
             }
         }); // end INPUT_1 CHANGE.
 
         //
-        // Detect changes with "id_input_1" input field.
+        // Detect changes with "id_input_2" input field.
         //
         $(document).on('change','#id_input_2',function(){
             // Fetch choices made and validate with the available options.
-            var input_2 = $('#id_input_2').val();
+            var parent = $('#id_input_2').val();
+
+            // Make GUI available.
+            $('#id_input_3_div').show();
+            $('#id_input_3_other_div').hide();
+            $('#id_input_3_other').val("");
+
+            // Generate the selectfield.
+            $("#id_input_3").html("");
+            $('#id_input_3').append($('<option>', {  // GENERATE A BLANK OPTION.
+                value: '{{ question.options.opt3_select }}',
+                text: '{{ question.options.opt3_select }}'
+            }));
+            var options = input_3_options[parent];
+            for (var i = 0; i < options.length; i++) {
+                // Append the element
+                $('#id_input_3').append($('<option>', {
+                    value: options[i],
+                    text: options[i]
+                }));
+            }
 
             // Display OTHER gui.
-            if (input_2 == "{{ OTHER_TEXT }}") {
+            if (parent == "{{ question.options.opt2_other }}") {
                 $('#id_input_2_other_div').show();
+            } else {
+                $('#id_input_2_other_div').hide();
+            }
+        }); // end INPUT_2 CHANGE.
+
+        //
+        // Detect changes with "id_input_3" input field.
+        //
+        $(document).on('change','#id_input_3',function(){
+            // Fetch choices made and validate with the available options.
+            var input_3 = $('#id_input_3').val();
+
+            // Display OTHER gui.
+            if (input_3 == "{{ question.options.opt3_other }}") {
+                $('#id_input_3_other_div').show();
+            } else {
+                $('#id_input_3_other_div').hide();
             }
         }); // end INPUT_2 CHANGE.
     });
@@ -67,101 +122,110 @@
     }
 
     function add_row() {
+        //---------------------------------
         // GET VALUES
+        //---------------------------------
         var form = $('#questionForm');
         var input_1 = form.find('#id_input_1').val();
+        var input_1_other = form.find('#id_input_1_other').val();
         var input_2 = form.find('#id_input_2').val();
         var input_2_other = form.find('#id_input_2_other').val();
+        var input_3 = form.find('#id_input_3').val();
+        var input_3_other = form.find('#id_input_3_other').val();
 
-        // Either load up an error telling the user to pick an option
-        // or load up the next page.
-        if (input_1 == "") {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\"");
-            return;
-        }
-        if (input_2 == "other") {
-            if (input_2_other == "") {
+        //---------------------------------
+        // VALIDATION
+        //---------------------------------
+        // COL 1
+        if (input_1 == "{{ question.options.opt1_other }}") {
+            if (input_1_other.length <= 0) {
                 alert("{% trans 'Please fill in' %} \"Other\"");
                 return;
             }
         } else {
-            if (input_2 == "0") {
+            if (input_1 == "{{ question.options.opt1_select }}") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_5 }}\"");
+                return;
+            }
+        }
+
+        // COL 2
+        if (input_2 == "{{ question.options.opt2_other }}") {
+            if (input_2_other.length <= 0) {
+                alert("{% trans 'Please fill in' %} \"Other\"");
+                return;
+            }
+        } else {
+            if (input_2 == "{{ question.options.opt2_select }}") {
                 alert("{% trans 'Please fill in' %} \"{{ question.content.stub_6 }}\"");
                 return;
             }
         }
 
+        // COL 3
+        if (input_3 == "{{ question.options.opt3_other }}") {
+            if (input_3_other.length <= 0) {
+                alert("{% trans 'Please fill in' %} \"Other\"");
+                return;
+            }
+        } else {
+            if (input_3 == "{{ question.options.opt3_select }}") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_7 }}\"");
+                return;
+            }
+        }
+
+        //---------------------------------
         // CREATE HTML ROW.
+        //---------------------------------
         var html_row = "<tr id=\""+row_index+"\">";
-        html_row += "<td>"+input_1+"</td>";
-        if (input_2 == "other") {
+
+        // COL 1
+        if (input_1 == "{{ question.options.opt1_other }}") {
+            html_row += "<td>"+input_1_other+"</td>";
+        } else {
+            html_row += "<td>"+input_1+"</td>";
+        }
+
+        // COL 2
+        if (input_2 == "{{ question.options.opt2_other }}") {
             html_row += "<td>"+input_2_other+"</td>";
         } else {
             html_row += "<td>"+input_2+"</td>";
         }
+
+        // COL 3
+        if (input_3 == "{{ question.options.opt3_other }}") {
+            html_row += "<td>"+input_3_other+"</td>";
+        } else {
+            html_row += "<td>"+input_3+"</td>";
+        }
+
+        // COL 4
         html_row += "<td>";
         var onclick_js = "delete_row("+row_index+")";
         html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
         html_row += "</td>";
-        html_row += "</tr>";
+        html_row += "</tr>"; // END ROW.
 
+        //---------------------------------
         // ADD HTML ROW TO OUR PAGE.
+        //---------------------------------
         $("#id_table > tbody").append(html_row);
 
+        //---------------------------------
         // CLEAR FIELDS.
-        $('#id_input_1').val("");
-        $('#id_input_2').val("");
+        //---------------------------------
+        $('#id_input_1').val("{{ question.options.opt1_select }}");
+        $('#id_input_2').val("{{ question.options.opt2_select }}");
+        $('#id_input_3').val("{{ question.options.opt3_select }}");
         $('#id_input_2_div').hide();
+        $('#id_input_3_div').hide();
         $('#id_input_2_other').val("");
+        $('#id_input_3_other').val("");
         $('#id_input_2_other_div').hide();
+        $('#id_input_3_other_div').hide();
         row_index += 1;
-    }
-
-    /**
-     *  Function will load up the next URL after checking to see if the
-     *  option was selected for this question.
-     */
-    function question_answer_protected_next(next_url) {
-        // GET INPUTS
-        //---------------
-        var input_1 = $('#id_input_1').val();
-        var input_1_other = $('#id_input_1_other').val();
-        var input_2 = $('#id_input_2').val();
-        var input_2_other = $('#id_input_2_other').val();
-
-        // VALIDATION
-        //---------------
-        // ROW 1
-        if (input_1 == "{{ OTHER_TEXT }}") {
-            if (input_1_other == "") {
-                alert("{% trans 'Please fill in \"Other\".' %}");
-                return;
-            }
-        } else {
-            if (input_1 == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
-                return;
-            }
-        }
-
-        // ROW 2
-        if (input_2 == "{{ OTHER_TEXT }}") {
-            if (input_2_other == "") {
-                alert("{% trans 'Please fill in \"Other\".' %}");
-                return;
-            }
-        } else {
-            if (input_2 == "") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\"");
-                return;
-            }
-        }
-
-        // UPDATE YOUR MODEL.
-        //---------------
-        ajax_do_chain(function(json_result) {
-            window.location = next_url;
-        });
     }
 
     function get_table_data() {
@@ -187,11 +251,11 @@
         // VALIDATION
         // Defensive Code: Check to see if any rows exist?
         var count = arr.length;
-        if (count < {{ question.validation.min }}) {
+        if ((count - 1) < {{ question.validation.min }}) {
             alert("{{ question.validation.min_error_message }}");
             return;
         }
-        if (count > {{ question.validation.max }}) {
+        if ((count - 1) > {{ question.validation.max }}) {
             alert("{{ question.validation.max_error_message }}");
             return;
         }
@@ -204,10 +268,12 @@
             var row = arr[i];
             var input_1 = row[0];
             var input_2 = row[1];
+            var input_3 = row[2];
             new_arr.push({
                 "var_1": i,
                 "var_2": input_1,
-                "var_3": input_2
+                "var_3": input_2,
+                "var_4": input_3
             });
         }
 
@@ -274,6 +340,7 @@
                                 <th>{{ question.content.stub_1 }}</th>
                                 <th>{{ question.content.stub_2 }}</th>
                                 <th>{{ question.content.stub_3 }}</th>
+                                <th>{{ question.content.stub_4 }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -282,6 +349,7 @@
                                 <tr id="{{ pick.var_1 }}">
                                     <td>{{ pick.var_2 }}</td>
                                     <td>{{ pick.var_3 }}</td>
+                                    <td>{{ pick.var_4 }}</td>
                                     <td>
                                         <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
                                     </td>
@@ -302,11 +370,11 @@
 
     <!-- ROW 1 -->
     <div class="form-group">
-        <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
+        <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
         <div class="col-sm-10">
             <!-- OPTIONS -->
             <select id="id_input_1" class="form-control">
-                <option value="">---</option>
+                <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
                 {% endfor %}
@@ -320,7 +388,7 @@
 
     <!-- ROW 1 | OTHER -->
     <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+        <label class="col-sm-2 control-label">{{ question.options.opt1_other }}</label>
         <div class="col-sm-10">
             <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" />
         </div>
@@ -331,12 +399,12 @@
 
     <!-- ROW 2 -->
     <div class="form-group" id="id_input_2_div" {% if not picked.var_2 %}style="display: none;"{% endif %}>
-        <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
+        <label class="col-sm-2 control-label">{{ question.content.stub_6 }}</label>
         <div class="col-sm-10">
             <!-- SELECTIONFIELD -->
             <select id="id_input_2" class="form-control">
                 <!-- OPTION -->
-                <option value="" selected="selected">---</option>
+                <option value="{{ question.options.opt2_select }}" selected="selected">{{ question.options.opt2_select }}</option>
                 <!-- end OPTION -->
                 <!-- OPTION -->
                 {% if picked.var_1 and picked.var_2 %}
@@ -372,11 +440,54 @@
 
     <br />
 
-    <!-- ROW 4 -->
-    <div class="pull-right" onclick="add_row();">
-        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_6 }}</button>
+    <!-- ROW 3 -->
+    <div class="form-group" id="id_input_3_div" {% if not picked.var_3 %}style="display: none;"{% endif %}>
+        <label class="col-sm-2 control-label">{{ question.content.stub_7 }}</label>
+        <div class="col-sm-10">
+            <!-- SELECTIONFIELD -->
+            <select id="id_input_3" class="form-control">
+                <!-- OPTION -->
+                <option value="{{ question.options.opt3_select }}" selected="selected">{{ question.options.opt3_select }}</option>
+                <!-- end OPTION -->
+                <!-- OPTION -->
+                {% if picked.var_1 and picked.var_2 and picked.var_3 %}
+                    <!-- ITEMS -->
+                    {% for item in question.options.opt2 %}
+                        {% if item.parent == picked.var_1 %}
+                            <!-- CHOICES -->
+                            {% for choice in item.choices %}
+                                <option value="{{ choice }}" {% if choice == picked.var_3 %}selected="selected"{% endif %}>{{ choice }}</option>
+                            {% endfor %}
+                            <!-- end CHOICES-->
+                        {% endif %}
+                    {% endfor %}
+                    <!-- end ITEMS -->
+                {% endif %}
+                <!-- end OPTION -->
+            </select>
+            <!-- end SELECTIONFIELD -->
+        </div>
     </div>
-    <!-- end ROW 4 -->
+    <!-- end ROW 3 -->
+
+    <br />
+
+    <!-- ROW 4 | OTHER -->
+    <div class="form-group" id="id_input_3_other_div" {% if not picked.var_3_other %}style="display: none;"{% endif %}>
+        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+        <div class="col-sm-10">
+            <input id="id_input_3_other" type="text" class="form-control" placeholder="{% trans 'Please write your answer here ...' %}" value="{{ picked.var_3_other }}" />
+        </div>
+    </div>
+    <!-- end ROW 4 | OTHER  -->
+
+    <br />
+
+    <!-- ROW 5 -->
+    <div class="pull-right" onclick="add_row();">
+        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_8 }}</button>
+    </div>
+    <!-- end ROW 5 -->
 
 </fieldset>
 <!-- end HTML -->

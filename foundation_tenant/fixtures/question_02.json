@@ -2946,34 +2946,144 @@
             "title": "My target market is based on...",
             "help": "",
             "options": {
-                "opt1": [
+                "opt1": ["Household type", "Individuals", "Businesses/nonprofits", "Government"],
+                "opt1_select": "Select",
+                "opt1_other": "Other (Please Specify)",
+                "opt2": [
                     {
-                        "value": "Gender / Age",
-                        "text": "Gender / Age"
+                        "parent": "Political",
+                        "choices": ["Household type", "Individuals", "Businesses/nonprofits", "Government"]
                     },
                     {
-                        "value": "Household Type",
-                        "text": "Household Type"
+                        "parent": "Household type",
+                        "choices": [
+                            "Age",
+                            "Income",
+                            "Trait",
+                            "Location"
+                        ]
                     },
                     {
-                        "value": "Industry / Profession",
-                        "text": "Industry / Profession"
+                        "parent": "Individuals",
+                        "choices": [
+                            "Age",
+                            "Gender",
+                            "Income",
+                            "Trait",
+                            "Location"
+                        ]
+                    },
+                    {
+                        "parent": "Businesses/nonprofits",
+                        "choices": [
+                            "Who are",
+                            "Industry",
+                            "Specializing in",
+                            "With"
+                        ]
+                    },
+                    {
+                        "parent": "Government",
+                        "choices": [
+                            "Type",
+                            "Who are (gov)",
+                            "Focus (gov)"
+                        ]
                     }
                 ],
-                "opt1_other": "Other"
+                "opt2_select": "Select",
+                "opt2_other": "Other (Please Specify)",
+                "opt3": [
+                    {
+                        "parent": "Age",
+                        "choices": [
+                            "of all ages", "children", "aged 12-17", "aged 17 and under", "aged 18-34", "aged 20-29", "aged 30-39", "aged 40-49", "aged 50-59", "aged 60-69", "age 55+", "age 65+", "age 70+", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Income",
+                        "choices": [
+                            "0-$24,999", "$25,000-$49,999", "$50,000-$74,999", "$75,000-$99,999", "$100,000+"
+                        ]
+                    },{
+                        "parent": "Trait",
+                        "choices": [
+                            "who are immigrants", "who are Spanish speaking", "who are Chinese speaking", "who are English speaking", "who are single income", "who are dual income", "who are professionals", "who are educated", "singles", "single professionals", "couples with no children", "couples with young children", "couples with teenagers", "couples with adult children living at home", "empty nesters", "Baby Boomers", "Millennials", "Gen X", "Gen Y", "Gen Z",
+                            "The Silent Generation", "large families", "small families", "single mothers", "single fathers", "divorced individuals", "retirees", "widows", "who are health conscious", "who are environmentally conscious", "who are socially conscious", "who are rural dwellers", "who are urbanites", "who are luddites", "who are technophiles", "who are Catholic", "who are Christian", "who are Muslim", "who are Jewish", "Other (Please Specify)"
+
+                        ]
+                    },{
+                        "parent": "Location",
+                        "choices": [
+                            "who live within a 5 minute drive of our location", "who live in our city", "who walk by our location regularly", "who make special trips to come visit us", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Gender",
+                        "choices": [
+                             "Males", "Females", "Males and Females", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Who are",
+                        "choices": [
+                             "wholesalers", "retailers", "restaurants", "web developers", "engineers", "accountants", "lawyers", "doctors", "medical professionals", "athletes", "consultants", "trainers", "teachers", "farmers", "nonprofits", "charities", "sports clubs", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Industry",
+                        "choices": [
+                            "the restaurant industry", "the financial services industry", "the health and beauty industry", "the manufacturing industry", "the agricultural industry", "the IT industry", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Specializing in",
+                        "choices": [
+                            "corporate clients", "high networth clients", "socially minded clients", "connoisseurs", "high growth firms", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "With",
+                        "choices": [
+                            "gross annual sales of $250,000+", "gross annual sales of $500,000+", "gross annual sales of $1,000,000+", "gross annual sales of $10,000,000+", "1-10 employees", "11-20 employees", "21-49 employees", "50-99 employees", "100 or more employees", "several locations", "international locations", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Type",
+                        "choices": [
+                            "Municipal Governments", "County Governments", "Provincial Governments", "State Governments", "National Governments", "Government Agencies", "Military", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Who are (gov)",
+                        "choices": [
+                            "Municipal Governments", "National Governments", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Focus (gov)",
+                        "choices": [
+                            "focused on education", "focused on health", "focused on economic development", "focused on technology", "focused on innovation", "focused on infrastructure", "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt3_select": "Select",
+                "opt3_other": "Other (Please Specify)"
             },
             "content": {
-                "opt1_other_stub": "Other",
-                "opt1_other_type": "textfield"
+                "stub_1": "Column #1",
+                "stub_2": "Column #2",
+                "stub_3": "Column #3",
+                "stub_4": "Remove",
+                "stub_5": "Column #5",
+                "stub_6": "Column #6",
+                "stub_7": "Column #7",
+                "stub_8": "Add Target Martket",
+                "stub_9": "Column #9"
             },
             "dependency": {},
             "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 50,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "min": 1,
+                "min_error_message": "Please pick at least 1 target market.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 target market.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
-            "type_id": 1
+            "type_id": 28
         }
     },
     {
