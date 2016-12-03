@@ -281,7 +281,7 @@ def render_question_type_012(workspace, module, node, question, answer):
 def render_question_type_013(workspace, module, node, question, answer):
     """
     DEPENDENCY:
-    - template #002 | QID: 02 | company name
+    - template #002 | QID: 61 | company name
     - template #001 | QID: 10 | geographic market
     - template #009 | QID: 11 | geographic market
     - NAICSOption

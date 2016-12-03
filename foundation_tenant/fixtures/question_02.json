@@ -3562,6 +3562,27 @@
         "fields": {
             "document_type": 1,
             "number": 51,
+            "title": "What is the legal name of your company?",
+            "help": "",
+            "options": {},
+            "content": {
+                "stub_1": "Legal Name",
+                "stub_2": "ex: ABC Trucking LTD.",
+                "stub_3": "Do you use a short name?",
+                "stub_4": "Yes",
+                "stub_5": "ex: ABC Trucking"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 2
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 62,
+        "fields": {
+            "document_type": 1,
+            "number": 52,
             "title": "Choose 3-5 weaknesses that apply to your company (or write your own), and identify how you can resolve each one.",
             "help": "",
             "options": {
@@ -3765,6 +3786,41 @@
                 "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 33
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 63,
+        "fields": {
+            "document_type": 1,
+            "number": 53,
+            "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
+            "help": "",
+            "options": {
+                "yes_opt": {
+                    "value": "Yes",
+                    "text": "Yes",
+                    "has_other": true
+                },
+                "no_opt": {
+                    "value": "No",
+                    "text": "No",
+                    "has_other": false
+                },
+                "other_opt": "Please enter your mission statement"
+            },
+            "content": {
+                "stub_1": "Yes",
+                "stub_2": "No",
+                "stub_3": "Please enter your mission statement"
+            },
+            "dependency": {
+                "q1_qid": 61,
+                "q2_qid": 10,
+                "q3_qid": 11
+            },
+            "validation": {},
+            "type_id": 13
         }
     }
 ]
