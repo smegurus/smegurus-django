@@ -3555,5 +3555,216 @@
             },
             "type_id": 32
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 61,
+        "fields": {
+            "document_type": 1,
+            "number": 51,
+            "title": "Choose 3-5 weaknesses that apply to your company (or write your own), and identify how you can resolve each one.",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "We are novices to the industry",
+                    "We have no contracts or existing relationships in the industry",
+                    "We have no experience in Marketing or Sales",
+                    "We have limited financial resources for operating or capital",
+                    "We have a lack of updated technology with which to competitive",
+                    "Our Management Team has limited leadership training",
+                    "Our Management Team has limited experience",
+                    "We have no patent or copyright on technology/processes/images for our services",
+                    "We have limited partnerships to help with business growth",
+                    "We have a lack of knowledge of emerging social networks technologies",
+                    "We have limited knowledge of social media/social media marketing strategies",
+                    "We have a limited budget for advertising",
+                    "We have a limited budget for hiring staff/assistance",
+                    "We have limited adminsitrative know-how",
+                    "We have no location for operation",
+                    "We do not have an established distribution or buyer network for our services",
+                    "We have limited knowledge of government and industry regulations",
+                    "Other (Please Specify)"
+                ],
+                "opt1_select": "Select",
+                "opt1_other": "Other (Please Specify)",
+                "opt2": [
+                    {
+                        "parent": "We are novices to the industry",
+                        "choices": [
+                            "Will seek out an industry mentor",
+                            "Will hire experienced staff",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have no contracts or existing relationships in the industry",
+                        "choices": [
+                            "Will network extensively to build relationships",
+                            "Will leverage relationships from other industries to develop contacts and contracts in the industry",
+                            "Will research industry",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have no experience in Marketing or Sales",
+                        "choices": [
+                            "Will attend sales/marketing training",
+                            "Will hire experienced sales/marketing team",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have limited financial resources for operating or capital",
+                        "choices": [
+                            "Will obtain operating line of credit",
+                            "Will focus on cost control",
+                            "Will seek outside investment",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have a lack of updated technology with which to competitive",
+                        "choices": [
+                            "Will use start-up funds to update technology",
+                            "Updated technology not a requirement for this industry",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Our Management Team has limited leadership training",
+                        "choices": [
+                            "Will attend leadership training seminars",
+                            "Will read leadership and business management materials",
+                            "Will seek out an industry mentor",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Our Management Team has limited experience",
+                        "choices": [
+                            "Will attend leadership training seminars",
+                            "Will read leadership and business management materials",
+                            "Will seek out an industry mentor",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have no patent or copyright on technology/processes/images for our services",
+                        "choices": [
+                            "Begin investigation or process to obtain patent, copyright or trademark on some aspect of the business",
+                            "Register name to protect operating name",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have limited partnerships to help with business growth",
+                        "choices": [
+                            "Will seek out partnerships through existing contacts",
+                            "Will develop aggressive networking or referral system",
+                            "Will attend industry specific events to grow partnerships",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have a lack of knowledge of emerging social networks technologies",
+                        "choices": [
+                            "Will take course to learn new social network marketing and technologies",
+                            "Will hire experienced staff",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have limited knowledge of social media/social media marketing strategies",
+                        "choices": [
+                            "Will take course to learn new social network marketing and technologies",
+                            "Will hire experienced staff",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have a limited budget for advertising",
+                        "choices": [
+                            "Will use low cost but effective social media strategies",
+                            "Will research marketing strategies for most effective use of advertising dollars",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have a limited budget for hiring staff/assistance",
+                        "choices": [
+                            "Will use part-time staff as needed",
+                            "Will seek out co-op opportunities or internships which have low or no cost associated with them",
+                            "Will barter for services",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have limited adminsitrative know-how",
+                        "choices": [
+                            "Will hire part-time administrator to assist with organization",
+                            "Will have family member or friend assist",
+                            "Will take course or research to learn more and develop more expertise",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have no location for operation",
+                        "choices": [
+                            "Have business meetings in restaurant, coffee shop or other public place",
+                            "Work out of libraries and book stores",
+                            "Rent postal box to have a dedicated business mailing address",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We do not have an established distribution or buyer network for our services",
+                        "choices": [
+                            "Will network extensively to build relationships",
+                            "Will leverage relationships from other industries to develop contacts or contracts in the industry",
+                            "Will research industry",
+                            "Will use extensive marketing and advertising to build brand awareness",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "We have limited knowledge of government and industry regulations",
+                        "choices": [
+                            "Will seek out an industry mentor",
+                            "Will research government regulations for the industry",
+                            "Will use extensive marketing and advertising to build brand awareness",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt2_select": "Select",
+                "opt2_other": "Other (Please Specify)"
+            },
+            "content": {
+                "stub_1": "Weakness",
+                "stub_2": "Resolution",
+                "stub_3": "Remove",
+                "stub_4": "Weakness",
+                "stub_5": "Resolution",
+                "stub_6": "Add Weakness / Resolution"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 3,
+                "min_error_message": "Please pick at least 3 weaknesses.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 weaknesses.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 33
+        }
     }
 ]
