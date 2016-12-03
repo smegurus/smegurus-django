@@ -446,8 +446,16 @@
                 },{
                     "previous_position": 54,
                     "current_position": 55,
-                    "next_position": -1,
+                    "next_position": 56,
                     "id": 65,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 53
+                },{
+                    "previous_position": 55,
+                    "current_position": 56,
+                    "next_position": -1,
+                    "id": 66,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 53

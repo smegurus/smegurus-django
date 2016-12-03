@@ -3861,26 +3861,22 @@
         "pk": 65,
         "fields": {
             "document_type": 1,
-            "number": 25,
+            "number": 55,
             "title": "Why is no one else doing this yet?",
             "help": "",
             "options": {
                 "opt1": [
                     {
-                        "value": "It is too expensive",
-                        "text": "It is too expensive"
+                        "value": "to offer the best possible sevice",
+                        "text": "to offer the best possible sevice"
                     },
                     {
-                        "value": "The market is very niche",
-                        "text": "The market is very niche"
+                        "value": "to offer a superior experiencee",
+                        "text": "to offer a superior experience"
                     },
                     {
-                        "value": "The industry has high barriers to entry",
-                        "text": "The industry has high barriers to entry"
-                    },
-                    {
-                        "value": "The industry is misunderstood",
-                        "text": "The industry is misunderstood"
+                        "value": "to offer the best value",
+                        "text": "to offer the best value"
                     },
                     {
                         "value": "other",
@@ -3904,6 +3900,81 @@
                 "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 34
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 66,
+        "fields": {
+            "document_type": 1,
+            "number": 56,
+            "title": "Why is no one else doing this yet?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "We will provide excellent customer service",
+                        "text": "We will provide excellent customer service"
+                    },
+                    {
+                        "value": "Our service will be competitively priced",
+                        "text": "Our service will be competitively priced"
+                    },
+                    {
+                        "value": "We are providing an innovative/cutting edge service",
+                        "text": "We are providing an innovative/cutting edge service"
+                    },
+                    {
+                        "value": "We will invest in marketing and business development",
+                        "text": "We will invest in marketing and business development"
+                    },
+                    {
+                        "value": "We will invest in good sales people",
+                        "text": "We will invest in good sales people"
+                    },
+                    {
+                        "value": "We will ensure the right employees are put in the roles most suited to them",
+                        "text": "We will ensure the right employees are put in the roles most suited to them"
+                    },
+                    {
+                        "value": "We will provide our staff with opportunities for learning and development",
+                        "text": "We will provide our staff with opportunities for learning and development"
+                    },
+                    {
+                        "value": "We will maintain strong profit margins",
+                        "text": "We will maintain strong profit margins"
+                    },
+                    {
+                        "value": "We will control costs",
+                        "text": "We will control costs"
+                    },
+                    {
+                        "value": "We will develop turnkey solutions for our customers",
+                        "text": "We will develop turnkey solutions for our customers"
+                    },
+                    {
+                        "value": "We will develop and maintain a scalable business model",
+                        "text": "We will develop and maintain a scalable business model"
+                    },
+                    {
+                        "value": "We will develop a business model that is consistent with the industry standard",
+                        "text": "We will develop a business model that is consistent with the industry standard"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
         }
     }
 ]
