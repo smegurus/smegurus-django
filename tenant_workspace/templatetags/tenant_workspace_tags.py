@@ -696,3 +696,45 @@ def render_question_type_033(workspace, module, node, question, answer):
         'picked': picked,
         'picked_count': len(picked)
     }
+
+
+
+@register.inclusion_tag('templatetags/question/template_034.html')
+def render_question_type_034(workspace, module, node, question, answer):
+    """
+    DEPENDENCY:
+    - QTYPE_ID: 31 | Will you offer mainly products, services, or both
+    - QTYPE_ID: 32 | lease list at least 1, but up to 3 product or service categories that you will offer.
+    """
+    # Convert JSON string into python dictionary.
+    picked = json.loads(answer.content)
+    OTHER_TEXT = "Other (Please Specify)"
+
+    # For this particular document and module, find the previous questions.
+    q1_qid = int_or_none(question.dependency['q1_qid'])
+    q2_qid = int_or_none(question.dependency['q2_qid'])
+    a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    a1 = json.loads(a1_raw.content)
+    a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    a2 = json.loads(a2_raw.content)
+
+    # 2. Generate info.
+    offer_category = a1['var_1']
+    offer_1 = a2['var_1']
+    offer_2 = a2['var_2']
+    offer_3 = a2['var_3']
+
+    # Render.
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        "OTHER_TEXT": OTHER_TEXT,
+        'offer_category': offer_category,
+        'offer_1': offer_1,
+        'offer_2': offer_2,
+        'offer_3': offer_3
+    }
