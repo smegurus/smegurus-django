@@ -281,9 +281,9 @@ def render_question_type_012(workspace, module, node, question, answer):
 def render_question_type_013(workspace, module, node, question, answer):
     """
     DEPENDENCY:
-    - template #002 | QID: 61 | company name
-    - template #001 | QID: 10 | geographic market
-    - template #009 | QID: 11 | geographic market
+    - template #002 | QTYPE_ID: 61 | company name
+    - template #001 | QTYPE_ID: 10 | geographic market
+    - template #009 | QTYPE_ID: 11 | geographic market
     - NAICSOption
     """
     # Convert JSON string into python dictionary.
@@ -331,9 +331,9 @@ def render_question_type_013(workspace, module, node, question, answer):
 def render_question_type_014(workspace, module, node, question, answer):
     """
     DEPENDENCY:
-    - template #001 | QID: 10 | geographic market
-    - template #009 | QID: 11 | geographic market
-    - template #011 | QID: 12 | naics
+    - template #001 | QTYPE_ID: 10 | geographic market
+    - template #009 | QTYPE_ID: 11 | geographic market
+    - template #011 | QTYPE_ID: 12 | naics
     """
     # Convert JSON string into python dictionary.
     picked = json.loads(answer.content)

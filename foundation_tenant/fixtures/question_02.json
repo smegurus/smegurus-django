@@ -3816,11 +3816,44 @@
             },
             "dependency": {
                 "q1_qid": 61,
-                "q2_qid": 10,
-                "q3_qid": 11
+                "q2_qid": 39,
+                "q3_qid": 40
             },
             "validation": {},
             "type_id": 13
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 64,
+        "fields": {
+            "document_type": 1,
+            "number": 54,
+            "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
+            "help": "",
+            "options": {
+                "yes_opt": {
+                    "value": "Yes",
+                    "text": "Yes"
+                },
+                "no_opt": {
+                    "value": "No",
+                    "text": "No"
+                },
+                "other_opt": "Please enter your vision statement"
+            },
+            "content": {
+                "stub_1": "Yes",
+                "stub_2": "No",
+                "stub_3": "Please enter your vision statement"
+            },
+            "dependency": {
+                "q1_qid": 39,
+                "q2_qid": 40,
+                "q3_qid": 25
+            },
+            "validation": {},
+            "type_id": 14
         }
     }
 ]
