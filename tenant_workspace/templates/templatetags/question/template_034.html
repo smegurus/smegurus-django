@@ -89,7 +89,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
-            <p>First, display the text Our company will provide the follow <b>{{ offer_category|escape|safe }}</b>:</p>
+            <p>{{ question.content.stub_1|escape|safe }} <b>{{ offer_category|escape|safe }}</b>:</p>
             <ul>
                 {% if offer_1 %}
                 <li>{{ offer_1 }}</li>
@@ -104,7 +104,7 @@
                 {% endif %}
             </ul>
             <br />
-            <p>To meet the following need of our clients or market opportunity:</p>
+            <p>{{ question.content.stub_2|escape|safe }}:</p>
             <br />
 
             <!-- OPTIONS -->

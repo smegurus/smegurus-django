@@ -3887,7 +3887,8 @@
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": ""
+                "stub_1": "First, display the text Our company will provide the follow",
+                "stub_2": "To meet the following need of our clients or market opportunity"
             },
             "dependency": {
                 "q1_qid": 31,
