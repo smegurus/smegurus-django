@@ -40,11 +40,15 @@ ME_ONBOARDING_STAGE_NUM = 1
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
 #                                      GENDER                                  *
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_MALE_GENDER_ID = 1
+ME_FEMALE_GENDER_ID = 2
+ME_ANOTHER_GENDER_ID = 3
+ME_OTHER_GENDER_ID = 4
 ME_GENDER_OPTIONS = (
-    (1, _("Male")),
-    (2, _("Female")),
-    (3, _("Another")),
-    (4, _("Other")),
+    (ME_MALE_GENDER_ID, _("Male")),
+    (ME_FEMALE_GENDER_ID, _("Female")),
+    (ME_ANOTHER_GENDER_ID, _("Another")),
+    (ME_OTHER_GENDER_ID, _("Other")),
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
