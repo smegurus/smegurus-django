@@ -4032,5 +4032,52 @@
             },
             "type_id": 1
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 68,
+        "fields": {
+            "document_type": 1,
+            "number": 58,
+            "title": "We will be great at...",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "having low prices",
+                        "text": "having low prices"
+                    },
+                    {
+                        "value": "providing great customer service",
+                        "text": "providing great customer service"
+                    },
+                    {
+                        "value": "having leading edge technology",
+                        "text": "having leading edge technology"
+                    },
+                    {
+                        "value": "offering our clients great solutions",
+                        "text": "offering our clients great solutions"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
