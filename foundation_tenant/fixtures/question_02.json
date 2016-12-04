@@ -4181,5 +4181,155 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 71,
+        "fields": {
+            "document_type": 1,
+            "number": 61,
+            "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "variable costs",
+                    "the time associated with product delivery",
+                    "secure digital distribution of goods",
+                    "ensuring customers are aware of our location",
+                    "ensuring safe delivery of physical goods",
+                    "the risk of loss or theft",
+                    "our limited sales force",
+                    "our limited logistics capabilities",
+                    "our limited customer support capabilities",
+                    "the availability of a suitable location",
+                    "other"
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "parent": "variable costs",
+                        "choices": [
+                             "budgeting for increased fule costs as prices increase",
+                             "investigating alternative energy forms to fuel our vehicles",
+                             "upgrading our vehicles to more efficient models",
+                             "optimizing our delivery routes",
+                             "increasing vehicle maintenance to ensure peak efficiency",
+                             "other"
+                        ]
+                    },
+                    {
+                        "parent": "the time associated with product delivery",
+                        "choices": [
+                             "exploring alternative shipping methods",
+                             "optimizing delivery routes",
+                             "optimizing manufacturing/production times",
+                             "ensuring that customers are aware of delivery times",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "secure digital distribution of goods",
+                        "choices": [
+                            "creating a secure ordering environment",
+                            "using a third-party payment processor such as PayPal",
+                            "encrypting transactions",
+                            "communicating the importance of security and privacy to our clients",
+                            "we will build a strong technology platform",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "ensuring customers are aware of our location",
+                        "choices": [
+                            "establishing a strong marketing presence",
+                            "having good signage and visibility",
+                            "networking with other businesses in the area",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "ensuring safe delivery of physical goods",
+                        "choices": [
+                            "packaging products securely",
+                            "working with reliable third-party delivery services",
+                            "offering guarantees to our clients if products are damaged in shipping",
+                            "insuring proucts in transit",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "the risk of loss or theft",
+                        "choices": [
+                             "providing a secure environment for the transportation of goods to clients",
+                             "insuring proucts in transit",
+                             "investing in security for our locations and vehicles",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "our limited sales force",
+                        "choices": [
+                            "we will develop Internet marketing and sales capacities",
+                            "we will outsource sales",
+                            "we will hire commission only staff",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "our limited logistics capabilities",
+                        "choices": [
+                            "we will outsource logistics",
+                            "we will investigate other methods",
+                            "we will look at outsourcing a portion of our logistics",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "our limited customer support capabilities",
+                        "choices": [
+                            "we will streamline our operations",
+                            "we will offer online or E-Mail assistance only",
+                            "we will outsource our customer service",
+                            "we will hire offshore staff",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "the availability of a suitable location",
+                        "choices": [
+                            "we will work virtually until a location is available",
+                            "we will space share with another organization",
+                            "we will seek out low-cost locations",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "other",
+                        "choices": [
+                            "other"
+                        ]
+                    }
+                ],
+                "opt2_other": "other",
+                "opt2_select": "Select"
+            },
+            "content": {
+                "stub_1": "Our biggest challenge is...",
+                "stub_2": "We'll overcome this by..."
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 issues.",
+                "max": 10,
+                "max_error_message": "Please pick no more then 10 issues.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 30
+        }
     }
 ]
