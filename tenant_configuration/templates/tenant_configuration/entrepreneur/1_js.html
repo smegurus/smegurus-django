@@ -8,71 +8,7 @@
         });
     }); // end Ready
 
-    function disable_btn() {
-        $('#id_continue_btn').prop("disabled", true);
-        $('#id_continue_btn').val("{% trans 'Please Wait...' %}");
-    }
-
-    function enable_btn() {
-        $('#id_continue_btn').prop("disabled", false);
-        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
-    }
-
     function ajax_cancel_and_continue() {
         window.location = "{% url 'foundation_auth_config_entr_step_two' %}";
     }
-
-    function ajax_save_and_continue() {
-        disable_btn(); // Disable the button so no multiple presses happen.
-        get_tenant_me(  // Fetch our Me.
-            {{ request.tenant_me.owner.id }},
-            function(me) {
-                var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
-                if (image > 0) {
-                   me['image'] = image;
-                }
-                set_tenant_me(  // Save our Me
-                    me,
-                    function(json_result) {
-                        enable_btn();
-                        console.log(json_result);
-                        window.location = "{% url 'foundation_auth_config_entr_step_two' %}";
-                    },
-                    function(json_error_result) {
-                        enable_btn();
-                        console.log(json_error_result);
-                        alert(json_error_result);
-                    }
-                ); // end Get Me
-            },
-            function(error_result) {
-                enable_btn();
-                console.log(error_result);
-                alert(json_error_result);
-            }
-        );  // end Set Me
-    }
-
-    /**
-     *  Function will asynchronously upload the cover image.
-     */
-    function ajax_upload_image() {
-        if ($('#id_image').val() == "") {
-            alert(_("Please select an image to upload"));
-            // $.notify("Please select an image to upload", "danger");
-            return false;
-        }
-
-        // Extract the information.
-        var image = document.getElementById('id_image').files[0];
-        var upload_id = $('#id_hidden_upload_id').val();
-
-        // Insert or Update.
-        set_tenant_imageupload(upload_id, image, function(json_result) {
-            $('#id_hidden_url').attr('src', json_result['imagefile']);
-            $('#id_hidden_upload_id').val(json_result['id']);
-            $('#id_image_placeholder').attr('src', json_result['imagefile']);
-        });
-    }
-
 </script>

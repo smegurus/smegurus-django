@@ -30,21 +30,23 @@ def config_entr_step_one_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_two_page(request):
-    businessidea, create = BusinessIdea.objects.get_or_create(owner=request.user)
-    return render(request, 'tenant_configuration/entrepreneur/2_view.html',{
-        'businessidea': businessidea,
-        'form': BusinessIdeaForm(instance=businessidea),
-    })
+    return render(request, 'tenant_configuration/entrepreneur/2_view.html',{})
 
 
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_three_page(request):
-    tellusyourneed, create = TellUsYourNeed.objects.get_or_create(owner=request.user)
-    return render(request, 'tenant_configuration/entrepreneur/3_view.html',{
-        'tellusyourneed': tellusyourneed,
-        'form': TellUsYourNeedForm(instance=tellusyourneed),
-    })
+    return render(request, 'tenant_configuration/entrepreneur/3_view.html',{})
+
+
+# @login_required(login_url='/en/login')
+# @group_required([constants.ENTREPRENEUR_GROUP_ID,])
+# def config_entr_step_three_page(request):
+#     tellusyourneed, create = TellUsYourNeed.objects.get_or_create(owner=request.user)
+#     return render(request, 'tenant_configuration/entrepreneur/3_view.html',{
+#         'tellusyourneed': tellusyourneed,
+#         'form': TellUsYourNeedForm(instance=tellusyourneed),
+#     })
 
 
 @login_required(login_url='/en/login')

@@ -160,7 +160,14 @@ class TenantMeSerializer(serializers.ModelSerializer):
                   'notify_when_new_messages', 'notify_when_due_tasks',
                   'address', 'address', 'contact_point', 'given_name',
                   'family_name', 'email', 'telephone', 'has_logout_dialog',
-                  'managed_by',)
+                  'managed_by', 'gender', 'gender_other', 'level_of_education',
+                  'level_of_education_other', 'place_of_birth',
+                  'place_of_birth_other', 'employment_status',
+                  'employment_status_other', 'education_or_training_status',
+                  'education_or_training_status_other', 'why_be_entrepreneur',
+                  'why_be_entrepreneur_other', 'challenges_becoming_entrepreneur',
+                  'challenges_becoming_entrepreneur_other', 'annual_income_bracket',
+                  'has_owned_business', 'has_owned_business_other')
 
 
 class CalendarEventSerializer(serializers.ModelSerializer):

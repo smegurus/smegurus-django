@@ -61,9 +61,130 @@ class TenantMe(AbstractPerson):
         null=True,
     )
 
+    # Legal confirmation.
     is_tos_signed = models.BooleanField(
         _("Is terms of service signed"),
         default=True, # Assume user agrees through forced Javascript code.
+    )
+
+    # User metrics.
+    gender = models.PositiveSmallIntegerField(
+        _("Gender"),
+        choices=constants.ME_GENDER_OPTIONS,
+        help_text=_('The gender this User identifies as.'),
+        blank=True,
+        default=1,
+    )
+    gender_other = models.CharField(
+        _("Gender Other"),
+        max_length=127,
+        help_text=_('Allow the user to enter a custom gender field.'),
+        blank=True,
+        null=True
+    )
+    level_of_education = models.PositiveSmallIntegerField(
+        _("Highest Level of Education"),
+        choices=constants.ME_GENDER_OPTIONS,
+        help_text=_('The highest level of education this User has attained.'),
+        blank=True,
+        default=1,
+    )
+    level_of_education_other = models.CharField(
+        _("Highest Level of Education Other"),
+        max_length=127,
+        help_text=_('Allow the user to enter a custom highest level of education field.'),
+        blank=True,
+        null=True
+    )
+    place_of_birth = models.CharField(
+        _("Place of Birth"),
+        max_length=127,
+        choices=constants.ME_PLACE_OF_BIRTH_OPTIONS,
+        help_text=_('The place this User was born.'),
+        blank=True,
+        null=True
+    )
+    place_of_birth_other = models.CharField(
+        _("Place of Birth Other"),
+        max_length=127,
+        help_text=_('Allow the user to enter a custom place of birth field.'),
+        blank=True,
+        null=True
+    )
+    employment_status = models.PositiveSmallIntegerField(
+        _("Employment Status"),
+        choices=constants.ME_EMPLOYMENT_STATUS_OPTIONS,
+        help_text=_('The employment status of this User.'),
+        blank=True,
+        default=1,
+    )
+    employment_status_other = models.CharField(
+        _("Employment Status"),
+        max_length=127,
+        help_text=_('Allow the user to enter a custom employment status field.'),
+        blank=True,
+        null=True
+    )
+    education_or_training_status = models.PositiveSmallIntegerField(
+        _("Education or Training Status"),
+        choices=constants.ME_IN_EDUCATION_OR_TRAINING_STATUS_OPTIONS,
+        help_text=_('The employment status of this User.'),
+        blank=True,
+        default=1,
+    )
+    education_or_training_status_other = models.CharField(
+        _("Education or Training Status"),
+        max_length=127,
+        help_text=_('Allow the user to enter a custom employment status field.'),
+        blank=True,
+        null=True
+    )
+    why_be_entrepreneur = models.PositiveSmallIntegerField(
+        _("Why be an Entrepreneur"),
+        choices=constants.ME_IN_EDUCATION_OR_TRAINING_STATUS_OPTIONS,
+        help_text=_('Enter why the User wants to be an entrepreneur.'),
+        blank=True,
+        default=1,
+    )
+    why_be_entrepreneur_other = models.CharField(
+        _("Why be an Entrepreneur Other"),
+        max_length=127,
+        help_text=_('Allow the user to enter a custom why be an entrepreneur field.'),
+        blank=True,
+        null=True
+    )
+    challenges_becoming_entrepreneur = models.PositiveSmallIntegerField(
+        _("Challenges becoming Entrepreneur"),
+        choices=constants.ME_CHALLENGES_BECOMING_ENTREPRENEUR_OPTIONS,
+        help_text=_('Enter challenges in becoming entrepreneur.'),
+        blank=True,
+        default=1,
+    )
+    challenges_becoming_entrepreneur_other = models.CharField(
+        _("Challenges becoming Entrepreneur Other"),
+        max_length=127,
+        help_text=_('Allow  field.'),
+        blank=True,
+        null=True
+    )
+    annual_income_bracket = models.PositiveSmallIntegerField(
+        _("Annual Income Bracket"),
+        choices=constants.ME_ANNUAL_INCOME_BRACKET_OPTIONS,
+        help_text=_('Enter your annual income bracket.'),
+        default=1,
+    )
+    has_owned_business = models.PositiveSmallIntegerField(
+        _("Has Owned Business"),
+        choices=constants.ME_HAS_OWNED_BUSINESS_OPTIONS,
+        help_text=_('Enter has owned business.'),
+        default=1,
+    )
+    has_owned_business_other = models.CharField(
+        _("Has Owned Business Other"),
+        max_length=127,
+        help_text=_('Allow has owned business other field.'),
+        blank=True,
+        null=True
     )
 
     # Controls whether the User has to go through a Profile Setup screens

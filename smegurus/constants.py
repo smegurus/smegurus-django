@@ -27,12 +27,361 @@ CLIENT_MANAGER_GROUP = _("Client Manager")
 SYSTEM_ADMIN_GROUP = _("System Administrator")
 
 
-# The maximum stage number.
+#==============================================================================#
+#                             USER PROFILE CONSTANTS                           #
+#==============================================================================#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                                  STAGE NUMBER                                *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
 ME_MIN_STAGE_NUM = 0
 ME_MAX_STAGE_NUM = 7
 ME_ONBOARDING_STAGE_NUM = 1
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                                      GENDER                                  *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_GENDER_OPTIONS = (
+    (1, _("Male")),
+    (2, _("Female")),
+    (3, _("Another")),
+    (4, _("Other")),
+)
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                            HIGHEST LEVEL OF EDUCATION                        *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+HIGHEST_LEVEL_OF_EDUCATION_OPTIONS = (
+    (1, _('Some High School')),
+    (2, _('High School diploma')),
+    (3, _('Some Post-Secondary')),
+    (4, _('Post-Secondary diploma')),
+    (5, _('Graduate degree')),
+    (6, _('Professional degree')),
+    (7, _('Other')),
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                                  PLACE OF BIRTH                              *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_PLACE_OF_BIRTH_OPTIONS = (
+    ("Canada",_("Canada")),
+("United States",_ ("United States")),
+("Mexico",_("Mexico")),
+("Afghanistan",_("Afghanistan")),
+("Aland Islands",_("Aland Islands")),
+("Albania",_("Albania")),
+("Algeria",_("Algeria")),
+("American Samoa",_("American Samoa")),
+("Andorra",_("Andorra")),
+("Angola",_("Angola")),
+("Anguilla",_("Anguilla")),
+("Antarctica",_("Antarctica")),
+("Antigua and Barbuda",_("Antigua and Barbuda")),
+("Argentina",_("Argentina")),
+("Armenia",_("Armenia")),
+("Aruba",_("Aruba")),
+("Australia",_("Australia")),
+("Austria",_("Austria")),
+("Azerbaijan",_("Azerbaijan")),
+("Bahamas",_("Bahamas")),
+("Bahrain",_("Bahrain")),
+("Bangladesh",_("Bangladesh")),
+("Barbados",_("Barbados")),
+("Belarus",_("Belarus")),
+("Belgium",_("Belgium")),
+("Belize",_("Belize")),
+("Benin",_("Benin")),
+("Bermuda",_("Bermuda")),
+("Bhutan",_("Bhutan")),
+("Bolivia",_("Bolivia")),
+("Bosnia and Herzegovina",_("Bosnia and Herzegovina")),
+("Botswana",_("Botswana")),
+("Bouvet Island",_("Bouvet Island")),
+("Brazil",_("Brazil")),
+("British Indian Ocean Territory",_("British Indian Ocean Territory")),
+("Brunei Darussalam",_("Brunei Darussalam")),
+("Bulgaria",_("Bulgaria")),
+("Burkina Faso",_("Burkina Faso")),
+("Burundi",_("Burundi")),
+("Cambodia",_("Cambodia")),
+("Cameroon",_("Cameroon")),
+("Cape Verde",_("Cape Verde")),
+("Cayman Islands",_("Cayman Islands")),
+("Central African Republic",_("Central African Republic")),
+("Chad",_("Chad")),
+("Chile",_("Chile")),
+("China",_("China")),
+("Christmas Island",_("Christmas Island")),
+("Cocos (Keeling) Islands",_("Cocos (Keeling) Islands")),
+("Colombia",_("Colombia")),
+("Comoros",_("Comoros")),
+("Congo",_("Congo")),
+("Cook Islands",_("Cook Islands")),
+("Costa Rica",_("Costa Rica")),
+("Cote D'Ivoire",_("Cote D'Ivoire")),
+("Croatia",_("Croatia")),
+("Cuba",_("Cuba")),
+("Cyprus",_("Cyprus")),
+("Czech Republic",_("Czech Republic")),
+("Democratic Republic of the Congo",_("Democratic Republic of the Congo")),
+("Denmark",_("Denmark")),
+("Djibouti", _("Djibouti")),
+("Dominica",_("Dominica")),
+("Dominican Republic",_("Dominican Republic")),
+("Ecuador",_("Ecuador")),
+("Egypt",_("Egypt")),
+("El Salvador",_("El Salvador")),
+("Equatorial Guinea",_("Equatorial Guinea")),
+("Eritrea",_("Eritrea")),
+("Estonia",_("Estonia")),
+("Ethiopia",_("Ethiopia")),
+("Falkland Islands (Malvinas)",_("Falkland Islands (Malvinas)")),
+("Faroe Islands",_("Faroe Islands")),
+("Fiji",_("Fiji")),
+("Finland",_("Finland")),
+("France",_("France")),
+("French Guiana",_("French Guiana")),
+("French Polynesia",_("French Polynesia")),
+("French Southern Territories",_("French Southern Territories")),
+("Gabon",_("Gabon")),
+("Gambia",_("Gambia")),
+("Georgia",_("Georgia")),
+("Germany",_("Germany")),
+("Ghana",_("Ghana")),
+("Gibraltar",_("Gibraltar")),
+("Greece",_("Greece")),
+("Greenland",_("Greenland")),
+("Grenada",_("Grenada")),
+("Guadeloupe",_("Guadeloupe")),
+("Guam",_("Guam")),
+("Guatemala",_("Guatemala")),
+("Guernsey",_("Guernsey")),
+("Guinea",_("Guinea")),
+("Guinea-Bissau",_("Guinea-Bissau")),
+("Guyana",_("Guyana")),
+("Haiti",_("Haiti")),
+("Heard Island and Mcdonald Islands",_("Heard Island and Mcdonald Islands")),
+("Holy See (Vatican City State)",_("Holy See (Vatican City State)")),
+("Honduras",_("Honduras")),
+("Hong Kong",_("Hong Kong")),
+("Hungary",_("Hungary")),
+("Iceland",_("Iceland")),
+("India",_("India")),
+("Indonesia",_("Indonesia")),
+("Iran",_("Iran")),
+("Iraq",_("Iraq")),
+("Ireland",_("Ireland")),
+("Isle of Man",_("Isle of Man")),
+("Israel",_("Israel")),
+("Italy",_("Italy")),
+("Jamaica",_("Jamaica")),
+("Japan",_("Japan")),
+("Jersey",_("Jersey")),
+("Jordan",_("Jordan")),
+("Kazakhstan",_("Kazakhstan")),
+("Kenya",_("Kenya")),
+("Kiribati",_("Kiribati")),
+("Korea",_("Korea")),
+("Korea DPR",_("Korea DPR")),
+("Kuwait",_("Kuwait")),
+("Kyrgyzstan",_("Kyrgyzstan")),
+("Laos",_("Laos")),
+("Latvia",_("Latvia")),
+("Lebanon",_("Lebanon")),
+("Lesotho",_("Lesotho")),
+("Liberia",_("Liberia")),
+("Libya",_("Libya")),
+("Liechtenstein",_("Liechtenstein")),
+("Lithuania",_("Lithuania")),
+("Luxembourg",_("Luxembourg")),
+("Macao",_("Macao")),
+("Macedonia",_("Macedonia")),
+("Madagascar",_("Madagascar")),
+("Malawi",_("Malawi")),
+("Malaysia",_("Malaysia")),
+("Maldives",_("Maldives")),
+("Mali",_("Mali")),
+("Malta",_("Malta")),
+("Marshall Islands",_("Marshall Islands")),
+("Martinique",_("Martinique")),
+("Mauritania",_("Mauritania")),
+("Mauritius",_("Mauritius")),
+("Mayotte",_("Mayotte")),
+("Micronesia",_("Micronesia")),
+("Moldova",_("Moldova")),
+("Monaco",_("Monaco")),
+("Mongolia",_("Mongolia")),
+("Montenegro",_("Montenegro")),
+("Montserrat",_("Montserrat")),
+("Morocco",_("Morocco")),
+("Mozambique",_("Mozambique")),
+("Myanmar",_("Myanmar")),
+("Namibia",_("Namibia")),
+("Nauru",_("Nauru")),
+("Nepal",_("Nepal")),
+("Netherlands",_("Netherlands")),
+("Netherlands Antilles",_("Netherlands Antilles")),
+("New Caledonia",_("New Caledonia")),
+("New Zealand",_("New Zealand")),
+("Nicaragua",_("Nicaragua")),
+("Niger",_("Niger")),
+("Nigeria",_("Nigeria")),
+("Niue",_("Niue")),
+("Norfolk Island",_("Norfolk Island")),
+("Northern Mariana Islands",_("Northern Mariana Islands")),
+("Norway",_("Norway")),
+("Oman",_("Oman")),
+("Pakistan",_("Pakistan")),
+("Palau",_("Palau")),
+("Palestinian Territories",_("Palestinian Territories")),
+("Panama",_("Panama")),
+("Papua New Guinea",_("Papua New Guinea")),
+("Paraguay",_("Paraguay")),
+("Peru",_("Peru")),
+("Philippines",_("Philippines")),
+("Pitcairn",_("Pitcairn")),
+("Poland",_("Poland")),
+("Portugal",_("Portugal")),
+("Puerto Rico",_("Puerto Rico")),
+("Qatar",_("Qatar")),
+("Reunion",_("Reunion")),
+("Romania",_("Romania")),
+("Russia",_("Russia")),
+("Rwanda",_("Rwanda")),
+("Saint Helena",_("Saint Helena")),
+("Saint Kitts & Nevis",_("Saint Kitts & Nevis")),
+("Saint Lucia",_("Saint Lucia")),
+("Saint Pierre & Miquelon",_("Saint Pierre & Miquelon")),
+("Saint Vincent & the Grenadines",_("Saint Vincent & the Grenadines")),
+("Samoa",_("Samoa")),
+("San Marino",_("San Marino")),
+("Sao Tome and Principe",_("Sao Tome and Principe")),
+("Saudi Arabia",_("Saudi Arabia")),
+("Senegal",_("Senegal")),
+("Serbia",_("Serbia")),
+("Seychelles",_("Seychelles")),
+("Sierra Leone",_("Sierra Leone")),
+("Singapore",_("Singapore")),
+("Slovakia",_("Slovakia")),
+("Slovenia",_("Slovenia")),
+("Solomon Islands",_("Solomon Islands")),
+("Somalia",_("Somalia")),
+("South Africa",_("South Africa")),
+("South Georgia & the South Sandwich Islands",
+("South Georgia & the South Sandwich Islands")),
+("Spain",_("Spain")),
+("Sri Lanka",_("Sri Lanka")),
+("Sudan",_("Sudan")),
+("Suriname",_("Suriname")),
+("Svalbard & Jan Mayen",_("Svalbard & Jan Mayen")),
+("Swaziland",_("Swaziland")),
+("Sweden",_("Sweden")),
+("Switzerland",_("Switzerland")),
+("Syria",_("Syria")),
+("Taiwan",_("Taiwan")),
+("Tajikistan",_("Tajikistan")),
+("Tanzania",_("Tanzania")),
+("Thailand",_("Thailand")),
+("Timor-Leste",_("Timor-Leste")),
+("Togo",_("Togo")),
+("Tokelau",_("Tokelau")),
+("Tonga",_("Tonga")),
+("Trinidad & Tobago",_("Trinidad & Tobago")),
+("Tunisia",_("Tunisia")),
+("Turkey",_("Turkey")),
+("Turkmenistan",_("Turkmenistan")),
+("Turks & Caicos Islands",_("Turks & Caicos Islands")),
+("Tuvalu",_("Tuvalu")),
+("Uganda",_("Uganda")),
+("Ukraine",_("Ukraine")),
+("United Arab Emirates", _("United Arab Emirates")),
+("United Kingdom",_("United Kingdom")),
+("United States Minor Outlying Islands",_("United States Minor Outlying Islands")),
+("Uruguay",_("Uruguay")),
+("Uzbekistan",_("Uzbekistan")),
+("Vanuatu",_("Vanuatu")),
+("Venezuela",_("Venezuela")),
+("Vietnam",_("Vietnam")),
+("Virgin Islands, British",_("Virgin Islands, British")),
+("Virgin Islands, U.S.",_("Virgin Islands, U.S.")),
+("Wallis & Futuna",_("Wallis & Futuna")),
+("Western Sahara",_("Western Sahara")),
+("Yemen",_("Yemen")),
+("Zambia",_("Zambia")),
+("Zimbabwe",_("Zimbabwe"))
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                               EMPLOYMENT STATUS                              *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_EMPLOYMENT_STATUS_OPTIONS = (
+    (1, _("employed full time")),
+    (2, _("employed part time")),
+    (3, _("underemployed")),
+    (4, _("unemployed")),
+    (5, _("receiving disability benefits")),
+    (6, _("retired")),
+    (7, _("Other")),
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                  ENROLLED IN EDUCATION OR TRAINING STATUS                    *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_IN_EDUCATION_OR_TRAINING_STATUS_OPTIONS = (
+    (1, _("Highschool")),
+    (2, _("Post-Secondary")),
+    (3, _("Private career training")),
+    (4, _("Specialized employment program")),
+    (5, _("Other")),
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                              WHY BE AN ENTREPRENEUR                          *
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_WHY_BE_ENTREPRENEUR_OPTIONS = (
+    (1, _("I want to work for myself")),
+    (2, _("I want to control my own schedule")),
+    (3, _("I want to make more money")),
+    (4, _("I want better work-life balance")),
+    (5, _("I have a business idea that I want to try out")),
+    (6, _("Other")),
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                    CHALLENGES IN BECOMING AN ENTREPRENEUR                    #
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_CHALLENGES_BECOMING_ENTREPRENEUR_OPTIONS = (
+    (1, _("My health")),
+    (2, _("Childcare")),
+    (3, _("Transportation")),
+    (4, _("Lack of Family support")),
+    (5, _("Language skills")),
+    (6, _("Other")),
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                            ANNUAL INCOME BRACKET                             #
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_ANNUAL_INCOME_BRACKET_OPTIONS = (
+    (1, _("$0-$24,999")),
+    (2, _("$25,000-$49,999")),
+    (3, _("$50,000-$74,999")),
+    (4, _("$75,000-$99,999")),
+    (5, _("$100,000+")),
+)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+#                            ANNUAL INCOME BRACKET                             #
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -#
+ME_HAS_OWNED_BUSINESS_OPTIONS = (
+    (1, _("Yes")),
+    (2, _("No")),
+    (5, _("Other")),
+)
+
+#==============================================================================#
+#                              EMPLOYEE CONSTANTS                              #
+#==============================================================================#
 # Constant lists all the roles belonging to the employee system of the
 # application.
 EMPLOYEE_GROUPS = [
