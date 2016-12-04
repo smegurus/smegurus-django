@@ -4118,5 +4118,68 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 70,
+        "fields": {
+            "document_type": 1,
+            "number": 60,
+            "title": "How will your customers buy your products or services from you?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "at our retail location",
+                        "text": "at our retail location"
+                    },
+                    {
+                        "value": "at our client's location",
+                        "text": "at our client's location"
+                    },
+                    {
+                        "value": "via our website",
+                        "text": "via our website"
+                    },
+                    {
+                        "value": "we will ship to them",
+                        "text": "we will ship to them"
+                    },
+                    {
+                        "value": "via bulk transport truck shipments",
+                        "text": "via bulk transport truck shipments"
+                    },
+                    {
+                        "value": "via bulk rail shipments",
+                        "text": "via bulk rail shipments"
+                    },
+                    {
+                        "value": "via bulk air shipments",
+                        "text": "via bulk air shipments"
+                    },
+                    {
+                        "value": "via bulk sea shipments",
+                        "text": "via bulk sea shipments"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
