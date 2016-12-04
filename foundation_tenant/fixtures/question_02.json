@@ -4079,5 +4079,44 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 69,
+        "fields": {
+            "document_type": 1,
+            "number": 59,
+            "title": "It will be our strategy to have our prices:",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "inline with our competitors",
+                        "text": "inline with our competitors"
+                    },
+                    {
+                        "value": "above our competitors",
+                        "text": "above our competitors"
+                    },
+                    {
+                        "value": "below our competitors",
+                        "text": "below our competitors"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
