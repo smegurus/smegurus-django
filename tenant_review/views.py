@@ -9,7 +9,6 @@ from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.question import Question
-from foundation_tenant.models.bizmula.questionoption import QuestionOption
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.module import Module

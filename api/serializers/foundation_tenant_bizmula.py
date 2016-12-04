@@ -6,7 +6,6 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.question import Question
-from foundation_tenant.models.bizmula.questionoption import QuestionOption
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.module import Module
