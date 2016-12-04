@@ -121,14 +121,21 @@
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
             {% for option in question.options.opt1 %}
+            <!-- OPTION TEXT -->
             <div class="radio">
                 <label>
+                    <div {% if option.help_title and option.help_description %}title="{{ option.help_title|escape|safe }}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ option.help_description|escape|safe }}"{% endif %}>
                     <input id="optionsRadios{{ option.value }}" {% if picked.var_1 == option.value %}checked="checked"{% endif %}
                          type="radio"
                          name="optionsRadios"
-                        value="{{ option.value }}" />{{ option.text|escape|safe }}
+                        value="{{ option.value }}" />
+                        <p {% if option.custom_style %}style="{{ option.custom_style }}"{% endif %}>
+                            {{ option.text|escape|safe }}&nbsp;
+                        </p>
+                    </div>
                 </label>
             </div>
+            <!-- end OPTION TEXT -->
             {% endfor %}
         </div>
     </div>

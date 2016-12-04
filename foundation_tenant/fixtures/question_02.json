@@ -3977,5 +3977,60 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 67,
+        "fields": {
+            "document_type": 1,
+            "number": 57,
+            "title": "I see my company as a ________ in my industry (Click label to see a description)",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Leader",
+                        "text": "Leader",
+                        "help_title": "Description",
+                        "help_description": "and we must focus our creativity and energy on continuous innovation to maintain our competitive advantage. Leaders must maintain a marketing campaign that communicates their innovation and leadership. As such, our marketing strategy will focus on using the latest social media tools to be competitive and communicate this in our marketing message to our clients",
+                        "custom_style": "margin-left:0px;display:inline !important;border-bottom:2px dotted #000;text-decoration-style:dotted;cursor:pointer;"
+                    },
+                    {
+                        "value": "Follower",
+                        "text": "Follower",
+                        "help_title": "Description",
+                        "help_description": "and we will focus on operational excellence and supply chain efficiency to provide our competitive advantage. Providing high quality customer service must also remain a focal point to ensure competiveness. This will be communicated in media and promotional activities by emphasizing value to the customer, and focusing on the unique attributes we provide. By following dominant trends and advertising in areas where industry leaders do, we can tailor our message to differentiate our product offering, focusing on our strengths and leveraging them to our advantage",
+                        "custom_style": "margin-left:0px;display:inline !important;border-bottom:2px dotted #000;text-decoration-style:dotted;cursor:pointer;"
+                    },
+                    {
+                        "value": "Challenger",
+                        "text": "Challenger",
+                        "help_title": "Description",
+                        "help_description": "and we will direct our energy, creativity and resources to challenge larger, more dominant firms and develop our competitive advantage. As a Challenger, our marketing strategy must involve advertising in places where the industry leaders advertise. These campaigns will emphasize our company's strengths and unique attributes. We will take advantage of weaknesses in the market leader's strategy to focus on areas of differentiation, building on our key success factors",
+                        "custom_style": "margin-left:0px;display:inline !important;border-bottom:2px dotted #000;text-decoration-style:dotted;cursor:pointer;"
+                    },
+                    {
+                        "value": "Nicher",
+                        "text": "Nicher",
+                        "help_title": "Description",
+                        "help_description": "and we must focus on the unique needs of our customers and provide superior customer service. Our competitive advantage is the specialized product we provide. As a Nicher, our focus must be on customer quality and excellent service. Our marketing and advertising style must mirror the unique product we offer. Our unique value must be communicated in all organizational activities",
+                        "custom_style": "margin-left:0px;display:inline !important;border-bottom:2px dotted #000;text-decoration-style:dotted;cursor:pointer;"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
     }
 ]
