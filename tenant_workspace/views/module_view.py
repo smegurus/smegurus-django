@@ -52,9 +52,10 @@ def detail_page(request, workspace_id, module_id, node_id):
     elif node['type'] == "question":
         question = get_object_or_404(Question, pk=int_or_none(node['id']))
         document_type = get_object_or_404(DocumentType, pk=int_or_none(node['document_type']))
-        document = Document.objects.get(
+        document, created = Document.objects.get_or_create(
             workspace=workspace,
-            document_type=document_type
+            document_type=document_type,
+            name=str(document_type)
         )
         answer, created = QuestionAnswer.objects.get_or_create(
             workspace=workspace,
