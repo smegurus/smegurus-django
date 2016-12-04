@@ -295,5 +295,33 @@
         "banned_on": "2016-11-19",
         "reason": "/muieblackcat"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 34,
+    "fields": {
+        "address": "54.152.86.39",
+        "banned_on": "2016-12-01",
+        "reason": "/wp-login.php"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 35,
+    "fields": {
+        "address": "187.22.196.185",
+        "banned_on": "2016-12-02",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 36,
+    "fields": {
+        "address": "89.248.169.50",
+        "banned_on": "2016-12-02",
+        "reason": "/muieblackcat"
+    }
 }
+
 ]
