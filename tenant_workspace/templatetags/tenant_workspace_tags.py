@@ -503,7 +503,8 @@ def render_question_type_023(workspace, module, node, question, answer):
     imageupload = None
     if bool(picked):
         upload_id = int_or_none(picked['var_2'])
-        imageupload = TenantImageUpload.objects.get(id=upload_id)
+        if upload_id:
+            imageupload = TenantImageUpload.objects.get(id=upload_id)
 
     return {
         'workspace': workspace,
