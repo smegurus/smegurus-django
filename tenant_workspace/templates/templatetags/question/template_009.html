@@ -55,6 +55,11 @@
         var input_1 = $('#id_input_1').val();
         var input_1_other = $('#id_input_1_other').val();
 
+        // Minor fix.
+        if (typeof input_1 === "undefined") {
+            input_1 = "";
+        }
+
         // Prevent loading "Other" if not picked.
         if (input_1 != "{{ OTHER_TEXT }}") {
             input_1_other = "";

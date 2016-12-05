@@ -309,7 +309,7 @@ def render_question_type_013(workspace, module, node, question, answer):
         company_name = a1['var_3']
 
     # 2. Generate geographic info.
-    company_market = a3['var_1']
+    company_market = a3['var_1'] if len( a3['var_1']) else a3['var_0'] # Note: Handle "Online" and "Worldwide".
 
     # 3. Generate text.
     mission_statement = _("To provide customers of %(companyname)s in the %(companymarket)s market with the best possible value and customer experience, maintaining operational efficiency and providing a reasonable return for our shareholders and owners.") % {'companyname': company_name, 'companymarket': company_market}
@@ -323,7 +323,7 @@ def render_question_type_013(workspace, module, node, question, answer):
         'answer': answer,
         'picked': picked,
         "OTHER_TEXT": OTHER_TEXT,
-        'default_mission_statement': mission_statement
+        'default_mission_statement': None
     }
 
 
