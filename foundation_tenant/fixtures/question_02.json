@@ -753,6 +753,8 @@
                     "Environmental",
                     "Other (Please Specify)"
                 ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
                 "opt2": [
                     {
                         "parent": "Political",
@@ -805,7 +807,9 @@
                             "Other (Please Specify)"
                         ]
                     }
-                ]
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select"
             },
             "content": {
                 "stub_1": "Major Issue",
@@ -826,7 +830,7 @@
                 "opt2_other_max_length": 63,
                 "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
-            "type_id": 28
+            "type_id": 24
         }
     },
     {
