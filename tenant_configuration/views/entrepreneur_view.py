@@ -49,3 +49,9 @@ def config_entr_step_four_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_five_page(request):
     return render(request, 'tenant_configuration/entrepreneur/5_view.html',{})
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ENTREPRENEUR_GROUP_ID,])
+def config_entr_step_six_page(request):
+    return render(request, 'tenant_configuration/entrepreneur/6_view.html',{})

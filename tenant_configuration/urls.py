@@ -19,4 +19,5 @@ urlpatterns = (
     url(r'^config/entrepreneur/step/3$', entrepreneur_view.config_entr_step_three_page, name='foundation_auth_config_entr_step_three'),
     url(r'^config/entrepreneur/step/4$', entrepreneur_view.config_entr_step_four_page, name='foundation_auth_config_entr_step_four'),
     url(r'^config/entrepreneur/step/5$', entrepreneur_view.config_entr_step_five_page, name='foundation_auth_config_entr_step_five'),
+    url(r'^config/entrepreneur/step/6$', entrepreneur_view.config_entr_step_six_page, name='foundation_auth_config_entr_step_six'),
 )
