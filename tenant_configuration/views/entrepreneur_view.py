@@ -86,3 +86,19 @@ def config_entr_step_ten_page(request):
     return render(request, 'tenant_configuration/entrepreneur/10_view.html',{
         'form': TenantMeForm(instance=request.tenant_me)
     })
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ENTREPRENEUR_GROUP_ID,])
+def config_entr_step_eleven_page(request):
+    return render(request, 'tenant_configuration/entrepreneur/11_view.html',{
+        'form': TenantMeForm(instance=request.tenant_me)
+    })
+
+
+@login_required(login_url='/en/login')
+@group_required([constants.ENTREPRENEUR_GROUP_ID,])
+def config_entr_step_twelve_page(request):
+    return render(request, 'tenant_configuration/entrepreneur/12_view.html',{
+        'form': TenantMeForm(instance=request.tenant_me)
+    })

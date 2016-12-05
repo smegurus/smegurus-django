@@ -11,11 +11,11 @@
         $("input[name=optionsRadios]").click(function(){
             // Get the option selected.
             var value = this.value;
-            if (value == "6") {
-                $('#id_annual_income_bracket_other_div').show();
+            if (value == "3") {
+                $('#id_has_owned_business_other_div').show();
             } else {
-                $('#id_annual_income_bracket_other_div').hide();
-                $('#id_annual_income_bracket_other').val('');
+                $('#id_has_owned_business_other_div').hide();
+                $('#id_has_owned_business_other').val('');
             }
         }); // end RADIO CLICK DETECTION HANDLER
     }); // end DOCUMENT START
@@ -31,7 +31,7 @@
     }
 
     function ajax_cancel_and_continue() {
-        window.location = "{% url 'foundation_auth_config_entr_step_eleven' %}";
+        window.location = "{% url 'foundation_auth_config_entr_step_twelve' %}";
     }
 
     function ajax_save_and_continue() {
@@ -40,7 +40,7 @@
         // Detect checked value.
         var form = $('#questionForm');
         var input_1 = form.find('input[name=optionsRadios]:checked').val();
-        var input_1_other = $('#id_annual_income_bracket_other').val();
+        var input_1_other = $('#id_has_owned_business_other').val();
         console.log(input_1);
         console.log(input_1_other);
 
@@ -50,7 +50,7 @@
             alert("{% trans 'Please select an option.' %}");
             return;
         }
-        if (input_1 == 6) {
+        if (input_1 == 3) {
             // IF WE ARE TO USE "TEXTFIELD" THEN VALIDATE THE CHARACTER LIMIT.
             if (input_1_other.length < 2) {
                 alert("Please enter at least 2 character.");
@@ -63,7 +63,7 @@
         }
 
         ajax_do_chain(input_1, input_1_other, function(json_result) {  // Update our model.
-            window.location = "{% url 'foundation_auth_config_entr_step_eleven' %}";
+            window.location = "{% url 'foundation_auth_config_entr_step_twelve' %}";
         });
     }
 
@@ -73,7 +73,7 @@
         console.log(input_1_other);
 
         // Prevent loading "Other" if not picked.
-        if (input_1 != 6) {
+        if (input_1 != 3) {
             input_1_other = "";
         }
 
@@ -82,8 +82,8 @@
             {{ request.tenant_me.owner.id }},
             function(me) {
 
-                me['annual_income_bracket'] = input_1;
-                me['annual_income_bracket_other'] = input_1_other;
+                me['has_owned_business'] = parseInt(input_1);
+                me['has_owned_business_other'] = input_1_other;
                 console.log(me);
 
                 set_tenant_me(  // Save our Me
@@ -91,7 +91,7 @@
                     function(json_result) {
                         enable_btn();
                         console.log(json_result);
-                        window.location = "{% url 'foundation_auth_config_entr_step_eleven' %}";
+                        window.location = "{% url 'foundation_auth_config_entr_step_twelve' %}";
                     },
                     function(json_error_result) {
                         enable_btn();

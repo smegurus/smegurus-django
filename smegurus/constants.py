@@ -380,7 +380,7 @@ ME_ANNUAL_INCOME_BRACKET_OPTIONS = (
 ME_HAS_OWNED_BUSINESS_OPTIONS = (
     (1, _("Yes")),
     (2, _("No")),
-    (5, _("Other")),
+    (3, _("Other")),
 )
 
 #==============================================================================#
