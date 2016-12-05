@@ -84,7 +84,7 @@ class TenantMe(AbstractPerson):
     )
     level_of_education = models.PositiveSmallIntegerField(
         _("Highest Level of Education"),
-        choices=constants.ME_GENDER_OPTIONS,
+        choices=constants.HIGHEST_LEVEL_OF_EDUCATION_OPTIONS,
         help_text=_('The highest level of education this User has attained.'),
         blank=True,
         default=1,

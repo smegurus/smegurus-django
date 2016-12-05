@@ -39,22 +39,10 @@ def config_entr_step_three_page(request):
     return render(request, 'tenant_configuration/entrepreneur/3_view.html',{})
 
 
-# @login_required(login_url='/en/login')
-# @group_required([constants.ENTREPRENEUR_GROUP_ID,])
-# def config_entr_step_three_page(request):
-#     tellusyourneed, create = TellUsYourNeed.objects.get_or_create(owner=request.user)
-#     return render(request, 'tenant_configuration/entrepreneur/3_view.html',{
-#         'tellusyourneed': tellusyourneed,
-#         'form': TellUsYourNeedForm(instance=tellusyourneed),
-#     })
-
-
 @login_required(login_url='/en/login')
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_four_page(request):
-    return render(request, 'tenant_configuration/entrepreneur/4_view.html',{
-        'tags': Tag.objects.all(),
-    })
+    return render(request, 'tenant_configuration/entrepreneur/4_view.html',{})
 
 
 @login_required(login_url='/en/login')
