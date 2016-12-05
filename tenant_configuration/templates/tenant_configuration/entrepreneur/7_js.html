@@ -12,10 +12,10 @@
             // Get the option selected.
             var value = this.value;
             if (value == "Other") {
-                $('#id_employment_status_other_div').show();
+                $('#id_education_or_training_status_other_div').show();
             } else {
-                $('#id_employment_status_other_div').hide();
-                $('#id_employment_status_other').val('');
+                $('#id_education_or_training_status_other_div').hide();
+                $('#id_education_or_training_status_other').val('');
             }
         }); // end RADIO CLICK DETECTION HANDLER
     }); // end DOCUMENT START
@@ -40,7 +40,7 @@
         // Detect checked value.
         var form = $('#questionForm');
         var input_1 = form.find('input[name=optionsRadios]:checked').val();
-        var input_1_other = $('#id_employment_status_other').val();
+        var input_1_other = $('#id_education_or_training_status_other').val();
         console.log(input_1);
         console.log(input_1_other);
 
@@ -63,7 +63,7 @@
         }
 
         ajax_do_chain(input_1, input_1_other, function(json_result) {  // Update our model.
-            window.location = "{% url 'foundation_auth_config_entr_step_seven' %}";
+            window.location = "{% url 'foundation_auth_config_entr_step_eight' %}";
         });
     }
 
@@ -82,15 +82,15 @@
             {{ request.tenant_me.owner.id }},
             function(me) {
 
-                me['employment_status'] = input_1;
-                me['employment_status_other'] = input_1_other;
+                me['education_or_training_status'] = input_1;
+                me['education_or_training_status_other'] = input_1_other;
 
                 set_tenant_me(  // Save our Me
                     me,
                     function(json_result) {
                         enable_btn();
                         console.log(json_result);
-                        window.location = "{% url 'foundation_auth_config_entr_step_seven' %}";
+                        window.location = "{% url 'foundation_auth_config_entr_step_eight' %}";
                     },
                     function(json_error_result) {
                         enable_btn();

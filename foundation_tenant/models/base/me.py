@@ -141,7 +141,7 @@ class TenantMe(AbstractPerson):
     )
     why_be_entrepreneur = models.PositiveSmallIntegerField(
         _("Why be an Entrepreneur"),
-        choices=constants.ME_IN_EDUCATION_OR_TRAINING_STATUS_OPTIONS,
+        choices=constants.ME_WHY_BE_ENTREPRENEUR_OPTIONS,
         help_text=_('Enter why the User wants to be an entrepreneur.'),
         blank=True,
         default=1,
