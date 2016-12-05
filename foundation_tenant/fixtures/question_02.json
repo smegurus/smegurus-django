@@ -830,7 +830,7 @@
                 "opt2_other_max_length": 63,
                 "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
-            "type_id": 24
+            "type_id": 33
         }
     },
     {
