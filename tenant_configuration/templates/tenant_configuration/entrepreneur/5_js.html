@@ -9,15 +9,7 @@
 
         // Detect User clicking on one of the Radio buttons.
         $("input[name=optionsRadios]").click(function(){
-            // Get the option selected.
-            var value = this.value;
-            console.log(value);
-            if (value == "7") {
-                $('#id_level_of_education_other_div').show();
-            } else {
-                $('#id_level_of_education_other_div').hide();
-                $('#id_level_of_education_other').val('');
-            }
+            // Do nothing.
         }); // end RADIO CLICK DETECTION HANDLER
     }); // end DOCUMENT START
 
@@ -39,57 +31,37 @@
         //disable_btn(); // Disable the button so no multiple presses happen.
 
         // Detect checked value.
-        var form = $('#questionForm');
-        var input_1 = form.find('input[name=optionsRadios]:checked').val();
-        var input_1_other = $('#id_level_of_education_other').val();
+        var input_1 = $('#id_place_of_birth').val();
 
         // Either load up an error telling the user to pick an option
         // or load up the next page.
-        if (typeof input_1 === "undefined") {
+        if (typeof input_1 === "undefined" || input_1 == "") {
             alert("{% trans 'Please select an option.' %}");
             return;
         }
-        if (input_1 == "7") {
-            // IF WE ARE TO USE "TEXTFIELD" THEN VALIDATE THE CHARACTER LIMIT.
-            if (input_1_other.length < 2) {
-                alert("Please enter at least 2 character.");
-                return;
-            }
-            if (input_1_other.length > 127) {
-                alert("Pleae enter less then 127 characters.");
-                return;
-            }
-        }
 
-        ajax_do_chain(input_1, input_1_other, function(json_result) {  // Update our model.
-            window.location = "{% url 'foundation_auth_config_entr_step_five' %}";
+        ajax_do_chain(input_1, function(json_result) {  // Update our model.
+            window.location = "{% url 'foundation_auth_config_entr_step_six' %}";
         });
     }
 
-    function ajax_do_chain(input_1, input_1_other, callback) {
+    function ajax_do_chain(input_1, callback) {
         // Debugging purposes.
         console.log(input_1);
-        console.log(input_1_other);
-
-        // Prevent loading "Other" if not picked.
-        if (input_1 != "7") {
-            input_1_other = "";
-        }
 
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_me(  // Fetch our Me.
             {{ request.tenant_me.owner.id }},
             function(me) {
 
-                me['level_of_education'] = parseInt(input_1);
-                me['level_of_education_other'] = input_1_other;
+                me['place_of_birth'] = input_1;
 
                 set_tenant_me(  // Save our Me
                     me,
                     function(json_result) {
                         enable_btn();
                         console.log(json_result);
-                        window.location = "{% url 'foundation_auth_config_entr_step_five' %}";
+                        window.location = "{% url 'foundation_auth_config_entr_step_six' %}";
                     },
                     function(json_error_result) {
                         enable_btn();

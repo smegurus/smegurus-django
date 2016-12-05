@@ -2,7 +2,7 @@
 {% load staticfiles i18n compress %}
 {% block content %}
     {% compress js inline %}
-        {% include 'tenant_configuration/entrepreneur/4_js.html' %}
+        {% include 'tenant_configuration/entrepreneur/5_js.html' %}
     {% endcompress %}
 
     <h2 class="text-center pv">{% trans 'Highest level of education:' %}</h2>
@@ -14,119 +14,24 @@
             <label class="col-sm-2 control-label"><!-- BLANK --></label>
             <div class="col-sm-10">
 
-                <!-- 1 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_1" {% if request.tenant_me.level_of_education == 1 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="1" />
-                            <p>{% trans 'Some High School' %}</p>
-                        </div>
-                    </label>
+                <div class="fieldWrapper">
+                    {% if form.place_of_birth.errors %}
+                        <ol>
+                        {% for error in form.place_of_birth.errors %}
+                            <li><strong>{{ error|safe|escape }}</strong></li>
+                        {% endfor %}
+                        </ol>
+                    {% endif %}
+                    <label for="{{ form.place_of_birth.id_for_label }}">{{ form.place_of_birth.label }}:</label>
+                    {{ form.place_of_birth }}
                 </div>
-                <!-- end MALE OPTION -->
-
-                <!-- 2 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_2" {% if request.tenant_me.level_of_education == 2 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="2" />
-                            <p>{% trans 'High School diploma' %}</p>
-                        </div>
-                    </label>
-                </div>
-                <!-- end 2 OPTION -->
-
-                <!-- 3 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_3" {% if request.tenant_me.level_of_education == 3 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="3" />
-                            <p>{% trans 'Some Post-Secondary' %}</p>
-                        </div>
-                    </label>
-                </div>
-                <!-- end 3 OPTION -->
-
-                <!-- 4 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_4" {% if request.tenant_me.level_of_education == 4 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="4" />
-                            <p>{% trans 'Post-Secondary diploma' %}</p>
-                        </div>
-                    </label>
-                </div>
-                <!-- end 4 OPTION -->
-
-                <!-- 5 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_5" {% if request.tenant_me.level_of_education == 5 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="5" />
-                            <p>{% trans 'Graduate degree' %}</p>
-                        </div>
-                    </label>
-                </div>
-                <!-- end 5 OPTION -->
-
-                <!-- 6 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_6" {% if request.tenant_me.level_of_education == 6 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="6" />
-                            <p>{% trans 'Professional degree' %}</p>
-                        </div>
-                    </label>
-                </div>
-                <!-- end 6 OPTION -->
-
-                <!-- 7 OPTION -->
-                <div class="radio">
-                    <label>
-                        <div>
-                        <input id="optionsRadios_7" {% if request.tenant_me.level_of_education == 7 %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="7" />
-                            <p>{% trans 'Other' %}</p>
-                        </div>
-                    </label>
-                </div>
-                <!-- end 7 OPTION -->
+                <!-- end EMAIL -->
 
             </div>
         </div>
         <!-- end ROW 1 -->
 
         <br />
-
-        <!-- ROW 2 -->
-        <div class="form-group" id="id_level_of_education_other_div" {% if not request.tenant_me.level_of_education_other %}style="display: none;"{% endif %}>
-            <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-            <div class="col-sm-10">
-                <input id="id_level_of_education_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.level_of_education_other }}" maxlength="127" />
-            </div>
-        </div>
-        <!-- end ROW 2 -->
-
 
     </fieldset>
     <!-- end HTML -->
