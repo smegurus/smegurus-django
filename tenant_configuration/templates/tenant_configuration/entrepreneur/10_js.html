@@ -12,10 +12,10 @@
             // Get the option selected.
             var value = this.value;
             if (value == "6") {
-                $('#id_challenges_becoming_entrepreneur_other_div').show();
+                $('#id_annual_income_bracket_other_div').show();
             } else {
-                $('#id_challenges_becoming_entrepreneur_other_div').hide();
-                $('#id_challenges_becoming_entrepreneur_other').val('');
+                $('#id_annual_income_bracket_other_div').hide();
+                $('#id_annual_income_bracket_other').val('');
             }
         }); // end RADIO CLICK DETECTION HANDLER
     }); // end DOCUMENT START
@@ -40,7 +40,7 @@
         // Detect checked value.
         var form = $('#questionForm');
         var input_1 = form.find('input[name=optionsRadios]:checked').val();
-        var input_1_other = $('#id_challenges_becoming_entrepreneur_other').val();
+        var input_1_other = $('#id_annual_income_bracket_other').val();
         console.log(input_1);
         console.log(input_1_other);
 
@@ -82,8 +82,8 @@
             {{ request.tenant_me.owner.id }},
             function(me) {
 
-                me['challenges_becoming_entrepreneur'] = input_1;
-                me['challenges_becoming_entrepreneur_other'] = input_1_other;
+                me['annual_income_bracket'] = input_1;
+                me['annual_income_bracket_other'] = input_1_other;
                 console.log(me);
 
                 set_tenant_me(  // Save our Me
