@@ -2207,7 +2207,7 @@
                     "We have no contracts or existing relationships in the industry",
                     "We have no experience in Marketing or Sales",
                     "We have limited financial resources for operating or capital",
-                    "We have a lack of updated technology with which to competitive",
+                    "We have a lack of updated technology with which to compete",
                     "Our Management Team has limited leadership training",
                     "Our Management Team has limited experience",
                     "We have no patent or copyright on technology/processes/images for our services",
@@ -2260,7 +2260,7 @@
                         ]
                     },
                     {
-                        "parent": "We have a lack of updated technology with which to competitive",
+                        "parent": "We have a lack of updated technology with which to compete",
                         "choices": [
                             "Will use start-up funds to update technology",
                             "Updated technology not a requirement for this industry",
