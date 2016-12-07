@@ -1,9 +1,9 @@
 [
 {
     "model": "foundation_tenant.slide",
-    "pk": 666,
+    "pk": 999,
     "fields": {
-        "module": 2,
+        "module": 3,
         "title": "This is slide #1 title.",
         "description": "This is slide #1 description.",
         "video_url": ""

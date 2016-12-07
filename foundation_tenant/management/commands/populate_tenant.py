@@ -36,12 +36,15 @@ class Command(BaseCommand):
             # 'module_dev.json', # DEVELOPMENT ONLY.
             'module_01.json',
             'module_02.json',
+            'module_03.json',
             'slide_01.json',
             'slide_02.json',
+            'slide_03.json',
             'documenttype.json',
             #'question_dev.json', # DEVELOPMENT ONLY.
             'question_01.json',
             'question_02.json',
+            'question_03.json',
         ]
 
         # Iterate through all the filenames and load them into database.
