@@ -1,0 +1,23 @@
+{% extends 'tenant_configuration/base.html' %}
+{% load staticfiles i18n compress %}
+{% block content %}
+    {% compress js inline %}
+        {% include 'tenant_configuration/entrepreneur/12_js.html' %}
+    {% endcompress %}
+    <h2 class="text-center pv">{% trans 'Let\'s Get Started!' %}</h2>
+    <p class="text-center pv">{% trans 'Now you are all set. Click Continue to go to your dashboard.' %}</p>
+
+    <br/>
+
+    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+        <button onclick="ajax_dashboard();"
+                     id="id_continue_btn"
+                   type="button"
+                  class="btn btn-block btn-primary mt-lg">{% trans 'Dashboard' %}</button>
+    </form>
+
+    <a onclick="ajax_back();"
+            id="id_skip_btn"
+         class="btn btn-block btn-default">{% trans 'Back' %}</a>
+
+{% endblock content %}

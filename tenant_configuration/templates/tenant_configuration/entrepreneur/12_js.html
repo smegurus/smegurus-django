@@ -5,29 +5,8 @@
             if(event.keyCode == 13){
                 $("#id_continue_btn").click();
             }
-        }); // end Document Start
-
-        get_tenant_me(  // start Get Me
-            {{ request.tenant_me.owner.id }},
-            function(me) {
-                me['is_setup'] = true;
-                set_tenant_me(  // start Set Me
-                    me,
-                    function(json_result) {
-                        console.log(json_result);
-                    },
-                    function(json_error_result) {
-                        console.log(json_error_result);
-                        alert(json_error_result);
-                    }
-                ); // end Get Me
-            },
-            function(error_result) {
-                console.log(error_result);
-                alert(json_error_result);
-            }
-        );  // end Set Me
-    }); // end Ready
+        });
+    }); // end DOCUMENT START
 
     function disable_btn() {
         $('#id_continue_btn').prop("disabled", true);
@@ -36,15 +15,63 @@
 
     function enable_btn() {
         $('#id_continue_btn').prop("disabled", false);
-        $('#id_continue_btn').val("{% trans 'Save &amp; Continue' %}");
+        $('#id_continue_btn').val("{% trans 'Save & Continue' %}");
     }
 
-    function ajax_back() {
+    function ajax_cancel_and_continue() {
         window.location = "{% url 'foundation_auth_config_entr_step_eleven' %}";
     }
 
-    function ajax_dashboard() {
-        window.location = "{% url 'tenant_dashboard' %}";
+    function ajax_save_and_continue() {
+        //disable_btn(); // Disable the button so no multiple presses happen.
+
+        // Detect checked value.
+        var form = $('#questionForm');
+        var postal_code = $('#id_postal_code').val();
+
+        if (postal_code.length < 2) {
+            alert("Please enter at least 2 character.");
+            return;
+        }
+        if (postal_code.length > 127) {
+            alert("Pleae enter less then 127 characters.");
+            return;
+        }
+
+        ajax_do_chain(postal_code, function(json_result) {  // Update our model.
+            window.location = "{% url 'foundation_auth_config_entr_step_thirteen' %}";
+        });
     }
 
+    function ajax_do_chain(postal_code, callback) {
+        // Debugging purposes.
+        console.log(postal_code);
+
+        disable_btn(); // Disable the button so no multiple presses happen.
+        get_tenant_postaladdress(
+            {{ request.tenant_me.address.id }},
+            function(postal_address) {
+                postal_address['postal_code'] = postal_code;
+                set_tenant_postaladdress(
+                    postal_address,
+                    function(json_result) {
+                        enable_btn();
+                        callback(json_result); // Finish our postal address.
+                    },
+                    function(json_error_result) {
+                        enable_btn();
+                        var string = JSON.stringify( error_result );
+                        console.log(error_result);
+                        alert(string);
+                    }
+                ); // end SET POSTALADDRESS
+            },
+            function(json_result) {
+                enable_btn();
+                var string = JSON.stringify( error_result );
+                console.log(error_result);
+                alert(string);
+            }
+        ); // end GET POSTALADDRESS
+    }
 </script>

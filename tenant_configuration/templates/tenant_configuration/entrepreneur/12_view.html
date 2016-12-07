@@ -4,20 +4,33 @@
     {% compress js inline %}
         {% include 'tenant_configuration/entrepreneur/12_js.html' %}
     {% endcompress %}
-    <h2 class="text-center pv">{% trans 'Let\'s Get Started!' %}</h2>
-    <p class="text-center pv">{% trans 'Now you are all set. Click Continue to go to your dashboard.' %}</p>
+
+    <h2 class="text-center pv">{% trans 'What is your ZIP/Postal Code' %}</h2>
+
+    <!-- HTML -->
+    <fieldset id="questionForm">
+        <!-- ROW 1 -->
+        <div class="form-group" id="id_postal_code_div">
+            <label class="col-sm-2 control-label">{% trans 'ZIP/Postal Code' %}</label>
+            <div class="col-sm-10">
+                <input id="id_postal_code" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.address.postal_code|escape|safe }}" maxlength="127" />
+            </div>
+        </div>
+        <!-- end ROW 1 -->
+
+
+    </fieldset>
+    <!-- end HTML -->
 
     <br/>
 
-    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-        <button onclick="ajax_dashboard();"
-                     id="id_continue_btn"
-                   type="button"
-                  class="btn btn-block btn-primary mt-lg">{% trans 'Dashboard' %}</button>
-    </form>
+    <button onclick="ajax_save_and_continue();"
+                 id="id_continue_btn"
+               type="button"
+              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
 
-    <a onclick="ajax_back();"
+    <a onclick="ajax_cancel_and_continue();"
             id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Back' %}</a>
+         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
