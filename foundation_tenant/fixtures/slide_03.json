@@ -4,8 +4,8 @@
     "pk": 999,
     "fields": {
         "module": 3,
-        "title": "This is slide #1 title.",
-        "description": "This is slide #1 description.",
+        "title": "This is slide #1 title for Stage 3.",
+        "description": "This is slide #1 description for Stage 3.",
         "video_url": ""
     }
 }

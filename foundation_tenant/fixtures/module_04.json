@@ -1,7 +1,7 @@
 [
     {
         "model": "foundation_tenant.module",
-        "pk": 3,
+        "pk": 4,
         "fields": {
             "stage_num": 3,
             "nodes": [
@@ -9,13 +9,13 @@
                     "previous_position": -1,
                     "current_position": 0,
                     "next_position": 1,
-                    "id": 999,
+                    "id": 1666,
                     "type": "slide"
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
-                    "id": 53,
+                    "id": 61,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 1
@@ -23,7 +23,7 @@
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
-                    "id": 54,
+                    "id": 62,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 2
@@ -31,7 +31,7 @@
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
-                    "id": 55,
+                    "id": 63,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 3
@@ -39,7 +39,7 @@
                     "previous_position": 3,
                     "current_position": 4,
                     "next_position": 5,
-                    "id": 56,
+                    "id": 64,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 4
@@ -47,7 +47,7 @@
                     "previous_position": 4,
                     "current_position": 5,
                     "next_position": 6,
-                    "id": 57,
+                    "id": 65,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 5
@@ -55,7 +55,7 @@
                     "previous_position": 5,
                     "current_position": 6,
                     "next_position": 7,
-                    "id": 58,
+                    "id": 66,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 6
@@ -63,21 +63,45 @@
                     "previous_position": 6,
                     "current_position": 7,
                     "next_position": 8,
-                    "id": 59,
+                    "id": 67,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 7
                 },{
                     "previous_position": 7,
                     "current_position": 8,
-                    "next_position": -1,
-                    "id": 60,
+                    "next_position": 9,
+                    "id": 68,
                     "type": "question",
                     "document_type": 1,
                     "order_num": 8
+                },{
+                    "previous_position": 8,
+                    "current_position": 9,
+                    "next_position": 10,
+                    "id": 69,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 9
+                },{
+                    "previous_position": 9,
+                    "current_position": 10,
+                    "next_position": 11,
+                    "id": 70,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 10
+                },{
+                    "previous_position": 10,
+                    "current_position": 11,
+                    "next_position": -1,
+                    "id": 71,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 11
                 }
             ],
-            "title": "Stage 3",
+            "title": "Stage 4",
             "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
             "icon": "fa-television",
             "colour": ""
