@@ -68,8 +68,7 @@ def render_question_type_003(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        'picked_count': len(picked),
-        "OTHER_TEXT": "Other (Please Specify)"
+        'picked_count': len(picked)
     }
 
 

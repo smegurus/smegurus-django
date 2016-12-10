@@ -10,10 +10,6 @@
             "options": {
                 "opt1": [
                     {
-                        "value": 0,
-                        "text": "Select"
-                    },
-                    {
                         "value": 10,
                         "text": "10"
                     },
@@ -54,20 +50,47 @@
                         "text": "100"
                     },
                     {
-                        "value": "other",
-                        "text": "Other"
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
                     }
-                ]
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "Investor",
+                        "text": "Investor"
+                    },
+                    {
+                        "value": "Full partner",
+                        "text": "Full partner"
+                    },
+                    {
+                        "value": "Financial supporter",
+                        "text": "Financial supporter"
+                    },
+                    {
+                        "value": "Shareholder",
+                        "text": "Shareholder"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select"
             },
             "content": {
                 "stub_1": "Owner Name",
                 "stub_2": "Ownership",
-                "stub_3": "Options",
-                "stub_4": "Owner Name",
-                "stub_5": "ex: John Doe",
-                "stub_6": "Ownership Percentage",
-                "stub_7": "ex: John Doe",
-                "stub_8": "Add Owner"
+                "stub_3": "Type of Partner",
+                "stub_4": "Remove",
+                "stub_5": "Owner Name",
+                "stub_6": "ex: John Doe",
+                "stub_7": "Ownership Percentage",
+                "stub_8": "Type of Partner",
+                "stub_9": "Add Owner"
             },
             "dependency": {},
             "validation": {},
