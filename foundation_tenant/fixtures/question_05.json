@@ -29,5 +29,48 @@
             "validation": {},
             "type_id": 27
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 73,
+        "fields": {
+            "document_type": 5,
+            "number": 2,
+            "title": "Is your business idea related to any of the following?",
+            "help": "",
+            "options": {                
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "By their interest",
+                        "text": "By their interest"
+                    },
+                    {
+                        "id": "2",
+                        "value": "When they approach my place of business or where I sell",
+                        "text": "When they approach my place of business or where I sell"
+                    },
+                    {
+                        "id": "3",
+                        "value": "By E-Mail",
+                        "text": "By E-Mail"
+                    },
+                    {
+                        "id": "4",
+                        "value": "As the result of a social media campaign",
+                        "text": "As the result of a social media campaign"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
     }
 ]
