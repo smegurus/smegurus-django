@@ -4,35 +4,40 @@
     "pk": 1,
     "fields": {
         "text": "Entrepreneur Self Assessment",
-        "is_master": true
+        "is_master": true,
+        "stage_num": 1
     }
 },{
     "model": "foundation_tenant.documenttype",
     "pk": 2,
     "fields": {
         "text": "Market Research",
-        "is_master": true
+        "is_master": true,
+        "stage_num": 2
     }
 },{
     "model": "foundation_tenant.documenttype",
     "pk": 3,
     "fields": {
         "text": "Concept Validation",
-        "is_master": true
+        "is_master": true,
+        "stage_num": 3
     }
 },{
     "model": "foundation_tenant.documenttype",
     "pk": 4,
     "fields": {
         "text": "Marketing",
-        "is_master": true
+        "is_master": true,
+        "stage_num": 4
     }
 },{
     "model": "foundation_tenant.documenttype",
     "pk": 5,
     "fields": {
         "text": "Sales",
-        "is_master": true
+        "is_master": true,
+        "stage_num": 5
     }
 }
 ]

@@ -39,7 +39,7 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
         workspace.save()
 
         # Create the documents for our system.
-        document_types = DocumentType.objects.all()
+        document_types = DocumentType.objects.filter(stage_num=workspace.stage_num)
         for document_type in document_types.all():
             Document.objects.create(
                 workspace=workspace,

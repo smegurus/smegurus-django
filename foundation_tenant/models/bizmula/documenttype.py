@@ -32,6 +32,11 @@ class DocumentType(models.Model):
         default=False,
         help_text=_('Variable controls whether the Module this Document belongs to is the master document of the Module.'),
     )
+    stage_num = models.PositiveSmallIntegerField(
+        _("Stage Number"),
+        help_text=_('Track what stage this Document belongs to.'),
+        default=1,
+    )
 
     def __str__(self):
         return str(self.text)

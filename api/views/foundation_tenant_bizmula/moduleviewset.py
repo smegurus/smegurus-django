@@ -115,7 +115,7 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             # Fetch all the Documents for this Module belonging to the
             # currently authenticated User.
             documents = Document.objects.filter(
-                workspace__stage_num=module.stage_num,
+                document_type__stage_num=module.stage_num,
                 workspace__mes__id=request.tenant_me.id
             )
 
