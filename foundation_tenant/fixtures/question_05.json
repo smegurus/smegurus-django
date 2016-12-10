@@ -37,7 +37,7 @@
             "number": 2,
             "title": "Is your business idea related to any of the following?",
             "help": "",
-            "options": {                
+            "options": {
                 "opt1": [
                     {
                         "id": "1",
@@ -65,6 +65,79 @@
                         "text": "Other"
                     }
                 ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 74,
+        "fields": {
+            "document_type": 5,
+            "number": 3,
+            "title": "How will you convince them to buy from you?",
+            "help": "",
+            "options": {
+                "opt1": [
+    {
+        "id": "1",
+        "value": "Information to guide decision making",
+        "text": "Information to guide decision making"
+    },
+    {
+        "id": "2",
+        "value": "Deals/Coupons/New customer specials",
+        "text": "Deals/Coupons/New customer specials"
+    },
+    {
+        "id": "3",
+        "value": "Social media page or group",
+        "text": "Social media page or group"
+    },
+    {
+        "id": "4",
+        "value": "Lack of Family support",
+        "text": "Lack of Family support"
+    },
+    {
+        "id": "5",
+        "value": "Speaking to a customer about my products or services",
+        "text": "Speaking to a customer about my products or services"
+    },
+    {
+        "id": "6",
+        "value": "Networking",
+        "text": "Networking"
+    },
+    {
+        "id": "7",
+        "value": "Engagement on social media",
+        "text": "Engagement on social media"
+    },
+    {
+        "id": "8",
+        "value": "Our product is an impulse buy",
+        "text": "Our product is an impulse buy"
+    },
+    {
+        "id": "9",
+        "value": "Our product is a staple",
+        "text": "Our product is a staple"
+    },
+    {
+        "id": "10",
+        "value": "Our product is high-end",
+        "text": "Our product is high-end"
+    },
+    {
+        "id": "11",
+        "value": "Our product is value-priced",
+        "text": "Our product is value-priced"
+    }
+],
                 "opt1_other": "Other"
             },
             "content": {
