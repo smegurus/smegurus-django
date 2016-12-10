@@ -3,7 +3,7 @@
         "model": "foundation_tenant.question",
         "pk": 61,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 51,
             "title": "What is the legal name of your company?",
             "help": "",
@@ -24,7 +24,7 @@
         "model": "foundation_tenant.question",
         "pk": 62,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 52,
             "title": "Choose 3-5 weaknesses that apply to your company (or write your own), and identify how you can resolve each one.",
             "help": "",
@@ -235,7 +235,7 @@
         "model": "foundation_tenant.question",
         "pk": 63,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 53,
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
             "help": "",
@@ -270,7 +270,7 @@
         "model": "foundation_tenant.question",
         "pk": 64,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 54,
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
             "help": "",
@@ -303,7 +303,7 @@
         "model": "foundation_tenant.question",
         "pk": 65,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 55,
             "title": "Why is no one else doing this yet?",
             "help": "",
@@ -350,7 +350,7 @@
         "model": "foundation_tenant.question",
         "pk": 66,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 56,
             "title": "Why is no one else doing this yet?",
             "help": "",
@@ -425,7 +425,7 @@
         "model": "foundation_tenant.question",
         "pk": 67,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 57,
             "title": "I see my company as a ________ in my industry (Click label to see a description)",
             "help": "",
@@ -480,7 +480,7 @@
         "model": "foundation_tenant.question",
         "pk": 68,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 58,
             "title": "We will be great at...",
             "help": "",
@@ -527,7 +527,7 @@
         "model": "foundation_tenant.question",
         "pk": 69,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 59,
             "title": "It will be our strategy to have our prices:",
             "help": "",
@@ -566,7 +566,7 @@
         "model": "foundation_tenant.question",
         "pk": 70,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 60,
             "title": "How will your customers buy your products or services from you?",
             "help": "",
@@ -629,7 +629,7 @@
         "model": "foundation_tenant.question",
         "pk": 71,
         "fields": {
-            "document_type": 1,
+            "document_type": 4,
             "number": 61,
             "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
             "help": "",
@@ -773,6 +773,295 @@
                 "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 30
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 72,
+        "fields": {
+            "document_type": 4,
+            "number": 62,
+            "title": "List 3 people in your industry that you can talk to:",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "We will provide excellent customer service",
+                    "Our service will be competitively priced",
+                    "We are providing an nnivative/cutting edge service",
+                    "We will invest in marketing and business development",
+                    "We will invest in good sales people",
+                    "We will ensure the right employees are put in the roles most suited to them",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 27
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 73,
+        "fields": {
+            "document_type": 4,
+            "number": 63,
+            "title": "Is your business idea related to any of the following?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "By their interest",
+                        "text": "By their interest"
+                    },
+                    {
+                        "id": "2",
+                        "value": "When they approach my place of business or where I sell",
+                        "text": "When they approach my place of business or where I sell"
+                    },
+                    {
+                        "id": "3",
+                        "value": "By E-Mail",
+                        "text": "By E-Mail"
+                    },
+                    {
+                        "id": "4",
+                        "value": "As the result of a social media campaign",
+                        "text": "As the result of a social media campaign"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 74,
+        "fields": {
+            "document_type": 4,
+            "number": 64,
+            "title": "How will you convince them to buy from you?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "Information to guide decision making",
+                        "text": "Information to guide decision making"
+                    },
+                    {
+                        "id": "2",
+                        "value": "Deals/Coupons/New customer specials",
+                        "text": "Deals/Coupons/New customer specials"
+                    },
+                    {
+                        "id": "3",
+                        "value": "Social media page or group",
+                        "text": "Social media page or group"
+                    },
+                    {
+                        "id": "4",
+                        "value": "Lack of Family support",
+                        "text": "Lack of Family support"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Speaking to a customer about my products or services",
+                        "text": "Speaking to a customer about my products or services"
+                    },
+                    {
+                        "id": "6",
+                        "value": "Networking",
+                        "text": "Networking"
+                    },
+                    {
+                        "id": "7",
+                        "value": "Engagement on social media",
+                        "text": "Engagement on social media"
+                    },
+                    {
+                        "id": "8",
+                        "value": "Our product is an impulse buy",
+                        "text": "Our product is an impulse buy"
+                    },
+                    {
+                        "id": "9",
+                        "value": "Our product is a staple",
+                        "text": "Our product is a staple"
+                    },
+                    {
+                        "id": "10",
+                        "value": "Our product is high-end",
+                        "text": "Our product is high-end"
+                    },
+                    {
+                        "id": "11",
+                        "value": "Our product is value-priced",
+                        "text": "Our product is value-priced"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 75,
+        "fields": {
+            "document_type": 4,
+            "number": 65,
+            "title": "What objections might someone have about your product and how might you respond? List 3 to 5.",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "It is too expensive",
+                    "I don't need it",
+                    "Maybe another time",
+                    "Not something I would use",
+                    "Other (Please Specify)"
+                ],
+                "opt1_select": "Select",
+                "opt1_other": "Other (Please Specify)",
+                "opt2": [
+                    {
+                        "parent": "It is too expensive",
+                        "choices": [
+                            "Ask how much customer would be willing to pay",
+                            "Discuss benefits over competitors",
+                            "Highlight value",
+                            "Highlight features and benefits",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "I don't need it",
+                        "choices": [
+                            "Ask why the customer feels this way",
+                            "Discuss benefits of having this product or service",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Maybe another time",
+                        "choices": [
+                            "Book a follow up meeting",
+                            "Ask why they feel the need to wait",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Not something I would use",
+                        "choices": [
+                            "Ask how it would need to change",
+                            "Ask why they feel that way",
+                            "Show them why they would use it",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt2_select": "Select",
+                "opt2_other": "Other (Please Specify)"
+            },
+            "content": {
+                "stub_1": "Objection",
+                "stub_2": "Resolution",
+                "stub_3": "Remove",
+                "stub_4": "Objection",
+                "stub_5": "Resolution",
+                "stub_6": "Add Objection / Resolution"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 3,
+                "min_error_message": "Please pick at least 3 objections.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 objections.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 33
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 76,
+        "fields": {
+            "document_type": 4,
+            "number": 66,
+            "title": "What is the typical time it takes from when a customer is first interested in your product to when they finally buy?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Immediately (impulse buy)",
+                        "text": "Immediately (impulse buy)"
+                    },
+                    {
+                        "value": "A day or less",
+                        "text": "A day or less"
+                    },
+                    {
+                        "value": "A week or less",
+                        "text": "A week or less"
+                    },
+                    {
+                        "value": "A month or less",
+                        "text": "A month or less"
+                    },
+                    {
+                        "value": "We will invest in good sales people",
+                        "text": "We will invest in good sales people"
+                    },
+                    {
+                        "value": "More than one month",
+                        "text": "More than one month"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
         }
     }
 ]

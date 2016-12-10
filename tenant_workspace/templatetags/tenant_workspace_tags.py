@@ -738,3 +738,17 @@ def render_question_type_034(workspace, module, node, question, answer):
         'offer_2': offer_2,
         'offer_3': offer_3
     }
+
+
+@register.inclusion_tag('templatetags/question/template_035.html')
+def render_question_type_035(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked)
+    }

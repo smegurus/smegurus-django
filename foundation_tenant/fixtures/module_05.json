@@ -8,49 +8,9 @@
                 {
                     "previous_position": -1,
                     "current_position": 0,
-                    "next_position": 1,
+                    "next_position": -1,
                     "id": 1999,
                     "type": "slide"
-                },{
-                    "previous_position": 0,
-                    "current_position": 1,
-                    "next_position": 2,
-                    "id": 72,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 1
-                },{
-                    "previous_position": 1,
-                    "current_position": 2,
-                    "next_position": 3,
-                    "id": 73,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 2
-                },{
-                    "previous_position": 2,
-                    "current_position": 3,
-                    "next_position": 4,
-                    "id": 74,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 3
-                },{
-                    "previous_position": 3,
-                    "current_position": 4,
-                    "next_position": 5,
-                    "id": 75,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 4
-                },{
-                    "previous_position": 4,
-                    "current_position": 5,
-                    "next_position": -1,
-                    "id": 76,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 5
                 }
             ],
             "title": "Stage 5",
