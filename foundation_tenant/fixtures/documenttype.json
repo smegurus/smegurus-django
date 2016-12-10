@@ -39,5 +39,13 @@
         "is_master": true,
         "stage_num": 5
     }
+},{
+    "model": "foundation_tenant.documenttype",
+    "pk": 6,
+    "fields": {
+        "text": "Operations",
+        "is_master": true,
+        "stage_num": 7
+    }
 }
 ]
