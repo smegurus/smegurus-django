@@ -3,7 +3,7 @@
         "model": "foundation_tenant.question",
         "pk": 77,
         "fields": {
-            "document_type": 1,
+            "document_type": 6,
             "number": 1,
             "title": "Please list at least 1, or up to 10 owners of the company and the percentage of shares that they own",
             "help": "",
@@ -95,6 +95,53 @@
             "dependency": {},
             "validation": {},
             "type_id": 3
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 78,
+        "fields": {
+            "document_type": 6,
+            "number": 2,
+            "title": "What is the legal structure of your company?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "a sole proprietorship",
+                        "text": "a sole proprietorship"
+                    },
+                    {
+                        "value": "a partnership",
+                        "text": "a partnership"
+                    },
+                    {
+                        "value": "an incorporated entity",
+                        "text": "an incorporated entity"
+                    },
+                    {
+                        "value": "a social enterprise",
+                        "text": "a social enterprise"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "Legal Structure"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
         }
     }
 ]
