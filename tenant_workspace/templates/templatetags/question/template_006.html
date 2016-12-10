@@ -5,18 +5,16 @@
     var row_index = {{ picked_count }};
 
     $(document).ready(function () {
-        $('#id_input_1_other').hide();
-
         //
         // Detect changes with "id_input_1" input field.
         //
         $(document).on('change','#id_input_1',function(){
             // Show "Other" field if the "Other" option was selected.
             var input_1 = $('#id_input_1').val();
-            if (input_1 == "Other (Please Specify)") {
-                $('#id_input_1_other').show();
+            if (input_1 == "{{ question.options.opt1_other }}") {
+                $('#id_input_1_other_div').show();
             } else {
-                $('#id_input_1_other').hide();
+                $('#id_input_1_other_div').hide();
             }
         });
     }); // end DOCUMENT START
@@ -32,7 +30,7 @@
         var input_2 = $('#id_input_2').val();
 
         // PERFORM VALIDATION.
-        if (input_1 == "Other (Please Specify)") {
+        if (input_1 == "{{ question.options.opt1_other }}") {
             if (input_1_other == "") {
                 alert("{% trans 'Please fill in \"Other\".' %}");
                 return;
@@ -55,7 +53,7 @@
 
         // CREATE HTML ROW.
         var html_row = "<tr id=\""+row_index+"\">";
-        if (input_1 == "Other (Please Specify)") {
+        if (input_1 == "{{ question.options.opt1_other }}") {
             html_row += "<td>"+input_1_other+"</td>";
         } else {
             html_row += "<td>"+input_1+"</td>";
@@ -174,7 +172,7 @@
     <div class="form-group">
         <div class="col-sm-12">
             <div class="panel-body">
-                <!-- ROW 1 -->
+                <!-- ROW 1 | TABLE -->
                 <div class="table-responsive">
                     <!-- TABLE -->
                     <table class="table table-striped" id="id_table">
@@ -201,45 +199,58 @@
                     </table>
                     <!-- end TABLE -->
                 </div>
-                <!-- end ROW 1 -->
+                <!-- end ROW 1 | TABLE -->
 
                 <br />
 
                 <fieldset>
-                    <!-- ROW 3 -->
+                    <!-- ROW 2 -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
                         <div class="col-sm-10">
                             <!-- OPTIONS -->
                             <select id="id_input_1" class="form-control">
-                                <option value="">{% trans 'Select' %}</option>
+                                <option value="">{{ question.options.opt1_select }}</option>
                                 {% for item in question.options.opt1 %}
                                     <option value="{{ item }}">{{ item }}</option>
                                 {% endfor %}
                             </select>
                             <!-- end OPTIONS -->
+                        </div>
+                    </div>
+                    <!-- end ROW 2 -->
+
+                    <br />
+
+                    <!-- ROW 3 | OTHER -->
+                    <div class="form-group" style="display: none;" id="id_input_1_other_div">
+                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-10">
                             <!-- OTHER -->
-                            <br />
                             <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="" />
                             <!-- end OTHER -->
                         </div>
                     </div>
-                    <!-- end ROW 3 -->
+                    <!-- end ROW 3 | OTHER  -->
+
                     <br />
-                    <!-- ROW 2 -->
+
+                    <!-- ROW 4 -->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
                         <div class="col-sm-10">
                             <input id="id_input_2" type="text" class="form-control" placeholder="{{ question.content.stub_6 }}" value="{{ picked.textfield_one }}" /> {{ question.content.stub_7 }}
                         </div>
                     </div>
-                    <!-- end ROW 2 -->
+                    <!-- end ROW 4 -->
+
                     <br />
-                    <!-- ROW 4 -->
+
+                    <!-- ROW 5 -->
                     <div class="pull-right" onclick="add_row();">
                         <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_8 }}</button>
                     </div>
-                    <!-- end ROW 4 -->
+                    <!-- end ROW 5 -->
                 </fieldset>
 
             </div>

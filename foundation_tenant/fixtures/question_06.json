@@ -292,5 +292,43 @@
             "validation": {},
             "type_id": 5
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 80,
+        "fields": {
+            "document_type": 6,
+            "number": 4,
+            "title": "What are uses of your companies space at your location?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "Retail",
+                    "Office",
+                    "Warehouse",
+                    "Distribution Centre",
+                    "Manufacturing",
+                    "Packaging",
+                    "Shipping",
+                    "Processing",
+                    "Quality Control",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "Location Use",
+                "stub_2": "Square Footage",
+                "stub_3": "Remove",
+                "stub_4": "Location Use",
+                "stub_5": "Square Footage",
+                "stub_6": "ex. 100",
+                "stub_7": "sq. ft.",
+                "stub_8": "Add Use"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 6
+        }
     }
 ]
