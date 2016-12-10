@@ -8,9 +8,9 @@
     // These options are dependent on "id_input_1" intput field.
     var input_2_options = {
         {% for parent_item in question.options.opt2 %}
-            "{{ parent_item.parent }}": [
+            "{{ parent_item.parent|escape|safe }}": [
                 {% for item in parent_item.choices %}
-                    "{{ item }}"
+                    "{{ item|escape|safe }}"
                     {% if not forloop.last %},{% endif %}
                 {% endfor %}
             ]
@@ -146,6 +146,8 @@
         // CLEAR FIELDS.
         //---------------------------------
         $('#id_input_1').val("{{ question.options.opt1_select }}");
+        $('#id_input_1_other_div').hide();
+        $('#id_input_2_other').val("");
         $('#id_input_2').val("{{ question.options.opt2_select }}");
         $('#id_input_2_div').hide();
         $('#id_input_2_other').val("");

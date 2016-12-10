@@ -17,7 +17,7 @@
                     "next_position": 2,
                     "id": 72,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 5,
                     "order_num": 1
                 },{
                     "previous_position": 1,
@@ -25,16 +25,24 @@
                     "next_position": 3,
                     "id": 73,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 5,
                     "order_num": 2
                 },{
                     "previous_position": 2,
                     "current_position": 3,
-                    "next_position": -1,
+                    "next_position": 4,
                     "id": 74,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 5,
                     "order_num": 3
+                },{
+                    "previous_position": 3,
+                    "current_position": 4,
+                    "next_position": -1,
+                    "id": 75,
+                    "type": "question",
+                    "document_type": 5,
+                    "order_num": 4
                 }
             ],
             "title": "Stage 5",
