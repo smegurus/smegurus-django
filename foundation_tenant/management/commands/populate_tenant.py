@@ -39,15 +39,18 @@ class Command(BaseCommand):
             'module_02.json',
             'module_03.json',
             'module_04.json',
+            'module_05.json',
             'slide_01.json',
             'slide_02.json',
             'slide_03.json',
             'slide_04.json',
+            'slide_05.json',
             #'question_dev.json', # DEVELOPMENT ONLY.
             'question_01.json',
             'question_02.json',
             'question_03.json',
-            'question_04.json'
+            'question_04.json',
+            'question_05.json'
         ]
 
         # Iterate through all the filenames and load them into database.

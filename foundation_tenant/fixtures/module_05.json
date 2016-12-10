@@ -1,0 +1,30 @@
+[
+    {
+        "model": "foundation_tenant.module",
+        "pk": 5,
+        "fields": {
+            "stage_num": 5,
+            "nodes": [
+                {
+                    "previous_position": -1,
+                    "current_position": 0,
+                    "next_position": 1,
+                    "id": 1999,
+                    "type": "slide"
+                },{
+                    "previous_position": 0,
+                    "current_position": 1,
+                    "next_position": -1,
+                    "id": 72,
+                    "type": "question",
+                    "document_type": 4,
+                    "order_num": 1
+                }
+            ],
+            "title": "Stage 5",
+            "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
+            "icon": "fa-television",
+            "colour": ""
+        }
+    }
+]
