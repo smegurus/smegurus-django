@@ -233,5 +233,59 @@
             },
             "type_id": 33
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 76,
+        "fields": {
+            "document_type": 5,
+            "number": 5,
+            "title": "What is the typical time it takes from when a customer is first interested in your product to when they finally buy?",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Immediately (impulse buy)",
+                        "text": "Immediately (impulse buy)"
+                    },
+                    {
+                        "value": "A day or less",
+                        "text": "A day or less"
+                    },
+                    {
+                        "value": "A week or less",
+                        "text": "A week or less"
+                    },
+                    {
+                        "value": "A month or less",
+                        "text": "A month or less"
+                    },
+                    {
+                        "value": "We will invest in good sales people",
+                        "text": "We will invest in good sales people"
+                    },
+                    {
+                        "value": "More than one month",
+                        "text": "More than one month"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
