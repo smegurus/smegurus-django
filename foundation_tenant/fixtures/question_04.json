@@ -1445,5 +1445,132 @@
             },
             "type_id": 36
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 80,
+        "fields": {
+            "document_type": 4,
+            "number": 70,
+            "title": "Working with others is a cost-effective way to grow. Cooperating can mean running campaigns together or even joint ventures. List up to 5 potential partnerships you can utilize to grow your company.",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Cross-referrals",
+                        "text": "Cross-referrals"
+                    },{
+                        "value": "Joint ad campaigns",
+                        "text": "Joint ad campaigns"
+                    },{
+                        "value": "Joint charity events",
+                        "text": "Joint charity events"
+                    },{
+                        "value": "Cross-marketing",
+                        "text": "Cross-marketing"
+                    },{
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "this will build strong relationships within my industry",
+                        "text": "this will build strong relationships within my industry"
+                    },{
+                        "value": "this will build a strong presence for our brand",
+                        "text": "this will build a strong presence for our brand"
+                    },{
+                        "value": "this will bring in new customers",
+                        "text": "this will bring in new customers"
+                    },{
+                        "value": "this will entice people to buy",
+                        "text": "this will entice people to buy"
+                    },{
+                        "value": "this will start to build relationships",
+                        "text": "this will start to build relationships"
+                    },{
+                        "value": "this will be a great marketing tool",
+                        "text": "this will be a great marketing tool"
+                    },{
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt2_other": "other",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "1",
+                        "text": "1"
+                    },{
+                        "value": "2",
+                        "text": "2"
+                    },{
+                        "value": "3",
+                        "text": "3"
+                    },{
+                        "value": "4",
+                        "text": "4"
+                    },{
+                        "value": "5",
+                        "text": "5"
+                    },{
+                        "value": "6",
+                        "text": "6"
+                    },{
+                        "value": "7",
+                        "text": "7"
+                    },{
+                        "value": "8",
+                        "text": "8"
+                    },{
+                        "value": "9",
+                        "text": "9"
+                    },{
+                        "value": "10",
+                        "text": "10"
+                    },{
+                        "value": "11",
+                        "text": "11"
+                    },{
+                        "value": "12",
+                        "text": "12"
+                    }
+                ],
+                "opt3_other": "other",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "Partner",
+                "stub_2": "Strategy",
+                "stub_3": "Impact",
+                "stub_4": "# of months (1-12)",
+                "stub_5": "Year 1 Cost",
+                "stub_6": "Remove",
+                "stub_7": "Partner",
+                "stub_8": "Ex: Bartlomiej Mika",
+                "stub_9": "Strategy",
+                "stub_10": "Impact",
+                "stub_11": "# of months (1-12)",
+                "stub_12": "Year 1 Cost",
+                "stub_13": "Ex: 10000",
+                "stub_14": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion."
+            },
+            "type_id": 37
+        }
     }
 ]
