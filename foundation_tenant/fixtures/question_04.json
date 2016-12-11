@@ -1067,7 +1067,7 @@
         "model": "foundation_tenant.question",
         "pk": 77,
         "fields": {
-            "document_type": 5,
+            "document_type": 4,
             "number": 67,
             "title": "I will offer the the following incentives to get customers to try my products or services",
             "help": "",
@@ -1182,6 +1182,127 @@
                 "stub_6": "Incentive",
                 "stub_7": "Impact",
                 "stub_8": "# of months (1-12)",
+                "stub_9": "Year 1 Cost",
+                "stub_10": "Ex: 10000",
+                "stub_11": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion."
+            },
+            "type_id": 36
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 78,
+        "fields": {
+            "document_type": 4,
+            "number": 68,
+            "title": "I will use the following physical marketing materials as ways to communicate my product or service to customers",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "flyers",
+                        "text": "flyers"
+                    },
+                    {
+                        "value": "business cards",
+                        "text": "business cards"
+                    },
+                    {
+                        "value": "signs",
+                        "text": "signs"
+                    },
+                    {
+                        "value": "magnets",
+                        "text": "magnets"
+                    },
+                    {
+                        "value": "door hangers",
+                        "text": "door hangers"
+                    },
+                    {
+                        "value": "coupons",
+                        "text": "coupons"
+                    },
+                    {
+                        "value": "stickers",
+                        "text": "stickers"
+                    },
+                    {
+                        "value": "buttons",
+                        "text": "buttons"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "this will entice people to buy",
+                        "text": "this will entice people to buy"
+                    },
+                    {
+                        "value": "this will start to build relationships",
+                        "text": "this will start to build relationships"
+                    },
+                    {
+                        "value": "this will be a great marketing tool",
+                        "text": "this will be a great marketing tool"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt2_other": "other",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "to hand out at meetings",
+                        "text": "to hand out at meetings"
+                    },
+                    {
+                        "value": "for physical distribution",
+                        "text": "for physical distribution"
+                    },
+                    {
+                        "value": "as promo material",
+                        "text": "as promo material"
+                    },
+                    {
+                        "value": "for networking events",
+                        "text": "for networking events"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt3_other": "other",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "Item",
+                "stub_2": "Impact",
+                "stub_3": "How will it be used?",
+                "stub_4": "Year 1 Cost",
+                "stub_5": "Remove",
+                "stub_6": "Item",
+                "stub_7": "Impact",
+                "stub_8": "How will it be used?",
                 "stub_9": "Year 1 Cost",
                 "stub_10": "Ex: 10000",
                 "stub_11": "Add"
