@@ -1321,5 +1321,129 @@
             },
             "type_id": 36
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 79,
+        "fields": {
+            "document_type": 4,
+            "number": 69,
+            "title": "I will reach my customers through the following media campaigns",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "by mail",
+                        "text": "by mail"
+                    },{
+                        "value": "by telephone",
+                        "text": "by telephone"
+                    },{
+                        "value": "radio",
+                        "text": "radio"
+                    },{
+                        "value": "newspaper",
+                        "text": "newspaper"
+                    },{
+                        "value": "facebook",
+                        "text": "facebook"
+                    },{
+                        "value": "twitter",
+                        "text": "twitter"
+                    },{
+                        "value": "google",
+                        "text": "google"
+                    },{
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "this will entice people to buy",
+                        "text": "this will entice people to buy"
+                    },{
+                        "value": "this will start to build relationships",
+                        "text": "this will start to build relationships"
+                    },{
+                        "value": "this will be a great marketing tool",
+                        "text": "this will be a great marketing tool"
+                    },{
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt2_other": "other",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "1",
+                        "text": "1"
+                    },{
+                        "value": "2",
+                        "text": "2"
+                    },{
+                        "value": "3",
+                        "text": "3"
+                    },{
+                        "value": "4",
+                        "text": "4"
+                    },{
+                        "value": "5",
+                        "text": "5"
+                    },{
+                        "value": "6",
+                        "text": "6"
+                    },{
+                        "value": "7",
+                        "text": "7"
+                    },{
+                        "value": "8",
+                        "text": "8"
+                    },{
+                        "value": "9",
+                        "text": "9"
+                    },{
+                        "value": "10",
+                        "text": "10"
+                    },{
+                        "value": "11",
+                        "text": "11"
+                    },{
+                        "value": "12",
+                        "text": "12"
+                    }
+                ],
+                "opt3_other": "other",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "Media",
+                "stub_2": "Impact",
+                "stub_3": "# of months (1-12)",
+                "stub_4": "Year 1 Cost",
+                "stub_5": "Remove",
+                "stub_6": "Media",
+                "stub_7": "Impact",
+                "stub_8": "# of months (1-12)",
+                "stub_9": "Year 1 Cost",
+                "stub_10": "Ex: 10000",
+                "stub_11": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion."
+            },
+            "type_id": 36
+        }
     }
 ]
