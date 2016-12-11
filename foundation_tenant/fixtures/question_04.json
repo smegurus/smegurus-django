@@ -1194,9 +1194,9 @@
                 "var4_max_length": 0,
                 "var4_max_length_error_message": "-",
                 "var4_min_num": 0,
-                "var4_min_num_error_message": "-",
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "-"
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion."
             },
             "type_id": 36
         }

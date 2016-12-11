@@ -36,6 +36,11 @@
         });
     });
 
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
     function ajax_do_chain(new_arr, callback) {
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
@@ -96,7 +101,7 @@
                 return;
             }
         }
-        
+
         // COL 2
         if (input_2 == "{{ question.options.opt2_other }}") {
             if (input_2_other.length < 1) {
@@ -124,10 +129,31 @@
         }
 
         // COL 4
-        if (input_4.length < 1) {
-            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_9 }}\"");
+        {% if question.validation.var4_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_4.length < {{ question.validation.var4_min_length }}) {
+            alert("{{ question.validation.var4_min_length_error_message }}");
             return;
         }
+        if (input_4.length > {{ question.validation.var4_max_length }}) {
+            alert("{{ question.validation.var4_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var4_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_4) == false) {
+            alert("{% trans 'Please enter integer answer.' %}");
+            return;
+        }
+        if (input_4 < {{ question.validation.var4_min_num }}) {
+            alert("{{ question.validation.var4_min_num_error_message }}");
+            return;
+        }
+        if (input_4 > {{ question.validation.var4_max_num }}) {
+            alert("{{ question.validation.var4_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
 
         // DEBUGGING PURPOSES ONLY.
         console.log("{{ question.content.stub_6 }}: " + input_1);
