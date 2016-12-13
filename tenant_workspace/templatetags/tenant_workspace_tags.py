@@ -806,13 +806,9 @@ def render_question_type_039(workspace, module, node, question, answer):
     q1_qid = int_or_none(question.dependency['q1_qid'])
     dependent_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
 
-    #TODO: IMplement converting the question into a JSON dictionary
-    # json_answer = {
-    #     'var_1': dependent_answer.content.var_1
-    # }
-
     # JSONIFY our previous answer.
     picked = json.loads(answer.content)
+    dependent_answer = json.loads(dependent_answer.content)
 
     # Render our template.
     return {
