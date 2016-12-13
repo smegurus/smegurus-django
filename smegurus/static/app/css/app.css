@@ -413,8 +413,12 @@ body {
   bottom: 0;
   height: 60px;
   border-top: 1px solid #e4eaec;
+  background: #ffffff !important;
   padding: 20px;
   z-index: 109;
+}
+.navbar-right li a{
+    cursor: pointer !important;
 }
 .wrapper > footer > p {
   margin: 0;
