@@ -99,7 +99,7 @@
                             {% comment %}
                             <!-- START lock screen-->
                             <li class="dropdown">
-                                <a href="lock.html" title="Lock screen">
+                                <a href="lock.html" title="Lock screen" style="cursor: pointer;">
                                 <em class="icon-lock"></em>
                                 </a>
                             </li>
@@ -108,7 +108,7 @@
 
                             <!-- START Contacts button-->
                             <li>
-                                <a onclick="ajax_logout();" data-toggle-state="offsidebar-open" data-no-persist="true">
+                                <a onclick="ajax_logout();" data-toggle-state="offsidebar-open" data-no-persist="true" style="cursor: pointer;">
                                     <em class="icon-logout"></em>
                                 </a>
                             </li>
@@ -138,8 +138,6 @@
             <!-- Page footer-->
             <footer>
                 <span>&copy;</span>
-                <span>{% trans '2013' %}</span>
-                <span>-</span>
                 <span>{% now "Y" %}</span>
                 <span>{% trans 'by' %}</span>
                 <span>{% trans 'SME Gurus.' %}</span>
