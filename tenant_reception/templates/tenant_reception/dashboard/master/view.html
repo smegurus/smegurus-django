@@ -77,7 +77,7 @@
         <div class="col-md-4" {% if not workspace %}data-toggle="modal" data-target="#workspaceModal"{% endif %}>
             <div class="panel b">
                 <div class="panel-body text-center">
-                    <a {% if workspace %}href="{% url 'tenant_reception_workspace_start_master' workspace.id %}"{% endif %} class="link-unstyled" style="color:#e0c01f;">
+                    <a {% if workspace %}href="{% url 'tenant_reception_workspace_start_master' workspace.id %}"{% endif %} class="link-unstyled" style="color:#e0c01f;cursor: pointer;">
                         <em class="fa fa-5x fa-graduation-cap mb-lg"></em>
                         <br>
                         <span class="h4" style="color:black;">{% trans 'Learning' %}</span>
