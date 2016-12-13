@@ -146,24 +146,24 @@
                 <!-- END Off Sidebar (right)-->
             </aside>
             <!-- Main section-->
-            <section>
-                <!-- CUSTOM CSS -->
-                {% include 'foundation_tenant/custom_css.html' %}
-                <!-- end CUSTOM CSS -->
-                
-                <!-- CSRF Token -->
-                {% csrf_token %}
-
-                <!-- CONTENT -->
-                {% block content %}
-                {% endblock %}
-                <!-- /.CONTENT -->
+            <section class="conf-style">
+                <div class="col-md-12">
+                    <!-- CUSTOM CSS -->
+                    {% include 'foundation_tenant/custom_css.html' %}
+                    <!-- end CUSTOM CSS -->
+                    
+                    <!-- CSRF Token -->
+                    {% csrf_token %}
+    
+                    <!-- CONTENT -->
+                    {% block content %}
+                    {% endblock %}
+                    <!-- /.CONTENT -->
+                </div>
             </section>
             <!-- Page footer-->
             <footer>
                 <span>&copy;</span>
-                <span>{% trans '2013' %}</span>
-                <span>-</span>
                 <span>{% now "Y" %}</span>
                 <span>{% trans 'by' %}</span>
                 <span>{% trans 'SME Gurus.' %}</span>
