@@ -1244,12 +1244,8 @@
                         "text": "moderately competitive"
                     },
                     {
-                        "value": "emerging",
-                        "text": "emerging"
-                    },
-                    {
-                        "value": "with few competitors",
-                        "text": "with few competitors"
+                        "value": "emerging with few competitors",
+                        "text": "emerging with few competitors"
                     }
                 ],
                 "opt1_other": "other",
