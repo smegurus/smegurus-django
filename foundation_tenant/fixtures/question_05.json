@@ -683,5 +683,145 @@
             },
             "type_id": 40
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 91,
+        "fields": {
+            "document_type": 5,
+            "number": 11,
+            "title": "List, your management team by name proposed role, and area of expertise (Min 1, Max 10)",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "President",
+                        "text": "President"
+                    },
+                    {
+                        "value": "CEO",
+                        "text": "CEO"
+                    },
+                    {
+                        "value": "CFO",
+                        "text": "CFO"
+                    },
+                    {
+                        "value": "COO",
+                        "text": "COO"
+                    },
+                    {
+                        "value": "CTO",
+                        "text": "CTO"
+                    },
+                    {
+                        "value": "Project Manager",
+                        "text": "Project Manager"
+                    },
+                    {
+                        "value": "General sales",
+                        "text": "General sales"
+                    },
+                    {
+                        "value": "VP",
+                        "text": "VP"
+                    },
+                    {
+                        "value": "Human Resources",
+                        "text": "Human Resources"
+                    },
+                    {
+                        "value": "Administration",
+                        "text": "Administration"
+                    },
+                    {
+                        "value": "Advisor",
+                        "text": "Advisor"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "Manage finances",
+                        "text": "Manage finances"
+                    },{
+                        "value": "Manage sales",
+                        "text": "Manage sales"
+                    },{
+                        "value": "Manage technology",
+                        "text": "Manage technology"
+                    },{
+                        "value": "Manage operations",
+                        "text": "Manage operations"
+                    },{
+                        "value": "Manage HR",
+                        "text": "Manage HR"
+                    },{
+                        "value": "Manage Marketing",
+                        "text": "Manage Marketing"
+                    },{
+                        "value": "Manage Projects",
+                        "text": "Manage Projects"
+                    },{
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "Leadership",
+                        "text": "Leadership"
+                    },{
+                        "value": "Administration",
+                        "text": "Administration"
+                    },{
+                        "value": "Finance",
+                        "text": "Finance"
+                    },{
+                        "value": "HR",
+                        "text": "HR"
+                    },{
+                        "value": "Marketing",
+                        "text": "Marketing"
+                    },{
+                        "value": "Product Development",
+                        "text": "Product Development"
+                    },{
+                        "value": "Development ",
+                        "text": "Development "
+                    },{
+                        "value": "Inventory Management ",
+                        "text": "Inventory Management "
+                    },{
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt3_other": "Other (Please Specify)",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "Name",
+                "stub_2": "Role",
+                "stub_3": "Function",
+                "stub_4": "Expertise",
+                "stub_5": "Remove",
+                "stub_6": "Name",
+                "stub_7": "ex: John Doe",
+                "stub_8": "Role",
+                "stub_9": "Function",
+                "stub_10": "Expertise",
+                "stub_11": "Add Owner"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 41
+        }
     }
 ]
