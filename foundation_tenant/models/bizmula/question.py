@@ -40,7 +40,7 @@ class Question(models.Model):
     )
     title = models.CharField(
         _("Title"),
-        max_length=255,
+        max_length=511,
         help_text=_('The title of this question.'),
         blank=True,
         null=True,

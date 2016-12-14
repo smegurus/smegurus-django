@@ -821,3 +821,17 @@ def render_question_type_039(workspace, module, node, question, answer):
         'picked_count': len(picked),
         'dependent_answer': dependent_answer
     }
+
+
+@register.inclusion_tag('templatetags/question/template_040.html')
+def render_question_type_040(workspace, module, node, question, answer):
+    picked = json.loads(answer.content)
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': picked,
+        'picked_count': len(picked)
+    }

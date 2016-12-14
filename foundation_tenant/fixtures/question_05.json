@@ -571,5 +571,117 @@
             },
             "type_id": 1
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 90,
+        "fields": {
+            "document_type": 5,
+            "number": 10,
+            "title": "Please list up to 5 licenses, registrations, or permits that you need to operate your business. At minimum, every business should have a name registration. Please list below, select the license, explain the process to obtain it, and how close you are to completing it.",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Obtain Vendor's Permit",
+                        "text": "Obtain Vendor's Permit"
+                    },{
+                        "value": "Register Business",
+                        "text": "Register Business"
+                    },{
+                        "value": "Incorporate Business",
+                        "text": "Incorporate Business"
+                    },{
+                        "value": "Establish partnership",
+                        "text": "Establish partnership"
+                    },{
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "Register with Government",
+                        "text": "Register with Government"
+                    },{
+                        "value": "Consult with Lawyer",
+                        "text": "Consult with Lawyer"
+                    },{
+                        "value": "Consult with Accountant",
+                        "text": "Consult with Accountant"
+                    },{
+                        "value": "Meet with Consultant",
+                        "text": "Meet with Consultant"
+                    },{
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt2_other": "Other",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "0",
+                        "text": "0"
+                    },{
+                        "value": "10",
+                        "text": "10"
+                    },{
+                        "value": "20",
+                        "text": "20"
+                    },{
+                        "value": "30",
+                        "text": "30"
+                    },{
+                        "value": "40",
+                        "text": "40"
+                    },{
+                        "value": "50",
+                        "text": "50"
+                    },{
+                        "value": "60",
+                        "text": "60"
+                    },{
+                        "value": "70",
+                        "text": "70"
+                    },{
+                        "value": "80",
+                        "text": "80"
+                    },{
+                        "value": "90",
+                        "text": "90"
+                    },{
+                        "value": "100",
+                        "text": "100"
+                    }
+                ],
+                "opt3_other": "Other",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "License/Registration",
+                "stub_2": "Process",
+                "stub_3": "% Complete",
+                "stub_4": "Remove",
+                "stub_5": "License/Registration",
+                "stub_6": "Process",
+                "stub_7": "% Complete",
+                "stub_8": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion."
+            },
+            "type_id": 40
+        }
     }
 ]
