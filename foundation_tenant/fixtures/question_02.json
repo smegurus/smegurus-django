@@ -156,7 +156,9 @@
                 "stub_3": "Category 3",
                 "stub_4": "Category 4",
                 "stub_5": "Category 5",
-                "stub_6": "Category 6"
+                "stub_6": "Category 6",
+                "stub_7": "Please enter in your own words what your business category is",
+                "stub_8": "Ex: Greenhouse"
             },
             "dependency": {},
             "validation": {},

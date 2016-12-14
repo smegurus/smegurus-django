@@ -173,6 +173,7 @@
         var naics_depth_three = parseInt($('#id_naics_depth_three').val());
         var naics_depth_four = parseInt($('#id_naics_depth_four').val());
         var naics_depth_five = parseInt($('#id_naics_depth_five').val());
+        var input_1 = $('#id_input_1').val();
 
         // DEBUGGING PURPOSES ONLY.
         console.log(naics_depth_one);
@@ -180,6 +181,7 @@
         console.log(naics_depth_three);
         console.log(naics_depth_four);
         console.log(naics_depth_five);
+        console.log(input_1);
 
         // SAVE OUR RESULTS.
         ajax_do_chain(
@@ -188,6 +190,7 @@
             naics_depth_three,
             naics_depth_four,
             naics_depth_five,
+            input_1,
             function(json_result) {
                 // LOAD UP THE NEXT SLIDE/QUESTION.
                 window.location = next_url;
@@ -195,7 +198,7 @@
         );
     }
 
-    function ajax_do_chain(naics_depth_one, naics_depth_two, naics_depth_three, naics_depth_four, naics_depth_five, callback) {
+    function ajax_do_chain(naics_depth_one, naics_depth_two, naics_depth_three, naics_depth_four, naics_depth_five, input_1, callback) {
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
         get_tenant_questionanswer(
@@ -208,7 +211,8 @@
                     'var_2': naics_depth_two,
                     'var_3': naics_depth_three,
                     'var_4': naics_depth_four,
-                    'var_5': naics_depth_five
+                    'var_5': naics_depth_five,
+                    'var_6': input_1
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -320,6 +324,19 @@
    </div>
 </fieldset>
 <!-- end DEPTH FIVE -->
+
+<!-- DEPTH SIX -->
+<fieldset id="id_depth_six_fieldset">
+   <div class="form-group mb">
+      <label class="col-sm-2 control-label mb">{{ question.content.stub_7 }}</label>
+      <div class="col-sm-10">
+          <!-- TEXTFIELD -->
+          <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_8 }}" value="{{ picked.var_6|escape|safe }}" />
+          <!-- end TEXTFIELD -->
+      </div>
+   </div>
+</fieldset>
+<!-- end DEPTH SIX -->
 
 <br><br>
 <!-- end HTML -->
