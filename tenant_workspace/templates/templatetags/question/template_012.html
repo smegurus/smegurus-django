@@ -175,6 +175,11 @@
         var naics_depth_five = parseInt($('#id_naics_depth_five').val());
         var input_1 = $('#id_input_1').val();
 
+        if (input_1.length < 1) {
+            alert("{% trans 'Please fill in the textfield.' %}");
+            return;
+        }
+
         // DEBUGGING PURPOSES ONLY.
         console.log(naics_depth_one);
         console.log(naics_depth_two);
