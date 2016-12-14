@@ -3,7 +3,7 @@
         "model": "foundation_tenant.question",
         "pk": 21,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 11,
             "title": "Name your business workspace",
             "help": "",
@@ -26,7 +26,7 @@
         "model": "foundation_tenant.question",
         "pk": 22,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 12,
             "title": "Do you have any business partners?",
             "help": "",
@@ -61,7 +61,7 @@
         "model": "foundation_tenant.question",
         "pk": 23,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 13,
             "title": "Do you have a logo for your business?",
             "help": "",
@@ -91,7 +91,7 @@
         "model": "foundation_tenant.question",
         "pk": 24,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 14,
             "title": "Is your business idea related to any of the following?",
             "help": "",
@@ -145,7 +145,7 @@
         "model": "foundation_tenant.question",
         "pk": 25,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 15,
             "title": "What sector does your current business idea mainly fall into?",
             "help": "",
@@ -167,7 +167,7 @@
         "model": "foundation_tenant.question",
         "pk": 26,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 16,
             "title": "How many years of experience do you have in this industry?",
             "help": "",
@@ -214,7 +214,7 @@
         "model": "foundation_tenant.question",
         "pk": 27,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 17,
             "title": "My business idea is...",
             "help": "",
@@ -237,7 +237,7 @@
         "model": "foundation_tenant.question",
         "pk": 28,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 18,
             "title": "List 5 types of information, people you can speak with or tools you can use to research this idea:",
             "help": "",
@@ -277,7 +277,7 @@
         "model": "foundation_tenant.question",
         "pk": 29,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 19,
             "title": "List 3 similar businesses",
             "help": "",
@@ -307,7 +307,7 @@
         "model": "foundation_tenant.question",
         "pk": 30,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 20,
             "title": "List 3 people in your industry that you can talk to:",
             "help": "",
@@ -338,7 +338,7 @@
         "model": "foundation_tenant.question",
         "pk": 31,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 21,
             "title": "Will you offer mainly products, services, or both?",
             "help": "",
@@ -375,7 +375,7 @@
         "model": "foundation_tenant.question",
         "pk": 32,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 22,
             "title": "Please list at least 1, but up to 3 product or service categories that you will offer.",
             "help": "",
@@ -405,7 +405,7 @@
         "model": "foundation_tenant.question",
         "pk": 33,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 23,
             "title": "What type of customer will your business serve?",
             "help": "",
@@ -448,7 +448,7 @@
         "model": "foundation_tenant.question",
         "pk": 34,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 24,
             "title": "What is the opportunity you are taking advantage of or problem you seek to solve?",
             "help": "",
@@ -491,7 +491,7 @@
         "model": "foundation_tenant.question",
         "pk": 35,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 25,
             "title": "Why is no one else doing this yet?",
             "help": "",
@@ -538,7 +538,7 @@
         "model": "foundation_tenant.question",
         "pk": 36,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 26,
             "title": "How will you solve the problem?",
             "help": "",
@@ -709,7 +709,7 @@
         "model": "foundation_tenant.question",
         "pk": 37,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 27,
             "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
             "help": "",
@@ -806,7 +806,7 @@
         "model": "foundation_tenant.question",
         "pk": 38,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 28,
             "title": "Provide 5 specific sources (articles, websites, studies, statistics) where you have found information that supports your idea:",
             "help": "",
@@ -832,7 +832,7 @@
         "model": "foundation_tenant.question",
         "pk": 39,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 29,
             "title": "What is the geographic market that your business will serve? (Part 1 of 2)",
             "help": "",
@@ -891,7 +891,7 @@
         "model": "foundation_tenant.question",
         "pk": 40,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 30,
             "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
             "help": "",
@@ -1056,7 +1056,7 @@
         "model": "foundation_tenant.question",
         "pk": 41,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 31,
             "title": "What is the total value of the industry in your target market area (expressed in dollars)?",
             "help": "",
@@ -1087,7 +1087,7 @@
         "model": "foundation_tenant.question",
         "pk": 42,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 32,
             "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
             "help": "",
@@ -1170,7 +1170,7 @@
         "model": "foundation_tenant.question",
         "pk": 43,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 33,
             "title": "How many <i>potential<\/i> customers exist in your market area for your product?",
             "help": "",
@@ -1229,7 +1229,7 @@
         "model": "foundation_tenant.question",
         "pk": 44,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 34,
             "title": "How competitive is your industry?",
             "help": "",
@@ -1268,7 +1268,7 @@
         "model": "foundation_tenant.question",
         "pk": 45,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 35,
             "title": "This industry require levels of customer services that are...",
             "help": "",
@@ -1307,7 +1307,7 @@
         "model": "foundation_tenant.question",
         "pk": 46,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 36,
             "title": "How much do prices vary in this industry?",
             "help": "",
@@ -1346,7 +1346,7 @@
         "model": "foundation_tenant.question",
         "pk": 47,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 37,
             "title": "List up to 5 direct competitors",
             "help": "",
@@ -1434,7 +1434,7 @@
         "model": "foundation_tenant.question",
         "pk": 48,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 38,
             "title": "List up to 5 indirect competitors",
             "help": "",
@@ -1522,7 +1522,7 @@
         "model": "foundation_tenant.question",
         "pk": 49,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 39,
             "title": "My target market is based on...",
             "help": "",
@@ -1671,7 +1671,7 @@
         "model": "foundation_tenant.question",
         "pk": 50,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 40,
             "title": "How do customers make buying decisions in this industry",
             "help": "",
@@ -1722,7 +1722,7 @@
         "model": "foundation_tenant.question",
         "pk": 51,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 41,
             "title": "Are your target customers price sensitive?",
             "help": "",
@@ -1757,7 +1757,7 @@
         "model": "foundation_tenant.question",
         "pk": 52,
         "fields": {
-            "document_type": 1,
+            "document_type": 2,
             "number": 42,
             "title": "My target market will buy from me because I offer them...",
             "help": "",

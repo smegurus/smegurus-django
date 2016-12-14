@@ -3,7 +3,7 @@
         "model": "foundation_tenant.question",
         "pk": 52,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 42,
             "title": "My target market will buy from me because I offer them...",
             "help": "",
@@ -54,7 +54,7 @@
         "model": "foundation_tenant.question",
         "pk": 53,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 43,
             "title": "How many people will I contact or try to reach in total?",
             "help": "",
@@ -105,7 +105,7 @@
         "model": "foundation_tenant.question",
         "pk": 54,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 44,
             "title": "How will you reach people?",
             "help": "",
@@ -164,7 +164,7 @@
         "model": "foundation_tenant.question",
         "pk": 55,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 45,
             "title": "How many of them need to agree that my idea is a good one?",
             "help": "",
@@ -219,7 +219,7 @@
         "model": "foundation_tenant.question",
         "pk": 56,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 46,
             "title": "What was the total number of people that you contacted? (Part 1 of 2)",
             "help": "",
@@ -250,7 +250,7 @@
         "model": "foundation_tenant.question",
         "pk": 57,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 47,
             "title": "What was the total number of people that you contacted? (Part 2 of 2)",
             "help": "",
@@ -297,7 +297,7 @@
         "model": "foundation_tenant.question",
         "pk": 58,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 48,
             "title": "How many people supported my business idea?",
             "help": "",
@@ -328,7 +328,7 @@
         "model": "foundation_tenant.question",
         "pk": 59,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 49,
             "title": "What did I learn?",
             "help": "",
@@ -351,7 +351,7 @@
         "model": "foundation_tenant.question",
         "pk": 60,
         "fields": {
-            "document_type": 1,
+            "document_type": 3,
             "number": 50,
             "title": "Do I need to adjust any of the following assumptions?",
             "help": "",
