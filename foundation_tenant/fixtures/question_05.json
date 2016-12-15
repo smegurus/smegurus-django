@@ -1013,33 +1013,35 @@
         }
     },{
         "model": "foundation_tenant.question",
-        "pk": 95,
+        "pk": 94,
         "fields": {
             "document_type": 5,
             "number": 14,
-            "title": "Will you have any legal or professional fees to set up your business? If so, please detail them below.",
+            "title": "Many small businesses have legal, financial and other professionals they can go to for help. Please list 1-5 advisors or mentors that support you.",
             "help": "",
             "options": {
                 "opt1": [
-                    "Incorporation",
-                    "Legal fees",
-                    "Accounting fees",
+                    "Mentor",
+                    "Advisor",
+                    "Consultant",
+                    "Lawyer",
+                    "Accountant",
                     "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": "Lega/Professional Fees",
-                "stub_2": "Details",
-                "stub_3": "Year 1 Cost",
+                "stub_1": "Advisor Name",
+                "stub_2": "Company Name",
+                "stub_3": "Advisor Role",
                 "stub_4": "Remove",
-                "stub_5": "Lega/Professional Fees",
-                "stub_6": "Details",
-                "stub_7": "Ex: Because my account told me to.",
-                "stub_8": "Year 1 Cost",
-                "stub_9": "ex. 100",
-                "stub_10": "Add Use"
+                "stub_5": "Advisor Name",
+                "stub_6": "Ex: Bart Mika",
+                "stub_7": "Company Name",
+                "stub_8": "ex. Mika Software",
+                "stub_9": "Advisor Role",
+                "stub_10": "Add"
             },
             "dependency": {},
             "validation": {
@@ -1052,17 +1054,17 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-                "var3_type": "integerfield",
-                "var3_min_length": 0,
-                "var3_min_length_error_message": "-",
-                "var3_max_length": 0,
-                "var3_max_length_error_message": "-",
+                "var3_type": "textfield",
+                "var3_min_length": 2,
+                "var3_min_length_error_message": "Please enter a text with at leaset 2 characters.",
+                "var3_max_length": 511,
+                "var3_max_length_error_message": "Please enter a text with no less then 511 chracters.",
                 "var3_min_num": 0,
-                "var3_min_num_error_message": "Please enter a cost amount greater then zero.",
-                "var3_max_num": 1000000000,
-                "var3_max_num_error_message": "Please enter a cost amount lesser then a billion."
+                "var3_min_num_error_message": "-",
+                "var3_max_num": 0,
+                "var3_max_num_error_message": "-"
             },
-            "type_id": 38
+            "type_id": 42
         }
     }
 ]
