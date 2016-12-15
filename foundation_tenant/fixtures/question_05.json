@@ -845,7 +845,7 @@
                     "Strong marketing skills",
                     "Strong technology skills",
                     "Strong business training",
-                    "Innovative approach to leadership", 
+                    "Innovative approach to leadership",
                     "High risk tolerance",
                     "Other (Please Specify)"
                 ],
@@ -860,6 +860,156 @@
             "dependency": {},
             "validation": {},
             "type_id": 27
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 93,
+        "fields": {
+            "document_type": 5,
+            "number": 13,
+            "title": "Choose 3 weaknesses or gaps that exist in your management team and identify how to resolve them.",
+            "help": "",
+            "options": {
+                "opt1": [
+                    "Inexperienced leadership",
+                    "Lack of administrative skills",
+                    "New to the industry",
+                    "Newcomer/Immigrant",
+                    "Inexperienced with Marketing/Social Media",
+                    "Lack of formal business training",
+                    "Lack of contacts in the industry",
+                    "Lack of sales experience",
+                    "Lack of support staff",
+                    "Other (Please Specify)"
+                ],
+                "opt1_select": "Select",
+                "opt1_other": "Other (Please Specify)",
+                "opt2": [
+                    {
+                        "parent": "Inexperienced leadership",
+                        "choices": [
+                            "Find industry mentor", "Take leadership training course", "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Lack of administrative skills",
+                        "choices": [
+                             "Hire administrative assistant",
+                             "Higher support staff as needed",
+                             "Higher virtual support staff as needed",
+                             "Find co-op students or interns",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "New to the industry",
+                        "choices": [
+                            "Join industry associations",
+                            "Join Chamber of Commerce",
+                            "Join Business Improvement Association",
+                            "Find industry mentor",
+                            "Take leadership training courses",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Newcomer/Immigrant",
+                        "choices": [
+                            "Take courses to improve language skills",
+                            "Hire bilingual staff as a support",
+                            "Get assistance from family members",
+                            "Join networking groups to improve language skills",
+                            "Find industry mentor",
+                            "Take leadership training course",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Inexperienced with Marketing/Social Media",
+                        "choices": [
+                            "Hire marketing employees",
+                            "Sign-up for marketing courses",
+                            "Read marketing books and articles",
+                            "Learn how to use marketing apps",
+                            "Join networking group",
+                            "Find industry mentor",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Lack of formal business training",
+                        "choices": [
+                            "Enroll in Government entrepreneurship program",
+                            "Take online business courses",
+                            "Access business resources from local non-profits",
+                            "Seek out support from industry organizations",
+                            "Read business books and implement best practices",
+                            "Find industry mentor",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Lack of contacts in the industry",
+                        "choices": [
+                            "Create strong brand campaign",
+                            "Attend networking events",
+                            "Join industry associations",
+                            "Join Chamber of Commerce",
+                            "Join Business Improvement Association",
+                            "Find industry mentor",
+                            "Take leadership training courses",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Lack of sales training or experience",
+                        "choices": [
+                            "Hire sales staff",
+                            "Take sales training course",
+                            "Investigate alternative sales or distribution channels",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Lack of support staff",
+                        "choices": [
+                            "Hire administrative assistant",
+                            "Higher support staff as needed",
+                            "Higher virtual support staff as needed",
+                            "Find co-op students or interns",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt2_select": "Select",
+                "opt2_other": "Other (Please Specify)"
+            },
+            "content": {
+                "stub_1": "Weakness",
+                "stub_2": "Resolution",
+                "stub_3": "Remove",
+                "stub_4": "Weakness",
+                "stub_5": "Resolution",
+                "stub_6": "Add Weakness / Resolution"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 3,
+                "min_error_message": "Please pick at least 3 weaknesses.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 weaknesses.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 33
         }
     }
 ]
