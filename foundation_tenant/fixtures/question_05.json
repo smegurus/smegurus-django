@@ -1144,30 +1144,30 @@
             "options": {
                 "opt1": [
                     {
-                        "id": "1",
-                        "value": "By their interest",
-                        "text": "By their interest"
-                    },
-                    {
-                        "id": "2",
-                        "value": "When they approach my place of business or where I sell",
-                        "text": "When they approach my place of business or where I sell"
-                    },
-                    {
-                        "id": "3",
-                        "value": "By E-Mail",
-                        "text": "By E-Mail"
-                    },
-                    {
-                        "id": "4",
-                        "value": "As the result of a social media campaign",
-                        "text": "As the result of a social media campaign"
-                    },
-                    {
-                        "id": "5",
-                        "value": "Other",
-                        "text": "Other"
-                    }
+                    "id": "1",
+                    "value": "Resume for each owner",
+                    "text": "Resume for each owner"
+                },
+                {
+                    "id": "2",
+                    "value": "Statement of personal networth",
+                    "text": "Statement of personal networth"
+                },
+                {
+                    "id": "3",
+                    "value": "Credit Report",
+                    "text": "Credit Report"
+                },
+                {
+                    "id": "4",
+                    "value": "Partnership Agreement",
+                    "text": "Partnership Agreement"
+                },
+                {
+                    "id": "5",
+                    "value": "Other",
+                    "text": "Other"
+                }
                 ],
                 "opt1_other": "Other"
             },
