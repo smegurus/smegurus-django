@@ -1,0 +1,508 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    var row_index = {{ picked_count }};
+
+    $(document).ready(function () {
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $(document).on('change','#id_input_1',function(){
+            // Show "Other" field if the "Other" option was selected.
+            var input_1 = $('#id_input_1').val();
+            if (input_1 == "{{ question.options.opt1_other }}") {
+                $('#id_input_1_other_div').show();
+            } else {
+                $('#id_input_1_other_div').hide();
+            }
+        });
+    }); // end DOCUMENT START
+
+    function delete_row(id) {
+        $('#'+id).remove();
+    }
+
+    function add_row() {
+        //-------------------------//
+        // GET VALUES
+        //-------------------------//
+        var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
+        var input_2 = $('#id_input_2').val();
+        var input_2_other = $('#id_input_2_other').val();
+        var input_3 = $('#id_input_3').val();
+        var input_4 = $('#id_input_4').val();
+        var input_5 = $('#id_input_5').val();
+        var input_6 = $('#id_input_6').val();
+        var input_6_other = $('#id_input_6_other').val();
+        var input_7 = $('#id_input_7').val();
+        var input_7_other = $('#id_input_7_other').val();
+
+        //-------------------------//
+        // PERFORM VALIDATION.
+        //-------------------------//
+        // ROW 1
+        if (input_1 == "{{ question.options.opt1_other }}") {
+            if (input_1_other.length < 1) {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_1.length < 1) {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
+                return;
+            }
+        }
+
+        // ROW 2
+        if (input_2 == "{{ question.options.opt2_other }}") {
+            if (input_2_other.length < 1) {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_2.length < 1) {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\"");
+                return;
+            }
+        }
+
+        // ROW 3
+        if (input_3.length < 1) {
+            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_3 }}\"");
+            return;
+        }
+
+        // ROW 4
+        if (input_4.length < 1) {
+            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_4 }}\"");
+            return;
+        }
+
+        // ROW 5
+        if (input_5.length < 1) {
+            alert("{% trans 'Please fill in' %} \"{{ question.content.stub_5 }}\"");
+            return;
+        }
+
+        // ROW 6
+        if (input_6 == "{{ question.options.opt3_other }}") {
+            if (input_6_other.length < 1) {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_6.length < 1) {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_6 }}\"");
+                return;
+            }
+        }
+
+        // ROW 7
+        if (input_7 == "{{ question.options.opt4_other }}") {
+            if (input_7_other.length < 1) {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_7.length < 1) {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_7 }}\"");
+                return;
+            }
+        }
+
+        //-------------------------//
+        // CREATE HTML ROW.
+        //-------------------------//
+        // ROW
+        var html_row = "<tr id=\""+row_index+"\">";
+
+        // COL 1
+        if (input_1 == "{{ question.options.opt1_other }}") {
+            html_row += "<td>"+input_1_other+"</td>";
+        } else {
+            html_row += "<td>"+input_1+"</td>";
+        }
+
+        // COL 2
+        if (input_2 == "{{ question.options.opt2_other }}") {
+            html_row += "<td>"+input_2_other+"</td>";
+        } else {
+            html_row += "<td>"+input_2+"</td>";
+        }
+
+        // COL 3
+        html_row += "<td>"+input_3+"</td>";
+
+        // COL 4
+        html_row += "<td>"+input_4+"</td>";
+
+        // COL 5
+        html_row += "<td>"+input_5+"</td>";
+
+        // COL 6
+        if (input_6 == "{{ question.options.opt3_other }}") {
+            html_row += "<td>"+input_6_other+"</td>";
+        } else {
+            html_row += "<td>"+input_6+"</td>";
+        }
+
+        // COL 7
+        if (input_7 == "{{ question.options.opt4_other }}") {
+            html_row += "<td>"+input_7_other+"</td>";
+        } else {
+            html_row += "<td>"+input_7+"</td>";
+        }
+
+        html_row += "<td>";
+        var onclick_js = "delete_row("+row_index+")";
+        html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
+        html_row += "</td>";
+        html_row += "</tr>";
+
+        // // ADD HTML ROW TO OUR PAGE.
+        $("#id_table > tbody").append(html_row);
+
+        //-------------------------//
+        // CLEAR FIELDS.
+        //-------------------------//
+        // COL 1
+        $('#id_input_1').val("{{ question.options.opt1_select }}");
+        $('#id_input_1_other').val("");
+        $('#id_input_1_other').hide();
+
+        // COL 2
+        $('#id_input_2').val("{{ question.options.opt2_select }}");
+        $('#id_input_2_other').val("");
+        $('#id_input_2_other').hide();
+
+        // COL 3
+        $('#id_input_3').val("");
+
+        // COL 4
+        $('#id_input_4').val("");
+
+        // COL 5
+        $('#id_input_5').val("");
+
+        // COL 6
+        $('#id_input_6').val("{{ question.options.opt3_select }}");
+        $('#id_input_6_other').val("");
+        $('#id_input_6_other').hide();
+
+        // COL 7
+        $('#id_input_7').val("{{ question.options.opt4_select }}");
+        $('#id_input_7_other').val("");
+        $('#id_input_7_other').hide();
+
+        row_index += 1;
+    }
+
+    function get_table_data() {
+        var data = [];
+        $('#id_table').find('tr').each(function (rowIndex, r) {
+            var cols = [];
+            $(this).find('th,td').each(function (colIndex, c) {
+                cols.push(c.textContent);
+            });
+            data.push(cols);
+        });
+        return data;
+    }
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Fetch the table array.
+        var arr = get_table_data();
+
+        // Defensive Code: Check to see if any rows exist?
+        var count = arr.length;
+        if (count == 1) {
+            alert("Please add an owner before continuing.");
+            return;
+        }
+
+        // Variable used to generate our new array.
+        var new_arr = [];
+
+        // Iterate through the table and generate our new array.
+        for(var i=1; i < count; i++) {
+            var row = arr[i];
+            var var_2 = row[0];
+            var var_3 = row[1];
+            var var_4 = row[2];
+            var var_5 = row[3];
+            var var_6 = row[4];
+            var var_7 = row[5];
+            var var_8 = row[6];
+            new_arr.push({
+                "var_1": i,
+                "var_2": var_2,
+                "var_3": var_3,
+                "var_4": var_4,
+                "var_5": var_5,
+                "var_6": var_6,
+                "var_7": var_7,
+                "var_8": var_8
+            });
+        }
+
+        // DEBUGGING PURPOSES ONLY.
+        console.log(new_arr);
+
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            new_arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
+    }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="panel-body">
+                <!-- ROW 1 | TABLE -->
+                <div class="table-responsive">
+                    <!-- TABLE -->
+                    <table class="table table-striped" id="id_table">
+                        <thead>
+                            <tr>
+                                <th>{{ question.content.stub_1 }}</th>
+                                <th>{{ question.content.stub_2 }}</th>
+                                <th>{{ question.content.stub_3 }}</th>
+                                <th>{{ question.content.stub_4 }}</th>
+                                <th>{{ question.content.stub_5 }}</th>
+                                <th>{{ question.content.stub_6 }}</th>
+                                <th>{{ question.content.stub_7 }}</th>
+                                <th>{{ question.content.stub_8 }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- CONTENT -->
+                            {% for pick in picked %}
+                                <tr id="{{ pick.var_1 }}">
+                                    <td>{{ pick.var_2 }}</td>
+                                    <td>{{ pick.var_3 }}</td>
+                                    <td>{{ pick.var_4 }}</td>
+                                    <td>{{ pick.var_5 }}</td>
+                                    <td>{{ pick.var_6 }}</td>
+                                    <td>{{ pick.var_7 }}</td>
+                                    <td>{{ pick.var_8 }}</td>
+                                    <td>
+                                        <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <!-- end CONTENT -->
+                        </tbody>
+                    </table>
+                    <!-- end TABLE -->
+                </div>
+                <!-- end ROW 1 | TABLE -->
+
+                <br />
+
+                <fieldset>
+                    <!-- ROW 2 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_9|escape|safe }}</label>
+                        <div class="col-sm-10">
+                            <!-- OPTIONS -->
+                            <select id="id_input_1" class="form-control">
+                                <option value="">{{ question.options.opt1_select }}</option>
+                                {% for item in question.options.opt1 %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- end OPTIONS -->
+                        </div>
+                    </div>
+                    <!-- end ROW 2 -->
+
+                    <br />
+
+                    <!-- ROW 2 | OTHER -->
+                    <div class="form-group" style="display: none;" id="id_input_1_other_div">
+                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-10">
+                            <!-- OTHER -->
+                            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="" />
+                            <!-- end OTHER -->
+                        </div>
+                    </div>
+                    <!-- end ROW 2 | OTHER  -->
+
+                    <br />
+
+                    <!-- ROW 3 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_10|escape|safe }}</label>
+                        <div class="col-sm-10">
+                            <!-- OPTIONS -->
+                            <select id="id_input_2" class="form-control">
+                                <option value="">{{ question.options.opt2_select }}</option>
+                                {% for item in question.options.opt2 %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- end OPTIONS -->
+                        </div>
+                    </div>
+                    <!-- end ROW 3 -->
+
+                    <br />
+
+                    <!-- ROW 4 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_11 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_3" type="text" class="form-control" placeholder="{{ question.content.stub_12 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 4 -->
+
+                    <br />
+
+                    <!-- ROW 5 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_13 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_4" type="text" class="form-control" placeholder="{{ question.content.stub_14 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 5 -->
+
+                    <br />
+
+                    <!-- ROW 6 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_14 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_5" type="text" class="form-control" placeholder="{{ question.content.stub_15 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 6 -->
+
+                    <br />
+
+                    <!-- ROW 7 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_15 }}</label>
+                        <div class="col-sm-10">
+                            <!-- OPTIONS -->
+                            <select id="id_input_6" class="form-control">
+                                <option value="">{{ question.options.opt3_select }}</option>
+                                {% for item in question.options.opt3 %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- end OPTIONS -->
+                        </div>
+                    </div>
+                    <!-- end ROW 7 -->
+
+                    <br />
+
+                    <!-- ROW 7 | OTHER -->
+                    <div class="form-group" style="display: none;" id="id_input_1_other_div">
+                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-10">
+                            <!-- OTHER -->
+                            <input id="id_input_6_other" type="text" class="form-control" placeholder="" value="" />
+                            <!-- end OTHER -->
+                        </div>
+                    </div>
+                    <!-- end ROW 7 | OTHER  -->
+
+                    <br />
+
+                    <!-- ROW 8 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_16 }}</label>
+                        <div class="col-sm-10">
+                            <!-- OPTIONS -->
+                            <select id="id_input_7" class="form-control">
+                                <option value="">{{ question.options.opt4_select }}</option>
+                                {% for item in question.options.opt4 %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- end OPTIONS -->
+                        </div>
+                    </div>
+                    <!-- end ROW 8 -->
+
+                    <br />
+
+                    <!-- ROW 9 | OTHER -->
+                    <div class="form-group" style="display: none;" id="id_input_7_other_div">
+                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-10">
+                            <!-- OTHER -->
+                            <input id="id_input_7_other" type="text" class="form-control" placeholder="" value="" />
+                            <!-- end OTHER -->
+                        </div>
+                    </div>
+                    <!-- end ROW 9 | OTHER  -->
+
+                    <br />
+
+                    <!-- ROW 10 -->
+                    <div class="pull-right" onclick="add_row();">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_17 }}</button>
+                    </div>
+                    <!-- end ROW 10 -->
+                </fieldset>
+
+            </div>
+            <!-- end PANEL BODY-->
+        </div>
+        <!-- end 12col -->
+    </div>
+    <!-- end FORM GROUP -->
+</fieldset>
+<!-- end HTML -->
