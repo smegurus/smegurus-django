@@ -1133,5 +1133,48 @@
             "validation": {},
             "type_id": 43
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 96,
+        "fields": {
+            "document_type": 5,
+            "number": 16,
+            "title": "If you are applying for a loan with a financial institution they often require several additional pieces of information. For confidentiality reasons we do not store your personal information on our system, but we can identify on the Table of Contents that you will be attaching these documents. Please indicate which of the following you will need to attach to your business plan (check all that apply)",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "By their interest",
+                        "text": "By their interest"
+                    },
+                    {
+                        "id": "2",
+                        "value": "When they approach my place of business or where I sell",
+                        "text": "When they approach my place of business or where I sell"
+                    },
+                    {
+                        "id": "3",
+                        "value": "By E-Mail",
+                        "text": "By E-Mail"
+                    },
+                    {
+                        "id": "4",
+                        "value": "As the result of a social media campaign",
+                        "text": "As the result of a social media campaign"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
     }
 ]
