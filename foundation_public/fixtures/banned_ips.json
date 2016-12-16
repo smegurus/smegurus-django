@@ -322,5 +322,23 @@
         "banned_on": "2016-12-02",
         "reason": "/muieblackcat"
     }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 37,
+    "fields": {
+        "address": "189.63.117.51",
+        "banned_on": "2016-12-15",
+        "reason": "/cgi/common.cgi"
+    }
+},
+{
+    "model": "foundation_public.bannedip",
+    "pk": 38,
+    "fields": {
+        "address": "62.210.189.53",
+        "banned_on": "2016-12-15",
+        "reason": "/admin/config.php"
+    }
 }
 ]

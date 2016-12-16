@@ -5,6 +5,18 @@
     var row_index = {{ picked_count }};
 
     $(document).ready(function () {
+        $( "#id_input_4" ).datepicker({
+            dateFormat: "yy-mm-dd",
+            changeYear: true,
+            changeMonth: true
+        });
+
+        $( "#id_input_5" ).datepicker({
+            dateFormat: "yy-mm-dd",
+            changeYear: true,
+            changeMonth: true
+        });
+
         //
         // Detect changes with "id_input_1" input field.
         //
@@ -411,7 +423,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ question.content.stub_13 }}</label>
                         <div class="col-sm-10">
-                            <input id="id_input_4" type="text" class="form-control" placeholder="{{ question.content.stub_14 }}" value="" />
+                            <input type="text" id="id_input_4">
                         </div>
                     </div>
                     <!-- end ROW 5 -->
@@ -422,7 +434,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">{{ question.content.stub_14 }}</label>
                         <div class="col-sm-10">
-                            <input id="id_input_5" type="text" class="form-control" placeholder="{{ question.content.stub_15 }}" value="" />
+                            <input type="text" id="id_input_5">
                         </div>
                     </div>
                     <!-- end ROW 6 -->
