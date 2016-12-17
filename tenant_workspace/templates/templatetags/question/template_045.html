@@ -141,13 +141,164 @@
         $(profit_amount_id).val(total);
     }
 
+    //-------------------//
+    // VALIDATE AND SAVE //
+    //-------------------//
+
     /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        window.location = next_url;
+        // Fetch our inputs and validate them.
+        //----------------------------------------
+        var materials_yr1 = parseFloat($('#id_materials_yr1').val());
+        var materials_yr2 = parseFloat($('#id_materials_yr2').val());
+        var materials_yr3 = parseFloat($('#id_materials_yr3').val());
+        var labour_yr1 = parseFloat($('#id_labour_yr1').val());
+        var labour_yr2 = parseFloat($('#id_labour_yr2').val());
+        var labour_yr3 = parseFloat($('#id_labour_yr3').val());
+        var overhead_yr1 = parseFloat($('#id_overhead_yr1').val());
+        var overhead_yr2 = parseFloat($('#id_overhead_yr2').val());
+        var overhead_yr3 = parseFloat($('#id_overhead_yr3').val());
+        var total_cogs_yr1 = parseFloat($('#id_total_cogs_yr1').val());
+        var total_cogs_yr2 = parseFloat($('#id_total_cogs_yr2').val());
+        var total_cogs_yr3 = parseFloat($('#id_total_cogs_yr3').val());
+        var sales_per_unit_yr1 = parseFloat($('#id_sales_per_unit_yr1').val());
+        var sales_per_unit_yr2 = parseFloat($('#id_sales_per_unit_yr2').val());
+        var sales_per_unit_yr3 = parseFloat($('#id_sales_per_unit_yr3').val());
+        var profit_percent_yr1 = parseFloat($('#id_profit_percent_yr1').val());
+        var profit_percent_yr2 = parseFloat($('#id_profit_percent_yr2').val());
+        var profit_percent_yr3 = parseFloat($('#id_profit_percent_yr3').val());
+        var profit_amount_yr1 = parseFloat($('#id_profit_amount_yr1').val());
+        var profit_amount_yr2 = parseFloat($('#id_profit_amount_yr2').val());
+        var profit_amount_yr3 = parseFloat($('#id_profit_amount_yr3').val());
+
+        // VALIDATION.
+        //----------------------------------------
+        // MATERIALS
+        if (isNaN(materials_yr1)) {
+            alert("{% trans 'Please fill in year 1 of materials' %}");
+            return;
+        }
+        if (isNaN(materials_yr2)) {
+            alert("{% trans 'Please fill in year 2 of materials' %}");
+            return;
+        }
+        if (isNaN(materials_yr3)) {
+            alert("{% trans 'Please fill in year 3 of materials' %}");
+            return;
+        }
+
+        // LABOUR
+        if (isNaN(labour_yr1)) {
+            alert("{% trans 'Please fill in year 1 of labour' %}");
+            return;
+        }
+        if (isNaN(labour_yr2)) {
+            alert("{% trans 'Please fill in year 2 of labour' %}");
+            return;
+        }
+        if (isNaN(labour_yr3)) {
+            alert("{% trans 'Please fill in year 3 of labour' %}");
+            return;
+        }
+
+        // OVERHEAD
+        if (isNaN(overhead_yr1)) {
+            alert("{% trans 'Please fill in year 1 of overhead' %}");
+            return;
+        }
+        if (isNaN(overhead_yr2)) {
+            alert("{% trans 'Please fill in year 2 of overhead' %}");
+            return;
+        }
+        if (isNaN(overhead_yr3)) {
+            alert("{% trans 'Please fill in year 3 of overhead' %}");
+            return;
+        }
+
+        // SALES PER UNIT
+        if (isNaN(sales_per_unit_yr1)) {
+            alert("{% trans 'Please fill in year 1 of sales per unit' %}");
+            return;
+        }
+        if (isNaN(sales_per_unit_yr2)) {
+            alert("{% trans 'Please fill in year 2 of sales per unit' %}");
+            return;
+        }
+        if (isNaN(sales_per_unit_yr3)) {
+            alert("{% trans 'Please fill in year 3 of sales per unit' %}");
+            return;
+        }
+
+        // CREATE OUR UPDATE URL.
+        //----------------------------------------
+        var arr = {
+            'materials_yr1': materials_yr1,
+            'materials_yr2': materials_yr2,
+            'materials_yr3': materials_yr3,
+            'labour_yr1': labour_yr1,
+            'labour_yr2': labour_yr2,
+            'labour_yr3': labour_yr3,
+            'overhead_yr1': overhead_yr1,
+            'overhead_yr2': overhead_yr2,
+            'overhead_yr3': overhead_yr3,
+            'total_cogs_yr1': total_cogs_yr1,
+            'total_cogs_yr2': total_cogs_yr2,
+            'total_cogs_yr3': total_cogs_yr3,
+            'sales_per_unit_yr1': sales_per_unit_yr1,
+            'sales_per_unit_yr2': sales_per_unit_yr2,
+            'sales_per_unit_yr3': sales_per_unit_yr3,
+            'profit_percent_yr1': profit_percent_yr1,
+            'profit_percent_yr2': profit_percent_yr2,
+            'profit_percent_yr3': profit_percent_yr3,
+            'profit_amount_yr1': profit_amount_yr1,
+            'profit_amount_yr2': profit_amount_yr2,
+            'profit_amount_yr3': profit_amount_yr3,
+        };
+
+        // Save to our database.
+        //----------------------------------------
+        ajax_do_chain(
+            arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
     }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
 </script>
 {% endcompress %}
 <!-- end JS -->
