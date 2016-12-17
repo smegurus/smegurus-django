@@ -1,0 +1,96 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // FILL IN.
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <!-- BIZMULA COGS TABLE -->
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>{% trans '' %}</th>
+                            <th>{% trans 'Materials' %}</th>
+                            <th>{% trans 'Labour' %}</th>
+                            <th>{% trans 'Overhead' %}</th>
+                            <th>{% trans 'Total' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- MONTH 1 -->
+                        <tr>
+                            <td>{% trans 'Month 1' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" readonly="true">
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" onclick="$('#id_materials_month_1').show();">{% trans 'Modify' %}</button>
+                                    </span>
+                                </div>
+                                <div style="display: none;" id="id_materials_month_1">
+                                    <br>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" readonly="true">
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" onclick="$('#id_labour_month_1').show();">{% trans 'Modify' %}</button>
+                                    </span>
+                                </div>
+                                <div style="display: none;" id="id_labour_month_1">
+                                    <br>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" readonly="true">
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" onclick="$('#id_overhead_month_1').show();">{% trans 'Modify' %}</button>
+                                    </span>
+                                </div>
+                                <div style="display: none;" id="id_overhead_month_1">
+                                    <br>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <input id="id_profit_amount_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr3 }}" readonly=true>
+                            </td>
+                        </tr>
+                        <!-- MONTH 1 -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- end BIZMULA COGS TABLE -->
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->
