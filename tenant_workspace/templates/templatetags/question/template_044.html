@@ -3,16 +3,453 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // FILL IN.
+        //---------------------------//
+        // YEAR EXPENSE TEXT CHANGE  //
+        //---------------------------//
+        $('#id_yr1').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr2').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr3').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr4').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr5').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr6').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr7').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr8').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr9').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr10').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr11').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr12').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr13').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr14').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr15').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr16').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr17').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr18').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr19').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr20').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr21').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr22').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr23').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr24').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr25').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr26').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr27').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr28').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr29').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr30').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr31').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr32').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr33').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr34').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr35').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_yr36').bind('input',function(){
+            calculate_three_year_expenses();
+        });
     }); // end DOCUMENT START
+
+    //--------------------------------//
+    // CALCULATE ALL THE ROWS AT ONCE //
+    //--------------------------------//
+    function calculate_three_year_expenses() {
+        calculate_annual_expense('#id_yr1', '#id_yr2', '#id_yr3', '#id_yr4', '#id_yr5', '#id_yr6', '#id_yr7', '#id_yr8', '#id_yr9', '#id_yr10', '#id_yr11', '#id_yr12', '#id_yr1_total');
+        calculate_annual_expense('#id_yr13', '#id_yr14', '#id_yr15', '#id_yr16', '#id_yr17', '#id_yr18', '#id_yr19', '#id_yr20', '#id_yr21', '#id_yr22', '#id_yr23', '#id_yr24', '#id_yr2_total');
+        calculate_annual_expense('#id_yr25', '#id_yr26', '#id_yr27', '#id_yr28', '#id_yr29', '#id_yr30', '#id_yr31', '#id_yr32', '#id_yr33', '#id_yr34', '#id_yr35', '#id_yr36', '#id_yr3_total');
+    }
+
+    //----------------------------//
+    // CALCULATE INDIVIDUAL ITEMS //
+    //----------------------------//
+
+    /**
+     *  Function will take all the year-N inputs and calculate the TOTAL COGS
+     *  if all the values where valid integers. If not valid then a NaN will be
+     *  generated. The key idea is the developer passes in the ID of the inputs
+     *  and this function will reference them and make the UI change accordingly.
+     */
+    function calculate_annual_expense(yr1_id, yr2_id, yr3_id, yr4_id, yr5_id, yr6_id, yr7_id, yr8_id, yr9_id, yr10_id, yr11_id, yr12_id, total_id) {
+        // The sum total of the materials, labour and overhead.
+        var total = 0;
+
+        // Fetch the User inputs.
+        var year1 = parseFloat($(yr1_id).val());
+        var year2 = parseFloat($(yr2_id).val());
+        var year3 = parseFloat($(yr3_id).val());
+        var year4 = parseFloat($(yr4_id).val());
+        var year5 = parseFloat($(yr5_id).val());
+        var year6 = parseFloat($(yr6_id).val());
+        var year7 = parseFloat($(yr7_id).val());
+        var year8 = parseFloat($(yr8_id).val());
+        var year9 = parseFloat($(yr9_id).val());
+        var year10 = parseFloat($(yr10_id).val());
+        var year11 = parseFloat($(yr11_id).val());
+        var year12 = parseFloat($(yr12_id).val());
+
+        // Calculate the sum (if not NaN).
+        total += year1;
+        total += year2;
+        total += year3;
+        total += year4;
+        total += year5;
+        total += year6;
+        total += year7;
+        total += year8;
+        total += year9;
+        total += year10;
+        total += year11;
+        total += year12;
+
+        // Update the UI
+        $(total_id).val(total);
+    }
 
     /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        window.location = next_url;
+        // Fetch our inputs.
+        //----------------------------------------
+        var yr1 = parseFloat($('#id_yr1').val());
+        var yr2 = parseFloat($('#id_yr2').val());
+        var yr3 = parseFloat($('#id_yr3').val());
+        var yr4 = parseFloat($('#id_yr4').val());
+        var yr5 = parseFloat($('#id_yr5').val());
+        var yr6 = parseFloat($('#id_yr6').val());
+        var yr7 = parseFloat($('#id_yr7').val());
+        var yr8 = parseFloat($('#id_yr8').val());
+        var yr9 = parseFloat($('#id_yr9').val());
+        var yr10 = parseFloat($('#id_yr10').val());
+        var yr11 = parseFloat($('#id_yr11').val());
+        var yr12 = parseFloat($('#id_yr12').val());
+        var yr13 = parseFloat($('#id_yr13').val());
+        var yr14 = parseFloat($('#id_yr14').val());
+        var yr15 = parseFloat($('#id_yr15').val());
+        var yr16 = parseFloat($('#id_yr16').val());
+        var yr17 = parseFloat($('#id_yr17').val());
+        var yr18 = parseFloat($('#id_yr18').val());
+        var yr19 = parseFloat($('#id_yr19').val());
+        var yr20 = parseFloat($('#id_yr20').val());
+        var yr21 = parseFloat($('#id_yr21').val());
+        var yr22 = parseFloat($('#id_yr22').val());
+        var yr23 = parseFloat($('#id_yr23').val());
+        var yr24 = parseFloat($('#id_yr24').val());
+        var yr25 = parseFloat($('#id_yr25').val());
+        var yr26 = parseFloat($('#id_yr26').val());
+        var yr27 = parseFloat($('#id_yr27').val());
+        var yr28 = parseFloat($('#id_yr28').val());
+        var yr29 = parseFloat($('#id_yr29').val());
+        var yr30 = parseFloat($('#id_yr30').val());
+        var yr31 = parseFloat($('#id_yr31').val());
+        var yr32 = parseFloat($('#id_yr32').val());
+        var yr33 = parseFloat($('#id_yr33').val());
+        var yr34 = parseFloat($('#id_yr34').val());
+        var yr35 = parseFloat($('#id_yr35').val());
+        var yr36 = parseFloat($('#id_yr36').val());
+        var yr1_total = parseFloat($('#id_yr1_total').val());
+        var yr2_total = parseFloat($('#id_yr2_total').val());
+        var yr3_total = parseFloat($('#id_yr3_total').val());
+
+        // VALIDATION.
+        //----------------------------------------
+        if (isNaN(yr1)) {
+            alert("{% trans 'Please fill in year 1.' %}");
+            return;
+        }
+        if (isNaN(yr2)) {
+            alert("{% trans 'Please fill in year 2.' %}");
+            return;
+        }
+        if (isNaN(yr3)) {
+            alert("{% trans 'Please fill in year 3.' %}");
+            return;
+        }
+        if (isNaN(yr4)) {
+            alert("{% trans 'Please fill in year 4.' %}");
+            return;
+        }
+        if (isNaN(yr5)) {
+            alert("{% trans 'Please fill in year 5.' %}");
+            return;
+        }
+        if (isNaN(yr6)) {
+            alert("{% trans 'Please fill in year 6.' %}");
+            return;
+        }
+        if (isNaN(yr7)) {
+            alert("{% trans 'Please fill in year 7.' %}");
+            return;
+        }
+        if (isNaN(yr8)) {
+            alert("{% trans 'Please fill in year 8.' %}");
+            return;
+        }
+        if (isNaN(yr9)) {
+            alert("{% trans 'Please fill in year 9.' %}");
+            return;
+        }
+        if (isNaN(yr10)) {
+            alert("{% trans 'Please fill in year 10.' %}");
+            return;
+        }
+        if (isNaN(yr11)) {
+            alert("{% trans 'Please fill in year 11.' %}");
+            return;
+        }
+        if (isNaN(yr12)) {
+            alert("{% trans 'Please fill in year 12.' %}");
+            return;
+        }
+        if (isNaN(yr13)) {
+            alert("{% trans 'Please fill in year 13.' %}");
+            return;
+        }
+        if (isNaN(yr14)) {
+            alert("{% trans 'Please fill in year 14.' %}");
+            return;
+        }
+        if (isNaN(yr15)) {
+            alert("{% trans 'Please fill in year 15.' %}");
+            return;
+        }
+        if (isNaN(yr16)) {
+            alert("{% trans 'Please fill in year 16.' %}");
+            return;
+        }
+        if (isNaN(yr17)) {
+            alert("{% trans 'Please fill in year 17.' %}");
+            return;
+        }
+        if (isNaN(yr18)) {
+            alert("{% trans 'Please fill in year 18.' %}");
+            return;
+        }
+        if (isNaN(yr19)) {
+            alert("{% trans 'Please fill in year 19.' %}");
+            return;
+        }
+        if (isNaN(yr20)) {
+            alert("{% trans 'Please fill in year 20.' %}");
+            return;
+        }
+        if (isNaN(yr21)) {
+            alert("{% trans 'Please fill in year 21.' %}");
+            return;
+        }
+        if (isNaN(yr22)) {
+            alert("{% trans 'Please fill in year 22.' %}");
+            return;
+        }
+        if (isNaN(yr23)) {
+            alert("{% trans 'Please fill in year 23.' %}");
+            return;
+        }
+        if (isNaN(yr24)) {
+            alert("{% trans 'Please fill in year 24.' %}");
+            return;
+        }
+        if (isNaN(yr25)) {
+            alert("{% trans 'Please fill in year 25.' %}");
+            return;
+        }
+        if (isNaN(yr26)) {
+            alert("{% trans 'Please fill in year 26.' %}");
+            return;
+        }
+        if (isNaN(yr27)) {
+            alert("{% trans 'Please fill in year 27.' %}");
+            return;
+        }
+        if (isNaN(yr28)) {
+            alert("{% trans 'Please fill in year 28.' %}");
+            return;
+        }
+        if (isNaN(yr29)) {
+            alert("{% trans 'Please fill in year 29.' %}");
+            return;
+        }
+        if (isNaN(yr30)) {
+            alert("{% trans 'Please fill in year 30.' %}");
+            return;
+        }
+        if (isNaN(yr31)) {
+            alert("{% trans 'Please fill in year 31.' %}");
+            return;
+        }
+        if (isNaN(yr32)) {
+            alert("{% trans 'Please fill in year 32.' %}");
+            return;
+        }
+        if (isNaN(yr33)) {
+            alert("{% trans 'Please fill in year 33.' %}");
+            return;
+        }
+        if (isNaN(yr34)) {
+            alert("{% trans 'Please fill in year 34.' %}");
+            return;
+        }
+        if (isNaN(yr35)) {
+            alert("{% trans 'Please fill in year 35.' %}");
+            return;
+        }
+        if (isNaN(yr36)) {
+            alert("{% trans 'Please fill in year 36.' %}");
+            return;
+        }
+
+        // CREATE OUR UPDATE URL.
+        //----------------------------------------
+        var arr = {
+            'yr1': yr1,
+            'yr2': yr2,
+            'yr3': yr3,
+            'yr4': yr4,
+            'yr5': yr5,
+            'yr6': yr6,
+            'yr7': yr7,
+            'yr8': yr8,
+            'yr9': yr9,
+            'yr10': yr10,
+            'yr11': yr11,
+            'yr12': yr12,
+            'yr13': yr13,
+            'yr14': yr14,
+            'yr15': yr15,
+            'yr16': yr16,
+            'yr17': yr17,
+            'yr18': yr18,
+            'yr19': yr19,
+            'yr20': yr20,
+            'yr21': yr21,
+            'yr22': yr22,
+            'yr23': yr23,
+            'yr24': yr24,
+            'yr25': yr25,
+            'yr26': yr26,
+            'yr27': yr27,
+            'yr28': yr28,
+            'yr29': yr29,
+            'yr30': yr30,
+            'yr31': yr31,
+            'yr32': yr32,
+            'yr33': yr33,
+            'yr34': yr34,
+            'yr35': yr35,
+            'yr36': yr36,
+            'yr1_total': yr1_total,
+            'yr2_total': yr2_total,
+            'yr3_total': yr3_total
+        };
+
+        // Save to our database.
+        //----------------------------------------
+        ajax_do_chain(
+            arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
     }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -23,8 +460,219 @@
     </legend>
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
-            <!-- FILL IN -->
+        <div class="col-sm-12">
+            <!-- BIZMULA EXPENSE TABLE YEAR 1 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 1' %}</th>
+                        <th>{% trans 'Month 2' %}</th>
+                        <th>{% trans 'Month 3' %}</th>
+                        <th>{% trans 'Month 4' %}</th>
+                        <th>{% trans 'Month 5' %}</th>
+                        <th>{% trans 'Month 6' %}</th>
+                        <th>{% trans 'Month 7' %}</th>
+                        <th>{% trans 'Month 8' %}</th>
+                        <th>{% trans 'Month 9' %}</th>
+                        <th>{% trans 'Month 10' %}</th>
+                        <th>{% trans 'Month 11' %}</th>
+                        <th>{% trans 'Month 12' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '1' %}</td>
+                         <td>
+                             <input id="id_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.yr1 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.yr2 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.yr3 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr4" type="number" class="form-control" placeholder="-" value="{{ picked.yr4 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr5" type="number" class="form-control" placeholder="-" value="{{ picked.yr5 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr6" type="number" class="form-control" placeholder="-" value="{{ picked.yr6 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr7" type="number" class="form-control" placeholder="-" value="{{ picked.yr7 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr8" type="number" class="form-control" placeholder="-" value="{{ picked.yr8 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr9" type="number" class="form-control" placeholder="-" value="{{ picked.yr9 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr10" type="number" class="form-control" placeholder="-" value="{{ picked.yr10 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr11" type="number" class="form-control" placeholder="-" value="{{ picked.yr11 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr12" type="number" class="form-control" placeholder="-" value="{{ picked.yr12 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr1_total" type="number" class="form-control" placeholder="-" value="{{ picked.yr1_total }}" readonly=true>
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end BIZMULA EXPENSE TABLE YEAR 1 -->
+
+            <br />
+            <br />
+
+            <!-- BIZMULA EXPENSE TABLE YEAR 2 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 13' %}</th>
+                        <th>{% trans 'Month 14' %}</th>
+                        <th>{% trans 'Month 15' %}</th>
+                        <th>{% trans 'Month 16' %}</th>
+                        <th>{% trans 'Month 17' %}</th>
+                        <th>{% trans 'Month 18' %}</th>
+                        <th>{% trans 'Month 19' %}</th>
+                        <th>{% trans 'Month 20' %}</th>
+                        <th>{% trans 'Month 21' %}</th>
+                        <th>{% trans 'Month 22' %}</th>
+                        <th>{% trans 'Month 23' %}</th>
+                        <th>{% trans 'Month 24' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '2' %}</td>
+                         <td>
+                             <input id="id_yr13" type="number" class="form-control" placeholder="-" value="{{ picked.yr13 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr14" type="number" class="form-control" placeholder="-" value="{{ picked.yr14 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr15" type="number" class="form-control" placeholder="-" value="{{ picked.yr15 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr16" type="number" class="form-control" placeholder="-" value="{{ picked.yr16 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr17" type="number" class="form-control" placeholder="-" value="{{ picked.yr17 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr18" type="number" class="form-control" placeholder="-" value="{{ picked.yr18 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr19" type="number" class="form-control" placeholder="-" value="{{ picked.yr19 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr20" type="number" class="form-control" placeholder="-" value="{{ picked.yr20 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr21" type="number" class="form-control" placeholder="-" value="{{ picked.yr21 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr22" type="number" class="form-control" placeholder="-" value="{{ picked.yr22 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr23" type="number" class="form-control" placeholder="-" value="{{ picked.yr23 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr24" type="number" class="form-control" placeholder="-" value="{{ picked.yr24 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr2_total" type="number" class="form-control" placeholder="-" value="{{ picked.yr2_total }}" readonly=true>
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end BIZMULA EXPENSE TABLE YEAR 2 -->
+
+            <br />
+            <br />
+
+            <!-- BIZMULA EXPENSE TABLE YEAR 3 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 25' %}</th>
+                        <th>{% trans 'Month 26' %}</th>
+                        <th>{% trans 'Month 27' %}</th>
+                        <th>{% trans 'Month 28' %}</th>
+                        <th>{% trans 'Month 29' %}</th>
+                        <th>{% trans 'Month 30' %}</th>
+                        <th>{% trans 'Month 31' %}</th>
+                        <th>{% trans 'Month 32' %}</th>
+                        <th>{% trans 'Month 33' %}</th>
+                        <th>{% trans 'Month 34' %}</th>
+                        <th>{% trans 'Month 35' %}</th>
+                        <th>{% trans 'Month 36' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '3' %}</td>
+                         <td>
+                             <input id="id_yr25" type="number" class="form-control" placeholder="-" value="{{ picked.yr25 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr26" type="number" class="form-control" placeholder="-" value="{{ picked.yr26 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr27" type="number" class="form-control" placeholder="-" value="{{ picked.yr27 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr28" type="number" class="form-control" placeholder="-" value="{{ picked.yr28 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr29" type="number" class="form-control" placeholder="-" value="{{ picked.yr29 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr30" type="number" class="form-control" placeholder="-" value="{{ picked.yr30 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr31" type="number" class="form-control" placeholder="-" value="{{ picked.yr31 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr32" type="number" class="form-control" placeholder="-" value="{{ picked.yr32 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr33" type="number" class="form-control" placeholder="-" value="{{ picked.yr33 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr34" type="number" class="form-control" placeholder="-" value="{{ picked.yr34 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr35" type="number" class="form-control" placeholder="-" value="{{ picked.yr35 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr36" type="number" class="form-control" placeholder="-" value="{{ picked.yr36 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr3_total" type="number" class="form-control" placeholder="-" value="{{ picked.yr3_total }}" readonly=true>
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- BIZMULA EXPENSE TABLE YEAR 3 -->
         </div>
     </div>
 </fieldset>
