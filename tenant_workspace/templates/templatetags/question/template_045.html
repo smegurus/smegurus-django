@@ -232,6 +232,12 @@
             return;
         }
 
+        // PROFIT PERCENT BELOW 15% ISSUE
+        // We want to generate a modal talking about this and allow the user to
+        //
+        //TODO: Imp.
+
+
         // CREATE OUR UPDATE URL.
         //----------------------------------------
         var arr = {
@@ -325,13 +331,13 @@
                      <tr>
                         <td>{% trans 'Materials' %}</td>
                         <td>
-                            <input id="id_materials_yr1" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_materials_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.materials_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_materials_yr2" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_materials_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.materials_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_materials_yr3" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_materials_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.materials_yr3 }}">
                         </td>
                      </tr>
 
@@ -339,13 +345,13 @@
                      <tr>
                         <td>{% trans 'Labour' %}</td>
                         <td>
-                            <input id="id_labour_yr1" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_labour_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.labour_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_labour_yr2" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_labour_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.labour_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_labour_yr3" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_labour_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.labour_yr3 }}">
                         </td>
                      </tr>
 
@@ -353,13 +359,13 @@
                      <tr>
                         <td>{% trans 'Overhead' %}</td>
                         <td>
-                            <input id="id_overhead_yr1" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_overhead_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.overhead_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_overhead_yr2" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_overhead_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.overhead_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_overhead_yr3" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_overhead_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.overhead_yr3 }}">
                         </td>
                      </tr>
 
@@ -367,13 +373,13 @@
                      <tr>
                         <td>{% trans 'TOTAL COGS' %}</td>
                         <td>
-                            <input id="id_total_cogs_yr1" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_total_cogs_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.total_cogs_yr1 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_total_cogs_yr2" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_total_cogs_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.total_cogs_yr2 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_total_cogs_yr3" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_total_cogs_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.total_cogs_yr3 }}" readonly=true>
                         </td>
                      </tr>
 
@@ -381,13 +387,13 @@
                      <tr>
                         <td>{% trans 'Sales price per unit' %}</td>
                         <td>
-                            <input id="id_sales_per_unit_yr1" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_sales_per_unit_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.sales_per_unit_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_sales_per_unit_yr2" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_sales_per_unit_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.sales_per_unit_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_sales_per_unit_yr3" type="number" class="form-control" placeholder="-" value="">
+                            <input id="id_sales_per_unit_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.sales_per_unit_yr3 }}">
                         </td>
                      </tr>
 
@@ -395,13 +401,13 @@
                      <tr>
                         <td>{% trans 'Gross Margin/Profit Margin (%)' %}</td>
                         <td>
-                            <input id="id_profit_percent_yr1" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_profit_percent_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.profit_percent_yr1 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_percent_yr2" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_profit_percent_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.profit_percent_yr2 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_percent_yr3" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_profit_percent_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.profit_percent_yr3 }}" readonly=true>
                         </td>
                      </tr>
 
@@ -409,13 +415,13 @@
                      <tr>
                         <td>{% trans 'Gross Margin/Profit Margin ($)' %}</td>
                         <td>
-                            <input id="id_profit_amount_yr1" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_profit_amount_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr1 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_amount_yr2" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_profit_amount_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr2 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_amount_yr3" type="number" class="form-control" placeholder="-" value="" readonly=true>
+                            <input id="id_profit_amount_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr3 }}" readonly=true>
                         </td>
                      </tr>
                   </tbody>
