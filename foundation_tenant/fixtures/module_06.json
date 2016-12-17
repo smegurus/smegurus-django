@@ -8,9 +8,17 @@
                 {
                     "previous_position": -1,
                     "current_position": 0,
-                    "next_position": -1,
+                    "next_position": 1,
                     "id": 2666,
                     "type": "slide"
+                },{
+                    "previous_position": 0,
+                    "current_position": 1,
+                    "next_position": -1,
+                    "id": 97,
+                    "type": "question",
+                    "document_type": 5,
+                    "order_num": 1
                 }
             ],
             "title": "Stage 6",

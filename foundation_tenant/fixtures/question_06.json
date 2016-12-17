@@ -1,3 +1,52 @@
 [
-
+    {
+        "model": "foundation_tenant.question",
+        "pk": 97,
+        "fields": {
+            "document_type": 6,
+            "number": 1,
+            "title": "Cost of Goods sold - To help forecast out your costs, we need to estimate your cost for any materials or labour that go into the product of your product. If you are a re-seller or retailer, you also need to understand your purchase costs and anything else that you do to the product to get it ready for sale, including logistical costs. Are you ...",
+            "help": "",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Producing your products",
+                        "text": "Producing your products"
+                    },
+                    {
+                        "value": "Providing a service",
+                        "text": "Providing a service"
+                    },
+                    {
+                        "value": "Buying your product and reselling",
+                        "text": "Buying your product and reselling"
+                    },
+                    {
+                        "value": "Buying a product and enhancing it",
+                        "text": "Buying a product and enhancing it"
+                    },
+                    {
+                        "value": "Producing a product and providing a service",
+                        "text": "Producing a product and providing a service"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    }
 ]
