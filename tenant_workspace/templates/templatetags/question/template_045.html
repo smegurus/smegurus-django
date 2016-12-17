@@ -1,8 +1,10 @@
-{% load staticfiles i18n compress foundation_public_tags %}
+{% load staticfiles i18n compress foundation_public_tags tenant_workspace_tags %}
 <!-- JS -->
 {% compress js inline %}
 <script>
     $(document).ready(function () {
+        $('#lowProfitModal').appendTo("body");
+
         //------------------------//
         // MATERIALS TEXT CHANGE  //
         //------------------------//
@@ -150,6 +152,48 @@
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
+        // Function will look at the profit percents for all three years
+        // and check for any profit below 15% percent; afterwords, either
+        // proceed to the next screen or load up a modal.
+        var profit_percent_yr1 = parseFloat($('#id_profit_percent_yr1').val());
+        var profit_percent_yr2 = parseFloat($('#id_profit_percent_yr2').val());
+        var profit_percent_yr3 = parseFloat($('#id_profit_percent_yr3').val());
+        if (isNaN(profit_percent_yr1)) {
+            alert("{% trans 'Please fill in year 1 of sales per unit' %}");
+            return;
+        }
+        if (isNaN(profit_percent_yr3)) {
+            alert("{% trans 'Please fill in year 2 of sales per unit' %}");
+            return;
+        }
+        if (isNaN(profit_percent_yr3)) {
+            alert("{% trans 'Please fill in year 3 of sales per unit' %}");
+            return;
+        }
+        if (profit_percent_yr1 <= 15) {
+            $('#lowProfitModal').modal('toggle');
+            $('#lowProfitModal').modal('show');
+            return;
+        }
+        if (profit_percent_yr2 <= 15) {
+            $('#lowProfitModal').modal('toggle');
+            $('#lowProfitModal').modal('show');
+            return;
+        }
+        if (profit_percent_yr3 <= 15) {
+            $('#lowProfitModal').modal('toggle');
+            $('#lowProfitModal').modal('show');
+            return;
+        }
+
+        // SAVE RESULTS TO OUR DATABASE IF ALL PROFITS ARE ABOUT 15%.
+        protected_next(next_url) ;
+    }
+
+    /**
+     *  Function will validate the data, save the data and load up the next screen.
+     */
+    function protected_next(next_url) {
         // Fetch our inputs and validate them.
         //----------------------------------------
         var materials_yr1 = parseFloat($('#id_materials_yr1').val());
@@ -232,12 +276,6 @@
             return;
         }
 
-        // PROFIT PERCENT BELOW 15% ISSUE
-        // We want to generate a modal talking about this and allow the user to
-        //
-        //TODO: Imp.
-
-
         // CREATE OUR UPDATE URL.
         //----------------------------------------
         var arr = {
@@ -305,6 +343,10 @@
             }
         ); // end GET ANSWER
     };
+
+    function go_next(next_url) {
+        window.location = next_url;
+    }
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -431,4 +473,30 @@
         </div>
     </div>
 </fieldset>
+<!-- MODAL -->
+<div class="modal fade" id="lowProfitModal" tabindex="-1" role="dialog" aria-labelledby="lowProfitModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="lowProfitModalLabel">{% trans 'Edit Workspace' %}</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              {% trans 'Your Gross Margin is lower than we would expect. If you don\'t have a lot of general expenses, or you are going to be selling a high volume of goods, then this is OK, but we would recommend that you try and aim for a gross margin greater than 15%. You can do this by either increasing your Sales price per unit, or decreasing your Materials, Labour or Overhead Costs. Do you want to go back and adjust your figures, or continue?' %}
+          </p>
+      </div>
+      <div class="modal-footer">
+        <!-- BACK BUTTON -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        <!-- end BACK BUTTON -->
+        <!-- SUBMIT BUTTON -->
+        <div class="pull-right">
+            <button id="id_submit_btn" type="button" class="btn btn-sm btn-primary" onclick="protected_next('{% reverse_next_node workspace module node %}');">{% trans 'Continue' %}</button>
+        </div>
+        <!-- end SUBMIT BUTTON -->
+      </div>
+  </div>
+  </div>
+</div>
 <!-- end HTML -->
