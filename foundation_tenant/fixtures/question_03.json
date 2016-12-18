@@ -6,7 +6,7 @@
             "document_type": 3,
             "number": 42,
             "title": "My target market will buy from me because I offer them...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -57,7 +57,7 @@
             "document_type": 3,
             "number": 43,
             "title": "How many people will I contact or try to reach in total?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -108,7 +108,7 @@
             "document_type": 3,
             "number": 44,
             "title": "How will you reach people?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -167,7 +167,7 @@
             "document_type": 3,
             "number": 45,
             "title": "How many of them need to agree that my idea is a good one?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -222,7 +222,7 @@
             "document_type": 3,
             "number": 46,
             "title": "What was the total number of people that you contacted? (Part 1 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -253,7 +253,7 @@
             "document_type": 3,
             "number": 47,
             "title": "What was the total number of people that you contacted? (Part 2 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -300,7 +300,7 @@
             "document_type": 3,
             "number": 48,
             "title": "How many people supported my business idea?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -331,7 +331,7 @@
             "document_type": 3,
             "number": 49,
             "title": "What did I learn?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -354,7 +354,7 @@
             "document_type": 3,
             "number": 50,
             "title": "Do I need to adjust any of the following assumptions?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {

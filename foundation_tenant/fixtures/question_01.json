@@ -6,7 +6,7 @@
             "document_type": 1,
             "number": 1,
             "title": "When I have something to work on, nobody ever needs to tell me what to do. I can figure it out for myself",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -48,7 +48,7 @@
             "document_type": 1,
             "number": 2,
             "title": "I like to be in control of whatever I do, and make my own decisions",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -90,7 +90,7 @@
             "document_type": 1,
             "number": 3,
             "title": "I am a perfectionist, I consistently want to improve things until they are “perfect”",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -132,7 +132,7 @@
             "document_type": 1,
             "number": 4,
             "title": "I don’t take “no” or “it can’t be done” for an answer",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -174,7 +174,7 @@
             "document_type": 1,
             "number": 5,
             "title": "Failure  and risk scare me. I am afraid to risk unless I am 100% certain of the outcome.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -216,7 +216,7 @@
             "document_type": 1,
             "number": 6,
             "title": "I seek out and greatly value the opinions of others.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -258,7 +258,7 @@
             "document_type": 1,
             "number": 7,
             "title": "I love learning to things",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -300,7 +300,7 @@
             "document_type": 1,
             "number": 8,
             "title": "When I'm doing work I really like, I don't mind working hard for long hours. In fact, it doesn't even seem like work.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -342,7 +342,7 @@
             "document_type": 1,
             "number": 9,
             "title": "I hate being interrupted when I work on something/ I don’t handle interruptions well.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -384,7 +384,7 @@
             "document_type": 1,
             "number": 10,
             "title": "If I have a dream or desire to do something, I make a plan and do not stop until I have accomplished my goal",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {

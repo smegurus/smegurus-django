@@ -6,7 +6,7 @@
             "document_type": 2,
             "number": 11,
             "title": "Name your business workspace",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -29,7 +29,7 @@
             "document_type": 2,
             "number": 12,
             "title": "Do you have any business partners?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -64,7 +64,7 @@
             "document_type": 2,
             "number": 13,
             "title": "Do you have a logo for your business?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -94,7 +94,7 @@
             "document_type": 2,
             "number": 14,
             "title": "Is your business idea related to any of the following?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -148,7 +148,7 @@
             "document_type": 2,
             "number": 15,
             "title": "What sector does your current business idea mainly fall into?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Category 1",
@@ -172,7 +172,7 @@
             "document_type": 2,
             "number": 16,
             "title": "How many years of experience do you have in this industry?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -219,7 +219,7 @@
             "document_type": 2,
             "number": 17,
             "title": "My business idea is...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -242,7 +242,7 @@
             "document_type": 2,
             "number": 18,
             "title": "List 5 types of information, people you can speak with or tools you can use to research this idea:",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "National Census",
@@ -282,7 +282,7 @@
             "document_type": 2,
             "number": 19,
             "title": "List 3 similar businesses",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -312,7 +312,7 @@
             "document_type": 2,
             "number": 20,
             "title": "List 3 people in your industry that you can talk to:",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Competitors",
@@ -343,7 +343,7 @@
             "document_type": 2,
             "number": 21,
             "title": "Will you offer mainly products, services, or both?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -380,7 +380,7 @@
             "document_type": 2,
             "number": 22,
             "title": "Please list at least 1, but up to 3 product or service categories that you will offer.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -410,7 +410,7 @@
             "document_type": 2,
             "number": 23,
             "title": "What type of customer will your business serve?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -453,7 +453,7 @@
             "document_type": 2,
             "number": 24,
             "title": "What is the opportunity you are taking advantage of or problem you seek to solve?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -496,7 +496,7 @@
             "document_type": 2,
             "number": 25,
             "title": "Why is no one else doing this yet?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -543,7 +543,7 @@
             "document_type": 2,
             "number": 26,
             "title": "How will you solve the problem?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -714,7 +714,7 @@
             "document_type": 2,
             "number": 27,
             "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Political",
@@ -811,7 +811,7 @@
             "document_type": 2,
             "number": 28,
             "title": "Provide 5 specific sources (articles, websites, studies, statistics) where you have found information that supports your idea:",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Research Sources",
@@ -837,7 +837,7 @@
             "document_type": 2,
             "number": 29,
             "title": "What is the geographic market that your business will serve? (Part 1 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -896,7 +896,7 @@
             "document_type": 2,
             "number": 30,
             "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": [
                 {
                     "name": "Neighbourhood",
@@ -1061,7 +1061,7 @@
             "document_type": 2,
             "number": 31,
             "title": "What is the total value of the industry in your target market area (expressed in dollars)?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [],
                 "opt1_other": "Other"
@@ -1092,7 +1092,7 @@
             "document_type": 2,
             "number": 32,
             "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "increasing",
@@ -1175,7 +1175,7 @@
             "document_type": 2,
             "number": 33,
             "title": "How many <i>potential<\/i> customers exist in your market area for your product?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1234,7 +1234,7 @@
             "document_type": 2,
             "number": 34,
             "title": "How competitive is your industry?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1273,7 +1273,7 @@
             "document_type": 2,
             "number": 35,
             "title": "This industry require levels of customer services that are...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1312,7 +1312,7 @@
             "document_type": 2,
             "number": 36,
             "title": "How much do prices vary in this industry?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1351,7 +1351,7 @@
             "document_type": 2,
             "number": 37,
             "title": "List up to 5 direct competitors",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "0-5 km",
@@ -1439,7 +1439,7 @@
             "document_type": 2,
             "number": 38,
             "title": "List up to 5 indirect competitors",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "0-5 km",
@@ -1527,7 +1527,7 @@
             "document_type": 2,
             "number": 39,
             "title": "My target market is based on...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": ["Household type", "Individuals", "Businesses/nonprofits", "Government"],
                 "opt1_select": "Select",
@@ -1676,7 +1676,7 @@
             "document_type": 2,
             "number": 40,
             "title": "How do customers make buying decisions in this industry",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1727,7 +1727,7 @@
             "document_type": 2,
             "number": 41,
             "title": "Are your target customers price sensitive?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1762,7 +1762,7 @@
             "document_type": 2,
             "number": 42,
             "title": "My target market will buy from me because I offer them...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {

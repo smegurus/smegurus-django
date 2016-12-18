@@ -1,6 +1,16 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress tenant_workspace_tags %}
 {% block content %}
+{% compress js inline %}
+<!-- PAGE JS -->
+<script>
+    $(document).ready(function () {
+        // BUGFIX: This code makes modals work.
+        $('#helpModal').appendTo("body"); // REQUIRED.
+    }); // end DOCUMENT START
+</script>
+{% endcompress %}
+<!-- end PAGE JS -->
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
@@ -22,7 +32,7 @@
 
            <div class="panel-body">
               <img src="{% static 'app/img/contact_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="show_contact({{ question.id }});" />
-              <img src="{% static 'app/img/question_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="show_help({{ question.id }});" />
+              <img src="{% static 'app/img/question_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="$('#helpModal').modal('toggle'); $('#helpModal').modal('show');" />
               <form id="questionForm" method="get" action="/" class="form-horizontal">
                  <!-- QUESTION CONTENT -->
                  {% if question.type_id == 1 %}
@@ -143,4 +153,26 @@
     <!-- end CONTENT -->
 </div>
 <!-- end PAGE HTML -->
+<!-- HELP MODAL -->
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="helpModalLabel">{% trans 'Help' %}</h4>
+      </div>
+      <div class="modal-body">
+          <p>{{ question.help|escape|safe }}</p>
+      </div>
+      <div class="modal-footer">
+        <!-- BACK BUTTON -->
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        <!-- end BACK BUTTON -->
+      </div>
+  </div>
+  </div>
+</div>
+<!-- end HELP MODAL -->
 {% endblock content %}

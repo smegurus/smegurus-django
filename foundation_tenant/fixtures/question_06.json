@@ -6,7 +6,7 @@
             "document_type": 6,
             "number": 1,
             "title": "Cost of Goods sold - To help forecast out your costs, we need to estimate your cost for any materials or labour that go into the product of your product. If you are a re-seller or retailer, you also need to understand your purchase costs and anything else that you do to the product to get it ready for sale, including logistical costs. Are you ...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -56,7 +56,7 @@
             "document_type": 6,
             "number": 2,
             "title": "How do you want to forecast your sales?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -94,7 +94,7 @@
             "document_type": 6,
             "number": 3,
             "title": "How many clients/hrs of service/number of units will you sell and when in Years 1-3",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {},
             "validation": {
@@ -113,7 +113,7 @@
             "document_type": 6,
             "number": 4,
             "title": "Now we are going to forecast your Cost of Goods Sold for one unit of product, one hour of service or one average sale per client. Then at the end you will enter your sales price for one unit of labour, product or your average sales price per product.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {},
             "validation": {
@@ -132,7 +132,7 @@
             "document_type": 6,
             "number": 5,
             "title": "We have taken your material, labour and overhead costs and spread them out based on the volume of product you told us for months 1-36. Please review these now and if they require adjustment, feel free to adjust.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {},
             "dependency": {},

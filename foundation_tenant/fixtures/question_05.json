@@ -6,7 +6,7 @@
             "document_type": 5,
             "number": 1,
             "title": "Please list at least 1, or up to 10 owners of the company and the percentage of shares that they own",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -104,7 +104,7 @@
             "document_type": 5,
             "number": 2,
             "title": "What is the legal structure of your company?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -151,7 +151,7 @@
             "document_type": 5,
             "number": 3,
             "title": "Where will your company be located?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "United States",
@@ -299,7 +299,7 @@
             "document_type": 5,
             "number": 4,
             "title": "What are uses of your companies space at your location?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Retail",
@@ -337,7 +337,7 @@
             "document_type": 5,
             "number": 5,
             "title": "Will you have any legal or professional fees to set up your business? If so, please detail them below.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Incorporation",
@@ -390,7 +390,7 @@
             "document_type": 5,
             "number": 6,
             "title": "Will you have any ongoing location specific costs?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Rent",
@@ -444,7 +444,7 @@
             "document_type": 5,
             "number": 7,
             "title": "Please list the specific products you will offer under each category?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Rent",
@@ -479,7 +479,7 @@
             "document_type": 5,
             "number": 8,
             "title": "Which verb best describes what you will do?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -533,7 +533,7 @@
             "document_type": 5,
             "number": 9,
             "title": "Currently, my customers must pay for products and services ...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -578,7 +578,7 @@
             "document_type": 5,
             "number": 10,
             "title": "Please list up to 5 licenses, registrations, or permits that you need to operate your business. At minimum, every business should have a name registration. Please list below, select the license, explain the process to obtain it, and how close you are to completing it.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -690,7 +690,7 @@
             "document_type": 5,
             "number": 11,
             "title": "List, your management team by name proposed role, and area of expertise (Min 1, Max 10)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -831,7 +831,7 @@
             "document_type": 5,
             "number": 12,
             "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Experienced leadership",
@@ -868,7 +868,7 @@
             "document_type": 5,
             "number": 13,
             "title": "Choose 3 weaknesses or gaps that exist in your management team and identify how to resolve them.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Inexperienced leadership",
@@ -1018,7 +1018,7 @@
             "document_type": 5,
             "number": 14,
             "title": "Many small businesses have legal, financial and other professionals they can go to for help. Please list 1-5 advisors or mentors that support you.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Mentor",
@@ -1073,7 +1073,7 @@
             "document_type": 5,
             "number": 15,
             "title": "Identify 3 to 5 key things you must do in the next year to ensure the success of your business, rate how important they are, how much they will cost to implement ($) and when they must be completed by",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Secure start-up funding",
@@ -1140,7 +1140,7 @@
             "document_type": 5,
             "number": 16,
             "title": "If you are applying for a loan with a financial institution they often require several additional pieces of information. For confidentiality reasons we do not store your personal information on our system, but we can identify on the Table of Contents that you will be attaching these documents. Please indicate which of the following you will need to attach to your business plan (check all that apply)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {

@@ -6,7 +6,7 @@
             "document_type": 4,
             "number": 51,
             "title": "What is the legal name of your company?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Legal Name",
@@ -27,7 +27,7 @@
             "document_type": 4,
             "number": 52,
             "title": "Choose 3-5 weaknesses that apply to your company (or write your own), and identify how you can resolve each one.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "We are novices to the industry",
@@ -238,7 +238,7 @@
             "document_type": 4,
             "number": 53,
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "yes_opt": {
                     "value": "Yes",
@@ -273,7 +273,7 @@
             "document_type": 4,
             "number": 54,
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "yes_opt": {
                     "value": "Yes",
@@ -306,7 +306,7 @@
             "document_type": 4,
             "number": 55,
             "title": "Why is no one else doing this yet?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -353,7 +353,7 @@
             "document_type": 4,
             "number": 56,
             "title": "Why is no one else doing this yet?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -428,7 +428,7 @@
             "document_type": 4,
             "number": 57,
             "title": "I see my company as a ________ in my industry (Click label to see a description)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -483,7 +483,7 @@
             "document_type": 4,
             "number": 58,
             "title": "We will be great at...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -530,7 +530,7 @@
             "document_type": 4,
             "number": 59,
             "title": "It will be our strategy to have our prices:",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -569,7 +569,7 @@
             "document_type": 4,
             "number": 60,
             "title": "How will your customers buy your products or services from you?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -632,7 +632,7 @@
             "document_type": 4,
             "number": 61,
             "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "variable costs",
@@ -782,7 +782,7 @@
             "document_type": 4,
             "number": 62,
             "title": "List 3 people in your industry that you can talk to:",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "We will provide excellent customer service",
@@ -813,7 +813,7 @@
             "document_type": 4,
             "number": 63,
             "title": "Is your business idea related to any of the following?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -857,7 +857,7 @@
             "document_type": 4,
             "number": 64,
             "title": "How will you convince them to buy from you?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -931,7 +931,7 @@
             "document_type": 4,
             "number": 65,
             "title": "What objections might someone have about your product and how might you respond? List 3 to 5.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "It is too expensive",
@@ -1016,7 +1016,7 @@
             "document_type": 4,
             "number": 66,
             "title": "What is the typical time it takes from when a customer is first interested in your product to when they finally buy?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1070,7 +1070,7 @@
             "document_type": 4,
             "number": 67,
             "title": "I will offer the the following incentives to get customers to try my products or services",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1207,7 +1207,7 @@
             "document_type": 4,
             "number": 68,
             "title": "I will use the following physical marketing materials as ways to communicate my product or service to customers",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1328,7 +1328,7 @@
             "document_type": 4,
             "number": 69,
             "title": "I will reach my customers through the following media campaigns",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -1452,7 +1452,7 @@
             "document_type": 4,
             "number": 70,
             "title": "Working with others is a cost-effective way to grow. Cooperating can mean running campaigns together or even joint ventures. List up to 5 potential partnerships you can utilize to grow your company.",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {

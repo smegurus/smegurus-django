@@ -6,7 +6,7 @@
             "document_type": 1,
             "number": 1,
             "title": "When I have something to work on, nobody ever needs to tell me what to do. I can figure it out for myself",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -40,7 +40,7 @@
             "document_type": 1,
             "number": 2,
             "title": "What is the legal name of your company?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Legal Name",
@@ -61,7 +61,7 @@
             "document_type": 1,
             "number": 3,
             "title": "Please list at least 1, or up to 10 owners of the company and the percentage of shares that they own",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -136,7 +136,7 @@
             "document_type": 1,
             "number": 4,
             "title": "What is the legal structure of your company?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "a sole proprietorship",
@@ -161,7 +161,7 @@
             "document_type": 1,
             "number": 5,
             "title": "Where will your company be located?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "United States",
@@ -304,7 +304,7 @@
             "document_type": 1,
             "number": 6,
             "title": "What are uses of your companies space at your location?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Retail",
@@ -341,7 +341,7 @@
             "document_type": 1,
             "number": 7,
             "title": "What are the two main benefits of your company's location?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "has good exposure",
@@ -380,7 +380,7 @@
             "document_type": 1,
             "number": 8,
             "title": "I need a business plan to...",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "obtain grants",
@@ -405,7 +405,7 @@
             "document_type": 1,
             "number": 9,
             "title": "What do you need the money for? Select up to 10 reasons from the list below or enter your own reason, then enter the amounts you need into the chart",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Purchase equipment",
@@ -443,7 +443,7 @@
             "document_type": 1,
             "number": 10,
             "title": "What is the geographic market that your business will serve? (Part 1 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -493,7 +493,7 @@
             "document_type": 1,
             "number": 11,
             "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": [
                 {
                     "name": "Neighbourhood",
@@ -658,7 +658,7 @@
             "document_type": 1,
             "number": 12,
             "title": "Does your business mainly offer products, services, or both?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
@@ -688,7 +688,7 @@
             "document_type": 1,
             "number": 13,
             "title": "Product/Service Description – Please list the products or services you offer and describe each (Min.1, Max 3). Click here for an example",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Product/Service Name",
@@ -717,7 +717,7 @@
             "document_type": 1,
             "number": 14,
             "title": "Please upload images of your product and business idea. (Part 1 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Please upload a picture of a product"
@@ -736,7 +736,7 @@
             "document_type": 1,
             "number": 15,
             "title": "Please upload images of your product and business idea. (Part 2 of 2)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Please upload a picture about your business - another product or a logo"
@@ -755,7 +755,7 @@
             "document_type": 1,
             "number": 16,
             "title": "Choose the verb which best describes what your company does",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "creation",
@@ -783,7 +783,7 @@
             "document_type": 1,
             "number": 17,
             "title": "What sector does your current business idea mainly fall into?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {},
             "content": {
                 "stub_1": "Category 1",
@@ -805,7 +805,7 @@
             "document_type": 1,
             "number": 18,
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "yes_opt": {
                     "value": "Yes",
@@ -840,7 +840,7 @@
             "document_type": 1,
             "number": 19,
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "yes_opt": {
                     "value": "Yes",
@@ -873,7 +873,7 @@
             "document_type": 1,
             "number": 20,
             "title": "Choose 3 reasons why your company will be unique",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "Excellent customer service",
@@ -909,7 +909,7 @@
             "document_type": 1,
             "number": 21,
             "title": "How competitive is your industry?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "very competitive",
@@ -932,7 +932,7 @@
             "document_type": 1,
             "number": 22,
             "title": "Who are your competitors, and how will you compete against them? Fill in up to 5 in the chart below, you must fill in at least 2",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "0-5 km",
@@ -984,7 +984,7 @@
             "document_type": 1,
             "number": 23,
             "title": "Who supplies your company? Identify up to 3 in the chart below, you must fill in at least 1",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "0-5 km",
@@ -1038,7 +1038,7 @@
             "document_type": 1,
             "number": 24,
             "title": "In your industry how many suppliers exist?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "many suppliers",
@@ -1061,7 +1061,7 @@
             "document_type": 1,
             "number": 25,
             "title": "What is your biggest supplier challenge, and how can you fix it?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "that few suppliers exist",
@@ -1095,7 +1095,7 @@
             "document_type": 1,
             "number": 26,
             "title": "How do you get your products or services to your clients?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "via direct deliveries to the client",
@@ -1128,7 +1128,7 @@
             "document_type": 1,
             "number": 27,
             "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
-            "help": "",
+            "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     "variable costs",
