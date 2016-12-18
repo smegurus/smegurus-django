@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
 from django import template
 from django.db.models import Q
 from django.core.urlresolvers import reverse
@@ -41,7 +40,7 @@ def render_question_type_001(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content)
+        'picked': answer.content
     }
 
 
@@ -53,36 +52,34 @@ def render_question_type_002(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
+        'picked': answer.content,
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_003.html')
 def render_question_type_003(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_004.html')
 def render_question_type_004(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         "OTHER_TEXT": "other"
     }
 
@@ -95,22 +92,21 @@ def render_question_type_005(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
+        'picked': answer.content,
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_006.html')
 def render_question_type_006(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
@@ -123,22 +119,21 @@ def render_question_type_007(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
+        'picked': answer.content,
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_008.html')
 def render_question_type_008(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
@@ -160,36 +155,33 @@ def render_question_type_009(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),  # Convert string to JSON dictionary.
-        'previous_picked': json.loads(previous_question_answer.content),  # Convert string to JSON dictionary.
+        'picked': answer.content,
+        'previous_picked': previous_question_answer.content,
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_010.html')
 def render_question_type_010(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_011.html')
 def render_question_type_011(workspace, module, node, question, answer):
-    # Convert JSON string into python dictionary.
-    picked = json.loads(answer.content)
-
     # Fetch the image that is associated with this question's answer.
     imageupload = None
-    if bool(picked):
-        upload_id = int_or_none(picked['var_1'])
+    upload_id = answer.content.get('var_2', None)
+    if upload_id:
+        upload_id = int_or_none(upload_id)
         imageupload = TenantImageUpload.objects.get(id=upload_id)
 
     return {
@@ -198,7 +190,7 @@ def render_question_type_011(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
+        'picked': answer.content,
         'imageupload': imageupload,
         "OTHER_TEXT": "Other (Please Specify)"
     }
@@ -210,11 +202,10 @@ def render_question_type_012(workspace, module, node, question, answer):
     DEPENDENCY:
     - NAICSOption
     """
-    # Convert JSON string into python dictionary.
-    picked = json.loads(answer.content)
+    picked = answer.content
 
     # If the answer was not created then we will pre-create the format.
-    if not bool(picked):
+    if not bool(picked): # We might need to change this
         picked = {
             'var_1': '',
             'var_2': '',
@@ -266,7 +257,7 @@ def render_question_type_012(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
+        'picked': answer.content,
         "OTHER_TEXT": "Other (Please Specify)",
         'depth_one_results': depth_one_results,
         'depth_two_results': depth_two_results,
@@ -285,8 +276,7 @@ def render_question_type_013(workspace, module, node, question, answer):
     - template #009 | QTYPE_ID: 11 | geographic market
     - NAICSOption
     """
-    # Convert JSON string into python dictionary.
-    picked = json.loads(answer.content)
+    picked = answer.content
     OTHER_TEXT = "Other (Please Specify)"
 
     # For this particular document and module, find the previous questions.
@@ -294,11 +284,11 @@ def render_question_type_013(workspace, module, node, question, answer):
     q2_qid = int_or_none(question.dependency['q2_qid'])
     q3_qid = int_or_none(question.dependency['q3_qid'])
     a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
-    a1 = json.loads(a1_raw.content)
+    a1 = a1_raw.content
     a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
-    a2 = json.loads(a2_raw.content)
+    a2 = a2_raw.content
     a3_raw = get_object_or_404(QuestionAnswer, question_id=q3_qid)
-    a3 = json.loads(a3_raw.content)
+    a3 = a3_raw.content
 
     # Generate custom text from previous questions.
     # 1. Generate company name.
@@ -334,8 +324,7 @@ def render_question_type_014(workspace, module, node, question, answer):
     - template #009 | QTYPE_ID: 11 | geographic market
     - template #011 | QTYPE_ID: 12 | naics
     """
-    # Convert JSON string into python dictionary.
-    picked = json.loads(answer.content)
+    picked = answer.content
     OTHER_TEXT = "Other (Please Specify)"
 
     # For this particular document and module, find the previous questions.
@@ -343,11 +332,11 @@ def render_question_type_014(workspace, module, node, question, answer):
     q2_qid = int_or_none(question.dependency['q2_qid'])
     q3_qid = int_or_none(question.dependency['q3_qid'])
     a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
-    a1 = json.loads(a1_raw.content)
+    a1 = a1_raw.content
     a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
-    a2 = json.loads(a2_raw.content)
+    a2 = a2_raw.content
     a3_raw = get_object_or_404(QuestionAnswer, question_id=q3_qid)
-    a3 = json.loads(a3_raw.content)
+    a3 = a3_raw.content
 
     # 2. Generate geographic info.
     company_market = a2['var_1']
@@ -381,96 +370,90 @@ def render_question_type_015(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': json.loads(answer.content),
+        'picked': answer.content,
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_015.html')
 def render_question_type_016(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_016.html')
 def render_question_type_017(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         "OTHER_TEXT": "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_017.html')
 def render_question_type_018(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         'OTHER_TEXT': "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_018.html')
 def render_question_type_019(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         'OTHER_TEXT': "Other (Please Specify)"
     }
 
 
 @register.inclusion_tag('templatetags/question/template_019.html')
 def render_question_type_020(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_020.html')
 def render_question_type_021(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
@@ -479,15 +462,14 @@ def render_question_type_022(workspace, module, node, question, answer):
     """
     - Updates workspace as well.
     """
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
@@ -496,14 +478,11 @@ def render_question_type_023(workspace, module, node, question, answer):
     """
     - uploads an image.
     """
-    picked = json.loads(answer.content)
-
     # Fetch the image that is associated with this question's answer.
     imageupload = None
-    if bool(picked):
-        upload_id = int_or_none(picked['var_2'])
-        if upload_id:
-            imageupload = TenantImageUpload.objects.get(id=upload_id)
+    upload_id = answer.content.get('var_2', None)
+    if upload_id:
+        imageupload = TenantImageUpload.objects.get(id=upload_id)
 
     return {
         'workspace': workspace,
@@ -511,107 +490,100 @@ def render_question_type_023(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         'imageupload': imageupload
     }
 
 
 @register.inclusion_tag('templatetags/question/template_024.html')
 def render_question_type_024(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_025.html')
 def render_question_type_025(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_026.html')
 def render_question_type_026(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_027.html')
 def render_question_type_027(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_028.html')
 def render_question_type_028(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_029.html')
 def render_question_type_029(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_030.html')
 def render_question_type_030(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
@@ -635,8 +607,8 @@ def render_question_type_031(workspace, module, node, question, answer):
     )
 
     # Extract the previously selected answer values.
-    x_picked = json.loads(x_answer.content)
-    y_picked = json.loads(y_answer.content)
+    x_picked = x_answer.content
+    y_picked = y_answer.content
 
     # Get the values
     x = 0
@@ -657,44 +629,41 @@ def render_question_type_031(workspace, module, node, question, answer):
         if x <= y:
             x_compare_y_result = True
 
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         'x_compare_y_result': x_compare_y_result,
     }
 
 
 @register.inclusion_tag('templatetags/question/template_032.html')
 def render_question_type_032(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_033.html')
 def render_question_type_033(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
@@ -706,17 +675,16 @@ def render_question_type_034(workspace, module, node, question, answer):
     - QTYPE_ID: 31 | Will you offer mainly products, services, or both
     - QTYPE_ID: 32 | lease list at least 1, but up to 3 product or service categories that you will offer.
     """
-    # Convert JSON string into python dictionary.
-    picked = json.loads(answer.content)
+    picked = answer.content
     OTHER_TEXT = "Other (Please Specify)"
 
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
     a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
-    a1 = json.loads(a1_raw.content)
+    a1 = a1_raw.content
     a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
-    a2 = json.loads(a2_raw.content)
+    a2 = a2_raw.content
 
     # 2. Generate info.
     offer_category = a1['var_1']
@@ -742,57 +710,53 @@ def render_question_type_034(workspace, module, node, question, answer):
 
 @register.inclusion_tag('templatetags/question/template_035.html')
 def render_question_type_035(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_036.html')
 def render_question_type_036(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_037.html')
 def render_question_type_037(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_038.html')
 def render_question_type_038(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
@@ -806,9 +770,7 @@ def render_question_type_039(workspace, module, node, question, answer):
     q1_qid = int_or_none(question.dependency['q1_qid'])
     dependent_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
 
-    # JSONIFY our previous answer.
-    picked = json.loads(answer.content)
-    dependent_answer = json.loads(dependent_answer.content)
+    dependent_answer = dependent_answer.content
 
     # Render our template.
     return {
@@ -817,93 +779,87 @@ def render_question_type_039(workspace, module, node, question, answer):
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked),
+        'picked': answer.content,
+        'picked_count': len(answer.content),
         'dependent_answer': dependent_answer
     }
 
 
 @register.inclusion_tag('templatetags/question/template_040.html')
 def render_question_type_040(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_041.html')
 def render_question_type_041(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_042.html')
 def render_question_type_042(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_043.html')
 def render_question_type_043(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_044.html')
 def render_question_type_044(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
 @register.inclusion_tag('templatetags/question/template_045.html')
 def render_question_type_045(workspace, module, node, question, answer):
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }
 
 
@@ -918,21 +874,20 @@ def render_question_type_046(workspace, module, node, question, answer):
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
     a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
-    a1 = json.loads(a1_raw.content)
+    a1 = a1_raw.content
     a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
-    a2 = json.loads(a2_raw.content)
+    a2 = a2_raw.content
 
     # DEBUGGING PURPOSES ONLY.
     print(a1)
     print(a2)
 
-    picked = json.loads(answer.content)
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        'picked': picked,
-        'picked_count': len(picked)
+        'picked': answer.content,
+        'picked_count': len(answer.content)
     }

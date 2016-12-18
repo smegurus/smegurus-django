@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import django_filters
 from django.utils.translation import ugettext_lazy as _
@@ -34,11 +35,16 @@ class QuestionAnswerViewSet(viewsets.ModelViewSet):
     #     workspace.owners.add(self.request.user)
     #     workspace.save()
     #
-    # def perform_update(self, serializer):
-    #     """Override the update function to include converting the answer string into JSON."""
-    #     # Update our model.
-    #     answer = serializer.save()
-    #
-    #     # Save data as json.
-    #     answer.content = json.loads(answer.content)
-    #     answer.save()
+    def perform_update(self, serializer):
+        """Override the update function to include converting the answer string into JSON."""
+        # Update our model.
+        answer = serializer.save()
+
+        # DEVELOPERS NOTE:
+        # Our javascript function will stringify the data and send it to us as
+        # a single string. We will then take the string and convert it into a
+        # JSON dictionary and save it to the model.
+
+        # Save data as json.
+        answer.content = json.loads(answer.content)
+        answer.save()
