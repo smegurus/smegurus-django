@@ -909,6 +909,23 @@ def render_question_type_045(workspace, module, node, question, answer):
 
 @register.inclusion_tag('templatetags/question/template_046.html')
 def render_question_type_046(workspace, module, node, question, answer):
+    """
+    Dependency:
+    - Q99
+    - Q100
+    """
+    # For this particular document and module, find the previous questions.
+    q1_qid = int_or_none(question.dependency['q1_qid'])
+    q2_qid = int_or_none(question.dependency['q2_qid'])
+    a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    a1 = json.loads(a1_raw.content)
+    a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    a2 = json.loads(a2_raw.content)
+
+    # DEBUGGING PURPOSES ONLY.
+    print(a1)
+    print(a2)
+
     picked = json.loads(answer.content)
     return {
         'workspace': workspace,

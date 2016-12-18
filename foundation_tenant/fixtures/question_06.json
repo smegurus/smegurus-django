@@ -135,7 +135,10 @@
             "help": "This is some generic help text.",
             "options": {},
             "content": {},
-            "dependency": {},
+            "dependency": {
+                "q1_qid": 99,
+                "q2_qid": 100
+            },
             "validation": {
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",

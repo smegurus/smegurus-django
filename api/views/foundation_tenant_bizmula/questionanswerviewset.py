@@ -1,3 +1,4 @@
+import json
 import django_filters
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
@@ -32,3 +33,12 @@ class QuestionAnswerViewSet(viewsets.ModelViewSet):
     #     workspace = serializer.save()
     #     workspace.owners.add(self.request.user)
     #     workspace.save()
+    #
+    # def perform_update(self, serializer):
+    #     """Override the update function to include converting the answer string into JSON."""
+    #     # Update our model.
+    #     answer = serializer.save()
+    #
+    #     # Save data as json.
+    #     answer.content = json.loads(answer.content)
+    #     answer.save()
