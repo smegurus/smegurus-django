@@ -90,6 +90,7 @@ SHARED_APPS = (
   "compressor",
   'sorl.thumbnail',
   'corsheaders',
+  'mathfilters',
 )
 
 TENANT_APPS = (

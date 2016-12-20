@@ -1,4 +1,4 @@
-{% load staticfiles i18n compress foundation_public_tags %}
+{% load staticfiles i18n compress foundation_public_tags mathfilters %}
 <!-- JS -->
 {% compress js inline %}
 <script>
@@ -23,6 +23,11 @@
     </legend>
     <div class="form-group">
         <div class="col-sm-12">
+
+            <br />
+            <button type="button" class="btn btn-default" onclick="">{% trans 'Edit' %}</button>
+            <br /><br />
+
             <!-- BIZMULA COGS TABLE -->
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
@@ -41,51 +46,1189 @@
                             <td>{% trans 'Month 1' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <div class="input-group">
-                                    <input type="text" class="form-control" readonly="true">
-                                    <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" onclick="$('#id_materials_month_1').show();">{% trans 'Modify' %}</button>
-                                    </span>
-                                </div>
-                                <div style="display: none;" id="id_materials_month_1">
-                                    <br>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_1 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_1" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <div class="input-group">
-                                    <input type="text" class="form-control" readonly="true">
-                                    <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" onclick="$('#id_labour_month_1').show();">{% trans 'Modify' %}</button>
-                                    </span>
-                                </div>
-                                <div style="display: none;" id="id_labour_month_1">
-                                    <br>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_1 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_1" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <div class="input-group">
-                                    <input type="text" class="form-control" readonly="true">
-                                    <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" onclick="$('#id_overhead_month_1').show();">{% trans 'Modify' %}</button>
-                                    </span>
-                                </div>
-                                <div style="display: none;" id="id_overhead_month_1">
-                                    <br>
-                                    <input type="text" class="form-control">
-                                </div>
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_1 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_1" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
-                                <input id="id_profit_amount_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr3 }}" readonly=true>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_1 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_1" />
+                                <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
                         <!-- MONTH 1 -->
+                        <!-- MONTH 2 -->
+                        <tr>
+                            <td>{% trans 'Month 2' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_2 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_2" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_2 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_2" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_2 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_2" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_2 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_2" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 2 -->
+                        <!-- MONTH 3 -->
+                        <tr>
+                            <td>{% trans 'Month 3' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_3 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_3" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_3 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_3" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_3 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_3" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_3 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_3" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 3 -->
+                        <!-- MONTH 4 -->
+                        <tr>
+                            <td>{% trans 'Month 4' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_4 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_4" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_4 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_4" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_4 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_4" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_4 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_4" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 4 -->
+                        <!-- MONTH 5 -->
+                        <tr>
+                            <td>{% trans 'Month 5' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_5 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_5" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_5 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_5" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_5 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_5" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_5 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_5" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 5 -->
+                        <!-- MONTH 6 -->
+                        <tr>
+                            <td>{% trans 'Month 6' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_6 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_6" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_6 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_6" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_6 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_6" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_6 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_6" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 6 -->
+                        <!-- MONTH 7 -->
+                        <tr>
+                            <td>{% trans 'Month 7' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_7 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_7" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_7 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_7" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_7 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_7" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_7 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_7" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 7 -->
+                        <!-- MONTH 8 -->
+                        <tr>
+                            <td>{% trans 'Month 8' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_8 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_8" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_8 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_8" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_8 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_8" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_8 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_8" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 8 -->
+                        <!-- MONTH 9 -->
+                        <tr>
+                            <td>{% trans 'Month 9' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_9 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_9" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_9 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_9" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_9 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_9" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_9 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_9" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 9 -->
+                        <!-- MONTH 10 -->
+                        <tr>
+                            <td>{% trans 'Month 10' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_10 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_10" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_10 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_10" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_10 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_10" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_10 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_10" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 10 -->
+                        <!-- MONTH 11 -->
+                        <tr>
+                            <td>{% trans 'Month 11' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_11 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_11" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_11 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_11" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_11 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_11" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_11 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_11" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 11 -->
+                        <!-- MONTH 12 -->
+                        <tr>
+                            <td>{% trans 'Month 12' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_12 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_12" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_12 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_12" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_12 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_12" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_12 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_12" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 12 -->
+                        <!-- MONTH 13 -->
+                        <tr>
+                            <td>{% trans 'Month 13' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_13 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_13" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_13 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_13" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_13 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_13" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_13 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_13" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 13 -->
+                        <!-- MONTH 14 -->
+                        <tr>
+                            <td>{% trans 'Month 14' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_14 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_14" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_14 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_14" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_14 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_14" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_14 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_14" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 14 -->
+                        <!-- MONTH 15 -->
+                        <tr>
+                            <td>{% trans 'Month 15' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_15 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_15" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_15 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_15" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_15 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_15" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_15 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_15" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 15 -->
+                        <!-- MONTH 16 -->
+                        <tr>
+                            <td>{% trans 'Month 16' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_16 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_16" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_16 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_16" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_16 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_16" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_16 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_16" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 16 -->
+                        <!-- MONTH 17 -->
+                        <tr>
+                            <td>{% trans 'Month 17' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_17 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_17" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_17 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_17" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_17 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_17" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_17 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_17" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 17 -->
+                        <!-- MONTH 18 -->
+                        <tr>
+                            <td>{% trans 'Month 18' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_18 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_18" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_18 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_18" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_18 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_18" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_18 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_18" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 18 -->
+                        <!-- MONTH 19 -->
+                        <tr>
+                            <td>{% trans 'Month 19' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_19 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_19" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_19 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_19" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_19 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_19" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_19 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_19" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 19 -->
+                        <!-- MONTH 20 -->
+                        <tr>
+                            <td>{% trans 'Month 20' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_20 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_20" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_20 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_20" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_20 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_20" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_20 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_20" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 20 -->
+                        <!-- MONTH 21 -->
+                        <tr>
+                            <td>{% trans 'Month 21' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_21 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_21" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_21 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_21" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_21 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_21" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_21 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_21" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 21 -->
+                        <!-- MONTH 22 -->
+                        <tr>
+                            <td>{% trans 'Month 22' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_22 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_22" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_22 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_22" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_22 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_22" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_22 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_22" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 22 -->
+                        <!-- MONTH 23 -->
+                        <tr>
+                            <td>{% trans 'Month 23' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_23 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_23" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_23 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_23" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_23 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_23" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_23 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_23" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 23 -->
+                        <!-- MONTH 24 -->
+                        <tr>
+                            <td>{% trans 'Month 24' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_24 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_24" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_24 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_24" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_24 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_24" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_24 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_24" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 24 -->
+                        <!-- MONTH 25 -->
+                        <tr>
+                            <td>{% trans 'Month 25' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_25 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_25" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_25 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_25" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_25 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_25" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_25 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_25" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 25 -->
+                        <!-- MONTH 26 -->
+                        <tr>
+                            <td>{% trans 'Month 26' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_26 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_26" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_26 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_26" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_26 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_26" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_26 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_26" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 26 -->
+                        <!-- MONTH 27 -->
+                        <tr>
+                            <td>{% trans 'Month 27' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_27 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_27" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_27 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_27" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_27 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_27" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_27 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_27" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 27 -->
+                        <!-- MONTH 28 -->
+                        <tr>
+                            <td>{% trans 'Month 28' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_28 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_28" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_28 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_28" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_28 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_28" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_28 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_28" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 28 -->
+                        <!-- MONTH 29 -->
+                        <tr>
+                            <td>{% trans 'Month 29' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_29 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_29" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_29 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_29" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_29 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_29" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_29 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_29" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 29 -->
+                        <!-- MONTH 30 -->
+                        <tr>
+                            <td>{% trans 'Month 30' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_30 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_30" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_30 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_30" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_30 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_30" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_30 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_30" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 30 -->
+                        <!-- MONTH 31 -->
+                        <tr>
+                            <td>{% trans 'Month 31' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_31 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_31" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_31 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_31" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_31 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_31" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_31 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_31" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 31 -->
+                        <!-- MONTH 32 -->
+                        <tr>
+                            <td>{% trans 'Month 32' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_32 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_32" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_32 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_32" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_32 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_32" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_32 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_32" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 32 -->
+                        <!-- MONTH 33 -->
+                        <tr>
+                            <td>{% trans 'Month 33' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_33 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_33" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_33 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_33" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_33 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_33" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_33 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_33" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 33 -->
+                        <!-- MONTH 34 -->
+                        <tr>
+                            <td>{% trans 'Month 34' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_34 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_34" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_34 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_34" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_34 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_34" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_34 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_34" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 34 -->
+                        <!-- MONTH 35 -->
+                        <tr>
+                            <td>{% trans 'Month 35' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_35 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_35" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_35 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_35" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_35 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_35" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_35 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_35" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 35 -->
+                        <!-- MONTH 36 -->
+                        <tr>
+                            <td>{% trans 'Month 36' %}</td>
+                            <td>
+                                <!-- MATERIALS GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_36 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_36" />
+                                <!-- end MATERIALS GROUP -->
+                            </td>
+                            <td>
+                                <!-- LABOUR GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_36 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_36" />
+                                <!-- end LABOUR GROUP -->
+                            </td>
+                            <td>
+                                <!-- OVERHEAD GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_36 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_36" />
+                                <!-- end OVERHEAD GROUP -->
+                            </td>
+                            <td>
+                                <!-- TOTAL GROUP -->
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_36 }}" />
+                                <br>
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_36" />
+                                <!-- end TOTAL GROUP -->
+                            </td>
+                        </tr>
+                        <!-- MONTH 36 -->
                     </tbody>
                 </table>
             </div>
