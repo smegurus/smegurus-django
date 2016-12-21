@@ -3,16 +3,879 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // FILL IN.
+        //--------------------------------------------------------------------//
+        //                             MATERIALS                              //
+        //--------------------------------------------------------------------//
+        $('#id_materials_month_1_other').bind('input',function(){ calculate_monthly_total(1); calculate_total(); });
+        $('#id_materials_month_2_other').bind('input',function(){ calculate_monthly_total(2); calculate_total(); });
+        $('#id_materials_month_3_other').bind('input',function(){ calculate_monthly_total(3); calculate_total(); });
+        $('#id_materials_month_4_other').bind('input',function(){ calculate_monthly_total(4); calculate_total(); });
+        $('#id_materials_month_5_other').bind('input',function(){ calculate_monthly_total(5); calculate_total(); });
+        $('#id_materials_month_6_other').bind('input',function(){ calculate_monthly_total(6); calculate_total(); });
+        $('#id_materials_month_7_other').bind('input',function(){ calculate_monthly_total(7); calculate_total(); });
+        $('#id_materials_month_8_other').bind('input',function(){ calculate_monthly_total(8); calculate_total(); });
+        $('#id_materials_month_9_other').bind('input',function(){ calculate_monthly_total(9); calculate_total(); });
+        $('#id_materials_month_10_other').bind('input',function(){ calculate_monthly_total(10); calculate_total(); });
+        $('#id_materials_month_11_other').bind('input',function(){ calculate_monthly_total(11); calculate_total(); });
+        $('#id_materials_month_12_other').bind('input',function(){ calculate_monthly_total(12); calculate_total(); });
+        $('#id_materials_month_13_other').bind('input',function(){ calculate_monthly_total(13); calculate_total(); });
+        $('#id_materials_month_14_other').bind('input',function(){ calculate_monthly_total(14); calculate_total(); });
+        $('#id_materials_month_15_other').bind('input',function(){ calculate_monthly_total(15); calculate_total(); });
+        $('#id_materials_month_16_other').bind('input',function(){ calculate_monthly_total(16); calculate_total(); });
+        $('#id_materials_month_17_other').bind('input',function(){ calculate_monthly_total(17); calculate_total(); });
+        $('#id_materials_month_18_other').bind('input',function(){ calculate_monthly_total(18); calculate_total(); });
+        $('#id_materials_month_19_other').bind('input',function(){ calculate_monthly_total(19); calculate_total(); });
+        $('#id_materials_month_20_other').bind('input',function(){ calculate_monthly_total(20); calculate_total(); });
+        $('#id_materials_month_21_other').bind('input',function(){ calculate_monthly_total(21); calculate_total(); });
+        $('#id_materials_month_22_other').bind('input',function(){ calculate_monthly_total(22); calculate_total(); });
+        $('#id_materials_month_23_other').bind('input',function(){ calculate_monthly_total(23); calculate_total(); });
+        $('#id_materials_month_24_other').bind('input',function(){ calculate_monthly_total(24); calculate_total(); });
+        $('#id_materials_month_25_other').bind('input',function(){ calculate_monthly_total(25); calculate_total(); });
+        $('#id_materials_month_26_other').bind('input',function(){ calculate_monthly_total(26); calculate_total(); });
+        $('#id_materials_month_27_other').bind('input',function(){ calculate_monthly_total(27); calculate_total(); });
+        $('#id_materials_month_28_other').bind('input',function(){ calculate_monthly_total(28); calculate_total(); });
+        $('#id_materials_month_29_other').bind('input',function(){ calculate_monthly_total(29); calculate_total(); });
+        $('#id_materials_month_30_other').bind('input',function(){ calculate_monthly_total(30); calculate_total(); });
+        $('#id_materials_month_31_other').bind('input',function(){ calculate_monthly_total(31); calculate_total(); });
+        $('#id_materials_month_32_other').bind('input',function(){ calculate_monthly_total(32); calculate_total(); });
+        $('#id_materials_month_33_other').bind('input',function(){ calculate_monthly_total(33); calculate_total(); });
+        $('#id_materials_month_34_other').bind('input',function(){ calculate_monthly_total(34); calculate_total(); });
+        $('#id_materials_month_35_other').bind('input',function(){ calculate_monthly_total(35); calculate_total(); });
+        $('#id_materials_month_36_other').bind('input',function(){ calculate_monthly_total(36); calculate_total(); });
+
+        //--------------------------------------------------------------------//
+        //                               LABOUR                               //
+        //--------------------------------------------------------------------//
+        $('#id_labour_month_1_other').bind('input',function(){ calculate_monthly_total(1); calculate_total(); });
+        $('#id_labour_month_2_other').bind('input',function(){ calculate_monthly_total(2); calculate_total(); });
+        $('#id_labour_month_3_other').bind('input',function(){ calculate_monthly_total(3); calculate_total(); });
+        $('#id_labour_month_4_other').bind('input',function(){ calculate_monthly_total(4); calculate_total(); });
+        $('#id_labour_month_5_other').bind('input',function(){ calculate_monthly_total(5); calculate_total(); });
+        $('#id_labour_month_6_other').bind('input',function(){ calculate_monthly_total(6); calculate_total(); });
+        $('#id_labour_month_7_other').bind('input',function(){ calculate_monthly_total(7); calculate_total(); });
+        $('#id_labour_month_8_other').bind('input',function(){ calculate_monthly_total(8); calculate_total(); });
+        $('#id_labour_month_9_other').bind('input',function(){ calculate_monthly_total(9); calculate_total(); });
+        $('#id_labour_month_10_other').bind('input',function(){ calculate_monthly_total(10); calculate_total(); });
+        $('#id_labour_month_11_other').bind('input',function(){ calculate_monthly_total(11); calculate_total(); });
+        $('#id_labour_month_12_other').bind('input',function(){ calculate_monthly_total(12); calculate_total(); });
+        $('#id_labour_month_13_other').bind('input',function(){ calculate_monthly_total(13); calculate_total(); });
+        $('#id_labour_month_14_other').bind('input',function(){ calculate_monthly_total(14); calculate_total(); });
+        $('#id_labour_month_15_other').bind('input',function(){ calculate_monthly_total(15); calculate_total(); });
+        $('#id_labour_month_16_other').bind('input',function(){ calculate_monthly_total(16); calculate_total(); });
+        $('#id_labour_month_17_other').bind('input',function(){ calculate_monthly_total(17); calculate_total(); });
+        $('#id_labour_month_18_other').bind('input',function(){ calculate_monthly_total(18); calculate_total(); });
+        $('#id_labour_month_19_other').bind('input',function(){ calculate_monthly_total(19); calculate_total(); });
+        $('#id_labour_month_20_other').bind('input',function(){ calculate_monthly_total(20); calculate_total(); });
+        $('#id_labour_month_21_other').bind('input',function(){ calculate_monthly_total(21); calculate_total(); });
+        $('#id_labour_month_22_other').bind('input',function(){ calculate_monthly_total(22); calculate_total(); });
+        $('#id_labour_month_23_other').bind('input',function(){ calculate_monthly_total(23); calculate_total(); });
+        $('#id_labour_month_24_other').bind('input',function(){ calculate_monthly_total(24); calculate_total(); });
+        $('#id_labour_month_25_other').bind('input',function(){ calculate_monthly_total(25); calculate_total(); });
+        $('#id_labour_month_26_other').bind('input',function(){ calculate_monthly_total(26); calculate_total(); });
+        $('#id_labour_month_27_other').bind('input',function(){ calculate_monthly_total(27); calculate_total(); });
+        $('#id_labour_month_28_other').bind('input',function(){ calculate_monthly_total(28); calculate_total(); });
+        $('#id_labour_month_29_other').bind('input',function(){ calculate_monthly_total(29); calculate_total(); });
+        $('#id_labour_month_30_other').bind('input',function(){ calculate_monthly_total(30); calculate_total(); });
+        $('#id_labour_month_31_other').bind('input',function(){ calculate_monthly_total(31); calculate_total(); });
+        $('#id_labour_month_32_other').bind('input',function(){ calculate_monthly_total(32); calculate_total(); });
+        $('#id_labour_month_33_other').bind('input',function(){ calculate_monthly_total(33); calculate_total(); });
+        $('#id_labour_month_34_other').bind('input',function(){ calculate_monthly_total(34); calculate_total(); });
+        $('#id_labour_month_35_other').bind('input',function(){ calculate_monthly_total(35); calculate_total(); });
+        $('#id_labour_month_36_other').bind('input',function(){ calculate_monthly_total(36); calculate_total(); });
+
+        //--------------------------------------------------------------------//
+        //                               LABOUR                               //
+        //--------------------------------------------------------------------//
+        $('#id_overhead_month_1_other').bind('input',function(){ calculate_monthly_total(1); calculate_total(); });
+        $('#id_overhead_month_2_other').bind('input',function(){ calculate_monthly_total(2); calculate_total(); });
+        $('#id_overhead_month_3_other').bind('input',function(){ calculate_monthly_total(3); calculate_total(); });
+        $('#id_overhead_month_4_other').bind('input',function(){ calculate_monthly_total(4); calculate_total(); });
+        $('#id_overhead_month_5_other').bind('input',function(){ calculate_monthly_total(5); calculate_total(); });
+        $('#id_overhead_month_6_other').bind('input',function(){ calculate_monthly_total(6); calculate_total(); });
+        $('#id_overhead_month_7_other').bind('input',function(){ calculate_monthly_total(7); calculate_total(); });
+        $('#id_overhead_month_8_other').bind('input',function(){ calculate_monthly_total(8); calculate_total(); });
+        $('#id_overhead_month_9_other').bind('input',function(){ calculate_monthly_total(9); calculate_total(); });
+        $('#id_overhead_month_10_other').bind('input',function(){ calculate_monthly_total(10); calculate_total(); });
+        $('#id_overhead_month_11_other').bind('input',function(){ calculate_monthly_total(11); calculate_total(); });
+        $('#id_overhead_month_12_other').bind('input',function(){ calculate_monthly_total(12); calculate_total(); });
+        $('#id_overhead_month_13_other').bind('input',function(){ calculate_monthly_total(13); calculate_total(); });
+        $('#id_overhead_month_14_other').bind('input',function(){ calculate_monthly_total(14); calculate_total(); });
+        $('#id_overhead_month_15_other').bind('input',function(){ calculate_monthly_total(15); calculate_total(); });
+        $('#id_overhead_month_16_other').bind('input',function(){ calculate_monthly_total(16); calculate_total(); });
+        $('#id_overhead_month_17_other').bind('input',function(){ calculate_monthly_total(17); calculate_total(); });
+        $('#id_overhead_month_18_other').bind('input',function(){ calculate_monthly_total(18); calculate_total(); });
+        $('#id_overhead_month_19_other').bind('input',function(){ calculate_monthly_total(19); calculate_total(); });
+        $('#id_overhead_month_20_other').bind('input',function(){ calculate_monthly_total(20); calculate_total(); });
+        $('#id_overhead_month_21_other').bind('input',function(){ calculate_monthly_total(21); calculate_total(); });
+        $('#id_overhead_month_22_other').bind('input',function(){ calculate_monthly_total(22); calculate_total(); });
+        $('#id_overhead_month_23_other').bind('input',function(){ calculate_monthly_total(23); calculate_total(); });
+        $('#id_overhead_month_24_other').bind('input',function(){ calculate_monthly_total(24); calculate_total(); });
+        $('#id_overhead_month_25_other').bind('input',function(){ calculate_monthly_total(25); calculate_total(); });
+        $('#id_overhead_month_26_other').bind('input',function(){ calculate_monthly_total(26); calculate_total(); });
+        $('#id_overhead_month_27_other').bind('input',function(){ calculate_monthly_total(27); calculate_total(); });
+        $('#id_overhead_month_28_other').bind('input',function(){ calculate_monthly_total(28); calculate_total(); });
+        $('#id_overhead_month_29_other').bind('input',function(){ calculate_monthly_total(29); calculate_total(); });
+        $('#id_overhead_month_30_other').bind('input',function(){ calculate_monthly_total(30); calculate_total(); });
+        $('#id_overhead_month_31_other').bind('input',function(){ calculate_monthly_total(31); calculate_total(); });
+        $('#id_overhead_month_32_other').bind('input',function(){ calculate_monthly_total(32); calculate_total(); });
+        $('#id_overhead_month_33_other').bind('input',function(){ calculate_monthly_total(33); calculate_total(); });
+        $('#id_overhead_month_34_other').bind('input',function(){ calculate_monthly_total(34); calculate_total(); });
+        $('#id_overhead_month_35_other').bind('input',function(){ calculate_monthly_total(35); calculate_total(); });
+        $('#id_overhead_month_36_other').bind('input',function(){ calculate_monthly_total(36); calculate_total(); });
     }); // end DOCUMENT START
+
+
+    //------------------------------------------------------------------------//
+    //                              CALCULATE                                 //
+    //------------------------------------------------------------------------//
+    function calculate_monthly_total(row) {
+        var total = 0;
+
+        var materials = parseFloat($('#id_materials_month_'+row).val());
+        var materials_other = parseFloat($('#id_materials_month_'+row+'_other').val());
+        if (isNaN(materials_other)) {
+            total += materials;
+        } else {
+            total += materials_other;
+        }
+
+        var labour = parseFloat($('#id_labour_month_'+row).val());
+        var labour_other = parseFloat($('#id_labour_month_'+row+'_other').val());
+        if (isNaN(labour_other)) {
+            total += labour;
+        } else {
+            total += labour_other;
+        }
+
+        var overhead = parseFloat($('#id_overhead_month_'+row).val());
+        var overhead_other = parseFloat($('#id_overhead_month_'+row+'_other').val());
+        if (isNaN(overhead_other)) {
+            total += overhead;
+        } else {
+            total += overhead_other;
+        }
+
+        $('#id_total_month_'+row+'_other').val(total);
+    }
+
+    function calculate_total() {
+        var yr1_total = 0;
+        var yr2_total = 0;
+        var yr3_total = 0;
+
+        // ----- YEAR 1 -----
+
+        var m1_total = parseFloat($('#id_total_month_1').val());
+        var m1_total_other = parseFloat($('#id_total_month_1_other').val());
+        if (isNaN(m1_total_other)) {
+            yr1_total += m1_total;
+        } else {
+            yr1_total += m1_total_other;
+        }
+
+        var m2_total = $('#id_total_month_2').val();
+        var m2_total_other = $('#id_total_month_2_other').val();
+        if (isNaN(m2_total_other)) {
+            yr1_total += m2_total;
+        } else {
+            yr1_total += m2_total_other;
+        }
+
+        var m3_total = $('#id_total_month_3').val();
+        var m3_total_other = $('#id_total_month_3_other').val();
+        if (isNaN(m3_total_other)) {
+            yr1_total += m3_total;
+        } else {
+            yr1_total += m3_total_other;
+        }
+
+        var m4_total = $('#id_total_month_4').val();
+        var m4_total_other = $('#id_total_month_4_other').val();
+        if (isNaN(m4_total_other)) {
+            yr1_total += m4_total;
+        } else {
+            yr1_total += m4_total_other;
+        }
+
+        var m5_total = $('#id_total_month_5').val();
+        var m5_total_other = $('#id_total_month_5_other').val();
+        if (isNaN(m5_total_other)) {
+            yr1_total += m5_total;
+        } else {
+            yr1_total += m5_total_other;
+        }
+
+        var m6_total = $('#id_total_month_6').val();
+        var m6_total_other = $('#id_total_month_6_other').val();
+        if (isNaN(m6_total_other)) {
+            yr1_total += m6_total;
+        } else {
+            yr1_total += m6_total_other;
+        }
+
+        var m7_total = $('#id_total_month_7').val();
+        var m7_total_other = $('#id_total_month_7_other').val();
+        if (isNaN(m7_total_other)) {
+            yr1_total += m7_total;
+        } else {
+            yr1_total += m7_total_other;
+        }
+
+        var m8_total = $('#id_total_month_8').val();
+        var m8_total_other = $('#id_total_month_8_other').val();
+        if (isNaN(m8_total_other)) {
+            yr1_total += m8_total;
+        } else {
+            yr1_total += m8_total_other;
+        }
+
+        var m9_total = $('#id_total_month_9').val();
+        var m9_total_other = $('#id_total_month_9_other').val();
+        if (isNaN(m9_total_other)) {
+            yr1_total += m9_total;
+        } else {
+            yr1_total += m9_total_other;
+        }
+
+        var m10_total = $('#id_total_month_10').val();
+        var m10_total_other = $('#id_total_month_10_other').val();
+        if (isNaN(m10_total_other)) {
+            yr1_total += m10_total;
+        } else {
+            yr1_total += m10_total_other;
+        }
+
+        var m11_total = $('#id_total_month_11').val();
+        var m11_total_other = $('#id_total_month_11_other').val();
+        if (isNaN(m11_total_other)) {
+            yr1_total += m11_total;
+        } else {
+            yr1_total += m11_total_other;
+        }
+
+        var m12_total = $('#id_total_month_12').val();
+        var m12_total_other = $('#id_total_month_12_other').val();
+        if (isNaN(m12_total_other)) {
+            yr1_total += m12_total;
+        } else {
+            yr1_total += m12_total_other;
+        }
+
+        // ----- YEAR 2 -----
+
+        var m13_total = $('#id_total_month_13').val();
+        var m13_total_other = $('#id_total_month_13_other').val();
+        if (isNaN(m13_total_other)) {
+            yr2_total += m13_total;
+        } else {
+            yr2_total += m13_total_other;
+        }
+
+        var m14_total = $('#id_total_month_14').val();
+        var m14_total_other = $('#id_total_month_14_other').val();
+        if (isNaN(m14_total_other)) {
+            yr2_total += m14_total;
+        } else {
+            yr2_total += m14_total_other;
+        }
+
+        var m15_total = $('#id_total_month_15').val();
+        var m15_total_other = $('#id_total_month_15_other').val();
+        if (isNaN(m15_total_other)) {
+            yr2_total += m15_total;
+        } else {
+            yr2_total += m15_total_other;
+        }
+
+        var m16_total = $('#id_total_month_16').val();
+        var m16_total_other = $('#id_total_month_16_other').val();
+        if (isNaN(m16_total_other)) {
+            yr2_total += m16_total;
+        } else {
+            yr2_total += m16_total_other;
+        }
+
+        var m17_total = $('#id_total_month_17').val();
+        var m17_total_other = $('#id_total_month_17_other').val();
+        if (isNaN(m17_total_other)) {
+            yr2_total += m17_total;
+        } else {
+            yr2_total += m17_total_other;
+        }
+
+        var m18_total = $('#id_total_month_18').val();
+        var m18_total_other = $('#id_total_month_18_other').val();
+        if (isNaN(m18_total_other)) {
+            yr2_total += m18_total;
+        } else {
+            yr2_total += m18_total_other;
+        }
+
+        var m19_total = $('#id_total_month_19').val();
+        var m19_total_other = $('#id_total_month_19_other').val();
+        if (isNaN(m19_total_other)) {
+            yr2_total += m19_total;
+        } else {
+            yr2_total += m19_total_other;
+        }
+
+        var m20_total = $('#id_total_month_20').val();
+        var m20_total_other = $('#id_total_month_20_other').val();
+        if (isNaN(m20_total_other)) {
+            yr2_total += m20_total;
+        } else {
+            yr2_total += m20_total_other;
+        }
+
+        var m21_total = $('#id_total_month_21').val();
+        var m21_total_other = $('#id_total_month_21_other').val();
+        if (isNaN(m21_total_other)) {
+            yr2_total += m21_total;
+        } else {
+            yr2_total += m21_total_other;
+        }
+
+        var m22_total = $('#id_total_month_22').val();
+        var m22_total_other = $('#id_total_month_22_other').val();
+        if (isNaN(m22_total_other)) {
+            yr2_total += m22_total;
+        } else {
+            yr2_total += m22_total_other;
+        }
+
+        var m23_total = $('#id_total_month_23').val();
+        var m23_total_other = $('#id_total_month_23_other').val();
+        if (isNaN(m23_total_other)) {
+            yr2_total += m23_total_other_total;
+        } else {
+            yr2_total += m23_total_other;
+        }
+
+        var m24_total = $('#id_total_month_24').val();
+        var m24_total_other = $('#id_total_month_24_other').val();
+        if (isNaN(m24_total_other)) {
+            yr2_total += m24_total_other_total;
+        } else {
+            yr2_total += m24_total_other;
+        }
+
+        // ----- YEAR 3 -----
+
+        var m25_total = $('#id_total_month_25').val();
+        var m25_total_other = $('#id_total_month_25_other').val();
+        if (isNaN(m25_total_other)) {
+            yr3_total += m25_total_other_total;
+        } else {
+            yr3_total += m25_total_other;
+        }
+
+        var m26_total = $('#id_total_month_26').val();
+        var m26_total_other = $('#id_total_month_26_other').val();
+        if (isNaN(m26_total_other)) {
+            yr3_total += m26_total_other_total;
+        } else {
+            yr3_total += m26_total_other;
+        }
+
+        var m27_total = $('#id_total_month_27').val();
+        var m27_total_other = $('#id_total_month_27_other').val();
+        if (isNaN(m27_total_other)) {
+            yr3_total += m27_total_other_total;
+        } else {
+            yr3_total += m27_total_other;
+        }
+
+        var m28_total = $('#id_total_month_28').val();
+        var m28_total_other = $('#id_total_month_28_other').val();
+        if (isNaN(m28_total_other)) {
+            yr3_total += m28_total_other_total;
+        } else {
+            yr3_total += m28_total_other;
+        }
+
+        var m29_total = $('#id_total_month_29').val();
+        var m29_total_other = $('#id_total_month_29_other').val();
+        if (isNaN(m29_total_other)) {
+            yr3_total += m29_total_other_total;
+        } else {
+            yr3_total += m29_total_other;
+        }
+
+        var m30_total = $('#id_total_month_30').val();
+        var m30_total_other = $('#id_total_month_30_other').val();
+        if (isNaN(m30_total_other)) {
+            yr3_total += m30_total_other_total;
+        } else {
+            yr3_total += m30_total_other;
+        }
+
+        var m31_total = $('#id_total_month_31').val();
+        var m31_total_other = $('#id_total_month_31_other').val();
+        if (isNaN(m31_total_other)) {
+            yr3_total += m31_total_other_total;
+        } else {
+            yr3_total += m31_total_other;
+        }
+
+        var m32_total = $('#id_total_month_32').val();
+        var m32_total_other = $('#id_total_month_32_other').val();
+        if (isNaN(m32_total_other)) {
+            yr3_total += m32_total_other_total;
+        } else {
+            yr3_total += m32_total_other;
+        }
+
+        var m33_total = $('#id_total_month_33').val();
+        var m33_total_other = $('#id_total_month_33_other').val();
+        if (isNaN(m33_total_other)) {
+            yr3_total += m33_total_other_total;
+        } else {
+            yr3_total += m33_total_other;
+        }
+
+        var m34_total = $('#id_total_month_34').val();
+        var m34_total_other = $('#id_total_month_34_other').val();
+        if (isNaN(m34_total_other)) {
+            yr3_total += m34_total_other_total;
+        } else {
+            yr3_total += m34_total_other;
+        }
+
+        var m35_total = $('#id_total_month_35').val();
+        var m35_total_other = $('#id_total_month_35_other').val();
+        if (isNaN(m35_total_other)) {
+            yr3_total += m35_total_other_total;
+        } else {
+            yr3_total += m35_total_other;
+        }
+
+        var m36_total = $('#id_total_month_36').val();
+        var m36_total_other = $('#id_total_month_36_other').val();
+        if (isNaN(m36_total_other)) {
+            yr3_total += m36_total_other_total;
+        } else {
+            yr3_total += m36_total_other;
+        }
+    }
+
+    function get_float_by_id(id) {
+        var val = $(id).val();
+        var float_val = parseFloat(val);
+        if (isNaN(float_val)) {
+            return '';
+        } else {
+            return float_val;
+        }
+    }
 
     /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        // FILL IN.
+        var arr = {
+            // ------- MONTH 1 -------
+            'materials_month_1': get_float_by_id('#id_materials_month_1'),
+            'materials_month_1_other': get_float_by_id('#id_materials_month_1_other'),
+            'labour_month_1': get_float_by_id('#id_labour_month_1'),
+            'labour_month_1_other': get_float_by_id('#id_labour_month_1_other'),
+            'overhead_month_1': get_float_by_id('#id_overhead_month_1'),
+            'overhead_month_1_other': get_float_by_id('#id_overhead_month_1_other'),
+            'total_month_1': get_float_by_id('#id_total_month_1'),
+            'total_month_1_other': get_float_by_id('#id_total_month_1_other'),
+
+            // ------- MONTH 2 -------
+            'materials_month_2': get_float_by_id('#id_materials_month_2'),
+            'materials_month_2_other': get_float_by_id('#id_materials_month_2_other'),
+            'labour_month_2': get_float_by_id('#id_labour_month_2'),
+            'labour_month_2_other': get_float_by_id('#id_labour_month_2_other'),
+            'overhead_month_2': get_float_by_id('#id_overhead_month_2'),
+            'overhead_month_2_other': get_float_by_id('#id_overhead_month_2_other'),
+            'total_month_2': get_float_by_id('#id_total_month_2'),
+            'total_month_2_other': get_float_by_id('#id_total_month_2_other'),
+
+            // ------- MONTH 3 -------
+            'materials_month_3': get_float_by_id('#id_materials_month_3'),
+            'materials_month_3_other': get_float_by_id('#id_materials_month_3_other'),
+            'labour_month_3': get_float_by_id('#id_labour_month_3'),
+            'labour_month_3_other': get_float_by_id('#id_labour_month_3_other'),
+            'overhead_month_3': get_float_by_id('#id_overhead_month_3'),
+            'overhead_month_3_other': get_float_by_id('#id_overhead_month_3_other'),
+            'total_month_3': get_float_by_id('#id_total_month_3'),
+            'total_month_3_other': get_float_by_id('#id_total_month_3_other'),
+
+            // ------- MONTH 4 -------
+            'materials_month_4': get_float_by_id('#id_materials_month_4'),
+            'materials_month_4_other': get_float_by_id('#id_materials_month_4_other'),
+            'labour_month_4': get_float_by_id('#id_labour_month_4'),
+            'labour_month_4_other': get_float_by_id('#id_labour_month_4_other'),
+            'overhead_month_4': get_float_by_id('#id_overhead_month_4'),
+            'overhead_month_4_other': get_float_by_id('#id_overhead_month_4_other'),
+            'total_month_4': get_float_by_id('#id_total_month_4'),
+            'total_month_4_other': get_float_by_id('#id_total_month_4_other'),
+
+            // ------- MONTH 5 -------
+            'materials_month_5': get_float_by_id('#id_materials_month_5'),
+            'materials_month_5_other': get_float_by_id('#id_materials_month_5_other'),
+            'labour_month_5': get_float_by_id('#id_labour_month_5'),
+            'labour_month_5_other': get_float_by_id('#id_labour_month_5_other'),
+            'overhead_month_5': get_float_by_id('#id_overhead_month_5'),
+            'overhead_month_5_other': get_float_by_id('#id_overhead_month_5_other'),
+            'total_month_5': get_float_by_id('#id_total_month_5'),
+            'total_month_5_other': get_float_by_id('#id_total_month_5_other'),
+
+            // ------- MONTH 6 -------
+            'materials_month_6': get_float_by_id('#id_materials_month_6'),
+            'materials_month_6_other': get_float_by_id('#id_materials_month_6_other'),
+            'labour_month_6': get_float_by_id('#id_labour_month_6'),
+            'labour_month_6_other': get_float_by_id('#id_labour_month_6_other'),
+            'overhead_month_6': get_float_by_id('#id_overhead_month_6'),
+            'overhead_month_6_other': get_float_by_id('#id_overhead_month_6_other'),
+            'total_month_6': get_float_by_id('#id_total_month_6'),
+            'total_month_6_other': get_float_by_id('#id_total_month_6_other'),
+
+            // ------- MONTH 7 -------
+            'materials_month_7': get_float_by_id('#id_materials_month_7'),
+            'materials_month_7_other': get_float_by_id('#id_materials_month_7_other'),
+            'labour_month_7': get_float_by_id('#id_labour_month_7'),
+            'labour_month_7_other': get_float_by_id('#id_labour_month_7_other'),
+            'overhead_month_7': get_float_by_id('#id_overhead_month_7'),
+            'overhead_month_7_other': get_float_by_id('#id_overhead_month_7_other'),
+            'total_month_7': get_float_by_id('#id_total_month_7'),
+            'total_month_7_other': get_float_by_id('#id_total_month_7_other'),
+
+            // ------- MONTH 8 -------
+            'materials_month_8': get_float_by_id('#id_materials_month_8'),
+            'materials_month_8_other': get_float_by_id('#id_materials_month_8_other'),
+            'labour_month_8': get_float_by_id('#id_labour_month_8'),
+            'labour_month_8_other': get_float_by_id('#id_labour_month_8_other'),
+            'overhead_month_8': get_float_by_id('#id_overhead_month_8'),
+            'overhead_month_8_other': get_float_by_id('#id_overhead_month_8_other'),
+            'total_month_8': get_float_by_id('#id_total_month_8'),
+            'total_month_8_other': get_float_by_id('#id_total_month_8_other'),
+
+            // ------- MONTH 9 -------
+            'materials_month_9': get_float_by_id('#id_materials_month_9'),
+            'materials_month_9_other': get_float_by_id('#id_materials_month_9_other'),
+            'labour_month_9': get_float_by_id('#id_labour_month_9'),
+            'labour_month_9_other': get_float_by_id('#id_labour_month_9_other'),
+            'overhead_month_9': get_float_by_id('#id_overhead_month_9'),
+            'overhead_month_9_other': get_float_by_id('#id_overhead_month_9_other'),
+            'total_month_9': get_float_by_id('#id_total_month_9'),
+            'total_month_9_other': get_float_by_id('#id_total_month_9_other'),
+
+            // ------- MONTH 10 -------
+            'materials_month_10': get_float_by_id('#id_materials_month_10'),
+            'materials_month_10_other': get_float_by_id('#id_materials_month_10_other'),
+            'labour_month_10': get_float_by_id('#id_labour_month_10'),
+            'labour_month_10_other': get_float_by_id('#id_labour_month_10_other'),
+            'overhead_month_10': get_float_by_id('#id_overhead_month_10'),
+            'overhead_month_10_other': get_float_by_id('#id_overhead_month_10_other'),
+            'total_month_10': get_float_by_id('#id_total_month_10'),
+            'total_month_10_other': get_float_by_id('#id_total_month_10_other'),
+
+            // ------- MONTH 11 -------
+            'materials_month_11': get_float_by_id('#id_materials_month_11'),
+            'materials_month_11_other': get_float_by_id('#id_materials_month_11_other'),
+            'labour_month_11': get_float_by_id('#id_labour_month_11'),
+            'labour_month_11_other': get_float_by_id('#id_labour_month_11_other'),
+            'overhead_month_11': get_float_by_id('#id_overhead_month_11'),
+            'overhead_month_11_other': get_float_by_id('#id_overhead_month_11_other'),
+            'total_month_11': get_float_by_id('#id_total_month_11'),
+            'total_month_11_other': get_float_by_id('#id_total_month_11_other'),
+
+            // ------- MONTH 12 -------
+            'materials_month_12': get_float_by_id('#id_materials_month_12'),
+            'materials_month_12_other': get_float_by_id('#id_materials_month_12_other'),
+            'labour_month_12': get_float_by_id('#id_labour_month_12'),
+            'labour_month_12_other': get_float_by_id('#id_labour_month_12_other'),
+            'overhead_month_12': get_float_by_id('#id_overhead_month_12'),
+            'overhead_month_12_other': get_float_by_id('#id_overhead_month_12_other'),
+            'total_month_12': get_float_by_id('#id_total_month_12'),
+            'total_month_12_other': get_float_by_id('#id_total_month_12_other'),
+
+            // ------- MONTH 13 -------
+            'materials_month_13': get_float_by_id('#id_materials_month_13'),
+            'materials_month_13_other': get_float_by_id('#id_materials_month_13_other'),
+            'labour_month_13': get_float_by_id('#id_labour_month_13'),
+            'labour_month_13_other': get_float_by_id('#id_labour_month_13_other'),
+            'overhead_month_13': get_float_by_id('#id_overhead_month_13'),
+            'overhead_month_13_other': get_float_by_id('#id_overhead_month_13_other'),
+            'total_month_13': get_float_by_id('#id_total_month_13'),
+            'total_month_13_other': get_float_by_id('#id_total_month_13_other'),
+
+            // ------- MONTH 14 -------
+            'materials_month_14': get_float_by_id('#id_materials_month_14'),
+            'materials_month_14_other': get_float_by_id('#id_materials_month_14_other'),
+            'labour_month_14': get_float_by_id('#id_labour_month_14'),
+            'labour_month_14_other': get_float_by_id('#id_labour_month_14_other'),
+            'overhead_month_14': get_float_by_id('#id_overhead_month_14'),
+            'overhead_month_14_other': get_float_by_id('#id_overhead_month_14_other'),
+            'total_month_14': get_float_by_id('#id_total_month_14'),
+            'total_month_14_other': get_float_by_id('#id_total_month_14_other'),
+
+            // ------- MONTH 15 -------
+            'materials_month_15': get_float_by_id('#id_materials_month_15'),
+            'materials_month_15_other': get_float_by_id('#id_materials_month_15_other'),
+            'labour_month_15': get_float_by_id('#id_labour_month_15'),
+            'labour_month_15_other': get_float_by_id('#id_labour_month_15_other'),
+            'overhead_month_15': get_float_by_id('#id_overhead_month_15'),
+            'overhead_month_15_other': get_float_by_id('#id_overhead_month_15_other'),
+            'total_month_15': get_float_by_id('#id_total_month_15'),
+            'total_month_15_other': get_float_by_id('#id_total_month_15_other'),
+
+            // ------- MONTH 16 -------
+            'materials_month_16': get_float_by_id('#id_materials_month_16'),
+            'materials_month_16_other': get_float_by_id('#id_materials_month_16_other'),
+            'labour_month_16': get_float_by_id('#id_labour_month_16'),
+            'labour_month_16_other': get_float_by_id('#id_labour_month_16_other'),
+            'overhead_month_16': get_float_by_id('#id_overhead_month_16'),
+            'overhead_month_16_other': get_float_by_id('#id_overhead_month_16_other'),
+            'total_month_16': get_float_by_id('#id_total_month_16'),
+            'total_month_16_other': get_float_by_id('#id_total_month_16_other'),
+
+            // ------- MONTH 17 -------
+            'materials_month_17': get_float_by_id('#id_materials_month_17'),
+            'materials_month_17_other': get_float_by_id('#id_materials_month_17_other'),
+            'labour_month_17': get_float_by_id('#id_labour_month_17'),
+            'labour_month_17_other': get_float_by_id('#id_labour_month_17_other'),
+            'overhead_month_17': get_float_by_id('#id_overhead_month_17'),
+            'overhead_month_17_other': get_float_by_id('#id_overhead_month_17_other'),
+            'total_month_17': get_float_by_id('#id_total_month_17'),
+            'total_month_17_other': get_float_by_id('#id_total_month_17_other'),
+
+            // ------- MONTH 18 -------
+            'materials_month_18': get_float_by_id('#id_materials_month_18'),
+            'materials_month_18_other': get_float_by_id('#id_materials_month_18_other'),
+            'labour_month_18': get_float_by_id('#id_labour_month_18'),
+            'labour_month_18_other': get_float_by_id('#id_labour_month_18_other'),
+            'overhead_month_18': get_float_by_id('#id_overhead_month_18'),
+            'overhead_month_18_other': get_float_by_id('#id_overhead_month_18_other'),
+            'total_month_18': get_float_by_id('#id_total_month_18'),
+            'total_month_18_other': get_float_by_id('#id_total_month_18_other'),
+
+            // ------- MONTH 19 -------
+            'materials_month_19': get_float_by_id('#id_materials_month_19'),
+            'materials_month_19_other': get_float_by_id('#id_materials_month_19_other'),
+            'labour_month_19': get_float_by_id('#id_labour_month_19'),
+            'labour_month_19_other': get_float_by_id('#id_labour_month_19_other'),
+            'overhead_month_19': get_float_by_id('#id_overhead_month_19'),
+            'overhead_month_19_other': get_float_by_id('#id_overhead_month_19_other'),
+            'total_month_19': get_float_by_id('#id_total_month_19'),
+            'total_month_19_other': get_float_by_id('#id_total_month_19_other'),
+
+            // ------- MONTH 20 -------
+            'materials_month_20': get_float_by_id('#id_materials_month_20'),
+            'materials_month_20_other': get_float_by_id('#id_materials_month_20_other'),
+            'labour_month_20': get_float_by_id('#id_labour_month_20'),
+            'labour_month_20_other': get_float_by_id('#id_labour_month_20_other'),
+            'overhead_month_20': get_float_by_id('#id_overhead_month_20'),
+            'overhead_month_20_other': get_float_by_id('#id_overhead_month_20_other'),
+            'total_month_20': get_float_by_id('#id_total_month_20'),
+            'total_month_20_other': get_float_by_id('#id_total_month_20_other'),
+
+            // ------- MONTH 21 -------
+            'materials_month_21': get_float_by_id('#id_materials_month_21'),
+            'materials_month_21_other': get_float_by_id('#id_materials_month_21_other'),
+            'labour_month_21': get_float_by_id('#id_labour_month_21'),
+            'labour_month_21_other': get_float_by_id('#id_labour_month_21_other'),
+            'overhead_month_21': get_float_by_id('#id_overhead_month_21'),
+            'overhead_month_21_other': get_float_by_id('#id_overhead_month_21_other'),
+            'total_month_21': get_float_by_id('#id_total_month_21'),
+            'total_month_21_other': get_float_by_id('#id_total_month_21_other'),
+
+            // ------- MONTH 22 -------
+            'materials_month_22': get_float_by_id('#id_materials_month_22'),
+            'materials_month_22_other': get_float_by_id('#id_materials_month_22_other'),
+            'labour_month_22': get_float_by_id('#id_labour_month_22'),
+            'labour_month_22_other': get_float_by_id('#id_labour_month_22_other'),
+            'overhead_month_22': get_float_by_id('#id_overhead_month_22'),
+            'overhead_month_22_other': get_float_by_id('#id_overhead_month_22_other'),
+            'total_month_22': get_float_by_id('#id_total_month_22'),
+            'total_month_22_other': get_float_by_id('#id_total_month_22_other'),
+
+            // ------- MONTH 23 -------
+            'materials_month_23': get_float_by_id('#id_materials_month_23'),
+            'materials_month_23_other': get_float_by_id('#id_materials_month_23_other'),
+            'labour_month_23': get_float_by_id('#id_labour_month_23'),
+            'labour_month_23_other': get_float_by_id('#id_labour_month_23_other'),
+            'overhead_month_23': get_float_by_id('#id_overhead_month_23'),
+            'overhead_month_23_other': get_float_by_id('#id_overhead_month_23_other'),
+            'total_month_23': get_float_by_id('#id_total_month_23'),
+            'total_month_23_other': get_float_by_id('#id_total_month_23_other'),
+
+            // ------- MONTH 24 -------
+            'materials_month_24': get_float_by_id('#id_materials_month_24'),
+            'materials_month_24_other': get_float_by_id('#id_materials_month_24_other'),
+            'labour_month_24': get_float_by_id('#id_labour_month_24'),
+            'labour_month_24_other': get_float_by_id('#id_labour_month_24_other'),
+            'overhead_month_24': get_float_by_id('#id_overhead_month_24'),
+            'overhead_month_24_other': get_float_by_id('#id_overhead_month_24_other'),
+            'total_month_24': get_float_by_id('#id_total_month_24'),
+            'total_month_24_other': get_float_by_id('#id_total_month_24_other'),
+
+            // ------- MONTH 25 -------
+            'materials_month_25': get_float_by_id('#id_materials_month_25'),
+            'materials_month_25_other': get_float_by_id('#id_materials_month_25_other'),
+            'labour_month_25': get_float_by_id('#id_labour_month_25'),
+            'labour_month_25_other': get_float_by_id('#id_labour_month_25_other'),
+            'overhead_month_25': get_float_by_id('#id_overhead_month_25'),
+            'overhead_month_25_other': get_float_by_id('#id_overhead_month_25_other'),
+            'total_month_25': get_float_by_id('#id_total_month_25'),
+            'total_month_25_other': get_float_by_id('#id_total_month_25_other'),
+
+            // ------- MONTH 26 -------
+            'materials_month_26': get_float_by_id('#id_materials_month_26'),
+            'materials_month_26_other': get_float_by_id('#id_materials_month_26_other'),
+            'labour_month_26': get_float_by_id('#id_labour_month_26'),
+            'labour_month_26_other': get_float_by_id('#id_labour_month_26_other'),
+            'overhead_month_26': get_float_by_id('#id_overhead_month_26'),
+            'overhead_month_26_other': get_float_by_id('#id_overhead_month_26_other'),
+            'total_month_26': get_float_by_id('#id_total_month_26'),
+            'total_month_26_other': get_float_by_id('#id_total_month_26_other'),
+
+            // ------- MONTH 27 -------
+            'materials_month_27': get_float_by_id('#id_materials_month_27'),
+            'materials_month_27_other': get_float_by_id('#id_materials_month_27_other'),
+            'labour_month_27': get_float_by_id('#id_labour_month_27'),
+            'labour_month_27_other': get_float_by_id('#id_labour_month_27_other'),
+            'overhead_month_27': get_float_by_id('#id_overhead_month_27'),
+            'overhead_month_27_other': get_float_by_id('#id_overhead_month_27_other'),
+            'total_month_27': get_float_by_id('#id_total_month_27'),
+            'total_month_27_other': get_float_by_id('#id_total_month_27_other'),
+
+            // ------- MONTH 28 -------
+            'materials_month_28': get_float_by_id('#id_materials_month_28'),
+            'materials_month_28_other': get_float_by_id('#id_materials_month_28_other'),
+            'labour_month_28': get_float_by_id('#id_labour_month_28'),
+            'labour_month_28_other': get_float_by_id('#id_labour_month_28_other'),
+            'overhead_month_28': get_float_by_id('#id_overhead_month_28'),
+            'overhead_month_28_other': get_float_by_id('#id_overhead_month_28_other'),
+            'total_month_28': get_float_by_id('#id_total_month_28'),
+            'total_month_28_other': get_float_by_id('#id_total_month_28_other'),
+
+            // ------- MONTH 29 -------
+            'materials_month_29': get_float_by_id('#id_materials_month_29'),
+            'materials_month_29_other': get_float_by_id('#id_materials_month_29_other'),
+            'labour_month_29': get_float_by_id('#id_labour_month_29'),
+            'labour_month_29_other': get_float_by_id('#id_labour_month_29_other'),
+            'overhead_month_29': get_float_by_id('#id_overhead_month_29'),
+            'overhead_month_29_other': get_float_by_id('#id_overhead_month_29_other'),
+            'total_month_29': get_float_by_id('#id_total_month_29'),
+            'total_month_29_other': get_float_by_id('#id_total_month_29_other'),
+
+            // ------- MONTH 30 -------
+            'materials_month_30': get_float_by_id('#id_materials_month_30'),
+            'materials_month_30_other': get_float_by_id('#id_materials_month_30_other'),
+            'labour_month_30': get_float_by_id('#id_labour_month_30'),
+            'labour_month_30_other': get_float_by_id('#id_labour_month_30_other'),
+            'overhead_month_30': get_float_by_id('#id_overhead_month_30'),
+            'overhead_month_30_other': get_float_by_id('#id_overhead_month_30_other'),
+            'total_month_30': get_float_by_id('#id_total_month_30'),
+            'total_month_30_other': get_float_by_id('#id_total_month_30_other'),
+
+            // ------- MONTH 31 -------
+            'materials_month_31': get_float_by_id('#id_materials_month_31'),
+            'materials_month_31_other': get_float_by_id('#id_materials_month_31_other'),
+            'labour_month_31': get_float_by_id('#id_labour_month_31'),
+            'labour_month_31_other': get_float_by_id('#id_labour_month_31_other'),
+            'overhead_month_31': get_float_by_id('#id_overhead_month_31'),
+            'overhead_month_31_other': get_float_by_id('#id_overhead_month_31_other'),
+            'total_month_31': get_float_by_id('#id_total_month_31'),
+            'total_month_31_other': get_float_by_id('#id_total_month_31_other'),
+
+            // ------- MONTH 32 -------
+            'materials_month_32': get_float_by_id('#id_materials_month_32'),
+            'materials_month_32_other': get_float_by_id('#id_materials_month_32_other'),
+            'labour_month_32': get_float_by_id('#id_labour_month_32'),
+            'labour_month_32_other': get_float_by_id('#id_labour_month_32_other'),
+            'overhead_month_32': get_float_by_id('#id_overhead_month_32'),
+            'overhead_month_32_other': get_float_by_id('#id_overhead_month_32_other'),
+            'total_month_32': get_float_by_id('#id_total_month_32'),
+            'total_month_32_other': get_float_by_id('#id_total_month_32_other'),
+
+            // ------- MONTH 33 -------
+            'materials_month_33': get_float_by_id('#id_materials_month_33'),
+            'materials_month_33_other': get_float_by_id('#id_materials_month_33_other'),
+            'labour_month_33': get_float_by_id('#id_labour_month_33'),
+            'labour_month_33_other': get_float_by_id('#id_labour_month_33_other'),
+            'overhead_month_33': get_float_by_id('#id_overhead_month_33'),
+            'overhead_month_33_other': get_float_by_id('#id_overhead_month_33_other'),
+            'total_month_33': get_float_by_id('#id_total_month_33'),
+            'total_month_33_other': get_float_by_id('#id_total_month_33_other'),
+
+            // ------- MONTH 34 -------
+            'materials_month_34': get_float_by_id('#id_materials_month_34'),
+            'materials_month_34_other': get_float_by_id('#id_materials_month_34_other'),
+            'labour_month_34': get_float_by_id('#id_labour_month_34'),
+            'labour_month_34_other': get_float_by_id('#id_labour_month_34_other'),
+            'overhead_month_34': get_float_by_id('#id_overhead_month_34'),
+            'overhead_month_34_other': get_float_by_id('#id_overhead_month_34_other'),
+            'total_month_34': get_float_by_id('#id_total_month_34'),
+            'total_month_34_other': get_float_by_id('#id_total_month_34_other'),
+
+            // ------- MONTH 35 -------
+            'materials_month_35': get_float_by_id('#id_materials_month_35'),
+            'materials_month_35_other': get_float_by_id('#id_materials_month_35_other'),
+            'labour_month_35': get_float_by_id('#id_labour_month_35'),
+            'labour_month_35_other': get_float_by_id('#id_labour_month_35_other'),
+            'overhead_month_35': get_float_by_id('#id_overhead_month_35'),
+            'overhead_month_35_other': get_float_by_id('#id_overhead_month_35_other'),
+            'total_month_35': get_float_by_id('#id_total_month_35'),
+            'total_month_35_other': get_float_by_id('#id_total_month_35_other'),
+
+            // ------- MONTH 36 -------
+            'materials_month_36': get_float_by_id('#id_materials_month_36'),
+            'materials_month_36_other': get_float_by_id('#id_materials_month_36_other'),
+            'labour_month_36': get_float_by_id('#id_labour_month_36'),
+            'labour_month_36_other': get_float_by_id('#id_labour_month_36_other'),
+            'overhead_month_36': get_float_by_id('#id_overhead_month_36'),
+            'overhead_month_36_other': get_float_by_id('#id_overhead_month_36_other'),
+            'total_month_36': get_float_by_id('#id_total_month_36'),
+            'total_month_36_other': get_float_by_id('#id_total_month_36_other'),
+        };
+
+        // Save to our database.
+        //----------------------------------------
+        ajax_do_chain(
+            arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
     }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -46,30 +909,30 @@
                             <td>{% trans 'Month 1' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_1 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_1 }}" id="id_materials_month_1" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_1" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_1_other }}" id="id_materials_month_1_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_1 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_1 }}" id="id_labour_month_1" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_1" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_1_other }}" id="id_labour_month_1_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_1 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_1 }}" id="id_overhead_month_1" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_1" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_1_other }}" id="id_overhead_month_1_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_1 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_1 }}" id="id_total_month_1" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_1" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_1_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -79,30 +942,30 @@
                             <td>{% trans 'Month 2' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_2 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_2 }}" id="id_materials_month_2" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_2" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_2_other }}" id="id_materials_month_2_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_2 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_2 }}" id="id_labour_month_2" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_2" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_2_other }}" id="id_labour_month_2_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_2 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_2 }}" id="id_overhead_month_2" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_2" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_2_other }}" id="id_overhead_month_2_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_2 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_2 }}" id="id_total_month_2" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_2" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_2_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -112,30 +975,30 @@
                             <td>{% trans 'Month 3' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_3 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_3 }}" id="id_materials_month_3" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_3" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_3_other }}" id="id_materials_month_3_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_3 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_3 }}" id="id_labour_month_3" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_3" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_3_other }}" id="id_labour_month_3_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_3 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_3 }}" id="id_overhead_month_3" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_3" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_3_other }}" id="id_overhead_month_3_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_3 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_3 }}" id="id_total_month_3" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_3" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_3_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -145,30 +1008,30 @@
                             <td>{% trans 'Month 4' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_4 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_4 }}" id="id_materials_month_4" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_4" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_4_other }}" id="id_materials_month_4_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_4 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_4 }}" id="id_labour_month_4" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_4" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_4_other }}" id="id_labour_month_4_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_4 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_4 }}" id="id_overhead_month_4" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_4" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_4_other }}" id="id_overhead_month_4_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_4 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_4 }}" id="id_total_month_4" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_4" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_4_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -178,30 +1041,30 @@
                             <td>{% trans 'Month 5' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_5 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_5 }}" id="id_materials_month_5" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_5" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_5_other }}" id="id_materials_month_5_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_5 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_5 }}" id="id_labour_month_5" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_5" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_5_other }}" id="id_labour_month_5_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_5 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_5 }}" id="id_overhead_month_5" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_5" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_5_other }}" id="id_overhead_month_5_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_5 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_5 }}" id="id_total_month_5" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_5" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_5_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -211,30 +1074,30 @@
                             <td>{% trans 'Month 6' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_6 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_6 }}" id="id_materials_month_6" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_6" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_6_other }}" id="id_materials_month_6_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_6 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_6 }}" id="id_labour_month_6" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_6" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_6_other }}" id="id_labour_month_6_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_6 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_6 }}" id="id_overhead_month_6" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_6" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_6_other }}" id="id_overhead_month_6_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_6 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_6 }}" id="id_total_month_6" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_6" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_6_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -244,30 +1107,30 @@
                             <td>{% trans 'Month 7' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_7 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_7 }}" id="id_materials_month_7" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_7" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_7_other }}" id="id_materials_month_7_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_7 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_7 }}" id="id_labour_month_7" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_7" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_7_other }}" id="id_labour_month_7_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_7 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_7 }}" id="id_overhead_month_7" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_7" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_7_other }}" id="id_overhead_month_7_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_7 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_7 }}" id="id_total_month_7" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_7" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_7_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -277,30 +1140,30 @@
                             <td>{% trans 'Month 8' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_8 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_8 }}" id="id_materials_month_8" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_8" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_8_other }}" id="id_materials_month_8_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_8 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_8 }}" id="id_labour_month_8" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_8" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_8_other }}" id="id_labour_month_8_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_8 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_8 }}" id="id_overhead_month_8" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_8" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_8_other }}" id="id_overhead_month_8_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_8 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_8 }}" id="id_total_month_8" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_8" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_8_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -310,30 +1173,30 @@
                             <td>{% trans 'Month 9' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_9 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_9 }}" id="id_materials_month_9" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_9" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_9_other }}" id="id_materials_month_9_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_9 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_9 }}" id="id_labour_month_9" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_9" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_9_other }}" id="id_labour_month_9_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_9 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_9 }}" id="id_overhead_month_9" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_9" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_9_other }}" id="id_overhead_month_9_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_9 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_9 }}" id="id_total_month_9" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_9" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_9_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -343,30 +1206,30 @@
                             <td>{% trans 'Month 10' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_10 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_10 }}" id="id_materials_month_10" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_10" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_10_other }}" id="id_materials_month_10_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_10 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_10 }}" id="id_labour_month_10" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_10" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_10_other }}" id="id_labour_month_10_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_10 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_10 }}" id="id_overhead_month_10" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_10" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_10_other }}" id="id_overhead_month_10_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_10 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_10 }}" id="id_total_month_10" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_10" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_10_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -376,30 +1239,30 @@
                             <td>{% trans 'Month 11' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_11 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_11 }}" id="id_materials_month_11" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_11" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_11_other }}" id="id_materials_month_11_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_11 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_11 }}" id="id_labour_month_11" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_11" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_11_other }}" id="id_labour_month_11_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_11 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_11 }}" id="id_overhead_month_11" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_11" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_11_other }}" id="id_overhead_month_11_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_11 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_11 }}" id="id_total_month_11" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_11" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_11_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -409,30 +1272,30 @@
                             <td>{% trans 'Month 12' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_12 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_12 }}" id="id_materials_month_12" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_12" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_12_other }}" id="id_materials_month_12_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_12 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_12 }}" id="id_labour_month_12" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_12" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_12_other }}" id="id_labour_month_12_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_12 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_12 }}" id="id_overhead_month_12" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_12" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_12_other }}" id="id_overhead_month_12_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_12 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_12 }}" id="id_total_month_12" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_12" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_12_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -442,30 +1305,30 @@
                             <td>{% trans 'Month 13' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_13 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_13 }}" id="id_materials_month_13" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_13" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_13_other }}" id="id_materials_month_13_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_13 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_13 }}" id="id_labour_month_13" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_13" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_13_other }}" id="id_labour_month_13_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_13 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_13 }}" id="id_overhead_month_13" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_13" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_13_other }}" id="id_overhead_month_13_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_13 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_13 }}" id="id_total_month_13" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_13" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_13_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -475,30 +1338,30 @@
                             <td>{% trans 'Month 14' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_14 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_14 }}" id="id_materials_month_14" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_14" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_14_other }}" id="id_materials_month_14_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_14 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_14 }}"id="id_labour_month_14" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_14" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_14_other }}" id="id_labour_month_14_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_14 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_14 }}" id="id_overhead_month_14" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_14" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_14_other }}" id="id_overhead_month_14_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_14 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_14 }}" id="id_total_month_14" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_14" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_14_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -508,30 +1371,30 @@
                             <td>{% trans 'Month 15' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_15 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_15 }}" id="id_materials_month_15" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_15" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_15_other }}" id="id_materials_month_15_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_15 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_15 }}" id="id_labour_month_15" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_15" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_15_other }}" id="id_labour_month_15_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_15 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_15 }}" id="id_overhead_month_15" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_15" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_15_other }}" id="id_overhead_month_15_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_15 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_15 }}" id="id_total_month_15" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_15" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_15_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -541,30 +1404,30 @@
                             <td>{% trans 'Month 16' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_16 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_16 }}" id="id_materials_month_16" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_16" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_16_other }}" id="id_materials_month_16_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_16 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_16 }}" id="id_labour_month_16" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_16" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_16_other }}" id="id_labour_month_16_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_16 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_16 }}" id="id_overhead_month_16" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_16" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_16_other }}" id="id_overhead_month_16_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_16 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_16 }}" id="id_total_month_16" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_16" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_16_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -574,30 +1437,30 @@
                             <td>{% trans 'Month 17' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_17 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_17 }}" id="id_materials_month_17" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_17" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_17_other }}" id="id_materials_month_17_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_17 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_17 }}" id="id_labour_month_17" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_17" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_17_other }}" id="id_labour_month_17_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_17 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_17 }}" id="id_overhead_month_17" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_17" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_17_other }}" id="id_overhead_month_17_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_17 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_17 }}" id="id_total_month_17" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_17" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_17_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -607,30 +1470,30 @@
                             <td>{% trans 'Month 18' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_18 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_18 }}" id="id_materials_month_18" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_18" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_18_other }}" id="id_materials_month_18_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_18 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_18 }}" id="id_labour_month_18" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_18" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_18_other }}" id="id_labour_month_18_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_18 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_18 }}" id="id_overhead_month_18" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_18" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_18_other }}" id="id_overhead_month_18_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_18 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_18 }}" id="id_total_month_18" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_18" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_18_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -640,30 +1503,30 @@
                             <td>{% trans 'Month 19' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_19 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_19 }}" id="id_materials_month_19" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_19" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_19_other }}" id="id_materials_month_19_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_19 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_19 }}" id="id_labour_month_19" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_19" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_19_other }}" id="id_labour_month_19_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_19 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_19 }}" id="id_overhead_month_19" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_19" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_19_other }}" id="id_overhead_month_19_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_19 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_19 }}" id="id_total_month_19" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_19" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_19_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -673,30 +1536,30 @@
                             <td>{% trans 'Month 20' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_20 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_20 }}" id="id_materials_month_20" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_20" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_20_other }}" id="id_materials_month_20_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_20 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_20 }}" id="id_labour_month_20" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_20" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_20_other }}" id="id_labour_month_20_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_20 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_20 }}" id="id_overhead_month_20" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_20" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_20_other }}" id="id_overhead_month_20_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_20 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_20 }}" id="id_total_month_20" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_20" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_20_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -706,30 +1569,30 @@
                             <td>{% trans 'Month 21' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_21 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_21 }}" id="id_materials_month_21" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_21" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_21_other }}" id="id_materials_month_21_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_21 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_21 }}" id="id_labour_month_21" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_21" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_21_other }}" id="id_labour_month_21_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_21 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_21 }}" id="id_overhead_month_21" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_21" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_21_other }}" id="id_overhead_month_21_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_21 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_21 }}" id="id_total_month_21" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_21" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_21_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -739,30 +1602,30 @@
                             <td>{% trans 'Month 22' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_22 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_22 }}" id="id_materials_month_22" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_22" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_22_other }}" id="id_materials_month_22_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_22 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_22 }}" id="id_labour_month_22" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_22" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_22_other }}" id="id_labour_month_22_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_22 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_22 }}" id="id_overhead_month_22" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_22" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_22_other }}" id="id_overhead_month_22_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_22 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_22 }}" id="id_total_month_22" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_22" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_22_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -772,30 +1635,30 @@
                             <td>{% trans 'Month 23' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_23 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_23 }}" id="id_materials_month_23" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_23" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_23_other }}" id="id_materials_month_23_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_23 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_23 }}" id="id_labour_month_23" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_23" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_23_other }}" id="id_labour_month_23_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_23 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_23 }}" id="id_overhead_month_23" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_23" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_23_other }}" id="id_overhead_month_23_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_23 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_23 }}" id="id_total_month_23" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_23" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_23_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -805,30 +1668,30 @@
                             <td>{% trans 'Month 24' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_24 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_24 }}" id="id_materials_month_24" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_24" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_24_other }}" id="id_materials_month_24_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_24 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_24 }}" id="id_labour_month_24" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_24" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_24_other }}" id="id_labour_month_24_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_24 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_24 }}" id="id_overhead_month_24" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_24" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_24_other }}" id="id_overhead_month_24_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_24 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_24 }}" id="id_total_month_24" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_24" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_24_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -838,30 +1701,30 @@
                             <td>{% trans 'Month 25' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_25 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_25 }}" id="id_materials_month_25" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_25" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_25_other }}" id="id_materials_month_25_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_25 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_25 }}" id="id_labour_month_25" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_25" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_25_other }}" id="id_labour_month_25_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_25 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_25 }}" id="id_overhead_month_25" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_25" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_25_other }}" id="id_overhead_month_25_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_25 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_25 }}" id="id_total_month_25" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_25" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_25_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -871,30 +1734,30 @@
                             <td>{% trans 'Month 26' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_26 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_26 }}" id="id_materials_month_26" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_26" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_26_other }}" id="id_materials_month_26_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_26 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_26 }}" id="id_labour_month_26" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_26" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_26_other }}" id="id_labour_month_26_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_26 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_26 }}" id="id_overhead_month_26" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_26" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_26_other }}" id="id_overhead_month_26_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_26 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_26 }}" id="id_total_month_26" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_26" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_26_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -904,30 +1767,30 @@
                             <td>{% trans 'Month 27' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_27 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_27 }}" id="id_materials_month_27" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_27" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_27_other }}" id="id_materials_month_27_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_27 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_27 }}" id="id_labour_month_27" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_27" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_27_other }}" id="id_labour_month_27_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_27 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_27 }}" id="id_overhead_month_27" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_27" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_27_other }}" id="id_overhead_month_27_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_27 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_27 }}" id="id_total_month_27" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_27" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_27_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -937,30 +1800,30 @@
                             <td>{% trans 'Month 28' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_28 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_28 }}" id="id_materials_month_28" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_28" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_28_other }}" id="id_materials_month_28_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_28 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_28 }}" id="id_labour_month_28" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_28" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_28_other }}" id="id_labour_month_28_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_28 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_28 }}" id="id_overhead_month_28" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_28" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_28_other }}" id="id_overhead_month_28_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_28 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_28 }}" id="id_total_month_28" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_28" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_28_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -970,30 +1833,30 @@
                             <td>{% trans 'Month 29' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_29 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_29 }}" id="id_materials_month_29" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_29" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_29_other }}" id="id_materials_month_29_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_29 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_29 }}" id="id_labour_month_29" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_29" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_29_other }}" id="id_labour_month_29_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_29 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_29 }}" id="id_overhead_month_29" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_29" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_29_other }}"  id="id_overhead_month_29_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_29 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_29 }}" id="id_total_month_29" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_29" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_29_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1003,30 +1866,30 @@
                             <td>{% trans 'Month 30' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_30 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_30 }}" id="id_materials_month_30" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_30" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_30_other }}" id="id_materials_month_30_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_30 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_30 }}" id="id_labour_month_30" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_30" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_30_other }}"  id="id_labour_month_30_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_30 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_30 }}" id="id_overhead_month_30" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_30" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_30_other }}" id="id_overhead_month_30_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_30 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_30 }}" id="id_total_month_30" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_30" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_30_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1036,30 +1899,30 @@
                             <td>{% trans 'Month 31' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_31 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_31 }}" id="id_materials_month_31" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_31" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_31_other }}" id="id_materials_month_31_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_31 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_31 }}" id="id_labour_month_31" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_31" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_31_other }}" id="id_labour_month_31_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_31 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_31 }}" id="id_overhead_month_31" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_31" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_31_other }}" id="id_overhead_month_31_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_31 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_31 }}" id="id_total_month_31" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_31" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_31_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1069,30 +1932,30 @@
                             <td>{% trans 'Month 32' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_32 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_32 }}" id="id_materials_month_32" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_32" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_32_other }}" id="id_materials_month_32_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_32 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_32 }}" id="id_labour_month_32" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_32" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_32_other }}" id="id_labour_month_32_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_32 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_32 }}" id="id_overhead_month_32" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_32" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_32_other }}" id="id_overhead_month_32_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_32 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_32 }}" id="id_total_month_32" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_32" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_32_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1102,30 +1965,30 @@
                             <td>{% trans 'Month 33' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_33 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_33 }}" id="id_materials_month_33" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_33" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_33_other }}" id="id_materials_month_33_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_33 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_33 }}" id="id_labour_month_33" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_33" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_34_other }}" id="id_labour_month_33_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_33 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_33 }}" id="id_overhead_month_33" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_33" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_33_other }}" id="id_overhead_month_33_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_33 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_33 }}" id="id_total_month_33" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_33" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_33_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1135,30 +1998,30 @@
                             <td>{% trans 'Month 34' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_34 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_34 }}" id="id_materials_month_34" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_34" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_34_other }}" id="id_materials_month_34_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_34 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_34 }}" id="id_labour_month_34" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_34" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_34_other }}" id="id_labour_month_34_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_34 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_34 }}" id="id_overhead_month_34" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_34" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_34_other }}" id="id_overhead_month_34_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_34 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_34 }}" id="id_total_month_34" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_34" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_34_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1168,30 +2031,30 @@
                             <td>{% trans 'Month 35' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_35 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_35 }}" id="id_materials_month_35" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_35" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_35_other }}" id="id_materials_month_35_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_35 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_35 }}" id="id_labour_month_35" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_35" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_35_other }}" id="id_labour_month_35_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_35 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_35 }}" id="id_overhead_month_35" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_35" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_35_other }}" id="id_overhead_month_35_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_35 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_35 }}" id="id_total_month_35" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_35" />
+                                <input type="text" class="form-control" placeholder="-" id="id_total_month_35_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>
@@ -1201,30 +2064,30 @@
                             <td>{% trans 'Month 36' %}</td>
                             <td>
                                 <!-- MATERIALS GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_36 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.materials_m_36 }}" id="id_materials_month_36" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_materials_month_36" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.materials_month_36_other }}" id="id_materials_month_36_other" />
                                 <!-- end MATERIALS GROUP -->
                             </td>
                             <td>
                                 <!-- LABOUR GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_36 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.labour_m_36 }}" id="id_labour_month_36" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_labour_month_36" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.labour_month_36_other }}" id="id_labour_month_36_other" />
                                 <!-- end LABOUR GROUP -->
                             </td>
                             <td>
                                 <!-- OVERHEAD GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_36 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.overhead_m_36 }}" id="id_overhead_month_36" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_36" />
+                                <input type="text" class="form-control" placeholder="-" id="id_overhead_month_36_other" />
                                 <!-- end OVERHEAD GROUP -->
                             </td>
                             <td>
                                 <!-- TOTAL GROUP -->
-                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_36 }}" />
+                                <input type="text" class="form-control" placeholder="-" readonly="true" value="{{ autogen.total_m_36 }}" id="id_total_month_36" />
                                 <br>
-                                <input type="text" class="form-control" placeholder="-" id="id_total_month_36" />
+                                <input type="text" class="form-control" placeholder="-" value="{{ answer.content.overhead_month_36_other }}" id="id_total_month_36_other" />
                                 <!-- end TOTAL GROUP -->
                             </td>
                         </tr>

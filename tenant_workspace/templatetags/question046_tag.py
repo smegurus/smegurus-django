@@ -254,7 +254,7 @@ def render_question_type_046(workspace, module, node, question, answer):
         'module': module,
         'node': node,
         'question': question,
-        'answer': answer.content,
+        'answer': answer,
         'expenses': expenses,
         'volumes': volumes,
         'autogen': autogen
