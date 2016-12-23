@@ -33,7 +33,7 @@ class Command(BaseCommand):
         #-----------------------------#
         # Expel our User.             #
         #-----------------------------#
-        me.is_admitted = False
+        me.is_in_intake = False
         me.save()
 
         #-----------------------------#

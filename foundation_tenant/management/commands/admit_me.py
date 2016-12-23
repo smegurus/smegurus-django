@@ -33,7 +33,7 @@ class Command(BaseCommand):
         #-----------------------------#
         # Admit our User.             #
         #-----------------------------#
-        me.is_admitted = True
+        me.is_in_intake = True
         me.save()
 
         #-----------------------------#

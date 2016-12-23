@@ -116,7 +116,7 @@ def create_page(request):
         owner=user,
         address=address,
         contact_point=contact_point,
-        is_admitted=True,
+        is_in_intake=True,
         is_setup=True,
     )
     url = reverse('tenant_team_update', args=[me.id,]) + "?pass="+random_password

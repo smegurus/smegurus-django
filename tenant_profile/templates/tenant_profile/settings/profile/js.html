@@ -57,7 +57,7 @@
         }
 
         get_tenant_me(  // Fetch our Me.
-            {{ request.tenant_me.owner.id }},
+            {{ request.tenant_me.id }},
             function(me) {
                 var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
                 if (image > 0) {
@@ -129,7 +129,7 @@
             }
 
             get_tenant_me(  // Fetch our Me.
-                {{ request.tenant_me.owner.id }},
+                {{ request.tenant_me.id }},
                 function(me) {
                     var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
                     if (image > 0) {

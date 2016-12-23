@@ -151,10 +151,10 @@ class TellUsYourNeedSerializer(serializers.ModelSerializer):
 
 
 class TenantMeSerializer(serializers.ModelSerializer):
-    is_admitted = serializers.BooleanField(read_only=True)
+    is_in_intake = serializers.BooleanField(read_only=True)
     class Meta:
         model = TenantMe
-        fields = ('id', 'owner', 'is_admitted', 'tags', 'image', 'description',
+        fields = ('id', 'owner', 'is_in_intake', 'tags', 'image', 'description',
                   'url', 'telephone', 'is_tos_signed', 'stage_num',
                   'is_setup', 'is_locked', 'notify_when_task_had_an_interaction',
                   'notify_when_new_messages', 'notify_when_due_tasks',

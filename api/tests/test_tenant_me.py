@@ -220,7 +220,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         TenantMe.objects.create(
             id=1,
             owner=self.user,
-            is_admitted=False,
+            is_in_intake=False,
         )
 
         # Run the test and verify.
@@ -231,7 +231,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         me = TenantMe.objects.get(id=1)
-        self.assertFalse(me.is_admitted)
+        self.assertFalse(me.is_in_intake)
 
     @transaction.atomic
     def test_admit_me_with_org_manager_user(self):
@@ -239,7 +239,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         TenantMe.objects.create(
             id=1,
             owner=self.user,
-            is_admitted=False,
+            is_in_intake=False,
         )
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(group)
@@ -253,7 +253,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         me = TenantMe.objects.get(id=1)
-        self.assertTrue(me.is_admitted)
+        self.assertTrue(me.is_in_intake)
 
     @transaction.atomic
     def test_expel_me_with_entrepreneur_user(self):
@@ -261,7 +261,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         TenantMe.objects.create(
             id=1,
             owner=self.user,
-            is_admitted=True,
+            is_in_intake=True,
         )
 
         # Run the test and verify.
@@ -272,7 +272,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         me = TenantMe.objects.get(id=1)
-        self.assertTrue(me.is_admitted)
+        self.assertTrue(me.is_in_intake)
 
     @transaction.atomic
     def test_expel_me_with_org_manager_user(self):
@@ -280,7 +280,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         TenantMe.objects.create(
             id=1,
             owner=self.user,
-            is_admitted=True,
+            is_in_intake=True,
         )
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(group)
@@ -294,7 +294,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         me = TenantMe.objects.get(id=1)
-        self.assertFalse(me.is_admitted)
+        self.assertFalse(me.is_in_intake)
 
     @transaction.atomic
     def test_unlock_with_success(self):

@@ -79,7 +79,7 @@
 
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_me(  // Fetch our Me.
-            {{ request.tenant_me.owner.id }},
+            {{ request.tenant_me.id }},
             function(me) {
 
                 me['challenges_becoming_entrepreneur'] = input_1;

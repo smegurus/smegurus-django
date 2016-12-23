@@ -8,7 +8,7 @@
         }); // end Document Start
 
         get_tenant_me(  // start Get Me
-            {{ request.tenant_me.owner.id }},
+            {{ request.tenant_me.id }},
             function(me) {
                 me['is_setup'] = true;
                 set_tenant_me(  // start Set Me

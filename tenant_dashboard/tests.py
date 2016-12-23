@@ -131,7 +131,7 @@ class TenantDashboardTestCases(APITestCase, TenantTestCase):
         self.user.groups.add(entrepreneur_group)
         self.user.save()
         me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=True
+        me.is_in_intake=True
         me.is_setup=True
         me.save()
 

@@ -170,27 +170,28 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     status=status.HTTP_401_UNAUTHORIZED
                 )
 
-            # Send a notification to the staff when the Intake was completed.
-            # Send a notification to the Organization staff.
-            if intake.status != constants.PENDING_REVIEW_STATUS:
-                # Generate our email list.
-                contact_list = []
-                users = User.objects.filter(groups__id=constants.ADVISOR_GROUP_ID)
-                for user in users.all():
-                    contact_list.append(user.email)
-                users = User.objects.filter(groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
-                for user in users.all():
-                    contact_list.append(user.email)
-                users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-                for user in users.all():
-                    contact_list.append(user.email)
+            # Generate our email list.
+            contact_list = []
+            users = User.objects.filter(groups__id=constants.ADVISOR_GROUP_ID)
+            for user in users.all():
+                contact_list.append(user.email)
+            users = User.objects.filter(groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
+            for user in users.all():
+                contact_list.append(user.email)
+            users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+            for user in users.all():
+                contact_list.append(user.email)
 
-                # Send the email to our group.
-                self.send_intake_is_pending(intake, contact_list)
+            # Send the email to our group.
+            self.send_intake_is_pending(intake, contact_list)
 
-                # Mark the Intake object as complete after sending notification.
-                intake.status = constants.PENDING_REVIEW_STATUS
-                intake.save()
+            # Mark the Intake object as complete after sending notification.
+            intake.status = constants.PENDING_REVIEW_STATUS
+            intake.save()
+
+            # Indicate that an Intake was submitted.
+            intake.me.is_in_intake = False
+            intake.me.save()
 
             # Return a sucess message.
             return response.Response(
@@ -217,15 +218,16 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 intake = self.get_object()
                 intake.status = serializer.data['status']
                 intake.is_employee_created = serializer.data['is_employee_created']
-                intake.save()
+
+                # Ensure that the Entrepreneur does not need to do the
+                # Intake process again.
+                intake.me.is_in_intake = False
 
                 # Update 'Me' model.
                 if intake.status == constants.APPROVED_STATUS:
-                    intake.me.is_admitted = True
                     intake.me.stage_num = constants.ME_ONBOARDING_STAGE_NUM
                     intake.me.save()
                 else:
-                    intake.me.is_admitted = False
                     intake.me.stage_num = constants.ME_MIN_STAGE_NUM
                     intake.me.save()
 

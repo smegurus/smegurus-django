@@ -538,7 +538,7 @@
 
                         function ajax_me_update_logout_dialog() {
                             get_tenant_me(  // start Get Me
-                                {{ request.tenant_me.owner.id }},
+                                {{ request.tenant_me.id }},
                                 function(me) {
                                     me['has_logout_dialog'] = false;
                                     set_tenant_me(  // start Set Me

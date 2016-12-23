@@ -36,10 +36,11 @@ class TenantMe(AbstractPerson):
         verbose_name_plural = 'Tenant Mes'
 
     objects = TenantMeManager()
-    is_admitted = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
-        _("Is Admitted"),
-        default=False,
-        help_text=_('Variable controls whether the user has been accepted into our Organization for any number of programs.'),
+    is_in_intake = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
+        _("Is in Intake Process"),
+        blank=True,
+        default=True,
+        help_text=_('Variable controls whether the user has to go through the intake process before continuing.'),
     )
     tags = models.ManyToManyField(
         Tag,

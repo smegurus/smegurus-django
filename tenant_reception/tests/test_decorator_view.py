@@ -93,7 +93,7 @@ class TenantReceptionDescoratorTestCases(APITestCase, TenantTestCase):
         city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country,)
         self.me = TenantMe.objects.create(
             owner=self.user,
-            is_admitted=True,
+            is_in_intake=True,
             address=PostalAddress.objects.create(
                 country=CountryOption.objects.get(id=1),
                 region=ProvinceOption.objects.get(id=1),
@@ -123,7 +123,7 @@ class TenantReceptionDescoratorTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_is_required_with_redirection(self):
         # Setup our object.
-        self.me.is_admitted = False
+        self.me.is_in_intake = False
         self.me.save()
         group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(group)

@@ -65,7 +65,7 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
         self.user = User.objects.get()
         TenantMe.objects.create(
             owner=self.user,
-            is_admitted=True,
+            is_in_intake=True,
         )
 
     @transaction.atomic
@@ -85,7 +85,7 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
     def test_expel_me_with_employee_user(self):
         # Pre-test that we are properly configured.
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertTrue(me.is_admitted)
+        self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
         # Attach User to group.
@@ -96,14 +96,14 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
         # Test & Verify.
         call_command('expel_me',str(me.id))
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertFalse(me.is_admitted)
+        self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 1)
 
     @transaction.atomic
     def test_expel_me_with_non_employee_user(self):
         # Pre-test that we are properly configured.
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertTrue(me.is_admitted)
+        self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
         # Attach User to group.
@@ -114,5 +114,5 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
         # Test & Verify.
         call_command('expel_me',str(me.id))
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertTrue(me.is_admitted)
+        self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)

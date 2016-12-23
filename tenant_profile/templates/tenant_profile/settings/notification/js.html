@@ -25,7 +25,7 @@
     function ajax_notification() {
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_me(  // Fetch our Me.
-            {{ request.tenant_me.owner.id }},
+            {{ request.tenant_me.id }},
             function(me) {
                 me['notify_when_task_had_an_interaction'] = $('#id_notify_when_task_had_an_interaction').is(':checked');
                 me['notify_when_new_messages'] = $('#id_notify_when_new_messages').is(':checked');

@@ -112,7 +112,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         self.user.groups.add(entrepreneur_group)
         self.user.save()
         me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=True
+        me.is_in_intake=True
         me.save()
 
         # Run our test.
@@ -128,7 +128,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         self.user.groups.add(entrepreneur_group)
         self.user.save()
         me, created = TenantMe.objects.get_or_create(owner=self.user)
-        me.is_admitted=False
+        me.is_in_intake=False
         me.save()
 
         # Run our test and verify.
@@ -148,7 +148,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 #        self.user.groups.add(entrepreneur_group)
 #        self.user.save()
 #        me, created = TenantMe.objects.get_or_create(owner=self.user)
-#        me.is_admitted=True
+#        me.is_in_intake=True
 #        me.save()
 #
 #        Intake.objects.create(
@@ -169,7 +169,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 #        self.user.groups.add(entrepreneur_group)
 #        self.user.save()
 #        me, created = TenantMe.objects.get_or_create(owner=self.user)
-#        me.is_admitted=False
+#        me.is_in_intake=False
 #        me.save()
 #
 #        Intake.objects.create(

@@ -93,7 +93,7 @@ class TenantCalendarTestCases(APITestCase, TenantTestCase):
         city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country,)
         self.me = TenantMe.objects.create(
             owner=self.user,
-            is_admitted=True,
+            is_in_intake=True,
             address=PostalAddress.objects.create(
                 country=CountryOption.objects.get(id=1),
                 region=ProvinceOption.objects.get(id=1),

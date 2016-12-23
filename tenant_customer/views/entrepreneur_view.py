@@ -112,7 +112,7 @@ def create_page(request):
         owner=user,
         address=address,
         contact_point=contact_point,
-        is_admitted=True,
+        is_in_intake=True,
         is_setup=True,
         temporary_password=random_password,
         managed_by=request.tenant_me

@@ -79,7 +79,7 @@
 
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_me(  // Fetch our Me.
-            {{ request.tenant_me.owner.id }},
+            {{ request.tenant_me.id }},
             function(me) {
 
                 me['gender'] = input_1;
@@ -102,7 +102,7 @@
             function(error_result) {
                 enable_btn();
                 console.log(error_result);
-                alert(json_error_result);
+                alert(error_result);
             }
         );  // end Set Me
     }

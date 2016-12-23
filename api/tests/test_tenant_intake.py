@@ -415,7 +415,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.CREATED_STATUS)
-        self.assertFalse(intake.me.is_admitted)
+        self.assertFalse(intake.me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic
@@ -443,7 +443,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
-        self.assertTrue(intake.me.is_admitted)
+        self.assertTrue(intake.me.is_in_intake)
         note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
         self.assertEqual(len(mail.outbox), 1)  # Test that one message has been sent.
@@ -471,7 +471,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.REJECTED_STATUS)
-        self.assertFalse(intake.me.is_admitted)
+        self.assertFalse(intake.me.is_in_intake)
         note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
         self.assertEqual(len(mail.outbox), 1)  # Test that one message has been sent.
@@ -499,7 +499,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.APPROVED_STATUS)
-        self.assertTrue(intake.me.is_admitted)
+        self.assertTrue(intake.me.is_in_intake)
         note = Note.objects.get(id=1)
         self.assertIn('This is a test comment.', note.description)
         self.assertEqual(len(mail.outbox), 1)  # Test that one message has been sent.
@@ -529,7 +529,7 @@ class APIIntakeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         intake = Intake.objects.get(id=1)
         self.assertEqual(intake.status, constants.CREATED_STATUS)
-        self.assertFalse(intake.me.is_admitted)
+        self.assertFalse(intake.me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)  # Test that one message has not been sent.
 
     @transaction.atomic

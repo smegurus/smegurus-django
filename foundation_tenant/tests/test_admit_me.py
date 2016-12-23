@@ -84,7 +84,7 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
     def test_admit_me_with_employee_user(self):
         # Pre-test that we are properly configured.
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertFalse(me.is_admitted)
+        self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
         # Attach User to group.
@@ -95,14 +95,14 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
         # Test & Verify.
         call_command('admit_me',str(me.id))
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertTrue(me.is_admitted)
+        self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 1)
 
     @transaction.atomic
     def test_admit_me_with_non_employee_user(self):
         # Pre-test that we are properly configured.
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertFalse(me.is_admitted)
+        self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
         # Attach User to group.
@@ -113,5 +113,5 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
         # Test & Verify.
         call_command('admit_me',str(me.id))
         me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
-        self.assertFalse(me.is_admitted)
+        self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)

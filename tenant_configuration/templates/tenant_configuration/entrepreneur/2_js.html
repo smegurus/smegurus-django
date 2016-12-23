@@ -25,7 +25,7 @@
     function ajax_save_and_continue() {
         disable_btn(); // Disable the button so no multiple presses happen.
         get_tenant_me(  // Fetch our Me.
-            {{ request.tenant_me.owner.id }},
+            {{ request.tenant_me.id }},
             function(me) {
                 var image = parseInt( $('#id_hidden_upload_id').val() ); // Update our organization.
                 if (image > 0) {

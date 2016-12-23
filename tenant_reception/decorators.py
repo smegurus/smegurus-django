@@ -16,8 +16,7 @@ def tenant_reception_required(view_func):
     """
     def wrapper(request, *args, **kwargs):
         if request.tenant_me.is_entrepreneur():
-            intake, created = Intake.objects.get_or_create(me=request.tenant_me)
-            if intake.status in [constants.PENDING_REVIEW_STATUS, constants.REJECTED_STATUS] or intake.me.stage_num <= constants.ME_ONBOARDING_STAGE_NUM:
+            if request.tenant_me.stage_num <= constants.ME_ONBOARDING_STAGE_NUM:
                 return HttpResponseRedirect(reverse('tenant_reception'))
         return view_func(request, *args, **kwargs)
     return wrapper

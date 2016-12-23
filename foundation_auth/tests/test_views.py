@@ -53,7 +53,7 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
 
         # Setup Profiles
         # me = TenantMe.objects.get(owner=user)
-        # me.is_admitted=True
+        # me.is_in_intake=True
         # me.save()
 
     @transaction.atomic
@@ -289,7 +289,7 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
 
         # Setup Profiles
         # me = TenantMe.objects.get(owner=user)
-        # me.is_admitted=True
+        # me.is_in_intake=True
         # me.save()
 
     @transaction.atomic
