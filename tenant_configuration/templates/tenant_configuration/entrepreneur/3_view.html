@@ -11,19 +11,17 @@
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group">
-            <label class="col-sm-2 control-label"><!-- BLANK --></label>
-            <div class="col-sm-10">
+            
+            <div class="col-sm-12">
 
                 <!-- MALE OPTION -->
                 <div class="radio">
-                    <label>
-                        <div>
+                    <label
                         <input id="optionsRadios_male" {% if request.tenant_me.gender == constants.ME_MALE_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_MALE_GENDER_ID }}" />
-                            <p>{% trans 'Male' %}</p>
-                        </div>
+                            {% trans 'Male' %}
                     </label>
                 </div>
                 <!-- end MALE OPTION -->
@@ -31,13 +29,11 @@
                 <!-- FEMALE OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_female" {% if request.tenant_me.gender == constants.ME_FEMALE_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_FEMALE_GENDER_ID }}" />
-                            <p>{% trans 'Female' %}</p>
-                        </div>
+                            {% trans 'Female' %}
                     </label>
                 </div>
                 <!-- end FEMALE OPTION -->
@@ -45,13 +41,11 @@
                 <!-- ANOTHER OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_another" {% if request.tenant_me.gender == constants.ME_ANOTHER_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_ANOTHER_GENDER_ID }}" />
-                            <p>{% trans 'Another' %}</p>
-                        </div>
+                            {% trans 'Another' %}
                     </label>
                 </div>
                 <!-- end ANOTHER OPTION -->
@@ -59,13 +53,11 @@
                 <!-- ANOTHER OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_other" {% if request.tenant_me.gender == constants.ME_OTHER_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="Other" />
-                            <p>{% trans 'Other' %}</p>
-                        </div>
+                            {% trans 'Other' %}
                     </label>
                 </div>
                 <!-- end ANOTHER OPTION -->
@@ -78,8 +70,8 @@
 
         <!-- ROW 2 -->
         <div class="form-group" id="id_gender_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-            <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-            <div class="col-sm-10">
+            <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
+            <div class="col-sm-8">
                 <input id="id_gender_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.gender_other }}" maxlength="127" />
             </div>
         </div>
@@ -96,9 +88,5 @@
                  id="id_continue_btn"
                type="button"
               class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
-
-    <a onclick="ajax_cancel_and_continue();"
-            id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
