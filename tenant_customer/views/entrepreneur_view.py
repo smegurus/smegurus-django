@@ -11,6 +11,7 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
+from foundation_public.models.organization import PublicOrganization
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
@@ -64,9 +65,6 @@ def details_page(request, id):
     })
 
 
-
-
-
 @login_required(login_url='/en/login')
 @group_required([
     constants.ADVISOR_GROUP_ID,
@@ -81,6 +79,11 @@ def details_page(request, id):
 @tenant_configuration_required
 def create_page(request):
     """Function will create a new Entrepreneur and redirect to the page of updating data."""
+    # Connection needs first to be at the public schema, as this is where
+    # the tenant metadata is stored.
+    from django.db import connection
+    connection.set_schema_to_public() # Switch to Public.
+
     random_password = random_text(8)
     user = User.objects.create_user(
         username=random_text(30),
@@ -89,6 +92,14 @@ def create_page(request):
     )
     entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
     user.groups.add(entrepreneur_group)
+
+    # Attach our new User into our Organization.
+    request.tenant.users.add(user)
+    request.tenant.save()
+
+    # Connection will set it back to our tenant.
+    connection.set_schema(request.tenant.schema_name, True) # Switch back to Tenant.
+    
     address = PostalAddress.objects.create(
         owner=user,
         name='User #' + str(user.id) + ' Address',
@@ -103,7 +114,8 @@ def create_page(request):
         contact_point=contact_point,
         is_admitted=True,
         is_setup=True,
-        temporary_password=random_password
+        temporary_password=random_password,
+        managed_by=request.tenant_me
     )
     Intake.objects.create(
         me=me,
