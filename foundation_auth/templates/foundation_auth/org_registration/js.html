@@ -48,6 +48,7 @@
             'alternate_name': $('#id_name').val(),
             'legal_name': $('#id_name').val(),
             'is_tos_signed': $('#id_is_tos_signed').is(':checked'),
+            'owner': {{ request.user.id }}
         };
 
         if ( $('#id_hidden_organization').val() ) {
@@ -119,26 +120,17 @@
             return;
         }
 
-        // Turn on the 'loading' animation.
-        var lb = new $.LoadingBox({
-            loadingImageSrc: "{% static 'app/img/ajax-loading.gif' %}",
-        });
-
         // Create our ORG.
         api_organization(
              function(o_success_result) {
                  console.log("Successfully Created Organization");
                  console.log(o_success_result);
 
-                 setTimeout(function() {
-                     lb.close(); // Turn off the 'loading' animatin.
-                     enable_btn(); // Allow the user to press the button again.
-                     window.location = "{% url 'foundation_auth_org_successful_registration' %}";
-                 }, 2000);
+                 enable_btn(); // Allow the user to press the button again.
+                 window.location = "{% url 'foundation_auth_org_successful_registration' %}";
 
              },
              function(o_error_result) {
-                 lb.close(); // Turn off the 'loading' animatin.
                  console.log("Failed Set Organization");
                  enable_btn(); // Allow the user to press the button again.
                  var string = JSON.stringify( o_error_result );

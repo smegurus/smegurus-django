@@ -54,7 +54,7 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
             domain.tenant = org
             domain.is_primary = False
             domain.save()
-            
+
             # Override custom default values.
             org.has_mentors = True
             org.has_perks = True
@@ -63,3 +63,26 @@ class PublicOrganizationViewSet(viewsets.ModelViewSet):
             # Attach our current logged in User for our Organization.
             org.users.add(self.request.user)
             org.save()
+
+    # def perform_create(self, serializer):
+    #     """
+    #     Override the "create" functionality to include creating a new Domain
+    #     object associated with the newely created Organization. This Domain
+    #     object is needed for "django-tenants" library to have.
+    #     """
+    #     contact_point, created = PublicContactPoint.objects.get_or_create(owner=self.request.user)
+    #     address, created = PublicPostalAddress.objects.get_or_create(owner=self.request.user)
+    #
+    #     dict = {
+    #         'schema_name': 'test',
+    #         'name': '',
+    #         'alternate_name': '',
+    #         'legal_name': '',
+    #         'is_tos_signed': True
+    #     }
+    #
+    #     print("----------------------------------------FINISHED----------------------------------------")
+    #
+    #     # Asynchronously create our tenant in the background.
+    #     # from api.tasks import begin_organization_creation_task
+    #     # begin_organization_creation_task.delay(dict)

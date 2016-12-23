@@ -3,9 +3,6 @@
 {% block content %}
     <h2 class="text-center pv">{% trans 'Successful Registration' %}</h2>
     <p class="text-center pv">
-        {% trans 'You have successfully registered your Organization! Final step is to login and begin:' %}
-        <a href="{% tenant_url organization.schema_name 'foundation_auth_user_login' %}">
-        {% trans 'Login My Organization' %}
-        </a>
+        {% trans 'You have successfully registered your Organization! We are currently preparing your Organization. When we finish you will receive an email!' %}
     </p>
 {% endblock content %}
