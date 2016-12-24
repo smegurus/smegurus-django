@@ -15,5 +15,9 @@ def begin_organization_creation_task(registered_id):
     # creating our Tenant from it.
     call_command('populate_organization', str(registered_id))  # foundation_public/management/commands/populate_organization.py
 
+    # Send email to the owner of the Organization letting them know we've successfully
+    # finished setting up their tenancy.
+    call_command('send_organization_ready_email', str(registered_id))  # foundation_email/management/commands/send_organization_ready_email.py
+
     # Return nothing.
     return None

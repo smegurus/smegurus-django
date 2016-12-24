@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
+from foundation_public.models.organizationregistration import PublicOrganizationRegistration
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.forms.userform import UserForm
 from foundation_public.forms.loginform import LoginForm
@@ -96,7 +97,7 @@ def organization_registration_page(request):
     """
     Function provides the UI for a new User to create a new Organization to own.
     """
-    org_membership_count = PublicOrganization.objects.filter(owner_id=request.user.id).count()
+    org_membership_count = PublicOrganizationRegistration.objects.filter(owner_id=request.user.id).count()
     if org_membership_count >= 1:
         return HttpResponseRedirect(reverse('foundation_auth_org_successful_registration'))
     else:

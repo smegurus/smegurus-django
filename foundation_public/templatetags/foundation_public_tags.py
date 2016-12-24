@@ -23,3 +23,13 @@ def tenant_url(schema_name, view_name):
 @register.filter
 def pretty_formatted_date(date):
     return get_pretty_formatted_date(date)
+
+
+@register.simple_tag
+def get_app_public_domain():
+    """
+    Returns the full URL to the domain. The output from this function gets
+    generally appended with a path string.
+    """
+    http_protocol = 'http://'
+    return http_protocol + '%s' % Site.objects.get_current().domain
