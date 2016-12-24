@@ -316,8 +316,8 @@ from foundation_public.models.organizationregistration import PublicOrganization
 def org_ready_page(request):
     # Fetch the data.
     template_url = 'foundation_auth/org_ready.html'
-    organization = PublicOrganizationRegistration.objects.filter(owner_id=request.user.id)
-
+    organization = get_object_or_404(PublicOrganizationRegistration, owner_id=request.user.id)
+    
     # Render our email templated message.
     return render(request, template_url,{
         'organization': organization

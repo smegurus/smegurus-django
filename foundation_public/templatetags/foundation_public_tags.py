@@ -33,3 +33,21 @@ def get_app_public_domain():
     """
     http_protocol = 'http://'
     return http_protocol + '%s' % Site.objects.get_current().domain
+
+
+
+@register.simple_tag
+def get_app_tenant_domain(organization):
+    """
+    Reverse the URL of the request + view name for this Organization.
+    """
+    from django.contrib.sites.shortcuts import get_current_site # Reverse
+    from django.core.urlresolvers import resolve, reverse # Reverse
+    from django.contrib.sites.models import Site
+    from smegurus.settings import env_var
+
+    http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
+    if organization.schema_name:
+        return http_protocol + organization.schema_name + '.%s' % Site.objects.get_current().domain
+    else:
+        return http_protocol + '%s' % Site.objects.get_current().domain

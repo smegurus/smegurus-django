@@ -36,6 +36,20 @@ class PublicOrganizationRegistration(AbstractPublicThing):
         null=True,
     )
 
-
     def __str__(self):
         return str(self.name)
+
+    def reverse(self, view_name):
+        """
+        Reverse the URL of the request + view name for this Organization.
+        """
+        from django.contrib.sites.shortcuts import get_current_site # Reverse
+        from django.core.urlresolvers import resolve, reverse # Reverse
+        from django.contrib.sites.models import Site
+        from smegurus.settings import env_var
+
+        http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
+        if self.schema_name:
+            return http_protocol + self.schema_name + '.%s' % Site.objects.get_current().domain + reverse(view_name)
+        else:
+            return http_protocol + '%s' % Site.objects.get_current().domain + reverse(view_name)
