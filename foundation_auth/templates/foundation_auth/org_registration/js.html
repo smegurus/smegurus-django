@@ -45,9 +45,6 @@
         var data = {
             'schema_name': schema_name,
             'name': $('#id_name').val(),
-            'alternate_name': $('#id_name').val(),
-            'legal_name': $('#id_name').val(),
-            'is_tos_signed': $('#id_is_tos_signed').is(':checked'),
             'owner': {{ request.user.id }}
         };
 
@@ -59,7 +56,7 @@
             data['address'] = $('#id_hidden_postaladdress').val();
         }
 
-        set_public_organization(data,
+        set_public_organization_registration(data,
             data,
             function(org_json_result) {
                 success_callback(org_json_result);

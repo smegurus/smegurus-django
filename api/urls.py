@@ -23,6 +23,7 @@ from api.views.foundation_public.geocoordinateviewset import PublicGeoCoordinate
 from api.views.foundation_public.brandviewset import PublicBrandViewSet
 from api.views.foundation_public.placeviewset import PublicPlaceViewSet
 from api.views.foundation_public.countryviewset import PublicCountryViewSet
+from api.views.foundation_public.organizationregistrationviewset import PublicOrganizationRegistrationViewSet
 from api.views.foundation_public.organizationviewset import PublicOrganizationViewSet
 from api.views.foundation_public.functionviewset import IsEmailUniqueViewSet
 from api.views.foundation_public.functionviewset import IsOrganizationSchemaNameUniqueViewSet
@@ -84,6 +85,7 @@ router.register(r'publicgeocoordinate', PublicGeoCoordinateViewSet)
 router.register(r'publicbrand', PublicBrandViewSet)
 router.register(r'publicplace', PublicPlaceViewSet)
 router.register(r'publiccountry', PublicCountryViewSet)
+router.register(r'publicorganizationregistration', PublicOrganizationRegistrationViewSet)
 router.register(r'publicorganization', PublicOrganizationViewSet)
 
 # TENANT - BASE
