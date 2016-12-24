@@ -11,19 +11,16 @@
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group">
-            <label class="col-sm-2 control-label"><!-- BLANK --></label>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
 
                 <!-- 1 OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_1" {% if request.tenant_me.education_or_training_status == 1 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="1" />
-                            <p>{% trans 'Highschool' %}</p>
-                        </div>
+                            {% trans 'Highschool' %}
                     </label>
                 </div>
                 <!-- end 1 OPTION -->
@@ -31,13 +28,11 @@
                 <!-- 2 OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_2" {% if request.tenant_me.education_or_training_status == 2 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="2" />
-                            <p>{% trans 'Post-Secondary' %}</p>
-                        </div>
+                            {% trans 'Post-Secondary' %}
                     </label>
                 </div>
                 <!-- end 2 OPTION -->
@@ -45,27 +40,23 @@
                 <!-- 3 OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_3" {% if request.tenant_me.education_or_training_status == 3 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="3" />
-                            <p>{% trans 'Private career training' %}</p>
-                        </div>
-                    </label>
+                            {% trans 'Private career training' %}
+                   </label>
                 </div>
                 <!-- end 3 OPTION -->
 
                 <!-- 4 OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_4" {% if request.tenant_me.education_or_training_status == 4 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="4" />
-                            <p>{% trans 'Specialized employment program' %}</p>
-                        </div>
+                            {% trans 'Specialized employment program' %}
                     </label>
                 </div>
                 <!-- end 4 OPTION -->
@@ -73,13 +64,11 @@
                 <!-- 5 OPTION -->
                 <div class="radio">
                     <label>
-                        <div>
                         <input id="optionsRadios_5" {% if request.tenant_me.education_or_training_status == 5 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="5" />
-                            <p>{% trans 'other' %}</p>
-                        </div>
+                            {% trans 'other' %}
                     </label>
                 </div>
                 <!-- end 75 OPTION -->
