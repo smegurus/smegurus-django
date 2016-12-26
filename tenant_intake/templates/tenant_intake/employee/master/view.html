@@ -76,11 +76,11 @@
                                     <td>
                                         {% if type == 'pending' %}
                                             <a href="{% url 'tenant_intake_employee_pending_details' intake.id %}">
-                                                <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
+                                                <button type="button" class="btn btn-labeled btn-primary">{% trans 'View' %}</button>
                                             </a>
                                         {% elif type == 'held'  %}
                                             <a href="{% url 'tenant_intake_employee_held_details' intake.id %}">
-                                                <button type="button" class="btn btn-labeled btn-default">{% trans 'View' %}</button>
+                                                <button type="button" class="btn btn-labeled btn-primary">{% trans 'View' %}</button>
                                             </a>
                                         {% endif %}
                                     </td>
