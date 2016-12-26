@@ -11,8 +11,8 @@
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group">
-            <label class="col-sm-2 control-label"><!-- BLANK --></label>
-            <div class="col-sm-10">
+            
+            <div class="col-sm-12">
 
                 <!-- MALE OPTION -->
                 <div class="radio">
@@ -70,8 +70,8 @@
 
         <!-- ROW 2 -->
         <div class="form-group" id="id_gender_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-            <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-            <div class="col-sm-10">
+            <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
+            <div class="col-sm-8">
                 <input id="id_gender_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.gender_other }}" maxlength="127" />
             </div>
         </div>
