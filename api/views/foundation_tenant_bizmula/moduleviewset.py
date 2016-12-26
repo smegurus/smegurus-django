@@ -112,15 +112,14 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             # Get our Module object.
             module = self.get_object()
 
-            # Programmer assertions.
-            assert request.tenant_me
-            assert module
+            # DEBUGGING PURPOSES
+            print("TenantMe ID:", request.tenant_me.id)
 
             # Fetch all the Documents for this Module belonging to the
             # currently authenticated User.
             documents = Document.objects.filter(
                 document_type__stage_num=module.stage_num,
-                workspace__mes__id=request.tenant_me.id
+                workspace__mes=request.tenant_me
             )
 
             # Iterate through all the documents inside this Module belonging
