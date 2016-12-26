@@ -91,10 +91,10 @@
                 <h1>{{ module.title }}</h1>
                 {{ module.description|escape|safe }}
                 <p>
-                    <a role="button" class="btn btn-default btn-lg" href="{% url 'tenant_reception' %}">
+                    <a role="button" class="btn btn-back btn-lg" href="{% url 'tenant_reception' %}">
                         {% trans 'Back' %}
                     </a>
-                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_reception_workspace_detail' workspace.id node_current_position %}">
+                    <a role="button" class="btn btn-next btn-lg" href="{% url 'tenant_reception_workspace_detail' workspace.id node_current_position %}">
                         {% trans 'Begin Module' %}
                     </a>
                 </p>
