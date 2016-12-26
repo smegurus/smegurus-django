@@ -19,6 +19,7 @@ from foundation_public.models.geocoordinate import PublicGeoCoordinate
 from foundation_public.models.brand import PublicBrand
 from foundation_public.models.place import PublicPlace
 from foundation_public.models.country import PublicCountry
+from foundation_public.models.organizationregistration import PublicOrganizationRegistration
 from foundation_public.models.organization import PublicOrganization
 
 
@@ -115,7 +116,7 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PublicOrganization
-        fields = ('id', 'created', 'last_modified', 'owner', 'url', 'on_trial',
+        fields = ('id', 'created', 'owner', 'last_modified', 'url', 'on_trial',
                   'paid_until', 'name', 'schema_name', 'address',
                   'brands', 'contact_point', 'dissolution_date', 'duns', 'email',
                   'fax_number', 'founding_date', 'founding_location',
@@ -173,3 +174,57 @@ class PublicOrganizationSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Cannot us a banned word!")
 
         return super(PublicOrganizationSerializer, self).validate(data)
+
+
+class PublicOrganizationRegistrationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PublicOrganizationRegistration
+        fields = ('id', 'owner', 'name', 'schema_name',)
+
+    def validate(self, data):
+        """
+        Perform our own custom validation.
+        """
+        schema_name = data.get('schema_name')
+
+        # Validate to ensure there are not capitals.
+        if not schema_name.islower():
+            raise serializers.ValidationError("Your subdomain can only contain lowercase letters.")
+
+        # Validate to ensure there are no special characters (including whitespace).
+        if not schema_name.isalpha():
+            raise serializers.ValidationError("Your subdomain cannot have special characters.")
+
+        # Validate to ensure the user doesn't take a valuable sub-domain name
+        # that we (ComicsCantina) can use in the future.
+        reserved_words = [
+            'dev','develop', 'development', 'developments', 'developer',
+            'qa','quality', 'qualityassurance', 'developments', 'book', 'books',
+            'prod','production', 'productions', 'shop', 'shops', 'docgen',
+            'img', 'image', 'images', 'shopping', 'comicbooks', 'comicbook',
+            'help', 'contact', 'contactus', 'exchange', 'stock', 'product',
+            'products', 'list', 'listing', 'listings', 'directory', 'tech',
+            'technology', 'engineer', 'engineering', 'landpage', 'page', 'test',
+            'tests', 'testing', 'doc', 'docs', 'document', 'documents',
+            'file', 'files', 'ftp', 'sftp', 'server', 'client', 'comic',
+            'comics', 'issue', 'issues', 'series', 'publisher', 'publishers',
+            'brand', 'brands', 'inv', 'inventory', 'inventorying', 'catalog',
+            'inventorys', 'catalogs', 'ios','android','microsoft', 'apple',
+            'samsung', 'mobile', 'tablet', '', 'iphone', 'reader', 'reading',
+            'download', 'downloader', 'downloading', 'news', 'blogs', 'www',
+            'tutorial', 'tutorials', 'edu', 'education', 'educational', 'link',
+            'article', 'www2', 'ww3', 'ww4', 'store', 'storing', 'start',
+            'begin', 'checkout', 'pos', 'api', 'ssh', 'buy', 'learn',
+            'discover', 'discovery',
+        ]
+        if schema_name in reserved_words:
+            raise serializers.ValidationError("Cannot us a reserved word!")
+
+        # Validate to ensure the domain name isn't using a 'bad word'.
+        bad_words = BannedWord.objects.all()
+        for bad_word in bad_words.all():
+            if str(bad_word) in schema_name:
+                raise serializers.ValidationError("Cannot us a banned word!")
+
+        return super(PublicOrganizationRegistrationSerializer, self).validate(data)

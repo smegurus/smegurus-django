@@ -158,7 +158,7 @@ hr {
 }
 .panel .panel-heading {
   border-bottom: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 .panel .panel-heading a {
   text-decoration: none !important;
@@ -339,6 +339,7 @@ fieldset .form-group {
 body {
   font-family: "Source Sans Pro", sans-serif;
   color: #656565;
+  font-size: 16px;
 }
 h1,
 h2,
@@ -1624,7 +1625,7 @@ h3 + .breadcrumb,
 h3 > .breadcrumb,
 .content-heading > .breadcrumb {
   background: transparent;
-  font-size: 13px;
+  font-size: 14px;
   border: 0;
   padding: 10px 10px 0 0;
   margin-bottom: 0;

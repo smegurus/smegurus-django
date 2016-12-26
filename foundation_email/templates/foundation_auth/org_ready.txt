@@ -1,0 +1,11 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+{% trans 'Organization Ready Email' %}
+{% trans 'Thank you for signing up your organization for SME Gurus! We have finished setting up your Organization, please login here' %}
+
+{% get_app_tenant_domain organization %}{% url 'foundation_auth_user_login' %}{% trans 'My Organization' %}
+
+{% trans 'If you believe you have received this message in error, please contact support@smegurus.com' %}
+
+{% trans 'Thank you!' %}
+
+2013 - {% now "Y" %} by SME Gurus. {% trans 'All rights reserved.' %}

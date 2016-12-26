@@ -16,12 +16,12 @@
 
                 <!-- MALE OPTION -->
                 <div class="radio">
-                    <label
+                    <label>
                         <input id="optionsRadios_male" {% if request.tenant_me.gender == constants.ME_MALE_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_MALE_GENDER_ID }}" />
-                            {% trans 'Male' %}
+                        {% trans 'Male' %}
                     </label>
                 </div>
                 <!-- end MALE OPTION -->
@@ -33,7 +33,7 @@
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_FEMALE_GENDER_ID }}" />
-                            {% trans 'Female' %}
+                        {% trans 'Female' %}
                     </label>
                 </div>
                 <!-- end FEMALE OPTION -->

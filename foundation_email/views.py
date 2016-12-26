@@ -306,3 +306,19 @@ def accepted_document_page(request, document_id):
         'url': url,
         'web_view_url': web_view_extra_url,
     })
+
+
+from foundation_public.models.organizationregistration import PublicOrganizationRegistration
+
+
+@login_required(login_url='/en/login')
+# @condition(last_modified_func=latest_intake_details)
+def org_ready_page(request):
+    # Fetch the data.
+    template_url = 'foundation_auth/org_ready.html'
+    organization = get_object_or_404(PublicOrganizationRegistration, owner_id=request.user.id)
+    
+    # Render our email templated message.
+    return render(request, template_url,{
+        'organization': organization
+    })
