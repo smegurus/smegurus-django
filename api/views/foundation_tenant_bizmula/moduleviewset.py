@@ -35,17 +35,22 @@ class SendEmailViewMixin(object):
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
         contact_list = []
+        print("Starting Contact List...")
         for me in document.workspace.mes.all():
             # If this User profile has an assigned manager then add this person
             # to the email.
             if me.managed_by:
+                print("MANAGED_BY", str(me.managed_by))
                 contact_list.append(me.managed_by.owner.email)
 
             # If the user was not assigned a manager then assign a Org admin.
             else:
+                print("CONTACT LIST")
                 contact_list.append(org_admin_user.email)
                 me.managed_by = org_admin_me
                 me.save()
+
+        print("GEN URL", self.request.tenant)
 
         # Generate the data.
         url =  resolve_full_url_with_subdmain(
@@ -112,10 +117,6 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             # Get our Module object.
             module = self.get_object()
 
-            # DEBUGGING PURPOSES
-            print("TenantMe ID:", request.tenant_me.id)
-            print("Starting...")
-
             # Fetch all the Documents for this Module belonging to the
             # currently authenticated User.
             documents = Document.objects.filter(
@@ -123,13 +124,14 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 workspace__mes=request.tenant_me
             )
 
-            print("Documents...")
-
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
             for document in documents.all():
+                print("Processing Document", str(document.id))
                 document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
                 document.save()
+
+                print("Send Pending Documents...")
 
                 # Send a notification email to the assigned Advisor.
                 self.send_pending_document_review_notification(document)
