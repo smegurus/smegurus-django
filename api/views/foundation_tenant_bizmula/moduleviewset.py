@@ -28,34 +28,13 @@ class SendEmailViewMixin(object):
         Function will send a "Pending Document Review" email to the Documents
         assigned Advisor.
         """
-        print("STARTING ...")
-
-        # Fetch a single org admin user.
-        org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).latest('date_joined')
-
-        print("org_admin_user -=>", org_admin_user)
-
-        org_admin_me = TenantMe.objects.get(owner=org_admin_user)
-
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
         contact_list = []
-        print("Starting Contact List...")
         for me in document.workspace.mes.all():
             # If this User profile has an assigned manager then add this person
             # to the email.
-            if me.managed_by:
-                print("MANAGED_BY", str(me.managed_by))
-                contact_list.append(me.managed_by.owner.email)
-
-            # If the user was not assigned a manager then assign a Org admin.
-            else:
-                print("CONTACT LIST")
-                contact_list.append(org_admin_user.email)
-                me.managed_by = org_admin_me
-                me.save()
-
-        print("GEN URL", self.request.tenant)
+            contact_list.append(me.managed_by.owner.email)
 
         # Generate the data.
         url =  resolve_full_url_with_subdmain(
@@ -135,15 +114,11 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
                 document.save()
 
-                print("BEGGING - send_pending_document_review_notification")
-
                 # Send a notification email to the assigned Advisor.
                 self.send_pending_document_review_notification(document)
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
-            print("ERROR DETECTED")
-            print(e)
             return response.Response(
                 data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
