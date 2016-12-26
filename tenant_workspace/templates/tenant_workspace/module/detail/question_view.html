@@ -58,8 +58,8 @@
         <div class="panel panel-default">
 
            <div class="panel-body">
-              <img src="{% static 'app/img/contact_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="$('#contactAdvisorModal').modal('toggle'); $('#contactAdvisorModal').modal('show');" />
-              <img src="{% static 'app/img/question_icon.png' %}" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;" class="pull-right" onclick="$('#helpModal').modal('toggle'); $('#helpModal').modal('show');" />
+              <i class="fa fa-commenting" aria-hidden="true" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;color: #f26523;" class="pull-right" onclick="$('#contactAdvisorModal').modal('toggle'); $('#contactAdvisorModal').modal('show');"></i>
+              <i class="fa fa-question-circle" aria-hidden="true" alt="q2 help button" style="cursor:pointer;margin-left:10px;width:25px;height:25px;color: #f26523;" class="pull-right" onclick="$('#helpModal').modal('toggle'); $('#helpModal').modal('show');"></i>
               <form id="questionForm" method="get" action="/" class="form-horizontal">
                  <!-- QUESTION CONTENT -->
                  {% if question.type_id == 1 %}
