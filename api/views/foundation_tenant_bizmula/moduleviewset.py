@@ -28,8 +28,6 @@ class SendEmailViewMixin(object):
         Function will send a "Pending Document Review" email to the Documents
         assigned Advisor.
         """
-        print("MEs", str(document.workspace.mes))
-
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
         contact_list = []

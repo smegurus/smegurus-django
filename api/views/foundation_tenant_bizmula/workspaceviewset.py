@@ -35,7 +35,11 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
         """Add owner to the object when being created for the first time"""
         # Include the owner attribute directly, rather than from request data.
         workspace = serializer.save()
+        print("TenantMe", str(self.request.tenant_me))
         workspace.mes.add(self.request.tenant_me)
+        print("MEs")
+        print(workspace.mes)
+        print(workspace.mes.all())
         workspace.save()
 
         # Create the documents for our system.
