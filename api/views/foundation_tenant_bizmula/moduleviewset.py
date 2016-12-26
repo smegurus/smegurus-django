@@ -31,6 +31,8 @@ class SendEmailViewMixin(object):
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
         contact_list = []
+        print("MEs")
+        print(document.workspace.mes.all())
         for me in document.workspace.mes.all():
             # If this User profile has an assigned manager then add this person
             # to the email.
