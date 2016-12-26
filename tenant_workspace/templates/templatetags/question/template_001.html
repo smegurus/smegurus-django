@@ -122,16 +122,15 @@
         <div class="col-sm-10">
             {% for option in question.options.opt1 %}
             <!-- OPTION TEXT -->
-            <div class="radio">
-                <label>
+            <div class="radio c-radio">
+                <label {% if option.custom_style %}style="{{ option.custom_style }}"{% endif %}>
                     <div {% if option.help_title and option.help_description %}title="{{ option.help_title|escape|safe }}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ option.help_description|escape|safe }}"{% endif %}>
                     <input id="optionsRadios{{ option.value }}" {% if picked.var_1 == option.value %}checked="checked"{% endif %}
                          type="radio"
                          name="optionsRadios"
                         value="{{ option.value }}" />
-                        <p {% if option.custom_style %}style="{{ option.custom_style }}"{% endif %}>
-                            {{ option.text|escape|safe }}&nbsp;
-                        </p>
+                        <span class="fa fa-circle"></span>
+                            {{ option.text|escape|safe }}
                     </div>
                 </label>
             </div>
