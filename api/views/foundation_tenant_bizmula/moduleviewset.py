@@ -28,6 +28,8 @@ class SendEmailViewMixin(object):
         Function will send a "Pending Document Review" email to the Documents
         assigned Advisor.
         """
+        print("STARTING ...")
+
         # Fetch a single org admin user.
         org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).latest('date_joined')
         org_admin_me = TenantMe.objects.get(owner=org_admin_user)
@@ -127,11 +129,10 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
             for document in documents.all():
-                print("Processing Document", str(document.id))
                 document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
                 document.save()
 
-                print("Send Pending Documents...")
+                print("BEGGING - send_pending_document_review_notification")
 
                 # Send a notification email to the assigned Advisor.
                 self.send_pending_document_review_notification(document)
