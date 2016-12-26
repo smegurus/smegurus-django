@@ -82,7 +82,8 @@ def create_page(request):
     user = User.objects.create_user(
         username=random_text(30),
         email=random_text(100) + "@" + random_text(100) + ".com",
-        password=random_password
+        password=random_password,
+        is_active=True
     )
 
     # Attach our new User into our Organization.
@@ -118,6 +119,7 @@ def create_page(request):
         contact_point=contact_point,
         is_in_intake=True,
         is_setup=True,
+        managed_by=request.tenant_me
     )
     url = reverse('tenant_team_update', args=[me.id,]) + "?pass="+random_password
     return HttpResponseRedirect(url)
