@@ -204,7 +204,7 @@ hr {
 }
 .btn {
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 16px;
   border-color: transparent;
   -webkit-appearance: none;
   outline: none !important;
@@ -219,12 +219,28 @@ hr {
 .btn.btn-default {
   border-color: #eaeaea;
 }
+.btn-back{
+    color: #fff;
+    background-color: #f26523;
+    border-color: #f26523;
+}
+.btn-next{
+    color: #fff;
+    background-color: #36aa65;
+    border-color: #36aa65;
+}
+.btn-back:hover{
+    background-color: rgba(242, 101, 35, 0.8);
+}
+.btn-next:hover{
+    background-color: rgba(54, 170, 101, 0.8);
+}
 .input-group .btn {
-  font-size: 14px;
+  font-size: 16px;
   border-color: #dde6e9;
 }
 .input-group .input-sm + .input-group-btn .btn {
-  font-size: 13px;
+  font-size: 14px;
 }
 .form-control {
   box-shadow: 0 0 0 #000 !important;
