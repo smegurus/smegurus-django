@@ -112,6 +112,10 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             # Get our Module object.
             module = self.get_object()
 
+            # Programmer assertions.
+            assert request.tenant_me
+            assert module
+
             # Fetch all the Documents for this Module belonging to the
             # currently authenticated User.
             documents = Document.objects.filter(
