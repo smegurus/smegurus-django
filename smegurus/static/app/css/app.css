@@ -231,9 +231,11 @@ hr {
 }
 .btn-back:hover{
     background-color: rgba(242, 101, 35, 0.8);
+    color: #fff;
 }
 .btn-next:hover{
     background-color: rgba(54, 170, 101, 0.8);
+    color: #fff;
 }
 .input-group .btn {
   font-size: 16px;
@@ -355,7 +357,7 @@ fieldset .form-group {
 body {
   font-family: "Source Sans Pro", sans-serif;
   color: #656565;
-  font-size: 16px;
+  font-size: 18px;
 }
 h1,
 h2,
