@@ -29,9 +29,7 @@ class SendEmailViewMixin(object):
         assigned Advisor.
         """
         # Fetch all the administrators for this Organization.
-        org_admin_users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).latest('date_joined')
-        print("MEs", org_admin_users)
-        print("MEs", org_admin_users.all())
+        org_admin_users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
 
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
