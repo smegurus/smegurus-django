@@ -114,6 +114,7 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # DEBUGGING PURPOSES
             print("TenantMe ID:", request.tenant_me.id)
+            print("Starting...")
 
             # Fetch all the Documents for this Module belonging to the
             # currently authenticated User.
@@ -121,6 +122,8 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 document_type__stage_num=module.stage_num,
                 workspace__mes=request.tenant_me
             )
+
+            print("Documents...")
 
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
@@ -133,6 +136,8 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
+            print("ERROR DETECTED")
+            print(e)
             return response.Response(
                 data=str(e),
                 status=status.HTTP_400_BAD_REQUEST
