@@ -32,6 +32,9 @@ class SendEmailViewMixin(object):
 
         # Fetch a single org admin user.
         org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).latest('date_joined')
+
+        print("org_admin_user -=>", org_admin_user)
+
         org_admin_me = TenantMe.objects.get(owner=org_admin_user)
 
         # Iterate through all owners of this document and generate the contact
