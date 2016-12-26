@@ -36,6 +36,7 @@ class SendEmailViewMixin(object):
         for me in document.workspace.mes.all():
             # If this User profile has an assigned manager then add this person
             # to the email.
+            print("managed_by", str(me.managed_by))
             if me.managed_by:
                 if me.managed_by.owner:
                     contact_list.append(me.managed_by.owner.email)
