@@ -16,68 +16,80 @@
 
         {% if q1_answer.var_1 %}
             // GET INPUT.
-            arr['var_1'] = $('#id_category1_yr1').val();
-            arr['var_2'] = $('#id_category1_yr2').val();
-            arr['var_3'] = $('#id_category1_yr3').val();
+            arr['c1_yr1_percent'] = $('#id_category1_yr1').val();
+            arr['c1_yr2_percent'] = $('#id_category1_yr2').val();
+            arr['c1_yr3_percent'] = $('#id_category1_yr3').val();
 
             // VALIDATION
-            if (!arr['var_1']) {
+            if (!arr['c1_yr1_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ q1_answer.var_1 }}.");
                 return;
             }
-            if (!arr['var_2']) {
+            if (!arr['c1_yr2_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ q1_answer.var_1 }}.");
                 return;
             }
-            if (!arr['var_3']) {
+            if (!arr['c1_yr3_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ q1_answer.var_1 }}.");
                 return;
             }
 
-            // CALCULATE "TOTAL SALES".
-            
+            // CALCULATE "AMOUNT".
+            arr['c1_yr1_amount'] = parseFloat("{{ q2_answer.yr1_total }}") * ( arr['c1_yr1_percent'] / 100 );
+            arr['c1_yr2_amount'] = parseFloat("{{ q2_answer.yr2_total }}") * ( arr['c1_yr2_percent'] / 100 );
+            arr['c1_yr3_amount'] = parseFloat("{{ q2_answer.yr3_total }}") * ( arr['c1_yr3_percent'] / 100 );
         {% endif %}
 
         {% if q1_answer.var_2 %}
             // GET INPUT.
-            arr['var_4'] = $('#id_category2_yr1').val();
-            arr['var_5'] = $('#id_category2_yr2').val();
-            arr['var_6'] = $('#id_category2_yr3').val();
+            arr['c2_yr1_percent'] = $('#id_category2_yr1').val();
+            arr['c2_yr2_percent'] = $('#id_category2_yr2').val();
+            arr['c2_yr3_percent'] = $('#id_category2_yr3').val();
 
             // VALIDATION
-            if (!arr['var_4']) {
+            if (!arr['c2_yr1_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ q1_answer.var_2 }}.");
                 return;
             }
-            if (!arr['var_5']) {
+            if (!arr['c2_yr2_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ q1_answer.var_2 }}.");
                 return;
             }
-            if (!arr['var_6']) {
+            if (!arr['c2_yr3_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ q1_answer.var_2 }}.");
                 return;
             }
+
+            // CALCULATE "AMOUNT".
+            arr['c2_yr1_amount'] = parseFloat("{{ q2_answer.yr1_total }}") * ( arr['c2_yr1_percent'] / 100 );
+            arr['c2_yr2_amount'] = parseFloat("{{ q2_answer.yr2_total }}") * ( arr['c2_yr2_percent'] / 100 );
+            arr['c2_yr3_amount'] = parseFloat("{{ q2_answer.yr3_total }}") * ( arr['c2_yr3_percent'] / 100 );
         {% endif %}
 
         {% if q1_answer.var_3 %}
             // GET INPUT.
-            arr['var_7'] = $('#id_category3_yr1').val();
-            arr['var_8'] = $('#id_category3_yr2').val();
-            arr['var_9'] = $('#id_category3_yr3').val();
+            arr['c3_yr1_percent'] = $('#id_category3_yr1').val();
+            arr['c3_yr2_percent'] = $('#id_category3_yr2').val();
+            arr['c3_yr3_percent'] = $('#id_category3_yr3').val();
 
             // VALIDATION
-            if (!arr['var_7']) {
+            if (!arr['c3_yr1_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ q1_answer.var_3 }}.");
                 return;
             }
-            if (!arr['var_8']) {
+            if (!arr['c3_yr2_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ q1_answer.var_3 }}.");
                 return;
             }
-            if (!arr['var_9']) {
+            if (!arr['c3_yr3_percent']) {
                 alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ q1_answer.var_3 }}.");
                 return;
             }
+
+            // CALCULATE "AMOUNT".
+            arr['c3_yr1_amount'] = parseFloat("{{ q2_answer.yr1_total }}") * ( arr['c3_yr1_percent'] / 100 );
+            arr['c3_yr2_amount'] = parseFloat("{{ q2_answer.yr2_total }}") * ( arr['c3_yr2_percent'] / 100 );
+            arr['c3_yr3_amount'] = parseFloat("{{ q2_answer.yr3_total }}") * ( arr['c3_yr3_percent'] / 100 );
         {% endif %}
 
         // Debugging Purposes Only.
@@ -149,13 +161,13 @@
                         <tr>
                             <td>{{ q1_answer.var_1 }}</td>
                             <td>
-                                <input id="id_category1_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.var_1 }}" />
+                                <input id="id_category1_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.c1_yr1_percent }}" />
                             </td>
                             <td>
-                                <input id="id_category1_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_6 }}" value="{{ picked.var_2 }}" />
+                                <input id="id_category1_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_6 }}" value="{{ picked.c1_yr2_percent }}" />
                             </td>
                             <td>
-                                <input id="id_category1_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_7 }}" value="{{ picked.var_3 }}" />
+                                <input id="id_category1_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_7 }}" value="{{ picked.c1_yr3_percent }}" />
                             </td>
                         </tr>
                         {% endif %}
@@ -163,13 +175,13 @@
                         <tr>
                             <td>{{ q1_answer.var_2 }}</td>
                             <td>
-                                <input id="id_category2_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_8 }}" value="{{ picked.var_4 }}" />
+                                <input id="id_category2_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_8 }}" value="{{ picked.c2_yr1_percent }}" />
                             </td>
                             <td>
-                                <input id="id_category2_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_9 }}" value="{{ picked.var_5 }}" />
+                                <input id="id_category2_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_9 }}" value="{{ picked.c2_yr2_percent }}" />
                             </td>
                             <td>
-                                <input id="id_category2_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_10 }}" value="{{ picked.var_6 }}" />
+                                <input id="id_category2_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_10 }}" value="{{ picked.c2_yr3_percent }}" />
                             </td>
                         </tr>
                         {% endif %}
@@ -177,13 +189,13 @@
                         <tr>
                             <td>{{ q1_answer.var_3 }}</td>
                             <td>
-                                <input id="id_category3_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_11 }}" value="{{ picked.var_7 }}" />
+                                <input id="id_category3_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_11 }}" value="{{ picked.c3_yr1_percent }}" />
                             </td>
                             <td>
-                                <input id="id_category3_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_12 }}" value="{{ picked.var_8 }}" />
+                                <input id="id_category3_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_12 }}" value="{{ picked.c3_yr2_percent }}" />
                             </td>
                             <td>
-                                <input id="id_category3_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_13 }}" value="{{ picked.var_9 }}" />
+                                <input id="id_category3_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_13 }}" value="{{ picked.c3_yr3_percent }}" />
                             </td>
                         </tr>
                         {% endif %}
