@@ -383,30 +383,10 @@
                         <!-- LOGOUT -->
                         {% if request.tenant_me.has_logout_dialog %}
                         <li class=" ">
-                            <a id="logout-block-toggle" href="#logout-block" data-toggle="collapse" title="{% trans 'Logout' %}" >
+                            <a id="logout-block-toggle" onclick="ajax_logout();" href="#logout-block" title="{% trans 'Logout' %}" >
                                 <em class="icon-logout"></em>
                                 <span data-localize="offsidebar.nav.LOGOUT">{% trans 'Logout' %}</span>
                             </a>
-                        </li>
-                        <li class="has-logout-block">
-                            <div id="logout-block" class="collapse">
-                                <div class="item logout-block">
-                                    <p>{% trans 'Are you sure you want to log out?' %}</p>
-                                    <button onclick="ajax_logout();" type="button" class="mb-sm btn label-green-v2 pull-left">
-                                        {% trans 'YES' %}
-                                    </button>
-                                    <button type="button" class="mb-sm btn label-red-v2 pull-right">
-                                        {% trans 'NO' %}
-                                    </button>
-                                    <label class="checkbox-inline c-checkbox">
-                                        <input id="inlineCheckbox10"
-                                          onclick="ajax_me_update_logout_dialog();"
-                                             type="checkbox"
-                                            value="{% trans 'Do not ask me again' %}" />
-                                        <span class="fa fa-check"></span>{% trans 'Don\'t ask me again' %}
-                                    </label>
-                                </div>
-                            </div>
                         </li>
                         {% else %}
                         <li class=" ">
