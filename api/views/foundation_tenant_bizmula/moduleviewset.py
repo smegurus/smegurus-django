@@ -44,6 +44,10 @@ class SendEmailViewMixin(object):
                 for org_admin_user in org_admin_users.all():
                     contact_list.append(org_admin_user.email)
 
+                    # Assign to the admin User to this unmanaged user.
+                    me.managed_by = TenantMe.objects.get(owner=org_admin_user)
+                    me.save()
+
         # Generate the data.
         url =  resolve_full_url_with_subdmain(
             self.request.tenant.schema_name,
