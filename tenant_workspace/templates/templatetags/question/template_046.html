@@ -837,6 +837,10 @@
 
         // Save to our database.
         //----------------------------------------
+        // Part 1 of 2 - Compute the totals.
+        arr = compute_totals(arr);
+
+        // Part 2 of 2 - Save.
         ajax_do_chain(
             arr,
             function(json_result) {
@@ -844,6 +848,274 @@
                 window.location = next_url;
             }
         );
+    }
+
+    function compute_totals(arr) {
+        // YEAR 1
+        //-----------
+        arr['total_year_1'] = 0;
+
+        // MONTH 1
+        if (arr['total_month_1_other']) {
+            arr['total_year_1'] += arr['total_month_1_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_1'];
+        }
+
+        // MONTH 2
+        if (arr['total_month_2_other']) {
+            arr['total_year_1'] += arr['total_month_2_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_2'];
+        }
+
+        // MONTH 3
+        if (arr['total_month_3_other']) {
+            arr['total_year_1'] += arr['total_month_3_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_3'];
+        }
+
+        // MONTH 4
+        if (arr['total_month_4_other']) {
+            arr['total_year_1'] += arr['total_month_4_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_4'];
+        }
+
+        // MONTH 5
+        if (arr['total_month_5_other']) {
+            arr['total_year_1'] += arr['total_month_5_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_5'];
+        }
+
+        // MONTH 6
+        if (arr['total_month_6_other']) {
+            arr['total_year_1'] += arr['total_month_6_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_6'];
+        }
+
+        // MONTH 7
+        if (arr['total_month_7_other']) {
+            arr['total_year_1'] += arr['total_month_7_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_7'];
+        }
+
+        // MONTH 8
+        if (arr['total_month_8_other']) {
+            arr['total_year_1'] += arr['total_month_8_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_8'];
+        }
+
+        // MONTH 9
+        if (arr['total_month_9_other']) {
+            arr['total_year_1'] += arr['total_month_9_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_9'];
+        }
+
+        // MONTH 10
+        if (arr['total_month_10_other']) {
+            arr['total_year_1'] += arr['total_month_10_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_10'];
+        }
+
+        // MONTH 11
+        if (arr['total_month_11_other']) {
+            arr['total_year_1'] += arr['total_month_11_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_11'];
+        }
+
+        // MONTH 12
+        if (arr['total_month_12_other']) {
+            arr['total_year_1'] += arr['total_month_12_other'];
+        } else {
+            arr['total_year_1'] += arr['total_month_12'];
+        }
+
+        // YEAR 2
+        //-----------
+        arr['total_year_2'] = 0;
+
+        // MONTH 1
+        if (arr['total_month_13_other']) {
+            arr['total_year_2'] += arr['total_month_13_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_13'];
+        }
+
+        // MONTH 2
+        if (arr['total_month_14_other']) {
+            arr['total_year_2'] += arr['total_month_14_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_14'];
+        }
+
+        // MONTH 3
+        if (arr['total_month_15_other']) {
+            arr['total_year_2'] += arr['total_month_15_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_15'];
+        }
+
+        // MONTH 4
+        if (arr['total_month_16_other']) {
+            arr['total_year_2'] += arr['total_month_16_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_16'];
+        }
+
+        // MONTH 5
+        if (arr['total_month_17_other']) {
+            arr['total_year_2'] += arr['total_month_17_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_17'];
+        }
+
+        // MONTH 6
+        if (arr['total_month_18_other']) {
+            arr['total_year_2'] += arr['total_month_18_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_18'];
+        }
+
+        // MONTH 7
+        if (arr['total_month_19_other']) {
+            arr['total_year_2'] += arr['total_month_19_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_19'];
+        }
+
+        // MONTH 8
+        if (arr['total_month_20_other']) {
+            arr['total_year_2'] += arr['total_month_20_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_20'];
+        }
+
+        // MONTH 9
+        if (arr['total_month_21_other']) {
+            arr['total_year_2'] += arr['total_month_21_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_21'];
+        }
+
+        // MONTH 10
+        if (arr['total_month_22_other']) {
+            arr['total_year_2'] += arr['total_month_22_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_22'];
+        }
+
+        // MONTH 11
+        if (arr['total_month_23_other']) {
+            arr['total_year_2'] += arr['total_month_23_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_23'];
+        }
+
+        // MONTH 12
+        if (arr['total_month_24_other']) {
+            arr['total_year_2'] += arr['total_month_24_other'];
+        } else {
+            arr['total_year_2'] += arr['total_month_24'];
+        }
+
+        // YEAR 3
+        //-----------
+        arr['total_year_3'] = 0;
+
+        // MONTH 1
+        if (arr['total_month_25_other']) {
+            arr['total_year_3'] += arr['total_month_25_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_25'];
+        }
+
+        // MONTH 2
+        if (arr['total_month_26_other']) {
+            arr['total_year_3'] += arr['total_month_26_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_26'];
+        }
+
+        // MONTH 3
+        if (arr['total_month_27_other']) {
+            arr['total_year_3'] += arr['total_month_27_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_27'];
+        }
+
+        // MONTH 4
+        if (arr['total_month_28_other']) {
+            arr['total_year_3'] += arr['total_month_28_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_28'];
+        }
+
+        // MONTH 5
+        if (arr['total_month_29_other']) {
+            arr['total_year_3'] += arr['total_month_29_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_29'];
+        }
+
+        // MONTH 6
+        if (arr['total_month_30_other']) {
+            arr['total_year_3'] += arr['total_month_30_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_30'];
+        }
+
+        // MONTH 7
+        if (arr['total_month_31_other']) {
+            arr['total_year_3'] += arr['total_month_31_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_31'];
+        }
+
+        // MONTH 8
+        if (arr['total_month_32_other']) {
+            arr['total_year_3'] += arr['total_month_32_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_32'];
+        }
+
+        // MONTH 9
+        if (arr['total_month_33_other']) {
+            arr['total_year_3'] += arr['total_month_33_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_33'];
+        }
+
+        // MONTH 10
+        if (arr['total_month_34_other']) {
+            arr['total_year_3'] += arr['total_month_34_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_34'];
+        }
+
+        // MONTH 11
+        if (arr['total_month_35_other']) {
+            arr['total_year_3'] += arr['total_month_35_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_35'];
+        }
+
+        // MONTH 12
+        if (arr['total_month_36_other']) {
+            arr['total_year_3'] += arr['total_month_36_other'];
+        } else {
+            arr['total_year_3'] += arr['total_month_36'];
+        }
+
+        return arr;
     }
 
     function ajax_do_chain(new_arr, callback) {
@@ -879,6 +1151,11 @@
 </script>
 {% endcompress %}
 <!-- end JS -->
+<!-- HTML STORE -->
+<input type="hidden" id="id_total_yr1" value="{{ answer.content.total_yr1 }}" />
+<input type="hidden" id="id_total_yr2" value="{{ answer.content.total_yr2 }}" />
+<input type="hidden" id="id_total_yr3" value="{{ answer.content.total_yr3 }}" />
+<!-- end HTML STORE -->
 <!-- HTML -->
 <fieldset>
     <legend>
