@@ -29,7 +29,7 @@ class SendEmailViewMixin(object):
         assigned Advisor.
         """
         # Fetch the original administrator for this Organization.
-        org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('joined')
+        org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
 
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
