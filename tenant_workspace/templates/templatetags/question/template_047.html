@@ -1,0 +1,194 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Variables.
+        var arr = {};
+
+        {% if dependent_answer.var_1 %}
+            // GET INPUT.
+            arr['var_1'] = $('#id_category1_yr1').val();
+            arr['var_2'] = $('#id_category1_yr2').val();
+            arr['var_3'] = $('#id_category1_yr3').val();
+
+            // VALIDATION
+            if (!arr['var_1']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ dependent_answer.var_1 }}.");
+                return;
+            }
+            if (!arr['var_2']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ dependent_answer.var_1 }}.");
+                return;
+            }
+            if (!arr['var_3']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ dependent_answer.var_1 }}.");
+                return;
+            }
+        {% endif %}
+
+        {% if dependent_answer.var_2 %}
+            // GET INPUT.
+            arr['var_4'] = $('#id_category2_yr1').val();
+            arr['var_5'] = $('#id_category2_yr2').val();
+            arr['var_6'] = $('#id_category2_yr3').val();
+
+            // VALIDATION
+            if (!arr['var_4']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ dependent_answer.var_2 }}.");
+                return;
+            }
+            if (!arr['var_5']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ dependent_answer.var_2 }}.");
+                return;
+            }
+            if (!arr['var_6']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ dependent_answer.var_2 }}.");
+                return;
+            }
+        {% endif %}
+
+        {% if dependent_answer.var_3 %}
+            // GET INPUT.
+            arr['var_7'] = $('#id_category3_yr1').val();
+            arr['var_8'] = $('#id_category3_yr2').val();
+            arr['var_9'] = $('#id_category3_yr3').val();
+
+            // VALIDATION
+            if (!arr['var_7']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ dependent_answer.var_3 }}.");
+                return;
+            }
+            if (!arr['var_8']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ dependent_answer.var_3 }}.");
+                return;
+            }
+            if (!arr['var_9']) {
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ dependent_answer.var_3 }}.");
+                return;
+            }
+        {% endif %}
+
+        // Debugging Purposes Only.
+        console.log(arr);
+
+        // SAVE TO OUR DATABASE.
+        ajax_do_chain(
+            arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
+    }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <legend>
+                {{ node.order_num }}. {{ question.title|escape|safe }}
+            </legend>
+            <!-- START table-responsive-->
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{ question.content.stub_1 }}</th>
+                            <th>{{ question.content.stub_2 }}</th>
+                            <th>{{ question.content.stub_3 }}</th>
+                            <th>{{ question.content.stub_4 }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if dependent_answer.var_1 %}
+                        <tr>
+                            <td>{{ dependent_answer.var_1 }}</td>
+                            <td>
+                                <input id="id_category1_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.var_1 }}" />
+                            </td>
+                            <td>
+                                <input id="id_category1_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_6 }}" value="{{ picked.var_2 }}" />
+                            </td>
+                            <td>
+                                <input id="id_category1_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_7 }}" value="{{ picked.var_3 }}" />
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if dependent_answer.var_2 %}
+                        <tr>
+                            <td>{{ dependent_answer.var_2 }}</td>
+                            <td>
+                                <input id="id_category2_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_8 }}" value="{{ picked.var_4 }}" />
+                            </td>
+                            <td>
+                                <input id="id_category2_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_9 }}" value="{{ picked.var_5 }}" />
+                            </td>
+                            <td>
+                                <input id="id_category2_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_10 }}" value="{{ picked.var_6 }}" />
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if dependent_answer.var_3 %}
+                        <tr>
+                            <td>{{ dependent_answer.var_3 }}</td>
+                            <td>
+                                <input id="id_category3_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_11 }}" value="{{ picked.var_7 }}" />
+                            </td>
+                            <td>
+                                <input id="id_category3_yr2" type="number" class="form-control" placeholder="{{ question.content.stub_12 }}" value="{{ picked.var_8 }}" />
+                            </td>
+                            <td>
+                                <input id="id_category3_yr3" type="number" class="form-control" placeholder="{{ question.content.stub_13 }}" value="{{ picked.var_9 }}" />
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- END table-responsive-->
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->

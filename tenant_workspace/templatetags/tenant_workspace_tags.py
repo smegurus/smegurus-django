@@ -861,3 +861,27 @@ def render_question_type_045(workspace, module, node, question, answer):
         'picked': answer.content,
         'picked_count': len(answer.content)
     }
+
+
+@register.inclusion_tag('templatetags/question/template_047.html')
+def render_question_type_047(workspace, module, node, question, answer):
+    """
+    DEPENDENCY:
+    - QID: 32 | product categories
+    """
+    # Fetch the dependency answer.
+    q1_qid = int_or_none(question.dependency['q1_qid'])
+    dependent_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+
+    dependent_answer = dependent_answer.content
+
+    # Render our template.
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'dependent_answer': dependent_answer
+    }
