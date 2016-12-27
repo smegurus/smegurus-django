@@ -34,14 +34,15 @@ class SendEmailViewMixin(object):
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
         contact_list = []
-        print(document.workspace.mes.all())
         for me in document.workspace.mes.all():
             # If this User profile has an assigned manager then add this person
             # to the email else just email the administrator.
             if me.managed_by:
+                print("--- Send to: Managed by ---")
                 contact_list.append(me.managed_by.owner.email)
             else:
                 for org_admin_user in org_admin_users.all():
+                    print("--- Send to: Admin ---")
                     contact_list.append(org_admin_user.email)
 
                     # Assign to the admin User to this unmanaged user.
