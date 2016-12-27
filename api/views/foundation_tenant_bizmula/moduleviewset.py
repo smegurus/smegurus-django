@@ -28,8 +28,8 @@ class SendEmailViewMixin(object):
         Function will send a "Pending Document Review" email to the Documents
         assigned Advisor.
         """
-        # Fetch all the administrators for this Organization.
-        org_admin_users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+        # Fetch the original administrator for this Organization.
+        org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('created')
 
         # Iterate through all owners of this document and generate the contact
         # list for all the Advisors for each Entrepreneur.
@@ -38,16 +38,13 @@ class SendEmailViewMixin(object):
             # If this User profile has an assigned manager then add this person
             # to the email else just email the administrator.
             if me.managed_by:
-                print("--- Send to: Managed by ---")
                 contact_list.append(me.managed_by.owner.email)
             else:
-                for org_admin_user in org_admin_users.all():
-                    print("--- Send to: Admin ---")
-                    contact_list.append(org_admin_user.email)
+                contact_list.append(org_admin_user.email)
 
-                    # Assign to the admin User to this unmanaged user.
-                    me.managed_by = TenantMe.objects.get(owner=org_admin_user)
-                    me.save()
+                # Assign the original admininistrator User to this unmanaged user.
+                me.managed_by = TenantMe.objects.get(owner=org_admin_user)
+                me.save()
 
         # Generate the data.
         url =  resolve_full_url_with_subdmain(
