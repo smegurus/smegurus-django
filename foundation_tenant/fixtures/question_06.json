@@ -173,7 +173,8 @@
                 "stub_13": "Ex.: 100%"
             },
             "dependency": {
-                "q1_qid": 32
+                "q1_qid": 32,
+                "q2_qid": 99
             },
             "validation": {
                 "opt1_other_min_length": 2,

@@ -867,13 +867,14 @@ def render_question_type_045(workspace, module, node, question, answer):
 def render_question_type_047(workspace, module, node, question, answer):
     """
     DEPENDENCY:
-    - QID: 32 | product categories
+    - QID: 32 | Product Categories
+    - QID: 99 | Total Sales Volume
     """
     # Fetch the dependency answer.
     q1_qid = int_or_none(question.dependency['q1_qid'])
-    dependent_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
-
-    dependent_answer = dependent_answer.content
+    q1_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    q2_qid = int_or_none(question.dependency['q2_qid'])
+    q2_answer = get_object_or_404(QuestionAnswer, question_id=q2_qid)
 
     # Render our template.
     return {
@@ -883,5 +884,6 @@ def render_question_type_047(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': answer.content,
-        'dependent_answer': dependent_answer
+        'q1_answer': q1_answer.content,
+        'q2_answer': q2_answer.content
     }

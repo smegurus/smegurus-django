@@ -14,7 +14,7 @@
         // Variables.
         var arr = {};
 
-        {% if dependent_answer.var_1 %}
+        {% if q1_answer.var_1 %}
             // GET INPUT.
             arr['var_1'] = $('#id_category1_yr1').val();
             arr['var_2'] = $('#id_category1_yr2').val();
@@ -22,20 +22,23 @@
 
             // VALIDATION
             if (!arr['var_1']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ dependent_answer.var_1 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ q1_answer.var_1 }}.");
                 return;
             }
             if (!arr['var_2']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ dependent_answer.var_1 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ q1_answer.var_1 }}.");
                 return;
             }
             if (!arr['var_3']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ dependent_answer.var_1 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ q1_answer.var_1 }}.");
                 return;
             }
+
+            // CALCULATE "TOTAL SALES".
+            
         {% endif %}
 
-        {% if dependent_answer.var_2 %}
+        {% if q1_answer.var_2 %}
             // GET INPUT.
             arr['var_4'] = $('#id_category2_yr1').val();
             arr['var_5'] = $('#id_category2_yr2').val();
@@ -43,20 +46,20 @@
 
             // VALIDATION
             if (!arr['var_4']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ dependent_answer.var_2 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ q1_answer.var_2 }}.");
                 return;
             }
             if (!arr['var_5']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ dependent_answer.var_2 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ q1_answer.var_2 }}.");
                 return;
             }
             if (!arr['var_6']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ dependent_answer.var_2 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ q1_answer.var_2 }}.");
                 return;
             }
         {% endif %}
 
-        {% if dependent_answer.var_3 %}
+        {% if q1_answer.var_3 %}
             // GET INPUT.
             arr['var_7'] = $('#id_category3_yr1').val();
             arr['var_8'] = $('#id_category3_yr2').val();
@@ -64,15 +67,15 @@
 
             // VALIDATION
             if (!arr['var_7']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ dependent_answer.var_3 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_2 }}{% trans ' for ' %}{{ q1_answer.var_3 }}.");
                 return;
             }
             if (!arr['var_8']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ dependent_answer.var_3 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_3 }}{% trans ' for ' %}{{ q1_answer.var_3 }}.");
                 return;
             }
             if (!arr['var_9']) {
-                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ dependent_answer.var_3 }}.");
+                alert("{% trans 'Please fill in ' %}{{ question.content.stub_4 }}{% trans ' for ' %}{{ q1_answer.var_3 }}.");
                 return;
             }
         {% endif %}
@@ -142,9 +145,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if dependent_answer.var_1 %}
+                        {% if q1_answer.var_1 %}
                         <tr>
-                            <td>{{ dependent_answer.var_1 }}</td>
+                            <td>{{ q1_answer.var_1 }}</td>
                             <td>
                                 <input id="id_category1_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.var_1 }}" />
                             </td>
@@ -156,9 +159,9 @@
                             </td>
                         </tr>
                         {% endif %}
-                        {% if dependent_answer.var_2 %}
+                        {% if q1_answer.var_2 %}
                         <tr>
-                            <td>{{ dependent_answer.var_2 }}</td>
+                            <td>{{ q1_answer.var_2 }}</td>
                             <td>
                                 <input id="id_category2_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_8 }}" value="{{ picked.var_4 }}" />
                             </td>
@@ -170,9 +173,9 @@
                             </td>
                         </tr>
                         {% endif %}
-                        {% if dependent_answer.var_3 %}
+                        {% if q1_answer.var_3 %}
                         <tr>
-                            <td>{{ dependent_answer.var_3 }}</td>
+                            <td>{{ q1_answer.var_3 }}</td>
                             <td>
                                 <input id="id_category3_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_11 }}" value="{{ picked.var_7 }}" />
                             </td>
