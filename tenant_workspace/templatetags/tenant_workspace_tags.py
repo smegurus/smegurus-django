@@ -274,34 +274,42 @@ def render_question_type_012(workspace, module, node, question, answer):
 def render_question_type_013(workspace, module, node, question, answer):
     """
     DEPENDENCY:
-    - template #002 | QTYPE_ID: 61 | company name
-    - template #001 | QTYPE_ID: 10 | geographic market
-    - template #009 | QTYPE_ID: 11 | geographic market
+    - QID: 61 | company name
+    - QID: 10 | geographic market
+    - QID: 11 | geographic market
     - NAICSOption
     """
     picked = answer.content
-    OTHER_TEXT = "Other (Please Specify)"
 
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
     q3_qid = int_or_none(question.dependency['q3_qid'])
-    a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+
+    # --- Q1 ---
     a1_raw = QuestionAnswer.objects.get(
         question_id=q1_qid,
         workspace=workspace
     )
     a1 = a1_raw.content
+
+    # --- Q2 ---
     a2_raw = QuestionAnswer.objects.get(
         question_id=q2_qid,
         workspace=workspace
     )
-    a2 = a2_raw.content
+    a2 = None
+    if a2_raw.content:
+        a2 = a2_raw.content
+
+    # --- Q3 ---
     a3_raw = QuestionAnswer.objects.get(
         question_id=q3_qid,
         workspace=workspace
     )
-    a3 = a3_raw.content
+    a3 = None
+    if a3_raw.content:
+        a3 = a3_raw.content
 
     # Generate custom text from previous questions.
     # 1. Generate company name.
@@ -324,7 +332,6 @@ def render_question_type_013(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        "OTHER_TEXT": OTHER_TEXT,
         'default_mission_statement': None
     }
 
@@ -338,7 +345,6 @@ def render_question_type_014(workspace, module, node, question, answer):
     - template #011 | QTYPE_ID: 12 | naics
     """
     picked = answer.content
-    OTHER_TEXT = "Other (Please Specify)"
 
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
@@ -379,7 +385,6 @@ def render_question_type_014(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        "OTHER_TEXT": OTHER_TEXT,
         'default_mission_statement': mission_statement
     }
 
