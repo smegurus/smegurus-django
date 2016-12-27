@@ -931,6 +931,7 @@ def render_question_type_048(workspace, module, node, question, answer):
     """
     DEPENDENCY:
     - QID: 49 | My target market is based on...
+    - QID: 99 | Total Sales Volume
     """
     # Fetch the dependency answer.
     q1_qid = int_or_none(question.dependency['q1_qid'])
@@ -938,34 +939,11 @@ def render_question_type_048(workspace, module, node, question, answer):
         question_id=q1_qid,
         workspace=workspace
     )
-
-    # if len(answer.content):
-    #     # Generate our new JSON dict.
-    #     curr_arr = []
-    #
-    #     # Iterate through all the rows in the table.
-    #     for i in range(0, len(q1_answer.content)):
-    #         curr_row = {}
-    #
-    #         for item in q1_answer.content[i].items():
-    #             # Process "var_1".
-    #             if item[0] == 'var_1':
-    #                 curr_row['var_1'] = item[1]
-    #
-    #             # Process "var_2".
-    #             if item[0] == 'var_2':
-    #                 curr_row['var_2'] = item[1]
-    #
-    #             # Process "var_3".
-    #             if item[0] == 'var_3':
-    #                 curr_row['var_3'] = item[1]
-    #
-    #             # Process "var_4".
-    #             if item[0] == 'var_4':
-    #                 curr_row['var_4'] = item[1]
-    #
-    #         print(curr_row)
-    #         curr_arr.append(curr_row)
+    q2_qid = int_or_none(question.dependency['q2_qid'])
+    q2_answer = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
 
     # Render our template.
     return {
@@ -977,5 +955,6 @@ def render_question_type_048(workspace, module, node, question, answer):
         'picked': answer.content,
         'picked_len': len(answer.content),
         'q1_answer': q1_answer.content,
-        'q1_answer_len': len(q1_answer.content)
+        'q1_answer_len': len(q1_answer.content),
+        'q2_answer': q2_answer.content,
     }

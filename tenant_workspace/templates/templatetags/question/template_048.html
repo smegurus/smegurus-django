@@ -25,17 +25,20 @@
             // --- YEAR 1 ---
             var yr1_id = '#id_market'+i+'_yr1';
             var yr1 = $(yr1_id).val();
-            row['yr1'] = parseFloat(yr1);
+            row['yr1_percent'] = parseFloat(yr1); // Save percent.
+            row['yr1_amount'] = parseFloat("{{ q2_answer.yr1_total }}") * ( row['yr1_percent'] / 100 ); // Save amount.
 
             // --- YEAR 2 ---
             var yr2_id = '#id_market'+i+'_yr2';
             var yr2 = $(yr2_id).val();
-            row['yr2'] = parseFloat(yr2);
+            row['yr2_percent'] = parseFloat(yr2); // Save percent.
+            row['yr2_amount'] = parseFloat("{{ q2_answer.yr2_total }}") * ( row['yr1_percent'] / 100 ); // Save amount.
 
             // --- YEAR 3 ---
             var yr3_id = '#id_market'+i+'_yr3';
             var yr3 = $(yr3_id).val();
-            row['yr3'] = parseFloat(yr3);
+            row['yr3_percent'] = parseFloat(yr3); // Save percent.
+            row['yr3_amount'] = parseFloat("{{ q2_answer.yr3_total }}") * ( row['yr1_percent'] / 100 ); // Save amount.
 
             // --- Append ---
             arr.push(row);
@@ -63,15 +66,15 @@
 
         // VALIDATION
         for (var i = 0; i < arr.length; i++) {
-            if (isNaN(arr[i]['yr1'])) {
+            if (isNaN(arr[i]['yr1_percent'])) {
                 alert("Please fill in year 1 for " + arr[i]['title'] );
                 return;
             }
-            if (isNaN(arr[i]['yr2'])) {
+            if (isNaN(arr[i]['yr2_percent'])) {
                 alert("Please fill in year 2 for " + arr[i]['title'] );
                 return;
             }
-            if (isNaN(arr[i]['yr3'])) {
+            if (isNaN(arr[i]['yr3_percent'])) {
                 alert("Please fill in year 3 for " + arr[i]['title'] );
                 return;
             }
@@ -150,21 +153,21 @@
                                      type="number"
                                     class="form-control"
                               placeholder="{{ question.content.stub_5 }}"
-                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr1 }}{% endif %}{% endfor %}" />
+                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr1_percent }}{% endif %}{% endfor %}" />
                             </td>
                             <td>
                                 <input id="id_market{{ customer_market.var_1 }}_yr2"
                                      type="number"
                                     class="form-control"
                               placeholder="{{ question.content.stub_6 }}"
-                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr2 }}{% endif %}{% endfor %}" />
+                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr2_percent }}{% endif %}{% endfor %}" />
                             </td>
                             <td>
                                 <input id="id_market{{ customer_market.var_1 }}_yr3"
                                      type="number"
                                     class="form-control"
                               placeholder="{{ question.content.stub_7 }}"
-                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr3 }}{% endif %}{% endfor %}" />
+                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr3_percent }}{% endif %}{% endfor %}" />
                             </td>
                         </tr>
                         {% endfor %}
