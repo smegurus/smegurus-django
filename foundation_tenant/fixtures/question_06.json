@@ -184,5 +184,41 @@
             },
             "type_id": 47
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 103,
+        "fields": {
+            "document_type": 6,
+            "number": 7,
+            "title": "Please break down your total sales by your target market type:",
+            "help": "This is some generic help text.",
+            "options": {},
+            "content": {
+                "stub_1": "Product Category",
+                "stub_2": "Year 1",
+                "stub_3": "Year 2",
+                "stub_4": "Year 3",
+                "stub_5": "Ex.: 5%",
+                "stub_6": "Ex.: 10%",
+                "stub_7": "Ex.: 25%",
+                "stub_8": "Ex.: 10%",
+                "stub_9": "Ex.: 25%",
+                "stub_10": "Ex.: 30%",
+                "stub_11": "Ex.: 25%",
+                "stub_12": "Ex.: 50%",
+                "stub_13": "Ex.: 100%"
+            },
+            "dependency": {
+                "q1_qid": 49
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 48
+        }
     }
 ]

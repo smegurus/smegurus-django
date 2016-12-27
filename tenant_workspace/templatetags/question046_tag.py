@@ -26,9 +26,15 @@ def render_question_type_046(workspace, module, node, question, answer):
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
-    expenses = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    expenses = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
     expenses = expenses.content
-    volumes = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    volumes = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
     volumes = volumes.content
 
     autogen = {

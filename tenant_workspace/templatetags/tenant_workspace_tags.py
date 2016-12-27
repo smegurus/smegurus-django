@@ -146,7 +146,10 @@ def render_question_type_009(workspace, module, node, question, answer):
     """
     # For this particular document and module, find the previous question.
     previous_question_id = int_or_none(question.dependency['previous_question_id'])
-    previous_question_answer = get_object_or_404(QuestionAnswer, question_id=previous_question_id)
+    previous_question_answer = QuestionAnswer.objects.get(
+        question_id=previous_question_id,
+        workspace=workspace
+    )
 
     # Input the variables into the template and render the view.
     return {
@@ -284,10 +287,20 @@ def render_question_type_013(workspace, module, node, question, answer):
     q2_qid = int_or_none(question.dependency['q2_qid'])
     q3_qid = int_or_none(question.dependency['q3_qid'])
     a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    a1_raw = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
     a1 = a1_raw.content
-    a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    a2_raw = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
     a2 = a2_raw.content
-    a3_raw = get_object_or_404(QuestionAnswer, question_id=q3_qid)
+    a3_raw = QuestionAnswer.objects.get(
+        question_id=q3_qid,
+        workspace=workspace
+    )
     a3 = a3_raw.content
 
     # Generate custom text from previous questions.
@@ -331,11 +344,20 @@ def render_question_type_014(workspace, module, node, question, answer):
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
     q3_qid = int_or_none(question.dependency['q3_qid'])
-    a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    a1_raw = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
     a1 = a1_raw.content
-    a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    a2_raw = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
     a2 = a2_raw.content
-    a3_raw = get_object_or_404(QuestionAnswer, question_id=q3_qid)
+    a3_raw = QuestionAnswer.objects.get(
+        question_id=q3_qid,
+        workspace=workspace
+    )
     a3 = a3_raw.content
 
     # 2. Generate geographic info.
@@ -681,9 +703,15 @@ def render_question_type_034(workspace, module, node, question, answer):
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
-    a1_raw = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    a1_raw = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
     a1 = a1_raw.content
-    a2_raw = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    a2_raw = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
     a2 = a2_raw.content
 
     # 2. Generate info.
@@ -768,7 +796,10 @@ def render_question_type_039(workspace, module, node, question, answer):
     """
     # Fetch the dependency answer.
     q1_qid = int_or_none(question.dependency['q1_qid'])
-    dependent_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    dependent_answer = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
 
     dependent_answer = dependent_answer.content
 
@@ -872,9 +903,15 @@ def render_question_type_047(workspace, module, node, question, answer):
     """
     # Fetch the dependency answer.
     q1_qid = int_or_none(question.dependency['q1_qid'])
-    q1_answer = get_object_or_404(QuestionAnswer, question_id=q1_qid)
+    q1_answer = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
     q2_qid = int_or_none(question.dependency['q2_qid'])
-    q2_answer = get_object_or_404(QuestionAnswer, question_id=q2_qid)
+    q2_answer = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
 
     # Render our template.
     return {
@@ -886,4 +923,30 @@ def render_question_type_047(workspace, module, node, question, answer):
         'picked': answer.content,
         'q1_answer': q1_answer.content,
         'q2_answer': q2_answer.content
+    }
+
+
+@register.inclusion_tag('templatetags/question/template_048.html')
+def render_question_type_048(workspace, module, node, question, answer):
+    """
+    DEPENDENCY:
+    - QID: 49 | My target market is based on...
+    """
+    # Fetch the dependency answer.
+    q1_qid = int_or_none(question.dependency['q1_qid'])
+    q1_answer = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
+
+    # Render our template.
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'q1_answer': q1_answer.content,
+        # 'q2_answer': q2_answer.content
     }
