@@ -947,6 +947,7 @@ def render_question_type_048(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': answer.content,
+        'picked_len': len(answer.content),
         'q1_answer': q1_answer.content,
-        # 'q2_answer': q2_answer.content
+        'q1_answer_len': len(q1_answer.content)
     }
