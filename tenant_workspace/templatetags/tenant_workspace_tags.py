@@ -939,6 +939,34 @@ def render_question_type_048(workspace, module, node, question, answer):
         workspace=workspace
     )
 
+    # if len(answer.content):
+    #     # Generate our new JSON dict.
+    #     curr_arr = []
+    #
+    #     # Iterate through all the rows in the table.
+    #     for i in range(0, len(q1_answer.content)):
+    #         curr_row = {}
+    #
+    #         for item in q1_answer.content[i].items():
+    #             # Process "var_1".
+    #             if item[0] == 'var_1':
+    #                 curr_row['var_1'] = item[1]
+    #
+    #             # Process "var_2".
+    #             if item[0] == 'var_2':
+    #                 curr_row['var_2'] = item[1]
+    #
+    #             # Process "var_3".
+    #             if item[0] == 'var_3':
+    #                 curr_row['var_3'] = item[1]
+    #
+    #             # Process "var_4".
+    #             if item[0] == 'var_4':
+    #                 curr_row['var_4'] = item[1]
+    #
+    #         print(curr_row)
+    #         curr_arr.append(curr_row)
+
     # Render our template.
     return {
         'workspace': workspace,

@@ -61,6 +61,22 @@
         // DEBUGGING PURPOSES ONLY.
         console.log(arr);
 
+        // VALIDATION
+        for (var i = 0; i < arr.length; i++) {
+            if (isNaN(arr[i]['yr1'])) {
+                alert("Please fill in year 1 for " + arr[i]['title'] );
+                return;
+            }
+            if (isNaN(arr[i]['yr2'])) {
+                alert("Please fill in year 2 for " + arr[i]['title'] );
+                return;
+            }
+            if (isNaN(arr[i]['yr3'])) {
+                alert("Please fill in year 3 for " + arr[i]['title'] );
+                return;
+            }
+        }
+
         // SAVE OUR RESULTS.
         ajax_do_chain(
             arr,
@@ -134,21 +150,21 @@
                                      type="number"
                                     class="form-control"
                               placeholder="{{ question.content.stub_5 }}"
-                                    value="{{ picked.c1_yr1_percent }}" />
+                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr1 }}{% endif %}{% endfor %}" />
                             </td>
                             <td>
                                 <input id="id_market{{ customer_market.var_1 }}_yr2"
                                      type="number"
                                     class="form-control"
                               placeholder="{{ question.content.stub_6 }}"
-                                    value="{{ picked.c1_yr2_percent }}" />
+                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr2 }}{% endif %}{% endfor %}" />
                             </td>
                             <td>
                                 <input id="id_market{{ customer_market.var_1 }}_yr3"
                                      type="number"
                                     class="form-control"
                               placeholder="{{ question.content.stub_7 }}"
-                                    value="{{ picked.c1_yr3_percent }}" />
+                                    value="{% for row in picked %}{% if row.id == customer_market.var_1 %}{{ row.yr3 }}{% endif %}{% endfor %}" />
                             </td>
                         </tr>
                         {% endfor %}
