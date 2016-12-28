@@ -70,7 +70,7 @@
 
         // CLEAR FIELDS.
         $('#id_input_2').val("");
-        $('#id_input_1 option[value=""]').attr('selected','selected');
+        $('#id_input_1').val("{{ question.options.opt1_select }}");
         $('#id_input_1_other').val("");
         $('#id_input_1_other').hide();
         row_index += 1;
