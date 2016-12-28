@@ -349,11 +349,11 @@
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": "Lega/Professional Fees",
+                "stub_1": "Legal/Professional Fees",
                 "stub_2": "Details",
                 "stub_3": "Year 1 Cost",
-                "stub_4": "Remove",
-                "stub_5": "Lega/Professional Fees",
+                "stub_4": " ",
+                "stub_5": "Legal/Professional Fees",
                 "stub_6": "Details",
                 "stub_7": "Ex: Because my account told me to.",
                 "stub_8": "Year 1 Cost",
