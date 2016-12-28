@@ -3,16 +3,487 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // FILL IN.
+        //---------------------------//
+        // YEAR EXPENSE TEXT CHANGE  //
+        //---------------------------//
+        $('#id_m1').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m2').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m3').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m4').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m5').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m6').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m7').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m8').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m9').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m10').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m11').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m12').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m13').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m14').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m15').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m16').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m17').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m18').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m19').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m20').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m21').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m22').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m23').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m24').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m25').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m26').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m27').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m28').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m29').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m30').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m31').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m32').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m33').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m34').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m35').bind('input',function(){
+            calculate_three_year_expenses();
+        });
+        $('#id_m36').bind('input',function(){
+            calculate_three_year_expenses();
+        });
     }); // end DOCUMENT START
+
+    //--------------------------------//
+    // CALCULATE ALL THE ROWS AT ONCE //
+    //--------------------------------//
+
+    function calculate_three_year_expenses() {
+        // --- YEAR 1 ---
+        calculate_annual_expense(
+            '#id_m1_r', '#id_m2_r', '#id_m3_r', '#id_m4_r', '#id_m5_r', '#id_m6_r', '#id_m7_r', '#id_m8_r', '#id_m9_r', '#id_m10_r', '#id_m11_r', '#id_m12_r',
+            '#id_m1',   '#id_m2',   '#id_m3',   '#id_m4',   '#id_m5',   '#id_m6',   '#id_m7',   '#id_m8',   '#id_m9',   '#id_m10',   '#id_m11',   '#id_m12',
+            '#id_yr1_total'
+        );
+
+        // --- YEAR 2 ---
+        calculate_annual_expense(
+            '#id_m13_r', '#id_m14_r', '#id_m15_r', '#id_m16_r', '#id_m17_r', '#id_m18_r', '#id_m19_r', '#id_m20_r', '#id_m21_r', '#id_m22_r', '#id_m23_r', '#id_m24_r',
+            '#id_m13',   '#id_m14',   '#id_m15',   '#id_m16',   '#id_m17',   '#id_m18',   '#id_m19',   '#id_m20',   '#id_m21',   '#id_m22',   '#id_m23',   '#id_m24',
+            '#id_yr2_total'
+        );
+
+        // --- YEAR 3 ---
+        calculate_annual_expense(
+            '#id_m25_r', '#id_m26_r', '#id_m27_r', '#id_m28_r', '#id_m29_r', '#id_m30_r', '#id_m31_r', '#id_m32_r', '#id_m33_r', '#id_m34_r', '#id_m35_r', '#id_m36_r',
+            '#id_m25',   '#id_m26',   '#id_m27',   '#id_m28',   '#id_m29',   '#id_m30',   '#id_m31',   '#id_m32',   '#id_m33',   '#id_m34',   '#id_m35',   '#id_m36',
+            '#id_yr3_total'
+        );
+    }
+
+    //----------------------------//
+    // CALCULATE INDIVIDUAL ITEMS //
+    //----------------------------//
+
+    /**
+     *  Function will take all the year-N inputs and calculate the TOTAL COGS
+     *  if all the values where valid integers. If not valid then a NaN will be
+     *  generated. The key idea is the developer passes in the ID of the inputs
+     *  and this function will reference them and make the UI change accordingly.
+     */
+    function calculate_annual_expense(
+        m1r_id, m2r_id, m3r_id, m4r_id, m5r_id, m6r_id, m7r_id, m8r_id, m9r_id, m10r_id, m11r_id, m12r_id,
+        m1_id,  m2_id,  m3_id,  m4_id,  m5_id,  m6_id,  m7_id,  m8_id,  m9_id,  m10_id,  m11_id,  m12_id,
+        total_id
+    ) {
+        // The sum total of the materials, labour and overhead.
+        var total = 0;
+
+        // MONTH 01
+        var m1r = parseFloat($(m1r_id).val());
+        var m1 = parseFloat($(m1_id).val());
+        if (isNaN(m1)) {
+            total += m1r;
+        } else {
+            total += m1;
+        }
+
+        // MONTH 02
+        var m2r = parseFloat($(m2r_id).val());
+        var m2 = parseFloat($(m2_id).val());
+        if (isNaN(m2)) {
+            total += m2r;
+        } else {
+            total += m2;
+        }
+
+        // MONTH 03
+        var m3r = parseFloat($(m3r_id).val());
+        var m3 = parseFloat($(m3_id).val());
+        if (isNaN(m3)) {
+            total += m3r;
+        } else {
+            total += m3;
+        }
+
+        // MONTH 04
+        var m4r = parseFloat($(m4r_id).val());
+        var m4 = parseFloat($(m4_id).val());
+        if (isNaN(m4)) {
+            total += m4r;
+        } else {
+            total += m4;
+        }
+
+        // MONTH 05
+        var m5r = parseFloat($(m5r_id).val());
+        var m5 = parseFloat($(m5_id).val());
+        if (isNaN(m5)) {
+            total += m5r;
+        } else {
+            total += m5;
+        }
+
+        // MONTH 06
+        var m6r = parseFloat($(m6r_id).val());
+        var m6 = parseFloat($(m6_id).val());
+        if (isNaN(m6)) {
+            total += m6r;
+        } else {
+            total += m6;
+        }
+
+        // MONTH 07
+        var m7r = parseFloat($(m7r_id).val());
+        var m7 = parseFloat($(m7_id).val());
+        if (isNaN(m4)) {
+            total += m7r;
+        } else {
+            total += m7;
+        }
+
+        // MONTH 08
+        var m8r = parseFloat($(m8r_id).val());
+        var m8 = parseFloat($(m8_id).val());
+        if (isNaN(m8)) {
+            total += m8r;
+        } else {
+            total += m8;
+        }
+
+        // MONTH 09
+        var m9r = parseFloat($(m9r_id).val());
+        var m9 = parseFloat($(m9_id).val());
+        if (isNaN(m9)) {
+            total += m9r;
+        } else {
+            total += m9;
+        }
+
+        // MONTH 10
+        var m10r = parseFloat($(m10r_id).val());
+        var m10 = parseFloat($(m10_id).val());
+        if (isNaN(m10)) {
+            total += m10r;
+        } else {
+            total += m10;
+        }
+
+        // MONTH 11
+        var m11r = parseFloat($(m11r_id).val());
+        var m11 = parseFloat($(m11_id).val());
+        if (isNaN(m11)) {
+            total += m11r;
+        } else {
+            total += m11;
+        }
+
+        // MONTH 12
+        var m12r = parseFloat($(m12r_id).val());
+        var m12 = parseFloat($(m12_id).val());
+        if (isNaN(m12)) {
+            total += m12r;
+        } else {
+            total += m12;
+        }
+
+        // // Update the UI
+        $(total_id).val(total);
+    }
 
     /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        // FILL IN.
+        // Fetch our inputs.
+        //----------------------------------------
+        var m1 = parseFloat($('#id_m1').val());
+        var m2 = parseFloat($('#id_m2').val());
+        var m3 = parseFloat($('#id_m3').val());
+        var m4 = parseFloat($('#id_m4').val());
+        var m5 = parseFloat($('#id_m5').val());
+        var m6 = parseFloat($('#id_m6').val());
+        var m7 = parseFloat($('#id_m7').val());
+        var m8 = parseFloat($('#id_m8').val());
+        var m9 = parseFloat($('#id_m9').val());
+        var m10 = parseFloat($('#id_m10').val());
+        var m11 = parseFloat($('#id_m11').val());
+        var m12 = parseFloat($('#id_m12').val());
+        var m13 = parseFloat($('#id_m13').val());
+        var m14 = parseFloat($('#id_m14').val());
+        var m15 = parseFloat($('#id_m15').val());
+        var m16 = parseFloat($('#id_m16').val());
+        var m17 = parseFloat($('#id_m17').val());
+        var m18 = parseFloat($('#id_m18').val());
+        var m19 = parseFloat($('#id_m19').val());
+        var m20 = parseFloat($('#id_m20').val());
+        var m21 = parseFloat($('#id_m21').val());
+        var m22 = parseFloat($('#id_m22').val());
+        var m23 = parseFloat($('#id_m23').val());
+        var m24 = parseFloat($('#id_m24').val());
+        var m25 = parseFloat($('#id_m25').val());
+        var m26 = parseFloat($('#id_m26').val());
+        var m27 = parseFloat($('#id_m27').val());
+        var m28 = parseFloat($('#id_m28').val());
+        var m29 = parseFloat($('#id_m29').val());
+        var m30 = parseFloat($('#id_m30').val());
+        var m31 = parseFloat($('#id_m31').val());
+        var m32 = parseFloat($('#id_m32').val());
+        var m33 = parseFloat($('#id_m33').val());
+        var m34 = parseFloat($('#id_m34').val());
+        var m35 = parseFloat($('#id_m35').val());
+        var m36 = parseFloat($('#id_m36').val());
+        var yr1_total = parseFloat($('#id_yr1_total').val());
+        var yr2_total = parseFloat($('#id_yr2_total').val());
+        var yr3_total = parseFloat($('#id_yr3_total').val());
+        var m1_r = parseFloat($('#id_m1_r').val());
+        var m2_r = parseFloat($('#id_m2_r').val());
+        var m3_r = parseFloat($('#id_m3_r').val());
+        var m4_r = parseFloat($('#id_m4_r').val());
+        var m5_r = parseFloat($('#id_m5_r').val());
+        var m6_r = parseFloat($('#id_m6_r').val());
+        var m7_r = parseFloat($('#id_m7_r').val());
+        var m8_r = parseFloat($('#id_m8_r').val());
+        var m9_r = parseFloat($('#id_m9_r').val());
+        var m10_r = parseFloat($('#id_m10_r').val());
+        var m11_r = parseFloat($('#id_m11_r').val());
+        var m12_r = parseFloat($('#id_m12_r').val());
+        var m13_r = parseFloat($('#id_m13_r').val());
+        var m14_r = parseFloat($('#id_m14_r').val());
+        var m15_r = parseFloat($('#id_m15_r').val());
+        var m16_r = parseFloat($('#id_m16_r').val());
+        var m17_r = parseFloat($('#id_m17_r').val());
+        var m18_r = parseFloat($('#id_m18_r').val());
+        var m19_r = parseFloat($('#id_m19_r').val());
+        var m20_r = parseFloat($('#id_m20_r').val());
+        var m21_r = parseFloat($('#id_m21_r').val());
+        var m22_r = parseFloat($('#id_m22_r').val());
+        var m23_r = parseFloat($('#id_m23_r').val());
+        var m24_r = parseFloat($('#id_m24_r').val());
+        var m25_r = parseFloat($('#id_m25_r').val());
+        var m26_r = parseFloat($('#id_m26_r').val());
+        var m27_r = parseFloat($('#id_m27_r').val());
+        var m28_r = parseFloat($('#id_m28_r').val());
+        var m29_r = parseFloat($('#id_m29_r').val());
+        var m30_r = parseFloat($('#id_m30_r').val());
+        var m31_r = parseFloat($('#id_m31_r').val());
+        var m32_r = parseFloat($('#id_m32_r').val());
+        var m33_r = parseFloat($('#id_m33_r').val());
+        var m34_r = parseFloat($('#id_m34_r').val());
+        var m35_r = parseFloat($('#id_m35_r').val());
+        var m36_r = parseFloat($('#id_m36_r').val());
+        var yr1_total_r = parseFloat($('#id_yr1_total_r').val());
+        var yr2_total_r = parseFloat($('#id_yr2_total_r').val());
+        var yr3_total_r = parseFloat($('#id_yr3_total_r').val());
+
+
+        // CREATE OUR UPDATE URL.
+        //----------------------------------------
+        var arr = {
+            'm_01_r': m1_r,
+            'm_01': m1,
+            'm_02_r': m2_r,
+            'm_02': m2,
+            'm_03_r': m3_r,
+            'm_03': m3,
+            'm_04_r': m4_r,
+            'm_04': m4,
+            'm_05_r': m5_r,
+            'm_05': m5,
+            'm_06_r': m6_r,
+            'm_06': m6,
+            'm_07_r': m7_r,
+            'm_07': m7,
+            'm_08_r': m8_r,
+            'm_08': m8,
+            'm_09_r': m9_r,
+            'm_09': m9,
+            'm_10_r': m10_r,
+            'm_10': m10,
+            'm_11_r': m11_r,
+            'm_11': m11,
+            'm_12_r': m12_r,
+            'm_12': m12,
+            'm_13_r': m13_r,
+            'm_13': m13,
+            'm_14_r': m14_r,
+            'm_14': m14,
+            'm_15_r': m15_r,
+            'm_15': m15,
+            'm_16_r': m16_r,
+            'm_16': m16,
+            'm_17_r': m17_r,
+            'm_17': m17,
+            'm_18_r': m18_r,
+            'm_18': m18,
+            'm_19_r': m19_r,
+            'm_19': m19,
+            'm_20_r': m20_r,
+            'm_20': m20,
+            'm_21_r': m21_r,
+            'm_21': m21,
+            'm_22_r': m22_r,
+            'm_22': m22,
+            'm_23_r': m23_r,
+            'm_23': m23,
+            'm_24_r': m24_r,
+            'm_24': m24,
+            'm_25_r': m25_r,
+            'm_25': m25,
+            'm_26_r': m26_r,
+            'm_26': m26,
+            'm_27_r': m27_r,
+            'm_27': m27,
+            'm_28_r': m28_r,
+            'm_28': m28,
+            'm_29_r': m29_r,
+            'm_29': m29,
+            'm_30_r': m30_r,
+            'm_30': m30,
+            'm_31_r': m31_r,
+            'm_31': m31,
+            'm_32_r': m32_r,
+            'm_32': m32,
+            'm_33_r': m33_r,
+            'm_33': m33,
+            'm_34_r': m34_r,
+            'm_34': m34,
+            'm_35_r': m35_r,
+            'm_35': m35,
+            'm_36_r': m36_r,
+            'm_36': m36,
+            'yr_1_r': yr1_total_r,
+            'yr_1': yr1_total,
+            'yr_2_r': yr2_total_r,
+            'yr_2': yr2_total,
+            'yr_3_r': yr3_total_r,
+            'yr_3': yr3_total
+        };
+
+        // Save to our database.
+        //----------------------------------------
+        ajax_do_chain(
+            arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
     }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -23,8 +494,258 @@
     </legend>
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
-            <!-- FILL IN -->
+        <div class="col-sm-12">
+            <!-- BIZMULA EXPENSE TABLE YEAR 1 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 1' %}</th>
+                        <th>{% trans 'Month 2' %}</th>
+                        <th>{% trans 'Month 3' %}</th>
+                        <th>{% trans 'Month 4' %}</th>
+                        <th>{% trans 'Month 5' %}</th>
+                        <th>{% trans 'Month 6' %}</th>
+                        <th>{% trans 'Month 7' %}</th>
+                        <th>{% trans 'Month 8' %}</th>
+                        <th>{% trans 'Month 9' %}</th>
+                        <th>{% trans 'Month 10' %}</th>
+                        <th>{% trans 'Month 11' %}</th>
+                        <th>{% trans 'Month 12' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '1' %}</td>
+                         <td>
+                             <input id="id_m1_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_01 }}" readonly="true">
+                             <input id="id_m1" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_01 }}">
+                         </td>
+                         <td>
+                             <input id="id_m2_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_02 }}" readonly="true">
+                             <input id="id_m2" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_02 }}">
+                         </td>
+                         <td>
+                             <input id="id_m3_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_03 }}" readonly="true">
+                             <input id="id_m3" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_03 }}">
+                         </td>
+                         <td>
+                             <input id="id_m4_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_04 }}" readonly="true">
+                             <input id="id_m4" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_04 }}">
+                         </td>
+                         <td>
+                             <input id="id_m5_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_05 }}" readonly="true">
+                             <input id="id_m5" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_05 }}">
+                         </td>
+                         <td>
+                             <input id="id_m6_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_06 }}" readonly="true">
+                             <input id="id_m6" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_06 }}">
+                         </td>
+                         <td>
+                             <input id="id_m7_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_07 }}" readonly="true">
+                             <input id="id_m7" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_07 }}">
+                         </td>
+                         <td>
+                             <input id="id_m8_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_08 }}" readonly="true">
+                             <input id="id_m8" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_08 }}">
+                         </td>
+                         <td>
+                             <input id="id_m9_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_09 }}" readonly="true">
+                             <input id="id_m9" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_09 }}">
+                         </td>
+                         <td>
+                             <input id="id_m10_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_10 }}" readonly="true">
+                             <input id="id_m10" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_10 }}">
+                         </td>
+                         <td>
+                             <input id="id_m11_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_11 }}" readonly="true">
+                             <input id="id_m11" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_11 }}">
+                         </td>
+                         <td>
+                             <input id="id_m12_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_12 }}" readonly="true">
+                             <input id="id_m12" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_12 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr1_total_r" type="text" class="form-control" placeholder="-" value="{{ autogen.yr_1 }}" readonly="true">
+                             <input id="id_yr1_total" type="number" class="form-control" placeholder="-" value="{{ answer_picked.yr_1 }}">
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end BIZMULA EXPENSE TABLE YEAR 1 -->
+
+            <br />
+            <br />
+
+            <!-- BIZMULA EXPENSE TABLE YEAR 2 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 13' %}</th>
+                        <th>{% trans 'Month 14' %}</th>
+                        <th>{% trans 'Month 15' %}</th>
+                        <th>{% trans 'Month 16' %}</th>
+                        <th>{% trans 'Month 17' %}</th>
+                        <th>{% trans 'Month 18' %}</th>
+                        <th>{% trans 'Month 19' %}</th>
+                        <th>{% trans 'Month 20' %}</th>
+                        <th>{% trans 'Month 21' %}</th>
+                        <th>{% trans 'Month 22' %}</th>
+                        <th>{% trans 'Month 23' %}</th>
+                        <th>{% trans 'Month 24' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '2' %}</td>
+                         <td>
+                             <input id="id_m13_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_13 }}" readonly="true">
+                             <input id="id_m13" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_13 }}">
+                         </td>
+                         <td>
+                             <input id="id_m14_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_14 }}" readonly="true">
+                             <input id="id_m14" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_14 }}">
+                         </td>
+                         <td>
+                             <input id="id_m15_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_15 }}" readonly="true">
+                             <input id="id_m15" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_15 }}">
+                         </td>
+                         <td>
+                             <input id="id_m16_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_16 }}" readonly="true">
+                             <input id="id_m16" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_16 }}">
+                         </td>
+                         <td>
+                             <input id="id_m17_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_17 }}" readonly="true">
+                             <input id="id_m17" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_17 }}">
+                         </td>
+                         <td>
+                             <input id="id_m18_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_18 }}" readonly="true">
+                             <input id="id_m18" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_18 }}">
+                         </td>
+                         <td>
+                             <input id="id_m19_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_19 }}" readonly="true">
+                             <input id="id_m19" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_19 }}">
+                         </td>
+                         <td>
+                             <input id="id_m20_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_20 }}" readonly="true">
+                             <input id="id_m20" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_20 }}">
+                         </td>
+                         <td>
+                             <input id="id_m21_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_21 }}" readonly="true">
+                             <input id="id_m21" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_21 }}">
+                         </td>
+                         <td>
+                             <input id="id_m22_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_22 }}" readonly="true">
+                             <input id="id_m22" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_22 }}">
+                         </td>
+                         <td>
+                             <input id="id_m23_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_23 }}" readonly="true">
+                             <input id="id_m23" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_23 }}">
+                         </td>
+                         <td>
+                             <input id="id_m24_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_24 }}" readonly="true">
+                             <input id="id_m24" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_24 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr2_total_r" type="text" class="form-control" placeholder="-" value="{{ autogen.yr_2 }}" readonly="true">
+                             <input id="id_yr2_total" type="number" class="form-control" placeholder="-" value="{{ answer_picked.yr_2 }}">
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end BIZMULA EXPENSE TABLE YEAR 2 -->
+
+            <br />
+            <br />
+
+            <!-- BIZMULA EXPENSE TABLE YEAR 3 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 25' %}</th>
+                        <th>{% trans 'Month 26' %}</th>
+                        <th>{% trans 'Month 27' %}</th>
+                        <th>{% trans 'Month 28' %}</th>
+                        <th>{% trans 'Month 29' %}</th>
+                        <th>{% trans 'Month 30' %}</th>
+                        <th>{% trans 'Month 31' %}</th>
+                        <th>{% trans 'Month 32' %}</th>
+                        <th>{% trans 'Month 33' %}</th>
+                        <th>{% trans 'Month 34' %}</th>
+                        <th>{% trans 'Month 35' %}</th>
+                        <th>{% trans 'Month 36' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '3' %}</td>
+                         <td>
+                             <input id="id_m25_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_25 }}" readonly="true">
+                             <input id="id_m25" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_25 }}">
+                         </td>
+                         <td>
+                             <input id="id_m26_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_26 }}" readonly="true">
+                             <input id="id_m26" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_26 }}">
+                         </td>
+                         <td>
+                             <input id="id_m27_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_27 }}" readonly="true">
+                             <input id="id_m27" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_27 }}">
+                         </td>
+                         <td>
+                             <input id="id_m28_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_28 }}" readonly="true">
+                             <input id="id_m28" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_28 }}">
+                         </td>
+                         <td>
+                             <input id="id_m29_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_29 }}" readonly="true">
+                             <input id="id_m29" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_29 }}">
+                         </td>
+                         <td>
+                             <input id="id_m30_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_30 }}" readonly="true">
+                             <input id="id_m30" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_30 }}">
+                         </td>
+                         <td>
+                             <input id="id_m31_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_31 }}" readonly="true">
+                             <input id="id_m31" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_31 }}">
+                         </td>
+                         <td>
+                             <input id="id_m32_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_32 }}" readonly="true">
+                             <input id="id_m32" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_32 }}">
+                         </td>
+                         <td>
+                             <input id="id_m33_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_33 }}" readonly="true">
+                             <input id="id_m33" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_33 }}">
+                         </td>
+                         <td>
+                             <input id="id_m34_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_34 }}" readonly="true">
+                             <input id="id_m34" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_34 }}">
+                         </td>
+                         <td>
+                             <input id="id_m35_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_35 }}" readonly="true">
+                             <input id="id_m35" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_35 }}">
+                         </td>
+                         <td>
+                             <input id="id_m36_r" type="text" class="form-control" placeholder="-" value="{{ autogen.m_36 }}" readonly="true">
+                             <input id="id_m36" type="number" class="form-control" placeholder="-" value="{{ answer_picked.m_36 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr3_total_r" type="text" class="form-control" placeholder="-" value="{{ autogen.yr_3 }}" readonly="true">
+                             <input id="id_yr3_total" type="number" class="form-control" placeholder="-" value="{{ answer_picked.yr_3 }}">
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- BIZMULA EXPENSE TABLE YEAR 3 -->
         </div>
     </div>
 </fieldset>

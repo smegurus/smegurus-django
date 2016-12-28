@@ -64,16 +64,76 @@ def render_question_type_049(workspace, module, node, question, answer):
     total_yr2 = 0.0
     total_yr3 = 0.0
     for item in q1_picked:
-        print(item)
-        print("\n")
+        total_yr1 += float(item['var_4'])
+        total_yr2 += float(item['var_5'])
+        total_yr3 += float(item['var_6'])
+    for item in q2_picked:
+        total_yr1 += float(item['var_5'])
+        total_yr2 += float(item['var_6'])
+        total_yr3 += float(item['var_7'])
+    for item in q3_picked:
+        total_yr1 += float(item['var_5'])
+        total_yr2 += float(item['var_6'])
+        total_yr3 += float(item['var_7'])
+    for item in q4_picked:
+        total_yr1 += float(item['var_6'])
+        total_yr2 += float(item['var_7'])
+        total_yr3 += float(item['var_8'])
 
+    autogen = {
+        # --- YEAR 1 ---
+        'yr_1': total_yr1,
+        'm_01': total_yr1 / 12.00,
+        'm_02': total_yr1 / 12.00,
+        'm_03': total_yr1 / 12.00,
+        'm_04': total_yr1 / 12.00,
+        'm_05': total_yr1 / 12.00,
+        'm_06': total_yr1 / 12.00,
+        'm_07': total_yr1 / 12.00,
+        'm_08': total_yr1 / 12.00,
+        'm_09': total_yr1 / 12.00,
+        'm_10': total_yr1 / 12.00,
+        'm_11': total_yr1 / 12.00,
+        'm_12': total_yr1 / 12.00,
+
+        # --- YEAR 2 ---
+        'yr_2': total_yr2,
+        'm_13': total_yr2 / 12.00,
+        'm_14': total_yr2 / 12.00,
+        'm_15': total_yr2 / 12.00,
+        'm_16': total_yr2 / 12.00,
+        'm_17': total_yr2 / 12.00,
+        'm_18': total_yr2 / 12.00,
+        'm_19': total_yr2 / 12.00,
+        'm_20': total_yr2 / 12.00,
+        'm_21': total_yr2 / 12.00,
+        'm_22': total_yr2 / 12.00,
+        'm_23': total_yr2 / 12.00,
+        'm_24': total_yr2 / 12.00,
+
+        # --- YEAR 3 ---
+        'yr_3': total_yr3,
+        'm_25': total_yr3 / 12.00,
+        'm_26': total_yr3 / 12.00,
+        'm_27': total_yr3 / 12.00,
+        'm_28': total_yr3 / 12.00,
+        'm_29': total_yr3 / 12.00,
+        'm_30': total_yr3 / 12.00,
+        'm_31': total_yr3 / 12.00,
+        'm_32': total_yr3 / 12.00,
+        'm_33': total_yr3 / 12.00,
+        'm_34': total_yr3 / 12.00,
+        'm_35': total_yr3 / 12.00,
+        'm_36': total_yr3 / 12.00
+    }
+
+    # Render the template.
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
         'answer': answer,
-        # 'expenses': expenses,
-        # 'volumes': volumes,
-        # 'autogen': autogen
+        'answer_picked': answer.content,
+        'autogen': autogen
     }
