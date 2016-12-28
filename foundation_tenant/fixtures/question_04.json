@@ -212,7 +212,7 @@
             "content": {
                 "stub_1": "Weakness",
                 "stub_2": "Resolution",
-                "stub_3": "Remove",
+                "stub_3": " ",
                 "stub_4": "Weakness",
                 "stub_5": "Resolution",
                 "stub_6": "Add Weakness / Resolution"
@@ -991,7 +991,7 @@
             "content": {
                 "stub_1": "Objection",
                 "stub_2": "Resolution",
-                "stub_3": "Remove",
+                "stub_3": " ",
                 "stub_4": "Objection",
                 "stub_5": "Resolution",
                 "stub_6": "Add Objection / Resolution"
