@@ -31,12 +31,49 @@ def render_question_type_049(workspace, module, node, question, answer):
     q3_qid = int_or_none(question.dependency['q3_qid'])
     q4_qid = int_or_none(question.dependency['q4_qid'])
 
-    #TODO: Impl.
+    # Fetch Q1
+    q1 = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
+    q1_picked = q1.content
+
+    # Fetch Q2
+    q2 = QuestionAnswer.objects.get(
+        question_id=q2_qid,
+        workspace=workspace
+    )
+    q2_picked = q2.content
+
+    # Fetch Q3
+    q3 = QuestionAnswer.objects.get(
+        question_id=q3_qid,
+        workspace=workspace
+    )
+    q3_picked = q3.content
+
+    # Fetch Q4
+    q4 = QuestionAnswer.objects.get(
+        question_id=q4_qid,
+        workspace=workspace
+    )
+    q4_picked = q4.content
+
+    # Calculate annual totals.
+    total_yr1 = 0.0
+    total_yr2 = 0.0
+    total_yr3 = 0.0
+    for item in q1_picked:
+        print(item)
+        print("\n")
 
     return {
         'workspace': workspace,
         'module': module,
         'node': node,
         'question': question,
-        'answer': answer
+        'answer': answer,
+        # 'expenses': expenses,
+        # 'volumes': volumes,
+        # 'autogen': autogen
     }
