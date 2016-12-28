@@ -351,14 +351,20 @@
             "content": {
                 "stub_1": "Legal/Professional Fees",
                 "stub_2": "Details",
-                "stub_3": "Year 1 Cost",
-                "stub_4": " ",
-                "stub_5": "Legal/Professional Fees",
-                "stub_6": "Details",
-                "stub_7": "Ex: Because my account told me to.",
-                "stub_8": "Year 1 Cost",
-                "stub_9": "ex. 100",
-                "stub_10": "Add Use"
+                "stub_3": "Y1 ($)",
+                "stub_4": "Y2 ($)",
+                "stub_5": "Y3 ($)",
+                "stub_6": "",
+                "stub_7": "Legal/Professional Fees",
+                "stub_8": "Details",
+                "stub_9": "Ex: Because my account told me to.",
+                "stub_10": "Year 1 Cost",
+                "stub_11": "ex. 100",
+                "stub_12": "Year 2 Cost",
+                "stub_13": "ex. 100",
+                "stub_14": "Year 3 Cost",
+                "stub_15": "ex. 100",
+                "stub_16": "Add Use"
             },
             "dependency": {},
             "validation": {

@@ -34,8 +34,11 @@
         var input_1_other = $('#id_input_1_other').val();
         var input_2 = $('#id_input_2').val();
         var input_3 = $('#id_input_3').val();
+        var input_4 = $('#id_input_4').val();
+        var input_5 = $('#id_input_5').val();
 
         // PERFORM VALIDATION.
+        // --- Input 1 ---
         if (input_1 == "{{ question.options.opt1_other }}") {
             if (input_1_other == "") {
                 alert("{% trans 'Please fill in \"Other\".' %}");
@@ -48,6 +51,7 @@
             }
         }
 
+        // --- Detail ---
         {% if question.validation.var2_type == "textfield" %}
         // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
         if (input_2.length < {{ question.validation.var2_min_length }}) {
@@ -74,6 +78,7 @@
         }
         {% endif %}
 
+        // --- Year 1 ---
         {% if question.validation.var3_type == "textfield" %}
         // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
         if (input_3.length < {{ question.validation.var3_min_length }}) {
@@ -100,6 +105,60 @@
         }
         {% endif %}
 
+        // --- Year 2 ---
+        {% if question.validation.var4_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_4.length < {{ question.validation.var4_min_length }}) {
+            alert("{{ question.validation.var4_min_length_error_message }}");
+            return;
+        }
+        if (input_4.length > {{ question.validation.var4_max_length }}) {
+            alert("{{ question.validation.var4_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var4_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_4) == false) {
+            alert("{% trans 'Please enter integer answer.' %}");
+            return;
+        }
+        if (input_4 < {{ question.validation.var4_min_num }}) {
+            alert("{{ question.validation.var4_min_num_error_message }}");
+            return;
+        }
+        if (input_4 > {{ question.validation.var4_max_num }}) {
+            alert("{{ question.validation.var4_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
+        // --- Year 3 ---
+        {% if question.validation.var5_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_5.length < {{ question.validation.var5_min_length }}) {
+            alert("{{ question.validation.var5_min_length_error_message }}");
+            return;
+        }
+        if (input_5.length > {{ question.validation.var5_max_length }}) {
+            alert("{{ question.validation.var5_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var5_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_5) == false) {
+            alert("{% trans 'Please enter integer answer.' %}");
+            return;
+        }
+        if (input_5 < {{ question.validation.var5_min_num }}) {
+            alert("{{ question.validation.var5_min_num_error_message }}");
+            return;
+        }
+        if (input_5 > {{ question.validation.var5_max_num }}) {
+            alert("{{ question.validation.var5_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
 
         // CREATE HTML ROW.
         var html_row = "<tr id=\""+row_index+"\">";
@@ -118,6 +177,12 @@
         html_row += "<td>"+input_3+"</td>";
 
         // COL 4
+        html_row += "<td>"+input_4+"</td>";
+
+        // COL 5
+        html_row += "<td>"+input_5+"</td>";
+
+        // COL 6
         html_row += "<td>";
         var onclick_js = "delete_row("+row_index+")";
         html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
@@ -128,11 +193,13 @@
         $("#id_table > tbody").append(html_row);
 
         // CLEAR FIELDS.
-        $('#id_input_1').val("{{ question.options.opt1_other }}");
+        $('#id_input_1').val("{{ question.options.opt1_select }}");
         $('#id_input_1_other').val("");
         $('#id_input_1_other').hide();
         $('#id_input_2').val("");
         $('#id_input_3').val("");
+        $('#id_input_4').val("");
+        $('#id_input_5').val("");
         row_index += 1;
     }
 
@@ -172,11 +239,15 @@
             var var_2 = row[0];
             var var_3 = row[1];
             var var_4 = row[2];
+            var var_5 = row[3];
+            var var_6 = row[4];
             new_arr.push({
                 "var_1": i,
                 "var_2": var_2,
                 "var_3": var_3,
-                "var_4": var_4
+                "var_4": var_4,
+                "var_5": var_5,
+                "var_6": var_6
             });
         }
 
@@ -244,6 +315,8 @@
                                 <th>{{ question.content.stub_2 }}</th>
                                 <th>{{ question.content.stub_3 }}</th>
                                 <th>{{ question.content.stub_4 }}</th>
+                                <th>{{ question.content.stub_5 }}</th>
+                                <th>{{ question.content.stub_6 }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -253,6 +326,8 @@
                                     <td>{{ pick.var_2 }}</td>
                                     <td>{{ pick.var_3 }}</td>
                                     <td>{{ pick.var_4 }}</td>
+                                    <td>{{ pick.var_5 }}</td>
+                                    <td>{{ pick.var_6 }}</td>
                                     <td>
                                         <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
                                     </td>
@@ -270,7 +345,7 @@
                 <fieldset>
                     <!-- ROW 2 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
+                        <label class="col-sm-2 control-label">{{ question.content.stub_7 }}</label>
                         <div class="col-sm-10">
                             <!-- OPTIONS -->
                             <select id="id_input_1" class="form-control">
@@ -301,9 +376,9 @@
 
                     <!-- ROW 4 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_6 }}</label>
+                        <label class="col-sm-2 control-label">{{ question.content.stub_8 }}</label>
                         <div class="col-sm-10">
-                            <input id="id_input_2" type="text" class="form-control" placeholder="{{ question.content.stub_7 }}" value="" />
+                            <input id="id_input_2" type="text" class="form-control" placeholder="{{ question.content.stub_9 }}" value="" />
                         </div>
                     </div>
                     <!-- end ROW 4 -->
@@ -312,9 +387,9 @@
 
                     <!-- ROW 4 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_8 }}</label>
+                        <label class="col-sm-2 control-label">{{ question.content.stub_10 }}</label>
                         <div class="col-sm-10">
-                            <input id="id_input_3" type="text" class="form-control" placeholder="{{ question.content.stub_9 }}" value="" />
+                            <input id="id_input_3" type="text" class="form-control" placeholder="{{ question.content.stub_11 }}" value="" />
                         </div>
                     </div>
                     <!-- end ROW 4 -->
@@ -322,10 +397,32 @@
                     <br />
 
                     <!-- ROW 5 -->
-                    <div class="pull-right" onclick="add_row();">
-                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_10 }}</button>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_12 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_4" type="text" class="form-control" placeholder="{{ question.content.stub_13 }}" value="" />
+                        </div>
                     </div>
                     <!-- end ROW 5 -->
+
+                    <br />
+
+                    <!-- ROW 6 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_14 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_5" type="text" class="form-control" placeholder="{{ question.content.stub_15 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 6 -->
+
+                    <br />
+
+                    <!-- ROW 7 -->
+                    <div class="pull-right" onclick="add_row();">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_16 }}</button>
+                    </div>
+                    <!-- end ROW 7 -->
                 </fieldset>
 
             </div>
