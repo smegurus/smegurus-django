@@ -963,3 +963,16 @@ def render_question_type_048(workspace, module, node, question, answer):
         'q1_answer_len': len(q1_answer.content),
         'q2_answer': q2_answer.content,
     }
+
+
+@register.inclusion_tag('templatetags/question/template_050.html')
+def render_question_type_050(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content)
+    }
