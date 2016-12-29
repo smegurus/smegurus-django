@@ -293,10 +293,10 @@
 
     <!-- ROW 1 -->
     <div class="form-group">
-        <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-4 control-label">{{ question.content.stub_4 }}</label>
+        <div class="col-sm-6">
             <!-- OPTIONS -->
-            <select id="id_input_1" class="form-control">
+            <select id="id_input_1" class="form-control input-lg">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -311,9 +311,9 @@
 
     <!-- ROW 1 | OTHER -->
     <div class="form-group" id="id_input_1_other_div" style="display: none;">
-        <label class="col-sm-2 control-label">{{ question.options.opt1_other }}</label>
-        <div class="col-sm-10">
-            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="" />
+        <label class="col-sm-4 control-label">{{ question.options.opt1_other }}</label>
+        <div class="col-sm-6">
+            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="" value="" />
         </div>
     </div>
     <!-- end ROW 1 | OTHER -->
@@ -322,10 +322,10 @@
 
     <!-- ROW 2 -->
     <div class="form-group" id="id_input_2_div" style="display: none;">
-        <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-4 control-label">{{ question.content.stub_5 }}</label>
+        <div class="col-sm-6">
             <!-- SELECTIONFIELD -->
-            <select id="id_input_2" class="form-control">
+            <select id="id_input_2" class="form-control input-lg">
                 <!-- OPTION -->
                 <option value="{{ question.options.opt2_select }}" selected="selected">{{ question.options.opt2_select }}</option>
                 <!-- end OPTION -->
@@ -354,9 +354,9 @@
 
     <!-- ROW 2 | OTHER -->
     <div class="form-group" id="id_input_2_other_div" style="display: none;">
-        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-        <div class="col-sm-10">
-            <input id="id_input_2_other" type="text" class="form-control" placeholder="{% trans 'Please write your answer here...' %}" value="" />
+        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+        <div class="col-sm-6">
+            <input id="id_input_2_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please write your answer here...' %}" value="" />
         </div>
     </div>
     <!-- end ROW 2 | OTHER  -->
