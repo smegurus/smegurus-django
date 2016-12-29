@@ -433,7 +433,7 @@
                                 <th>{{ question.content.stub_5 }}</th>
                                 <th>{{ question.content.stub_6 }}</th>
                                 <th>{{ question.content.stub_7 }}</th>
-                                <th>{{ question.content.stub_8 }}</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -464,9 +464,9 @@
                 <fieldset>
                     <!-- ROW 1 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_8 }}</label>
-                        <div class="col-sm-10">
-                            <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_9 }}" value="{{ picked.var_1 }}" />
+                        <label class="col-sm-4 control-label">{{ question.content.stub_8 }}</label>
+                        <div class="col-sm-6">
+                            <input id="id_input_1" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_9 }}" value="{{ picked.var_1 }}" />
                         </div>
                     </div>
                     <!-- end ROW 1 -->
@@ -475,10 +475,10 @@
 
                     <!-- ROW 2 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_10 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_10 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_2" class="form-control">
+                            <select id="id_input_2" class="form-control input-lg">
                                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                                 {% for item in question.options.opt1 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -493,10 +493,10 @@
 
                     <!-- ROW 3 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_11 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_11 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_3" class="form-control">
+                            <select id="id_input_3" class="form-control input-lg">
                                 <option value="{{ question.options.opt2_select }}">{{ question.options.opt2_select }}</option>
                                 {% for item in question.options.opt2 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -506,7 +506,7 @@
                             <!-- OTHER -->
                             <div id="id_input_3_other_div" style="display: none;">
                                 <br />
-                                <input id="id_input_3_other" type="text" class="form-control" placeholder="" value="" />
+                                <input id="id_input_3_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             </div>
                             <!-- end OTHER -->
                         </div>
@@ -517,10 +517,10 @@
 
                     <!-- ROW 4 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_12 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_12 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_4" class="form-control">
+                            <select id="id_input_4" class="form-control input-lg">
                                 <option value="{{ question.options.opt3_select }}">{{ question.options.opt3_select }}</option>
                                 {% for item in question.options.opt3 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -530,7 +530,7 @@
                             <!-- OTHER -->
                             <div id="id_input_4_other_div" style="display: none;">
                                 <br />
-                                <input id="id_input_4_other" type="text" class="form-control" placeholder="" value="" />
+                                <input id="id_input_4_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             </div>
                             <!-- end OTHER -->
                         </div>
@@ -541,10 +541,10 @@
 
                     <!-- ROW 5 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_13 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_13 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_5" class="form-control">
+                            <select id="id_input_5" class="form-control input-lg">
                                 <option value="{{ question.options.opt4_select }}">{{ question.options.opt4_select }}</option>
                                 {% for item in question.options.opt4 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -554,7 +554,7 @@
                             <!-- OTHER -->
                             <div id="id_input_5_other_div" style="display: none;">
                                 <br />
-                                <input id="id_input_5_other" type="text" class="form-control" placeholder="" value="" />
+                                <input id="id_input_5_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             </div>
                             <!-- end OTHER -->
                         </div>
@@ -565,10 +565,10 @@
 
                     <!-- ROW 6 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_14 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_14 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_6" class="form-control">
+                            <select id="id_input_6" class="form-control input-lg">
                                 <option value="{{ question.options.opt5_select }}">{{ question.options.opt5_select }}</option>
                                 {% for item in question.options.opt5 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -578,7 +578,7 @@
                             <!-- OTHER -->
                             <div id="id_input_6_other_div" style="display: none;">
                                 <br />
-                                <input id="id_input_6_other" type="text" class="form-control" placeholder="" value="" />
+                                <input id="id_input_6_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             </div>
                             <!-- end OTHER -->
                         </div>
@@ -589,10 +589,10 @@
 
                     <!-- ROW 7 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_15 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_15 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_7" class="form-control">
+                            <select id="id_input_7" class="form-control input-lg">
                                 <option value="{{ question.options.opt6_select }}">{{ question.options.opt6_select }}</option>
                                 {% for item in question.options.opt6 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -602,7 +602,7 @@
                             <!-- OTHER -->
                             <div id="id_input_7_other_div" style="display: none;">
                                 <br />
-                                <input id="id_input_7_other" type="text" class="form-control" placeholder="" value="" />
+                                <input id="id_input_7_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             </div>
                             <!-- end OTHER -->
                         </div>
