@@ -976,3 +976,86 @@ def render_question_type_050(workspace, module, node, question, answer):
         'picked': answer.content,
         'picked_count': len(answer.content)
     }
+
+
+@register.inclusion_tag('templatetags/question/template_049.html')
+def render_question_type_051(workspace, module, node, question, answer):
+    """
+    DEPENDENCY:
+    - QID: 105 | Please list salary expenses for all positions, including owners, broken down from years 1-3, with details on each position.
+    """
+    # For this particular document and module, find the previous questions.
+    q1_qid = int_or_none(question.dependency['q1_qid'])
+
+    # Fetch Q1
+    q1 = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
+    q1_picked = q1.content
+
+    # Calculate annual totals.
+    total_yr1 = 0.0
+    total_yr2 = 0.0
+    total_yr3 = 0.0
+    for item in q1_picked:
+        total_yr1 += float(item['var_5'])
+        total_yr2 += float(item['var_6'])
+        total_yr3 += float(item['var_7'])
+
+    autogen = {
+        # --- YEAR 1 ---
+        'yr_1': total_yr1,
+        'm_01': total_yr1 / 12.00,
+        'm_02': total_yr1 / 12.00,
+        'm_03': total_yr1 / 12.00,
+        'm_04': total_yr1 / 12.00,
+        'm_05': total_yr1 / 12.00,
+        'm_06': total_yr1 / 12.00,
+        'm_07': total_yr1 / 12.00,
+        'm_08': total_yr1 / 12.00,
+        'm_09': total_yr1 / 12.00,
+        'm_10': total_yr1 / 12.00,
+        'm_11': total_yr1 / 12.00,
+        'm_12': total_yr1 / 12.00,
+
+        # --- YEAR 2 ---
+        'yr_2': total_yr2,
+        'm_13': total_yr2 / 12.00,
+        'm_14': total_yr2 / 12.00,
+        'm_15': total_yr2 / 12.00,
+        'm_16': total_yr2 / 12.00,
+        'm_17': total_yr2 / 12.00,
+        'm_18': total_yr2 / 12.00,
+        'm_19': total_yr2 / 12.00,
+        'm_20': total_yr2 / 12.00,
+        'm_21': total_yr2 / 12.00,
+        'm_22': total_yr2 / 12.00,
+        'm_23': total_yr2 / 12.00,
+        'm_24': total_yr2 / 12.00,
+
+        # --- YEAR 3 ---
+        'yr_3': total_yr3,
+        'm_25': total_yr3 / 12.00,
+        'm_26': total_yr3 / 12.00,
+        'm_27': total_yr3 / 12.00,
+        'm_28': total_yr3 / 12.00,
+        'm_29': total_yr3 / 12.00,
+        'm_30': total_yr3 / 12.00,
+        'm_31': total_yr3 / 12.00,
+        'm_32': total_yr3 / 12.00,
+        'm_33': total_yr3 / 12.00,
+        'm_34': total_yr3 / 12.00,
+        'm_35': total_yr3 / 12.00,
+        'm_36': total_yr3 / 12.00
+    }
+
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'answer_picked': answer.content,
+        'autogen': autogen
+    }

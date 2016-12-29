@@ -78,11 +78,19 @@
                 },{
                     "previous_position": 8,
                     "current_position": 9,
-                    "next_position": -1,
+                    "next_position": 10,
                     "id": 105,
                     "type": "question",
                     "document_type": 6,
                     "order_num": 9
+                },{
+                    "previous_position": 9,
+                    "current_position": 10,
+                    "next_position": -1,
+                    "id": 106,
+                    "type": "question",
+                    "document_type": 6,
+                    "order_num": 10
                 }
             ],
             "title": "Stage 6",
