@@ -1221,8 +1221,8 @@
             "validation": {
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "opt1_other_max_length": 20,
+                "opt1_other_max_length_error_message": "Please enter at maximum 20 characters."
             },
             "type_id": 4
         }
@@ -1645,13 +1645,13 @@
                 "opt3_other": "Other (Please Specify)"
             },
             "content": {
-                "stub_1": "Column #1",
-                "stub_2": "Column #2",
-                "stub_3": "Column #3",
+                "stub_1": "Type",
+                "stub_2": "Trait 1",
+                "stub_3": "Trait 2",
                 "stub_4": "Remove",
-                "stub_5": "Column #5",
-                "stub_6": "Column #6",
-                "stub_7": "Column #7",
+                "stub_5": "Type",
+                "stub_6": "Trait 1",
+                "stub_7": "Trait 2",
                 "stub_8": "Add Target Martket",
                 "stub_9": "Column #9"
             },
