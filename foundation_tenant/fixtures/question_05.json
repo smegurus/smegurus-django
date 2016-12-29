@@ -424,25 +424,32 @@
                     "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select"
+                "opt1_select": "Select",
+                "opt2": [
+                    "fixed", "variable"
+                ],
+                "opt2_other": "",
+                "opt2_select": ""
             },
             "content": {
                 "stub_1": "Cost Type",
                 "stub_2": "Details",
-                "stub_3": "Y1 ($)",
-                "stub_4": "Y2 ($)",
-                "stub_5": "Y3 ($)",
-                "stub_6": "",
-                "stub_7": "Cost Type",
-                "stub_8": "Details",
-                "stub_9": "Ex: Because my account told me to.",
-                "stub_10": "Year 1 Cost",
-                "stub_11": "ex. 100",
-                "stub_12": "Year 2 Cost",
+                "stub_3": "Variable/Fixed",
+                "stub_4": "Y1 ($)",
+                "stub_5": "Y2 ($)",
+                "stub_6": "Y3 ($)",
+                "stub_7": "",
+                "stub_8": "Cost Type",
+                "stub_9": "Details",
+                "stub_10": "Ex: Because my account told me to.",
+                "stub_11": "Variable/Fixed",
+                "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
-                "stub_14": "Year 3 Cost",
+                "stub_14": "Year 2 Cost",
                 "stub_15": "ex. 100",
-                "stub_16": "Add Use"
+                "stub_16": "Year 3 Cost",
+                "stub_17": "ex. 100",
+                "stub_18": "Add Use"
             },
             "dependency": {},
             "validation": {
@@ -455,17 +462,38 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-                "var3_type": "integerfield",
-                "var3_min_length": 0,
-                "var3_min_length_error_message": "-",
-                "var3_max_length": 0,
-                "var3_max_length_error_message": "-",
-                "var3_min_num": 0,
-                "var3_min_num_error_message": "Please enter a cost amount greater then zero.",
-                "var3_max_num": 1000000000,
-                "var3_max_num_error_message": "Please enter a cost amount lesser then a billion."
+
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+
+                "var5_type": "integerfield",
+                "var5_min_length": 0,
+                "var5_min_length_error_message": "-",
+                "var5_max_length": 0,
+                "var5_max_length_error_message": "-",
+                "var5_min_num": 0,
+                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var5_max_num": 1000000000,
+                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+
+                "var6_type": "integerfield",
+                "var6_min_length": 0,
+                "var6_min_length_error_message": "-",
+                "var6_max_length": 0,
+                "var6_max_length_error_message": "-",
+                "var6_min_num": 0,
+                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var6_max_num": 1000000000,
+                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
             },
-            "type_id": 38
+            "type_id": 50
         }
     },{
         "model": "foundation_tenant.question",
