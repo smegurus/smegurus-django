@@ -89,13 +89,13 @@
     <!-- ROW 1 -->
     <div class="form-group">
         {% if question.content.stub_1 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-4 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-4">
         {% else %}
-        <div class="col-sm-5 col-centered">
+        <div class="col-sm-3 col-centered">
         {% endif %}
             <!-- OPTIONS -->
-            <select id="id_input_1" class="form-control">
+            <select id="id_input_1" class="form-control input-lg">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item.value }}" {% if item.value == picked.var_1 %}selected="selected"{% endif %}>{{ item.text }}</option>
@@ -104,7 +104,7 @@
             <!-- end OPTIONS -->
             <!-- OTHER -->
             <br />
-            <input id="id_input_1_other" type="text" class="form-control" placeholder="{% trans 'Please write your answer here...' %}" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} maxlength="{{ question.validation.opt1_other_max_length }}" />
+            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please write your answer here...' %}" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} maxlength="{{ question.validation.opt1_other_max_length }}" />
             <!-- end OTHER -->
         </div>
     </div>
