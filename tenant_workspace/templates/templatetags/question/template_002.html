@@ -84,27 +84,27 @@
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <fieldset>
                 <!-- ROW 1 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-                    <div class="col-sm-10">
-                        <input id="id_textfield_one" type="text" class="form-control" placeholder="{{ question.content.stub_2 }}" value="{{ picked.var_1 }}" />
+                    <label class="col-sm-4 control-label">{{ question.content.stub_1 }}</label>
+                    <div class="col-sm-5">
+                        <input id="id_textfield_one" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_2 }}" value="{{ picked.var_1 }}" />
                     </div>
                 </div>
                 <!-- end ROW 1 -->
                 <br />
                 <!-- ROW 2 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
-                    <div class="col-sm-10">
-                        <label class="checkbox checkbox-inline">
+                    <label class="col-sm-4 control-label">{{ question.content.stub_3 }}</label>
+                    <div class="col-sm-5">
+                        <label class="checkbox c-checkbox c-checkbox-rounded checkbox-inline">
                             <input id="id_boolfield" type="checkbox" value="option1" {% if picked.var_2 %}checked="checked"{% endif %} />
+                            <span class="fa fa-check"></span>
                             {{ question.content.stub_4 }}
                         </label>
-                        <input id="id_textfield_two" type="text" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.var_3 }}" />
+                        <input id="id_textfield_two" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_5 }}" value="{{ picked.var_3 }}" />
                     </div>
                 </div>
                 <!-- end ROW 2 -->
