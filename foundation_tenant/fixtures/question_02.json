@@ -1221,8 +1221,8 @@
             "validation": {
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "opt1_other_max_length": 20,
+                "opt1_other_max_length_error_message": "Please enter at maximum 20 characters."
             },
             "type_id": 4
         }
