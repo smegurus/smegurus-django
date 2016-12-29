@@ -987,6 +987,8 @@ def render_question_type_051(workspace, module, node, question, answer):
     - QID: 85 | Will you have any legal or professional fees to set up your business? If so, please detail them below.
     OR
     - QID: 108 | Please list your transportation costs and details from years 1-3.
+    OR
+    - QID: 86 | Will you have any ongoing location specific costs?
     """
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
