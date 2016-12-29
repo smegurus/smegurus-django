@@ -1171,38 +1171,72 @@
                     }
                 ],
                 "opt3_other": "other",
-                "opt3_select": "Select"
+                "opt3_select": "Select",
+                "opt4": [
+                    {
+                        "value": "fixed",
+                        "text": "fixed"
+                    },
+                    {
+                        "value": "variable",
+                        "text": "variable"
+                    }
+                ],
+                "opt4_other": "",
+                "opt4_select": ""
             },
             "content": {
                 "stub_1": "Incentive",
                 "stub_2": "Impact",
                 "stub_3": "# of months (1-12)",
-                "stub_4": "Y1 ($)",
-                "stub_5": "Y2 ($)",
-                "stub_6": "Y3 ($)",
-                "stub_7": "",
-                "stub_8": "Incentive",
-                "stub_9": "Impact",
-                "stub_10": "# of months (1-12)",
-                "stub_11": "Year 1 Cost",
-                "stub_12": "Ex: 10000",
-                "stub_13": "Year 2 Cost",
+                "stub_4": "Variable/Fixed",
+                "stub_5": "Y1 ($)",
+                "stub_6": "Y2 ($)",
+                "stub_7": "Y3 ($)",
+                "stub_8": "",
+                "stub_9": "Incentive",
+                "stub_10": "Impact",
+                "stub_11": "# of months (1-12)",
+                "stub_12": "Variable/Fixed",
+                "stub_13": "Year 1 Cost",
                 "stub_14": "Ex: 10000",
-                "stub_15": "Year 3 Cost",
+                "stub_15": "Year 2 Cost",
                 "stub_16": "Ex: 10000",
-                "stub_17": "Add"
+                "stub_17": "Year 3 Cost",
+                "stub_18": "Ex: 10000",
+                "stub_19": "Add"
             },
             "dependency": {},
             "validation": {
-                "var4_type": "integerfield",
-                "var4_min_length": 0,
-                "var4_min_length_error_message": "-",
-                "var4_max_length": 0,
-                "var4_max_length_error_message": "-",
-                "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
-                "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion."
+                "var5_type": "integerfield",
+                "var5_min_length": 0,
+                "var5_min_length_error_message": "-",
+                "var5_max_length": 0,
+                "var5_max_length_error_message": "-",
+                "var5_min_num": 0,
+                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var5_max_num": 1000000000,
+                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+
+                "var6_type": "integerfield",
+                "var6_min_length": 0,
+                "var6_min_length_error_message": "-",
+                "var6_max_length": 0,
+                "var6_max_length_error_message": "-",
+                "var6_min_num": 0,
+                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var6_max_num": 1000000000,
+                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+
+                "var7_type": "integerfield",
+                "var7_min_length": 0,
+                "var7_min_length_error_message": "-",
+                "var7_max_length": 0,
+                "var7_max_length_error_message": "-",
+                "var7_min_num": 0,
+                "var7_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var7_max_num": 1000000000,
+                "var7_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
             },
             "type_id": 36
         }

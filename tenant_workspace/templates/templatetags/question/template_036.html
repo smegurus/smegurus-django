@@ -34,6 +34,16 @@
                 $('#id_input_3_other_div').hide();
             }
         });
+
+        // Show "Other" field if the "Other" option was selected.
+        $(document).on('change','#id_input_4',function(){
+            var input_4 = $('#id_input_4').val();
+            if (input_4 == "{{ question.options.opt4_other }}") {
+                $('#id_input_4_other_div').show();
+            } else {
+                $('#id_input_4_other_div').hide();
+            }
+        });
     });
 
     function is_int(x) {
@@ -86,8 +96,10 @@
         var input_3 = form.find('#id_input_3').val();
         var input_3_other = form.find('#id_input_3_other').val();
         var input_4 = form.find('#id_input_4').val();
+        var input_4_other = form.find('#id_input_4_other').val();
         var input_5 = form.find('#id_input_5').val();
         var input_6 = form.find('#id_input_6').val();
+        var input_7 = form.find('#id_input_7').val();
 
         // Either load up an error telling the user to pick an option
         // or load up the next page.
@@ -99,7 +111,7 @@
             }
         } else {
             if (input_1 == "{{ question.options.opt1_select }}") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_6 }}\"");
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_9 }}\"");
                 return;
             }
         }
@@ -112,7 +124,7 @@
             }
         } else {
             if (input_2 == "{{ question.options.opt2_select }}") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_7 }}\"");
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_10 }}\"");
                 return;
             }
         }
@@ -125,40 +137,26 @@
             }
         } else {
             if (input_3 == "{{ question.options.opt3_select }}") {
-                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_8 }}\"");
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_11 }}\"");
                 return;
             }
         }
 
         // --- COL 4 ---
-        {% if question.validation.var4_type == "textfield" %}
-        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
-        if (input_4.length < {{ question.validation.var4_min_length }}) {
-            alert("{{ question.validation.var4_min_length_error_message }}");
-            return;
+        if (input_4 == "{{ question.options.opt4_other }}") {
+            if (input_4_other.length < 1) {
+                alert("{% trans 'Please fill in' %} \"Other\"");
+                return;
+            }
+        } else {
+            if (input_4 == "{{ question.options.opt4_select }}") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_12 }}\"");
+                return;
+            }
         }
-        if (input_4.length > {{ question.validation.var4_max_length }}) {
-            alert("{{ question.validation.var4_max_length_error_message }}");
-            return;
-        }
-        {% elif question.validation.var4_type == "integerfield"  %}
-        // ELSE WE ARE PROCESSING "INTEGERFIELD".
-        if (is_int(input_4) == false) {
-            alert("{% trans 'Please enter integer answer.' %}");
-            return;
-        }
-        if (input_4 < {{ question.validation.var4_min_num }}) {
-            alert("{{ question.validation.var4_min_num_error_message }}");
-            return;
-        }
-        if (input_4 > {{ question.validation.var4_max_num }}) {
-            alert("{{ question.validation.var4_max_num_error_message }}");
-            return;
-        }
-        {% endif %}
 
         // --- COL 5 ---
-        {% if question.validation.var4_type == "textfield" %}
+        {% if question.validation.var5_type == "textfield" %}
         // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
         if (input_5.length < {{ question.validation.var5_min_length }}) {
             alert("{{ question.validation.var5_min_length_error_message }}");
@@ -171,7 +169,7 @@
         {% elif question.validation.var5_type == "integerfield"  %}
         // ELSE WE ARE PROCESSING "INTEGERFIELD".
         if (is_int(input_5) == false) {
-            alert("{% trans 'Please enter integer answer.' %}");
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_13 }}.");
             return;
         }
         if (input_5 < {{ question.validation.var5_min_num }}) {
@@ -198,7 +196,7 @@
         {% elif question.validation.var6_type == "integerfield"  %}
         // ELSE WE ARE PROCESSING "INTEGERFIELD".
         if (is_int(input_6) == false) {
-            alert("{% trans 'Please enter integer answer.' %}");
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_15 }}.");
             return;
         }
         if (input_6 < {{ question.validation.var6_min_num }}) {
@@ -211,50 +209,85 @@
         }
         {% endif %}
 
+        // --- COL 7 ---
+        {% if question.validation.var7_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_7.length < {{ question.validation.var7_min_length }}) {
+            alert("{{ question.validation.var7_min_length_error_message }}");
+            return;
+        }
+        if (input_7.length > {{ question.validation.var7_max_length }}) {
+            alert("{{ question.validation.var7_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var7_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_7) == false) {
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_17 }}.");
+            return;
+        }
+        if (input_7 < {{ question.validation.var7_min_num }}) {
+            alert("{{ question.validation.var7_min_num_error_message }}");
+            return;
+        }
+        if (input_7 > {{ question.validation.var7_max_num }}) {
+            alert("{{ question.validation.var7_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
         // DEBUGGING PURPOSES ONLY.
-        console.log("{{ question.content.stub_6 }}: " + input_1);
-        console.log("{{ question.content.stub_6 }} Other: " + input_1_other);
-        console.log("{{ question.content.stub_7 }}: " + input_2);
-        console.log("{{ question.content.stub_7 }} Other: " + input_2_other);
-        console.log("{{ question.content.stub_8 }}: " + input_3);
-        console.log("{{ question.content.stub_8 }} Other: " + input_3_other);
-        console.log("{{ question.content.stub_9 }}: " + input_4);
-        console.log("{{ question.content.stub_10 }}: " + input_5);
-        console.log("{{ question.content.stub_11 }}: " + input_6);
+        console.log("{{ question.content.stub_9 }}: " + input_1);
+        console.log("{{ question.content.stub_9 }} Other: " + input_1_other);
+        console.log("{{ question.content.stub_10 }}: " + input_2);
+        console.log("{{ question.content.stub_10 }} Other: " + input_2_other);
+        console.log("{{ question.content.stub_11 }}: " + input_3);
+        console.log("{{ question.content.stub_11 }} Other: " + input_3_other);
+        console.log("{{ question.content.stub_12 }}: " + input_4);
+        console.log("{{ question.content.stub_13 }}: " + input_5);
+        console.log("{{ question.content.stub_15 }}: " + input_6);
+        console.log("{{ question.content.stub_17 }}: " + input_7);
 
         // CREATE HTML ROW.
-        // --- COL 1 ---
+        // --- START ROW ---
         var html_row = "<tr id=\""+row_index+"\">";
 
-        // --- COL 2 ---
+        // --- COL 1 ---
         if (input_1 == "{{ question.options.opt1_other }}") {
             html_row += "<td>"+input_1_other+"</td>";
         } else {
             html_row += "<td>"+input_1+"</td>";
         }
 
-        // --- COL 3 ---
+        // --- COL 2 ---
         if (input_2 == "{{ question.options.opt2_other }}") {
             html_row += "<td>"+input_2_other+"</td>";
         } else {
             html_row += "<td>"+input_2+"</td>";
         }
 
-        // --- COL 4 ---
+        // --- COL 3 ---
         if (input_3 == "{{ question.options.opt3_other }}") {
             html_row += "<td>"+input_3_other+"</td>";
         } else {
             html_row += "<td>"+input_3+"</td>";
         }
 
-        // --- COL 5 ---
-        html_row += "<td>"+input_4+"</td>";
+        // --- COL 4 ---
+        if (input_4 == "{{ question.options.opt4_other }}") {
+            html_row += "<td>"+input_4_other+"</td>";
+        } else {
+            html_row += "<td>"+input_4+"</td>";
+        }
 
-        // --- COL 6 ---
+        // --- COL 5 ---
         html_row += "<td>"+input_5+"</td>";
 
-        // --- COL 7 ---
+        // --- COL 6 ---
         html_row += "<td>"+input_6+"</td>";
+
+        // --- COL 7 ---
+        html_row += "<td>"+input_7+"</td>";
 
         // --- COL 8 ---
         html_row += "<td>";
@@ -275,10 +308,15 @@
         $('#id_input_2_other_div').hide();
         $('#id_input_3').val("{{ question.options.opt3_select }}");
         $('#id_input_3_other').val("");
-        $('#id_input_2_other_div').hide();
-        $('#id_input_4').val("");
+        $('#id_input_3_other_div').hide();
+        {% if question.options.opt4_select %}
+            $('#id_input_4').val("{{ question.options.opt4_select }}");
+        {% endif %}
+        $('#id_input_4_other').val("");
+        $('#id_input_4_other_div').hide();
         $('#id_input_5').val("");
         $('#id_input_6').val("");
+        $('#id_input_7').val("");
         row_index += 1;
     }
 
@@ -321,6 +359,7 @@
             var col4 = row[3];
             var col5 = row[4];
             var col6 = row[5];
+            var col7 = row[6];
             new_arr.push({
                 "var_1": i,
                 "var_2": col1,
@@ -328,7 +367,8 @@
                 "var_4": col3,
                 "var_5": col4,
                 "var_6": col5,
-                "var_7": col6
+                "var_7": col6,
+                "var_8": col7
             });
         }
 
@@ -368,6 +408,7 @@
                                 <th>{{ question.content.stub_5 }}</th>
                                 <th>{{ question.content.stub_6 }}</th>
                                 <th>{{ question.content.stub_7 }}</th>
+                                <th>{{ question.content.stub_8 }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -380,6 +421,7 @@
                                     <td>{{ pick.var_5 }}</td>
                                     <td>{{ pick.var_6 }}</td>
                                     <td>{{ pick.var_7 }}</td>
+                                    <td>{{ pick.var_8 }}</td>
                                     <td>
                                         <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
                                     </td>
@@ -398,12 +440,14 @@
 
                     <!-- ROW 2 -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{ question.content.stub_8 }}</label>
+                        <label class="col-sm-4 control-label">{{ question.content.stub_9 }}</label>
                         <div class="col-sm-5">
                             <!-- OPTIONS -->
                             <select id="id_input_1" class="form-control input-lg">
                                 <!-- STATIC OPTION -->
-                                <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
+                                {% if question.options.opt1_select %}
+                                    <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
+                                {% endif %}
                                 <!-- STATIC end OPTION -->
                                 <!-- DYNAMIC OPTON -->
                                 {% for item in question.options.opt1 %}
@@ -434,12 +478,14 @@
 
                     <!-- ROW 3 -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{ question.content.stub_9 }}</label>
+                        <label class="col-sm-4 control-label">{{ question.content.stub_10 }}</label>
                         <div class="col-sm-5">
                             <!-- OPTIONS -->
                             <select id="id_input_2" class="form-control input-lg">
                                 <!-- SELECT OPTION -->
-                                <option value="{{ question.options.opt2_select }}">{{ question.options.opt2_select }}</option>
+                                {% if question.options.opt2_select %}
+                                    <option value="{{ question.options.opt2_select }}">{{ question.options.opt2_select }}</option>
+                                {% endif %}
                                 <!-- end SELECT OPTION -->
                                 <!-- DYNAMIC OPTIONS -->
                                 {% for item in question.options.opt2 %}
@@ -470,12 +516,14 @@
 
                     <!-- ROW 4 -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{ question.content.stub_10 }}</label>
+                        <label class="col-sm-4 control-label">{{ question.content.stub_11 }}</label>
                         <div class="col-sm-5">
                             <!-- OPTIONS -->
                             <select id="id_input_3" class="form-control input-lg">
                                 <!-- SELECT OPTION -->
-                                <option value="{{ question.options.opt2_select }}">{{ question.options.opt3_select }}</option>
+                                {% if question.options.opt2_select %}
+                                    <option value="{{ question.options.opt2_select }}">{{ question.options.opt3_select }}</option>
+                                {% endif %}
                                 <!-- end SELECT OPTION -->
                                 <!-- DYNAMIC OPTIONS -->
                                 {% for item in question.options.opt3 %}
@@ -504,44 +552,82 @@
 
                     <br />
 
-                    <!-- ROW 2 -->
+                    <!-- ROW 5 -->
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">{{ question.content.stub_11 }}</label>
+                        <label class="col-sm-4 control-label">{{ question.content.stub_12 }}</label>
                         <div class="col-sm-5">
-                            <input id="id_input_4" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_12 }}" value="{{ picked.input_1 }}" />
+                            <!-- OPTIONS -->
+                            <select id="id_input_4" class="form-control input-lg">
+                                <!-- SELECT OPTION -->
+                                {% if question.options.opt4_select %}
+                                    <option value="{{ question.options.opt4_select }}">{{ question.options.opt4_select }}</option>
+                                {% endif %}
+                                <!-- end SELECT OPTION -->
+                                <!-- DYNAMIC OPTIONS -->
+                                {% for item in question.options.opt4 %}
+                                    <option value="{{ item.value }}">{{ item.text }}</option>
+                                {% endfor %}
+                                <!-- end DYNAMIC OPTIONS -->
+                            </select>
+                            <!-- end OPTIONS -->
                         </div>
                     </div>
-                    <!-- end ROW 2 -->
+                    <!-- end ROW 5 -->
 
                     <br />
 
-                    <!-- ROW 3 -->
+                    <!-- ROW 5 | HIDDEN -->
+                    <div class="form-group" style="display: none;" id="id_input_4_other_div">
+                        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-5">
+                            <!-- OTHER -->
+                            <input id="id_input_4_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="" />
+                            <!-- end OTHER -->
+                        </div>
+                        <br />
+                    </div>
+                    <!-- end ROW 5 | HIDDEN -->
+
+                    <br />
+
+                    <!-- ROW 6 -->
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{ question.content.stub_13 }}</label>
                         <div class="col-sm-5">
                             <input id="id_input_5" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_14 }}" value="{{ picked.input_1 }}" />
                         </div>
                     </div>
-                    <!-- end ROW 3 -->
+                    <!-- end ROW 6 -->
 
                     <br />
 
-                    <!-- ROW 4 -->
+                    <!-- ROW 7 -->
                     <div class="form-group">
                         <label class="col-sm-4 control-label">{{ question.content.stub_15 }}</label>
                         <div class="col-sm-5">
                             <input id="id_input_6" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_16 }}" value="{{ picked.input_1 }}" />
                         </div>
                     </div>
-                    <!-- end ROW 4 -->
+                    <!-- end ROW 7 -->
 
                     <br />
 
-                    <!-- ROW 7 -->
-                    <div class="pull-right" onclick="add_row();">
-                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_17 }}</button>
+                    <!-- ROW 8 -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_17 }}</label>
+                        <div class="col-sm-5">
+                            <input id="id_input_7" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_18 }}" value="{{ picked.input_1 }}" />
+                        </div>
                     </div>
-                    <!-- end ROW 7 -->
+                    <!-- end ROW 8 -->
+
+                    <br />
+
+                    <!-- ROW 9 -->
+                    <div class="pull-right" onclick="add_row();">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_19 }}</button>
+                    </div>
+                    <!-- end ROW 9 -->
                 </fieldset>
             </div>
         </div>
