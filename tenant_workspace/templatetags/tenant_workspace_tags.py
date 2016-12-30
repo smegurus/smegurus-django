@@ -989,6 +989,8 @@ def render_question_type_051(workspace, module, node, question, answer):
     - QID: 108 | Please list your transportation costs and details from years 1-3.
     OR
     - QID: 86 | Will you have any ongoing location specific costs?
+    OR
+    - QID: 90 | . Please list up to 5 licenses, registrations, or permits that you need to operate your business
     """
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
