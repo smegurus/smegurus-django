@@ -997,6 +997,8 @@ def render_question_type_051(workspace, module, node, question, answer):
     - QID: 116 | Please list your banking costs from years 1-3, with details and cost on each.
     OR
     - QID: 118 | Please list your general supplies costs from years 1-3, with details and cost on each.
+    OR
+    - QID: 120 | Please list your communications costs from years 1-3, with details and cost on each.
     """
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
