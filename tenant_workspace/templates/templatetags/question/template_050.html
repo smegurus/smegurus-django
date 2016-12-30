@@ -258,10 +258,17 @@
         // Fetch the table array.
         var arr = get_table_data();
 
-        // Defensive Code: Check to see if any rows exist?
+        // Defensive Code: Minimum Requirement
         var count = arr.length;
-        if (count == 1) {
-            alert("Please add an owner before continuing.");
+        if (count < {{ question.validation.arr_min_count }}) {
+            alert("{{ question.validation.arr_min_count_error_message|escape|safe }}");
+            return;
+        }
+
+        // Defensive Code: Maximum Requirement
+        var count = arr.length;
+        if (count > {{ question.validation.arr_max_count }}) {
+            alert("{{ question.validation.arr_max_count_error_message|escape|safe }}");
             return;
         }
 

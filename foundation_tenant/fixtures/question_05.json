@@ -375,6 +375,11 @@
             },
             "dependency": {},
             "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -453,6 +458,11 @@
             },
             "dependency": {},
             "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+                
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters.",
