@@ -710,5 +710,26 @@
             },
             "type_id": 50
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 115,
+        "fields": {
+            "document_type": 6,
+            "number": 19,
+            "title": "Previously, you indicated the costs for Years 1-3 of your insurance Costs. We have totaled these to create your total salary costs. To help you with your cashflows, we have automatically calculated values for the first three years of your business. If you are happy with this, you can continue, or modify them.",
+            "help": "This is some generic help text.",
+            "options": {},
+            "content": {},
+            "dependency": {
+                "q1_qid": 114
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 51
+        }
     }
 ]
