@@ -1065,3 +1065,16 @@ def render_question_type_051(workspace, module, node, question, answer):
         'answer_picked': answer.content,
         'autogen': autogen
     }
+
+
+@register.inclusion_tag('templatetags/question/template_052.html')
+def render_question_type_052(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content)
+    }
