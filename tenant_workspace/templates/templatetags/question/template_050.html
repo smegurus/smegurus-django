@@ -19,7 +19,7 @@
 
             // Show "Other" field if the "Other" option was selected.
             var input_3 = $('#id_input_3').val();
-            if (input_1 == "{{ question.options.opt2_other }}") {
+            if (input_3 == "{{ question.options.opt2_other }}") {
                 $('#id_input_3_other_div').show();
             } else {
                 $('#id_input_3_other_div').hide();
@@ -225,7 +225,7 @@
         // CLEAR FIELDS.
         $('#id_input_1').val("{{ question.options.opt1_select }}");
         $('#id_input_1_other').val("");
-        $('#id_input_3_other_div').hide();
+        $('#id_input_1_other_div').hide();
         $('#id_input_2').val("");
         {% if question.options.opt2_select %}
             $('#id_input_3').val("{{ question.options.opt2_select }}");

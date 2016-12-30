@@ -1851,5 +1851,94 @@
             },
             "type_id": 51
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 136,
+        "fields": {
+            "document_type": 6,
+            "number": 40,
+            "title": "If you will be depreciating any equipment, please include the asset, depreciation type, and costs in Years 1-3.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "Straightline", "Unit based", "Double declining"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    "fixed", "variable"
+                ],
+                "opt2_other": "",
+                "opt2_select": ""
+            },
+            "content": {
+                "stub_1": "Asset",
+                "stub_2": "Dep.",
+                "stub_3": "Variable/Fixed",
+                "stub_4": "Y1 ($)",
+                "stub_5": "Y2 ($)",
+                "stub_6": "Y3 ($)",
+                "stub_7": "",
+                "stub_8": "Asset",
+                "stub_9": "Ex: My company car.",
+                "stub_10": "Dep.",
+                "stub_11": "Cost Type",
+                "stub_12": "Year 1 Cost",
+                "stub_13": "ex. 100",
+                "stub_14": "Year 2 Cost",
+                "stub_15": "ex. 100",
+                "stub_16": "Year 3 Cost",
+                "stub_17": "ex. 100",
+                "stub_18": "Add Use"
+            },
+            "dependency": {},
+            "validation": {
+                "arr_min_count": 0,
+                "arr_min_count_error_message": "-",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+
+                "var1_type": "textfield",
+                "var1_min_length": 2,
+                "var1_min_length_error_message": "Please enter a text with at leaset 2 characters in Asset.",
+                "var1_max_length": 511,
+                "var1_max_length_error_message": "Please enter a text with no less then 511 chracters in Asset.",
+                "var1_min_num": 0,
+                "var1_min_num_error_message": "-",
+                "var1_max_num": 0,
+                "var1_max_num_error_message": "-",
+
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+
+                "var5_type": "integerfield",
+                "var5_min_length": 0,
+                "var5_min_length_error_message": "-",
+                "var5_max_length": 0,
+                "var5_max_length_error_message": "-",
+                "var5_min_num": 0,
+                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var5_max_num": 1000000000,
+                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+
+                "var6_type": "integerfield",
+                "var6_min_length": 0,
+                "var6_min_length_error_message": "-",
+                "var6_max_length": 0,
+                "var6_max_length_error_message": "-",
+                "var6_min_num": 0,
+                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var6_max_num": 1000000000,
+                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
+            },
+            "type_id": 52
+        }
     }
 ]
