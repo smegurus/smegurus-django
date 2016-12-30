@@ -995,6 +995,8 @@ def render_question_type_051(workspace, module, node, question, answer):
     - QID: 114 | Please list all types of insurance, broken down from years 1-3, with details and costs for each.
     OR
     - QID: 116 | Please list your banking costs from years 1-3, with details and cost on each.
+    OR
+    - QID: 118 | Please list your general supplies costs from years 1-3, with details and cost on each.
     """
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
