@@ -1,0 +1,563 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    var row_index = {{ picked_count }};
+
+    // Generate all the options to be selected for "id_input_2" input field.
+    // These options are dependent on "id_input_1" intput field.
+    var input_2_options = {
+        {% for parent_item in question.options.opt2 %}
+            "{{ parent_item.parent }}": [
+                {% for item in parent_item.choices %}
+                    "{{ item }}"
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+            {% if not forloop.last %},{% endif %}
+        {% endfor %}
+    };
+
+    $(document).ready(function () {
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $(document).on('change','#id_input_1',function(){
+            // Fetch choices made and validate with the available options.
+            var parent = $('#id_input_1').val();
+
+            // Make GUI available.
+            $('#id_input_2_div').show();
+            $('#id_input_2_other_div').hide();
+            $('#id_input_2_other').val("");
+
+            // Generate the selectfield.
+            $("#id_input_2").html("");
+            $('#id_input_2').append($('<option>', {  // GENERATE A BLANK OPTION.
+                value: '{{ question.options.opt2_select }}',
+                text: '{{ question.options.opt2_select }}'
+            }));
+            var options = input_2_options[parent];
+            for (var i = 0; i < options.length; i++) {
+                // Append the element
+                $('#id_input_2').append($('<option>', {
+                    value: options[i],
+                    text: options[i]
+                }));
+            }
+
+            // Display OTHER gui.
+            if (parent == "{{ question.options.opt1_other }}") {
+                $('#id_input_1_other_div').show();
+            }
+        }); // end INPUT_1 CHANGE.
+
+        //
+        // Detect changes with "id_input_1" input field.
+        //
+        $(document).on('change','#id_input_2',function(){
+            // Show "Other" field if the "Other" option was selected.
+            var input_2 = $('#id_input_2').val();
+            if (input_2 == "{{ question.options.opt2_other }}") {
+                $('#id_input_2_other_div').show();
+            } else {
+                $('#id_input_2_other_div').hide();
+            }
+
+        });
+    }); // end DOCUMENT START
+
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
+    function delete_row(id) {
+        $('#'+id).remove();
+    }
+
+    function add_row() {
+        // GET VALUES
+        var input_1 = $('#id_input_1').val();
+        var input_1_other = $('#id_input_1_other').val();
+        var input_2 = $('#id_input_2').val();
+        var input_2_other = $('#id_input_2_other').val();
+        var input_3 = $('#id_input_3').val();
+        var input_4 = $('#id_input_4').val();
+        var input_5 = $('#id_input_5').val();
+        var input_6 = $('#id_input_6').val();
+
+        // PERFORM VALIDATION.
+        // --- Input 1 ---
+        if (input_1 == "{{ question.options.opt1_other }}") {
+            if (input_1_other == "") {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_1 == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_1 }}\"");
+                return;
+            }
+        }
+
+        // --- Input 2 ---
+        if (input_2 == "{{ question.options.opt2_other }}") {
+            if (input_2_other == "") {
+                alert("{% trans 'Please fill in \"Other\".' %}");
+                return;
+            }
+        } else {
+            if (input_2 == "") {
+                alert("{% trans 'Please fill in' %} \"{{ question.content.stub_2 }}\"");
+                return;
+            }
+        }
+
+        // --- Input 3 ---
+        {% if question.validation.var3_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_3.length < {{ question.validation.var3_min_length }}) {
+            alert("{{ question.validation.var3_min_length_error_message }}");
+            return;
+        }
+        if (input_3.length > {{ question.validation.var3_max_length }}) {
+            alert("{{ question.validation.var3_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var3_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_3) == false) {
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_10 }}.");
+            return;
+        }
+        if (input_3 < {{ question.validation.var3_min_num }}) {
+            alert("{{ question.validation.var3_min_num_error_message }}");
+            return;
+        }
+        if (input_3 > {{ question.validation.var3_max_num }}) {
+            alert("{{ question.validation.var3_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
+        // --- Input 4 ---
+        {% if question.validation.var4_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_4.length < {{ question.validation.var4_min_length }}) {
+            alert("{{ question.validation.var4_min_length_error_message }}");
+            return;
+        }
+        if (input_4.length > {{ question.validation.var4_max_length }}) {
+            alert("{{ question.validation.var4_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var4_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_4) == false) {
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_12 }}.");
+            return;
+        }
+        if (input_4 < {{ question.validation.var4_min_num }}) {
+            alert("{{ question.validation.var4_min_num_error_message }}");
+            return;
+        }
+        if (input_4 > {{ question.validation.var4_max_num }}) {
+            alert("{{ question.validation.var4_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
+        // --- Input 5 ---
+        {% if question.validation.var5_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_5.length < {{ question.validation.var5_min_length }}) {
+            alert("{{ question.validation.var5_min_length_error_message }}");
+            return;
+        }
+        if (input_5.length > {{ question.validation.var5_max_length }}) {
+            alert("{{ question.validation.var5_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var5_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_5) == false) {
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_14 }}.");
+            return;
+        }
+        if (input_5 < {{ question.validation.var5_min_num }}) {
+            alert("{{ question.validation.var5_min_num_error_message }}");
+            return;
+        }
+        if (input_5 > {{ question.validation.var5_max_num }}) {
+            alert("{{ question.validation.var4_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
+        // --- Input 6 ---
+        {% if question.validation.var6_type == "textfield" %}
+        // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+        if (input_6.length < {{ question.validation.var6_min_length }}) {
+            alert("{{ question.validation.var6_min_length_error_message }}");
+            return;
+        }
+        if (input_6.length > {{ question.validation.var6_max_length }}) {
+            alert("{{ question.validation.var6_max_length_error_message }}");
+            return;
+        }
+        {% elif question.validation.var6_type == "integerfield"  %}
+        // ELSE WE ARE PROCESSING "INTEGERFIELD".
+        if (is_int(input_6) == false) {
+            alert("{% trans 'Please enter integer answer for' %} {{ question.content.stub_16 }}.");
+            return;
+        }
+        if (input_6 < {{ question.validation.var6_min_num }}) {
+            alert("{{ question.validation.var5_min_num_error_message }}");
+            return;
+        }
+        if (input_6 > {{ question.validation.var6_max_num }}) {
+            alert("{{ question.validation.var6_max_num_error_message }}");
+            return;
+        }
+        {% endif %}
+
+
+        // CREATE HTML ROW.
+        var html_row = "<tr id=\""+row_index+"\">";
+
+        // COL 1
+        if (input_1 == "{{ question.options.opt1_other }}") {
+            html_row += "<td>"+input_1_other+"</td>";
+        } else {
+            html_row += "<td>"+input_1+"</td>";
+        }
+
+        // COL 2
+        html_row += "<td>"+input_2+"</td>";
+
+        // COL 3
+        if (input_3 == "{{ question.options.opt2_other }}") {
+            html_row += "<td>"+input_3_other+"</td>";
+        } else {
+            html_row += "<td>"+input_3+"</td>";
+        }
+
+        // COL 4
+        html_row += "<td>"+input_4+"</td>";
+
+        // COL 5
+        html_row += "<td>"+input_5+"</td>";
+
+        // COL 6
+        html_row += "<td>"+input_6+"</td>";
+
+        // COL 6
+        html_row += "<td>";
+        var onclick_js = "delete_row("+row_index+")";
+        html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
+        html_row += "</td>";
+        html_row += "</tr>";
+
+        // // ADD HTML ROW TO OUR PAGE.
+        $("#id_table > tbody").append(html_row);
+
+        // CLEAR FIELDS.
+        $('#id_input_1').val("{{ question.options.opt1_select }}");
+        $('#id_input_1_other').val("");
+        $('#id_input_1_other_div').hide();
+        $('#id_input_2').val("");
+        {% if question.options.opt2_select %}
+            $('#id_input_3').val("{{ question.options.opt2_select }}");
+        {% endif %}
+        $('#id_input_3_other').val("");
+        $('#id_input_3_other_div').hide();
+        $('#id_input_4').val("");
+        $('#id_input_5').val("");
+        $('#id_input_6').val("");
+        row_index += 1;
+    }
+
+    function get_table_data() {
+        var data = [];
+        $('#id_table').find('tr').each(function (rowIndex, r) {
+            var cols = [];
+            $(this).find('th,td').each(function (colIndex, c) {
+                cols.push(c.textContent);
+            });
+            data.push(cols);
+        });
+        return data;
+    }
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // Fetch the table array.
+        var arr = get_table_data();
+
+        // Defensive Code: Minimum Requirement
+        var count = arr.length;
+        if (count < {{ question.validation.arr_min_count }}) {
+            alert("{{ question.validation.arr_min_count_error_message|escape|safe }}");
+            return;
+        }
+
+        // Defensive Code: Maximum Requirement
+        var count = arr.length;
+        if (count > {{ question.validation.arr_max_count }}) {
+            alert("{{ question.validation.arr_max_count_error_message|escape|safe }}");
+            return;
+        }
+
+        // Variable used to generate our new array.
+        var new_arr = [];
+
+        // Iterate through the table and generate our new array.
+        for(var i=1; i < count; i++) {
+            var row = arr[i];
+            var var_2 = row[0];
+            var var_3 = row[1];
+            var var_4 = row[2];
+            var var_5 = row[3];
+            var var_6 = row[4];
+            var var_7 = row[5];
+            new_arr.push({
+                "var_1": i,
+                "var_2": var_2,
+                "var_3": var_3,
+                "var_4": var_4,
+                "var_5": var_5,
+                "var_6": var_6,
+                "var_7": var_7
+            });
+        }
+
+        // DEBUGGING PURPOSES ONLY.
+        console.log(new_arr);
+
+        // SAVE OUR RESULTS.
+        ajax_do_chain(
+            new_arr,
+            function(json_result) {
+                // LOAD UP THE NEXT SLIDE/QUESTION.
+                window.location = next_url;
+            }
+        );
+    }
+
+    function ajax_do_chain(new_arr, callback) {
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify(new_arr);
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="panel-body">
+                <!-- ROW 1 | TABLE -->
+                <div class="table-responsive">
+                    <!-- TABLE -->
+                    <table class="table table-striped" id="id_table">
+                        <thead>
+                            <tr>
+                                <th>{{ question.content.stub_1 }}</th>
+                                <th>{{ question.content.stub_2 }}</th>
+                                <th>{{ question.content.stub_3 }}</th>
+                                <th>{{ question.content.stub_4 }}</th>
+                                <th>{{ question.content.stub_5 }}</th>
+                                <th>{{ question.content.stub_6 }}</th>
+                                <th>{{ question.content.stub_7 }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- CONTENT -->
+                            {% for pick in picked %}
+                                <tr id="{{ pick.var_1 }}">
+                                    <td>{{ pick.var_2 }}</td>
+                                    <td>{{ pick.var_3 }}</td>
+                                    <td>{{ pick.var_4 }}</td>
+                                    <td>{{ pick.var_5 }}</td>
+                                    <td>{{ pick.var_6 }}</td>
+                                    <td>{{ pick.var_7 }}</td>
+                                    <td>
+                                        <button type="button" class="mb-sm btn btn-danger" onclick="delete_row({{ pick.var_1 }});">{% trans 'Delete' %}</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <!-- end CONTENT -->
+                        </tbody>
+                    </table>
+                    <!-- end TABLE -->
+                </div>
+                <!-- end ROW 1 | TABLE -->
+
+                <br />
+
+                <fieldset>
+
+                    <!-- ROW 1 -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_8 }}</label>
+                        <div class="col-sm-5">
+                            <!-- OPTIONS -->
+                            <select id="id_input_1" class="form-control input-lg">
+                                <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
+                                {% for item in question.options.opt1 %}
+                                    <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
+                                {% endfor %}
+                            </select>
+                            <!-- end OPTIONS -->
+                        </div>
+                    </div>
+                    <!-- end ROW 1 -->
+
+                   <br />
+
+                    <!-- ROW 1 | OTHER -->
+                    <div class="form-group" id="id_input_1_other_div" style="display: none;">
+                        <label class="col-sm-4 control-label">{{ question.options.opt1_other }}</label>
+                        <div class="col-sm-5">
+                            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 1 | OTHER -->
+
+                    <br />
+
+                    <!-- ROW 2 -->
+                    <div class="form-group" id="id_input_2_div" style="display: none;">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_9 }}</label>
+                        <div class="col-sm-5">
+                            <!-- SELECTIONFIELD -->
+                            <select id="id_input_2" class="form-control input-lg">
+                                <!-- OPTION -->
+                                <option value="{{ question.options.opt2_select }}" selected="selected">{{ question.options.opt2_select }}</option>
+                                <!-- end OPTION -->
+                                <!-- OPTION -->
+                                {% if picked.var_1 and picked.var_2 %}
+                                    <!-- ITEMS -->
+                                    {% for item in question.options.opt2 %}
+                                        {% if item.parent == picked.var_1 %}
+                                            <!-- CHOICES -->
+                                            {% for choice in item.choices %}
+                                                <option value="{{ choice }}" {% if choice == picked.var_2 %}selected="selected"{% endif %}>{{ choice }}</option>
+                                            {% endfor %}
+                                            <!-- end CHOICES-->
+                                        {% endif %}
+                                    {% endfor %}
+                                    <!-- end ITEMS -->
+                                {% endif %}
+                                <!-- end OPTION -->
+                            </select>
+                            <!-- end SELECTIONFIELD -->
+                        </div>
+                    </div>
+                    <!-- end ROW 2 -->
+
+                    <br />
+
+                    <!-- ROW 2 | OTHER -->
+                    <div class="form-group" id="id_input_2_other_div" style="display: none;">
+                        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-5">
+                            <input id="id_input_2_other" type="text" class="form-control input-lg" placeholder="" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 2 | OTHER  -->
+
+                    <br />
+
+                    <!-- ROW 3  -->
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_10 }}</label>
+                        <div class="col-sm-5">
+                            <input id="id_input_3" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_11 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 3 -->
+
+                    <br />
+
+                    <!-- ROW 4 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_12 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_4" type="text" class="form-control" placeholder="{{ question.content.stub_13 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 4 -->
+
+                    <br />
+
+                    <!-- ROW 5 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_14 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_5" type="text" class="form-control" placeholder="{{ question.content.stub_15 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 5 -->
+
+                    <br />
+
+                    <!-- ROW 6 -->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ question.content.stub_16 }}</label>
+                        <div class="col-sm-10">
+                            <input id="id_input_6" type="text" class="form-control" placeholder="{{ question.content.stub_17 }}" value="" />
+                        </div>
+                    </div>
+                    <!-- end ROW 6 -->
+
+                    <br />
+
+                    <!-- ROW 7 -->
+                    <div class="pull-right" onclick="add_row();">
+                        <button type="button" class="btn btn-success btn-lg">{{ question.content.stub_18 }}</button>
+                    </div>
+                    <!-- end ROW 7 -->
+                </fieldset>
+
+            </div>
+            <!-- end PANEL BODY-->
+        </div>
+        <!-- end 12col -->
+    </div>
+    <!-- end FORM GROUP -->
+</fieldset>
+<!-- end HTML -->

@@ -221,7 +221,8 @@
             },
             "type_id": 48
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 104,
         "fields": {
@@ -256,12 +257,17 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Owner", "Manager", "Administration", "General Labour", "Other (Please Specify)"
+                    "Owner",
+                    "Manager",
+                    "Administration",
+                    "General Labour",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -292,7 +298,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -302,7 +307,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -312,7 +316,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -322,7 +325,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -335,7 +337,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 106,
         "fields": {
@@ -356,7 +359,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 107,
         "fields": {
@@ -388,12 +392,16 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Transportation", "Parking", "Distribution", "Other (Please Specify)"
+                    "Transportation",
+                    "Parking",
+                    "Distribution",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -424,7 +432,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -434,7 +441,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -444,7 +450,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -454,7 +459,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -467,7 +471,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 109,
         "fields": {
@@ -488,7 +493,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 110,
         "fields": {
@@ -520,12 +526,17 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Admin support", "Book keeping", "Data Entry", "Virtual Assistant", "Other (Please Specify)"
+                    "Admin support",
+                    "Book keeping",
+                    "Data Entry",
+                    "Virtual Assistant",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -556,7 +567,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -566,7 +576,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -576,7 +585,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -586,7 +594,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -599,7 +606,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 112,
         "fields": {
@@ -620,7 +628,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 113,
         "fields": {
@@ -641,7 +650,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 114,
         "fields": {
@@ -651,12 +661,19 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Commercial", "Professional", "WSIB", "Health Insurance", "Disability", "Life", "Other (Please Specify)"
+                    "Commercial",
+                    "Professional",
+                    "WSIB",
+                    "Health Insurance",
+                    "Disability",
+                    "Life",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -687,7 +704,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -697,7 +713,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -707,7 +722,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -717,7 +731,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -730,7 +743,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 115,
         "fields": {
@@ -751,7 +765,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 116,
         "fields": {
@@ -761,12 +776,17 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Account Fees", "Interest Charges", "Cheque Fees", "PayPal Fees", "Other (Please Specify)"
+                    "Account Fees",
+                    "Interest Charges",
+                    "Cheque Fees",
+                    "PayPal Fees",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -797,7 +817,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -807,7 +826,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -817,7 +835,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -827,7 +844,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -840,7 +856,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 117,
         "fields": {
@@ -861,7 +878,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 118,
         "fields": {
@@ -871,12 +889,14 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Office Supplies", "Other (Please Specify)"
+                    "Office Supplies",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -907,7 +927,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -917,7 +936,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -927,7 +945,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -937,7 +954,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -950,7 +966,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 119,
         "fields": {
@@ -971,7 +988,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 120,
         "fields": {
@@ -981,12 +999,18 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Cellphone", "Internet", "Telephone", "Television", "Netflix", "Other (Please Specify)"
+                    "Cellphone",
+                    "Internet",
+                    "Telephone",
+                    "Television",
+                    "Netflix",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1017,7 +1041,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1027,7 +1050,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1037,7 +1059,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1047,7 +1068,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1060,7 +1080,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 121,
         "fields": {
@@ -1081,7 +1102,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 122,
         "fields": {
@@ -1091,12 +1113,18 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                     "Office equipment", "Software subscriptions", "Office equipment lease", "Small tools/equipment", "Books", "Other (Please Specify)"
+                    "Office equipment",
+                    "Software subscriptions",
+                    "Office equipment lease",
+                    "Small tools/equipment",
+                    "Books",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1127,7 +1155,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1137,7 +1164,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1147,7 +1173,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1157,7 +1182,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1170,7 +1194,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 123,
         "fields": {
@@ -1191,7 +1216,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 124,
         "fields": {
@@ -1201,12 +1227,19 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                     "Sales commission", "Referral Fee", "Affiliate commission", "Transportation", "Events", "Training", "Other (Please Specify)"
+                    "Sales commission",
+                    "Referral Fee",
+                    "Affiliate commission",
+                    "Transportation",
+                    "Events",
+                    "Training",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1237,7 +1270,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1247,7 +1279,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1257,7 +1288,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1267,7 +1297,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1280,7 +1309,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 125,
         "fields": {
@@ -1301,7 +1331,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 126,
         "fields": {
@@ -1311,12 +1342,18 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                     "Association fees", "Membership fees", "Networking groups", "Club fees", "Events", "Other (Please Specify)"
+                    "Association fees",
+                    "Membership fees",
+                    "Networking groups",
+                    "Club fees",
+                    "Events",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1347,7 +1384,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1357,7 +1393,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1367,7 +1402,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1377,7 +1411,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1390,7 +1423,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 127,
         "fields": {
@@ -1411,7 +1445,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 128,
         "fields": {
@@ -1421,12 +1456,20 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                     "Vehicle lease", "Equipment lease", "Machinery lease", "Kitchen equipment lease", "Computer hardware lease", "Video equipment lease", "Audio equipment lease", "Other (Please Specify)"
+                    "Vehicle lease",
+                    "Equipment lease",
+                    "Machinery lease",
+                    "Kitchen equipment lease",
+                    "Computer hardware lease",
+                    "Video equipment lease",
+                    "Audio equipment lease",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1457,7 +1500,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1467,7 +1509,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1477,7 +1518,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1487,7 +1527,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1500,7 +1539,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 129,
         "fields": {
@@ -1521,7 +1561,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 130,
         "fields": {
@@ -1531,12 +1572,17 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Annual maintenance", "Service contract", "Cleaning services", "Repairs", "Other (Please Specify)"
+                    "Annual maintenance",
+                    "Service contract",
+                    "Cleaning services",
+                    "Repairs",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1567,7 +1613,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1577,7 +1622,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1587,7 +1631,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1597,7 +1640,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1610,7 +1652,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 131,
         "fields": {
@@ -1631,7 +1674,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 132,
         "fields": {
@@ -1646,7 +1690,8 @@
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1677,7 +1722,6 @@
                 "arr_min_count_error_message": "-",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1687,7 +1731,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1697,7 +1740,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1707,7 +1749,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1720,7 +1761,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 133,
         "fields": {
@@ -1741,7 +1783,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 134,
         "fields": {
@@ -1756,7 +1799,8 @@
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1787,7 +1831,6 @@
                 "arr_min_count_error_message": "-",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -1797,7 +1840,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1807,7 +1849,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1817,7 +1858,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1830,7 +1870,8 @@
             },
             "type_id": 50
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 135,
         "fields": {
@@ -1851,7 +1892,8 @@
             },
             "type_id": 51
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 136,
         "fields": {
@@ -1861,12 +1903,15 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Straightline", "Unit based", "Double declining"
+                    "Straightline",
+                    "Unit based",
+                    "Double declining"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt2_other": "",
                 "opt2_select": ""
@@ -1897,7 +1942,6 @@
                 "arr_min_count_error_message": "-",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var1_type": "textfield",
                 "var1_min_length": 2,
                 "var1_min_length_error_message": "Please enter a text with at leaset 2 characters in Asset.",
@@ -1907,7 +1951,6 @@
                 "var1_min_num_error_message": "-",
                 "var1_max_num": 0,
                 "var1_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -1917,7 +1960,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1927,7 +1969,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1940,7 +1981,8 @@
             },
             "type_id": 52
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 137,
         "fields": {
@@ -1950,7 +1992,8 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt1_other": "",
                 "opt1_select": ""
@@ -1982,7 +2025,6 @@
                 "arr_min_count_error_message": "-",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var1_type": "textfield",
                 "var1_min_length": 2,
                 "var1_min_length_error_message": "Please enter a text with at leaset 2 characters in Item.",
@@ -1992,7 +2034,6 @@
                 "var1_min_num_error_message": "-",
                 "var1_max_num": 0,
                 "var1_max_num_error_message": "-",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -2002,7 +2043,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -2012,7 +2052,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -2022,7 +2061,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -2035,7 +2073,8 @@
             },
             "type_id": 53
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 138,
         "fields": {
@@ -2045,7 +2084,8 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "fixed", "variable"
+                    "fixed",
+                    "variable"
                 ],
                 "opt1_other": "",
                 "opt1_select": ""
@@ -2077,7 +2117,6 @@
                 "arr_min_count_error_message": "-",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var1_type": "textfield",
                 "var1_min_length": 2,
                 "var1_min_length_error_message": "Please enter a text with at leaset 2 characters in Item.",
@@ -2087,7 +2126,6 @@
                 "var1_min_num_error_message": "-",
                 "var1_max_num": 0,
                 "var1_max_num_error_message": "-",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -2097,7 +2135,6 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -2107,7 +2144,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -2117,7 +2153,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -2141,7 +2176,12 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Vehicle", "Equipment", "Machinery", "Kitchen equipment", "Computer hardware", "Other (Please Specify)"
+                    "Vehicle",
+                    "Equipment",
+                    "Machinery",
+                    "Kitchen equipment",
+                    "Computer hardware",
+                    "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
@@ -2177,7 +2217,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
@@ -2187,6 +2226,164 @@
                 "var2_min_num_error_message": "-",
                 "var2_max_num": 0,
                 "var2_max_num_error_message": "-",
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var5_type": "integerfield",
+                "var5_min_length": 0,
+                "var5_min_length_error_message": "-",
+                "var5_max_length": 0,
+                "var5_max_length_error_message": "-",
+                "var5_min_num": 0,
+                "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var5_max_num": 1000000000,
+                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var6_type": "integerfield",
+                "var6_min_length": 0,
+                "var6_min_length_error_message": "-",
+                "var6_max_length": 0,
+                "var6_max_length_error_message": "-",
+                "var6_min_num": 0,
+                "var6_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var6_max_num": 1000000000,
+                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
+            },
+            "type_id": 50
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 140,
+        "fields": {
+            "document_type": 6,
+            "number": 44,
+            "title": "What sources of cash and assets will be coming into your business at start-up? Be sure to include your savings, any loans or credit, and of course any assets (such as equipment) which you are bringing into the business. List up to 5.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "Equipment I already own",
+                    "Savings",
+                    "Pre-sales",
+                    "Credit cards",
+                    "Supplier credit",
+                    "Line of credit",
+                    "Short-term loan",
+                    "Long-term loan",
+                    "Investor funds",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "parent": "Equipment I already own",
+                        "choices": [
+                            "Long-term Asset"
+                        ]
+                    },
+                    {
+                        "parent": "Savings",
+                        "choices": [
+                            "Short-term Asset"
+                        ]
+                    },
+                    {
+                        "parent": "Pre-sales",
+                        "choices": [
+                            "Short-term Liability"
+                        ]
+                    },
+                    {
+                        "parent": "Credit cards",
+                        "choices": [
+                            "Short-term liability"
+                        ]
+                    },
+                    {
+                        "parent": "Supplier credit",
+                        "choices": [
+                            "Short-term liability"
+                        ]
+                    },
+                    {
+                        "parent": "Line of credit",
+                        "choices": [
+                            "Short-term liability"
+                        ]
+                    },
+                    {
+                        "parent": "Short-term loan",
+                        "choices": [
+                            "Short-term liability"
+                        ]
+                    },
+                       {
+                        "parent": "Long-term loan",
+                        "choices": [
+                            "Long-term liability"
+                        ]
+                    },
+                    {
+                        "parent": "Investor funds",
+                        "choices": [
+                            "Long-term liability"
+                        ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Short-term asset",
+                            "Long-term asset",
+                            "Short-term liability",
+                            "Long-term liability"
+                        ]
+                    }
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select"
+            },
+            "content": {
+                "stub_1": "Item",
+                "stub_2": "Type",
+                "stub_3": "Details",
+                "stub_4": "Y1 ($)",
+                "stub_5": "Y2 ($)",
+                "stub_6": "Y3 ($)",
+                "stub_7": "",
+                "stub_8": "Item",
+                "stub_9": "Type",
+                "stub_10": "Details",
+                "stub_11": "Please write your details here ...",
+                "stub_12": "Year 1 Cost",
+                "stub_13": "ex. 100",
+                "stub_14": "Year 2 Cost",
+                "stub_15": "ex. 100",
+                "stub_16": "Year 3 Cost",
+                "stub_17": "ex. 100",
+                "stub_18": "Add Use"
+            },
+            "dependency": {},
+            "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+
+                "var3_type": "textfield",
+                "var3_min_length": 2,
+                "var3_min_length_error_message": "Please enter a text with at leaset 2 characters in Details.",
+                "var3_max_length": 511,
+                "var3_max_length_error_message": "Please enter a text with no less then 511 chracters in Details.",
+                "var3_min_num": 0,
+                "var3_min_num_error_message": "-",
+                "var3_max_num": 0,
+                "var3_max_num_error_message": "-",
 
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
@@ -2207,7 +2404,7 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
+                
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -2218,7 +2415,7 @@
                 "var6_max_num": 1000000000,
                 "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
             },
-            "type_id": 50
+            "type_id": 54
         }
     }
 ]
