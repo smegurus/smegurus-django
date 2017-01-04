@@ -877,41 +877,36 @@
                     },
                     {
                         "id": "4",
-                        "value": "Lack of Family support",
-                        "text": "Lack of Family support"
-                    },
-                    {
-                        "id": "5",
                         "value": "Speaking to a customer about my products or services",
                         "text": "Speaking to a customer about my products or services"
                     },
                     {
-                        "id": "6",
+                        "id": "5",
                         "value": "Networking",
                         "text": "Networking"
                     },
                     {
-                        "id": "7",
+                        "id": "6",
                         "value": "Engagement on social media",
                         "text": "Engagement on social media"
                     },
                     {
-                        "id": "8",
+                        "id": "7",
                         "value": "Our product is an impulse buy",
                         "text": "Our product is an impulse buy"
                     },
                     {
-                        "id": "9",
+                        "id": "8",
                         "value": "Our product is a staple",
                         "text": "Our product is a staple"
                     },
                     {
-                        "id": "10",
+                        "id": "9",
                         "value": "Our product is high-end",
                         "text": "Our product is high-end"
                     },
                     {
-                        "id": "11",
+                        "id": "10",
                         "value": "Our product is value-priced",
                         "text": "Our product is value-priced"
                     }
