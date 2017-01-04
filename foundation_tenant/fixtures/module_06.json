@@ -174,7 +174,7 @@
                 },{
                     "previous_position": 20,
                     "current_position": 21,
-                    "next_position": -1,
+                    "next_position": 23,
                     "id": 117,
                     "type": "question",
                     "document_type": 6,
@@ -254,7 +254,7 @@
                 },{
                     "previous_position": 30,
                     "current_position": 31,
-                    "next_position": -1,
+                    "next_position": 32,
                     "id": 127,
                     "type": "question",
                     "document_type": 6,
@@ -366,11 +366,19 @@
                 },{
                     "previous_position": 44,
                     "current_position": 45,
-                    "next_position": -1,
+                    "next_position": 46,
                     "id": 141,
                     "type": "question",
                     "document_type": 6,
                     "order_num": 45
+                },{
+                    "previous_position": 45,
+                    "current_position": 46,
+                    "next_position": -1,
+                    "id": 142,
+                    "type": "question",
+                    "document_type": 6,
+                    "order_num": 46
                 }
             ],
             "title": "Stage 6",
