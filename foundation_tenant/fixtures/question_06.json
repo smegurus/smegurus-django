@@ -2391,9 +2391,9 @@
                 "var4_max_length": 0,
                 "var4_max_length_error_message": "-",
                 "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
 
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
@@ -2401,9 +2401,9 @@
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
 
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
@@ -2411,9 +2411,9 @@
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
+                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
             },
             "type_id": 54
         }
@@ -2487,10 +2487,40 @@
                 "q1_qid": 101
             },
             "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 50,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+
+                "var4_type": "integerfield",
+                "var4_min_length": 0,
+                "var4_min_length_error_message": "-",
+                "var4_max_length": 0,
+                "var4_max_length_error_message": "-",
+                "var4_min_num": 0,
+                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var4_max_num": 1000000000,
+                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+
+                "var5_type": "integerfield",
+                "var5_min_length": 0,
+                "var5_min_length_error_message": "-",
+                "var5_max_length": 0,
+                "var5_max_length_error_message": "-",
+                "var5_min_num": 0,
+                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var5_max_num": 1000000000,
+                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+
+                "var6_type": "integerfield",
+                "var6_min_length": 0,
+                "var6_min_length_error_message": "-",
+                "var6_max_length": 0,
+                "var6_max_length_error_message": "-",
+                "var6_min_num": 0,
+                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var6_max_num": 1000000000,
+                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
             },
             "type_id": 55
         }
