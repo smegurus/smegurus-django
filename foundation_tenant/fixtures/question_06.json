@@ -236,7 +236,9 @@
                 "q1_qid": 77,
                 "q2_qid": 78,
                 "q3_qid": 79,
-                "q4_qid": 80
+                "q4_qid": 80,
+                "q5_qid": 142,
+                "q6_qid": 143
             },
             "validation": {
                 "opt1_other_min_length": 2,

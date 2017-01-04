@@ -24,12 +24,16 @@ def render_question_type_049(workspace, module, node, question, answer):
     - QID: 78 | I will use the following physical marketing materials as ways to communicate my product or service to customers
     - QID: 79 | I will reach my customers through the following media campaigns
     - QID: 80 | Working with others is a cost-effective way to grow. Cooperating can mean running campaigns together or even joint ventures. List up to 5 potential partnerships you can utilize to grow your company.
+    - QID: 142 | One of the best ways to grow your company is through referrals from existing companies. Chances are that your clients know more people like them.
+    - QID: 143 | "While it is important for entrepreneurs to always think about new business, never forget your existing clients!
     """
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
     q2_qid = int_or_none(question.dependency['q2_qid'])
     q3_qid = int_or_none(question.dependency['q3_qid'])
     q4_qid = int_or_none(question.dependency['q4_qid'])
+    q5_qid = int_or_none(question.dependency['q5_qid'])
+    q6_qid = int_or_none(question.dependency['q6_qid'])
 
     # Fetch Q1
     q1 = QuestionAnswer.objects.get(
@@ -59,6 +63,20 @@ def render_question_type_049(workspace, module, node, question, answer):
     )
     q4_picked = q4.content
 
+    # Fetch Q5
+    q5 = QuestionAnswer.objects.get(
+        question_id=q5_qid,
+        workspace=workspace
+    )
+    q5_picked = q4.content
+
+    # Fetch Q6
+    q6 = QuestionAnswer.objects.get(
+        question_id=q6_qid,
+        workspace=workspace
+    )
+    q6_picked = q4.content
+
     # Calculate annual totals.
     total_yr1 = 0.0
     total_yr2 = 0.0
@@ -76,6 +94,14 @@ def render_question_type_049(workspace, module, node, question, answer):
         total_yr2 += float(item['var_7'])
         total_yr3 += float(item['var_8'])
     for item in q4_picked:
+        total_yr1 += float(item['var_7'])
+        total_yr2 += float(item['var_8'])
+        total_yr3 += float(item['var_9'])
+    for item in q5_picked:
+        total_yr1 += float(item['var_7'])
+        total_yr2 += float(item['var_8'])
+        total_yr3 += float(item['var_9'])
+    for item in q6_picked:
         total_yr1 += float(item['var_7'])
         total_yr2 += float(item['var_8'])
         total_yr3 += float(item['var_9'])
