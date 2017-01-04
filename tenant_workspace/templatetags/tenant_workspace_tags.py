@@ -1122,6 +1122,10 @@ def render_question_type_054(workspace, module, node, question, answer):
 
 @register.inclusion_tag('templatetags/question/template_055.html')
 def render_question_type_055(workspace, module, node, question, answer):
+    """
+    DEPENDENCY:
+    - QID: 101 | We have taken your material, labour and overhead costs and spread them out based on the volume of product you told us for months 1-36.
+    """
     # For this particular document and module, find the previous questions.
     q1_qid = int_or_none(question.dependency['q1_qid'])
 
