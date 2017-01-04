@@ -2404,7 +2404,7 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-                
+
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -2416,6 +2416,83 @@
                 "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
             },
             "type_id": 54
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 141,
+        "fields": {
+            "document_type": 6,
+            "number": 45,
+            "title": "How many months of inventory do you need to pre-purchase to have enough on hand for a successful business launch?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": 1,
+                        "text": "1"
+                    },
+                    {
+                        "value": 2,
+                        "text": "2"
+                    },
+                    {
+                        "value": 3,
+                        "text": "3"
+                    },
+                    {
+                        "value": 4,
+                        "text": "4"
+                    },
+                    {
+                        "value": 5,
+                        "text": "5"
+                    },
+                    {
+                        "value": 6,
+                        "text": "6"
+                    },
+                    {
+                        "value": 7,
+                        "text": "7"
+                    },
+                    {
+                        "value": 8,
+                        "text": "8"
+                    },
+                    {
+                        "value": 9,
+                        "text": "9"
+                    },
+                    {
+                        "value": 10,
+                        "text": "10"
+                    },
+                    {
+                        "value": 11,
+                        "text": "11"
+                    },
+                    {
+                        "value": 12,
+                        "text": "12"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "Months"
+            },
+            "dependency": {
+                "q1_qid": 101
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 55
         }
     }
 ]

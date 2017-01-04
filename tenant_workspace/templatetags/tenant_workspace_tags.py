@@ -1118,3 +1118,28 @@ def render_question_type_054(workspace, module, node, question, answer):
         'picked': answer.content,
         'picked_count': len(answer.content)
     }
+
+
+@register.inclusion_tag('templatetags/question/template_055.html')
+def render_question_type_055(workspace, module, node, question, answer):
+    # For this particular document and module, find the previous questions.
+    q1_qid = int_or_none(question.dependency['q1_qid'])
+
+    # Fetch Q1
+    q1 = QuestionAnswer.objects.get(
+        question_id=q1_qid,
+        workspace=workspace
+    )
+    dependent_picked = q1.content
+
+    # View template.
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content),
+        'dependent_picked': dependent_picked
+    }
