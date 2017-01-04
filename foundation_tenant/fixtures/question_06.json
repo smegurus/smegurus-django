@@ -2558,5 +2558,37 @@
             "validation": {},
             "type_id": 57
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 143,
+        "fields": {
+            "document_type": 1,
+            "number": 47,
+            "title": "If you sold 125% of your sales goal in Year 1, how would your costs change?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": 1,
+                        "text": "There would be no change."
+                    },
+                    {
+                        "value": 2,
+                        "text": "Variable costs would increase by 25% and fixed costs would remain the same."
+                    },
+                    {
+                        "value": 3,
+                        "text": "All costs would increase by 25%."
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "validation": {},
+            "type_id": 58
+        }
     }
 ]
