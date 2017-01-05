@@ -299,7 +299,7 @@
                 "third_required": true,
                 "min_length": 1,
                 "min_length_error_message": "Please enter at minimum 1 characters.",
-                "max_length": 16,
+                "max_length": 50,
                 "max_length_error_message": "Please enter at maximum 16 characters."
             },
             "type_id": 26
