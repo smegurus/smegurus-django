@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{% trans 'Full Name' %}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="{{ intake.me.name }}" disabled />
+                                    <input type="text" class="form-control input-lg" value="{{ intake.me.name }}" disabled />
                                     <!-- <span class="help-block m-b-none">A block of help text ... </span> -->
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{% trans 'Comment' %}</label>
                                 <div class="col-sm-10">
-                                    <textarea id="id_review" class="form-control" name="textarea" rows="6">{% if document.description %}{{ document.description }}{% endif %}</textarea>
+                                    <textarea id="id_review" class="form-control input-lg" name="textarea" rows="6">{% if document.description %}{{ document.description }}{% endif %}</textarea>
                                     <span class="help-block m-b-none">{% trans 'This is a private comment to associate with this document. The Entrepreneur will not be able to read this comment.' %}</span>
                                 </div>
                             </div>
