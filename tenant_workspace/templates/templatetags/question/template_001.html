@@ -118,7 +118,7 @@
     </legend>
     <!-- ROW 1 -->
     <div class="form-group">
-        <div class="col-sm-5 col-centered">
+        <div class="col-sm-10 col-centered">
             {% for option in question.options.opt1 %}
             <!-- OPTION TEXT -->
             <div class="radio c-radio">
@@ -144,7 +144,7 @@
     <!-- ROW 2 -->
     <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
         <label class="col-sm-4 control-label">{{ question.content.opt1_other_stub }}</label>
-        <div class="col-sm-5">
+        <div class="col-sm-6">
             <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ picked.var_1_other }}" maxlength="{{ question.validation.opt1_other_max_length }}" />
         </div>
     </div>
