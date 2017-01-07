@@ -703,12 +703,13 @@ def render_question_type_057(workspace, module, node, question, answer):
     #======================#
     # CALCULATE SCENERIO 1 #
     #======================#
+    # "There would be no change"
     scenario_1 = compute_scenario(revenue, cogs, labour, materials, overhead, costs, fixed_costs, variable_costs)
 
     #======================#
     # CALCULATE SCENERIO 2 #
     #======================#
-    # Sales decrease by 25%
+    # "Sales decrease by 25%"
     decreased_revenue = scalar_multiply_by(revenue, 0.75)
     decreased_cogs = scalar_multiply_by(cogs, 0.75)
     decreased_costs = scalar_multiply_by(costs, 0.75)
@@ -721,7 +722,14 @@ def render_question_type_057(workspace, module, node, question, answer):
     #======================#
     # CALCULATE SCENERIO 3 #
     #======================#
-    #TODO: Implement.
+    # "Variable costs would decrease by 25% and fixed costs would remain the same."
+    decreased_revenue = scalar_multiply_by(revenue, 0.75)
+    decreased_cogs = scalar_multiply_by(cogs, 0.75)
+    decreased_variable_costs = scalar_multiply_by(variable_costs, 0.75)
+    decreased_costs = matrix_add_by(fixed_costs, decreased_variable_costs)
+    scenario_3 = compute_scenario(
+        decreased_revenue, decreased_cogs, labour, materials, overhead, decreased_costs, fixed_costs, decreased_variable_costs
+    )
 
     # Render the template.
     return {
