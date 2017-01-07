@@ -32,7 +32,6 @@
         // Detect checked value.
         var form = $('#questionForm');
         var input_1 = form.find('input[name=optionsRadios]:checked').val();
-        var input_1_other = $('#id_input_1_other').val();
 
         // Either load up an error telling the user to pick an option
         // or load up the next page.
@@ -41,14 +40,288 @@
             return;
         }
 
-        ajax_do_chain(input_1, function(json_result) {  // Update our model.
+        // OPTION: "There would be no change"
+        var arr_1 = {
+            'revenue': {
+                'yr1': {{ scenario_1.revenue.yr1 }},
+                'yr2': {{ scenario_1.revenue.yr2 }},
+                'yr3': {{ scenario_1.revenue.yr3 }},
+                'total': {{ scenario_1.revenue.total }}
+            },
+            'cogs': {
+                'yr1': {{ scenario_1.cogs.yr1 }},
+                'yr2': {{ scenario_1.cogs.yr2 }},
+                'yr3': {{ scenario_1.cogs.yr3 }},
+                'total': {{ scenario_1.cogs.total }}
+            },
+            'gross_profit': {
+                'yr1': {{ scenario_1.gross_profit.yr1 }},
+                'yr2': {{ scenario_1.gross_profit.yr2 }},
+                'yr3': {{ scenario_1.gross_profit.yr3 }},
+                'total': {{ scenario_1.gross_profit.total }}
+            },
+            'gross_margin_percent': {
+                'yr1': {{ scenario_1.gross_margin_percent.yr1 }},
+                'yr2': {{ scenario_1.gross_margin_percent.yr2 }},
+                'yr3': {{ scenario_1.gross_margin_percent.yr3 }},
+                'total': {{ scenario_1.gross_margin_percent.total }}
+            },
+            'net_profit': {
+                'yr1': {{ scenario_1.net_profit.yr1 }},
+                'yr2': {{ scenario_1.net_profit.yr2 }},
+                'yr3': {{ scenario_1.net_profit.yr3 }},
+                'total': {{ scenario_1.net_profit.total }}
+            },
+            'net_profit_percent': {
+                'yr1': {{ scenario_1.net_profit_percent.yr1 }},
+                'yr2': {{ scenario_1.net_profit_percent.yr2 }},
+                'yr3': {{ scenario_1.net_profit_percent.yr3 }},
+                'total': {{ scenario_1.net_profit_percent.total }}
+            },
+            'total_sales': {
+                'yr1': {{ scenario_1.total_sales.yr1 }},
+                'yr2': {{ scenario_1.total_sales.yr2 }},
+                'yr3': {{ scenario_1.total_sales.yr3 }},
+                'total': {{ scenario_1.total_sales.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_1.labour.yr1 }},
+                'yr2': {{ scenario_1.labour.yr2 }},
+                'yr3': {{ scenario_1.labour.yr3 }},
+                'total': {{ scenario_1.labour.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_1.materials.yr1 }},
+                'yr2': {{ scenario_1.materials.yr2 }},
+                'yr3': {{ scenario_1.materials.yr3 }},
+                'total': {{ scenario_1.materials.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_1.overhead.yr1 }},
+                'yr2': {{ scenario_1.overhead.yr2 }},
+                'yr3': {{ scenario_1.overhead.yr3 }},
+                'total': {{ scenario_1.overhead.total }}
+            },
+            'total_variable_costs': {
+                'yr1': {{ scenario_1.total_variable_costs.yr1 }},
+                'yr2': {{ scenario_1.total_variable_costs.yr2 }},
+                'yr3': {{ scenario_1.total_variable_costs.yr3 }},
+                'total': {{ scenario_1.total_variable_costs.total }}
+            },
+            'total_variable_costs_excluding_cogs': {
+                'yr1': {{ scenario_1.total_variable_costs_excluding_cogs.yr1 }},
+                'yr2': {{ scenario_1.total_variable_costs_excluding_cogs.yr2 }},
+                'yr3': {{ scenario_1.total_variable_costs_excluding_cogs.yr3 }},
+                'total': {{ scenario_1.total_variable_costs_excluding_cogs.total }}
+            },
+            'total_fixed': {
+                'yr1': {{ scenario_1.total_fixed.yr1 }},
+                'yr2': {{ scenario_1.total_fixed.yr2 }},
+                'yr3': {{ scenario_1.total_fixed.yr3 }},
+                'total': {{ scenario_1.total_fixed.total }}
+            },
+            'general_and_marketing_expenses': {
+                'yr1': {{ scenario_1.general_and_marketing_expenses.yr1 }},
+                'yr2': {{ scenario_1.general_and_marketing_expenses.yr2 }},
+                'yr3': {{ scenario_1.general_and_marketing_expenses.yr3 }},
+                'total': {{ scenario_1.general_and_marketing_expenses.total }}
+            }
+        };
+        // OPTION: "Variable costs would decrease by 25% and fixed costs would remain the same."
+        var arr_2 = {
+            'revenue': {
+                'yr1': {{ scenario_3.revenue.yr1 }},
+                'yr2': {{ scenario_3.revenue.yr2 }},
+                'yr3': {{ scenario_3.revenue.yr3 }},
+                'total': {{ scenario_3.revenue.total }}
+            },
+            'cogs': {
+                'yr1': {{ scenario_3.cogs.yr1 }},
+                'yr2': {{ scenario_3.cogs.yr2 }},
+                'yr3': {{ scenario_3.cogs.yr3 }},
+                'total': {{ scenario_3.cogs.total }}
+            },
+            'gross_profit': {
+                'yr1': {{ scenario_3.gross_profit.yr1 }},
+                'yr2': {{ scenario_3.gross_profit.yr2 }},
+                'yr3': {{ scenario_3.gross_profit.yr3 }},
+                'total': {{ scenario_3.gross_profit.total }}
+            },
+            'gross_margin_percent': {
+                'yr1': {{ scenario_3.gross_margin_percent.yr1 }},
+                'yr2': {{ scenario_3.gross_margin_percent.yr2 }},
+                'yr3': {{ scenario_3.gross_margin_percent.yr3 }},
+                'total': {{ scenario_3.gross_margin_percent.total }}
+            },
+            'net_profit': {
+                'yr1': {{ scenario_3.net_profit.yr1 }},
+                'yr2': {{ scenario_3.net_profit.yr2 }},
+                'yr3': {{ scenario_3.net_profit.yr3 }},
+                'total': {{ scenario_3.net_profit.total }}
+            },
+            'net_profit_percent': {
+                'yr1': {{ scenario_3.net_profit_percent.yr1 }},
+                'yr2': {{ scenario_3.net_profit_percent.yr2 }},
+                'yr3': {{ scenario_3.net_profit_percent.yr3 }},
+                'total': {{ scenario_3.net_profit_percent.total }}
+            },
+            'total_sales': {
+                'yr1': {{ scenario_3.total_sales.yr1 }},
+                'yr2': {{ scenario_3.total_sales.yr2 }},
+                'yr3': {{ scenario_3.total_sales.yr3 }},
+                'total': {{ scenario_3.total_sales.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_3.labour.yr1 }},
+                'yr2': {{ scenario_3.labour.yr2 }},
+                'yr3': {{ scenario_3.labour.yr3 }},
+                'total': {{ scenario_3.labour.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_3.materials.yr1 }},
+                'yr2': {{ scenario_3.materials.yr2 }},
+                'yr3': {{ scenario_3.materials.yr3 }},
+                'total': {{ scenario_3.materials.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_3.overhead.yr1 }},
+                'yr2': {{ scenario_3.overhead.yr2 }},
+                'yr3': {{ scenario_3.overhead.yr3 }},
+                'total': {{ scenario_3.overhead.total }}
+            },
+            'total_variable_costs': {
+                'yr1': {{ scenario_3.total_variable_costs.yr1 }},
+                'yr2': {{ scenario_3.total_variable_costs.yr2 }},
+                'yr3': {{ scenario_3.total_variable_costs.yr3 }},
+                'total': {{ scenario_3.total_variable_costs.total }}
+            },
+            'total_variable_costs_excluding_cogs': {
+                'yr1': {{ scenario_3.total_variable_costs_excluding_cogs.yr1 }},
+                'yr2': {{ scenario_3.total_variable_costs_excluding_cogs.yr2 }},
+                'yr3': {{ scenario_3.total_variable_costs_excluding_cogs.yr3 }},
+                'total': {{ scenario_3.total_variable_costs_excluding_cogs.total }}
+            },
+            'total_fixed': {
+                'yr1': {{ scenario_3.total_fixed.yr1 }},
+                'yr2': {{ scenario_3.total_fixed.yr2 }},
+                'yr3': {{ scenario_3.total_fixed.yr3 }},
+                'total': {{ scenario_3.total_fixed.total }}
+            },
+            'general_and_marketing_expenses': {
+                'yr1': {{ scenario_3.general_and_marketing_expenses.yr1 }},
+                'yr2': {{ scenario_3.general_and_marketing_expenses.yr2 }},
+                'yr3': {{ scenario_3.general_and_marketing_expenses.yr3 }},
+                'total': {{ scenario_3.general_and_marketing_expenses.total }}
+            }
+        };
+        // OPTION: " All costs would decrease by 25%."
+        var arr_3 = {
+            'revenue': {
+                'yr1': {{ scenario_2.revenue.yr1 }},
+                'yr2': {{ scenario_2.revenue.yr2 }},
+                'yr3': {{ scenario_2.revenue.yr3 }},
+                'total': {{ scenario_2.revenue.total }}
+            },
+            'cogs': {
+                'yr1': {{ scenario_2.cogs.yr1 }},
+                'yr2': {{ scenario_2.cogs.yr2 }},
+                'yr3': {{ scenario_2.cogs.yr3 }},
+                'total': {{ scenario_2.cogs.total }}
+            },
+            'gross_profit': {
+                'yr1': {{ scenario_2.gross_profit.yr1 }},
+                'yr2': {{ scenario_2.gross_profit.yr2 }},
+                'yr3': {{ scenario_2.gross_profit.yr3 }},
+                'total': {{ scenario_2.gross_profit.total }}
+            },
+            'gross_margin_percent': {
+                'yr1': {{ scenario_2.gross_margin_percent.yr1 }},
+                'yr2': {{ scenario_2.gross_margin_percent.yr2 }},
+                'yr3': {{ scenario_2.gross_margin_percent.yr3 }},
+                'total': {{ scenario_2.gross_margin_percent.total }}
+            },
+            'net_profit': {
+                'yr1': {{ scenario_2.net_profit.yr1 }},
+                'yr2': {{ scenario_2.net_profit.yr2 }},
+                'yr3': {{ scenario_2.net_profit.yr3 }},
+                'total': {{ scenario_2.net_profit.total }}
+            },
+            'net_profit_percent': {
+                'yr1': {{ scenario_2.net_profit_percent.yr1 }},
+                'yr2': {{ scenario_2.net_profit_percent.yr2 }},
+                'yr3': {{ scenario_2.net_profit_percent.yr3 }},
+                'total': {{ scenario_2.net_profit_percent.total }}
+            },
+            'total_sales': {
+                'yr1': {{ scenario_2.total_sales.yr1 }},
+                'yr2': {{ scenario_2.total_sales.yr2 }},
+                'yr3': {{ scenario_2.total_sales.yr3 }},
+                'total': {{ scenario_2.total_sales.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_2.labour.yr1 }},
+                'yr2': {{ scenario_2.labour.yr2 }},
+                'yr3': {{ scenario_2.labour.yr3 }},
+                'total': {{ scenario_2.labour.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_2.materials.yr1 }},
+                'yr2': {{ scenario_2.materials.yr2 }},
+                'yr3': {{ scenario_2.materials.yr3 }},
+                'total': {{ scenario_2.materials.total }}
+            },
+            'labour': {
+                'yr1': {{ scenario_2.overhead.yr1 }},
+                'yr2': {{ scenario_2.overhead.yr2 }},
+                'yr3': {{ scenario_2.overhead.yr3 }},
+                'total': {{ scenario_2.overhead.total }}
+            },
+            'total_variable_costs': {
+                'yr1': {{ scenario_2.total_variable_costs.yr1 }},
+                'yr2': {{ scenario_2.total_variable_costs.yr2 }},
+                'yr3': {{ scenario_2.total_variable_costs.yr3 }},
+                'total': {{ scenario_2.total_variable_costs.total }}
+            },
+            'total_variable_costs_excluding_cogs': {
+                'yr1': {{ scenario_2.total_variable_costs_excluding_cogs.yr1 }},
+                'yr2': {{ scenario_2.total_variable_costs_excluding_cogs.yr2 }},
+                'yr3': {{ scenario_2.total_variable_costs_excluding_cogs.yr3 }},
+                'total': {{ scenario_2.total_variable_costs_excluding_cogs.total }}
+            },
+            'total_fixed': {
+                'yr1': {{ scenario_2.total_fixed.yr1 }},
+                'yr2': {{ scenario_2.total_fixed.yr2 }},
+                'yr3': {{ scenario_2.total_fixed.yr3 }},
+                'total': {{ scenario_2.total_fixed.total }}
+            },
+            'general_and_marketing_expenses': {
+                'yr1': {{ scenario_2.general_and_marketing_expenses.yr1 }},
+                'yr2': {{ scenario_2.general_and_marketing_expenses.yr2 }},
+                'yr3': {{ scenario_2.general_and_marketing_expenses.yr3 }},
+                'total': {{ scenario_2.general_and_marketing_expenses.total }}
+            }
+        };
+
+        var arr = {}
+        if (input_1 == 1) {
+            arr = arr_1;
+        }
+        if (input_1 == 2) {
+            arr = arr_2;
+        }
+        if (input_1 == 3) {
+            arr = arr_3;
+        }
+
+        ajax_do_chain(input_1, arr, function(json_result) {  // Update our model.
             window.location = next_url;
         });
     }
 
-    function ajax_do_chain(input_1, callback) {
+    function ajax_do_chain(input_1, arr, callback) {
         // Debugging purposes.
         console.log(input_1);
+        console.log(arr);
 
         // Fetch our pre-created (or previously-saved) "QuestionAnswer"
         // from our Database and convert it to JSON object.
@@ -58,7 +331,8 @@
 
                 // Set the JSON object with our picked value and stringify it.
                 question_answer['content'] = JSON.stringify({
-                    'var_1': input_1,
+                    'var_1': parseInt(input_1),
+                    'var_2': arr,
                 });
 
                 // Save our "QuestionAnswer" model object.
@@ -97,10 +371,10 @@
             <div class="radio c-radio">
                 <label {% if option.custom_style %}style="{{ option.custom_style }}"{% endif %}>
                     <div {% if option.help_title and option.help_description %}title="{{ option.help_title|escape|safe }}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ option.help_description|escape|safe }}"{% endif %}>
-                    <input id="optionsRadios{{ option.value }}" {% if picked.var_1 == option.value %}checked="checked"{% endif %}
+                    <input id="optionsRadios{{ option.value }}" {% if answer.content.var_1 == option.value %}checked="checked"{% endif %}
                          type="radio"
                          name="optionsRadios"
-                        value="{{ option.value }}" />
+                        value={{ option.value }} />
                         <span class="fa fa-circle"></span>
                             {{ option.text|escape|safe }}
                     </div>
@@ -396,10 +670,10 @@
     <br />
 
     <!-- ROW 2 -->
-    <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+    <div class="form-group" id="id_input_1_other_div" {% if not answer.content.var_1_other %}style="display: none;"{% endif %}>
         <label class="col-sm-4 control-label">{{ question.content.opt1_other_stub }}</label>
         <div class="col-sm-5">
-            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ picked.var_1_other }}" maxlength="{{ question.validation.opt1_other_max_length }}" />
+            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ answer.content.var_1_other }}" maxlength="{{ question.validation.opt1_other_max_length }}" />
         </div>
     </div>
     <!-- end ROW 2 -->
