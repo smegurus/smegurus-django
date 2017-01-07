@@ -27,10 +27,14 @@
                     <div class="panel-body">
                         <!-- VIDEO PLAYER -->
                         {% if slide.video_url %}
-                        <video src="{{ slide.video_url }}" controls>
-                            {% trans 'Your browser does not support the <code>video</code> element.' %}
-                        </video>
-                        <br /> <br />
+                        <div class="col-lg-12">
+                            <div class="col-lg-6 col-centered">
+                                <video src="{{ slide.video_url }}" controls>
+                                    {% trans 'Your browser does not support the <code>video</code> element.' %}
+                                </video>
+                                <br /> <br />
+                            </div>
+                        </div>   
                         {% endif %}
                         <!-- end VIDEO PLAYER -->
                         <!-- BODY TEXT -->
