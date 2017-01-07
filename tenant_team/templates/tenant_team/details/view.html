@@ -42,7 +42,6 @@
     <!-- end SHOW PASSWORD -->
 
     <div class="panel panel-default">
-        <!-- <div class="panel-heading">Entrepreneur Intake Form</div> -->
         <div class="panel-body">
             <form method="get" action="/" class="form-horizontal">
 
@@ -54,33 +53,33 @@
                         {% trans 'Profile' %}
                     </legend>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'First Name' %}</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_first_name" value="{{ me.given_name }}" />
+                        <label class="col-sm-3 control-label">{% trans 'First Name' %}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control input-lg" id="id_first_name" value="{{ me.given_name }}" />
                             <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Last Name' %}</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_last_name" value="{{ me.family_name }}" />
+                        <label class="col-sm-3 control-label">{% trans 'Last Name' %}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control input-lg" id="id_last_name" value="{{ me.family_name }}" />
                             <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_url" value="{% if me.url %}{{ me.url }}{% endif %}" />
+                        <label class="col-sm-3 control-label">{% trans 'URL' %}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control input-lg" id="id_url" value="{% if me.url %}{{ me.url }}{% endif %}" />
                             <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Bio' %}</label>
-                        <div class="col-sm-10">
-                            <textarea id="id_description" class="form-control" name="textarea" rows="6">{{ me.description }}</textarea>
+                        <label class="col-sm-3 control-label">{% trans 'Bio' %}</label>
+                        <div class="col-sm-7">
+                            <textarea id="id_description" class="form-control input-lg" name="textarea" rows="6">{{ me.description }}</textarea>
                         </div>
                     </div>
                     <!-- end PROFILE -->
@@ -94,17 +93,17 @@
                         {% trans 'Contact Information' %}
                     </legend>
                     <div id="id_email_div" class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Email' %}</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_email" value="{{ me.email }}" />
+                        <label class="col-sm-3 control-label">{% trans 'Email' %}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control input-lg" id="id_email" value="{{ me.email }}" />
                             <span id="id_email_span" class="help-block m-b-none"></span>
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Telephone' %}</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="id_telephone" value="{{ me.telephone }}" />
+                        <label class="col-sm-3 control-label">{% trans 'Telephone' %}</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control input-lg" id="id_telephone" value="{{ me.telephone }}" />
                             <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
                         </div>
                     </div>
@@ -118,9 +117,9 @@
                         <em class="fa icon-location-pin"></em> {% trans 'Address' %}
                     </legend>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Country' %}:</label>
-                        <div class="col-sm-10">
-                            <select id="id_country" class="form-control">
+                        <label class="col-sm-3 control-label">{% trans 'Country' %}:</label>
+                        <div class="col-sm-7">
+                            <select id="id_country" class="form-control input-lg">
                                 {% if not me.address.country %}
                                     <option value="">{% trans 'Please select your country' %}</option>
                                 {% endif %}
@@ -132,9 +131,9 @@
                     </div>
                     <br/>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Province' %}:</label>
-                        <div class="col-sm-10">
-                            <select id="id_region" class="form-control" {% if not me.address.region %}disabled{% endif %}>
+                        <label class="col-sm-3 control-label">{% trans 'Province' %}:</label>
+                        <div class="col-sm-7">
+                            <select id="id_region" class="form-control input-lg" {% if not me.address.region %}disabled{% endif %}>
                                 {% for province in provinces.all %}
                                     <option value="{{ province.id }}" {% if province == me.address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
                                 {% empty %}
@@ -149,8 +148,8 @@
                     {% for field in address_form %}
                         {% if field.id_for_label in address_fields %}
                             <div class="form-group" id="{{ field.id_for_label }}_div">
-                                <label class="col-sm-2 control-label">{{ field.label_tag }}</label>
-                                <div class="col-sm-10">
+                                <label class="col-sm-3 control-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-7">
                                     {{ field }}
                                     {{ field.errors }}
                                 </div>
@@ -169,8 +168,8 @@
                         <em class="fa fa-group"></em> {% trans 'Role' %}
                     </legend>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Choice(s)' %}:</label>
-                        <div class="col-sm-10" id="id_role">
+                        <label class="col-sm-3 control-label">{% trans 'Choice(s)' %}:</label>
+                        <div class="col-sm-7" id="id_role">
                             {% for group in groups.all %}
                                 {% if group.id != constants.ENTREPRENEUR_GROUP_ID and group.id != constants.SYSTEM_ADMIN_GROUP_ID and group.id != constants.CLIENT_MANAGER_GROUP_ID and group.id != constants.MENTOR_GROUP_ID  %}
                                     <input type="checkbox" {% if group in me.owner.groups.all %}checked{% endif %} value="{{ group.id }}" />&nbsp;{{ group.name }}<br /><br />
@@ -190,7 +189,7 @@
                     {% endif %}
                 </div>
                 <div class="pull-right">
-                    <button id="id_next_btn" onclick="ajax_protected_next();" type="button" class="btn btn-primary btn-lg">{% trans 'Update' %}</button>
+                    <button id="id_next_btn" onclick="ajax_protected_next();" type="button" class="btn btn-green btn-lg">{% trans 'Update' %}</button>
                 </div>
                 <!-- end SUBMIT -->
             </form>

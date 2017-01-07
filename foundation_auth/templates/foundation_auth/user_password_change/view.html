@@ -6,16 +6,16 @@
     {% include 'foundation_auth/user_password_change/js.html' %}
 {% endcompress %}
 
-<p class="text-center pv">{% trans 'CHANGE PASSWORD.' %}</p>
+<p class="text-center pv">{% trans 'Change Password' %}</p>
 <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
     <div class="form-group has-feedback">
-       <input id="id_password" type="password" placeholder="{% trans 'New Password' %}" required class="form-control">
+       <input id="id_password" type="password" placeholder="{% trans 'New Password' %}" required class="form-control input-lg">
        <span class="fa fa-lock form-control-feedback text-muted"></span>
     </div>
    <div class="form-group has-feedback">
-      <input id="id_password_repeated" type="password" placeholder="{% trans 'New Password Repeated' %}" required class="form-control">
+      <input id="id_password_repeated" type="password" placeholder="{% trans 'New Password Repeated' %}" required class="form-control input-lg">
       <span class="fa fa-lock form-control-feedback text-muted"></span>
    </div>
-   <button id="id_change_password_btn" onclick="ajax_login();" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Change Password' %}</button>
+   <button id="id_change_password_btn" onclick="ajax_login();" type="button" class="btn btn-block btn-primary btn-lg mt-lg">{% trans 'Change Password' %}</button>
 </form>
 {% endblock content %}

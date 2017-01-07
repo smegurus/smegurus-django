@@ -6,10 +6,10 @@
     {% include 'foundation_auth/user_password_reset/js.html' %}
 {% endcompress %}
 
-<p class="text-center pv">{% trans 'RESET PASSWORD' %}</p>
+<p class="text-center pv">{% trans 'Reset Your Password' %}</p>
 <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
    <div class="form-group has-feedback">
-      <input id="id_email" type="email" placeholder="{% trans 'Enter email' %}" autocomplete="off" required class="form-control">
+      <input id="id_email" type="email" placeholder="{% trans 'Enter email' %}" autocomplete="off" required class="form-control input-lg">
       <span class="fa fa-envelope form-control-feedback text-muted"></span>
    </div>
    <button id="id_reset_btn" onclick="ajax_password_reset();" type="button" class="btn btn-block btn-primary mt-lg">{% trans 'Reset' %}</button>
