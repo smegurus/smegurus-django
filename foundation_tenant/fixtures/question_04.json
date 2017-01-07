@@ -1203,6 +1203,11 @@
             },
             "dependency": {},
             "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 40,
+                "arr_max_count_error_message": "Please enter no more then 40 entries.",
+
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1364,6 +1369,11 @@
             },
             "dependency": {},
             "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 40,
+                "arr_max_count_error_message": "Please enter no more then 40 entries.",
+
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1528,6 +1538,11 @@
             },
             "dependency": {},
             "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 40,
+                "arr_max_count_error_message": "Please enter no more then 40 entries.",
+
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1840,8 +1855,8 @@
             "validation": {
                 "arr_min_count": 0,
                 "arr_min_count_error_message": "Please enter at least 5 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+                "arr_max_count": 40,
+                "arr_max_count_error_message": "Please enter no more then 40 entries.",
 
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
@@ -1963,8 +1978,8 @@
             "validation": {
                 "arr_min_count": 0,
                 "arr_min_count_error_message": "Please enter at least 5 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+                "arr_max_count": 40,
+                "arr_max_count_error_message": "Please enter no more then 40 entries.",
 
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
