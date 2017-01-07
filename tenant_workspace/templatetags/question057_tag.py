@@ -720,7 +720,7 @@ def render_question_type_057(workspace, module, node, question, answer):
     print("NET PROFIT PERCENT", net_profit_percent)
     total_variable_costs = matrix_add_by(variable_costs, cogs)
     print("TOTAL VARIABLE COSTS", total_variable_costs)
-    scenerio_1 = {
+    scenario_1 = {
         'revenue': revenue,
         'cogs': cogs,
         'gross_profit': gross_profit,
@@ -738,50 +738,19 @@ def render_question_type_057(workspace, module, node, question, answer):
         'general_and_marketing_expenses': costs
     }
     print("\n")
-    print(scenerio_1)
+    print(scenario_1)
     print("\n\n")
 
 
     #======================#
     # CALCULATE SCENERIO 2 #
     #======================#
-    # Calculate with a 25% decrease.
-    # scenerio1_revenue = scalar_multiply_by(revenue, 0.75)
-    # scenerio1_cogs = scalar_multiply_by(cogs, 0.75)
-    # scenerio1_gross_profit = matrix_subtract_by(scenerio1_revenue, scenerio1_cogs)
-    # scenerio1_total_expenses = scalar_multiply_by(costs, 0.75)
-    # scenerio1_net_profit = matrix_subtract_by(scenerio1_gross_profit, scenerio1_total_expenses)
-    #
-    # scenerio_1 = {
-    #     'revenue': scenerio1_revenue,
-    #     'cogs': scenerio1_cogs,
-    #     'gross_profit': scenerio1_gross_profit,
-    #     'total_expenses': scenerio1_total_expenses,
-    #     'net_profit': scenerio1_net_profit
-    # }
-    # print(scenerio_1)
-    # print('\n\n')
-    #
-    # #======================#
-    # # CALCULATE SCENERIO 3 #
-    # #======================#
-    # # Calculate with a 25% decrease.
-    # scenerio2_revenue = scalar_multiply_by(revenue, 0.75)
-    # scenerio2_cogs = scalar_multiply_by(cogs, 0.75)
-    # scenerio2_gross_profit = matrix_subtract_by(scenerio2_revenue, scenerio2_cogs)
-    # scenerio2_total_expenses = scalar_multiply_by(costs, 0.75)
-    # scenerio2_net_profit = matrix_subtract_by(scenerio2_gross_profit, scenerio2_total_expenses)
-    #
-    # # Implement scenerio 1
-    # scenerio_2 = {
-    #     'revenue': scenerio2_revenue,
-    #     'cogs': scenerio2_cogs,
-    #     'gross_profit': scenerio2_gross_profit,
-    #     'total_expenses': scenerio2_total_expenses,
-    #     'net_profit': scenerio2_net_profit
-    # }
-    # print(scenerio_2)
-    # print('\n\n')
+    #TODO: Implement.
+
+    #======================#
+    # CALCULATE SCENERIO 3 #
+    #======================#
+    #TODO: Implement.
 
     # Render the template.
     return {
