@@ -35,10 +35,10 @@
 
                    <!-- NAME -->
                    <div class="form-group">
-                      <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+                      <label class="col-sm-3 control-label">{% trans 'Name' %}</label>
 
-                      <div class="col-sm-10">
-                         <input type="text" class="form-control form-control" id="id_name" value="{{ calendar_event.name }}">
+                      <div class="col-sm-7">
+                         <input type="text" class="form-control form-control input-lg" id="id_name" value="{{ calendar_event.name }}">
                       </div>
 
                    </div>
@@ -48,11 +48,11 @@
 
                     <!-- START DATE -->
                     <div class="form-group">
-                       <label class="col-sm-2 control-label">{% trans 'Start Date &amp; Time' %}</label>
+                       <label class="col-sm-3 control-label">{% trans 'Start Date &amp; Time' %}</label>
 
-                       <div class="col-sm-10">
+                       <div class="col-sm-7">
                            <div id="datetimepicker1" class="input-group date">
-                                 <input type="text" class="form-control" id="id_start">
+                                 <input type="text" class="form-control input-lg" id="id_start">
                                  <span class="input-group-addon">
                                     <span class="fa fa-calendar"></span>
                                  </span>
@@ -66,11 +66,11 @@
 
                      <!-- FINISH DATE -->
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Finish Date &amp; Time' %}</label>
+                        <label class="col-sm-3 control-label">{% trans 'Finish Date &amp; Time' %}</label>
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-7">
                             <div id="datetimepicker2" class="input-group date">
-                                  <input type="text" class="form-control" id="id_finish">
+                                  <input type="text" class="form-control input-lg" id="id_finish">
                                   <span class="input-group-addon">
                                      <span class="fa fa-calendar"></span>
                                   </span>
@@ -84,10 +84,10 @@
 
                       <!-- DESCRIPTION -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                         <label class="col-sm-3 control-label">{% trans 'Description' %}</label>
 
-                         <div class="col-sm-10">
-                            <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}">{{ calendar_event.description }}</textarea>
+                         <div class="col-sm-7">
+                            <textarea id="id_description" class="form-control input-lg" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}">{{ calendar_event.description }}</textarea>
                          </div>
 
                       </div>
@@ -99,10 +99,10 @@
                       {% if type_of == constants.CALENDAR_EVENT_BY_CUSTOM_TYPE %}
                       <!-- PENDING BY CUSTOM -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Pending Individuals' %}</label>
+                         <label class="col-sm-3 control-label">{% trans 'Pending Individuals' %}</label>
 
-                         <div class="col-sm-10">
-                             <select id="select2-1" multiple="multiple" class="form-control">
+                         <div class="col-sm-7">
+                             <select id="select2-1" multiple="multiple" class="form-control input-lg">
                                  {% for me in all_profiles %}
                                      <option value="{{ me.id }}">{{ me.name }}</option>
                                  {% endfor %}
@@ -114,10 +114,10 @@
                       {% else %}
                       <!-- PENDING -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Pending Groups' %}</label>
+                         <label class="col-sm-3 control-label">{% trans 'Pending Groups' %}</label>
 
-                         <div class="col-sm-10">
-                             <select id="select2-1" multiple="multiple" class="form-control">
+                         <div class="col-sm-7">
+                             <select id="select2-1" multiple="multiple" class="form-control input-lg">
                                  {% for tag in tags %}
                                      <option value="{{ tag.id }}">{{ tag.name }}</option>
                                  {% endfor %}
