@@ -2642,5 +2642,63 @@
             "validation": {},
             "type_id": 58
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 146,
+        "fields": {
+            "document_type": 6,
+            "number": 48,
+            "title": "Few entrepreneurs properly estimate how much they need to survive financially after they launch their business. If you have already given yourself a salary, then can you leave this question blank. If not, how much do you need per month in order to survive financially (which you have not accounted for in a salary)? If you aren't certain what to input below, click here for a worksheet.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "$500",
+                        "text": "$500"
+                    },
+                    {
+                        "value": "$1,000",
+                        "text": "$1,000"
+                    },
+                    {
+                        "value": "$2,000",
+                        "text": "$2,000"
+                    },
+                    {
+                        "value": "$2,500",
+                        "text": "$2,500"
+                    },
+                    {
+                        "value": "$3,000",
+                        "text": "$3,000"
+                    },
+                    {
+                        "value": "$4,000",
+                        "text": "$4,000"
+                    },
+                    {
+                        "value": "$5,000",
+                        "text": "$5,000"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
