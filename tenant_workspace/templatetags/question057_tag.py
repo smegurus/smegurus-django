@@ -16,38 +16,46 @@ from smegurus import constants
 register = template.Library()
 
 
-def calculate_revenue(sales_price_per_unit, units_sold):
+def scalar_multiply_by(arr, value):
+    arr['yr1'] *= value
+    arr['yr2'] *= value
+    arr['yr3'] *= value
+    arr['total'] *= value
+    return arr
+
+
+def matrix_subtract_by(arr1, arr2):
+    arr1['yr1'] -= arr2['yr1']
+    arr1['yr2'] -= arr2['yr2']
+    arr1['yr3'] -= arr2['yr3']
+    arr1['total'] -= arr2['total']
+    return arr1
+
+
+def calculate_revenue(forcast, units_sold):
     # Caclulate the revenue per year
     revenue = {
-        'revenue_yr1': sales_price_per_unit['sales_per_unit_yr1'] * units_sold['yr1_total'],
-        'revenue_yr2': sales_price_per_unit['sales_per_unit_yr2'] * units_sold['yr2_total'],
-        'revenue_yr3': sales_price_per_unit['sales_per_unit_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast['sales_per_unit_yr1'] * units_sold['yr1_total'],
+        'yr2': forcast['sales_per_unit_yr2'] * units_sold['yr2_total'],
+        'yr3': forcast['sales_per_unit_yr3'] * units_sold['yr3_total'],
     }
 
     # Calculate the total revenue for three years.
-    revenue['total'] = revenue['revenue_yr1'] + revenue['revenue_yr2'] + revenue['revenue_yr3']
+    revenue['total'] = revenue['yr1'] + revenue['yr2'] + revenue['yr3']
 
     return revenue  # Return our computation.
-
-
-def multiply_revenue_by(revenue, percent):
-    revenue['revenue_yr1'] *= percent
-    revenue['revenue_yr2'] *= percent
-    revenue['revenue_yr3'] *= percent
-    revenue['total'] *= percent
-    return revenue
 
 
 def calculate_cogs(forcast, units_sold):
     # Caclulate the revenue per year
     cogs = {
-        'cogs_yr1': forcast['total_cogs_yr1'] * units_sold['yr1_total'],
-        'cogs_yr2': forcast['total_cogs_yr2'] * units_sold['yr2_total'],
-        'cogs_yr3': forcast['total_cogs_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast['total_cogs_yr1'] * units_sold['yr1_total'],
+        'yr2': forcast['total_cogs_yr2'] * units_sold['yr2_total'],
+        'yr3': forcast['total_cogs_yr3'] * units_sold['yr3_total'],
     }
 
     # Calculate the total revenue for three years.
-    cogs['total'] = cogs['cogs_yr1'] + cogs['cogs_yr2'] + cogs['cogs_yr3']
+    cogs['total'] = cogs['yr1'] + cogs['yr2'] + cogs['yr3']
 
     return cogs  # Return our computation.
 
@@ -55,13 +63,13 @@ def calculate_cogs(forcast, units_sold):
 def calculate_labour(forcast, units_sold):
     # Caclulate the revenue per year
     labour = {
-        'labour_yr1': forcast['labour_yr1'] * units_sold['yr1_total'],
-        'labour_yr2': forcast['labour_yr2'] * units_sold['yr2_total'],
-        'labour_yr3': forcast['labour_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast['labour_yr1'] * units_sold['yr1_total'],
+        'yr2': forcast['labour_yr2'] * units_sold['yr2_total'],
+        'yr3': forcast['labour_yr3'] * units_sold['yr3_total'],
     }
 
     # Calculate the total revenue for three years.
-    labour['total'] = labour['labour_yr1'] + labour['labour_yr2'] + labour['labour_yr3']
+    labour['total'] = labour['yr1'] + labour['yr2'] + labour['yr3']
 
     return labour  # Return our computation.
 
@@ -141,44 +149,45 @@ def render_question_type_057(workspace, module, node, question, answer):
     )
     q2_picked = q2.content
 
-    # Debugging Purposes only.
-    print(q1_picked)
-    print(q2_picked)
-    print("\n")
+    # # Debugging Purposes only.
+    # print(q1_picked)
+    # print(q2_picked)
+    # print("\n")
 
     # Calculate the revenue.
     revenue = calculate_revenue(q1_picked, q2_picked)
-    print(revenue)
-    print("\n")
+    # print(revenue)
+    # print("\n")
 
     # Calculate the COGS.
     cogs = calculate_cogs(q1_picked, q2_picked)
-    print(cogs)
-    print("\n")
+    # print(cogs)
+    # print("\n")
 
     # Calculate labour costs.
     labour = calculate_labour(q1_picked, q2_picked)
-    print(labour)
-    print("\n")
+    # print(labour)
+    # print("\n")
 
     # Calculate the materials cost.
     materials = calculate_materials(q1_picked, q2_picked)
-    print(materials)
-    print("\n")
+    # print(materials)
+    # print("\n")
 
     # Calculate the overhead cost.
     overhead = calculate_overhead(q1_picked, q2_picked)
-    print(overhead)
-    print("\n")
+    # print(overhead)
+    # print("\n")
 
     #===================================#
     # CALCULATE SUM OF GENERAL EXPENSES #
     #===================================#
 
     costs = {
-        "costs_yr1": 0,
-        "costs_yr2": 0,
-        "costs_yr3": 0
+        "yr1": 0,
+        "yr2": 0,
+        "yr3": 0,
+        "total": 0
     }
 
     # Q3 - FETCH
@@ -191,9 +200,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q3 - CALCULATE SUM
     for item in q3_picked:
-        costs['costs_yr1'] += float(item['var_6'])
-        costs['costs_yr2'] += float(item['var_7'])
-        costs['costs_yr3'] += float(item['var_8'])
+        costs['yr1'] += float(item['var_6'])
+        costs['yr2'] += float(item['var_7'])
+        costs['yr3'] += float(item['var_8'])
+        costs['total'] += float(item['var_6']) + float(item['var_7']) + float(item['var_8'])
 
     # Q4 - FETCH
     q4_qid = int_or_none(question.dependency['q4_qid'])
@@ -205,9 +215,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q4 - CALCULATE SUM
     for item in q4_picked:
-        costs['costs_yr1'] += float(item['var_6'])
-        costs['costs_yr2'] += float(item['var_7'])
-        costs['costs_yr3'] += float(item['var_8'])
+        costs['yr1'] += float(item['var_6'])
+        costs['yr2'] += float(item['var_7'])
+        costs['yr3'] += float(item['var_8'])
+        costs['total'] += float(item['var_6']) + float(item['var_7']) + float(item['var_8'])
 
     # Q5 - FETCH
     q5_qid = int_or_none(question.dependency['q5_qid'])
@@ -219,9 +230,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q5 - CALCULATE SUM
     for item in q5_picked:
-        costs['costs_yr1'] += float(item['var_6'])
-        costs['costs_yr2'] += float(item['var_7'])
-        costs['costs_yr3'] += float(item['var_8'])
+        costs['yr1'] += float(item['var_6'])
+        costs['yr2'] += float(item['var_7'])
+        costs['yr3'] += float(item['var_8'])
+        costs['total'] += float(item['var_6']) + float(item['var_7']) + float(item['var_8'])
 
     # Q6 - FETCH
     q6_qid = int_or_none(question.dependency['q6_qid'])
@@ -233,9 +245,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q6 - CALCULATE SUM
     for item in q6_picked:
-        costs['costs_yr1'] += float(item['var_7'])
-        costs['costs_yr2'] += float(item['var_8'])
-        costs['costs_yr3'] += float(item['var_9'])
+        costs['yr1'] += float(item['var_7'])
+        costs['yr2'] += float(item['var_8'])
+        costs['yr3'] += float(item['var_9'])
+        costs['total'] += float(item['var_7']) + float(item['var_8']) + float(item['var_9'])
 
     # Q7 - FETCH
     q7_qid = int_or_none(question.dependency['q7_qid'])
@@ -247,9 +260,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q7 - CALCULATE SUM
     for item in q7_picked:
-        costs['costs_yr1'] += float(item['var_6'])
-        costs['costs_yr2'] += float(item['var_7'])
-        costs['costs_yr3'] += float(item['var_8'])
+        costs['yr1'] += float(item['var_6'])
+        costs['yr2'] += float(item['var_7'])
+        costs['yr3'] += float(item['var_8'])
+        costs['total'] += float(item['var_6']) + float(item['var_7']) + float(item['var_8'])
 
     # Q8 - FETCH
     q8_qid = int_or_none(question.dependency['q8_qid'])
@@ -261,9 +275,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q8 - CALCULATE SUM
     for item in q8_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q9 - FETCH
     q9_qid = int_or_none(question.dependency['q9_qid'])
@@ -275,9 +290,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q9 - CALCULATE SUM
     for item in q9_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q10 - FETCH
     q10_qid = int_or_none(question.dependency['q10_qid'])
@@ -289,9 +305,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q10 - CALCULATE SUM
     for item in q10_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q11 - FETCH
     q11_qid = int_or_none(question.dependency['q11_qid'])
@@ -303,9 +320,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q11 - CALCULATE SUM
     for item in q11_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q12 - FETCH
     q12_qid = int_or_none(question.dependency['q12_qid'])
@@ -317,9 +335,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q12 - CALCULATE SUM
     for item in q4_picked:
-        costs['costs_yr1'] += float(item['var_6'])
-        costs['costs_yr2'] += float(item['var_7'])
-        costs['costs_yr3'] += float(item['var_8'])
+        costs['yr1'] += float(item['var_6'])
+        costs['yr2'] += float(item['var_7'])
+        costs['yr3'] += float(item['var_8'])
+        costs['total'] += float(item['var_6']) + float(item['var_7']) + float(item['var_8'])
 
     # Q13 - FETCH
     q13_qid = int_or_none(question.dependency['q13_qid'])
@@ -331,9 +350,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q13 - CALCULATE SUM
     for item in q13_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q14 - FETCH
     q14_qid = int_or_none(question.dependency['q14_qid'])
@@ -345,9 +365,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q14 - CALCULATE SUM
     for item in q14_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q15 - FETCH
     q15_qid = int_or_none(question.dependency['q15_qid'])
@@ -359,9 +380,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q15 - CALCULATE SUM
     for item in q15_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q16 - FETCH
     q16_qid = int_or_none(question.dependency['q16_qid'])
@@ -373,9 +395,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q16 - CALCULATE SUM
     for item in q16_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q17 - FETCH
     q17_qid = int_or_none(question.dependency['q17_qid'])
@@ -387,9 +410,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q17 - CALCULATE SUM
     for item in q17_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q18 - FETCH
     q18_qid = int_or_none(question.dependency['q18_qid'])
@@ -401,9 +425,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q18 - CALCULATE SUM
     for item in q18_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q19 - FETCH
     q19_qid = int_or_none(question.dependency['q19_qid'])
@@ -415,9 +440,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q19 - CALCULATE SUM
     for item in q19_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q20 - FETCH
     q20_qid = int_or_none(question.dependency['q20_qid'])
@@ -429,9 +455,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q20 - CALCULATE SUM
     for item in q20_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q21 - FETCH
     q21_qid = int_or_none(question.dependency['q21_qid'])
@@ -443,9 +470,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q21 - CALCULATE SUM
     for item in q21_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q22 - FETCH
     q22_qid = int_or_none(question.dependency['q22_qid'])
@@ -457,9 +485,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q22 - CALCULATE SUM
     for item in q22_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Q23 - FETCH
     q23_qid = int_or_none(question.dependency['q23_qid'])
@@ -471,9 +500,10 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q23 - CALCULATE SUM
     for item in q23_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
 
     # Q24 - FETCH
@@ -486,28 +516,55 @@ def render_question_type_057(workspace, module, node, question, answer):
 
     # Q24 - CALCULATE SUM
     for item in q24_picked:
-        costs['costs_yr1'] += float(item['var_5'])
-        costs['costs_yr2'] += float(item['var_6'])
-        costs['costs_yr3'] += float(item['var_7'])
+        costs['yr1'] += float(item['var_5'])
+        costs['yr2'] += float(item['var_6'])
+        costs['yr3'] += float(item['var_7'])
+        costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
     # Debugging Purposes
-    print(costs)
-    print("\n")
-
-    #===================#
-    # CALCULATE OPTIONS #
-    #===================#
-
-    #TODO: Implement.
+    # print(costs)
+    # print("\n")
 
     #======================#
-    # CALCULATE LOWER CASE #
+    # CALCULATE SCENERIO 1 #
     #======================#
+    # Calculate with a 25% decrease.
+    scenerio1_revenue = scalar_multiply_by(revenue, 0.75)
+    scenerio1_cogs = scalar_multiply_by(cogs, 0.75)
+    gross_profit = matrix_subtract_by(scenerio1_revenue, scenerio1_cogs)
+    total_expenses = scalar_multiply_by(costs, 0.75)
+    net_profit = matrix_subtract_by(gross_profit, total_expenses)
 
-    # Calculate revenue with a 25% decrease.
-    # revenue = multiply_revenue_by(revenue, 0.75)
-    # print(revenue)
+    # scenerio1_labour = scalar_multiply_by(labour, 0.75)
+    # scenerio1_materials = scalar_multiply_by(materials, 0.75)
+    # scenerio1_overhead = scalar_multiply_by(overhead, 0.75)
+
+    print("REVENUE")
+    print(scenerio1_revenue)
+    print("\n\n")
+    print("COGS")
+    print(scenerio1_cogs)
+    print("\n\n")
+    print("GROSS PROFIT")
+    print(gross_profit)
+    print("\n\n")
+    print("TOTAL EXPENSES")
+    print(total_expenses)
+    print("\n\n")
+    print("NET PROFIT")
+    print(net_profit)
+    print("\n\n")
+
+    # print("LABOUR")
+    # print(scenerio1_labour)
     # print("\n\n")
+    # print("MATERIALS")
+    # print(scenerio1_materials)
+    # print("\n\n")
+    # print("OVERHEAD")
+    # print(scenerio1_overhead)
+    # print("\n\n")
+
 
 
     # Render the template.
