@@ -670,7 +670,6 @@ def render_question_type_057(workspace, module, node, question, answer):
             variable_costs['yr3'] += float(item['var_7'])
             variable_costs['total'] += float(item['var_5']) + float(item['var_6']) + float(item['var_7'])
 
-
     # Q24 - FETCH
     q24_qid = int_or_none(question.dependency['q24_qid'])
     q24 = QuestionAnswer.objects.get(
@@ -729,6 +728,7 @@ def render_question_type_057(workspace, module, node, question, answer):
         'net_profit': net_profit,
         'net_profit_rate': net_profit_rate,
         'net_profit_percent': net_profit_percent,
+        'total_sales': revenue,
         'labour': labour,
         'materials': materials,
         'overhead': overhead,
