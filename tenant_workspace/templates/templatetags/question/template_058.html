@@ -3,111 +3,16 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
-        // Detect User clicking on one of the Radio buttons.
-        $("input[name=optionsRadios]").click(function(){
-            // Get the option selected.
-            var value = this.value;
-
-            if (value == "{{ question.options.opt1_other }}") {
-                $('#id_input_1_other_div').show();
-            } else {
-                $('#id_input_1_other_div').hide();
-            }
-        }); // end RADIO CLICK DETECTION HANDLER
+        // FILL IN.
     }); // end DOCUMENT START
-
-    /**
-     *  Validate to check something is an integer.
-     */
-    function is_int(x) {
-        var y = parseInt(x, 10);
-        return !isNaN(y) && x == y && x.toString() == y.toString();
-    }
 
     /**
      *  Function will load up the next URL after checking to see if the
      *  option was selected for this question.
      */
     function question_answer_protected_next(next_url) {
-        // Detect checked value.
-        var form = $('#questionForm');
-        var input_1 = form.find('input[name=optionsRadios]:checked').val();
-        var input_1_other = $('#id_input_1_other').val();
-
-        // Either load up an error telling the user to pick an option
-        // or load up the next page.
-        if (typeof input_1 === "undefined") {
-            alert("{% trans 'Please select an option.' %}");
-            return;
-        }
-        if (input_1 == "{{ question.options.opt1_other }}") {
-            {% if question.content.opt1_other_type == "integerfield" %}
-            // IF WE ARE TO USE "INTEGERFIELD" THEN VALIDATE THAT AN INTEGER
-            // WAS ENTERED.
-            if (is_int(input_1_other) == false) {
-                alert("{% trans 'Please enter integer answer.' %}");
-                return;
-            }
-            {% else %}
-            // IF WE ARE TO USE "TEXTFIELD" THEN VALIDATE THE CHARACTER LIMIT.
-            if (input_1_other.length < {{ question.validation.opt1_other_min_length }}) {
-                alert("{{ question.validation.opt1_other_min_length_error_message }}");
-                return;
-            }
-            if (input_1_other.length > {{ question.validation.opt1_other_max_length }}) {
-                alert("{{ question.validation.opt1_other_max_length_error_message }}");
-                return;
-            }
-            {% endif %}
-        }
-
-        ajax_do_chain(input_1, input_1_other, function(json_result) {  // Update our model.
-            window.location = next_url;
-        });
+        // FILL IN.
     }
-
-    function ajax_do_chain(input_1, input_1_other, callback) {
-        // Debugging purposes.
-        console.log(input_1);
-        console.log(input_1_other);
-
-        // Prevent loading "Other" if not picked.
-        if (input_1 != "{{ question.options.opt1_other }}") {
-            input_1_other = "";
-        }
-
-        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
-        // from our Database and convert it to JSON object.
-        get_tenant_questionanswer(
-            {{ answer.id }},
-            function(question_answer) {
-
-                // Set the JSON object with our picked value and stringify it.
-                question_answer['content'] = JSON.stringify({
-                    'var_1': input_1,
-                    'var_1_other': input_1_other
-                });
-
-                // Save our "QuestionAnswer" model object.
-                set_tenant_questionanswer(
-                    question_answer,
-                    function(json_result) {
-                        callback(json_result);
-                    },
-                    function(error_json_result) {
-                        var string = JSON.stringify( error_json_result );
-                        console.log(string);
-                        alert(string);
-                    }
-                ); // end SET ANSWER
-            },
-            function(error_json_result) {
-                var string = JSON.stringify( error_json_result );
-                console.log(string);
-                alert(string);
-            }
-        ); // end GET ANSWER
-    };
 </script>
 {% endcompress %}
 <!-- end JS -->
@@ -116,38 +21,11 @@
     <legend>
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
-    <!-- ROW 1 -->
     <div class="form-group">
-        <div class="col-sm-5 col-centered">
-            {% for option in question.options.opt1 %}
-            <!-- OPTION TEXT -->
-            <div class="radio c-radio">
-                <label {% if option.custom_style %}style="{{ option.custom_style }}"{% endif %}>
-                    <div {% if option.help_title and option.help_description %}title="{{ option.help_title|escape|safe }}" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ option.help_description|escape|safe }}"{% endif %}>
-                    <input id="optionsRadios{{ option.value }}" {% if picked.var_1 == option.value %}checked="checked"{% endif %}
-                         type="radio"
-                         name="optionsRadios"
-                        value="{{ option.value }}" />
-                        <span class="fa fa-circle"></span>
-                            {{ option.text|escape|safe }}
-                    </div>
-                </label>
-            </div>
-            <!-- end OPTION TEXT -->
-            {% endfor %}
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-10">
+            <!-- FILL IN -->
         </div>
     </div>
-    <!-- end ROW 1 -->
-
-    <br />
-
-    <!-- ROW 2 -->
-    <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-        <label class="col-sm-4 control-label">{{ question.content.opt1_other_stub }}</label>
-        <div class="col-sm-5">
-            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ picked.var_1_other }}" maxlength="{{ question.validation.opt1_other_max_length }}" />
-        </div>
-    </div>
-    <!-- end ROW 2 -->
 </fieldset>
 <!-- end HTML -->
