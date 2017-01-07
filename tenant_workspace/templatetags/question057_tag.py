@@ -703,6 +703,38 @@ def render_question_type_057(workspace, module, node, question, answer):
     #======================#
     # CALCULATE SCENERIO 1 #
     #======================#
+    scenario_1 = compute_scenario(revenue, cogs, labour, materials, overhead, costs, fixed_costs, variable_costs)
+
+    #======================#
+    # CALCULATE SCENERIO 2 #
+    #======================#
+    # Sales decrease by 25%
+    decreased_revenue = scalar_multiply_by(revenue, 0.75)
+    decreased_cogs = scalar_multiply_by(cogs, 0.75)
+    decreased_costs = scalar_multiply_by(costs, 0.75)
+    decreased_fixed_costs = scalar_multiply_by(fixed_costs, 0.75)
+    decreased_variable_costs = scalar_multiply_by(variable_costs, 0.75)
+    scenario_2 = compute_scenario(
+        decreased_revenue, decreased_cogs, labour, materials, overhead, decreased_costs, decreased_fixed_costs, decreased_variable_costs
+    )
+
+    #======================#
+    # CALCULATE SCENERIO 3 #
+    #======================#
+    #TODO: Implement.
+
+    # Render the template.
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'answer_picked': answer.content,
+        'autogen': autogen
+    }
+
+def compute_scenario(revenue, cogs, labour, materials, overhead, costs, fixed_costs, variable_costs):
     print("REVENUE", revenue)
     print("COGS", cogs)
     gross_profit = matrix_subtract_by(revenue, cogs)
@@ -719,7 +751,11 @@ def render_question_type_057(workspace, module, node, question, answer):
     print("NET PROFIT PERCENT", net_profit_percent)
     total_variable_costs = matrix_add_by(variable_costs, cogs)
     print("TOTAL VARIABLE COSTS", total_variable_costs)
-    scenario_1 = {
+    print("TOTAL VARIABLE COSTS EXCLUDING COGS", variable_costs)
+    print("TOTAL FIXED COSTS", fixed_costs)
+    print("GENERAL AND MARKETING EXPENSES", costs)
+    print("\n\n")
+    return {
         'revenue': revenue,
         'cogs': cogs,
         'gross_profit': gross_profit,
@@ -736,29 +772,4 @@ def render_question_type_057(workspace, module, node, question, answer):
         'total_variable_costs_excluding_cogs': variable_costs,
         'total_fixed': fixed_costs,
         'general_and_marketing_expenses': costs
-    }
-    print("\n")
-    print(scenario_1)
-    print("\n\n")
-
-
-    #======================#
-    # CALCULATE SCENERIO 2 #
-    #======================#
-    #TODO: Implement.
-
-    #======================#
-    # CALCULATE SCENERIO 3 #
-    #======================#
-    #TODO: Implement.
-
-    # Render the template.
-    return {
-        'workspace': workspace,
-        'module': module,
-        'node': node,
-        'question': question,
-        'answer': answer,
-        'answer_picked': answer.content,
-        'autogen': autogen
     }
