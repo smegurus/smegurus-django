@@ -93,7 +93,12 @@
                 "stub_9": "Add Owner"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
             "type_id": 3
         }
     },
@@ -327,7 +332,12 @@
                 "stub_8": "Add Use"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
             "type_id": 6
         }
     },{
@@ -536,7 +546,12 @@
             "dependency": {
                 "q1_qid": 32
             },
-            "validation": {},
+            "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
             "type_id": 39
         }
     },
@@ -895,7 +910,12 @@
                 "stub_11": "Add Owner"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
             "type_id": 41
         }
     },
@@ -1120,6 +1140,10 @@
             },
             "dependency": {},
             "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries.",
                 "var2_type": "textfield",
                 "var2_min_length": 2,
                 "var2_min_length_error_message": "Please enter a text with at leaset 2 characters.",
@@ -1205,7 +1229,12 @@
                 "stub_17": "Add"
             },
             "dependency": {},
-            "validation": {},
+            "validation": {
+                "arr_min_count": 1,
+                "arr_min_count_error_message": "Please enter at least 1 entry.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
             "type_id": 43
         }
     },{

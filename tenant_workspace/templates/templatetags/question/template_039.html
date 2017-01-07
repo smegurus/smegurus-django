@@ -128,8 +128,13 @@
 
         // Defensive Code: Check to see if any rows exist?
         var count = arr.length;
-        if (count == 1) {
-            alert("Please add an owner before continuing.");
+        if ((count - 1) < {{ question.validation.arr_min_count }}) {
+            alert("{{ question.validation.arr_min_count_error_message|escape|safe }}");
+            return;
+        }
+
+        if ((count - 1) > {{ question.validation.arr_max_count }}) {
+            alert("{{ question.validation.arr_max_count_error_message|escape|safe }}");
             return;
         }
 
