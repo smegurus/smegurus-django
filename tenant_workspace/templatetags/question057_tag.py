@@ -108,6 +108,14 @@ def render_question_type_057(workspace, module, node, question, answer):
     - QID: 111 | 14 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/15/
     - QID: 114 | 15 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/18/
     - QID: 116 | 16 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/20/
+    - QID: 120 | 17 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/24/
+    - QID: 122 | 18 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/26/
+    - QID: 124 | 19 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/28/
+    - QID: 126 | 20 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/30/
+    - QID: 128 | 21 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/32/
+    - QID: 130 | 22 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/34/
+    - QID: 132 | 23 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/36/
+    - QID: 134 | 24 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/38/
     """
     # This variable is used to keep track of the auto-generated values for the
     # three choices in this question.
@@ -257,89 +265,234 @@ def render_question_type_057(workspace, module, node, question, answer):
         costs['costs_yr2'] += float(item['var_6'])
         costs['costs_yr3'] += float(item['var_7'])
 
-    # # Q9 - FETCH
-    # q9_qid = int_or_none(question.dependency['q9_qid'])
-    # q9 = QuestionAnswer.objects.get(
-    #     question_id=q9_qid,
-    #     workspace=workspace
-    # )
-    # q9_picked = q9.content
-    #
-    # # Q9 - CALCULATE SUM
-    # for item in q9_picked:
-    #     costs['costs_yr1'] += float(item['var_5'])
-    #     costs['costs_yr2'] += float(item['var_6'])
-    #     costs['costs_yr3'] += float(item['var_7'])
-    #
-    # # Q10 - FETCH
-    # q10_qid = int_or_none(question.dependency['q10_qid'])
-    # q10 = QuestionAnswer.objects.get(
-    #     question_id=q10_qid,
-    #     workspace=workspace
-    # )
-    # q10_picked = q10.content
-    #
-    # # Q10 - CALCULATE SUM
-    # for item in q10_picked:
-    #     costs['costs_yr1'] += float(item['var_5'])
-    #     costs['costs_yr2'] += float(item['var_6'])
-    #     costs['costs_yr3'] += float(item['var_7'])
-    #
-    # # Q11 - FETCH
-    # q11_qid = int_or_none(question.dependency['q11_qid'])
-    # q11 = QuestionAnswer.objects.get(
-    #     question_id=q11_qid,
-    #     workspace=workspace
-    # )
-    # q11_picked = q11.content
-    #
-    # # Q11 - CALCULATE SUM
-    # for item in q11_picked:
-    #     costs['costs_yr1'] += float(item['var_5'])
-    #     costs['costs_yr2'] += float(item['var_6'])
-    #     costs['costs_yr3'] += float(item['var_7'])
-    #
-    # # Q12 - FETCH
-    # q12_qid = int_or_none(question.dependency['q12_qid'])
-    # q12 = QuestionAnswer.objects.get(
-    #     question_id=q12_qid,
-    #     workspace=workspace
-    # )
-    # q12_picked = q12.content
-    #
-    # # Q12 - CALCULATE SUM
-    # for item in q4_picked:
-    #     costs['costs_yr1'] += float(item['var_6'])
-    #     costs['costs_yr2'] += float(item['var_7'])
-    #     costs['costs_yr3'] += float(item['var_8'])
-    #
-    # # Q13 - FETCH
-    # q13_qid = int_or_none(question.dependency['q13_qid'])
-    # q13 = QuestionAnswer.objects.get(
-    #     question_id=q13_qid,
-    #     workspace=workspace
-    # )
-    # q13_picked = q13.content
-    #
-    # # Q13 - CALCULATE SUM
-    # for item in q13_picked:
-    #     costs['costs_yr1'] += float(item['var_5'])
-    #     costs['costs_yr2'] += float(item['var_6'])
-    #     costs['costs_yr3'] += float(item['var_7'])
-    #
-    # # Q14 - FETCH
-    # q14_qid = int_or_none(question.dependency['q14_qid'])
-    # q14 = QuestionAnswer.objects.get(
-    #     question_id=q14_qid,
-    #     workspace=workspace
-    # )
-    # q14_picked = q14.content
-    #
-    # # Q14 - CALCULATE SUM
-    # for item in q14_picked:
-    #     costs['costs_yr1'] += float(item['var_5'])
-    #     costs['costs_yr2'] += float(item['var_6'])
-    #     costs['costs_yr3'] += float(item['var_7'])
+    # Q9 - FETCH
+    q9_qid = int_or_none(question.dependency['q9_qid'])
+    q9 = QuestionAnswer.objects.get(
+        question_id=q9_qid,
+        workspace=workspace
+    )
+    q9_picked = q9.content
+
+    # Q9 - CALCULATE SUM
+    for item in q9_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q10 - FETCH
+    q10_qid = int_or_none(question.dependency['q10_qid'])
+    q10 = QuestionAnswer.objects.get(
+        question_id=q10_qid,
+        workspace=workspace
+    )
+    q10_picked = q10.content
+
+    # Q10 - CALCULATE SUM
+    for item in q10_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q11 - FETCH
+    q11_qid = int_or_none(question.dependency['q11_qid'])
+    q11 = QuestionAnswer.objects.get(
+        question_id=q11_qid,
+        workspace=workspace
+    )
+    q11_picked = q11.content
+
+    # Q11 - CALCULATE SUM
+    for item in q11_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q12 - FETCH
+    q12_qid = int_or_none(question.dependency['q12_qid'])
+    q12 = QuestionAnswer.objects.get(
+        question_id=q12_qid,
+        workspace=workspace
+    )
+    q12_picked = q12.content
+
+    # Q12 - CALCULATE SUM
+    for item in q4_picked:
+        costs['costs_yr1'] += float(item['var_6'])
+        costs['costs_yr2'] += float(item['var_7'])
+        costs['costs_yr3'] += float(item['var_8'])
+
+    # Q13 - FETCH
+    q13_qid = int_or_none(question.dependency['q13_qid'])
+    q13 = QuestionAnswer.objects.get(
+        question_id=q13_qid,
+        workspace=workspace
+    )
+    q13_picked = q13.content
+
+    # Q13 - CALCULATE SUM
+    for item in q13_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q14 - FETCH
+    q14_qid = int_or_none(question.dependency['q14_qid'])
+    q14 = QuestionAnswer.objects.get(
+        question_id=q14_qid,
+        workspace=workspace
+    )
+    q14_picked = q14.content
+
+    # Q14 - CALCULATE SUM
+    for item in q14_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q15 - FETCH
+    q15_qid = int_or_none(question.dependency['q15_qid'])
+    q15 = QuestionAnswer.objects.get(
+        question_id=q15_qid,
+        workspace=workspace
+    )
+    q15_picked = q15.content
+
+    # Q15 - CALCULATE SUM
+    for item in q15_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q16 - FETCH
+    q16_qid = int_or_none(question.dependency['q16_qid'])
+    q16 = QuestionAnswer.objects.get(
+        question_id=q16_qid,
+        workspace=workspace
+    )
+    q16_picked = q16.content
+
+    # Q16 - CALCULATE SUM
+    for item in q16_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q17 - FETCH
+    q17_qid = int_or_none(question.dependency['q17_qid'])
+    q17 = QuestionAnswer.objects.get(
+        question_id=q17_qid,
+        workspace=workspace
+    )
+    q17_picked = q17.content
+
+    # Q17 - CALCULATE SUM
+    for item in q17_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q18 - FETCH
+    q18_qid = int_or_none(question.dependency['q18_qid'])
+    q18 = QuestionAnswer.objects.get(
+        question_id=q18_qid,
+        workspace=workspace
+    )
+    q18_picked = q18.content
+
+    # Q18 - CALCULATE SUM
+    for item in q18_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q19 - FETCH
+    q19_qid = int_or_none(question.dependency['q19_qid'])
+    q19 = QuestionAnswer.objects.get(
+        question_id=q19_qid,
+        workspace=workspace
+    )
+    q19_picked = q19.content
+
+    # Q19 - CALCULATE SUM
+    for item in q19_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q20 - FETCH
+    q20_qid = int_or_none(question.dependency['q20_qid'])
+    q20 = QuestionAnswer.objects.get(
+        question_id=q20_qid,
+        workspace=workspace
+    )
+    q20_picked = q20.content
+
+    # Q20 - CALCULATE SUM
+    for item in q20_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q21 - FETCH
+    q21_qid = int_or_none(question.dependency['q21_qid'])
+    q21 = QuestionAnswer.objects.get(
+        question_id=q21_qid,
+        workspace=workspace
+    )
+    q21_picked = q21.content
+
+    # Q21 - CALCULATE SUM
+    for item in q21_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q22 - FETCH
+    q22_qid = int_or_none(question.dependency['q22_qid'])
+    q22 = QuestionAnswer.objects.get(
+        question_id=q22_qid,
+        workspace=workspace
+    )
+    q22_picked = q22.content
+
+    # Q22 - CALCULATE SUM
+    for item in q22_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Q23 - FETCH
+    q23_qid = int_or_none(question.dependency['q23_qid'])
+    q23 = QuestionAnswer.objects.get(
+        question_id=q23_qid,
+        workspace=workspace
+    )
+    q23_picked = q23.content
+
+    # Q23 - CALCULATE SUM
+    for item in q23_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+
+    # Q24 - FETCH
+    q24_qid = int_or_none(question.dependency['q24_qid'])
+    q24 = QuestionAnswer.objects.get(
+        question_id=q24_qid,
+        workspace=workspace
+    )
+    q24_picked = q24.content
+
+    # Q24 - CALCULATE SUM
+    for item in q24_picked:
+        costs['costs_yr1'] += float(item['var_5'])
+        costs['costs_yr2'] += float(item['var_6'])
+        costs['costs_yr3'] += float(item['var_7'])
+
+    # Debugging Purposes
+    print(costs)
+    print("\n")
 
     #===================#
     # CALCULATE OPTIONS #
