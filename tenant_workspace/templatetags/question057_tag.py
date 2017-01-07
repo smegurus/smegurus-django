@@ -531,41 +531,40 @@ def render_question_type_057(workspace, module, node, question, answer):
     # Calculate with a 25% decrease.
     scenerio1_revenue = scalar_multiply_by(revenue, 0.75)
     scenerio1_cogs = scalar_multiply_by(cogs, 0.75)
-    gross_profit = matrix_subtract_by(scenerio1_revenue, scenerio1_cogs)
-    total_expenses = scalar_multiply_by(costs, 0.75)
-    net_profit = matrix_subtract_by(gross_profit, total_expenses)
+    scenerio1_gross_profit = matrix_subtract_by(scenerio1_revenue, scenerio1_cogs)
+    scenerio1_total_expenses = scalar_multiply_by(costs, 0.75)
+    scenerio1_net_profit = matrix_subtract_by(scenerio1_gross_profit, scenerio1_total_expenses)
 
-    # scenerio1_labour = scalar_multiply_by(labour, 0.75)
-    # scenerio1_materials = scalar_multiply_by(materials, 0.75)
-    # scenerio1_overhead = scalar_multiply_by(overhead, 0.75)
+    scenerio_1 = {
+        'revenue': scenerio1_revenue,
+        'cogs': scenerio1_cogs,
+        'gross_profit': scenerio1_gross_profit,
+        'total_expenses': scenerio1_total_expenses,
+        'net_profit': scenerio1_net_profit
+    }
+    print(scenerio_1)
+    print('\n\n')
 
-    print("REVENUE")
-    print(scenerio1_revenue)
-    print("\n\n")
-    print("COGS")
-    print(scenerio1_cogs)
-    print("\n\n")
-    print("GROSS PROFIT")
-    print(gross_profit)
-    print("\n\n")
-    print("TOTAL EXPENSES")
-    print(total_expenses)
-    print("\n\n")
-    print("NET PROFIT")
-    print(net_profit)
-    print("\n\n")
+    #======================#
+    # CALCULATE SCENERIO 2 #
+    #======================#
+    # Calculate with a 25% decrease.
+    scenerio1_revenue = scalar_multiply_by(revenue, 0.75)
+    scenerio1_cogs = scalar_multiply_by(cogs, 0.75)
+    scenerio1_gross_profit = matrix_subtract_by(scenerio1_revenue, scenerio1_cogs)
+    scenerio1_total_expenses = scalar_multiply_by(costs, 0.75)
+    scenerio1_net_profit = matrix_subtract_by(scenerio1_gross_profit, scenerio1_total_expenses)
 
-    # print("LABOUR")
-    # print(scenerio1_labour)
-    # print("\n\n")
-    # print("MATERIALS")
-    # print(scenerio1_materials)
-    # print("\n\n")
-    # print("OVERHEAD")
-    # print(scenerio1_overhead)
-    # print("\n\n")
-
-
+    # Implement scenerio 1
+    scenerio_1 = {
+        'revenue': scenerio1_revenue,
+        'cogs': scenerio1_cogs,
+        'gross_profit': scenerio1_gross_profit,
+        'total_expenses': scenerio1_total_expenses,
+        'net_profit': scenerio1_net_profit
+    }
+    print(scenerio_1)
+    print('\n\n')
 
     # Render the template.
     return {
