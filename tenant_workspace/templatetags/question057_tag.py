@@ -159,10 +159,6 @@ def render_question_type_057(workspace, module, node, question, answer):
     - QID: 132 | 23 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/36/
     - QID: 134 | 24 | http://mikasoftware.smegurus.xyz/en/workspace/3/module/6/38/
     """
-    # This variable is used to keep track of the auto-generated values for the
-    # three choices in this question.
-    autogen = {}
-
     #===================#
     # CALCULATE REVENUE #
     #===================#
@@ -739,7 +735,9 @@ def render_question_type_057(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'answer_picked': answer.content,
-        'autogen': autogen
+        'scenario_1': scenario_1,
+        'scenario_2': scenario_2,
+        'scenario_3': scenario_3
     }
 
 def compute_scenario(revenue, cogs, labour, materials, overhead, costs, fixed_costs, variable_costs):
