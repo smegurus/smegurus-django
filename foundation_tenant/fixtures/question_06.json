@@ -2700,5 +2700,56 @@
             },
             "type_id": 4
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 147,
+        "fields": {
+            "document_type": 6,
+            "number": 49,
+            "title": "Identify 3-5 of your company's strengths or write your own.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "The company has a strong and experienced management team",
+                    "The business owner or key employees have formal business training",
+                    "We have a strong advisor network that is knowledgeable and experienced",
+                    "We have a management team that is well connected to local community and industry",
+                    "We have strong financial knowledge and budgeting expertise",
+                    "Our service has been well-researched",
+                    "This service is needed and does not currently exist",
+                    "Our company already has letters of intent from customers",
+                    "Our company has a reputation for excellence in the industry",
+                    "Our management meam has indepth expterise and knowledge of the industry",
+                    "We have established customer relationships that can easily be migrated",
+                    "We have strong distribution channels",
+                    "Our service offering is state of the art and significantly ahead of competitors",
+                    "We have filed a Patent/Copyright/Trademark",
+                    "We have existing financial assets that can be leveraged for our new business",
+                    "Our company already has purchase agreements in place with customers",
+                    "Other (Please specify)"
+                ],
+                "opt1_other": "Other (Please specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "Strength",
+                "stub_2": "",
+                "stub_3": "Add Strength"
+            },
+            "dependency": {},
+            "validation": {
+                "arr_min_count": 3,
+                "arr_min_count_error_message": "Please enter at least 3 entries.",
+                "arr_max_count": 5,
+                "arr_max_count_error_message": "Please enter no more then 5 entries.",
+
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 59
+        }
     }
 ]

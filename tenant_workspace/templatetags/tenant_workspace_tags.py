@@ -1160,3 +1160,16 @@ def render_question_type_056(workspace, module, node, question, answer):
         'picked': answer.content,
         'picked_count': len(answer.content)
     }
+
+
+@register.inclusion_tag('templatetags/question/template_059.html')
+def render_question_type_059(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content)
+    }
