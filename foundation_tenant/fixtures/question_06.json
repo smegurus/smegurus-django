@@ -2812,5 +2812,123 @@
             },
             "type_id": 59
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 149,
+        "fields": {
+            "document_type": 6,
+            "number": 50,
+            "title": "Choose 3-5 threats that apply to your industry (or write your own), and identify how you can mitigate each one.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "Changes in the industry challenge the ability of firms to compete without a significant investment in technology",
+                    "The economy is still fragile and consumer spending has not returned to pre-recession levels",
+                    "There are low barriers to entry for this industry",
+                    "There are many competitors in this industry",
+                    "Consumers in this industry are price sensitive",
+                    "Customers are increasingly not loyal to specific brands",
+                    "This industry is dominated by large players",
+                    "Generally there is high staff turnover in this industry",
+                    "There is a limited pool of talent in this industry",
+                    "This industry is in decline",
+                    "There are many new firms in this industry",
+                    "There is a high rate of failure in this industry",
+                    "There is little research or data for this industry since it is so new",
+                    "The industry is misunderstood",
+                    "Other (Please Specify)"
+                ],
+                "opt1_select": "Select",
+                "opt1_other": "Other (Please Specify)",
+                "opt2": [
+                    {
+                        "parent": "Changes in the industry challenge the ability of firms to compete without a significant investment in technology",
+                        "choices": [
+                            "We will invest heavily in technology", "We will find other ways to compete and remain innovative", "Other (Please Specify)"
+                        ]
+                    },
+                    { "parent": "The economy is still fragile and consumer spending has not returned to pre-recession levels", "choices": [ "We will offer a good product at a good price", "We will offer a good service at a good price", "We will offer value added services to our clients to increase sales",
+                        "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "There are low barriers to entry for this industry, which creates competition", "choices": [ "We will focus on our differentiation strategy", "We will focus on being operationally efficient", "We will offer customers a good value for their money", "We will offer exceptional customer service",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "There are many competitors in this industry", "choices": [ "Differentiate ourselves through our unique product offering", "Differentiate ourselves through our unique service offering", "Differentiate ourselves through exceptional customer service", "Offer a lower price", "Offer a better experience for the customer",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "Consumers in this industry are price sensitive", "choices": [ "We will focus on developing exceptional customer service", "We will focus on providing the best value for the customer",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "Customers are increasingly not loyal to specific brands", "choices": [ "We will focus on developing exceptional customer service", "We will focus on providing the best value for the customer",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "This industry is dominated by large players", "choices": [ "We will focus on fulfilling a small niche", "Find ways to compliment the service offerings of larger players so that we augment their offerings, rather than compete with them",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "Generally there is high staff turnover in this industry", "choices": [ "Develop HR plan for staff retention", "Provide industry standard wages and benefits", "Focus on growing employees and providing them with opportunities for professional development",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "There is a limited pool of talent in this industry", "choices": [ "Develop plan for attraction and retention of staff", "Develop and grow less qualified applicants", "Network with sources such as educational institutes and associations to source new talent",
+                            "Other (Please Specify)"]
+                    },
+                    {
+                        "parent": "This industry is in decline", "choices": [ "Focus on growing a strong base of loyal customers", "Develop a rewards program", "Develop a referral program", "Focus on the customer experience", "Focus on developing exceptional customer service",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "There are many new firms in this industry", "choices": [ "Service a niche market", "Differentiate ourselves through our unique product offering", "Differentiate ourselves through our unique service offering", "Differentiate ourselves through exceptional customer service", "Offer a lower price", "Offer a better experience for the customer",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "There is a high rate of failure in this industry", "choices": [ "Develop a strong customer base", "Develop strong relationships with customers", "Develop strong relationships with suppliers",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "There is little research or data for this industry since it is so new", "choices": [ "Be an industry leader and focus on research and development", "Create platforms which allow industry participants to share data", "Develop strong relationships with suppliers who can diffuse and provide up to date information",
+                            "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "The industry is misunderstood", "choices": [ "Increase education and marketing as part of strategy", "Be available as an industry resource to help clarify challenges",
+                             "Other (Please Specify)" ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt2_select": "Select",
+                "opt2_other": "Other (Please Specify)"
+            },
+            "content": {
+                "stub_1": "Threat",
+                "stub_2": "Resolution",
+                "stub_3": "Remove",
+                "stub_4": "Threat",
+                "stub_5": "Resolution",
+                "stub_6": "Add Threat / Resolution"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 3,
+                "min_error_message": "Please pick at least 3 weaknesses.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 weaknesses.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 33
+        }
     }
 ]
