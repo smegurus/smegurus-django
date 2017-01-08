@@ -2751,5 +2751,66 @@
             },
             "type_id": 59
         }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 148,
+        "fields": {
+            "document_type": 6,
+            "number": 50,
+            "title": "Choose 3-5 opportunities that apply to your industry, or write your own.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "There has been huge growth in our target market group which creates a need for the services that we provide",
+                    "A major competitor has changed their operations creating a market opportunity",
+                    "A major competitor has closed creating unmet demand in the market",
+                    "A reputation for excellence is important to the industry",
+                    "People are going out to eat more",
+                    "People have become increasingly busy creating a need for our services",
+                    "People are spending more time at home enabling more use of our services",
+                    "People are taking longer to get married and will use our services",
+                    "There is a tendency for greater education through life creating a need for our services",
+                    "Companies in a good financial position have greater opportunities for future borrowing",
+                    "Changes in technology make working from home or offsite much easier than before",
+                    "A major change in technology has created an opportunity for our services",
+                    "The bankruptcy of a major competitor has created a market opportunity",
+                    "Our target customer is not price sensitive",
+                    "Our target customer focuses on quality",
+                    "The economy is improving, creating growth in the industry",
+                    "There are high barriers to entry in this industry",
+                    "Specialized knowledge in this industry limits competition",
+                    "Specialized technology in this industry limits competition",
+                    "There is low staff turnover in this industry",
+                    "This is a niche market with few competitors",
+                    "The industry is emergining and rapidly growing",
+                    "Unmet demand exists in the market",
+                    "There is insufficient supply of similar services",
+                    "The future outlook and growth potential is strong",
+                    "There are few competitors",
+                    "Other (Please specify)"
+                ],
+                "opt1_other": "Other (Please specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "Opportunity",
+                "stub_2": "",
+                "stub_3": "Add Opportunity"
+            },
+            "dependency": {},
+            "validation": {
+                "arr_min_count": 3,
+                "arr_min_count_error_message": "Please enter at least 3 entries.",
+                "arr_max_count": 5,
+                "arr_max_count_error_message": "Please enter no more then 5 entries.",
+
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 59
+        }
     }
 ]
