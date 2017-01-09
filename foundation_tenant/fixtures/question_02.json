@@ -1091,7 +1091,7 @@
         "fields": {
             "document_type": 2,
             "number": 32,
-            "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
+            "title": "Is the size of your industry increasing, decreasing, or staying the same?",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
