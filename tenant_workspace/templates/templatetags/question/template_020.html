@@ -34,7 +34,7 @@
         {% elif question.validation.type == "integerfield"  %}
         // ELSE WE ARE PROCESSING "INTEGERFIELD".
         if (is_int(input_1) == false) {
-            alert("{% trans 'Please enter integer answer.' %}");
+            alert("{% trans 'Please enter only whole numbers, no dollars signs, commas, letters, or other special characters.' %}");
             return;
         }
         if (input_1 < {{ question.validation.min_num }}) {
@@ -100,12 +100,12 @@
     <!-- ROW 2 | OTHER -->
     <div class="form-group" id="id_input_1_div">
     {% if question.content.stub_1 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-4 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-5 col-centered">
     {% else %}
-        <div class="col-sm-12">
+        <div class="col-sm-6 col-centered">
     {% endif %}
-            <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_2|escape|safe }}" value="{{ picked.var_1 }}" />
+            <input id="id_input_1" type="number" class="form-control input-lg" placeholder="{{ question.content.stub_2|escape|safe }}" value="{{ picked.var_1 }}" />
         </div>
     </div>
     <!-- end ROW 2 | OTHER -->
