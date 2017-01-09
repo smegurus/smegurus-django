@@ -19,6 +19,9 @@ body,
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff23b7e5', endColorstr='#ff51c6ea', GradientType=1);
 }
+.topnavbar .navbar-header {
+        background-image: none;
+    }
 @media only screen and (min-width: 768px) {
     .topnavbar .navbar-header {
         background-image: none;
@@ -51,6 +54,9 @@ body,
 .topnavbar .nav-wrapper {
     background-color: #03a9f4;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+.topnavbar .navbar-header{
+    background: #03a9f4 !important;
 }
 @media only screen and (min-width: 768px) {
     .topnavbar {
