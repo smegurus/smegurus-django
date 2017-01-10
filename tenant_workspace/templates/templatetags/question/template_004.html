@@ -67,6 +67,10 @@
                 alert("{{ question.validation.opt1_other_min_length_error_message }}");
                 return;
             }
+            if (is_int(input_1_other) == false) {
+                alert("{% trans 'Please enter only whole numbers, no dollars signs, commas, letters, or other special characters.' %}");
+                return;
+            }
         } else {
             if (input_1 == "{{ question.options.opt1_select }}") {
                 alert("{% trans 'Please fill pick a choice.' %}");
