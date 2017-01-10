@@ -26,7 +26,7 @@ class Command(BaseCommand):
             how_many_served=1,
         )
         try:
-            print("Creating Public")
+            # print("Creating Public")
             public_tenant.save()
         except Exception as e:
             print(e)
@@ -37,34 +37,34 @@ class Command(BaseCommand):
         domain.tenant = public_tenant
         domain.is_primary = True
         try:
-            print("Creating Public Domain")
+            # print("Creating Public Domain")
             domain.save()
         except Exception as e:
             print(e)
 
-        # First tenant.
-        tenant = PublicOrganization(
-            schema_name='demo',
-            name='SMEGurus Demo',
-            paid_until='2016-12-05',
-            on_trial=True,
-            has_perks=False,
-            has_mentors=False,
-            how_many_served=1,
-        )
-        try:
-            print("Creating Tenant")
-            tenant.save() # migrate_schemas automatically called, your tenant is ready to be used!
-        except Exception as e:
-            print(e)
-
-        # Add one or more domains for the tenant
-        domain = PublicDomain()
-        domain.domain = 'demo.'+env_var('SMEGURUS_APP_HTTP_DOMAIN') # don't add your port or www here!
-        domain.tenant = tenant
-        domain.is_primary = True
-        try:
-            print("Creating Tenant Domain")
-            domain.save()
-        except Exception as e:
-            print(e)
+        # # First tenant.
+        # tenant = PublicOrganization(
+        #     schema_name='demo',
+        #     name='SMEGurus Demo',
+        #     paid_until='2016-12-05',
+        #     on_trial=True,
+        #     has_perks=False,
+        #     has_mentors=False,
+        #     how_many_served=1,
+        # )
+        # try:
+        #     print("Creating Tenant")
+        #     tenant.save() # migrate_schemas automatically called, your tenant is ready to be used!
+        # except Exception as e:
+        #     print(e)
+        #
+        # # Add one or more domains for the tenant
+        # domain = PublicDomain()
+        # domain.domain = 'demo.'+env_var('SMEGURUS_APP_HTTP_DOMAIN') # don't add your port or www here!
+        # domain.tenant = tenant
+        # domain.is_primary = True
+        # try:
+        #     print("Creating Tenant Domain")
+        #     domain.save()
+        # except Exception as e:
+        #     print(e)
