@@ -264,11 +264,11 @@
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": "1",
-                "stub_2": "2",
-                "stub_3": "3",
-                "stub_4": "4",
-                "stub_5": "5"
+                "stub_1": "1.",
+                "stub_2": "2.",
+                "stub_3": "3.",
+                "stub_4": "4.",
+                "stub_5": "5."
             },
             "dependency": {},
             "validation": {},
@@ -327,9 +327,9 @@
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": "1",
-                "stub_2": "2",
-                "stub_3": "3"
+                "stub_1": "1.",
+                "stub_2": "2.",
+                "stub_3": "3."
             },
             "dependency": {},
             "validation": {},
