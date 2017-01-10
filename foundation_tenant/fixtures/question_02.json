@@ -386,9 +386,9 @@
                 "opt1_other": "Other"
             },
             "content": {
-                "stub_1": "1",
-                "stub_2": "2",
-                "stub_3": "3"
+                "stub_1": "1.",
+                "stub_2": "2.",
+                "stub_3": "3."
             },
             "dependency": {},
             "validation": {
@@ -397,8 +397,8 @@
                 "third_required": false,
                 "min_length": 1,
                 "min_length_error_message": "Please enter at minimum 1 characters.",
-                "max_length": 63,
-                "max_length_error_message": "Please enter at maximum 63 characters."
+                "max_length": 75,
+                "max_length_error_message": "Please enter at maximum 75 characters."
             },
             "type_id": 26
         }
