@@ -3,6 +3,30 @@
 {% compress js inline %}
 <script>
     $(document).ready(function () {
+         //  Check for same option selected in all 3 boxes and disable same options.
+        $(".check_options").each(function () {
+            var $self = $(this);
+            $self.data("previous_value", $self.val());
+        });
+        
+        $(".check_options").on("change", function () {
+            var $self = $(this);
+            var prev_value = $self.data("previous_value");
+            var cur_value = $self.val();
+            
+            $(".check_options").not($self).find("option").filter(function () {
+                return $(this).val() == prev_value;
+            }).prop("disabled", false);
+            
+            if (cur_value != "") {
+                $(".check_options").not($self).find("option").filter(function () {
+                    return $(this).val() == cur_value;
+                }).prop("disabled", true);
+                
+                $self.data("previous_value", cur_value);
+            }
+        });
+
         //
         //  Detect input changes for "id_input_1" field.
         //
@@ -217,13 +241,13 @@
     <!-- ROW 1 -->
     <div class="form-group">
         {% if question.content.stub_1 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-6 col-centered">
         {% else %}
         <div class="col-sm-12">
         {% endif %}
             <!-- OPTIONS -->
-            <select id="id_input_1" class="form-control">
+            <select id="id_input_1" class="form-control input-lg check_options">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_1 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -232,7 +256,7 @@
             <!-- end OPTIONS -->
             <!-- OTHER -->
             <br />
-            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} />
+            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_1_other }}" {% if picked.var_1_other == None or picked.var_1_other == ""  %}style="display: none;"{% endif %} />
             <!-- end OTHER -->
         </div>
     </div>
@@ -243,13 +267,13 @@
     <!-- ROW 2 -->
     <div class="form-group">
         {% if question.content.stub_2 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_2 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_2 }}</label>
+        <div class="col-sm-6 col-centered">
         {% else %}
         <div class="col-sm-12">
         {% endif %}
             <!-- OPTIONS -->
-            <select id="id_input_2" class="form-control">
+            <select id="id_input_2" class="form-control input-lg check_options">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_2 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -258,7 +282,7 @@
             <!-- end OPTIONS -->
             <!-- OTHER -->
             <br />
-            <input id="id_input_2_other" type="text" class="form-control" placeholder="" value="{{ picked.var_2_other }}" {% if picked.var_2_other == None or picked.var_2_other == ""  %}style="display: none;"{% endif %} />
+            <input id="id_input_2_other" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_2_other }}" {% if picked.var_2_other == None or picked.var_2_other == ""  %}style="display: none;"{% endif %} />
             <!-- end OTHER -->
         </div>
     </div>
@@ -269,13 +293,13 @@
     <!-- ROW 3 -->
     <div class="form-group">
         {% if question.content.stub_3 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_3 }}</label>
+        <div class="col-sm-6 col-centered">
         {% else %}
         <div class="col-sm-12">
         {% endif %}
             <!-- OPTIONS -->
-            <select id="id_input_3" class="form-control">
+            <select id="id_input_3" class="form-control input-lg check_options">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_3 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -284,7 +308,7 @@
             <!-- end OPTIONS -->
             <!-- OTHER -->
             <br />
-            <input id="id_input_3_other" type="text" class="form-control" placeholder="" value="{{ picked.var_3_other }}" {% if picked.var_3_other == None or picked.var_3_other == ""  %}style="display: none;"{% endif %} />
+            <input id="id_input_3_other" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_3_other }}" {% if picked.var_3_other == None or picked.var_3_other == ""  %}style="display: none;"{% endif %} />
             <!-- end OTHER -->
         </div>
     </div>
@@ -295,13 +319,13 @@
     <!-- ROW 4 -->
     <div class="form-group">
         {% if question.content.stub_4 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_4 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_4 }}</label>
+        <div class="col-sm-6 col-centered">
         {% else %}
         <div class="col-sm-12">
         {% endif %}
             <!-- OPTIONS -->
-            <select id="id_input_4" class="form-control">
+            <select id="id_input_4" class="form-control input-lg check_options">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_4 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -310,7 +334,7 @@
             <!-- end OPTIONS -->
             <!-- OTHER -->
             <br />
-            <input id="id_input_4_other" type="text" class="form-control" placeholder="" value="{{ picked.var_4_other }}" {% if picked.var_4_other == None or picked.var_4_other == ""  %}style="display: none;"{% endif %} />
+            <input id="id_input_4_other" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_4_other }}" {% if picked.var_4_other == None or picked.var_4_other == ""  %}style="display: none;"{% endif %} />
             <!-- end OTHER -->
         </div>
     </div>
@@ -321,13 +345,13 @@
     <!-- ROW 5 -->
     <div class="form-group">
         {% if question.content.stub_5 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_5 }}</label>
+        <div class="col-sm-6 col-centered">
         {% else %}
         <div class="col-sm-12">
         {% endif %}
             <!-- OPTIONS -->
-            <select id="id_input_5" class="form-control">
+            <select id="id_input_5" class="form-control input-lg check_options">
                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                 {% for item in question.options.opt1 %}
                     <option value="{{ item }}" {% if item == picked.var_5 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -336,7 +360,7 @@
             <!-- end OPTIONS -->
             <!-- OTHER -->
             <br />
-            <input id="id_input_5_other" type="text" class="form-control" placeholder="" value="{{ picked.var_5_other }}" {% if picked.var_5_other == None or picked.var_5_other == ""  %}style="display: none;"{% endif %} />
+            <input id="id_input_5_other" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_5_other }}" {% if picked.var_5_other == None or picked.var_5_other == ""  %}style="display: none;"{% endif %} />
             <!-- end OTHER -->
         </div>
     </div>
