@@ -721,10 +721,8 @@
                     "Economic",
                     "Social",
                     "Technological",
-                    "Environmental",
-                    "Other (Please Specify)"
+                    "Environmental"
                 ],
-                "opt1_other": "Other (Please Specify)",
                 "opt1_select": "Select",
                 "opt2": [
                     {
@@ -798,8 +796,8 @@
                 "max_error_message": "Please pick no more then 10 issues.",
                 "opt2_other_min_length": 2,
                 "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt2_other_max_length": 63,
-                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "opt2_other_max_length": 75,
+                "opt2_other_max_length_error_message": "Please enter at maximum 75 characters."
             },
             "type_id": 33
         }
