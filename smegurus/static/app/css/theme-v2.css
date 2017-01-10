@@ -334,4 +334,6 @@ body,
 }
 .jumbotron {
     border: 1px solid #1a1a1a !important;
+    border-radius: 4px;
+    background-color: #ffffff;
 }
