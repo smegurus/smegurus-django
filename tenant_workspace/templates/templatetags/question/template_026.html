@@ -107,10 +107,10 @@
     <!-- ROW 1 -->
     <div class="form-group" id="id_input_1_div">
     {% if question.content.stub_1 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-6 col-centered">
     {% else %}
-        <div class="col-sm-12">
+        <div class="col-sm-6 col-centered">
     {% endif %}
             <input id="id_input_1" type="text" class="form-control input-lg" placeholder="{% trans 'Please write here...' %}" value="{{ picked.var_1 }}" />
         </div>
@@ -122,12 +122,12 @@
     <!-- ROW 2 -->
     <div class="form-group" id="id_input_2_div">
     {% if question.content.stub_2 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_2 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_2 }}</label>
+        <div class="col-sm-6 col-centered">
     {% else %}
-        <div class="col-sm-12">
+        <div class="col-sm-6 col-centered">
     {% endif %}
-            <input id="id_input_2" type="text" class="form-control  input-lg" placeholder="{% trans 'Please write here...' %}" value="{{ picked.var_2 }}" />
+            <input id="id_input_2" type="text" class="form-control input-lg" placeholder="{% trans 'Please write here...' %}" value="{{ picked.var_2 }}" />
         </div>
     </div>
     <!-- end ROW 1 -->
@@ -137,12 +137,12 @@
     <!-- ROW 2 -->
     <div class="form-group" id="id_input_3_div">
     {% if question.content.stub_3 %}
-        <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
-        <div class="col-sm-10">
+        <label class="col-sm-3 control-label">{{ question.content.stub_3 }}</label>
+        <div class="col-sm-6 col-centered">
     {% else %}
-        <div class="col-sm-12">
+        <div class="col-sm-6 col-centered">
     {% endif %}
-            <input id="id_input_3" type="text" class="form-control  input-lg" placeholder="{% trans 'Please write here...' %}" value="{{ picked.var_3 }}" />
+            <input id="id_input_3" type="text" class="form-control input-lg" placeholder="{% trans 'Please write here...' %}" value="{{ picked.var_3 }}" />
         </div>
     </div>
     <!-- end ROW 1 -->
