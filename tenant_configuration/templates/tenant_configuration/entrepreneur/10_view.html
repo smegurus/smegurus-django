@@ -11,74 +11,78 @@
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group">
-            <label class="col-sm-2 control-label"><!-- BLANK --></label>
-            <div class="col-sm-10">
+            <div class="col-sm-5 col-centered">
 
                 <!-- 1 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_1" {% if request.tenant_me.annual_income_bracket == 1 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="1" />
-                            <p>{% trans '$0-$24,999' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans '$0-$24,999' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 1 OPTION -->
 
                 <!-- 2 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_2" {% if request.tenant_me.annual_income_bracket == 2 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="2" />
-                            <p>{% trans '$25,000-$49,999' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans '$25,000-$49,999' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 2 OPTION -->
 
                 <!-- 3 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_3" {% if request.tenant_me.annual_income_bracket == 3 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="3" />
-                            <p>{% trans '$50,000-$74,999' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans '$50,000-$74,999' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 3 OPTION -->
 
                 <!-- 4 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_4" {% if request.tenant_me.annual_income_bracket == 4 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="4" />
-                            <p>{% trans '$75,000-$99,999' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans '$75,000-$99,999' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 4 OPTION -->
 
                 <!-- 5 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_5" {% if request.tenant_me.annual_income_bracket == 5 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="5" />
-                            <p>{% trans '$100,000+' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans '$100,000+' %}
                         </div>
                     </label>
                 </div>
