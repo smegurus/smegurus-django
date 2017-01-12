@@ -11,88 +11,93 @@
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group">
-            <label class="col-sm-2 control-label"><!-- BLANK --></label>
-            <div class="col-sm-10">
+            <div class="col-sm-5 col-centered">
 
                 <!-- 1 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_1" {% if request.tenant_me.challenges_becoming_entrepreneur == 1 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="1" />
-                            <p>{% trans 'My health' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans 'My health' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 1 OPTION -->
 
                 <!-- 2 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_2" {% if request.tenant_me.challenges_becoming_entrepreneur == 2 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="2" />
-                            <p>{% trans 'Childcare' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans 'Childcare' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 2 OPTION -->
 
                 <!-- 3 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_3" {% if request.tenant_me.challenges_becoming_entrepreneur == 3 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="3" />
-                            <p>{% trans 'Transportation' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans 'Transportation' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 3 OPTION -->
 
                 <!-- 4 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_4" {% if request.tenant_me.challenges_becoming_entrepreneur == 4 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="4" />
-                            <p>{% trans 'Lack of Family support' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans 'Lack of Family support' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 4 OPTION -->
 
                 <!-- 5 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_5" {% if request.tenant_me.challenges_becoming_entrepreneur == 5 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="5" />
-                            <p>{% trans 'Language skills' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans 'Language skills' %}
                         </div>
                     </label>
                 </div>
                 <!-- end 5 OPTION -->
 
                 <!-- 6 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <div>
                         <input id="optionsRadios_5" {% if request.tenant_me.challenges_becoming_entrepreneur == 6 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="6" />
-                            <p>{% trans 'other' %}</p>
+                            <span class="fa fa-circle"></span>
+                            {% trans 'other' %}
                         </div>
                     </label>
                 </div>
@@ -106,9 +111,9 @@
 
         <!-- ROW 2 -->
         <div class="form-group" id="id_challenges_becoming_entrepreneur_other_div" {{% if request.tenant_me.challenges_becoming_entrepreneur == 6 %}checked="checked"{% endif %}>
-            <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-            <div class="col-sm-10">
-                <input id="id_challenges_becoming_entrepreneur_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.challenges_becoming_entrepreneur_other }}" maxlength="127" />
+            <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
+            <div class="col-sm-5">
+                <input id="id_challenges_becoming_entrepreneur_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.challenges_becoming_entrepreneur_other }}" maxlength="127" />
             </div>
         </div>
         <!-- end ROW 2 -->
