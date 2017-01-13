@@ -157,7 +157,7 @@
                 "stub_4": "Category 4",
                 "stub_5": "Category 5",
                 "stub_6": "Category 6",
-                "stub_7": "Please enter in your own words what your business category is",
+                "stub_7": "You have identified your NAICS code industry above. Sometimes these names get technical. What would you call your industry in plain language?<br>For example, <em>'Nursery and Tree Production'</em> could simply be called <em>'Greenhouse'</em>. Please enter a friendly name for your industry below.",
                 "stub_8": "Ex: Greenhouse"
             },
             "dependency": {},
