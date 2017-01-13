@@ -12,51 +12,55 @@
         <!-- ROW 1 -->
         <div class="form-group">
             
-            <div class="col-sm-12">
+            <div class="col-sm-5 col-centered">
 
                 <!-- MALE OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_male" {% if request.tenant_me.gender == constants.ME_MALE_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_MALE_GENDER_ID }}" />
+                            <span class="fa fa-circle"></span>
                         {% trans 'Male' %}
                     </label>
                 </div>
                 <!-- end MALE OPTION -->
 
                 <!-- FEMALE OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_female" {% if request.tenant_me.gender == constants.ME_FEMALE_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_FEMALE_GENDER_ID }}" />
+                            <span class="fa fa-circle"></span>
                         {% trans 'Female' %}
                     </label>
                 </div>
                 <!-- end FEMALE OPTION -->
 
                 <!-- ANOTHER OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_another" {% if request.tenant_me.gender == constants.ME_ANOTHER_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="{{ constants.ME_ANOTHER_GENDER_ID }}" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'Another' %}
                     </label>
                 </div>
                 <!-- end ANOTHER OPTION -->
 
                 <!-- ANOTHER OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_other" {% if request.tenant_me.gender == constants.ME_OTHER_GENDER_ID %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="Other" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'Other' %}
                     </label>
                 </div>
@@ -71,8 +75,8 @@
         <!-- ROW 2 -->
         <div class="form-group" id="id_gender_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
             <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
-            <div class="col-sm-8">
-                <input id="id_gender_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.gender_other }}" maxlength="127" />
+            <div class="col-sm-5">
+                <input id="id_gender_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.gender_other }}" maxlength="127" />
             </div>
         </div>
         <!-- end ROW 2 -->
