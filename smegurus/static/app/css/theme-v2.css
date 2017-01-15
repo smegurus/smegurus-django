@@ -337,3 +337,15 @@ body,
     border-radius: 4px;
     background-color: #ffffff;
 }
+.bg-red-v2 {
+    background-color: #e84e40;
+    color: #ffffff !important;
+}
+.bg-yellow-v2 {
+    background-color: #ffc107;
+    color: #ffffff !important;
+}
+.bg-green-v2 {
+    background-color: #8bc34a;
+    color: #ffffff !important;
+}
