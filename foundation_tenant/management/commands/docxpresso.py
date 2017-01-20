@@ -66,42 +66,42 @@ class Command(BaseCommand):
         api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
         api_key_hashed = sha1_crypt.hash(api_key)
 
-        # Generate our API call.
+        # Generate our API call - Genere using Python dictonary.
         data = {
-            "json": {
-                "security": {
-                    "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-                    "timestamp": timestamp,
-                    "APIKEY": api_key_hashed
-                },
-                "template": "templates/stage2.odt",
-                "output": {
-                    "format": "odt",
-                    "response": "doc",
-                    "name": "testdoc"
-                },
-                "replace": [
-                    {
-                        "vars": [
-                            {
-                                "var": "workspace_name",
-                                "value": "No-nonsense <span style='color:red'>Labs<\/span>"
-                            },
-                            {
-                                "var": "naics_industry_name",
-                                "value": "Information Technologies"
-                            },
-                            {
-                                "var": "naics_industry_friendly_name",
-                                "value": [
-                                    "Internet Apps"
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
+            "security": {
+                "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
+                "timestamp": timestamp,
+                "APIKEY": api_key_hashed
+            },
+            "template": "templates/stage2.odt",
+            "output": {
+                "format": "odt",
+                "response": "doc",
+                "name": "testdoc"
+            },
+            "replace": [
+                {
+                    "vars": [
+                        {
+                            "var": "workspace_name",
+                            "value": "No-nonsense <span style='color:red'>Labs<\/span>"
+                        },
+                        {
+                            "var": "naics_industry_name",
+                            "value": "Information Technologies"
+                        },
+                        {
+                            "var": "naics_industry_friendly_name",
+                            "value": [
+                                "Internet Apps"
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
+
+        # We will convert our Python dictonary into a JSON diconary.
         encoded_body = json.dumps(data).encode('utf-8')
 
         # Debugging purposes only.
@@ -131,8 +131,8 @@ class Command(BaseCommand):
         print(r.data)
         print(r.read())
         print("\n")
-        result = json.loads(r.data.decode('utf-8'))['json']
-        print(result)
+        # result = json.loads(r.data.decode('utf-8'))['json']
+        # print(result)
 
 
         # # Implement when ready...
