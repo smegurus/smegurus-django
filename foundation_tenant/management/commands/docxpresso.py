@@ -64,8 +64,6 @@ class Command(BaseCommand):
         # 3. Generate the APIKEY. In order to do so you have to use HMAC: https://docs.python.org/2/library/hashlib.html beware with sha1 as hashing algorithm and no MD5 ...the key is the private key and the message is built concatenating the public key, private key and timestamp (the private key is also available in config.ini).
         # - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        import hashlib
-
         encoded_body = json.dumps({
         "security": {
             "publicKey": "da0d6f3ce2c47993e0e1a67f38cdb6b4b1d1fcbdca0d6f3ce2c47993e0e1a97a",
