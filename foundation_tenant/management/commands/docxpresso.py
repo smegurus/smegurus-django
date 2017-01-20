@@ -60,7 +60,7 @@ class Command(BaseCommand):
 
         # Generate timestamp.
         current = datetime.now()
-        timestamp = str(current.strftime('%Y%m%d_%H%M%S'))
+        timestamp = str(current.strftime('%Y%m%d%H%M%S'))
 
         # Generate our API key.
         api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
