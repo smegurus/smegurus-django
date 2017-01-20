@@ -67,41 +67,45 @@ class Command(BaseCommand):
         api_key_hashed = sha1_crypt.hash(api_key)
 
         # Generate our API call.
-        encoded_body = json.dumps({
-        "security": {
-            "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-            "timestamp": timestamp,
-            "APIKEY": api_key_hashed
-        },
-        "template": "templates/stage2.odt",
-        "output": {
-            "format": "odt",
-            "response": "doc",
-            "name": "testdoc"
-        },
-        "replace": [
-            {
-                "vars": [
+        data = {
+            "json": {
+                "security": {
+                    "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
+                    "timestamp": timestamp,
+                    "APIKEY": api_key_hashed
+                },
+                "template": "templates/stage2.odt",
+                "output": {
+                    "format": "odt",
+                    "response": "doc",
+                    "name": "testdoc"
+                },
+                "replace": [
                     {
-                        "var": "workspace_name",
-                        "value": "No-nonsense <span style='color:red'>Labs<\/span>"
-                    },
-                    {
-                        "var": "naics_industry_name",
-                        "value": "Information Technologies"
-                    },
-                    {
-                        "var": "naics_industry_friendly_name",
-                        "value": [
-                                "Internet Apps"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        })
+                        "vars": [
+                            {
+                                "var": "workspace_name",
+                                "value": "No-nonsense <span style='color:red'>Labs<\/span>"
+                            },
+                            {
+                                "var": "naics_industry_name",
+                                "value": "Information Technologies"
+                            },
+                            {
+                                "var": "naics_industry_friendly_name",
+                                "value": [
+                                    "Internet Apps"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+        encoded_body = json.dumps(data).encode('utf-8')
 
         # Debugging purposes only.
+        print("PUBLIC URL:", settings.DOCXPRESSO_URL)
         print("PUBLIC KEY:", settings.DOCXPRESSO_PUBLIC_KEY)
         print("PRIVATE KEY:", settings.DOCXPRESSO_PRIVATE_KEY)
         print("TIMESTAMP:", timestamp)
@@ -113,9 +117,13 @@ class Command(BaseCommand):
         r = http.request(
             'POST',
             settings.DOCXPRESSO_URL,
-            headers={'Content-Type': 'application/json'},
-            body=encoded_body
+            body=encoded_body,
+            headers={'Content-Type': 'application/json'}
         )
+
+        # var2 = json.loads(r.data.decode('utf-8'))['json']
+        # print(var2)
+        # print('\n\n')
 
         # Debugging purposes only.
         print("\n")
@@ -123,6 +131,8 @@ class Command(BaseCommand):
         print(r.data)
         print(r.read())
         print("\n")
+        result = json.loads(r.data.decode('utf-8'))['json']
+        print(result)
 
 
         # # Implement when ready...
