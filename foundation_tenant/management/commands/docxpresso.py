@@ -16,11 +16,6 @@ from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
 
-DOCXPRESSO_URL = "http://docxpresso.smegurus.com/tests/generateDoc.php"
-DOCXPRESSO_PUBLIC_KEY = "" #TODO: Implement.
-DOCXPRESSO_PRIVATE_KEY = "" #TODO: Implement.
-
-
 class Command(BaseCommand):
     help = _('Docxpresso processing command for the particular document in a tenant.')
 
@@ -58,17 +53,25 @@ class Command(BaseCommand):
         Function will load up all the answers for the particular document
         and submit it to Docxpresso.
         """
-        # - - - - - - - - - SECURITY INFO - - - - - - - - -
-        # 1. You have to provide the user public key that is stored in the congig.ini file of the Docxpresso API Core (/opt/docxpresso/config.ini in our installation) .
-        # 2. Generate the current timestamp (requests expire in 15 seconds).
-        # 3. Generate the APIKEY. In order to do so you have to use HMAC: https://docs.python.org/2/library/hashlib.html beware with sha1 as hashing algorithm and no MD5 ...the key is the private key and the message is built concatenating the public key, private key and timestamp (the private key is also available in config.ini).
-        # - - - - - - - - - - - - - - - - - - - - - - - - -
+        # Library used for the SHA1 hash algorithm.
+        from passlib.hash import sha1_crypt # (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
+        from django.utils import timezone  # Timezone.
+        from datetime import datetime, timedelta  # Datetime.
 
+        # Generate timestamp.
+        current = datetime.now()
+        timestamp = str(current.strftime('%Y%m%d_%H%M%S'))
+
+        # Generate our API key.
+        api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
+        api_key_hashed = sha1_crypt.hash(api_key)
+
+        # Generate our API call.
         encoded_body = json.dumps({
         "security": {
-            "publicKey": "da0d6f3ce2c47993e0e1a67f38cdb6b4b1d1fcbdca0d6f3ce2c47993e0e1a97a",
-            "timestamp": 1483634192,
-            "APIKEY": "df422fad370f8028510377d019f8d1a5e4c7e840"
+            "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
+            "timestamp": timestamp,
+            "APIKEY": api_key_hashed
         },
         "template": "templates/stage2.odt",
         "output": {
@@ -98,14 +101,23 @@ class Command(BaseCommand):
             ]
         })
 
-        http = urllib3.PoolManager()
+        # Debugging purposes only.
+        print("PUBLIC KEY:", settings.DOCXPRESSO_PUBLIC_KEY)
+        print("PRIVATE KEY:", settings.DOCXPRESSO_PRIVATE_KEY)
+        print("TIMESTAMP:", timestamp)
+        print("API KEY:", api_key_hashed)
+        print("API CALL:", encoded_body)
 
+        # Send AJAX Post to Docxpresso server.
+        http = urllib3.PoolManager()
         r = http.request(
             'POST',
-            DOCXPRESSO_URL,
+            settings.DOCXPRESSO_URL,
             headers={'Content-Type': 'application/json'},
             body=encoded_body
         )
+
+        # Debugging purposes only.
         print("\n")
         print(r.status)
         print(r.data)

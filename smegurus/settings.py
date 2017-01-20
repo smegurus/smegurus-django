@@ -356,3 +356,11 @@ THUMBNAIL_FORCE_OVERWRITE = True
 # https://github.com/ottoyiu/django-cors-headers
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+# Docxpresso
+#
+
+DOCXPRESSO_URL=env_var("DOCXPRESSO_URL")
+DOCXPRESSO_PUBLIC_KEY=env_var("DOCXPRESSO_PUBLIC_KEY")
+DOCXPRESSO_PRIVATE_KEY=env_var("DOCXPRESSO_PRIVATE_KEY")
