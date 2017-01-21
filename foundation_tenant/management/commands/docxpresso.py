@@ -53,23 +53,25 @@ class Command(BaseCommand):
         Function will load up all the answers for the particular document
         and submit it to Docxpresso.
         """
+
+
         # Library used for the SHA1 hash algorithm.
-        from passlib.hash import sha1_crypt # (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
+        from passlib.hash import sha1_crypt
         from django.utils import timezone  # Timezone.
         from datetime import datetime, timedelta  # Datetime.
 
         # Generate timestamp.
+        stem = "doc_" + str(document.id)
+        suffix = "odt"
+        filename = stem + '.' + suffix
         current = datetime.now()
         timestamp = str(current.strftime('%Y%m%d%H%M%S'))
 
         # Generate our API key.
         api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
-        api_key_hashed = sha1_crypt.hash(api_key)
+        api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
 
         # Generate our API call - Genere using Python dictonary.
-        data = {
-            "dataJSON": 3
-        }
         data = {
             "security": {
                 "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
@@ -78,27 +80,27 @@ class Command(BaseCommand):
             },
             "template": "templates/stage2.odt",
             "output": {
-                "format": "odt",
+                "format": suffix,
                 "response": "doc",
-                "name": "testdoc"
+                "name": stem
             },
             "replace": [
                 {
                     "vars": [
                         {
-                            "var": "workspace_name",
-                            "value": "No-nonsense <span style='color:red'>Labs<\/span>"
+                            "var": "business_idea",
+                            "value": "Mika Software"
                         },
                         {
                             "var": "naics_industry_name",
                             "value": "Information Technologies"
-                        },
-                        {
-                            "var": "naics_industry_friendly_name",
-                            "value": [
-                                "Internet Apps"
-                            ]
                         }
+                        # {
+                        #     "var": "naics_industry_friendly_name",
+                        #     "value": [
+                        #         "Internet Apps"
+                        #     ]
+                        # }
                     ]
                 }
             ]
@@ -108,12 +110,12 @@ class Command(BaseCommand):
         encoded_body = json.dumps(data).encode('utf-8')
 
         # Debugging purposes only.
-        print("PUBLIC URL:", settings.DOCXPRESSO_URL)
-        print("PUBLIC KEY:", settings.DOCXPRESSO_PUBLIC_KEY)
-        print("PRIVATE KEY:", settings.DOCXPRESSO_PRIVATE_KEY)
-        print("TIMESTAMP:", timestamp)
-        print("API KEY:", api_key_hashed)
-        print("API CALL:", encoded_body)
+        # print("PUBLIC URL:", settings.DOCXPRESSO_URL)
+        # print("PUBLIC KEY:", settings.DOCXPRESSO_PUBLIC_KEY)
+        # print("PRIVATE KEY:", settings.DOCXPRESSO_PRIVATE_KEY)
+        # print("TIMESTAMP:", timestamp)
+        # print("API KEY:", api_key_hashed)
+        # print("API CALL:", encoded_body)
 
         # Send AJAX Post to Docxpresso server.
         http = urllib3.PoolManager()
@@ -122,31 +124,7 @@ class Command(BaseCommand):
             settings.DOCXPRESSO_URL,
             # body=encoded_body,
             fields={
-                "dataJSON": json.dumps({
-                    "security": {
-                        "publicKey": "da0d6f3ce2c47993e0e1a67f38cdb6b4b1d1fcbdca0d6f3ce2c47993e0e1a97a",
-                        "timestamp": 1483634192,
-                        "APIKEY": "df422fad370f8028510377d019f8d1a5e4c7e840"
-                    },
-                    "template": "templates/stage2.odt",
-                    "output": {
-                        "format": "odt",
-                        "response": "doc",
-                        "name": "bart"
-                    },
-                    "replace": [{
-                            "vars": [{
-                                    "var": "workspace_name",
-                                    "value": "No-nonsense <span style='color:red'>Labs</span>"
-                                }, {
-                                    "var": "naics_industry_name",
-                                    "value": "Information Technologies"
-                                }, {
-                                    "var": "naics_industry_friendly_name",
-                                    "value": ["Internet Apps"]
-                                }]
-                        }]
-                }).encode('utf-8')
+                "dataJSON": encoded_body
             }
             # headers={'Content-Type': 'application/json'}
         )
@@ -156,16 +134,17 @@ class Command(BaseCommand):
         # print('\n\n')
 
         # Debugging purposes only.
-        print("\n")
+        # print("\n")
         # print(r.status)
-        print(r.data)
+        # print(r.data)
         # print(r.read())
-        print("\n")
+        # print("\n")
         # result = json.loads(r.data.decode('utf-8'))['json']
         # print(result)
 
-        #TODO: SAVE AS ODT FILE ON LOCALHOST.
-
+        outFile = open('static/'+filename, 'wb')
+        outFile.write(r.data)
+        outFile.close()
 
         # # Implement when ready...
         # answers = QuestionAnswer.objects.filter(document=document)
