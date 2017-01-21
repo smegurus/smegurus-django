@@ -88,19 +88,38 @@ class Command(BaseCommand):
                 {
                     "vars": [
                         {
+                            "var": "workspace_name",
+                            "value": "Mika Software"
+
+                        },
+                        {
                             "var": "business_idea",
                             "value": "Mika Software"
                         },
                         {
                             "var": "naics_industry_name",
                             "value": "Information Technologies"
+                        },
+                        {
+                            "var": "naics_industry_friendly_name",
+                            "value": "Internet Apps"
+                        },
+                        {
+                            "var": "years_of_exp",
+                            "value": 1
+                        },
+                        {
+                            "var": "research_source",
+                            "value": ["Test 1", "Test 2"]
+                        },
+                        {
+                            "var": "similar_business",
+                            "value": ["Test 1", "Test 2", "Test 3"]
+                        },
+                        {
+                            "var": "industry_contact",
+                            "value": ["Test 1", "Test 2", "Test 3", "Test 4"]
                         }
-                        # {
-                        #     "var": "naics_industry_friendly_name",
-                        #     "value": [
-                        #         "Internet Apps"
-                        #     ]
-                        # }
                     ]
                 }
             ]
