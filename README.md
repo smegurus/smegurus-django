@@ -107,7 +107,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 9. Copy our sample .env file to be our new file and open it up:
 
   ```bash
-  cp ~/smegurus-django/smegurus/dotenv_sample ~/smegurus-django/smegurus/.env
+  touch ~/smegurus-django/smegurus/.env
   vi ~/smegurus-django/smegurus/.env
   ```
 
@@ -118,7 +118,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   ```bash
   python manage.py makemigrations;
   python manage.py migrate_schemas
-  python manage.py setup_tenants
+  python manage.py populate_public
   ```
 
 12. Setup your **root** user.
@@ -127,13 +127,70 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   python manage.py createsuperuser;
   ```
 
+#### Celery
+##### MacOS
+
+1. Install `redis`.
+  ```bash
+  brew install redis
+  ```
+
+2. Afterwords lets get it started.
+  ```
+  brew services start redis
+  ```
+
+3. Confirm it is working by running the following command waiting to get a ``PONG`` response:
+  ```
+  redis-cli ping
+  ```
+
+4. Congratulations you are now setup.
+
+5. Addendum - Running this command will force ``redis`` to load up everytime your computer starts up.
+  ```
+  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+  ```
+
+6. Addendum - Running this command will stop ``redis`` from loading up every time your computer starts up.
+  ```
+  launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+  ```
+
+#### Setup Domain on OS X
+1. Go to ``hosts`` file
+  ```bash
+  sudo vi /etc/hosts
+  ```
+
+2. Add the following:
+  ```bash
+  127.0.0.1  smegurus.com
+  127.0.0.1  www.smegurus.com
+  ```
+
+3. Restart the DNS:
+  ```bash
+  dscacheutil -flushcache
+  ```
+
+
 ### Usage
 #### Running Development
-If you are developing locally from your machine, use this command.
+Before you run the application, you need to load up celery in a separate console terminal:
+  ```bash
+  celery -A smegurus worker -l info;
+  ````
 
-```bash
-python manage.py runserver
-```
+
+If you are developing locally from your machine, use this command.
+  ```bash
+  sudo python manage.py runserver smegurus.com:80;
+  ```
+
+Notes:
+- When it asks for your password, use your MacOS password.
+
 
 #### Running Production
 If you plan on running a more rugged server that utilizes your installed instance of ``nginx`` then run this command.
@@ -167,35 +224,3 @@ python manage.py test api.tests.test_authentication
 #### Viewing Web-Application
 
 In your browser, load up: ```http://smegurus.com```.
-
-#### Setup Domain on OS X
-1. Go to ``hosts`` file
-
-  ```bash
-  sudo vi /etc/hosts
-  ```
-
-2. Add the following:
-
-  ```bash
-  127.0.0.1  smegurus.com
-  127.0.0.1  www.smegurus.com
-  ```
-
-3. Restart the DNS:
-
-  ```bash
-  dscacheutil -flushcache
-  ```
-
-4. In one terminal run:
-
-  ```bash
-  celery -A smegurus worker -l info
-  ```
-
-5. In a seperate terminal, to run the server:
-
-  ```bash
-  sudo python manage.py runserver smegurus.com:80
-  ```
