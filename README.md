@@ -13,7 +13,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 1. Clone the projects.
 
   ```bash
-  git clone git@gitlab.cloudmasterstudios.com:smegurus/django-bizmula.git
+  git clone git@gitlab.cloudmasterstudios.com:smegurus/smegurus-django.git
   ```
 
 2. Init the virtual environment.
@@ -78,29 +78,37 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   **OS X**
 
   ```sql
-  drop database bizmula_db;
-  create database bizmula_db;
-  CREATE USER django WITH PASSWORD NULL;
-  GRANT ALL PRIVILEGES ON DATABASE bizmula_db to django;
+  drop database smegurus_db;
+  create database smegurus_db;
+  \c smegurus_db;
+  CREATE USER django WITH PASSWORD '123password';
+  GRANT ALL PRIVILEGES ON DATABASE smegurus_db to django;
   ALTER USER django CREATEDB;
+  ALTER ROLE django SUPERUSER;
+  CREATE EXTENSION postgis;
   ```
 
   **Linux / FreeBSD**
 
   ```sql
-  /usr/local/bin/dropdb bizmula_db;
-  /usr/local/bin/createdb bizmula_db;
-  /usr/local/bin/psql bizmula_db;
-  CREATE USER django WITH PASSWORD NULL;
-  GRANT ALL PRIVILEGES ON DATABASE bizmula_db to django;
+  sudo -i -u postgres
+  psql
+
+  DROP DATABASE smegurus_db;
+  CREATE DATABASE smegurus_db;
+  \c smegurus_db;
+  CREATE USER django WITH PASSWORD '123password';
+  GRANT ALL PRIVILEGES ON DATABASE smegurus_db to django;
   ALTER USER django CREATEDB;
+  -- ALTER ROLE django SUPERUSER;
+  CREATE EXTENSION postgis;
   ```
 
 9. Copy our sample .env file to be our new file and open it up:
 
   ```bash
-  cp ~/django-bizmula/bizmula/dotenv_sample ~/django-bizmula/bizmula/.env
-  vi ~/django-bizmula/bizmula/.env
+  cp ~/smegurus-django/smegurus/dotenv_sample ~/smegurus-django/smegurus/.env
+  vi ~/smegurus-django/smegurus/.env
   ```
 
 10. While inside the ``.env`` file, please fill it to match your configuration.
@@ -131,7 +139,7 @@ python manage.py runserver
 If you plan on running a more rugged server that utilizes your installed instance of ``nginx`` then run this command.
 
 ```bash
-gunicorn -c gunicorn_config.py bizmula.wsgi
+gunicorn -c gunicorn_config.py smegurus.wsgi
 ```
 
 #### Running Unit Tests
@@ -158,7 +166,7 @@ python manage.py test api.tests.test_authentication
 
 #### Viewing Web-Application
 
-In your browser, load up: ```http://bizmula.com```.
+In your browser, load up: ```http://smegurus.com```.
 
 #### Setup Domain on OS X
 1. Go to ``hosts`` file
@@ -170,8 +178,8 @@ In your browser, load up: ```http://bizmula.com```.
 2. Add the following:
 
   ```bash
-  127.0.0.1  bizmula.com
-  127.0.0.1  www.bizmula.com
+  127.0.0.1  smegurus.com
+  127.0.0.1  www.smegurus.com
   ```
 
 3. Restart the DNS:
@@ -180,8 +188,14 @@ In your browser, load up: ```http://bizmula.com```.
   dscacheutil -flushcache
   ```
 
-4. To run the server:
+4. In one terminal run:
 
   ```bash
-  sudo python manage.py runserver bizmula.com:80
+  celery -A smegurus worker -l info
+  ```
+
+5. In a seperate terminal, to run the server:
+
+  ```bash
+  sudo python manage.py runserver smegurus.com:80
   ```
