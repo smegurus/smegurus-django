@@ -68,6 +68,9 @@ class Command(BaseCommand):
 
         # Generate our API call - Genere using Python dictonary.
         data = {
+            "dataJSON": 3
+        }
+        data = {
             "security": {
                 "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
                 "timestamp": timestamp,
@@ -117,8 +120,35 @@ class Command(BaseCommand):
         r = http.request(
             'POST',
             settings.DOCXPRESSO_URL,
-            body=encoded_body,
-            headers={'Content-Type': 'application/json'}
+            # body=encoded_body,
+            fields={
+                "dataJSON": json.dumps({
+                    "security": {
+                        "publicKey": "da0d6f3ce2c47993e0e1a67f38cdb6b4b1d1fcbdca0d6f3ce2c47993e0e1a97a",
+                        "timestamp": 1483634192,
+                        "APIKEY": "df422fad370f8028510377d019f8d1a5e4c7e840"
+                    },
+                    "template": "templates/stage2.odt",
+                    "output": {
+                        "format": "odt",
+                        "response": "doc",
+                        "name": "bart"
+                    },
+                    "replace": [{
+                            "vars": [{
+                                    "var": "workspace_name",
+                                    "value": "No-nonsense <span style='color:red'>Labs</span>"
+                                }, {
+                                    "var": "naics_industry_name",
+                                    "value": "Information Technologies"
+                                }, {
+                                    "var": "naics_industry_friendly_name",
+                                    "value": ["Internet Apps"]
+                                }]
+                        }]
+                }).encode('utf-8')
+            }
+            # headers={'Content-Type': 'application/json'}
         )
 
         # var2 = json.loads(r.data.decode('utf-8'))['json']
@@ -127,12 +157,14 @@ class Command(BaseCommand):
 
         # Debugging purposes only.
         print("\n")
-        print(r.status)
+        # print(r.status)
         print(r.data)
-        print(r.read())
+        # print(r.read())
         print("\n")
         # result = json.loads(r.data.decode('utf-8'))['json']
         # print(result)
+
+        #TODO: SAVE AS ODT FILE ON LOCALHOST.
 
 
         # # Implement when ready...
