@@ -10,6 +10,7 @@ from tenant_reception.decorators import tenant_reception_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.base.notification import Notification
 from foundation_tenant.models.base.task import Task
+from foundation_tenant.models.base.me import TenantMe
 from smegurus import constants
 
 
@@ -25,55 +26,51 @@ def dashboard_page(request):
     except Exception as e:
         notification = None
 
-    pending_tasks = Task.objects.filter(
+    tasks = Task.objects.filter(
         status=constants.OPEN_TASK_STATUS,
         opening__id=request.tenant_me.id
     )
 
     # Render the User.
     if request.tenant_me.is_org_admin():
-        return admin_dashboard_page(request, notification, pending_tasks)
+        return admin_dashboard_page(request, notification)
 
     elif request.tenant_me.is_manager():
-        return org_manager_dashboard_page(request, notification, pending_tasks)
+        return org_manager_dashboard_page(request, notification)
 
     elif request.tenant_me.is_advisor():
-        return advisor_dashboard_page(request, notification, pending_tasks)
+        return advisor_dashboard_page(request, notification)
 
     if request.tenant_me.is_entrepreneur():
-        return entrepreneur_dashboard_page(request, notification, pending_tasks)
+        return entrepreneur_dashboard_page(request, notification)
 
     else:
         return HttpResponseBadRequest(_('You do not belong to any group!'))
 
 
-def admin_dashboard_page(request, notification, pending_tasks):
+def admin_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
-        'notification': notification,
-        'pending_tasks': pending_tasks
+        'notification': notification
     })
 
 
-def org_manager_dashboard_page(request, notification, pending_tasks):
+def org_manager_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
-        'notification': notification,
-        'pending_tasks': pending_tasks
+        'notification': notification
     })
 
 
-def advisor_dashboard_page(request, notification, pending_tasks):
+def advisor_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
-        'notification': notification,
-        'pending_tasks': pending_tasks
+        'notification': notification
     })
 
 
-def entrepreneur_dashboard_page(request, notification, pending_tasks):
+def entrepreneur_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
-        'notification': notification,
-        'pending_tasks': pending_tasks
+        'notification': notification
     })

@@ -1,0 +1,20 @@
+{% load i18n %}
+{% if notification %}
+{% if me not in notification.closures.all %}
+<div class="row">
+    <div class="col-lg-12">
+<!-- START Notification text -->
+<div role="alert" class="alert alert-{{ notification.type_of }} alert-dismissible fade in">
+    {% if notification.icon %}
+    <em class="{{ notification.icon }} fa"></em>
+    {% endif %}
+    <button type="button" data-dismiss="alert" aria-label="Close" class="close" style="opacity: 0.8" onclick="ajax_close_notification({{ notification.id }}, {{ me.id }});">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{ notification.name|escape|safe }}: </strong>{{ notification.description|escape|safe|truncatechars:105 }}
+</div>
+<!-- END Notification text -->
+</div>
+</div>
+{% endif %}
+{% endif %}

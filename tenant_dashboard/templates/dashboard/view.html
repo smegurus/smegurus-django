@@ -1,91 +1,31 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress %}
+{% load staticfiles i18n compress foundation_tenant_tags tenant_dashboard_tags %}
 {% block content %}
 <!-- PAGE HTML -->
 <div class="content-wrapper">
-<!-- START widgets box-->
-<div class="row">
-    <div class="col-lg-12">
-        {% if notification %}
-        {% if request.tenant_me not in notification.closures.all %}
-        <!-- START Notification text -->
-        <div role="alert" class="alert alert-{{ notification.type_of }} alert-dismissible fade in">
-            {% if notification.icon %}
-            <em class="{{ notification.icon }} fa"></em>
-            {% endif %}
-            <button type="button" data-dismiss="alert" aria-label="Close" class="close" style="opacity: 0.8" onclick="ajax_close_notification({{ notification.id }}, {{ request.tenant_me.id }});">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>{{ notification.name|escape|safe }}: </strong>{{ notification.description|escape|safe|truncatechars:105 }}
-        </div>
-        <!-- END Notification text -->
-        {% endif %}
-        {% endif %}
-    </div>
-</div>
-<!-- START widgets box-->
+<!-- NOTIFICATION widgets box-->
+{% render_notification_widget request.tenant_me notification %}
+<!-- end NOTIFICATION widgets box-->
 <div class="row">
     <div class="col-lg-3 col-sm-6">
-        <!-- START widget-->
-        <div class="panel widget bg-red-v2">
-            <div class="row row-table">
-                <div class="col-xs-4 text-center bg-red-v2 pv-lg">
-                    <em class="icon-clock fa-3x"></em>
-                </div>
-                <div class="col-xs-8 pv-lg">
-                    <div class="h2 mt0">{{ pending_tasks.count }}</div>
-                    <div class="text-uppercase">Past Due</div>
-                </div>
-            </div>
-        </div>
+        <!-- WIDGET-->
+        {% render_pending_tasks_widget request.tenant_me %}
+        <!-- end WIDGET -->
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <!-- WIDGET-->
+        {% render_unread_messages_widget request.tenant_me %}
+        <!-- end WIDGET -->
     </div>
     <div class="col-lg-3 col-sm-6">
-        <!-- START widget-->
-        <div class="panel widget bg-yellow-v2">
-            <div class="row row-table">
-                <div class="col-xs-4 text-center bg-yellow-v2 pv-lg">
-                    <em class="icon-check fa-3x"></em>
-                </div>
-                <div class="col-xs-8 pv-lg">
-                    <div class="h2 mt0">700</div>
-                    <div class="text-uppercase">To Do's</div>
-                </div>
-            </div>
-        </div>
+        <!-- WIDGET-->
+        {% render_entrepreneurs_aggregate_widget request.tenant_me %}
+        <!-- end WIDGET -->
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12">
-        <!-- START widget-->
-        <div class="panel widget bg-green-v2">
-            <div class="row row-table">
-                <div class="col-xs-4 text-center bg-green-v2 pv-lg">
-                    <em class="icon-bubbles fa-3x"></em>
-                </div>
-                <div class="col-xs-8 pv-lg">
-                    <div class="h2 mt0">500</div>
-                    <div class="text-uppercase">Messages</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <!-- START date widget-->
-        <div class="panel widget">
-            <div class="row row-table">
-                <div class="col-xs-4 text-center bg-green-v2 pv-lg">
-                    <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
-                    <div data-now="" data-format="MMMM" class="text-sm"></div>
-                    <br>
-                    <div data-now="" data-format="D" class="h2 mt0"></div>
-                </div>
-                <div class="col-xs-8 pv-lg">
-                    <div data-now="" data-format="dddd" class="text-uppercase"></div>
-                    <br>
-                    <div data-now="" data-format="h:mm" class="h2 mt0"></div>
-                    <div data-now="" data-format="a" class="text-muted text-sm"></div>
-                </div>
-            </div>
-        </div>
-        <!-- END date widget    -->
+        <!-- WIDGET-->
+        {% render_custom_datetime_widget request.tenant.time_zone %}
+        <!-- end WIDGET -->
     </div>
 </div>
 <!-- END widgets box-->
