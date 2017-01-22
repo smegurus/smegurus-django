@@ -1,12 +1,266 @@
 {% load i18n %}
-<div class="panel widget bg-green-v2">
-    <div class="row row-table">
-        <div class="col-xs-4 text-center bg-green-v2 pv-lg">
-            <em class="icon-bubbles fa-3x"></em>
-        </div>
-        <div class="col-xs-8 pv-lg">
-            <div class="h2 mt0">{{ unread_messages_count }}</div>
-            <div class="text-uppercase">{% trans 'Messages' %}</div>
-        </div>
+<div class="panel panel-default">
+<div class="panel-heading" style="padding: 12px 15px;">
+    <div class="panel-title">Messages</div>
+</div>
+    <div data-height="478" data-scrollable="" class="panel-body">
+        <!-- p.lead.text-centerNo mails here-->
+        <table class="table table-hover mb-mails">
+        <tbody>
+        <!-- ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star-o text-muted"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/01.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">10 minutes ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Admin web application</div>
+                        <div class="mb-mail-from">Evelyn Holmes</div>
+                    </div>
+                    <div class="mb-mail-preview">Fusce gravida, diam ac adipiscing pretium, sem nibh bibendum diam, non consequat quam metus non nunc</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star-o text-muted"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/02.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">1 day ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Admin theme based on Bootstrap and AngularJS</div>
+                        <div class="mb-mail-from">Allison Grant</div>
+                    </div>
+                    <div class="mb-mail-preview">Nunc eget lacinia felis. <b>Pellentesque sollicitudin sollicitudin erat, in imperdiet tortor fringil</b>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star-o text-muted"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/03.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">2 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Nested route mailbox application</div>
+                        <div class="mb-mail-from">Daryl Carlson</div>
+                    </div>
+                    <div class="mb-mail-preview">Nulla
+                        <strong>facilisi</strong>. Sed sit amet sem vel purus pulvinar venenatis. Class aptent taciti</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star-o text-muted"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/04.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">3 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Angular with lazy load components</div>
+                        <div class="mb-mail-from">George Clark</div>
+                    </div>
+                    <div class="mb-mail-preview">Integer sit amet vulputate mauris. Proin purus nisl, tempor ut tempor at, ornare vel mauris. Ut ac l</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star text-warning"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/05.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">4 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Translation ready and RTL support!</div>
+                        <div class="mb-mail-from">Bonnie Bowman</div>
+                    </div>
+                    <div class="mb-mail-preview">Integer sit amet vulputate mauris. Proin purus nisl, tempor ut tempor at, ornare vel mauris. Ut ac l</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star-o text-muted"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/06.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">5 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Don&apos;t forget to check latest updates!</div>
+                        <div class="mb-mail-from">Warren Watts</div>
+                    </div>
+                    <div class="mb-mail-preview">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In at conseq</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star text-warning"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/07.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">6 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">We have to meet someday</div>
+                        <div class="mb-mail-from">Elijah Ward</div>
+                    </div>
+                    <div class="mb-mail-preview">Nunc hendrerit, neque ullamcorper eleifend ornare, arcu est bibendum ipsum, id malesuada sem justo v</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star text-warning"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/08.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">7 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">New issue found</div>
+                        <div class="mb-mail-from">Colleen Payne</div>
+                    </div>
+                    <div class="mb-mail-preview">Integer sit amet vulputate mauris. Proin purus nisl, tempor ut tempor at, ornare vel mauris. Ut ac l</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star-o text-muted"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/09.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">8 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Issue #5478 awaiting reply</div>
+                        <div class="mb-mail-from">Rose Fox</div>
+                    </div>
+                    <div class="mb-mail-preview">Sed eu felis nulla. Nunc malesuada sapien at risus eleifend ut lacinia sem pretium.</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        <tr>
+            <td>
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <span class="fa fa-check"></span>
+                    </label>
+                </div>
+            </td>
+            <td class="text-center">
+                <em class="fa fa-lg fa-star text-warning"></em>
+            </td>
+            <td>
+                <img alt="Mail Avatar" src="img/user/10.jpg" class="mb-mail-avatar pull-left">
+                <div class="mb-mail-date pull-right">9 days ago</div>
+                <div class="mb-mail-meta">
+                    <div class="pull-left">
+                        <div class="mb-mail-subject">Check Angle for your next startup project</div>
+                        <div class="mb-mail-from">Jenny Knight</div>
+                    </div>
+                    <div class="mb-mail-preview">Morbi varius sem quis purus suscipit tempus. Integer fermentum accumsan metus, id sagittis ipsum mol</div>
+                </div>
+            </td>
+        </tr>
+        <!-- end ngRepeat: mail in mails | filter:folder-->
+        </tbody>
+        </table>
     </div>
 </div>

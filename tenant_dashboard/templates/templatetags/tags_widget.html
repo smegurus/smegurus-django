@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="panel panel-default">
+    <div class="panel-heading" style="padding: 12px 15px;">
+        <div class="panel-title">Task List</div>
+    </div>
+    <!-- START table-responsive-->
+    <div data-height="278" data-scrollable="" class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>{% trans 'Tag' %}</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for tag in tags.all %}
+            <tr>
+                <td>
+                    <div class="label label-green-v2">{{ tag.name }}</div>
+                </td>
+                <td>Bootstrap 5.x</td>
+                <td>
+                    12/07/2016
+                </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- END table-responsive-->
+</div>

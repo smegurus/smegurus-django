@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.task import Task
+from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
@@ -64,8 +65,8 @@ def render_pending_tasks_widget(me):
     }
 
 
-@register.inclusion_tag('templatetags/unread_messages_widget.html')
-def render_unread_messages_widget(me):
+@register.inclusion_tag('templatetags/unread_messages_count_widget.html')
+def render_unread_messages_count_widget(me):
     unread_messages_count = Message.objects.filter(
         recipient=me,
         participants=me,
@@ -110,4 +111,39 @@ def render_entrepreneurs_aggregate_widget(me):
 def render_custom_datetime_widget(time_zone):
     return {
         'time_zone': 'time_zone'
+    }
+
+
+@register.inclusion_tag('templatetags/tags_widget.html')
+def render_tags_widget(me):
+    tags = Tag.objects.all()
+    #TODO: Implement.
+    return {
+        'me': 0,
+        'tags': tags
+    }
+
+
+@register.inclusion_tag('templatetags/progress_widget.html')
+def render_progress_widget(me):
+    #TODO: Implement.
+    return {
+        'me': 0,
+        'percent': 50
+    }
+
+
+@register.inclusion_tag('templatetags/unread_messages_widget.html')
+def render_unread_messages_widget(me):
+    #TODO: Implement.
+    return {
+        'me': me
+    }
+
+
+@register.inclusion_tag('templatetags/custom_calendar_widget.html')
+def render_custom_calendar_widget(me):
+    #TODO: Implement.
+    return {
+        'me': me
     }
