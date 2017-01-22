@@ -60,6 +60,7 @@ from api.views.foundation_tenant_base.inforesourcecategoryviewset import InfoRes
 from api.views.foundation_tenant_base.inforesourceviewset import InfoResourceViewSet
 from api.views.foundation_tenant_base.functionviewset import FinalizeTenantSetupFunctionViewSet
 from api.views.foundation_tenant_base.meviewset import TenantMeViewSet
+from api.views.foundation_tenant_base.notificationviewset import NotificationViewSet
 
 # TENANT - BIZMULA
 from api.views.foundation_tenant_bizmula.workspaceviewset import WorkspaceViewSet
@@ -116,6 +117,7 @@ router.register(r'tenantcommunitypost', CommunityPostViewSet)
 router.register(r'tenantcommunityadvertisement', CommunityAdvertisementViewSet)
 router.register(r'tenantmessage', MessageViewSet)
 router.register(r'tenantnote', NoteViewSet)
+router.register(r'tenantnotification', NotificationViewSet)
 router.register(r'tenanttask', TaskViewSet)
 router.register(r'tenantinforesourcecategory', InfoResourceCategoryViewSet)
 router.register(r'tenantinforesource', InfoResourceViewSet)

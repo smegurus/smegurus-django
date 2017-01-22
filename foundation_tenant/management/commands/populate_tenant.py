@@ -53,7 +53,8 @@ class Command(BaseCommand):
             'question_03.json',
             'question_04.json',
             'question_05.json',
-            'question_06.json'
+            'question_06.json',
+            'notification.json'
         ]
 
         # Iterate through all the filenames and load them into database.

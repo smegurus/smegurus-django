@@ -496,6 +496,7 @@
                     {% include "api/tenant/base/tenant_task.html" %}
                     {% include "api/tenant/base/tenant_inforesource.html" %}
                     {% include "api/tenant/base/tenant_me.html" %}
+                    {% include "api/tenant/base/tenant_notification.html" %}
                     {% include "api/tenant/base/tenant_function.html" %}
                     {% include "api/tenant/bizmula/tenant_workspace.html" %}
                     {% include "api/tenant/bizmula/tenant_module.html" %}
@@ -536,6 +537,29 @@
                                 }
                             );  // end Set Me
                         }
+
+                        function ajax_close_notification(notification_id, me_id) {
+                            get_tenant_notification(  // start Get Me
+                                notification_id,
+                                function(me) {
+                                    // Add the ID of the current authenticated user to the list
+                                    // of people who have seen this notification.
+                                    me['closures'].push(me_id);
+                                    set_tenant_notification(  // start Set Me
+                                        me,
+                                        function(json_result) {
+                                            console.log(json_result);
+                                        },
+                                        function(json_error_result) {
+                                            console.log(json_error_result);
+                                        }
+                                    ); // end Get Me
+                                },
+                                function(error_result) {
+                                    console.log(error_result);
+                                }
+                            );  // end Set Me
+                        }
                     </script>
                 {% endif %}
                 {% endcompress %}
@@ -557,8 +581,8 @@
             <footer>
                 <span>&copy;</span>
                 <span>{% now "Y" %}</span>
-                <span>SME Gurus.</span>
-                <span>All rights reserved.</span>
+                <span>{% trans 'SME Gurus.' %}</span>
+                <span>{% trans 'All rights reserved.' %}</span>
             </footer>
         </div>
     </body>

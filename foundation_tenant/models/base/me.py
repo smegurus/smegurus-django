@@ -244,6 +244,12 @@ class TenantMe(AbstractPerson):
                     return True
         return False
 
+    def is_advisor(self):
+        for my_group in self.owner.groups.all():
+            if constants.ADVISOR_GROUP_ID == my_group.id:
+                return True
+        return False
+
     def is_manager(self):
         for my_group in self.owner.groups.all():
             for management_group_id in constants.MANAGEMENT_EMPLOYEE_GROUP_IDS:

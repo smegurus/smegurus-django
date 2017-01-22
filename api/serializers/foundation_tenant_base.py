@@ -40,6 +40,7 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.visitor import TenantVisitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
+from foundation_tenant.models.base.notification import Notification
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -327,3 +328,11 @@ class InfoResourceSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Cannot us a banned word: "+str(bad_word)+" in name.")
 
         return super(InfoResourceSerializer, self).validate(data)
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    owner = UserSerializer(many=False, required=False, read_only=True)
+    class Meta:
+        model = Notification
+        fields = ('id', 'created', 'last_modified', 'owner', 'name',
+                  'description', 'image', 'closures', 'icon', 'type_of')

@@ -41,6 +41,8 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.visitor import TenantVisitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
+from foundation_tenant.models.base.notification import Notification
+
 
 #------------
 #  BIZMULA
