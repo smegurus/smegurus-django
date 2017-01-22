@@ -9,8 +9,8 @@
             <thead>
             <tr>
                 <th>{% trans 'Tag' %}</th>
-                <th>Due Date</th>
-                <th>Status</th>
+                <th>{% trans '# Entrepreneurs' %}</th>
+                <th>{% trans 'Average Stage #' %}</th>
             </tr>
             </thead>
             <tbody>
@@ -19,9 +19,9 @@
                 <td>
                     <div class="label label-green-v2">{{ tag.name }}</div>
                 </td>
-                <td>Bootstrap 5.x</td>
+                <td>{{ tag.entrepreneurs_count }}</td>
                 <td>
-                    12/07/2016
+                    {{ tag.entrepreneurs_average_stage_num }}
                 </td>
 
             </tr>

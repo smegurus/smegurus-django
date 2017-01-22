@@ -31,5 +31,20 @@ class Tag(models.Model):
         blank=True,
     )
 
+    # DEVELOPERS NOTES:
+    # - These fields should be set in a ETL.
+    entrepreneurs_count = models.PositiveSmallIntegerField(
+        _("entrepreneurs_count"),
+        help_text=_('Keep track of how many entrepreneurs that are assigned to this tag.'),
+        default=0,
+        null=True
+    )
+    entrepreneurs_average_stage_num = models.FloatField(
+        _("Entrepreneurs Average Stage"),
+        help_text=_('Keep track of the average stage number that most entrepeneurs that belong this tag fall under.'),
+        default=0,
+        null=True
+    )
+
     def __str__(self):
         return str(self.name)

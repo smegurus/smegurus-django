@@ -32,12 +32,12 @@
 <div class="row">
     <div class="col-lg-9">
         <!-- START panel-->
-        {% render_tags_widget request.me %}
+        {% render_tags_widget request.tenant_me %}
         <!-- END panel-->
     </div>
     <div class="col-lg-3">
         <!-- START loader widget-->
-        {% render_progress_widget request.me %}
+        {% render_progress_widget request.tenant_me %}
         <!-- END loader widget-->
     </div>
 </div>
@@ -45,7 +45,7 @@
 <div class="row">
     <div class="col-lg-8">
         <!-- START loader widget-->
-        {% render_unread_messages_widget request.me %}
+        {% render_unread_messages_widget request.tenant_me %}
         <!-- END loader widget-->
     </div>
     <div class="col-lg-4">

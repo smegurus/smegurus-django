@@ -126,24 +126,28 @@ def render_tags_widget(me):
 
 @register.inclusion_tag('templatetags/progress_widget.html')
 def render_progress_widget(me):
-    #TODO: Implement.
     return {
-        'me': 0,
+        'me': me,
         'percent': 50
     }
 
 
 @register.inclusion_tag('templatetags/unread_messages_widget.html')
 def render_unread_messages_widget(me):
-    #TODO: Implement.
+    # Fetch all the Messages and only get a single message per sender. Also ensure
+    # that deleted messages are not returned.
+    messages = Message.objects.filter(
+        recipient=me,
+        participants=me
+    ).distinct('participants')
     return {
-        'me': me
+        'me': me,
+        'messages': messages,
     }
 
 
 @register.inclusion_tag('templatetags/custom_calendar_widget.html')
 def render_custom_calendar_widget(me):
-    #TODO: Implement.
     return {
         'me': me
     }
