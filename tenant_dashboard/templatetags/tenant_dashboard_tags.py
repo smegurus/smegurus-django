@@ -13,6 +13,7 @@ from foundation_tenant.utils import get_pretty_formatted_date
 from smegurus import constants
 
 
+TOTAL_STAGE_NUM = 6
 register = template.Library()
 
 
@@ -116,19 +117,123 @@ def render_custom_datetime_widget(time_zone):
 
 @register.inclusion_tag('templatetags/tags_widget.html')
 def render_tags_widget(me):
+    total_stage_num = 0.00
+    arr = []
     tags = Tag.objects.all()
-    #TODO: Implement.
+
+    # Advisor.
+    if me.is_advisor():
+        # Iterate through all Tags in our system.
+        for tag in tags.all():
+            # Fetch all the entrepreneurs that belong to this tag.
+            entrepreneurs = TenantMe.objects.filter(
+                owner__groups__id=constants.ENTREPRENEUR_GROUP_ID,
+                tags__id=tag.id,
+                managed_by=me
+            )
+
+            # Iterate through all the entrepreneurs.
+            for entrepreneur in entrepreneurs.all():
+                try:
+                    workspace = Workspace.objects.filter(mes__id=entrepreneur.id).latest('last_modified')
+                    total_stage_num += workspace.stage_num
+                except Workspace.DoesNotExist:
+                    pass
+
+            # Calculate the average stage number.
+            try:
+                avg_stage_num = total_stage_num / entrepreneurs.count()
+            except Exception as e:
+                avg_stage_num = 0.00
+
+            # Append the calculations for the particular Tag.
+            arr.append({
+                'name': tag.name,
+                'entrepreneurs_count': entrepreneurs.count(),
+                'entrepreneurs_average_stage_num': avg_stage_num
+            })
+
+    # Admin or Org Manager.
+    if me.is_org_admin() or me.is_manager():
+        # Iterate through all Tags in our system.
+        for tag in tags.all():
+            # Fetch all the entrepreneurs that belong to this tag.
+            entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID, tags__id=tag.id)
+
+            # Iterate through all the entrepreneurs.
+            for entrepreneur in entrepreneurs.all():
+                try:
+                    workspace = Workspace.objects.filter(mes__id=entrepreneur.id).latest('last_modified')
+                    total_stage_num += workspace.stage_num
+                except Workspace.DoesNotExist:
+                    pass
+
+            # Calculate the average stage number.
+            try:
+                avg_stage_num = total_stage_num / entrepreneurs.count()
+            except Exception as e:
+                avg_stage_num = 0.00
+
+            # Append the calculations for the particular Tag.
+            arr.append({
+                'name': tag.name,
+                'entrepreneurs_count': entrepreneurs.count(),
+                'entrepreneurs_average_stage_num': avg_stage_num
+            })
+
+    # Return our array into our template and render it.
     return {
-        'me': 0,
-        'tags': tags
+        'arr': arr
     }
 
 
 @register.inclusion_tag('templatetags/progress_widget.html')
 def render_progress_widget(me):
+    progress_percent = 0.00
+    total_stage_num = 0.00
+
+    # Admin or Manager.
+    if me.is_org_admin() or me.is_manager():
+        entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
+
+        # Iterate through all the entrepreneurs.
+        for entrepreneur in entrepreneurs.all():
+            try:
+                workspace = Workspace.objects.filter(mes__id=entrepreneur.id).latest('last_modified')
+                total_stage_num += workspace.stage_num
+            except Workspace.DoesNotExist:
+                pass
+
+        progress_percent = total_stage_num / entrepreneurs.count()
+
+    # Advisor
+    elif me.is_advisor():
+        entrepreneurs = TenantMe.objects.filter(
+            owner__groups__id=constants.ENTREPRENEUR_GROUP_ID,
+            managed_by=me
+        )
+
+        # Iterate through all the entrepreneurs.
+        for entrepreneur in entrepreneurs.all():
+            try:
+                workspace = Workspace.objects.filter(mes__id=entrepreneur.id).latest('last_modified')
+                total_stage_num += workspace.stage_num
+            except Workspace.DoesNotExist:
+                pass
+
+        progress_percent = total_stage_num / entrepreneurs.count()
+
+    # Client
+    if me.is_entrepreneur():
+        try:
+            workspace = Workspace.objects.filter(mes__id=entrepreneur.id).latest('last_modified')
+            progress_percent = workspace.stage_num / TOTAL_STAGE_NUM
+        except Workspace.DoesNotExist:
+            pass
+
+    # Return the progress.
     return {
-        'me': me,
-        'percent': 50
+        'percent': progress_percent
     }
 
 

@@ -22,6 +22,8 @@ class Workspace(models.Model):
         verbose_name_plural = _('Workspaces')
 
     objects = WorkspaceManager()
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
     name = models.CharField(
         _("Name"),
         max_length=63,

@@ -185,7 +185,7 @@ Before you run the application, you need to load up celery in a separate console
 
 If you are developing locally from your machine, use this command.
   ```bash
-  sudo python manage.py runserver smegurus.com:80;
+  sudo python manage.py runserver smegurus.xyz:80;
   ```
 
 Notes:
