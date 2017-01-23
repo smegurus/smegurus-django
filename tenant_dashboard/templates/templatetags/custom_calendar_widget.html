@@ -1,20 +1,20 @@
 {% load i18n %}
-
-        <!-- START panel-->
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title">Upcoming Events</div>
-            </div>
-            <!-- Default external events list-->
-                <div class="panel-body">
-                    <div class="events-v2">
-                        <div class="bg-green-v2">Lunch</div>
-                        <div class="bg-red-v2">Go home</div>
-                        <div class="bg-yellow-v2">Watch TV</div>
-                        <div class="bg-info">Do homework</div>
-                        <div class="bg-warning">Work on UI design</div>
-                        <div class="bg-gray-dark-v2">Sleep tight</div>
-                    </div>
-                </div>
+<!-- START panel-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="panel-title">Upcoming Events</div>
+    </div>
+    <!-- Default external events list-->
+    <div class="panel-body">
+        <div class="events-v2">
+            {% for calendar_event in calendar_events.all %}
+                <a href="{% url 'tenant_calendar_details_info' calendar_event.id %}">
+                    <div class="bg-green-v2">{{ calendar_event }}</div>
+                </a>
+            {% empty %}
+                <p>{% trans 'No Events' %}</p>
+            {% endfor %}
         </div>
-        <!-- END panel-->
+    </div>
+</div>
+<!-- END panel-->

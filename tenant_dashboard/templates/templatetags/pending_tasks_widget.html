@@ -1,0 +1,53 @@
+{% load i18n foundation_tenant_tags %}
+<div class="panel panel-default">
+    {% if pending_tasks.count == 0 %}
+
+        <div class="panel-heading">
+            <a href="#" class="pull-right text-muted">
+            <em class="fa"></em>
+            </a>
+        </div>
+        <div class="panel-body text-center">
+            <div class="mb-lg">
+                <em class="fa fa-smile-o fa-5x text-muted"></em>
+            </div>
+            <h4>{% trans 'No Pending Tasks' %}</h4>
+            <p></p>
+        </div>
+        <div class="panel-footer clearfix">
+            <div class="text-center">
+                <p>{% trans 'Are you having any problems?' %} <a href="{% url 'tenant_help_master' %}">{% trans 'Let us know!' %}</a></p>
+            </div>
+        </div>
+    {% else %}
+    <div class="panel-heading" style="padding: 12px 15px;">
+        <div class="panel-title">Task List</div>
+    </div>
+    <!-- START table-responsive-->
+    <div data-height="278" data-scrollable="" class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans 'Name' %}</th>
+                    <th>{% trans 'Created' %}</th>
+                    <th>{% trans 'Assigned By' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pending_task in pending_tasks %}
+                <tr>
+                    <td>
+                        {{ pending_task.name|escape|safe }}
+                    </td>
+                    <td>{{ pending_task.created|pretty_formatted_date }}</td>
+                    <td>
+                        {{ pending_task.assigned_by }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- END table-responsive-->
+    {% endif %}
+</div>

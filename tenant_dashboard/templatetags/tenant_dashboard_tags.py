@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import template
+from django.db.models import Count
 from django.db.models import Q
 from django.contrib.auth.models import User
+from foundation_tenant.models.base.calendarevent import CalendarEvent
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.task import Task
@@ -112,6 +114,22 @@ def render_entrepreneurs_aggregate_widget(me):
 def render_custom_datetime_widget(time_zone):
     return {
         'time_zone': 'time_zone'
+    }
+
+
+@register.inclusion_tag('templatetags/pending_tasks_widget.html')
+def render_pending_tasks_widget(me):
+    # Count taks that belong to me and I have to do.
+    pending_tasks = Task.objects.filter(
+        Q(
+            opening=me,
+            status=constants.OPEN_TASK_STATUS,
+        )
+    )
+
+    # Return our array into our template and render it.
+    return {
+        'pending_tasks': pending_tasks
     }
 
 
@@ -253,6 +271,12 @@ def render_unread_messages_widget(me):
 
 @register.inclusion_tag('templatetags/custom_calendar_widget.html')
 def render_custom_calendar_widget(me):
+    calendar_events = CalendarEvent.objects.filter(
+        Q(pending__id=me.id) |
+        Q(attendees__id=me.id) |
+        Q(absentees__id=me.id) |
+        Q(owner=me.owner)
+    ).annotate(num_ids=Count('id')).order_by('-finish')  # Make unique and sort by latest.
     return {
-        'me': me
+        'calendar_events': calendar_events
     }

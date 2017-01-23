@@ -25,31 +25,37 @@
     <div class="col-lg-3 col-md-6 col-sm-12">
         <!-- WIDGET-->
         {% render_custom_datetime_widget request.tenant.time_zone %}
-        <!-- end WIDGET -->
+        <!-- end WIDGET-->
     </div>
 </div>
 <!-- END widgets box-->
 <div class="row">
     <div class="col-lg-9">
-        <!-- START panel-->
-        {% render_tags_widget request.tenant_me %}
-        <!-- END panel-->
+        <!-- WIDGET-->
+        {% if request.tenant_me.is_entrepreneur %}
+            {% render_pending_tasks_widget request.tenant_me %}
+        {% else %}
+            {% render_tags_widget request.tenant_me %}
+        {% endif %}
+        <!-- end WIDGET-->
     </div>
     <div class="col-lg-3">
-        <!-- START loader widget-->
+        <!-- WIDGET-->
         {% render_progress_widget request.tenant_me %}
-        <!-- END loader widget-->
+        <!-- end WIDGET-->
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-9">
-        <!-- START loader widget-->
+        <!-- WIDGET-->
         {% render_unread_messages_widget request.tenant_me %}
-        <!-- END loader widget-->
+        <!-- end WIDGET-->
     </div>
     <div class="col-lg-3">
+        <!-- WIDGET-->
         {% render_custom_calendar_widget request.tenant_me %}
+        <!-- end WIDGET-->
     </div>
 </div>
 
