@@ -25,8 +25,8 @@ def render_notification_widget(me, notification):
     }
 
 
-@register.inclusion_tag('templatetags/pending_tasks_widget.html')
-def render_pending_tasks_widget(me):
+@register.inclusion_tag('templatetags/pending_tasks_count_widget.html')
+def render_pending_tasks_count_widget(me):
     pending_tasks_count = 0
 
     # Count the new intakes available to review.
