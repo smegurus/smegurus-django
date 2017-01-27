@@ -349,3 +349,10 @@ body,
     background-color: #8bc34a;
     color: #ffffff !important;
 }
+
+/* ISSUE #676 */
+#id_place_of_birth{
+    width:50%;
+    display: block;
+		margin: 0 auto;
+}
