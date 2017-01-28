@@ -11,7 +11,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 2,
     "fields": {
-        "text": "Market Research",
+        "text": "Market Research Summary",
         "is_master": true,
         "stage_num": 2
     }
@@ -19,7 +19,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 3,
     "fields": {
-        "text": "Concept Validation",
+        "text": "Market Research Plan",
         "is_master": true,
         "stage_num": 3
     }
@@ -27,7 +27,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 4,
     "fields": {
-        "text": "Marketing",
+        "text": "Concept Validation",
         "is_master": true,
         "stage_num": 4
     }
@@ -35,13 +35,21 @@
     "model": "foundation_tenant.documenttype",
     "pk": 5,
     "fields": {
-        "text": "Sales",
+        "text": "Marketing",
         "is_master": true,
         "stage_num": 5
     }
 },{
     "model": "foundation_tenant.documenttype",
     "pk": 6,
+    "fields": {
+        "text": "Sales",
+        "is_master": true,
+        "stage_num": 6
+    }
+},{
+    "model": "foundation_tenant.documenttype",
+    "pk": 7,
     "fields": {
         "text": "Operations",
         "is_master": true,

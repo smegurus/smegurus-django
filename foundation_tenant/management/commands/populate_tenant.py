@@ -41,12 +41,14 @@ class Command(BaseCommand):
             'module_04.json',
             'module_05.json',
             'module_06.json',
+            'module_07.json',
             'slide_01.json',
             'slide_02.json',
             'slide_03.json',
             'slide_04.json',
             'slide_05.json',
             'slide_06.json',
+            'slide_07.json',
             #'question_dev.json', # DEVELOPMENT ONLY.
             'question_01.json',
             'question_02.json',
@@ -54,6 +56,7 @@ class Command(BaseCommand):
             'question_04.json',
             'question_05.json',
             'question_06.json',
+            'question_07.json',
             'notification.json'
         ]
 

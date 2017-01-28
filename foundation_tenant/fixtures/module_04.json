@@ -9,187 +9,75 @@
                     "previous_position": -1,
                     "current_position": 0,
                     "next_position": 1,
-                    "id": 1666,
+                    "id": 999,
                     "type": "slide"
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
-                    "id": 61,
+                    "id": 53,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 1
                 },{
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
-                    "id": 62,
+                    "id": 54,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 2
                 },{
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
-                    "id": 63,
+                    "id": 55,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 3
                 },{
                     "previous_position": 3,
                     "current_position": 4,
                     "next_position": 5,
-                    "id": 64,
+                    "id": 56,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 4
                 },{
                     "previous_position": 4,
                     "current_position": 5,
                     "next_position": 6,
-                    "id": 65,
+                    "id": 57,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 5
                 },{
                     "previous_position": 5,
                     "current_position": 6,
                     "next_position": 7,
-                    "id": 66,
+                    "id": 58,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 6
                 },{
                     "previous_position": 6,
                     "current_position": 7,
                     "next_position": 8,
-                    "id": 67,
+                    "id": 59,
                     "type": "question",
-                    "document_type": 4,
+                    "document_type": 3,
                     "order_num": 7
                 },{
                     "previous_position": 7,
                     "current_position": 8,
-                    "next_position": 9,
-                    "id": 68,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 8
-                },{
-                    "previous_position": 8,
-                    "current_position": 9,
-                    "next_position": 10,
-                    "id": 69,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 9
-                },{
-                    "previous_position": 9,
-                    "current_position": 10,
-                    "next_position": 11,
-                    "id": 70,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 10
-                },{
-                    "previous_position": 10,
-                    "current_position": 11,
-                    "next_position": 12,
-                    "id": 71,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 11
-                },{
-                    "previous_position": 11,
-                    "current_position": 12,
-                    "next_position": 13,
-                    "id": 72,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 12
-                },{
-                    "previous_position": 12,
-                    "current_position": 13,
-                    "next_position": 14,
-                    "id": 73,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 13
-                },{
-                    "previous_position": 13,
-                    "current_position": 14,
-                    "next_position": 15,
-                    "id": 74,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 14
-                },{
-                    "previous_position": 14,
-                    "current_position": 15,
-                    "next_position": 16,
-                    "id": 75,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 15
-                },{
-                    "previous_position": 15,
-                    "current_position": 16,
-                    "next_position": 17,
-                    "id": 76,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 16
-                },{
-                    "previous_position": 16,
-                    "current_position": 17,
-                    "next_position": 18,
-                    "id": 77,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 17
-                },{
-                    "previous_position": 17,
-                    "current_position": 18,
-                    "next_position": 19,
-                    "id": 78,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 18
-                },{
-                    "previous_position": 18,
-                    "current_position": 19,
-                    "next_position": 20,
-                    "id": 79,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 19
-                },{
-                    "previous_position": 19,
-                    "current_position": 20,
-                    "next_position": 21,
-                    "id": 80,
-                    "type": "question",
-                    "document_type": 4,
-                    "order_num": 20
-                },{
-                    "previous_position": 20,
-                    "current_position": 21,
-                    "next_position": 22,
-                    "id": 142,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 21
-                },{
-                    "previous_position": 21,
-                    "current_position": 22,
                     "next_position": -1,
-                    "id": 143,
+                    "id": 60,
                     "type": "question",
-                    "document_type": 6,
-                    "order_num": 22
+                    "document_type": 3,
+                    "order_num": 8
                 }
             ],
-            "title": "Stage 4",
+            "title": "Stage 3",
             "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
             "icon": "fa-television",
             "colour": ""
