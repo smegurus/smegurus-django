@@ -1849,5 +1849,56 @@
             },
             "type_id": 4
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 151,
+        "fields": {
+            "document_type": 2,
+            "number": 43,
+            "title": "My customers will purchase my products or services from me ...",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Directly through a website",
+                        "text": "Directly through a website"
+                    },{
+                        "value": "Directly at my store",
+                        "text": "Directly at my store"
+                    },{
+                        "value": "Directly at my place of business",
+                        "text": "Directly at my place of business"
+                    },{
+                        "value": "Directly at my manufacturing facility",
+                        "text": "Directly at my manufacturing facility"
+                    },{
+                        "value": "Directly at their place of business",
+                        "text": "Directly at their place of business"
+                    },{
+                        "value": "Indirectly through a distributor",
+                        "text": "Indirectly through a distributor"
+                    },{
+                        "value": "Indirectly through another retailer",
+                        "text": "Indirectly through another retailer"
+                    },{
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
