@@ -1803,5 +1803,51 @@
             },
             "type_id": 4
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 150,
+        "fields": {
+            "document_type": 2,
+            "number": 42,
+            "title": "How many competitors are there in your industry?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "a low amount of competitors",
+                        "text": "a low amount of competitors"
+                    },
+                    {
+                        "value": "few competitors",
+                        "text": "few competitors"
+                    },
+                    {
+                        "value": "a moderate amount of competitors",
+                        "text": "a moderate amount of competitors"
+                    },
+                    {
+                        "value": "many competitors",
+                        "text": "many competitors"
+                    },
+                    {
+                        "value": "this market is crowded",
+                        "text": "this market is crowded"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
     }
 ]
