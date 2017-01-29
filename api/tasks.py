@@ -63,9 +63,17 @@ def begin_processing_document_task(doc_id, doc_type, schema_name):
     if doc_type == 7:
         print("TODO: Operations")
 
-    # # Send email to the owner of the Organization letting them know we've successfully
-    # # finished setting up their tenancy.
-    # call_command('send_organization_ready_email', str(registered_id))  # foundation_email/management/commands/send_organization_ready_email.py
+    # Send email is ready email to the workspace owners.
+    call_command('send_doc_ready_email', schema_name, str(doc_id))
 
     # Return nothing.
+    return None
+
+
+@shared_task
+def begin_setting_pending_document_for_review_task(schema_name, doc_id):
+    """
+    Asynchronously process our document. Email owner when process completes.
+    """
+    call_command('pending_doc_review', schema_name, str(doc_id))
     return None

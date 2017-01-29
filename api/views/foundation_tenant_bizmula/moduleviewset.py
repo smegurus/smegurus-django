@@ -13,6 +13,7 @@ from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
 from api.permissions import ManagementOrAuthenticatedReadOnlyPermission
 from api.serializers.foundation_tenant_bizmula import ModuleSerializer
+from api.tasks import begin_processing_document_task
 from foundation_public.utils import resolve_full_url_with_subdmain
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.workspace import Workspace
@@ -101,7 +102,7 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     #     workspace.save()
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
-    def finish(self, request, pk=None):
+    def generate_docxpresso_doc(self, request, pk=None):
         """
         Function will iterate through all the submitted Documents for this
         Module and set them to be reviewed by the advisor. Note: Advisor will
@@ -118,9 +119,6 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 workspace__mes=request.tenant_me
             )
 
-            # Process asynchyonously.
-            from api.tasks import begin_processing_document_task
-
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
             for document in documents.all():
@@ -129,11 +127,37 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     document.document_type.id,
                     request.tenant.schema_name
                 )
-            #     document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-            #     document.save()
-            #
-            #     # Send a notification email to the assigned Advisor.
-            #     self.send_pending_document_review_notification(document)
+
+            return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
+        except Exception as e:
+            return response.Response(
+                data=str(e),
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
+    def finish(self, request, pk=None):
+        try:
+            # Get our Module object.
+            module = self.get_object()
+
+            # Fetch all the Documents for this Module belonging to the
+            # currently authenticated User.
+            documents = Document.objects.filter(
+                document_type__stage_num=module.stage_num,
+                workspace__mes=request.tenant_me
+            )
+
+            # Process asynchyonously.
+            from api.tasks import begin_setting_pending_document_for_review_task
+
+            # Iterate through all the documents inside this Module belonging
+            # to the authenticated User and process the Document.
+            for document in documents.all():
+                begin_setting_pending_document_for_review_task.delay(
+                    request.tenant.schema_name,
+                    document.id
+                )
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
