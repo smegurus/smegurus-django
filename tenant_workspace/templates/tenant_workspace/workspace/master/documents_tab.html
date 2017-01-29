@@ -8,6 +8,7 @@
                     <th>ID #</th>
                     <th>{% trans 'Document Name' %}</th>
                     <th>{% trans 'Status' %}</th>
+                    <th>{% trans 'File' %}</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -29,6 +30,18 @@
                             {% trans 'Pending Review' %}
                         {% elif document.status == constants.DOCUMENT_CREATED_STATUS %}
                             {% trans 'Needs to be done' %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if document.docxpresso_file %}
+                        <a href="{{ document.docxpresso_file.datafile.url }}">
+                        <button type="button" class="btn btn-labeled btn-success">
+                            <span class="btn-label"><i class="fa fa-cloud-download"></i>
+                            </span>{% trans 'Download' %}
+                        </button>
+                        </a>
+                        {% else %}
+                        -
                         {% endif %}
                     </td>
                     <td>&nbsp;</td>

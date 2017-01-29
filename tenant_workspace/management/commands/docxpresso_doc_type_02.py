@@ -90,11 +90,7 @@ class Command(BaseCommand):
                 "response": "doc",
                 "name": stem
             },
-            "replace": [
-                {
-                    "vars": docxpresso_data
-                }
-            ]
+            "replace": docxpresso_data
         }
 
         # We will convert our Python dictonary into a JSON diconary.
@@ -145,8 +141,10 @@ class Command(BaseCommand):
         for answer in answers.all():
             if answer.question.pk == 21: # workspace_name
                 docxpresso_data.append({
-                    "var": "workspace_name",
-                    "value": answer.content['var_1']
+                    "vars": [{
+                        "var": "workspace_name",
+                        "value": answer.content['var_1']
+                    }]
                 })
 
             if answer.question.pk == 25: # naics_industry_name
@@ -154,24 +152,32 @@ class Command(BaseCommand):
                 depth_five_naics = NAICSOption.objects.get(id=naics_id) # Get the name
 
                 docxpresso_data.append({
-                    "var": "naics_industry_name",
-                    "value": depth_five_naics.name
+                    "vars": [{
+                        "var": "naics_industry_name",
+                        "value": depth_five_naics.name
+                    }]
                 })
                 docxpresso_data.append({
-                    "var": "naics_industry_friendly_name",
-                    "value": answer.content['var_6']
+                    "vars": [{
+                        "var": "naics_industry_friendly_name",
+                        "value": answer.content['var_6']
+                    }]
                 })
 
             if answer.question.pk == 26: # years_of_exp
                 docxpresso_data.append({
-                    "var": "years_of_exp",
-                    "value": answer.content['var_1']
+                    "vars": [{
+                        "var": "years_of_exp",
+                        "value": answer.content['var_1']
+                    }]
                 })
 
             if answer.question.pk == 27: # business_idea
                 docxpresso_data.append({
-                    "var": "business_idea",
-                    "value": answer.content['var_1']
+                    "vars": [{
+                        "var": "business_idea",
+                        "value": answer.content['var_1']
+                    }]
                 })
 
             if answer.question.pk == 28: # research_sources
@@ -207,8 +213,13 @@ class Command(BaseCommand):
                         arr.append(answer.content['var_5'])
 
                 docxpresso_data.append({
-                    "var": "research_sources",
-                    "value": arr
+                    "vars": [{
+                        "var": "research_sources",
+                        "value": arr
+                    }],
+                    "options": {
+                        "element": "list"
+                    }
                 })
 
             if answer.question.pk == 29: # similar_businesses
@@ -217,8 +228,13 @@ class Command(BaseCommand):
                 arr.append(answer.content['var_2'])
                 arr.append(answer.content['var_3'])
                 docxpresso_data.append({
-                    "var": "similar_businesses",
-                    "value": arr
+                    "vars": [{
+                        "var": "similar_businesses",
+                        "value": arr
+                    }],
+                    "options": {
+                        "element": "list"
+                    }
                 })
 
             if answer.question.pk == 30: # industry_contacts
@@ -227,8 +243,13 @@ class Command(BaseCommand):
                 arr.append(answer.content['var_2'])
                 arr.append(answer.content['var_3'])
                 docxpresso_data.append({
-                    "var": "industry_contacts",
-                    "value": arr
+                    "vars": [{
+                        "var": "industry_contacts",
+                        "value": arr
+                    }],
+                    "options": {
+                        "element": "list"
+                    }
                 })
 
         return docxpresso_data
