@@ -21,3 +21,51 @@ def begin_organization_creation_task(registered_id):
 
     # Return nothing.
     return None
+
+
+@shared_task
+def begin_processing_document_task(doc_id, doc_type, schema_name):
+    """
+    Asynchronously process our document. Email owner when process completes.
+    """
+    # print("DOC_ID", doc_id)
+    # print("DOC_TYPE", doc_type)
+    # print("TENANT", schema_name)
+
+    # Run the sub-routine for taking the Document object and submitting it to
+    # Bizmula "docxpresso" engine.
+
+    # 1. Entrepreneur Self Assessment
+    if doc_type == 1:
+        print("TODO: Entrepreneur Self Assessment")
+
+    # 2. Market Research Summary
+    if doc_type == 2:
+        call_command('docxpresso_doc_type_02', schema_name, str(doc_id))
+
+    # 3. Market Research Plan
+    if doc_type == 3:
+        print("TODO: Market Research Plan")
+
+    # 4. Concept Validation
+    if doc_type == 4:
+        print("TODO: Concept Validation")
+
+    # 5. Marketing
+    if doc_type == 5:
+        print("TODO: Marketing")
+
+    # 6. Sales
+    if doc_type == 6:
+        print("TODO: Sales")
+
+    # 7. Operations
+    if doc_type == 7:
+        print("TODO: Operations")
+
+    # # Send email to the owner of the Organization letting them know we've successfully
+    # # finished setting up their tenancy.
+    # call_command('send_organization_ready_email', str(registered_id))  # foundation_email/management/commands/send_organization_ready_email.py
+
+    # Return nothing.
+    return None

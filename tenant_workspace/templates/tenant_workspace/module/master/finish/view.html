@@ -1,29 +1,6 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-<!-- PAGE JS -->
-{% compress js inline %}
-<script>
-    function ajax_submit() {
-        $("#id_submit_btn").attr('disabled','disabled'); // Disable button.
-        tenant_module_finish(
-            {{ module.id }},
-            function(json_result) {
-                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                alert("{% trans 'You have submitted your results! Please wait while an advisor will look at your work.' %}")
-                window.location = "{% url 'tenant_workspace_master' workspace.id %}";
-            },
-            function(error_json_result) {
-                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                var string = JSON.stringify( error_json_result );
-                console.log(string);
-                alert(string);
-            }
-        ); // end FINISH
-    }
-</script>
-{% endcompress %}
-<!-- end PAGE JS -->
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->

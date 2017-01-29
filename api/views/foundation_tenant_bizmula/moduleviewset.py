@@ -118,14 +118,22 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 workspace__mes=request.tenant_me
             )
 
+            # Process asynchyonously.
+            from api.tasks import begin_processing_document_task
+
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
             for document in documents.all():
-                document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-                document.save()
-
-                # Send a notification email to the assigned Advisor.
-                self.send_pending_document_review_notification(document)
+                begin_processing_document_task.delay(
+                    document.id,
+                    document.document_type.id,
+                    request.tenant.schema_name
+                )
+            #     document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
+            #     document.save()
+            #
+            #     # Send a notification email to the assigned Advisor.
+            #     self.send_pending_document_review_notification(document)
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:

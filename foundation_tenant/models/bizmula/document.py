@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.documenttype import DocumentType
+from foundation_tenant.models.base.fileupload import TenantFileUpload
 from smegurus import constants
 
 
@@ -47,6 +48,14 @@ class Document(AbstractThing):
         choices=constants.DOCUMENT_STATUS_OPTIONS,
         help_text=_('The status of this Document.'),
         default=constants.DOCUMENT_CREATED_STATUS,
+    )
+    docxpresso_file = models.ForeignKey(
+        TenantFileUpload,
+        help_text=_('The files uploaded by a User.'),
+        blank=True,
+        null=True,
+        related_name='%(app_label)s_%(class)s_file_related',
+        on_delete=models.SET_NULL
     )
 
     def __str__(self):
