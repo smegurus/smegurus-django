@@ -119,6 +119,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   python manage.py makemigrations;
   python manage.py migrate_schemas
   python manage.py populate_public
+  python manage.py setup_fixtures
   ```
 
 12. Setup your **root** user.
@@ -165,8 +166,8 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 
 2. Add the following:
   ```bash
-  127.0.0.1  smegurus.com
-  127.0.0.1  www.smegurus.com
+  127.0.0.1  smegurus.xyx
+  127.0.0.1  www.smegurus.xyz
   ```
 
 3. Restart the DNS:
