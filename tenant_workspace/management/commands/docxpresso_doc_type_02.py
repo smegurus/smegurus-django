@@ -1,27 +1,19 @@
 import json
 import urllib3  # Third Party Library
+from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
+from datetime import datetime, timedelta  # Datetime.
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.db import transaction
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone  # Timezone.
 from django.core.management import call_command
-from foundation_tenant.models.bizmula.documenttype import DocumentType
-from foundation_tenant.models.bizmula.question import Question
-from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
-from foundation_tenant.models.bizmula.module import Module
-from foundation_tenant.models.bizmula.slide import Slide
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
-from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
-
-
-# Library used for the SHA1 hash algorithm.
-from passlib.hash import sha1_crypt
-from django.utils import timezone  # Timezone.
-from datetime import datetime, timedelta  # Datetime.
 
 
 class Command(BaseCommand):
@@ -45,26 +37,27 @@ class Command(BaseCommand):
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
 
+        # Fetch the document.
+        doc = self.get_doc(doc_id)
+
+        # Take our document and submit the answers to Docxpresso.
+        self.begin_processing(doc_id)
+
+    def get_doc(self, doc_id):
         try:
-            doc = Document.objects.get(id=doc_id)
+            return Document.objects.get(id=doc_id)
         except Document.DoesNotExist:
             raise CommandError(_('Cannot find a document.'))
         except Exception as e:
             raise CommandError(_('Unknown error occured.'))
 
-        # Take our document and submit the answers to Docxpresso.
-        self.begin_processing(doc)
-
-        # Take our document and email.
-        self.finalize_processing(doc)
-
-    def begin_processing(self, document):
+    def begin_processing(self, doc_id):
         """
         Function will load up all the answers for the particular document
         and submit it to Docxpresso.
         """
         # Generate timestamp.
-        stem = "doc_" + str(document.id)
+        stem = "doc_" + str(doc_id)
         suffix = "odt"
         filename = stem + '.' + suffix
         current = datetime.now()
@@ -75,7 +68,7 @@ class Command(BaseCommand):
         api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
 
         # Generate our Docxpresso data to submit.
-        docxpresso_data = self.generate_docxpresso_data(document)
+        docxpresso_data = self.generate_docxpresso_data(doc_id)
 
         # Generate our API call - Genere using Python dictonary.
         data = {
@@ -117,27 +110,35 @@ class Command(BaseCommand):
         # uploaded to the S3 instance.
         from django.core.files import File
         with open('static/'+filename, 'rb') as f:
-            # If the file already exists then delete it from S3.
-            if document.docxpresso_file:
-                document.docxpresso_file.delete()
-
-            # Generate our new file.
-            document.docxpresso_file = TenantFileUpload.objects.create(
+            # Create a new file upload and upload the data to a S3 instance.
+            docxpresso_file = TenantFileUpload.objects.create(
                 datafile = File(f),
             )
-            document.save()
 
-            # Delete the local file.
-            #TODO: Implement this.
+            # Fetch the document and then atomically modify it.
+            with transaction.atomic():
+                # Fetch the document.
+                document = self.get_doc(doc_id)
+
+                # If the file already exists then delete it from S3.
+                if document.docxpresso_file:
+                    document.docxpresso_file.delete()
+
+                # Generate our new file.
+                document.docxpresso_file = docxpresso_file
+                document.save()
+
+                # Delete the local file.
+                #TODO: Implement this.
 
         # Return a success message to the console.
         self.stdout.write(
             self.style.SUCCESS(_('Finished importing Document #%s.') % str(document.id))
         )
 
-    def generate_docxpresso_data(self, document):
+    def generate_docxpresso_data(self, doc_id):
         docxpresso_data = []
-        answers = QuestionAnswer.objects.filter(document=document)
+        answers = QuestionAnswer.objects.filter(document_id=doc_id)
         for answer in answers.all():
             if answer.question.pk == 21: # workspace_name
                 docxpresso_data.append({
@@ -253,6 +254,3 @@ class Command(BaseCommand):
                 })
 
         return docxpresso_data
-
-    def finalize_processing(self, document):
-        pass

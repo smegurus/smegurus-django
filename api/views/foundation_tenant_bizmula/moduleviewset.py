@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string    # HTML to TXT
 from django.core.mail import EmailMultiAlternatives    # EMAILER
+from django.db import transaction
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -138,29 +139,30 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated])
     def finish(self, request, pk=None):
         try:
-            # Get our Module object.
-            module = self.get_object()
+            with transaction.atomic():
+                # Get our Module object.
+                module = self.get_object()
 
-            # Fetch all the Documents for this Module belonging to the
-            # currently authenticated User.
-            documents = Document.objects.filter(
-                document_type__stage_num=module.stage_num,
-                workspace__mes=request.tenant_me
-            )
-
-            # Process asynchyonously.
-            from api.tasks import begin_sending_pending_document_review_email_task
-
-            # Iterate through all the documents inside this Module belonging
-            # to the authenticated User and process the Document.
-            for document in documents.all():
-                document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-                document.save()
-
-                begin_sending_pending_document_review_email_task.delay(
-                    request.tenant.schema_name,
-                    document.id
+                # Fetch all the Documents for this Module belonging to the
+                # currently authenticated User.
+                documents = Document.objects.filter(
+                    document_type__stage_num=module.stage_num,
+                    workspace__mes=request.tenant_me
                 )
+
+                # Process asynchyonously.
+                from api.tasks import begin_sending_pending_document_review_email_task
+
+                # Iterate through all the documents inside this Module belonging
+                # to the authenticated User and process the Document.
+                for document in documents.all():
+                    document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
+                    document.save()
+
+                    begin_sending_pending_document_review_email_task.delay(
+                        request.tenant.schema_name,
+                        document.id
+                    )
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
