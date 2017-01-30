@@ -110,8 +110,45 @@ class Command(BaseCommand):
     def get_docxpresso_data(self, workspace, document, answers):
         docxpresso_data = []
         for answer in answers.all():
-            if answer.question.pk == 21: # workspace_name
+            if answer.question.pk == 21: # business_name
                 docxpresso_data = self.do_q21(docxpresso_data, answer)
+
+            elif answer.question.pk == 27: # business_idea
+                docxpresso_data = self.do_q27(docxpresso_data, answer)
+
+            elif answer.question.pk == 27: # business_idea
+                docxpresso_data = self.do_q27(docxpresso_data, answer)
+
+            elif answer.question.pk == 33: # customer_type
+                docxpresso_data = self.do_q33(docxpresso_data, answer)
+
+            elif answer.question.pk == 34: # business_oppportunity
+                docxpresso_data = self.do_q34(docxpresso_data, answer)
+
+            elif answer.question.pk == 35: # not_being_done_because
+                docxpresso_data = self.do_q35(docxpresso_data, answer)
+
+            elif answer.question.pk == 36: # business_solution
+                docxpresso_data = self.do_q36(docxpresso_data, answer)
+
+            elif answer.question.pk == 37: # pestel_trends
+                docxpresso_data = self.do_q37(docxpresso_data, answer)
+
+            elif answer.question.pk == 38: # specific_sources
+                docxpresso_data = self.do_q38(docxpresso_data, answer)
+
+            elif answer.question.pk == 39: # geographic_market
+                docxpresso_data = self.do_q39(docxpresso_data, answer)
+
+            elif answer.question.pk == 40: # geographic_market
+                docxpresso_data = self.do_q40(docxpresso_data, answer)
+
+            elif answer.question.pk == 74: # how_to_convince
+                docxpresso_data = self.do_q74(docxpresso_data, answer)
+
+            # customer_buying_decision 40
+            # product_distribution ???
+            # {{target_market_characteristics}} 49
 
         # DEBUGGING PURPOSES
         print(docxpresso_data)
@@ -121,8 +158,100 @@ class Command(BaseCommand):
     def do_q21(self, docxpresso_data, answer):
         docxpresso_data.append({
             "vars": [{
-                "var": "workspace_name",
+                "var": "business_name",
                 "value": answer.content['var_1']
             }]
         })
+        return docxpresso_data
+
+    def do_q27(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "business_idea",
+                "value": answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q33(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "customer_type",
+                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q34(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "business_oppportunity",
+                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q35(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "not_being_done_because",
+                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q36(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "business_solution",
+                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q37(self, docxpresso_data, answer): #TODO LIST
+        print(answer.content)
+        print("\n")
+        # docxpresso_data.append({
+        #     "vars": [{
+        #         "var": "pestel_trends",
+        #         "value": []
+        #     }]
+        # })
+        return docxpresso_data
+
+    def do_q38(self, docxpresso_data, answer): #TODO LIST
+        print(answer.content)
+        # print("\n")
+        # docxpresso_data.append({
+        #     "vars": [{
+        #         "var": "specific_sources",
+        #         "value": []
+        #     }]
+        # })
+        return docxpresso_data
+
+    def do_q39(self, docxpresso_data, answer): #TODO LIST
+        # print(answer.content)
+        # print("\n")
+        # docxpresso_data.append({
+        #     "vars": [{
+        #         "var": "geographic_market",
+        #         "value": []
+        #     }]
+        # })
+        return docxpresso_data
+
+    def do_q40(self, docxpresso_data, answer): #TODO LIST
+        # print(answer.content)
+        # print("\n")
+        # docxpresso_data.append({
+        #     "vars": [{
+        #         "var": "geographic_market",
+        #         "value": []
+        #     }]
+        # })
+        return docxpresso_data
+
+    def do_q74(self, docxpresso_data, answer): #TODO Imp
         return docxpresso_data
