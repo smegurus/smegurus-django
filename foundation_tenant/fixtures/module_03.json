@@ -12,7 +12,7 @@
                     "id": 31,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 11
+                    "order_num": 1
                 },{
                     "previous_position": 0,
                     "current_position": 1,
@@ -20,7 +20,7 @@
                     "id": 32,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 12
+                    "order_num": 2
                 },{
                     "previous_position": 1,
                     "current_position": 2,
@@ -28,7 +28,7 @@
                     "id": 33,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 13
+                    "order_num": 3
                 },{
                     "previous_position": 2,
                     "current_position": 3,
@@ -36,7 +36,7 @@
                     "id": 34,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 14
+                    "order_num": 4
                 },{
                     "previous_position": 3,
                     "current_position": 4,
@@ -44,7 +44,7 @@
                     "id": 35,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 15
+                    "order_num": 5
                 },{
                     "previous_position": 4,
                     "current_position": 5,
@@ -52,7 +52,7 @@
                     "id": 36,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 16
+                    "order_num": 6
                 },{
                     "previous_position": 5,
                     "current_position": 6,
@@ -60,7 +60,7 @@
                     "id": 37,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 17
+                    "order_num": 7
                 },{
                     "previous_position": 6,
                     "current_position": 7,
@@ -68,7 +68,7 @@
                     "id": 38,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 18
+                    "order_num": 8
                 },{
                     "previous_position": 7,
                     "current_position": 8,
@@ -76,7 +76,7 @@
                     "id": 39,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 19
+                    "order_num": 9
                 },{
                     "previous_position": 8,
                     "current_position": 9,
@@ -84,7 +84,7 @@
                     "id": 40,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 20
+                    "order_num": 10
                 },{
                     "previous_position": 9,
                     "current_position": 10,
@@ -92,7 +92,7 @@
                     "id": 41,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 21
+                    "order_num": 11
                 },{
                     "previous_position": 10,
                     "current_position": 11,
@@ -100,7 +100,7 @@
                     "id": 42,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 22
+                    "order_num": 12
                 },{
                     "previous_position": 11,
                     "current_position": 12,
@@ -108,7 +108,7 @@
                     "id": 43,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 23
+                    "order_num": 13
                 },{
                     "previous_position": 12,
                     "current_position": 13,
@@ -116,7 +116,7 @@
                     "id": 44,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 24
+                    "order_num": 14
                 },{
                     "previous_position": 13,
                     "current_position": 14,
@@ -124,7 +124,7 @@
                     "id": 45,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 25
+                    "order_num": 15
                 },{
                     "previous_position": 14,
                     "current_position": 15,
@@ -132,7 +132,7 @@
                     "id": 46,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 26
+                    "order_num": 16
                 },{
                     "previous_position": 15,
                     "current_position": 16,
@@ -140,7 +140,7 @@
                     "id": 47,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 27
+                    "order_num": 17
                 },{
                     "previous_position": 16,
                     "current_position": 17,
@@ -148,7 +148,7 @@
                     "id": 48,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 28
+                    "order_num": 18
                 },{
                     "previous_position": 17,
                     "current_position": 18,
@@ -156,7 +156,7 @@
                     "id": 49,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 29
+                    "order_num": 19
                 },{
                     "previous_position": 18,
                     "current_position": 19,
@@ -164,7 +164,7 @@
                     "id": 50,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 30
+                    "order_num": 20
                 },{
                     "previous_position": 19,
                     "current_position": 20,
@@ -172,7 +172,7 @@
                     "id": 51,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 31
+                    "order_num": 21
                 },{
                     "previous_position": 20,
                     "current_position": 21,
@@ -180,7 +180,7 @@
                     "id": 52,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 32
+                    "order_num": 22
                 },{
                     "previous_position": 21,
                     "current_position": 22,
@@ -188,7 +188,7 @@
                     "id": 150,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 33
+                    "order_num": 23
                 },{
                     "previous_position": 22,
                     "current_position": 23,
@@ -196,7 +196,7 @@
                     "id": 151,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 34
+                    "order_num": 24
                 },{
                     "previous_position": 23,
                     "current_position": 24,
@@ -204,7 +204,7 @@
                     "id": 152,
                     "type": "question",
                     "document_type": 2,
-                    "order_num": 35
+                    "order_num": 25
                 }
             ],
             "title": "Stage 3",
