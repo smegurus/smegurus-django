@@ -49,7 +49,7 @@ class Command(BaseCommand):
         except Document.DoesNotExist:
             raise CommandError(_('Cannot find a document.'))
         except Exception as e:
-            raise CommandError(_('Unknown error occured.'))
+            raise CommandError(_('Unknown error occured: %s.' % e))
 
     def begin_processing(self, doc_id):
         """
@@ -141,116 +141,144 @@ class Command(BaseCommand):
         answers = QuestionAnswer.objects.filter(document_id=doc_id)
         for answer in answers.all():
             if answer.question.pk == 21: # workspace_name
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "workspace_name",
-                        "value": answer.content['var_1']
-                    }]
-                })
+                docxpresso_data = self.do_q21(docxpresso_data, answer)
 
-            if answer.question.pk == 25: # naics_industry_name
-                naics_id = answer.content['var_5'] # Depth 5 NAICS ID
-                depth_five_naics = NAICSOption.objects.get(id=naics_id) # Get the name
+            elif answer.question.pk == 25: # naics_industry_name
+                docxpresso_data = self.do_q25(docxpresso_data, answer)
 
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "naics_industry_name",
-                        "value": depth_five_naics.name
-                    }]
-                })
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "naics_industry_friendly_name",
-                        "value": answer.content['var_6']
-                    }]
-                })
+            elif answer.question.pk == 26: # years_of_exp
+                docxpresso_data = self.do_q26(docxpresso_data, answer)
 
-            if answer.question.pk == 26: # years_of_exp
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "years_of_exp",
-                        "value": answer.content['var_1']
-                    }]
-                })
+            elif answer.question.pk == 27: # business_idea
+                docxpresso_data = self.do_q27(docxpresso_data, answer)
 
-            if answer.question.pk == 27: # business_idea
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "business_idea",
-                        "value": answer.content['var_1']
-                    }]
-                })
+            elif answer.question.pk == 28: # research_sources
+                docxpresso_data = self.do_q28(docxpresso_data, answer)
 
-            if answer.question.pk == 28: # research_sources
-                arr = []
-                if answer.content['var_1_other']:
-                    arr.append(answer.content['var_1_other'])
-                else:
-                    if answer.content['var_1']:
-                        arr.append(answer.content['var_1'])
+            elif answer.question.pk == 29: # similar_businesses
+                docxpresso_data = self.do_q29(docxpresso_data, answer)
 
-                if answer.content['var_2_other']:
-                    arr.append(answer.content['var_2_other'])
-                else:
-                    if answer.content['var_2']:
-                        arr.append(answer.content['var_2'])
+            elif answer.question.pk == 30: # industry_contacts
+                docxpresso_data = self.do_q30(docxpresso_data, answer)
 
-                if answer.content['var_3_other']:
-                    arr.append(answer.content['var_3_other'])
-                else:
-                    if answer.content['var_3']:
-                        arr.append(answer.content['var_3'])
+        return docxpresso_data
 
-                if answer.content['var_4_other']:
-                    arr.append(answer.content['var_4_other'])
-                else:
-                    if answer.content['var_4']:
-                        arr.append(answer.content['var_4'])
+    def do_q21(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "workspace_name",
+                "value": answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
 
-                if answer.content['var_5_other']:
-                    arr.append(answer.content['var_5_other'])
-                else:
-                    if answer.content['var_5']:
-                        arr.append(answer.content['var_5'])
+    def do_q25(self, docxpresso_data, answer):
+        naics_id = answer.content['var_5'] # Depth 5 NAICS ID
+        depth_five_naics = NAICSOption.objects.get(id=naics_id) # Get the name
 
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "research_sources",
-                        "value": arr
-                    }],
-                    "options": {
-                        "element": "list"
-                    }
-                })
+        docxpresso_data.append({
+            "vars": [{
+                "var": "naics_industry_name",
+                "value": depth_five_naics.name
+            }]
+        })
+        docxpresso_data.append({
+            "vars": [{
+                "var": "naics_industry_friendly_name",
+                "value": answer.content['var_6']
+            }]
+        })
+        return docxpresso_data
 
-            if answer.question.pk == 29: # similar_businesses
-                arr = []
+    def do_q26(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "years_of_exp",
+                "value": answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q27(self, docxpresso_data, answer):
+        docxpresso_data.append({
+            "vars": [{
+                "var": "business_idea",
+                "value": answer.content['var_1']
+            }]
+        })
+        return docxpresso_data
+
+    def do_q28(self, docxpresso_data, answer):
+        arr = []
+        if answer.content['var_1_other']:
+            arr.append(answer.content['var_1_other'])
+        else:
+            if answer.content['var_1']:
                 arr.append(answer.content['var_1'])
-                arr.append(answer.content['var_2'])
-                arr.append(answer.content['var_3'])
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "similar_businesses",
-                        "value": arr
-                    }],
-                    "options": {
-                        "element": "list"
-                    }
-                })
 
-            if answer.question.pk == 30: # industry_contacts
-                arr = []
-                arr.append(answer.content['var_1'])
+        if answer.content['var_2_other']:
+            arr.append(answer.content['var_2_other'])
+        else:
+            if answer.content['var_2']:
                 arr.append(answer.content['var_2'])
-                arr.append(answer.content['var_3'])
-                docxpresso_data.append({
-                    "vars": [{
-                        "var": "industry_contacts",
-                        "value": arr
-                    }],
-                    "options": {
-                        "element": "list"
-                    }
-                })
 
+        if answer.content['var_3_other']:
+            arr.append(answer.content['var_3_other'])
+        else:
+            if answer.content['var_3']:
+                arr.append(answer.content['var_3'])
+
+        if answer.content['var_4_other']:
+            arr.append(answer.content['var_4_other'])
+        else:
+            if answer.content['var_4']:
+                arr.append(answer.content['var_4'])
+
+        if answer.content['var_5_other']:
+            arr.append(answer.content['var_5_other'])
+        else:
+            if answer.content['var_5']:
+                arr.append(answer.content['var_5'])
+
+        docxpresso_data.append({
+            "vars": [{
+                "var": "research_sources",
+                "value": arr
+            }],
+            "options": {
+                "element": "list"
+            }
+        })
+        return docxpresso_data
+
+    def do_q29(self, docxpresso_data, answer):
+        arr = []
+        arr.append(answer.content['var_1'])
+        arr.append(answer.content['var_2'])
+        arr.append(answer.content['var_3'])
+        docxpresso_data.append({
+            "vars": [{
+                "var": "similar_businesses",
+                "value": arr
+            }],
+            "options": {
+                "element": "list"
+            }
+        })
+        return docxpresso_data
+
+    def do_q30(self, docxpresso_data, answer):
+        arr = []
+        arr.append(answer.content['var_1'])
+        arr.append(answer.content['var_2'])
+        arr.append(answer.content['var_3'])
+        docxpresso_data.append({
+            "vars": [{
+                "var": "industry_contacts",
+                "value": arr
+            }],
+            "options": {
+                "element": "list"
+            }
+        })
         return docxpresso_data
