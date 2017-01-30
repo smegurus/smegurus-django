@@ -149,12 +149,15 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             )
 
             # Process asynchyonously.
-            from api.tasks import begin_setting_pending_document_for_review_task
+            from api.tasks import begin_sending_pending_document_review_email_task
 
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
             for document in documents.all():
-                begin_setting_pending_document_for_review_task.delay(
+                document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
+                document.save()
+
+                begin_sending_pending_document_review_email_task.delay(
                     request.tenant.schema_name,
                     document.id
                 )

@@ -71,9 +71,9 @@ def begin_processing_document_task(doc_id, doc_type, schema_name):
 
 
 @shared_task
-def begin_setting_pending_document_for_review_task(schema_name, doc_id):
+def begin_sending_pending_document_review_email_task(schema_name, doc_id):
     """
     Asynchronously process our document. Email owner when process completes.
     """
-    call_command('pending_doc_review', schema_name, str(doc_id))
+    call_command('send_doc_pending_review_email', schema_name, str(doc_id))
     return None

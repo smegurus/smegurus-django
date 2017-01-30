@@ -107,10 +107,6 @@ class Command(SendEmailViewMixin, BaseCommand):
         self.begin_processing(schema_name, doc)
 
     def begin_processing(self, schema_name, document):
-        # Set a document to be pending.
-        document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-        document.save()
-
         # Send a notification email to the assigned Advisor.
         self.send_pending_document_review_notification(schema_name, document)
 
