@@ -17,6 +17,13 @@ register = template.Library()
 
 
 @register.simple_tag
+def get_percent_by_module_and_node(module, node):
+    rate = node['order_num'] / len(module.nodes)
+    percent = int(rate * 100)
+    return percent
+
+
+@register.simple_tag
 def reverse_previous_node(workspace, module, node):
     if node['previous_position'] == -1:
         return reverse('tenant_workspace_module_start_master', args=[workspace.id, module.id,])
@@ -27,7 +34,7 @@ def reverse_previous_node(workspace, module, node):
 @register.simple_tag
 def reverse_next_node(workspace, module, node):
     if node['next_position'] == -1:
-        return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id, 0])
+        return reverse('tenant_workspace_module_submit_master', args=[workspace.id, module.id, 0])
     else:
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['next_position'],])
 
