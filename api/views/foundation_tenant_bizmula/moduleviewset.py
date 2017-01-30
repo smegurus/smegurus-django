@@ -126,7 +126,8 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                 begin_processing_document_task.delay(
                     document.id,
                     document.document_type.id,
-                    request.tenant.schema_name
+                    request.tenant.schema_name,
+                    document.workspace.id
                 )
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.

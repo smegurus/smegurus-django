@@ -24,7 +24,7 @@ def begin_organization_creation_task(registered_id):
 
 
 @shared_task
-def begin_processing_document_task(doc_id, doc_type, schema_name):
+def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     """
     Asynchronously process our document. Email owner when process completes.
     """
@@ -41,7 +41,7 @@ def begin_processing_document_task(doc_id, doc_type, schema_name):
 
     # 2. Market Research Summary
     if doc_type == 2:
-        call_command('docxpresso_doc_type_02', schema_name, str(doc_id))
+        call_command('docxpresso_stage_02', schema_name, str(workspace_id))
 
     # 3. Market Research Plan
     if doc_type == 3:

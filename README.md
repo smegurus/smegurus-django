@@ -117,6 +117,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 
   ```bash
   python manage.py makemigrations;
+  python manage.py migrate;
   python manage.py migrate_schemas
   python manage.py populate_public
   python manage.py setup_fixtures
@@ -224,4 +225,4 @@ python manage.py test api.tests.test_authentication
 
 #### Viewing Web-Application
 
-In your browser, load up: ```http://smegurus.com```.
+In your browser, load up: ```http://smegurus.xyz```.
