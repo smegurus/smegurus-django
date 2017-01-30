@@ -206,15 +206,15 @@ class Command(BaseCommand):
             elif answer.question.pk == 39: # geographic_market
                 docxpresso_data = self.do_q39(docxpresso_data, answer)
 
-            elif answer.question.pk == 40: # geographic_market | customer_buying_decisio
+            elif answer.question.pk == 40: # geographic_market | customer_buying_decision
                 docxpresso_data = self.do_q40(docxpresso_data, answer)
 
             elif answer.question.pk == 74: # how_to_convince
                 docxpresso_data = self.do_q74(docxpresso_data, answer)
 
-            # customer_buying_decision 40
+            # customers_will_purchase ??
             # product_distribution ???
-            # {{target_market_characteristics}} 49
+            # target_market_characteristics 49
 
         return docxpresso_data # Return our data.
 
@@ -353,23 +353,29 @@ class Command(BaseCommand):
         return docxpresso_data
 
     def do_q40(self, docxpresso_data, answer): # customer_buying_decision | geographic_market
-        # print(answer.content)
-        # print("\n")
-        # docxpresso_data.append({
-        #     "vars": [{
-        #         "var": "geographic_market",
-        #         "value": []
-        #     }]
-        # })
+        # Compute the answer.
+        var_1 = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+
+        # Add our result.
+        docxpresso_data.append({
+            "vars": [{
+                "var": "customer_buying_decision",
+                "value": '-' if answer.content['var_0'] else var_1
+            }]
+        })
         return docxpresso_data
 
     def do_q74(self, docxpresso_data, answer): #TODO Imp
-        # print(answer.content)
-        # print("\n")
+        # Get all our trends.
+        arr = []
+        for ans in answer.content['var_1']:
+            arr.append(ans['value'])
+
+        # Generate our data and return it.
         docxpresso_data.append({
             "vars": [{
                 "var": "how_to_convince",
-                "value": []
+                "value": arr
             }]
         })
         return docxpresso_data

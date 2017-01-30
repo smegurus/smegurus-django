@@ -200,11 +200,19 @@
                 },{
                     "previous_position": 23,
                     "current_position": 24,
-                    "next_position": -1,
+                    "next_position": 25,
                     "id": 152,
                     "type": "question",
                     "document_type": 3,
                     "order_num": 25
+                },{
+                    "previous_position": 24,
+                    "current_position": 25,
+                    "next_position": -1,
+                    "id": 74,
+                    "type": "question",
+                    "document_type": 3,
+                    "order_num": 26
                 }
             ],
             "title": "Stage 3: Planning",
