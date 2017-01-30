@@ -57,8 +57,8 @@
     <!-- Questions PROGRESS BAR start -->
     <div class="col-lg-12" style="20px auto 0px;">
         <div class="progress progress-striped">
-            <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="50" class="progress-bar progress-bar-warning progress-50">
-                50% {% trans 'Complete' %}
+            <div role="progressbar" aria-valuenow="{% get_percent_by_module_and_node module node %}" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-warning progress-{% get_percent_by_module_and_node module node %}">
+                {% get_percent_by_module_and_node module node %}% {% trans 'Complete' %}
             </div>
         </div>
     </div>
