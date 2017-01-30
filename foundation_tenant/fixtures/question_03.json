@@ -1388,15 +1388,15 @@
             "document_type": 3,
             "number": 41,
             "title": "Are your target customers price sensitive?",
-            "help": "This is some generic help text.",
+            "help": "When we say price sensitivity, we are asking how much your customers care about the cost of a product or service.",
             "options": {
                 "opt1": [
                     {
-                        "value": "Yes",
+                        "value": "are price sensitive",
                         "text": "Yes"
                     },
                     {
-                        "value": "No",
+                        "value": "are not price sensitive",
                         "text": "No"
                     }
                 ],
