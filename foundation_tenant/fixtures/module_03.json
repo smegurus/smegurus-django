@@ -207,9 +207,9 @@
                     "order_num": 25
                 }
             ],
-            "title": "Stage 3",
+            "title": "Stage 3: Planning",
             "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
-            "icon": "fa-television",
+            "icon": "icon-map",
             "colour": ""
         }
     }
