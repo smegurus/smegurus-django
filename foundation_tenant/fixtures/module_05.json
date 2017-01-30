@@ -119,7 +119,7 @@
                     "previous_position": 13,
                     "current_position": 14,
                     "next_position": 15,
-                    "id": 74,
+                    "id": 75,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 14
@@ -127,7 +127,7 @@
                     "previous_position": 14,
                     "current_position": 15,
                     "next_position": 16,
-                    "id": 75,
+                    "id": 76,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 15
@@ -135,7 +135,7 @@
                     "previous_position": 15,
                     "current_position": 16,
                     "next_position": 17,
-                    "id": 76,
+                    "id": 77,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 16
@@ -143,7 +143,7 @@
                     "previous_position": 16,
                     "current_position": 17,
                     "next_position": 18,
-                    "id": 77,
+                    "id": 78,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 17
@@ -151,7 +151,7 @@
                     "previous_position": 17,
                     "current_position": 18,
                     "next_position": 19,
-                    "id": 78,
+                    "id": 79,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 18
@@ -159,7 +159,7 @@
                     "previous_position": 18,
                     "current_position": 19,
                     "next_position": 20,
-                    "id": 79,
+                    "id": 80,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 19
@@ -167,26 +167,18 @@
                     "previous_position": 19,
                     "current_position": 20,
                     "next_position": 21,
-                    "id": 80,
+                    "id": 142,
                     "type": "question",
                     "document_type": 5,
                     "order_num": 20
                 },{
                     "previous_position": 20,
                     "current_position": 21,
-                    "next_position": 22,
-                    "id": 142,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 21
-                },{
-                    "previous_position": 21,
-                    "current_position": 22,
                     "next_position": -1,
                     "id": 143,
                     "type": "question",
-                    "document_type": 6,
-                    "order_num": 22
+                    "document_type": 5,
+                    "order_num": 21
                 }
             ],
             "title": "Stage 5: Marketing",
