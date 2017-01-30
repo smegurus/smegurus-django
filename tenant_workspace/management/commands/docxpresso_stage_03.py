@@ -212,8 +212,10 @@ class Command(BaseCommand):
             elif answer.question.pk == 74: # how_to_convince
                 docxpresso_data = self.do_q74(docxpresso_data, answer)
 
+            elif answer.question.pk == 151: # product_distribution
+                docxpresso_data = self.do_q151(docxpresso_data, answer)
+
             # customers_will_purchase ??
-            # product_distribution ???
             # target_market_characteristics 49
 
         return docxpresso_data # Return our data.
@@ -365,7 +367,7 @@ class Command(BaseCommand):
         })
         return docxpresso_data
 
-    def do_q74(self, docxpresso_data, answer): #TODO Imp
+    def do_q74(self, docxpresso_data, answer):
         # Get all our trends.
         arr = []
         for ans in answer.content['var_1']:
@@ -376,6 +378,16 @@ class Command(BaseCommand):
             "vars": [{
                 "var": "how_to_convince",
                 "value": arr
+            }]
+        })
+        return docxpresso_data
+
+    def do_q151(self, docxpresso_data, answer):
+        # Generate our data and return it.
+        docxpresso_data.append({
+            "vars": [{
+                "var": "product_distribution",
+                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
             }]
         })
         return docxpresso_data
