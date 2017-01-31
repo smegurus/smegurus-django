@@ -336,6 +336,7 @@ body,
     border: 1px solid #1a1a1a !important;
     border-radius: 4px;
     background-color: #ffffff;
+    color: #000000 !important;
 }
 .bg-red-v2 {
     background-color: #e84e40;
