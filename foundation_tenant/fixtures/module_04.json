@@ -35,7 +35,7 @@
                     "next_position": 5,
                     "id": 41,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 11
                 },{
                     "previous_position": 4,
@@ -43,7 +43,7 @@
                     "next_position": 6,
                     "id": 42,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 12
                 },{
                     "previous_position": 5,
@@ -51,7 +51,7 @@
                     "next_position": 7,
                     "id": 43,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 13
                 },{
                     "previous_position": 6,
@@ -59,7 +59,7 @@
                     "next_position": 8,
                     "id": 44,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 14
                 },{
                     "previous_position": 7,
@@ -67,7 +67,7 @@
                     "next_position": 9,
                     "id": 45,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 15
                 },{
                     "previous_position": 8,
@@ -75,7 +75,7 @@
                     "next_position": 10,
                     "id": 46,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 16
                 },{
                     "previous_position": 9,
@@ -83,7 +83,7 @@
                     "next_position": 11,
                     "id": 47,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 17
                 },{
                     "previous_position": 10,
@@ -91,7 +91,7 @@
                     "next_position": -1,
                     "id": 48,
                     "type": "question",
-                    "document_type": 3,
+                    "document_type": 4,
                     "order_num": 18
                 }
             ],
