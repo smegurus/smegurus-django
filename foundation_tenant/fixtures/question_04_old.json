@@ -1,0 +1,386 @@
+[
+    {
+        "model": "foundation_tenant.question",
+        "pk": 52,
+        "fields": {
+            "document_type": 4,
+            "number": 42,
+            "title": "My target market will buy from me because I offer them...",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Superior value",
+                        "text": "Superior value"
+                    },
+                    {
+                        "value": "Best customer service",
+                        "text": "Best customer service"
+                    },
+                    {
+                        "value": "A unique solution",
+                        "text": "A unique solution"
+                    },
+                    {
+                        "value": "A better experience",
+                        "text": "A better experience"
+                    },
+                    {
+                        "value": "A unique expertise",
+                        "text": "A unique expertise"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 53,
+        "fields": {
+            "document_type": 4,
+            "number": 43,
+            "title": "How many people will I contact or try to reach in total?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "10",
+                        "text": "10"
+                    },
+                    {
+                        "value": "20",
+                        "text": "20"
+                    },
+                    {
+                        "value": "30",
+                        "text": "30"
+                    },
+                    {
+                        "value": "40",
+                        "text": "40"
+                    },
+                    {
+                        "value": "50",
+                        "text": "50"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 54,
+        "fields": {
+            "document_type": 4,
+            "number": 44,
+            "title": "How will you reach people?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "I can talk to customers and ask them key questions relating to each of these assumptions",
+                        "text": "I can talk to customers and ask them key questions relating to each of these assumptions"
+                    },
+                    {
+                        "value": "I can set up a fake website that uses Google, LinkedIn, Facebook or Bing key words",
+                        "text": "I can set up a fake website that uses Google, LinkedIn, Facebook or Bing key words"
+                    },
+                    {
+                        "value": "I can talk to people in the industry, suppliers, partners and association members and ask their opinion",
+                        "text": "I can talk to people in the industry, suppliers, partners and association members and ask their opinion"
+                    },
+                    {
+                        "value": "I can talk to people who currently work in this sector and ask their opinion",
+                        "text": "I can talk to people who currently work in this sector and ask their opinion"
+                    },
+                    {
+                        "value": "I can survey friends and family and ask what they would pay",
+                        "text": "I can survey friends and family and ask what they would pay"
+                    },
+                    {
+                        "value": "I can survey people I don't know",
+                        "text": "I can survey people I don't know"
+                    },
+                    {
+                        "value": "I can set up an online survey and email it to people",
+                        "text": "I can set up an online survey and email it to people"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 55,
+        "fields": {
+            "document_type": 4,
+            "number": 45,
+            "title": "How many of them need to agree that my idea is a good one?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "5",
+                        "text": "5"
+                    },
+                    {
+                        "value": "6",
+                        "text": "6"
+                    },
+                    {
+                        "value": "7",
+                        "text": "7"
+                    },
+                    {
+                        "value": "8",
+                        "text": "8"
+                    },
+                    {
+                        "value": "9",
+                        "text": "9"
+                    },
+                    {
+                        "value": "10",
+                        "text": "10"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 56,
+        "fields": {
+            "document_type": 4,
+            "number": 46,
+            "title": "What was the total number of people that you contacted? (Part 1 of 2)",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "",
+                "stub_2": "Please write your total number of people you contacted..."
+            },
+            "dependency": {},
+            "validation": {
+                "type": "integerfield",
+                "min_length": 0,
+                "min_length_error_message": "-",
+                "max_length": 0,
+                "max_length_error_message": "-",
+                "min_num": 0,
+                "min_num_error_message": "-",
+                "max_num": 100,
+                "max_num_error_message": "-"
+            },
+            "type_id": 21
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 57,
+        "fields": {
+            "document_type": 4,
+            "number": 47,
+            "title": "What was the total number of people that you contacted? (Part 2 of 2)",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "I was not able to get enough people",
+                        "text": "I was not able to get enough people"
+                    },
+                    {
+                        "value": "Not enough people clicked on my website",
+                        "text": "Not enough people clicked on my website"
+                    },
+                    {
+                        "value": "Not enough people answered my survey",
+                        "text": "Not enough people answered my survey"
+                    },
+                    {
+                        "value": "I could not find people that matched the criteria",
+                        "text": "I could not find people that matched the criteria"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "Why below expectations?",
+                "stub_2": "Congradulations on the number you contacted. Click next to proceed."
+            },
+            "dependency": {
+                "x_pk": 53,
+                "y_pk": 56,
+                "compare": "<="
+            },
+            "validation": {},
+            "type_id": 31
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 58,
+        "fields": {
+            "document_type": 4,
+            "number": 48,
+            "title": "How many people supported my business idea?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "",
+                "stub_2": "Please write how many people supported your idea here."
+            },
+            "dependency": {},
+            "validation": {
+                "type": "integerfield",
+                "min_length": 0,
+                "min_length_error_message": "-",
+                "max_length": 0,
+                "max_length_error_message": "-",
+                "min_num": 0,
+                "min_num_error_message": "Please enter a number greater then zero.",
+                "max_num": 9999999999,
+                "max_num_error_message": "Please enter a number less then 9999999999"
+            },
+            "type_id": 21
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 59,
+        "fields": {
+            "document_type": 4,
+            "number": 49,
+            "title": "What did I learn?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {
+                "min_length": 1,
+                "min_length_error_message": "Please enter at minimum 2 characters.",
+                "max_length": 2057,
+                "max_length_error_message": "Please enter at maximum 1027 characters."
+            },
+            "type_id": 24
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 60,
+        "fields": {
+            "document_type": 4,
+            "number": 50,
+            "title": "Do I need to adjust any of the following assumptions?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "question_id": 0,
+                        "text": "Business Basics"
+                    },
+                    {
+                        "id": "2",
+                        "question_id": 0,
+                        "text": "Industry"
+                    },
+                    {
+                        "id": "3",
+                        "question_id": 0,
+                        "text": "Client"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "Question",
+                "stub_2": "",
+                "stub_3": "Visit"
+            },
+            "type_id": 32
+        }
+    }
+]
