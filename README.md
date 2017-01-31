@@ -42,10 +42,10 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   python --version  # Should return Python 3.4+
   ```
 
-5. **OS X** USERS ONLY: (a) Check what Postgres.app version you are using. (b) For Postgres we need the following $PATH, so just type it in.
+5. **OS X** USERS ONLY: (a) Check what Postgres.app version you are using. (b) For Postgres we need the following $PATH, so just type it in. If you have a different version installed, please change it the `9.6` version to your current version.
 
   ```bash
-  export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+  export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH"
   ```
 
 6. Install the required Python libraries.
