@@ -86,7 +86,7 @@
         <div class="col-lg-12">
             <div class="jumbotron">
                 <h1>{% trans 'Add Workspace' %}</h1>
-                <p>{% trans 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing.' %}</p>
+                <p>{% trans 'Here you will create a workspace for your company. This will allow you to access our education modules snd create your business plan, as well as other key documents. Do you have moe than one business idea? No problem - just create a workspace for each one to keep your ideas separate.' %}</p>
                 <!--<p><a role="button" class="btn btn-primary btn-lg">Learn more</a></p>-->
             </div>
         </div>
@@ -95,15 +95,15 @@
     <!-- FORM -->
     <!-- START panel-->
     <div class="panel panel-default">
-       <div class="panel-heading">{% trans 'Workspace' %}</div>
+       <div class="panel-heading"><strong>{% trans 'Workspace' %}</strong></div>
        <div class="panel-body">
           <form class="form-horizontal">
              <!-- NAME -->
              <fieldset>
                 <div class="form-group">
-                   <label class="col-sm-2 control-label">{% trans 'Company Name' %}</label>
-                   <div class="col-sm-10">
-                      <input id="id_name" type="text" class="form-control" />
+                   <label class="col-sm-3 control-label">{% trans 'Company Name' %}</label>
+                   <div class="col-sm-7">
+                      <input id="id_name" type="text" class="form-control input-lg" />
                       <span class="help-block m-b-none">{% trans 'Please write the company name.' %}</span>
                    </div>
                 </div>
@@ -111,9 +111,9 @@
              <!-- end NANE -->
              <!-- CO-OWNERS -->
              <div class="form-group">
-                 <label class="col-sm-2 control-label">{% trans 'Co-Owners' %}</label>
-                 <div class="col-sm-10">
-                     <select id="select2-1" multiple="multiple" class="form-control input-md">
+                 <label class="col-sm-3 control-label">{% trans 'Co-Owners' %}</label>
+                 <div class="col-sm-7">
+                     <select id="select2-1" multiple="multiple" class="form-control input-lg">
                          {% for me in mes.all %}
                              {% if me != request.tenant_me %}
                                  <option value="{{ me.id }}">
@@ -128,7 +128,7 @@
              <!-- end CO-OWNERS -->
              <!-- SUBMIT BUTTON -->
              <div class="pull-right">
-                 <button id="id_submit_btn" type="button" class="btn btn-sm btn-success" onclick="ajax_create_workspace();">{% trans 'Submit' %}</button>
+                 <button id="id_submit_btn" type="button" class="btn btn-lg btn-back" onclick="ajax_create_workspace();">{% trans 'Submit' %}</button>
              </div>
              <!-- end SUBMIT BUTTON -->
          </form>
