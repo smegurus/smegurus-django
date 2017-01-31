@@ -8,5 +8,32 @@
         "description": "This is slide #1 description for Stage 2.",
         "video_url": ""
     }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 667,
+    "fields": {
+        "module": 2,
+        "title": "This is slide #2 title for Stage 2.",
+        "description": "This is slide #2 description for Stage 2.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 668,
+    "fields": {
+        "module": 2,
+        "title": "This is slide #3 title for Stage 2.",
+        "description": "This is slide #3 description for Stage 2.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 669,
+    "fields": {
+        "module": 2,
+        "title": "This is slide #4 title for Stage 2.",
+        "description": "This is slide #4 description for Stage 2.",
+        "video_url": ""
+    }
 }
 ]
