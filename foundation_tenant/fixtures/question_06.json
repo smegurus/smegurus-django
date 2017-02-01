@@ -1,1284 +1,170 @@
 [
     {
         "model": "foundation_tenant.question",
-        "pk": 81,
+        "pk": 56,
         "fields": {
             "document_type": 6,
-            "number": 1,
-            "title": "Please list at least 1, or up to 10 owners of the company and the percentage of shares that they own",
+            "number": 46,
+            "title": "What was the total number of people that you contacted? (Part 1 of 2)",
             "help": "This is some generic help text.",
             "options": {
-                "opt1": [
-                    {
-                        "value": 10,
-                        "text": "10"
-                    },
-                    {
-                        "value": 20,
-                        "text": "20"
-                    },
-                    {
-                        "value": 30,
-                        "text": "30"
-                    },
-                    {
-                        "value": 40,
-                        "text": "40"
-                    },
-                    {
-                        "value": 50,
-                        "text": "50"
-                    },
-                    {
-                        "value": 60,
-                        "text": "60"
-                    },
-                    {
-                        "value": 70,
-                        "text": "70"
-                    },
-                    {
-                        "value": 80,
-                        "text": "80"
-                    },
-                    {
-                        "value": 90,
-                        "text": "90"
-                    },
-                    {
-                        "value": 100,
-                        "text": "100"
-                    },
-                    {
-                        "value": "Other (Please Specify)",
-                        "text": "Other (Please Specify)"
-                    }
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select",
-                "opt2": [
-                    {
-                        "value": "Investor",
-                        "text": "Investor"
-                    },
-                    {
-                        "value": "Full partner",
-                        "text": "Full partner"
-                    },
-                    {
-                        "value": "Financial supporter",
-                        "text": "Financial supporter"
-                    },
-                    {
-                        "value": "Shareholder",
-                        "text": "Shareholder"
-                    },
-                    {
-                        "value": "Other (Please Specify)",
-                        "text": "Other (Please Specify)"
-                    }
-                ],
-                "opt2_other": "Other (Please Specify)",
-                "opt2_select": "Select"
-            },
-            "content": {
-                "stub_1": "Owner Name",
-                "stub_2": "Ownership",
-                "stub_3": "Type of Partner",
-                "stub_4": "Remove",
-                "stub_5": "Owner Name",
-                "stub_6": "ex: John Doe",
-                "stub_7": "Ownership Percentage",
-                "stub_8": "Type of Partner",
-                "stub_9": "Add Owner"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
-            },
-            "type_id": 3
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 82,
-        "fields": {
-            "document_type": 6,
-            "number": 2,
-            "title": "What is the legal structure of your company?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "a sole proprietorship",
-                        "text": "a sole proprietorship"
-                    },
-                    {
-                        "value": "a partnership",
-                        "text": "a partnership"
-                    },
-                    {
-                        "value": "an incorporated entity",
-                        "text": "an incorporated entity"
-                    },
-                    {
-                        "value": "a social enterprise",
-                        "text": "a social enterprise"
-                    },
-                    {
-                        "value": "other",
-                        "text": "other"
-                    }
-                ],
-                "opt1_other": "other",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": "Legal Structure"
-            },
-            "dependency": {},
-            "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
-            "type_id": 4
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 83,
-        "fields": {
-            "document_type": 6,
-            "number": 3,
-            "title": "Where will your company be located?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "United States",
-                    "Canada",
-                    "México"
-                ],
-                "opt1_other": "other",
-                "opt1_select": "Select",
-                "opt2": [
-                    {
-                        "parent": "Canada",
-                        "choices": [
-                            "Alberta",
-                            "British Columbia",
-                            "Manitoba",
-                            "New Brunswick",
-                            "Newfoundland and Labrador",
-                            "Nova Scotia",
-                            "Ontario",
-                            "Prince Edward Island",
-                            "Quebec",
-                            "Saskatchewan",
-                            "Northwest Territories",
-                            "Nunavut",
-                            "Yukon"
-                        ]
-                    },
-                    {
-                        "parent": "United States",
-                        "choices": [
-                            "Alabama",
-                            "Alaska",
-                            "Arizona",
-                            "California",
-                            "Colorado",
-                            "Connecticut",
-                            "Delaware",
-                            "District of Columbia",
-                            "Florida",
-                            "Georgia",
-                            "Hawaii",
-                            "Idaho",
-                            "Illinois",
-                            "Indiana",
-                            "Iowa",
-                            "Kansas",
-                            "Kentucky",
-                            "Louisiana",
-                            "Maine",
-                            "Maryland",
-                            "Massachusetts",
-                            "Michigan",
-                            "Minnestoa",
-                            "Mississippi",
-                            "Missouri",
-                            "Montana",
-                            "Nebraska",
-                            "Nevada",
-                            "New Hampshire",
-                            "New Jersey",
-                            "New Mexico",
-                            "New York",
-                            "North Carolina",
-                            "North Dakota",
-                            "Ohio",
-                            "Oklahoma",
-                            "Oregon",
-                            "Pennsylvania",
-                            "Rhode Island",
-                            "South Carolina",
-                            "South Dakota",
-                            "Tennessee",
-                            "Texas",
-                            "Utah",
-                            "Vermont",
-                            "Washington",
-                            "Wester Virginia",
-                            "Wisconsin",
-                            "Wyoming",
-                            "Vermont",
-                            "American Samoa",
-                            "Guam",
-                            "Northern Mariana Islands",
-                            "Puerto Rico",
-                            "U.S. Virgin Islands"
-                        ]
-                    },
-                    {
-                        "parent": "México",
-                        "choices": [
-                            "Aguascalientes",
-                            "Baja California",
-                            "Baja California Sur",
-                            "Capeche",
-                            "Coahuila de Zaragoza",
-                            "Colima",
-                            "Chiapas",
-                            "Chihuahua",
-                            "Distrito Federal",
-                            "Durango",
-                            "Guanajuato",
-                            "Guerrero",
-                            "Hidalgo",
-                            "Jalisco",
-                            "México",
-                            "Michoacán de Ocampo",
-                            "Morelos",
-                            "Nayarit",
-                            "Nuevo León",
-                            "Oaxaca",
-                            "Puebla",
-                            "Querétaro",
-                            "Quintana Roo",
-                            "San Luis Potosí",
-                            "Sinaloa",
-                            "Sonora",
-                            "Tabasco",
-                            "Tamaulipas",
-                            "Tlaxcala",
-                            "Veracruz de Ignacio de la Llave",
-                            "Yucatán",
-                            "Zacatecas"
-                        ]
-                    }
-                ],
-                "opt2_other": "other",
-                "opt2_select": "Select"
-            },
-            "content": {
-                "stub_1": "Street Address",
-                "stub_2": "Ex: 120 Centre Street Unit #102",
-                "stub_3": "City / Town",
-                "stub_4": "Ex: London",
-                "stub_5": "Country",
-                "stub_6": "Province / State"
-            },
-            "dependency": {},
-            "validation": {},
-            "type_id": 5
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 84,
-        "fields": {
-            "document_type": 6,
-            "number": 4,
-            "title": "What are uses of your companies space at your location?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "Retail",
-                    "Office",
-                    "Warehouse",
-                    "Distribution Centre",
-                    "Manufacturing",
-                    "Packaging",
-                    "Shipping",
-                    "Processing",
-                    "Quality Control",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": "Location Use",
-                "stub_2": "Square Footage",
-                "stub_3": "Remove",
-                "stub_4": "Location Use",
-                "stub_5": "Square Footage",
-                "stub_6": "ex. 100",
-                "stub_7": "sq. ft.",
-                "stub_8": "Add Use"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
-            },
-            "type_id": 6
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 85,
-        "fields": {
-            "document_type": 6,
-            "number": 5,
-            "title": "Will you have any legal or professional fees to set up your business? If so, please detail them below.",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "Incorporation",
-                    "Legal fees",
-                    "Accounting fees",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select",
-                "opt2": [
-                    "fixed", "variable"
-                ],
-                "opt2_other": "",
-                "opt2_select": ""
-            },
-            "content": {
-                "stub_1": "Legal/Professional Fees",
-                "stub_2": "Details",
-                "stub_3": "Variable/Fixed",
-                "stub_4": "Y1 ($)",
-                "stub_5": "Y2 ($)",
-                "stub_6": "Y3 ($)",
-                "stub_7": "",
-                "stub_8": "Legal/Professional Fees",
-                "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
-                "stub_11": "Variable/Fixed",
-                "stub_12": "Year 1 Cost",
-                "stub_13": "ex. 100",
-                "stub_14": "Year 2 Cost",
-                "stub_15": "ex. 100",
-                "stub_16": "Year 3 Cost",
-                "stub_17": "ex. 100",
-                "stub_18": "Add Use"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
-                "var4_type": "integerfield",
-                "var4_min_length": 0,
-                "var4_min_length_error_message": "-",
-                "var4_max_length": 0,
-                "var4_max_length_error_message": "-",
-                "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
-                "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
-                "var5_type": "integerfield",
-                "var5_min_length": 0,
-                "var5_min_length_error_message": "-",
-                "var5_max_length": 0,
-                "var5_max_length_error_message": "-",
-                "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
-                "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
-                "var6_type": "integerfield",
-                "var6_min_length": 0,
-                "var6_min_length_error_message": "-",
-                "var6_max_length": 0,
-                "var6_max_length_error_message": "-",
-                "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero.",
-                "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
-            },
-            "type_id": 50
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 86,
-        "fields": {
-            "document_type": 6,
-            "number": 6,
-            "title": "Will you have any ongoing location specific costs?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "Rent",
-                    "Utilities",
-                    "Insurance",
-                    "Property taxes",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select",
-                "opt2": [
-                    "fixed", "variable"
-                ],
-                "opt2_other": "",
-                "opt2_select": ""
-            },
-            "content": {
-                "stub_1": "Cost Type",
-                "stub_2": "Details",
-                "stub_3": "Variable/Fixed",
-                "stub_4": "Y1 ($)",
-                "stub_5": "Y2 ($)",
-                "stub_6": "Y3 ($)",
-                "stub_7": "",
-                "stub_8": "Cost Type",
-                "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
-                "stub_11": "Variable/Fixed",
-                "stub_12": "Year 1 Cost",
-                "stub_13": "ex. 100",
-                "stub_14": "Year 2 Cost",
-                "stub_15": "ex. 100",
-                "stub_16": "Year 3 Cost",
-                "stub_17": "ex. 100",
-                "stub_18": "Add Use"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
-                "var2_type": "textfield",
-                "var2_min_length": 2,
-                "var2_min_length_error_message": "Please enter a text with at leaset 2 characters.",
-                "var2_max_length": 511,
-                "var2_max_length_error_message": "Please enter a text with no less then 511 chracters.",
-                "var2_min_num": 0,
-                "var2_min_num_error_message": "-",
-                "var2_max_num": 0,
-                "var2_max_num_error_message": "-",
-
-                "var4_type": "integerfield",
-                "var4_min_length": 0,
-                "var4_min_length_error_message": "-",
-                "var4_max_length": 0,
-                "var4_max_length_error_message": "-",
-                "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
-                "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
-                "var5_type": "integerfield",
-                "var5_min_length": 0,
-                "var5_min_length_error_message": "-",
-                "var5_max_length": 0,
-                "var5_max_length_error_message": "-",
-                "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
-                "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
-                "var6_type": "integerfield",
-                "var6_min_length": 0,
-                "var6_min_length_error_message": "-",
-                "var6_max_length": 0,
-                "var6_max_length_error_message": "-",
-                "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
-                "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
-            },
-            "type_id": 50
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 87,
-        "fields": {
-            "document_type": 6,
-            "number": 7,
-            "title": "Please list the specific products you will offer under each category?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "Rent",
-                    "Utilities",
-                    "Insurance",
-                    "Property taxes",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": "Category",
-                "stub_2": "Product",
-                "stub_3": "Remove",
-                "stub_4": "Category",
-                "stub_5": "Product",
-                "stub_6": "Ex: Widget",
-                "stub_7": "Add Use"
-            },
-            "dependency": {
-                "q1_qid": 32
-            },
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
-            },
-            "type_id": 39
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 88,
-        "fields": {
-            "document_type": 6,
-            "number": 8,
-            "title": "Which verb best describes what you will do?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "creation",
-                        "text": "creation"
-                    },{
-                        "value": "servicing",
-                        "text": "servicing"
-                    },{
-                        "value": "production",
-                        "text": "production"
-                    },{
-                        "value": "making",
-                        "text": "making"
-                    },{
-                        "value": "offering",
-                        "text": "offering"
-                    },{
-                        "value": "leasing",
-                        "text": "leasing"
-                    },{
-                        "value": "rental",
-                        "text": "rental"
-                    },{
-                        "value": "sale",
-                        "text": "sale"
-                    },{
-                        "value": "other",
-                        "text": "other"
-                    }
-                ],
-                "opt1_other": "other",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": "Verb"
-            },
-            "dependency": {},
-            "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
-            "type_id": 4
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 89,
-        "fields": {
-            "document_type": 6,
-            "number": 9,
-            "title": "Currently, my customers must pay for products and services ...",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "All sales are credit or cash at time of sale",
-                        "text": "All sales are credit or cash at time of sale"
-                    },
-                    {
-                        "value": "Customers must pay within 30 days of purchase",
-                        "text": "Customers must pay within 30 days of purchase"
-                    },
-                    {
-                        "value": "Customers must pay within 60 days of purchase",
-                        "text": "Customers must pay within 60 days of purchase"
-                    },
-                    {
-                        "value": "Customers must pay within 90 days of purchase",
-                        "text": "Customers must pay within 90 days of purchase"
-                    },
-                    {
-                        "value": "Other",
-                        "text": "Other"
-                    }
-                ],
+                "opt1": [],
                 "opt1_other": "Other"
             },
             "content": {
-                "opt1_other_stub": "Other",
-                "opt1_other_type": "textfield"
+                "stub_1": "",
+                "stub_2": "Please write your total number of people you contacted..."
             },
+            "dependency": {},
             "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 50,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "type": "integerfield",
+                "min_length": 0,
+                "min_length_error_message": "-",
+                "max_length": 0,
+                "max_length_error_message": "-",
+                "min_num": 0,
+                "min_num_error_message": "-",
+                "max_num": 100,
+                "max_num_error_message": "-"
             },
-            "type_id": 1
+            "type_id": 21
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
-        "pk": 90,
+        "pk": 57,
         "fields": {
             "document_type": 6,
-            "number": 10,
-            "title": "Please list up to 5 licenses, registrations, or permits that you need to operate your business. At minimum, every business should have a name registration. Please list below, select the license, explain the process to obtain it, and how close you are to completing it.",
+            "number": 47,
+            "title": "What was the total number of people that you contacted? (Part 2 of 2)",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
-                        "value": "Obtain Vendor's Permit",
-                        "text": "Obtain Vendor's Permit"
-                    },{
-                        "value": "Register Business",
-                        "text": "Register Business"
-                    },{
-                        "value": "Incorporate Business",
-                        "text": "Incorporate Business"
-                    },{
-                        "value": "Establish partnership",
-                        "text": "Establish partnership"
-                    },{
+                        "value": "I was not able to get enough people",
+                        "text": "I was not able to get enough people"
+                    },
+                    {
+                        "value": "Not enough people clicked on my website",
+                        "text": "Not enough people clicked on my website"
+                    },
+                    {
+                        "value": "Not enough people answered my survey",
+                        "text": "Not enough people answered my survey"
+                    },
+                    {
+                        "value": "I could not find people that matched the criteria",
+                        "text": "I could not find people that matched the criteria"
+                    },
+                    {
                         "value": "Other",
                         "text": "Other"
                     }
                 ],
                 "opt1_other": "Other",
-                "opt1_select": "Select",
-                "opt2": [
-                    {
-                        "value": "Register with Government",
-                        "text": "Register with Government"
-                    },{
-                        "value": "Consult with Lawyer",
-                        "text": "Consult with Lawyer"
-                    },{
-                        "value": "Consult with Accountant",
-                        "text": "Consult with Accountant"
-                    },{
-                        "value": "Meet with Consultant",
-                        "text": "Meet with Consultant"
-                    },{
-                        "value": "Other",
-                        "text": "Other"
-                    }
-                ],
-                "opt2_other": "Other",
-                "opt2_select": "Select",
-                "opt3": [
-                    {
-                        "value": "fixed",
-                        "text": "fixed"
-                    },{
-                        "value": "variable",
-                        "text": "variable"
-                    }
-                ],
-                "opt3_other": "",
-                "opt3_select": ""
+                "opt1_select": "Select"
             },
             "content": {
-                "stub_1": "License/Registration",
-                "stub_2": "Process",
-                "stub_3": "Variable/Fixed",
-                "stub_4": "Y1 ($)",
-                "stub_5": "Y2 ($)",
-                "stub_6": "Y3 ($)",
-                "stub_7": "",
-                "stub_8": "License/Registration",
-                "stub_9": "Process",
-                "stub_10": "Cost Type",
-                "stub_11": "Year 1 Cost",
-                "stub_12": "ex. 100",
-                "stub_13": "Year 2 Cost",
-                "stub_14": "ex. 100",
-                "stub_15": "Year 3 Cost",
-                "stub_16": "ex. 100",
-                "stub_17": "Add Use"
+                "stub_1": "Why below expectations?",
+                "stub_2": "Congradulations on the number you contacted. Click next to proceed."
             },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 0,
-                "arr_min_count_error_message": "Please enter at least 5 entry.",
-                "arr_max_count": 5,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
-                "var4_type": "integerfield",
-                "var4_min_length": 0,
-                "var4_min_length_error_message": "-",
-                "var4_max_length": 0,
-                "var4_max_length_error_message": "-",
-                "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
-                "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
-                "var5_type": "integerfield",
-                "var5_min_length": 0,
-                "var5_min_length_error_message": "-",
-                "var5_max_length": 0,
-                "var5_max_length_error_message": "-",
-                "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
-                "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
-                "var6_type": "integerfield",
-                "var6_min_length": 0,
-                "var6_min_length_error_message": "-",
-                "var6_max_length": 0,
-                "var6_max_length_error_message": "-",
-                "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
-                "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
+            "dependency": {
+                "x_pk": 53,
+                "y_pk": 56,
+                "compare": "<="
             },
-            "type_id": 40
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 91,
-        "fields": {
-            "document_type": 6,
-            "number": 11,
-            "title": "List, your management team by name proposed role, and area of expertise (Min 1, Max 10)",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "President",
-                        "text": "President"
-                    },
-                    {
-                        "value": "CEO",
-                        "text": "CEO"
-                    },
-                    {
-                        "value": "CFO",
-                        "text": "CFO"
-                    },
-                    {
-                        "value": "COO",
-                        "text": "COO"
-                    },
-                    {
-                        "value": "CTO",
-                        "text": "CTO"
-                    },
-                    {
-                        "value": "Project Manager",
-                        "text": "Project Manager"
-                    },
-                    {
-                        "value": "General sales",
-                        "text": "General sales"
-                    },
-                    {
-                        "value": "VP",
-                        "text": "VP"
-                    },
-                    {
-                        "value": "Human Resources",
-                        "text": "Human Resources"
-                    },
-                    {
-                        "value": "Administration",
-                        "text": "Administration"
-                    },
-                    {
-                        "value": "Advisor",
-                        "text": "Advisor"
-                    },
-                    {
-                        "value": "Other (Please Specify)",
-                        "text": "Other (Please Specify)"
-                    }
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select",
-                "opt2": [
-                    {
-                        "value": "Manage finances",
-                        "text": "Manage finances"
-                    },{
-                        "value": "Manage sales",
-                        "text": "Manage sales"
-                    },{
-                        "value": "Manage technology",
-                        "text": "Manage technology"
-                    },{
-                        "value": "Manage operations",
-                        "text": "Manage operations"
-                    },{
-                        "value": "Manage HR",
-                        "text": "Manage HR"
-                    },{
-                        "value": "Manage Marketing",
-                        "text": "Manage Marketing"
-                    },{
-                        "value": "Manage Projects",
-                        "text": "Manage Projects"
-                    },{
-                        "value": "Other (Please Specify)",
-                        "text": "Other (Please Specify)"
-                    }
-                ],
-                "opt2_other": "Other (Please Specify)",
-                "opt2_select": "Select",
-                "opt3": [
-                    {
-                        "value": "Leadership",
-                        "text": "Leadership"
-                    },{
-                        "value": "Administration",
-                        "text": "Administration"
-                    },{
-                        "value": "Finance",
-                        "text": "Finance"
-                    },{
-                        "value": "HR",
-                        "text": "HR"
-                    },{
-                        "value": "Marketing",
-                        "text": "Marketing"
-                    },{
-                        "value": "Product Development",
-                        "text": "Product Development"
-                    },{
-                        "value": "Development ",
-                        "text": "Development "
-                    },{
-                        "value": "Inventory Management ",
-                        "text": "Inventory Management "
-                    },{
-                        "value": "Other (Please Specify)",
-                        "text": "Other (Please Specify)"
-                    }
-                ],
-                "opt3_other": "Other (Please Specify)",
-                "opt3_select": "Select"
-            },
-            "content": {
-                "stub_1": "Name",
-                "stub_2": "Role",
-                "stub_3": "Function",
-                "stub_4": "Expertise",
-                "stub_5": "Remove",
-                "stub_6": "Name",
-                "stub_7": "ex: John Doe",
-                "stub_8": "Role",
-                "stub_9": "Function",
-                "stub_10": "Expertise",
-                "stub_11": "Add Owner"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
-            },
-            "type_id": 41
+            "validation": {},
+            "type_id": 31
         }
     },
     {
         "model": "foundation_tenant.question",
-        "pk": 92,
+        "pk": 58,
         "fields": {
             "document_type": 6,
-            "number": 12,
-            "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
+            "number": 48,
+            "title": "How many people supported my business idea?",
             "help": "This is some generic help text.",
             "options": {
-                "opt1": [
-                    "Experienced leadership",
-                    "Strong leadership",
-                    "Knowledgeable leadership",
-                    "Good communication skills",
-                    "Strong time management skills",
-                    "Excellent team work capacity",
-                    "In touch with industry",
-                    "In touch with company",
-                    "Strong marketing skills",
-                    "Strong technology skills",
-                    "Strong business training",
-                    "Innovative approach to leadership",
-                    "High risk tolerance",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select"
+                "opt1": [],
+                "opt1_other": "Other"
             },
             "content": {
-                "stub_1": "1",
-                "stub_2": "2",
-                "stub_3": "3"
+                "stub_1": "",
+                "stub_2": "Please write how many people supported your idea here."
             },
             "dependency": {},
-            "validation": {},
-            "type_id": 27
+            "validation": {
+                "type": "integerfield",
+                "min_length": 0,
+                "min_length_error_message": "-",
+                "max_length": 0,
+                "max_length_error_message": "-",
+                "min_num": 0,
+                "min_num_error_message": "Please enter a number greater then zero.",
+                "max_num": 9999999999,
+                "max_num_error_message": "Please enter a number less then 9999999999"
+            },
+            "type_id": 21
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
-        "pk": 93,
+        "pk": 59,
         "fields": {
             "document_type": 6,
-            "number": 13,
-            "title": "Choose 3 weaknesses or gaps that exist in your management team and identify how to resolve them.",
+            "number": 49,
+            "title": "What did I learn?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {
+                "min_length": 1,
+                "min_length_error_message": "Please enter at minimum 2 characters.",
+                "max_length": 2057,
+                "max_length_error_message": "Please enter at maximum 1027 characters."
+            },
+            "type_id": 24
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 60,
+        "fields": {
+            "document_type": 6,
+            "number": 50,
+            "title": "Do I need to adjust any of the following assumptions?",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Inexperienced leadership",
-                    "Lack of administrative skills",
-                    "New to the industry",
-                    "Newcomer/Immigrant",
-                    "Inexperienced with Marketing/Social Media",
-                    "Lack of formal business training",
-                    "Lack of contacts in the industry",
-                    "Lack of sales experience",
-                    "Lack of support staff",
-                    "Other (Please Specify)"
-                ],
-                "opt1_select": "Select",
-                "opt1_other": "Other (Please Specify)",
-                "opt2": [
                     {
-                        "parent": "Inexperienced leadership",
-                        "choices": [
-                            "Find industry mentor", "Take leadership training course", "Other (Please Specify)"
-                        ]
+                        "id": "1",
+                        "question_id": 0,
+                        "text": "Business Basics"
                     },
                     {
-                        "parent": "Lack of administrative skills",
-                        "choices": [
-                             "Hire administrative assistant",
-                             "Higher support staff as needed",
-                             "Higher virtual support staff as needed",
-                             "Find co-op students or interns",
-                            "Other (Please Specify)"
-                        ]
+                        "id": "2",
+                        "question_id": 0,
+                        "text": "Industry"
                     },
                     {
-                        "parent": "New to the industry",
-                        "choices": [
-                            "Join industry associations",
-                            "Join Chamber of Commerce",
-                            "Join Business Improvement Association",
-                            "Find industry mentor",
-                            "Take leadership training courses",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Newcomer/Immigrant",
-                        "choices": [
-                            "Take courses to improve language skills",
-                            "Hire bilingual staff as a support",
-                            "Get assistance from family members",
-                            "Join networking groups to improve language skills",
-                            "Find industry mentor",
-                            "Take leadership training course",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Inexperienced with Marketing/Social Media",
-                        "choices": [
-                            "Hire marketing employees",
-                            "Sign-up for marketing courses",
-                            "Read marketing books and articles",
-                            "Learn how to use marketing apps",
-                            "Join networking group",
-                            "Find industry mentor",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Lack of formal business training",
-                        "choices": [
-                            "Enroll in Government entrepreneurship program",
-                            "Take online business courses",
-                            "Access business resources from local non-profits",
-                            "Seek out support from industry organizations",
-                            "Read business books and implement best practices",
-                            "Find industry mentor",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Lack of contacts in the industry",
-                        "choices": [
-                            "Create strong brand campaign",
-                            "Attend networking events",
-                            "Join industry associations",
-                            "Join Chamber of Commerce",
-                            "Join Business Improvement Association",
-                            "Find industry mentor",
-                            "Take leadership training courses",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Lack of sales training or experience",
-                        "choices": [
-                            "Hire sales staff",
-                            "Take sales training course",
-                            "Investigate alternative sales or distribution channels",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Lack of support staff",
-                        "choices": [
-                            "Hire administrative assistant",
-                            "Higher support staff as needed",
-                            "Higher virtual support staff as needed",
-                            "Find co-op students or interns",
-                            "Other (Please Specify)"
-                        ]
-                    },
-                    {
-                        "parent": "Other (Please Specify)",
-                        "choices": [
-                            "Other (Please Specify)"
-                        ]
+                        "id": "3",
+                        "question_id": 0,
+                        "text": "Client"
                     }
-                ],
-                "opt2_select": "Select",
-                "opt2_other": "Other (Please Specify)"
-            },
-            "content": {
-                "stub_1": "Weakness",
-                "stub_2": "Resolution",
-                "stub_3": "Remove",
-                "stub_4": "Weakness",
-                "stub_5": "Resolution",
-                "stub_6": "Add Weakness / Resolution"
-            },
-            "dependency": {},
-            "validation": {
-                "min": 3,
-                "min_error_message": "Please pick at least 3 weaknesses.",
-                "max": 15,
-                "max_error_message": "Please pick no more then 15 weaknesses.",
-                "opt2_other_min_length": 2,
-                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt2_other_max_length": 63,
-                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
-            "type_id": 33
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 94,
-        "fields": {
-            "document_type": 6,
-            "number": 14,
-            "title": "Many small businesses have legal, financial and other professionals they can go to for help. Please list 1-5 advisors or mentors that support you.",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "Mentor",
-                    "Advisor",
-                    "Consultant",
-                    "Lawyer",
-                    "Accountant",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": "Advisor Name",
-                "stub_2": "Company Name",
-                "stub_3": "Advisor Role",
-                "stub_4": "Remove",
-                "stub_5": "Advisor Name",
-                "stub_6": "Ex: Bart Mika",
-                "stub_7": "Company Name",
-                "stub_8": "ex. Mika Software",
-                "stub_9": "Advisor Role",
-                "stub_10": "Add"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
-                "var2_type": "textfield",
-                "var2_min_length": 2,
-                "var2_min_length_error_message": "Please enter a text with at leaset 2 characters.",
-                "var2_max_length": 511,
-                "var2_max_length_error_message": "Please enter a text with no less then 511 chracters.",
-                "var2_min_num": 0,
-                "var2_min_num_error_message": "-",
-                "var2_max_num": 0,
-                "var2_max_num_error_message": "-",
-                "var3_type": "textfield",
-                "var3_min_length": 2,
-                "var3_min_length_error_message": "Please enter a text with at leaset 2 characters.",
-                "var3_max_length": 511,
-                "var3_max_length_error_message": "Please enter a text with no less then 511 chracters.",
-                "var3_min_num": 0,
-                "var3_min_num_error_message": "-",
-                "var3_max_num": 0,
-                "var3_max_num_error_message": "-"
-            },
-            "type_id": 42
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 95,
-        "fields": {
-            "document_type": 6,
-            "number": 15,
-            "title": "Identify 3 to 5 key things you must do in the next year to ensure the success of your business, rate how important they are, how much they will cost to implement ($) and when they must be completed by",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    "Secure start-up funding",
-                    "Hire staff",
-                    "Purchase inventory",
-                    "Develop a detailed marketing plan",
-                    "Secure Accountant",
-                    "Secure Lawyer",
-                    "Finalize location for operations",
-                    "Complete renovations",
-                    "Purchase equipment for operations",
-                    "Purchase technology for operations",
-                    "Develop technology for operations",
-                    "Join industry associations",
-                    "Join local associations",
-                    "Secure consultant/other professional",
-                    "Other (Please Specify)"
-                ],
-                "opt1_other": "Other (Please Specify)",
-                "opt1_select": "Select",
-                "opt2": [
-                    "Low", "Medium", "High"
-                ],
-                "opt2_other": "Other (Please Specify)",
-                "opt2_select": "Select",
-                "opt3": [
-                     "$0", "$1,000 or less", "$1,00 - $2,499", "$2,500 - $4,999", "$5,000- $7,499", "$7,500 - $10,000", "$10,000+"
-                ],
-                "opt3_other": "Other (Please Specify)",
-                "opt3_select": "Select",
-                "opt4": [
-                     "0%", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%"
-                ],
-                "opt4_other": "Other (Please Specify)",
-                "opt4_select": "Select"
-            },
-            "content": {
-                "stub_1": "Milestone",
-                "stub_2": "Risk",
-                "stub_3": "Person Responsible",
-                "stub_4": "Start Date",
-                "stub_5": "End Date",
-                "stub_6": "Cost",
-                "stub_7": "Completion %",
-                "stub_8": "Remove",
-                "stub_9": "Milestone",
-                "stub_10": "Risk",
-                "stub_11": "Person Responsible",
-                "stub_12": "Ex: Bartlomiej Mika",
-                "stub_13": "Start Date",
-                "stub_14": "End Date",
-                "stub_15": "Cost",
-                "stub_16": "Completion %",
-                "stub_17": "Add"
-            },
-            "dependency": {},
-            "validation": {
-                "arr_min_count": 1,
-                "arr_min_count_error_message": "Please enter at least 1 entry.",
-                "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
-            },
-            "type_id": 43
-        }
-    },{
-        "model": "foundation_tenant.question",
-        "pk": 96,
-        "fields": {
-            "document_type": 6,
-            "number": 16,
-            "title": "If you are applying for a loan with a financial institution they often require several additional pieces of information. For confidentiality reasons we do not store your personal information on our system, but we can identify on the Table of Contents that you will be attaching these documents. Please indicate which of the following you will need to attach to your business plan (check all that apply)",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                    "id": "1",
-                    "value": "Resume for each owner",
-                    "text": "Resume for each owner"
-                },
-                {
-                    "id": "2",
-                    "value": "Statement of personal networth",
-                    "text": "Statement of personal networth"
-                },
-                {
-                    "id": "3",
-                    "value": "Credit Report",
-                    "text": "Credit Report"
-                },
-                {
-                    "id": "4",
-                    "value": "Partnership Agreement",
-                    "text": "Partnership Agreement"
-                },
-                {
-                    "id": "5",
-                    "value": "Other",
-                    "text": "Other"
-                }
                 ],
                 "opt1_other": "Other"
             },
             "content": {
-                "stub_1": ""
+                "stub_1": "Question",
+                "stub_2": "",
+                "stub_3": "Visit"
             },
-            "type_id": 20
+            "type_id": 32
         }
     }
 ]

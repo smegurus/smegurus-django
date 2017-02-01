@@ -372,6 +372,75 @@
     },
     {
         "model": "foundation_tenant.question",
+        "pk": 74,
+        "fields": {
+            "document_type": 5,
+            "number": 64,
+            "title": "How will you convince them to buy from you?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "Information to guide decision making",
+                        "text": "Information to guide decision making"
+                    },
+                    {
+                        "id": "2",
+                        "value": "Deals/Coupons/New customer specials",
+                        "text": "Deals/Coupons/New customer specials"
+                    },
+                    {
+                        "id": "3",
+                        "value": "Social media page or group",
+                        "text": "Social media page or group"
+                    },
+                    {
+                        "id": "4",
+                        "value": "Speaking to a customer about my products or services",
+                        "text": "Speaking to a customer about my products or services"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Networking",
+                        "text": "Networking"
+                    },
+                    {
+                        "id": "6",
+                        "value": "Engagement on social media",
+                        "text": "Engagement on social media"
+                    },
+                    {
+                        "id": "7",
+                        "value": "Our product is an impulse buy",
+                        "text": "Our product is an impulse buy"
+                    },
+                    {
+                        "id": "8",
+                        "value": "Our product is a staple",
+                        "text": "Our product is a staple"
+                    },
+                    {
+                        "id": "9",
+                        "value": "Our product is high-end",
+                        "text": "Our product is high-end"
+                    },
+                    {
+                        "id": "10",
+                        "value": "Our product is value-priced",
+                        "text": "Our product is value-priced"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
         "pk": 37,
         "fields": {
             "document_type": 3,
@@ -1468,52 +1537,6 @@
         }
     },{
         "model": "foundation_tenant.question",
-        "pk": 150,
-        "fields": {
-            "document_type": 3,
-            "number": 42,
-            "title": "How many competitors are there in your industry?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "a low amount of competitors",
-                        "text": "a low amount of competitors"
-                    },
-                    {
-                        "value": "few competitors",
-                        "text": "few competitors"
-                    },
-                    {
-                        "value": "a moderate amount of competitors",
-                        "text": "a moderate amount of competitors"
-                    },
-                    {
-                        "value": "many competitors",
-                        "text": "many competitors"
-                    },
-                    {
-                        "value": "this market is crowded",
-                        "text": "this market is crowded"
-                    }
-                ],
-                "opt1_other": "Other",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "opt1_other_stub": "Other",
-                "opt1_other_type": "textfield"
-            },
-            "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 50,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
-            "type_id": 4
-        }
-    },{
-        "model": "foundation_tenant.question",
         "pk": 151,
         "fields": {
             "document_type": 3,
@@ -1562,106 +1585,6 @@
                 "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
             "type_id": 4
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 152,
-        "fields": {
-            "document_type": 3,
-            "number": 44,
-            "title": "How much do customers spend on average (expressed in dollars)?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [],
-                "opt1_other": "Other"
-            },
-            "content": {
-                "stub_1": "",
-                "stub_2": "Please write the total value here..."
-            },
-            "dependency": {},
-            "validation": {
-                "type": "integerfield",
-                "min_length": 0,
-                "min_length_error_message": "-",
-                "max_length": 0,
-                "max_length_error_message": "-",
-                "min_num": 0,
-                "min_num_error_message": "Please enter a number greater then zero.",
-                "max_num": 9999999999,
-                "max_num_error_message": "Please enter a number less then 9999999999"
-            },
-            "type_id": 21
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 74,
-        "fields": {
-            "document_type": 5,
-            "number": 64,
-            "title": "How will you convince them to buy from you?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "id": "1",
-                        "value": "Information to guide decision making",
-                        "text": "Information to guide decision making"
-                    },
-                    {
-                        "id": "2",
-                        "value": "Deals/Coupons/New customer specials",
-                        "text": "Deals/Coupons/New customer specials"
-                    },
-                    {
-                        "id": "3",
-                        "value": "Social media page or group",
-                        "text": "Social media page or group"
-                    },
-                    {
-                        "id": "4",
-                        "value": "Speaking to a customer about my products or services",
-                        "text": "Speaking to a customer about my products or services"
-                    },
-                    {
-                        "id": "5",
-                        "value": "Networking",
-                        "text": "Networking"
-                    },
-                    {
-                        "id": "6",
-                        "value": "Engagement on social media",
-                        "text": "Engagement on social media"
-                    },
-                    {
-                        "id": "7",
-                        "value": "Our product is an impulse buy",
-                        "text": "Our product is an impulse buy"
-                    },
-                    {
-                        "id": "8",
-                        "value": "Our product is a staple",
-                        "text": "Our product is a staple"
-                    },
-                    {
-                        "id": "9",
-                        "value": "Our product is high-end",
-                        "text": "Our product is high-end"
-                    },
-                    {
-                        "id": "10",
-                        "value": "Our product is value-priced",
-                        "text": "Our product is value-priced"
-                    }
-                ],
-                "opt1_other": "Other"
-            },
-            "content": {
-                "stub_1": ""
-            },
-            "type_id": 20
         }
     }
 ]

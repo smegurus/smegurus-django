@@ -1,170 +1,149 @@
 [
     {
         "model": "foundation_tenant.module",
-        "pk": 3,
+        "pk": 6,
         "fields": {
-            "stage_num": 3,
+            "stage_num": 6,
             "nodes": [
                 {
                     "previous_position": -1,
                     "current_position": 0,
                     "next_position": 1,
-                    "id": 999,
+                    "id": 2666,
                     "type": "slide"
-                },
-                {
+                },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
-                    "id": 1000,
-                    "type": "slide"
-                },
-                {
+                    "id": 81,
+                    "type": "question",
+                    "document_type": 6,
+                    "order_num": 1
+                },{
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
-                    "id": 1001,
-                    "type": "slide"
-                },
-                {
+                    "id": 82,
+                    "type": "question",
+                    "document_type": 6,
+                    "order_num": 2
+                },{
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
-                    "id": 1002,
-                    "type": "slide"
+                    "id": 83,
+                    "type": "question",
+                    "document_type": 6,
+                    "order_num": 3
                 },{
                     "previous_position": 3,
                     "current_position": 4,
                     "next_position": 5,
-                    "id": 31,
+                    "id": 84,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 1
+                    "document_type": 6,
+                    "order_num": 4
                 },{
                     "previous_position": 4,
                     "current_position": 5,
                     "next_position": 6,
-                    "id": 32,
+                    "id": 85,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 2
+                    "document_type": 6,
+                    "order_num": 5
                 },{
                     "previous_position": 5,
                     "current_position": 6,
                     "next_position": 7,
-                    "id": 33,
+                    "id": 86,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 3
+                    "document_type": 6,
+                    "order_num": 6
                 },{
                     "previous_position": 6,
                     "current_position": 7,
                     "next_position": 8,
-                    "id": 34,
+                    "id": 87,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 4
+                    "document_type": 6,
+                    "order_num": 7
                 },{
                     "previous_position": 7,
                     "current_position": 8,
                     "next_position": 9,
-                    "id": 35,
+                    "id": 88,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 5
+                    "document_type": 6,
+                    "order_num": 8
                 },{
                     "previous_position": 8,
                     "current_position": 9,
                     "next_position": 10,
-                    "id": 36,
+                    "id": 89,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 6
+                    "document_type": 6,
+                    "order_num": 9
                 },{
                     "previous_position": 9,
                     "current_position": 10,
                     "next_position": 11,
-                    "id": 74,
+                    "id": 90,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 26
+                    "document_type": 6,
+                    "order_num": 10
                 },{
                     "previous_position": 10,
                     "current_position": 11,
                     "next_position": 12,
-                    "id": 37,
+                    "id": 91,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 7
+                    "document_type": 6,
+                    "order_num": 11
                 },{
                     "previous_position": 11,
                     "current_position": 12,
                     "next_position": 13,
-                    "id": 38,
+                    "id": 92,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 8
+                    "document_type": 6,
+                    "order_num": 12
                 },{
                     "previous_position": 12,
                     "current_position": 13,
                     "next_position": 14,
-                    "id": 39,
+                    "id": 93,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 9
+                    "document_type": 6,
+                    "order_num": 13
                 },{
                     "previous_position": 13,
                     "current_position": 14,
                     "next_position": 15,
-                    "id": 40,
+                    "id": 94,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 10
+                    "document_type": 6,
+                    "order_num": 14
                 },{
                     "previous_position": 14,
                     "current_position": 15,
                     "next_position": 16,
-                    "id": 49,
+                    "id": 95,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 19
+                    "document_type": 6,
+                    "order_num": 15
                 },{
                     "previous_position": 15,
                     "current_position": 16,
-                    "next_position": 17,
-                    "id": 50,
-                    "type": "question",
-                    "document_type": 3,
-                    "order_num": 20
-                },{
-                    "previous_position": 16,
-                    "current_position": 17,
-                    "next_position": 18,
-                    "id": 51,
-                    "type": "question",
-                    "document_type": 3,
-                    "order_num": 21
-                },{
-                    "previous_position": 17,
-                    "current_position": 18,
-                    "next_position": 19,
-                    "id": 52,
-                    "type": "question",
-                    "document_type": 3,
-                    "order_num": 22
-                },{
-                    "previous_position": 18,
-                    "current_position": 19,
                     "next_position": -1,
-                    "id": 151,
+                    "id": 96,
                     "type": "question",
-                    "document_type": 3,
-                    "order_num": 24
+                    "document_type": 6,
+                    "order_num": 16
                 }
             ],
-            "title": "Stage 3: Planning",
+            "title": "Stage 6: Finances",
             "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
-            "icon": "icon-map",
+            "icon": "fa-money",
             "colour": ""
         }
     }
