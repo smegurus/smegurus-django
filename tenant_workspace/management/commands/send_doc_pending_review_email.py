@@ -40,6 +40,7 @@ class SendEmailViewMixin(object):
             if me.managed_by:
                 contact_list.append(me.managed_by.owner.email)
             else:
+                print("Emails:", org_admin_users.all()) # Debugging purposes only.
                 for org_admin_user in org_admin_users.all():
                     contact_list.append(org_admin_user.email)
 
