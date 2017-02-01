@@ -37,8 +37,10 @@ class SendEmailViewMixin(object):
             if me.managed_by:
                 contact_list.append(me.managed_by.owner.email)
             else:
-                # Fetch the original administrator for this Organization and assign it to the User.
-                me.managed_by = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
+                # Fetch the original administrator for this Organization and assign it to the User after
+                # finding the User Profile for the account.
+                owner = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
+                me.managed_by = TenantMe.objects.get(owner=owner)
                 me.save()
 
                 # Attach the email to the contact_list.

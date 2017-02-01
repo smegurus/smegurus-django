@@ -61,7 +61,7 @@ class Command(BaseCommand):
         try:
             return Document.objects.get(
                 workspace_id=workspace_id,
-                document_type__stage_num=3
+                document_type__stage_num=1
             )
         except Workspace.DoesNotExist:
             raise CommandError(_('Cannot find a workspace.'))
