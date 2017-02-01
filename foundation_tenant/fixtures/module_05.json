@@ -51,9 +51,9 @@
                     "order_num": 4
                 }
             ],
-            "title": "Stage 5: Concept Validation",
+            "title": "Stage 5: Developing My Idea",
             "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
-            "icon": "fa-group",
+            "icon": "icon-bulb",
             "colour": ""
         }
     }
