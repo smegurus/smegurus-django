@@ -1,3 +1,4 @@
+import os.path
 import json
 import urllib3  # Third Party Library
 from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
@@ -133,7 +134,8 @@ class Command(BaseCommand):
             # headers={'Content-Type': 'application/json'}
         )
 
-        doc_file = open('static/'+filename, 'wb')
+        filepath = os.path.join('static/'+filename)
+        doc_file = open(settings.PROJECT_ABSOLUTE_ROOT+'/static/'+filename, 'wb')
         doc_file.write(r.data)
         doc_file.close()
 
@@ -141,7 +143,7 @@ class Command(BaseCommand):
         # and attach it to the document which will cause our file to be
         # uploaded to the S3 instance.
         from django.core.files import File
-        with open('static/'+filename, 'rb') as f:
+        with open(filepath, 'rb') as f:
             # Create a new file upload and upload the data to a S3 instance.
             docxpresso_file = TenantFileUpload.objects.create(
                 datafile = File(f),
