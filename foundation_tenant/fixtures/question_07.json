@@ -161,7 +161,6 @@
                 "arr_min_count_error_message": "Please enter at least 3 entries.",
                 "arr_max_count": 5,
                 "arr_max_count_error_message": "Please enter no more then 5 entries.",
-
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
                 "opt1_other_max_length": 63,
@@ -433,7 +432,6 @@
                 "arr_min_count_error_message": "Please enter at least 3 entries.",
                 "arr_max_count": 5,
                 "arr_max_count_error_message": "Please enter no more then 5 entries.",
-
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
                 "opt1_other_max_length": 63,
@@ -474,59 +472,131 @@
                     {
                         "parent": "Changes in the industry challenge the ability of firms to compete without a significant investment in technology",
                         "choices": [
-                            "We will invest heavily in technology", "We will find other ways to compete and remain innovative", "Other (Please Specify)"
+                            "We will invest heavily in technology",
+                            "We will find other ways to compete and remain innovative",
+                            "Other (Please Specify)"
                         ]
                     },
-                    { "parent": "The economy is still fragile and consumer spending has not returned to pre-recession levels", "choices": [ "We will offer a good product at a good price", "We will offer a good service at a good price", "We will offer value added services to our clients to increase sales",
-                        "Other (Please Specify)" ]
+                    {
+                        "parent": "The economy is still fragile and consumer spending has not returned to pre-recession levels",
+                        "choices": [
+                            "We will offer a good product at a good price",
+                            "We will offer a good service at a good price",
+                            "We will offer value added services to our clients to increase sales",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "There are low barriers to entry for this industry, which creates competition", "choices": [ "We will focus on our differentiation strategy", "We will focus on being operationally efficient", "We will offer customers a good value for their money", "We will offer exceptional customer service",
-                            "Other (Please Specify)" ]
+                        "parent": "There are low barriers to entry for this industry, which creates competition",
+                        "choices": [
+                            "We will focus on our differentiation strategy",
+                            "We will focus on being operationally efficient",
+                            "We will offer customers a good value for their money",
+                            "We will offer exceptional customer service",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "There are many competitors in this industry", "choices": [ "Differentiate ourselves through our unique product offering", "Differentiate ourselves through our unique service offering", "Differentiate ourselves through exceptional customer service", "Offer a lower price", "Offer a better experience for the customer",
-                            "Other (Please Specify)" ]
+                        "parent": "There are many competitors in this industry",
+                        "choices": [
+                            "Differentiate ourselves through our unique product offering",
+                            "Differentiate ourselves through our unique service offering",
+                            "Differentiate ourselves through exceptional customer service",
+                            "Offer a lower price",
+                            "Offer a better experience for the customer",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "Consumers in this industry are price sensitive", "choices": [ "We will focus on developing exceptional customer service", "We will focus on providing the best value for the customer",
-                            "Other (Please Specify)" ]
+                        "parent": "Consumers in this industry are price sensitive",
+                        "choices": [
+                            "We will focus on developing exceptional customer service",
+                            "We will focus on providing the best value for the customer",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "Customers are increasingly not loyal to specific brands", "choices": [ "We will focus on developing exceptional customer service", "We will focus on providing the best value for the customer",
-                            "Other (Please Specify)" ]
+                        "parent": "Customers are increasingly not loyal to specific brands",
+                        "choices": [
+                            "We will focus on developing exceptional customer service",
+                            "We will focus on providing the best value for the customer",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "This industry is dominated by large players", "choices": [ "We will focus on fulfilling a small niche", "Find ways to compliment the service offerings of larger players so that we augment their offerings, rather than compete with them",
-                            "Other (Please Specify)" ]
+                        "parent": "This industry is dominated by large players",
+                        "choices": [
+                            "We will focus on fulfilling a small niche",
+                            "Find ways to compliment the service offerings of larger players so that we augment their offerings, rather than compete with them",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "Generally there is high staff turnover in this industry", "choices": [ "Develop HR plan for staff retention", "Provide industry standard wages and benefits", "Focus on growing employees and providing them with opportunities for professional development",
-                            "Other (Please Specify)" ]
+                        "parent": "Generally there is high staff turnover in this industry",
+                        "choices": [
+                            "Develop HR plan for staff retention",
+                            "Provide industry standard wages and benefits",
+                            "Focus on growing employees and providing them with opportunities for professional development",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "There is a limited pool of talent in this industry", "choices": [ "Develop plan for attraction and retention of staff", "Develop and grow less qualified applicants", "Network with sources such as educational institutes and associations to source new talent",
-                            "Other (Please Specify)"]
+                        "parent": "There is a limited pool of talent in this industry",
+                        "choices": [
+                            "Develop plan for attraction and retention of staff",
+                            "Develop and grow less qualified applicants",
+                            "Network with sources such as educational institutes and associations to source new talent",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "This industry is in decline", "choices": [ "Focus on growing a strong base of loyal customers", "Develop a rewards program", "Develop a referral program", "Focus on the customer experience", "Focus on developing exceptional customer service",
-                            "Other (Please Specify)" ]
+                        "parent": "This industry is in decline",
+                        "choices": [
+                            "Focus on growing a strong base of loyal customers",
+                            "Develop a rewards program",
+                            "Develop a referral program",
+                            "Focus on the customer experience",
+                            "Focus on developing exceptional customer service",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "There are many new firms in this industry", "choices": [ "Service a niche market", "Differentiate ourselves through our unique product offering", "Differentiate ourselves through our unique service offering", "Differentiate ourselves through exceptional customer service", "Offer a lower price", "Offer a better experience for the customer",
-                            "Other (Please Specify)" ]
+                        "parent": "There are many new firms in this industry",
+                        "choices": [
+                            "Service a niche market",
+                            "Differentiate ourselves through our unique product offering",
+                            "Differentiate ourselves through our unique service offering",
+                            "Differentiate ourselves through exceptional customer service",
+                            "Offer a lower price",
+                            "Offer a better experience for the customer",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "There is a high rate of failure in this industry", "choices": [ "Develop a strong customer base", "Develop strong relationships with customers", "Develop strong relationships with suppliers",
-                            "Other (Please Specify)" ]
+                        "parent": "There is a high rate of failure in this industry",
+                        "choices": [
+                            "Develop a strong customer base",
+                            "Develop strong relationships with customers",
+                            "Develop strong relationships with suppliers",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "There is little research or data for this industry since it is so new", "choices": [ "Be an industry leader and focus on research and development", "Create platforms which allow industry participants to share data", "Develop strong relationships with suppliers who can diffuse and provide up to date information",
-                            "Other (Please Specify)" ]
+                        "parent": "There is little research or data for this industry since it is so new",
+                        "choices": [
+                            "Be an industry leader and focus on research and development",
+                            "Create platforms which allow industry participants to share data",
+                            "Develop strong relationships with suppliers who can diffuse and provide up to date information",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
-                        "parent": "The industry is misunderstood", "choices": [ "Increase education and marketing as part of strategy", "Be available as an industry resource to help clarify challenges",
-                             "Other (Please Specify)" ]
+                        "parent": "The industry is misunderstood",
+                        "choices": [
+                            "Increase education and marketing as part of strategy",
+                            "Be available as an industry resource to help clarify challenges",
+                            "Other (Please Specify)"
+                        ]
                     },
                     {
                         "parent": "Other (Please Specify)",
@@ -790,23 +860,22 @@
         "fields": {
             "document_type": 7,
             "number": 12,
-            "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
+            "title": "How will you grow your company in the next few years? (choose 3 items)",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Experienced leadership",
-                    "Strong leadership",
-                    "Knowledgeable leadership",
-                    "Good communication skills",
-                    "Strong time management skills",
-                    "Excellent team work capacity",
-                    "In touch with industry",
-                    "In touch with company",
-                    "Strong marketing skills",
-                    "Strong technology skills",
-                    "Strong business training",
-                    "Innovative approach to leadership",
-                    "High risk tolerance",
+                    "We will provide excellent customer service",
+                    "Our service will be competitively priced",
+                    "We are providing an innovative/cutting edge service",
+                    "We will invest in marketing and business development",
+                    "We will invest in good salespeople",
+                    "We will ensure the right employees are in the roles most suited to them",
+                    "We will provide our staff with opportunities for learning and development",
+                    "We will maintain strong profit margins",
+                    "We will control costs",
+                    "We will develop turnkey solutions for our customers",
+                    "We will develop and maintain a scalable business model",
+                    "We will develop a business model that is consistent with the industry standard",
                     "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
@@ -828,23 +897,20 @@
         "fields": {
             "document_type": 7,
             "number": 12,
-            "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
+            "title": "How will your compete against others in your industry? (choose 3 items)",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
-                    "Experienced leadership",
-                    "Strong leadership",
-                    "Knowledgeable leadership",
-                    "Good communication skills",
-                    "Strong time management skills",
-                    "Excellent team work capacity",
-                    "In touch with industry",
-                    "In touch with company",
-                    "Strong marketing skills",
-                    "Strong technology skills",
-                    "Strong business training",
-                    "Innovative approach to leadership",
-                    "High risk tolerance",
+                    "We will maintain a close eye on the competitive landscape",
+                    "we will be aware of the price charged by our competitors",
+                    "We will be aware of competitors in the landscape",
+                    "We will promote every opportunity for organizational effectiveness and efficiency",
+                    "We will be improving our internal organizational processes",
+                    "We will invest in technology",
+                    "We will invest in research and development",
+                    "We will hire the most talented employees",
+                    "We will work hard to ensure our service is recognized as superior to our competitors",
+                    "We will seek to establish partnerships that will build on our experience",
                     "Other (Please Specify)"
                 ],
                 "opt1_other": "Other (Please Specify)",
@@ -860,10 +926,6 @@
             "type_id": 27
         }
     },
-
-
-
-
     {
         "model": "foundation_tenant.question",
         "pk": 69,
@@ -994,21 +1056,21 @@
                     {
                         "parent": "variable costs",
                         "choices": [
-                             "budgeting for increased fule costs as prices increase",
-                             "investigating alternative energy forms to fuel our vehicles",
-                             "upgrading our vehicles to more efficient models",
-                             "optimizing our delivery routes",
-                             "increasing vehicle maintenance to ensure peak efficiency",
-                             "other"
+                            "budgeting for increased fule costs as prices increase",
+                            "investigating alternative energy forms to fuel our vehicles",
+                            "upgrading our vehicles to more efficient models",
+                            "optimizing our delivery routes",
+                            "increasing vehicle maintenance to ensure peak efficiency",
+                            "other"
                         ]
                     },
                     {
                         "parent": "the time associated with product delivery",
                         "choices": [
-                             "exploring alternative shipping methods",
-                             "optimizing delivery routes",
-                             "optimizing manufacturing/production times",
-                             "ensuring that customers are aware of delivery times",
+                            "exploring alternative shipping methods",
+                            "optimizing delivery routes",
+                            "optimizing manufacturing/production times",
+                            "ensuring that customers are aware of delivery times",
                             "other"
                         ]
                     },
@@ -1045,9 +1107,9 @@
                     {
                         "parent": "the risk of loss or theft",
                         "choices": [
-                             "providing a secure environment for the transportation of goods to clients",
-                             "insuring proucts in transit",
-                             "investing in security for our locations and vehicles",
+                            "providing a secure environment for the transportation of goods to clients",
+                            "insuring proucts in transit",
+                            "investing in security for our locations and vehicles",
                             "other"
                         ]
                     },
@@ -1115,7 +1177,8 @@
             },
             "type_id": 30
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 75,
         "fields": {
@@ -1200,7 +1263,8 @@
             },
             "type_id": 33
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 76,
         "fields": {
@@ -1254,7 +1318,8 @@
             },
             "type_id": 4
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 77,
         "fields": {
@@ -1403,7 +1468,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1413,7 +1477,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1423,7 +1486,6 @@
                 "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var6_max_num": 1000000000,
                 "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
@@ -1436,7 +1498,8 @@
             },
             "type_id": 36
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 78,
         "fields": {
@@ -1569,7 +1632,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1579,7 +1641,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1589,7 +1650,6 @@
                 "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var6_max_num": 1000000000,
                 "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
@@ -1602,7 +1662,8 @@
             },
             "type_id": 36
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 79,
         "fields": {
@@ -1615,25 +1676,32 @@
                     {
                         "value": "by mail",
                         "text": "by mail"
-                    },{
+                    },
+                    {
                         "value": "by telephone",
                         "text": "by telephone"
-                    },{
+                    },
+                    {
                         "value": "radio",
                         "text": "radio"
-                    },{
+                    },
+                    {
                         "value": "newspaper",
                         "text": "newspaper"
-                    },{
+                    },
+                    {
                         "value": "facebook",
                         "text": "facebook"
-                    },{
+                    },
+                    {
                         "value": "twitter",
                         "text": "twitter"
-                    },{
+                    },
+                    {
                         "value": "google",
                         "text": "google"
-                    },{
+                    },
+                    {
                         "value": "other",
                         "text": "other"
                     }
@@ -1644,13 +1712,16 @@
                     {
                         "value": "this will entice people to buy",
                         "text": "this will entice people to buy"
-                    },{
+                    },
+                    {
                         "value": "this will start to build relationships",
                         "text": "this will start to build relationships"
-                    },{
+                    },
+                    {
                         "value": "this will be a great marketing tool",
                         "text": "this will be a great marketing tool"
-                    },{
+                    },
+                    {
                         "value": "other",
                         "text": "other"
                     }
@@ -1661,37 +1732,48 @@
                     {
                         "value": "1",
                         "text": "1"
-                    },{
+                    },
+                    {
                         "value": "2",
                         "text": "2"
-                    },{
+                    },
+                    {
                         "value": "3",
                         "text": "3"
-                    },{
+                    },
+                    {
                         "value": "4",
                         "text": "4"
-                    },{
+                    },
+                    {
                         "value": "5",
                         "text": "5"
-                    },{
+                    },
+                    {
                         "value": "6",
                         "text": "6"
-                    },{
+                    },
+                    {
                         "value": "7",
                         "text": "7"
-                    },{
+                    },
+                    {
                         "value": "8",
                         "text": "8"
-                    },{
+                    },
+                    {
                         "value": "9",
                         "text": "9"
-                    },{
+                    },
+                    {
                         "value": "10",
                         "text": "10"
-                    },{
+                    },
+                    {
                         "value": "11",
                         "text": "11"
-                    },{
+                    },
+                    {
                         "value": "12",
                         "text": "12"
                     }
@@ -1738,7 +1820,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -1748,7 +1829,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1758,7 +1838,6 @@
                 "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var6_max_num": 1000000000,
                 "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
@@ -1771,7 +1850,8 @@
             },
             "type_id": 36
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 80,
         "fields": {
@@ -1784,16 +1864,20 @@
                     {
                         "value": "Cross-referrals",
                         "text": "Cross-referrals"
-                    },{
+                    },
+                    {
                         "value": "Joint ad campaigns",
                         "text": "Joint ad campaigns"
-                    },{
+                    },
+                    {
                         "value": "Joint charity events",
                         "text": "Joint charity events"
-                    },{
+                    },
+                    {
                         "value": "Cross-marketing",
                         "text": "Cross-marketing"
-                    },{
+                    },
+                    {
                         "value": "other",
                         "text": "other"
                     }
@@ -1804,22 +1888,28 @@
                     {
                         "value": "this will build strong relationships within my industry",
                         "text": "this will build strong relationships within my industry"
-                    },{
+                    },
+                    {
                         "value": "this will build a strong presence for our brand",
                         "text": "this will build a strong presence for our brand"
-                    },{
+                    },
+                    {
                         "value": "this will bring in new customers",
                         "text": "this will bring in new customers"
-                    },{
+                    },
+                    {
                         "value": "this will entice people to buy",
                         "text": "this will entice people to buy"
-                    },{
+                    },
+                    {
                         "value": "this will start to build relationships",
                         "text": "this will start to build relationships"
-                    },{
+                    },
+                    {
                         "value": "this will be a great marketing tool",
                         "text": "this will be a great marketing tool"
-                    },{
+                    },
+                    {
                         "value": "other",
                         "text": "other"
                     }
@@ -1830,37 +1920,48 @@
                     {
                         "value": "1",
                         "text": "1"
-                    },{
+                    },
+                    {
                         "value": "2",
                         "text": "2"
-                    },{
+                    },
+                    {
                         "value": "3",
                         "text": "3"
-                    },{
+                    },
+                    {
                         "value": "4",
                         "text": "4"
-                    },{
+                    },
+                    {
                         "value": "5",
                         "text": "5"
-                    },{
+                    },
+                    {
                         "value": "6",
                         "text": "6"
-                    },{
+                    },
+                    {
                         "value": "7",
                         "text": "7"
-                    },{
+                    },
+                    {
                         "value": "8",
                         "text": "8"
-                    },{
+                    },
+                    {
                         "value": "9",
                         "text": "9"
-                    },{
+                    },
+                    {
                         "value": "10",
                         "text": "10"
-                    },{
+                    },
+                    {
                         "value": "11",
                         "text": "11"
-                    },{
+                    },
+                    {
                         "value": "12",
                         "text": "12"
                     }
@@ -1910,7 +2011,6 @@
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
                 "arr_max_count_error_message": "Please enter no more then 20 entries.",
-
                 "var1_type": "textfield",
                 "var1_min_length": 2,
                 "var1_min_length_error_message": "Please enter more then two characters for Partner.",
@@ -1920,7 +2020,6 @@
                 "var1_min_num_error_message": "-",
                 "var1_max_num": 1000000000,
                 "var1_max_num_error_message": "-",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -1930,7 +2029,6 @@
                 "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
                 "var6_max_num": 1000000000,
                 "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
-
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
@@ -1940,7 +2038,6 @@
                 "var7_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
                 "var7_max_num": 1000000000,
                 "var7_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
-
                 "var8_type": "integerfield",
                 "var8_min_length": 0,
                 "var8_min_length_error_message": "-",
@@ -1967,31 +2064,40 @@
                     {
                         "value": "Ask for referrals during meetings",
                         "text": "Ask for referrals during meetings"
-                    },{
+                    },
+                    {
                         "value": "Ask for referrals via email",
                         "text": "Ask for referrals via email"
-                    },{
+                    },
+                    {
                         "value": "Bring a friend events",
                         "text": "Bring a friend events"
-                    },{
+                    },
+                    {
                         "value": "Discounts by referrals",
                         "text": "Discounts by referrals"
-                    },{
+                    },
+                    {
                         "value": "Referral SMS campaign",
                         "text": "Referral SMS campaign"
-                    },{
+                    },
+                    {
                         "value": "Referral phone campaign",
                         "text": "Referral phone campaign"
-                    },{
+                    },
+                    {
                         "value": "Referral social media campaign",
                         "text": "Referral social media campaign"
-                    },{
+                    },
+                    {
                         "value": "Friends and family sale",
                         "text": "Friends and family sale"
-                    },{
+                    },
+                    {
                         "value": "Gifts for customers who refer",
                         "text": "Gifts for customers who refer"
-                    },{
+                    },
+                    {
                         "value": "Other",
                         "text": "Other"
                     }
@@ -2002,19 +2108,24 @@
                     {
                         "value": "lead generation",
                         "text": "lead generation"
-                    },{
+                    },
+                    {
                         "value": "brand awareness",
                         "text": "brand awareness"
-                    },{
+                    },
+                    {
                         "value": "customer loyalty",
                         "text": "customer loyalty"
-                    },{
+                    },
+                    {
                         "value": "increased sales",
                         "text": "increased sales"
-                    },{
+                    },
+                    {
                         "value": "new customers",
                         "text": "new customers"
-                    },{
+                    },
+                    {
                         "value": "Other",
                         "text": "Other"
                     }
@@ -2025,7 +2136,8 @@
                     {
                         "value": "fixed",
                         "text": "fixed"
-                    },{
+                    },
+                    {
                         "value": "variable",
                         "text": "variable"
                     }
@@ -2058,7 +2170,6 @@
                 "arr_min_count_error_message": "Please enter at least 5 entry.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -2068,7 +2179,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -2078,7 +2188,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -2105,22 +2214,28 @@
                     {
                         "value": "Discounts for existing clients",
                         "text": "Discounts for existing clients"
-                    },{
+                    },
+                    {
                         "value": "Thank you gifts for existing clients",
                         "text": "Thank you gifts for existing clients"
-                    },{
+                    },
+                    {
                         "value": "Special client events",
                         "text": "Special client events"
-                    },{
+                    },
+                    {
                         "value": "Gifts on large/repeat orders",
                         "text": "Gifts on large/repeat orders"
-                    },{
+                    },
+                    {
                         "value": "Client satisfaction survey",
                         "text": "Client satisfaction survey"
-                    },{
+                    },
+                    {
                         "value": "Focus groups",
                         "text": "Focus groups"
-                    },{
+                    },
+                    {
                         "value": "Other",
                         "text": "Other"
                     }
@@ -2131,13 +2246,16 @@
                     {
                         "value": "builds customer loyalty",
                         "text": "builds customer loyalty"
-                    },{
+                    },
+                    {
                         "value": "provides customer insight",
                         "text": "provides customer insight"
-                    },{
+                    },
+                    {
                         "value": "strengthens brand awareness",
                         "text": "strengthens brand awareness"
-                    },{
+                    },
+                    {
                         "value": "Other",
                         "text": "Other"
                     }
@@ -2148,7 +2266,8 @@
                     {
                         "value": "fixed",
                         "text": "fixed"
-                    },{
+                    },
+                    {
                         "value": "variable",
                         "text": "variable"
                     }
@@ -2181,7 +2300,6 @@
                 "arr_min_count_error_message": "Please enter at least 5 entry.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
-
                 "var4_type": "integerfield",
                 "var4_min_length": 0,
                 "var4_min_length_error_message": "-",
@@ -2191,7 +2309,6 @@
                 "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var4_max_num": 1000000000,
                 "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
@@ -2201,7 +2318,6 @@
                 "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
                 "var5_max_num": 1000000000,
                 "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
-
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -2214,7 +2330,8 @@
             },
             "type_id": 40
         }
-    },{
+    },
+    {
         "model": "foundation_tenant.question",
         "pk": 104,
         "fields": {
