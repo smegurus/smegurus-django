@@ -41,6 +41,8 @@ class SendEmailViewMixin(object):
                 org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
                 contact_list.append(org_admin_user.email)
 
+        self.stdout.write(self.style.SUCCESS(_('---- %s ----') % str(contact_list)))
+
         # Generate the data.
         url =  resolve_full_url_with_subdmain(
             schema_name,
