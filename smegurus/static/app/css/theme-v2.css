@@ -350,9 +350,12 @@ body,
     color: #ffffff !important;
 }
 
-/* ISSUE #676 */
-#id_place_of_birth{
-    width:50%;
-    display: block;
-		margin: 0 auto;
+/* FIXED ISSUE #673 */
+.bg-blue-v2 {
+    background-color: #145dfa;
+    color: #ffffff !important;
+}
+.bg-red-v2-1 {
+    background-color: #f26523;
+    color: #ffffff !important;
 }
