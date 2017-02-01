@@ -8,5 +8,14 @@
         "description": "This is slide #1 description for Stage 5.",
         "video_url": ""
     }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 2000,
+    "fields": {
+        "module": 5,
+        "title": "This is slide #2 title for Stage 5.",
+        "description": "This is slide #2 description for Stage 5.",
+        "video_url": ""
+    }
 }
 ]
