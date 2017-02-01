@@ -37,11 +37,12 @@ class SendEmailViewMixin(object):
             if me.managed_by:
                 contact_list.append(me.managed_by.owner.email)
             else:
-                # Fetch the original administrator for this Organization and mesage him/her.
-                org_admin_user = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
-                contact_list.append(org_admin_user.email)
+                # Fetch the original administrator for this Organization and assign it to the User.
+                me.managed_by = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
+                me.save()
 
-        self.stdout.write(self.style.SUCCESS(_('---- %s ----') % str(contact_list)))
+                # Attach the email to the contact_list.
+                contact_list.append(me.managed_by.email)
 
         # Generate the data.
         url =  resolve_full_url_with_subdmain(

@@ -37,7 +37,7 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
 
     # 1. Entrepreneur Self Assessment
     if doc_type == 1:
-        print("TODO: Entrepreneur Self Assessment")
+        call_command('docxpresso_stage_01', schema_name, str(workspace_id))
 
     # 2. Market Research Summary
     if doc_type == 2:
@@ -45,7 +45,7 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
 
     # 3. Market Research Plan
     if doc_type == 3:
-        print("TODO: Market Research Plan")
+        call_command('docxpresso_stage_03', schema_name, str(workspace_id))
 
     # 4. Concept Validation
     if doc_type == 4:
