@@ -135,7 +135,7 @@ class Command(BaseCommand):
         )
 
         filepath = os.path.join('static/'+filename)
-        doc_file = open(settings.PROJECT_ABSOLUTE_ROOT+'/static/'+filename, 'wb')
+        doc_file = open(filepath, 'wb')
         doc_file.write(r.data)
         doc_file.close()
 
