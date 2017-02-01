@@ -136,6 +136,8 @@ class Command(BaseCommand):
         )
 
         filepath = os.path.join('static/'+filename)
+        self.stdout.write(self.style.SUCCESS(_('FILEPATH AT: %s.') % str(filepath)))
+
         doc_file = open(filepath, 'wb')
         doc_file.write(r.data)
         doc_file.close()
