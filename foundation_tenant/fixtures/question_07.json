@@ -784,8 +784,82 @@
             "type_id": 1
         }
     },
-
-
+    {
+        "model": "foundation_tenant.question",
+        "pk": 153,
+        "fields": {
+            "document_type": 7,
+            "number": 12,
+            "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "Experienced leadership",
+                    "Strong leadership",
+                    "Knowledgeable leadership",
+                    "Good communication skills",
+                    "Strong time management skills",
+                    "Excellent team work capacity",
+                    "In touch with industry",
+                    "In touch with company",
+                    "Strong marketing skills",
+                    "Strong technology skills",
+                    "Strong business training",
+                    "Innovative approach to leadership",
+                    "High risk tolerance",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 27
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 154,
+        "fields": {
+            "document_type": 7,
+            "number": 12,
+            "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    "Experienced leadership",
+                    "Strong leadership",
+                    "Knowledgeable leadership",
+                    "Good communication skills",
+                    "Strong time management skills",
+                    "Excellent team work capacity",
+                    "In touch with industry",
+                    "In touch with company",
+                    "Strong marketing skills",
+                    "Strong technology skills",
+                    "Strong business training",
+                    "Innovative approach to leadership",
+                    "High risk tolerance",
+                    "Other (Please Specify)"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2",
+                "stub_3": "3"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 27
+        }
+    },
 
 
 

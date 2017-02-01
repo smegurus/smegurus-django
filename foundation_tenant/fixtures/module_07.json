@@ -132,6 +132,22 @@
                     "document_type": 7,
                     "order_num": 12
                 },{
+                    "previous_position": 11,
+                    "current_position": 12,
+                    "next_position": 13,
+                    "id": 153,
+                    "type": "question",
+                    "document_type": 7,
+                    "order_num": 12
+                },{
+                    "previous_position": 11,
+                    "current_position": 12,
+                    "next_position": 13,
+                    "id": 154,
+                    "type": "question",
+                    "document_type": 7,
+                    "order_num": 12
+                },{
                     "previous_position": 17,
                     "current_position": 18,
                     "next_position": 19,
