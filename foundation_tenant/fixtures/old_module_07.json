@@ -390,35 +390,11 @@
                 },{
                     "previous_position": 47,
                     "current_position": 48,
-                    "next_position": 49,
+                    "next_position": -1,
                     "id": 146,
                     "type": "question",
                     "document_type": 7,
                     "order_num": 48
-                },{
-                    "previous_position": 48,
-                    "current_position": 49,
-                    "next_position": 50,
-                    "id": 147,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 48
-                },{
-                    "previous_position": 49,
-                    "current_position": 50,
-                    "next_position": 51,
-                    "id": 148,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 49
-                },{
-                    "previous_position": 50,
-                    "current_position": 51,
-                    "next_position": -1,
-                    "id": 149,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 50
                 }
             ],
             "title": "Stage 7: Operations",
