@@ -515,29 +515,45 @@
                     "previous_position": 65,
                     "current_position": 66,
                     "next_position": 67,
+                    "id": 134,
+                    "type": "question",
+                    "document_type": 7,
+                    "order_num": 38
+                },{
+                    "previous_position": 66,
+                    "current_position": 67,
+                    "next_position": 68,
+                    "id": 135,
+                    "type": "question",
+                    "document_type": 7,
+                    "order_num": 39
+                },{
+                    "previous_position": 67,
+                    "current_position": 68,
+                    "next_position": 69,
                     "id": 136,
                     "type": "question",
                     "document_type": 8,
                     "order_num": 56
                 },{
-                    "previous_position": 66,
-                    "current_position": 67,
-                    "next_position": 68,
+                    "previous_position": 68,
+                    "current_position": 69,
+                    "next_position": 70,
                     "id": 137,
                     "type": "question",
                     "document_type": 8,
                     "order_num": 57
                 },{
-                    "previous_position": 67,
-                    "current_position": 68,
-                    "next_position": 69,
+                    "previous_position": 69,
+                    "current_position": 70,
+                    "next_position": 71,
                     "id": 138,
                     "type": "question",
                     "document_type": 8,
                     "order_num": 58
                 },{
-                    "previous_position": 68,
-                    "current_position": 69,
+                    "previous_position": 70,
+                    "current_position": 71,
                     "next_position": -1,
                     "id": 95,
                     "type": "question",
