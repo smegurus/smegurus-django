@@ -1,0 +1,34 @@
+[
+    {
+        "model": "foundation_tenant.module",
+        "pk": 9,
+        "fields": {
+            "stage_num": 9,
+            "nodes": [
+                {
+                    "previous_position": -1,
+                    "current_position": 0,
+                    "next_position": 1,
+                    "id": 5666,
+                    "type": "slide"
+                },{
+                    "previous_position": 0,
+                    "current_position": 1,
+                    "next_position": 2,
+                    "id": 5667,
+                    "type": "slide"
+                },{
+                    "previous_position": 1,
+                    "current_position": 2,
+                    "next_position": -1,
+                    "id": 5668,
+                    "type": "slide"
+                }
+            ],
+            "title": "Stage 9: Analysis",
+            "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
+            "icon": "fa-bar-chart-o",
+            "colour": ""
+        }
+    }
+]

@@ -42,6 +42,7 @@ class Command(BaseCommand):
             'module_06.json',
             'module_07.json',
             'module_08.json',
+            'module_09.json',
             'slide_01.json',
             'slide_02.json',
             'slide_03.json',
@@ -50,6 +51,7 @@ class Command(BaseCommand):
             'slide_06.json',
             'slide_07.json',
             'slide_08.json',
+            'slide_09.json',
             'question_01.json',
             'question_02.json',
             'question_03.json',
@@ -58,6 +60,7 @@ class Command(BaseCommand):
             'question_06.json',
             'question_07.json',
             'question_08.json',
+            'question_09.json',
             'notification.json'
         ]
 
