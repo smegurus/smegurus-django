@@ -12,30 +12,6 @@
                     "id": 2666,
                     "type": "slide"
                 },{
-                    "previous_position": 2,
-                    "current_position": 3,
-                    "next_position": 4,
-                    "id": 83,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 3
-                },{
-                    "previous_position": 3,
-                    "current_position": 4,
-                    "next_position": 5,
-                    "id": 84,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 4
-                },{
-                    "previous_position": 5,
-                    "current_position": 6,
-                    "next_position": 7,
-                    "id": 86,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 6
-                },{
                     "previous_position": 8,
                     "current_position": 9,
                     "next_position": 10,
@@ -43,22 +19,6 @@
                     "type": "question",
                     "document_type": 6,
                     "order_num": 9
-                },{
-                    "previous_position": 9,
-                    "current_position": 10,
-                    "next_position": 11,
-                    "id": 90,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 10
-                },{
-                    "previous_position": 14,
-                    "current_position": 15,
-                    "next_position": 16,
-                    "id": 95,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 15
                 },{
                     "previous_position": 15,
                     "current_position": 16,

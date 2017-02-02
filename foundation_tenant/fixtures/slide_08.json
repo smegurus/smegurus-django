@@ -62,5 +62,41 @@
         "description": "This is slide #7 description for Stage 8.",
         "video_url": ""
     }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4673,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #8 title for Stage 8.",
+        "description": "This is slide #8 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4674,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #9 title for Stage 8.",
+        "description": "This is slide #9 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4675,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #10 title for Stage 8.",
+        "description": "This is slide #10 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4676,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #10 title for Stage 8.",
+        "description": "This is slide #10 description for Stage 8.",
+        "video_url": ""
+    }
 }
 ]
