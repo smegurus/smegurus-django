@@ -12,22 +12,6 @@
                     "id": 2666,
                     "type": "slide"
                 },{
-                    "previous_position": 0,
-                    "current_position": 1,
-                    "next_position": 2,
-                    "id": 81,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 1
-                },{
-                    "previous_position": 1,
-                    "current_position": 2,
-                    "next_position": 3,
-                    "id": 82,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 2
-                },{
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
@@ -44,14 +28,6 @@
                     "document_type": 6,
                     "order_num": 4
                 },{
-                    "previous_position": 4,
-                    "current_position": 5,
-                    "next_position": 6,
-                    "id": 85,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 5
-                },{
                     "previous_position": 5,
                     "current_position": 6,
                     "next_position": 7,
@@ -59,22 +35,6 @@
                     "type": "question",
                     "document_type": 6,
                     "order_num": 6
-                },{
-                    "previous_position": 6,
-                    "current_position": 7,
-                    "next_position": 8,
-                    "id": 87,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 7
-                },{
-                    "previous_position": 7,
-                    "current_position": 8,
-                    "next_position": 9,
-                    "id": 88,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 8
                 },{
                     "previous_position": 8,
                     "current_position": 9,
@@ -91,38 +51,6 @@
                     "type": "question",
                     "document_type": 6,
                     "order_num": 10
-                },{
-                    "previous_position": 10,
-                    "current_position": 11,
-                    "next_position": 12,
-                    "id": 91,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 11
-                },{
-                    "previous_position": 11,
-                    "current_position": 12,
-                    "next_position": 13,
-                    "id": 92,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 12
-                },{
-                    "previous_position": 12,
-                    "current_position": 13,
-                    "next_position": 14,
-                    "id": 93,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 13
-                },{
-                    "previous_position": 13,
-                    "current_position": 14,
-                    "next_position": 15,
-                    "id": 94,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 14
                 },{
                     "previous_position": 14,
                     "current_position": 15,

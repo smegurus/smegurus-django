@@ -5,7 +5,7 @@
     "fields": {
         "module": 7,
         "title": "This is slide #1 title for Stage 7.",
-        "description": "This is slide #1 description for Stage 6.",
+        "description": "This is slide #1 description for Stage 7.",
         "video_url": ""
     }
 },{
@@ -14,7 +14,7 @@
     "fields": {
         "module": 7,
         "title": "This is slide #2 title for Stage 7.",
-        "description": "This is slide #1 description for Stage 6.",
+        "description": "This is slide #1 description for Stage 7.",
         "video_url": ""
     }
 },{
@@ -23,7 +23,7 @@
     "fields": {
         "module": 7,
         "title": "This is slide #3 title for Stage 7.",
-        "description": "This is slide #1 description for Stage 6.",
+        "description": "This is slide #1 description for Stage 7.",
         "video_url": ""
     }
 },{
@@ -32,7 +32,7 @@
     "fields": {
         "module": 7,
         "title": "This is slide #4 title for Stage 7.",
-        "description": "This is slide #1 description for Stage 6.",
+        "description": "This is slide #1 description for Stage 7.",
         "video_url": ""
     }
 },{
@@ -41,7 +41,7 @@
     "fields": {
         "module": 7,
         "title": "This is slide #5 title for Stage 7.",
-        "description": "This is slide #1 description for Stage 6.",
+        "description": "This is slide #1 description for Stage 7.",
         "video_url": ""
     }
 }

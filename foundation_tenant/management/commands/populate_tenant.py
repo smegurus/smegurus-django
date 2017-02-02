@@ -33,7 +33,6 @@ class Command(BaseCommand):
             'governmentbenefitoption.json',
             'identifyoption.json',
             'inforesourcecategory.json',
-            # 'module_dev.json', # DEVELOPMENT ONLY.
             'documenttype.json',
             'module_01.json',
             'module_02.json',
@@ -42,6 +41,7 @@ class Command(BaseCommand):
             'module_05.json',
             'module_06.json',
             'module_07.json',
+            'module_08.json',
             'slide_01.json',
             'slide_02.json',
             'slide_03.json',
@@ -49,7 +49,7 @@ class Command(BaseCommand):
             'slide_05.json',
             'slide_06.json',
             'slide_07.json',
-            #'question_dev.json', # DEVELOPMENT ONLY.
+            'slide_08.json',
             'question_01.json',
             'question_02.json',
             'question_03.json',
@@ -57,6 +57,7 @@ class Command(BaseCommand):
             'question_05.json',
             'question_06.json',
             'question_07.json',
+            'question_08.json',
             'notification.json'
         ]
 
