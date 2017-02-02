@@ -20,9 +20,17 @@
                 },{
                     "previous_position": 1,
                     "current_position": 2,
-                    "next_position": -1,
+                    "next_position": 3,
                     "id": 5668,
                     "type": "slide"
+                },{
+                    "previous_position": 2,
+                    "current_position": 3,
+                    "next_position": 4,
+                    "id": 157,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 1
                 }
             ],
             "title": "Stage 9: Analysis",
