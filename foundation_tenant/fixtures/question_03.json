@@ -374,7 +374,7 @@
         "model": "foundation_tenant.question",
         "pk": 74,
         "fields": {
-            "document_type": 5,
+            "document_type": 3,
             "number": 64,
             "title": "How will you convince them to buy from you?",
             "help": "This is some generic help text.",

@@ -243,14 +243,6 @@
                     "type": "question",
                     "document_type": 7,
                     "order_num": 24
-                },{
-                    "previous_position": 4,
-                    "current_position": 5,
-                    "next_position": 6,
-                    "id": 85,
-                    "type": "question",
-                    "document_type": 6,
-                    "order_num": 5
                 }
             ],
             "title": "Stage 7: Marketing",

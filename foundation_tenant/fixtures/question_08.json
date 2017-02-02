@@ -3,7 +3,7 @@
         "model": "foundation_tenant.question",
         "pk": 82,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 2,
             "title": "What is the legal structure of your company?",
             "help": "This is some generic help text.",
@@ -49,7 +49,7 @@
         "model": "foundation_tenant.question",
         "pk": 87,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 7,
             "title": "Please list the specific products you will offer under each category?",
             "help": "This is some generic help text.",
@@ -88,7 +88,7 @@
         "model": "foundation_tenant.question",
         "pk": 88,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 8,
             "title": "Which verb best describes what you will do?",
             "help": "This is some generic help text.",
@@ -142,7 +142,7 @@
         "model": "foundation_tenant.question",
         "pk": 97,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 1,
             "title": "Cost of Goods sold - To help forecast out your costs, we need to estimate your cost for any materials or labour that go into the product of your product. If you are a re-seller or retailer, you also need to understand your purchase costs and anything else that you do to the product to get it ready for sale, including logistical costs. Are you ...",
             "help": "This is some generic help text.",
@@ -191,7 +191,7 @@
         "model": "foundation_tenant.question",
         "pk": 98,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 2,
             "title": "How do you want to forecast your sales?",
             "help": "This is some generic help text.",
@@ -229,7 +229,7 @@
         "model": "foundation_tenant.question",
         "pk": 99,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 3,
             "title": "How many clients/hrs of service/number of units will you sell and when in Years 1-3",
             "help": "This is some generic help text.",
@@ -248,7 +248,7 @@
         "model": "foundation_tenant.question",
         "pk": 100,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 4,
             "title": "Now we are going to forecast your Cost of Goods Sold for one unit of product, one hour of service or one average sale per client. Then at the end you will enter your sales price for one unit of labour, product or your average sales price per product.",
             "help": "This is some generic help text.",
@@ -267,7 +267,7 @@
         "model": "foundation_tenant.question",
         "pk": 101,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 5,
             "title": "We have taken your material, labour and overhead costs and spread them out based on the volume of product you told us for months 1-36. Please review these now and if they require adjustment, feel free to adjust.",
             "help": "This is some generic help text.",
@@ -290,7 +290,7 @@
         "model": "foundation_tenant.question",
         "pk": 102,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 6,
             "title": "Please break down your total sales by product category:",
             "help": "This is some generic help text.",
@@ -327,7 +327,7 @@
         "model": "foundation_tenant.question",
         "pk": 103,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 7,
             "title": "Please break down your total sales by your target market type:",
             "help": "This is some generic help text.",
@@ -363,7 +363,7 @@
         "model": "foundation_tenant.question",
         "pk": 81,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 1,
             "title": "Please list at least 1, or up to 10 owners of the company and the percentage of shares that they own",
             "help": "This is some generic help text.",
@@ -465,7 +465,7 @@
         "model": "foundation_tenant.question",
         "pk": 91,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 11,
             "title": "List, your management team by name proposed role, and area of expertise (Min 1, Max 10)",
             "help": "This is some generic help text.",
@@ -611,7 +611,7 @@
         "model": "foundation_tenant.question",
         "pk": 92,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 12,
             "title": "Pick the 3 strengths that best describe the Management Team of your organization.",
             "help": "This is some generic help text.",
@@ -648,7 +648,7 @@
         "model": "foundation_tenant.question",
         "pk": 93,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 13,
             "title": "Choose 3 weaknesses or gaps that exist in your management team and identify how to resolve them.",
             "help": "This is some generic help text.",
@@ -798,7 +798,7 @@
         "model": "foundation_tenant.question",
         "pk": 94,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 14,
             "title": "Many small businesses have legal, financial and other professionals they can go to for help. Please list 1-5 advisors or mentors that support you.",
             "help": "This is some generic help text.",
@@ -857,7 +857,7 @@
         "model": "foundation_tenant.question",
         "pk": 105,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 9,
             "title": "Please list salary expenses for all positions, including owners, broken down from years 1-3, with details on each position.",
             "help": "This is some generic help text.",
@@ -948,7 +948,7 @@
         "model": "foundation_tenant.question",
         "pk": 106,
         "fields": {
-            "document_type": 7,
+            "document_type": 8,
             "number": 10,
             "title": "Previously, you indicated the costs for Years 1-3 of your Salaries. We have totaled these to create your total salary costs. To help you with your cashflows, we have automatically calculated values for the first three years of your business. If you are happy with this, you can continue, or modify them.",
             "help": "This is some generic help text.",
@@ -969,7 +969,7 @@
         "model": "foundation_tenant.question",
         "pk": 85,
         "fields": {
-            "document_type": 6,
+            "document_type": 8,
             "number": 5,
             "title": "Will you have any legal or professional fees to set up your business? If so, please detail them below.",
             "help": "This is some generic help text.",

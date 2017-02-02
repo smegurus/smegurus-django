@@ -3,7 +3,7 @@
         "model": "foundation_tenant.question",
         "pk": 61,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 51,
             "title": "What is the legal name of your company?",
             "help": "This is some generic help text.",
@@ -24,7 +24,7 @@
         "model": "foundation_tenant.question",
         "pk": 63,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 53,
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
             "help": "This is some generic help text.",
@@ -59,7 +59,7 @@
         "model": "foundation_tenant.question",
         "pk": 64,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 54,
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
             "help": "This is some generic help text.",
@@ -92,7 +92,7 @@
         "model": "foundation_tenant.question",
         "pk": 72,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 62,
             "title": "List 3 people in your industry that you can talk to:",
             "help": "This is some generic help text.",
@@ -173,7 +173,7 @@
         "model": "foundation_tenant.question",
         "pk": 62,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 52,
             "title": "Choose 3-5 weaknesses that apply to your company (or write your own), and identify how you can resolve each one.",
             "help": "This is some generic help text.",
@@ -634,7 +634,7 @@
         "model": "foundation_tenant.question",
         "pk": 65,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 55,
             "title": "Why is no one else doing this yet?",
             "help": "This is some generic help text.",
@@ -681,7 +681,7 @@
         "model": "foundation_tenant.question",
         "pk": 66,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 56,
             "title": "Why is no one else doing this yet?",
             "help": "This is some generic help text.",
@@ -756,7 +756,7 @@
         "model": "foundation_tenant.question",
         "pk": 68,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 58,
             "title": "We will be great at...",
             "help": "This is some generic help text.",
@@ -803,7 +803,7 @@
         "model": "foundation_tenant.question",
         "pk": 67,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 57,
             "title": "I see my company as a ________ in my industry (Click label to see a description)",
             "help": "This is some generic help text.",
@@ -930,7 +930,7 @@
         "model": "foundation_tenant.question",
         "pk": 69,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 59,
             "title": "It will be our strategy to have our prices:",
             "help": "This is some generic help text.",
@@ -969,7 +969,7 @@
         "model": "foundation_tenant.question",
         "pk": 70,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 60,
             "title": "How will your customers buy your products or services from you?",
             "help": "This is some generic help text.",
@@ -1032,7 +1032,7 @@
         "model": "foundation_tenant.question",
         "pk": 71,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 61,
             "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
             "help": "This is some generic help text.",
@@ -1182,7 +1182,7 @@
         "model": "foundation_tenant.question",
         "pk": 75,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 65,
             "title": "What objections might someone have about your product and how might you respond? List 3 to 5.",
             "help": "This is some generic help text.",
@@ -1268,7 +1268,7 @@
         "model": "foundation_tenant.question",
         "pk": 76,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 66,
             "title": "What is the typical time it takes from when a customer is first interested in your product to when they finally buy?",
             "help": "This is some generic help text.",
@@ -1323,7 +1323,7 @@
         "model": "foundation_tenant.question",
         "pk": 77,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 67,
             "title": "I will offer the the following incentives to get customers to try my products or services",
             "help": "This is some generic help text.",
@@ -1503,7 +1503,7 @@
         "model": "foundation_tenant.question",
         "pk": 78,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 68,
             "title": "I will use the following physical marketing materials as ways to communicate my product or service to customers",
             "help": "This is some generic help text.",
@@ -1667,7 +1667,7 @@
         "model": "foundation_tenant.question",
         "pk": 79,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 69,
             "title": "I will reach my customers through the following media campaigns",
             "help": "This is some generic help text.",
@@ -1855,7 +1855,7 @@
         "model": "foundation_tenant.question",
         "pk": 80,
         "fields": {
-            "document_type": 5,
+            "document_type": 7,
             "number": 70,
             "title": "Working with others is a cost-effective way to grow. Cooperating can mean running campaigns together or even joint ventures. List up to 5 potential partnerships you can utilize to grow your company.",
             "help": "This is some generic help text.",
@@ -2055,7 +2055,7 @@
         "model": "foundation_tenant.question",
         "pk": 142,
         "fields": {
-            "document_type": 6,
+            "document_type": 7,
             "number": 45,
             "title": "One of the best ways to grow your company is through referrals from existing companies. Chances are that your clients know more people like them. What creative ways can you use to ask your clients for other people they might know? List up to 5.",
             "help": "This is some generic help text.",
@@ -2205,7 +2205,7 @@
         "model": "foundation_tenant.question",
         "pk": 143,
         "fields": {
-            "document_type": 6,
+            "document_type": 7,
             "number": 46,
             "title": "While it is important for entrepreneurs to always think about new business, never forget your existing clients! What creative ways can you use to ensure you keep your current customers happy? List up to 5.",
             "help": "This is some generic help text.",

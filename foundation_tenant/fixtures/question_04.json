@@ -176,7 +176,7 @@
         "model": "foundation_tenant.question",
         "pk": 152,
         "fields": {
-            "document_type": 3,
+            "document_type": 4,
             "number": 44,
             "title": "How much do customers spend on average (expressed in dollars)?",
             "help": "This is some generic help text.",
@@ -246,7 +246,7 @@
         "model": "foundation_tenant.question",
         "pk": 150,
         "fields": {
-            "document_type": 3,
+            "document_type": 4,
             "number": 42,
             "title": "How many competitors are there in your industry?",
             "help": "This is some generic help text.",
