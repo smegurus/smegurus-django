@@ -31,6 +31,14 @@
                     "type": "question",
                     "document_type": 1,
                     "order_num": 1
+                },{
+                    "previous_position": 3,
+                    "current_position": 4,
+                    "next_position": -1,
+                    "id": 158,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 1
                 }
             ],
             "title": "Stage 9: Analysis",

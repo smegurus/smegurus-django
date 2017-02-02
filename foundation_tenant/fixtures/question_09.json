@@ -48,5 +48,149 @@
             },
             "type_id": 1
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 158,
+        "fields": {
+            "document_type": 9,
+            "number": 2,
+            "title": "How will you spend your money? Select up to 5 uses from our list or enter your own.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Purchase equipment",
+                        "text": "Purchase equipment"
+                    },
+                    {
+                        "value": "Get start-up funding",
+                        "text": "Get start-up funding"
+                    },
+                    {
+                        "value": "Get an operating loan",
+                        "text": "Get an operating loan"
+                    },
+                    {
+                        "value": "Purchase a building",
+                        "text": "Purchase a building"
+                    },
+                    {
+                        "value": "Increase the scale or size of your business",
+                        "text": "Increase the scale or size of your business"
+                    },
+                    {
+                        "value": "Develop a prototype",
+                        "text": "Develop a prototype"
+                    },
+                    {
+                        "value": "Seek a patent/trademark/copyright",
+                        "text": "Seek a patent/trademark/copyright"
+                    },
+                    {
+                        "value": "Purchase a franchise",
+                        "text": "Purchase a franchise"
+                    },
+                    {
+                        "value": "Fund a licensing agreement",
+                        "text": "Fund a licensing agreement"
+                    },
+                    {
+                        "value": "Inventory",
+                        "text": "Inventory"
+                    },
+                    {
+                        "value": "Hire staff",
+                        "text": "Hire staff"
+                    },
+                    {
+                        "value": "Build a technology solution",
+                        "text": "Build a technology solution"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "Needed to launch business",
+                        "text": "Needed to launch business"
+                    },
+                    {
+                        "value": "Required to produce product",
+                        "text": "Required to produce product"
+                    },
+                    {
+                        "value": "Required for efficient operations",
+                        "text": "Required for efficient operations"
+                    },
+                    {
+                        "value": "Required to maximize profitability",
+                        "text": "Required to maximize profitability"
+                    },
+                    {
+                        "value": "Required to maximize service delivery",
+                        "text": "Required to maximize service delivery"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "$1,000",
+                        "text": "$1,000"
+                    },
+                    {
+                        "value": "$2,500",
+                        "text": "$2,500"
+                    },
+                    {
+                        "value": "$5,000",
+                        "text": "$5,000"
+                    },
+                    {
+                        "value": "$10,000",
+                        "text": "$10,000"
+                    },
+                    {
+                        "value": "$25,000",
+                        "text": "$25,000"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt3_other": "Other (Please Specify)",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "Description",
+                "stub_2": "Use",
+                "stub_3": "Impact",
+                "stub_4": "Amount",
+                "stub_5": "Remove",
+                "stub_6": "Description",
+                "stub_7": "ex: John Doe",
+                "stub_8": "Use",
+                "stub_9": "Impact",
+                "stub_10": "Amount",
+                "stub_11": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "arr_min_count": 5,
+                "arr_min_count_error_message": "Please enter at least 5 entries.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
+            "type_id": 41
+        }
     }
 ]
