@@ -12,14 +12,6 @@
                     "id": 3666,
                     "type": "slide"
                 },{
-                    "previous_position": 10,
-                    "current_position": 11,
-                    "next_position": 12,
-                    "id": 107,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 11
-                },{
                     "previous_position": 11,
                     "current_position": 12,
                     "next_position": 13,
@@ -43,22 +35,6 @@
                     "type": "question",
                     "document_type": 7,
                     "order_num": 14
-                },{
-                    "previous_position": 14,
-                    "current_position": 15,
-                    "next_position": 16,
-                    "id": 111,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 15
-                },{
-                    "previous_position": 15,
-                    "current_position": 16,
-                    "next_position": 17,
-                    "id": 112,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 16
                 },{
                     "previous_position": 16,
                     "current_position": 17,
@@ -147,22 +123,6 @@
                     "type": "question",
                     "document_type": 7,
                     "order_num": 27
-                },{
-                    "previous_position": 27,
-                    "current_position": 28,
-                    "next_position": 29,
-                    "id": 124,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 28
-                },{
-                    "previous_position": 28,
-                    "current_position": 29,
-                    "next_position": 30,
-                    "id": 125,
-                    "type": "question",
-                    "document_type": 7,
-                    "order_num": 29
                 },{
                     "previous_position": 29,
                     "current_position": 30,
