@@ -1,51 +1,6 @@
 [
     {
         "model": "foundation_tenant.question",
-        "pk": 89,
-        "fields": {
-            "document_type": 6,
-            "number": 9,
-            "title": "Currently, my customers must pay for products and services ...",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "All sales are credit or cash at time of sale",
-                        "text": "All sales are credit or cash at time of sale"
-                    },
-                    {
-                        "value": "Customers must pay within 30 days of purchase",
-                        "text": "Customers must pay within 30 days of purchase"
-                    },
-                    {
-                        "value": "Customers must pay within 60 days of purchase",
-                        "text": "Customers must pay within 60 days of purchase"
-                    },
-                    {
-                        "value": "Customers must pay within 90 days of purchase",
-                        "text": "Customers must pay within 90 days of purchase"
-                    },
-                    {
-                        "value": "Other",
-                        "text": "Other"
-                    }
-                ],
-                "opt1_other": "Other"
-            },
-            "content": {
-                "opt1_other_stub": "Other",
-                "opt1_other_type": "textfield"
-            },
-            "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 50,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
-            "type_id": 1
-        }
-    },{
-        "model": "foundation_tenant.question",
         "pk": 96,
         "fields": {
             "document_type": 6,

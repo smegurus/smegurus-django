@@ -34,11 +34,35 @@
                 },{
                     "previous_position": 3,
                     "current_position": 4,
-                    "next_position": -1,
+                    "next_position": 5,
                     "id": 158,
                     "type": "question",
                     "document_type": 1,
-                    "order_num": 1
+                    "order_num": 2
+                },{
+                    "previous_position": 4,
+                    "current_position": 5,
+                    "next_position": 6,
+                    "id": 89,
+                    "type": "question",
+                    "document_type": 1,
+                    "order_num": 3
+                },{
+                    "previous_position": 5,
+                    "current_position": 6,
+                    "next_position": 7,
+                    "id": 144,
+                    "type": "question",
+                    "document_type": 7,
+                    "order_num": 4
+                },{
+                    "previous_position": 6,
+                    "current_position": 7,
+                    "next_position": -1,
+                    "id": 145,
+                    "type": "question",
+                    "document_type": 7,
+                    "order_num": 5
                 }
             ],
             "title": "Stage 9: Analysis",
