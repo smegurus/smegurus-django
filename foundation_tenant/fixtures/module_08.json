@@ -185,7 +185,7 @@
                     "next_position": 12,
                     "id": 107,
                     "type": "question",
-                    "document_type": 7,
+                    "document_type": 8,
                     "order_num": 11
                 },{
                     "previous_position": 14,
@@ -193,7 +193,7 @@
                     "next_position": 16,
                     "id": 111,
                     "type": "question",
-                    "document_type": 7,
+                    "document_type": 8,
                     "order_num": 15
                 },{
                     "previous_position": 15,
@@ -201,7 +201,7 @@
                     "next_position": 17,
                     "id": 112,
                     "type": "question",
-                    "document_type": 7,
+                    "document_type": 8,
                     "order_num": 16
                 },{
                     "previous_position": 27,
@@ -209,7 +209,7 @@
                     "next_position": 29,
                     "id": 124,
                     "type": "question",
-                    "document_type": 7,
+                    "document_type": 8,
                     "order_num": 28
                 },{
                     "previous_position": 28,
@@ -217,8 +217,52 @@
                     "next_position": 30,
                     "id": 125,
                     "type": "question",
-                    "document_type": 7,
+                    "document_type": 8,
                     "order_num": 29
+                },{
+                    "previous_position": -1,
+                    "current_position": 0,
+                    "next_position": 1,
+                    "id": 4671,
+                    "type": "slide"
+                },{
+                    "previous_position": 0,
+                    "current_position": 1,
+                    "next_position": 2,
+                    "id": 4672,
+                    "type": "slide"
+                },{
+                    "previous_position": 42,
+                    "current_position": 43,
+                    "next_position": 44,
+                    "id": 139,
+                    "type": "question",
+                    "document_type": 8,
+                    "order_num": 43
+                },{
+                    "previous_position": 44,
+                    "current_position": 45,
+                    "next_position": 46,
+                    "id": 141,
+                    "type": "question",
+                    "document_type": 8,
+                    "order_num": 45
+                },{
+                    "previous_position": 47,
+                    "current_position": 48,
+                    "next_position": -1,
+                    "id": 146,
+                    "type": "question",
+                    "document_type": 8,
+                    "order_num": 48
+                },{
+                    "previous_position": 43,
+                    "current_position": 44,
+                    "next_position": 45,
+                    "id": 140,
+                    "type": "question",
+                    "document_type": 8,
+                    "order_num": 44
                 }
             ],
             "title": "Stage 8: Operations and Finance",

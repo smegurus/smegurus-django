@@ -44,5 +44,23 @@
         "description": "This is slide #5 description for Stage 8.",
         "video_url": ""
     }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4671,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #6 title for Stage 8.",
+        "description": "This is slide #6 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4672,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #7 title for Stage 8.",
+        "description": "This is slide #7 description for Stage 8.",
+        "video_url": ""
+    }
 }
 ]
