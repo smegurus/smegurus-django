@@ -135,11 +135,14 @@ class Command(BaseCommand):
             # headers={'Content-Type': 'application/json'}
         )
 
+        # DEVELOPERS NOTE:
+        # The following three lines will take the 'default_storage' class
+        # django uses for saving files and apply it. Because we overloaded
+        # this default class with S3 storage, therefore when this code runs
+        # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-
         path = default_storage.save('uploads/'+filename, ContentFile(r.data))
-
 
         # Create a new file upload and upload the data to a S3 instance.
         docxpresso_file = TenantFileUpload.objects.create(

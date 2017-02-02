@@ -138,38 +138,35 @@ class Command(BaseCommand):
             # headers={'Content-Type': 'application/json'}
         )
 
-        filepath = os.path.join('static/'+filename)
-        self.stdout.write(self.style.SUCCESS(_('FILEPATH AT: %s.') % str(filepath)))
+        # DEVELOPERS NOTE:
+        # The following three lines will take the 'default_storage' class
+        # django uses for saving files and apply it. Because we overloaded
+        # this default class with S3 storage, therefore when this code runs
+        # we will be saving to S3.
+        from django.core.files.storage import default_storage
+        from django.core.files.base import ContentFile
+        path = default_storage.save('uploads/'+filename, ContentFile(r.data))
 
-        doc_file = open(filepath, 'wb')
-        doc_file.write(r.data)
-        doc_file.close()
+        # Save our file.
+        docxpresso_file = TenantFileUpload.objects.create(
+            datafile = path
+        )
 
-        # Open the saved file and create a file object associated with it
-        # and attach it to the document which will cause our file to be
-        # uploaded to the S3 instance.
-        from django.core.files import File
-        with open(filepath, 'rb') as f:
-            # Create a new file upload and upload the data to a S3 instance.
-            docxpresso_file = TenantFileUpload.objects.create(
-                datafile = File(f),
-            )
+        # Fetch the document and then atomically modify it.
+        with transaction.atomic():
+            # Fetch the document.
+            document = self.get_document(workspace.id)
 
-            # Fetch the document and then atomically modify it.
-            with transaction.atomic():
-                # Fetch the document.
-                document = self.get_document(workspace.id)
+            # If the file already exists then delete it from S3.
+            if document.docxpresso_file:
+                document.docxpresso_file.delete()
 
-                # If the file already exists then delete it from S3.
-                if document.docxpresso_file:
-                    document.docxpresso_file.delete()
+            # Generate our new file.
+            document.docxpresso_file = docxpresso_file
+            document.save()
 
-                # Generate our new file.
-                document.docxpresso_file = docxpresso_file
-                document.save()
-
-                # Delete the local file.
-                #TODO: Implement this.
+            # Delete the local file.
+            #TODO: Implement this.
 
     def get_docxpresso_data(self, workspace, document, answers):
         docxpresso_data = []
