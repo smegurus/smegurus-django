@@ -60,10 +60,10 @@
                 <h1>{% trans 'You are done!' %}</h1>
                 <p>{% trans 'You are ready to submit, click submit to generate a document and have an advisor review your work.' %}</p>
                 <p>
-                    <a role="button" class="btn btn-default btn-lg" href="{% url 'tenant_workspace_module_detail' workspace.id module.id last_node.current_position %}">
+                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_workspace_module_detail' workspace.id module.id last_node.current_position %}">
                         {% trans 'Back' %}
                     </a>
-                    <a id="id_submit_btn" role="button" class="btn btn-success btn-lg" onclick="ajax_submit();">
+                    <a id="id_submit_btn" role="button" class="btn btn-back btn-lg" onclick="ajax_submit();">
                         {% trans 'Submit' %}
                     </a>
                 </p>
