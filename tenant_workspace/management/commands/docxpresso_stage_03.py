@@ -188,8 +188,11 @@ class Command(BaseCommand):
             elif answer.question.pk == 151: # product_distribution
                 self.do_q151(answer, api)
 
-            # customers_will_purchase 52
-            # target_market_characteristics 49
+            elif answer.question.pk == 49: # target_market_characteristics
+                self.do_q49(answer, api)
+
+            elif answer.question.pk == 52: # customers_will_purchase
+                self.do_q52(answer, api)
 
     def do_q21(self, answer, api):
         api.add_text("workspace_name", answer.content['var_1'])
@@ -275,5 +278,23 @@ class Command(BaseCommand):
     def do_q151(self, answer, api):
         api.add_text(
             "product_distribution",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q49(self, answer, api):
+        # Debugging purposes only.
+        # print(answer.question.id)
+        # print(answer)
+        # print(answer.content)
+        # print("\n")
+
+        text = ""
+        for ans in answer.content:
+            text += "<p>" + ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'] + "</p>"
+        api.add_html("target_market_characteristics", text)
+
+    def do_q52(self, answer, api):
+        api.add_text(
+            "customers_will_purchase",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
