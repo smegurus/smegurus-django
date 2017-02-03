@@ -1,8 +1,4 @@
 import os.path
-import json
-import urllib3  # Third Party Library
-from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
-from datetime import datetime, timedelta  # Datetime.
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -15,6 +11,7 @@ from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -40,7 +37,13 @@ class Command(BaseCommand):
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
 
-        self.begin_processing(workspace_id)
+        api = DocxspressoAPI(
+            settings.DOCXPRESSO_PUBLIC_KEY,
+            settings.DOCXPRESSO_PRIVATE_KEY,
+            settings.DOCXPRESSO_URL
+        )
+
+        self.begin_processing(workspace_id, api)
 
         # Return a success message to the console.
         self.stdout.write(
@@ -80,59 +83,28 @@ class Command(BaseCommand):
             )
         )
 
-    def begin_processing(self, workspace_id):
+    def begin_processing(self, workspace_id, api):
         workspace = self.get_workspace(workspace_id)
         answers = self.get_answers(workspace_id)
-        self.process(workspace, answers)
+        self.process(workspace, answers, api)
 
-    def process(self, workspace, answers):
+    def process(self, workspace, answers, api):
         # DEBUGGING PURPOSES
         # for answer in answers.all():
         #     print(answer.question.id, answer)
 
-        # Generate timestamp.
-        stem = "workspace_" + str(workspace.id) + "_stage_02"
-        suffix = "odt"
-        filename = stem + '.' + suffix
-        current = datetime.now()
-        timestamp = str(current.strftime('%Y%m%d%H%M%S'))
-
-        # Generate our API key.
-        api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
-        api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
-
-        # Generate our Docxpresso data to submit.
-        docxpresso_data = self.get_docxpresso_data(answers)
-
-        data = {
-            "security": {
-                "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-                "timestamp": timestamp,
-                "APIKEY": api_key_hashed
-            },
-            "template": "templates/stage2.odt",
-            "output": {
-                "format": suffix,
-                "response": "doc",
-                "name": stem
-            },
-            "replace": docxpresso_data
-        }
-
-        # We will convert our Python dictonary into a JSON diconary.
-        encoded_body = json.dumps(data).encode('utf-8')
-
-        # Send AJAX Post to Docxpresso server.
-        http = urllib3.PoolManager()
-        r = http.request(
-            'POST',
-            settings.DOCXPRESSO_URL,
-            # body=encoded_body,
-            fields={
-                "dataJSON": encoded_body
-            }
-            # headers={'Content-Type': 'application/json'}
+        api.new(
+            name="workspace_" + str(workspace.id) + "_stage_02",
+            format="odt",
+            template="templates/stage2.odt"
         )
+
+        # Take our stage 2 content and populate docxpresso with it.
+        self.set_answers(answers, api)
+
+        # Generate our document!
+        doc_filename = api.get_filename()
+        doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
         # The following three lines will take the 'default_storage' class
@@ -141,7 +113,10 @@ class Command(BaseCommand):
         # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-        path = default_storage.save('uploads/'+filename, ContentFile(r.data))
+        path = default_storage.save(
+            'uploads/'+doc_filename,
+            ContentFile(doc_bin_data)
+        )
 
         # Save our file.
         docxpresso_file = TenantFileUpload.objects.create(
@@ -164,78 +139,46 @@ class Command(BaseCommand):
             # Delete the local file.
             #TODO: Implement this.
 
-    def get_docxpresso_data(self, answers):
+    def set_answers(self, answers, api):
         docxpresso_data = []
         for answer in answers.all():
             if answer.question.pk == 21: # workspace_name
-                docxpresso_data = self.do_q21(docxpresso_data, answer)
+                self.do_q21(answer, api)
 
             elif answer.question.pk == 25: # naics_industry_name
-                docxpresso_data = self.do_q25(docxpresso_data, answer)
+                self.do_q25(answer, api)
 
             elif answer.question.pk == 26: # years_of_exp
-                docxpresso_data = self.do_q26(docxpresso_data, answer)
+                self.do_q26(answer, api)
 
             elif answer.question.pk == 27: # business_idea
-                docxpresso_data = self.do_q27(docxpresso_data, answer)
+                self.do_q27(answer, api)
 
             elif answer.question.pk == 28: # research_sources
-                docxpresso_data = self.do_q28(docxpresso_data, answer)
+                self.do_q28(answer, api)
 
             elif answer.question.pk == 29: # similar_businesses
-                docxpresso_data = self.do_q29(docxpresso_data, answer)
+                self.do_q29(answer, api)
 
             elif answer.question.pk == 30: # industry_contacts
-                docxpresso_data = self.do_q30(docxpresso_data, answer)
+                self.do_q30(answer, api)
 
-        return docxpresso_data
+    def do_q21(self, answer, api):
+        api.add_text("workspace_name", answer.content['var_1'])
 
-    def do_q21(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "workspace_name",
-                "value": answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
-
-    def do_q25(self, docxpresso_data, answer):
+    def do_q25(self, answer, api):
         naics_id = answer.content['var_5'] # Depth 5 NAICS ID
         depth_five_naics = NAICSOption.objects.get(id=naics_id) # Get the name
+        api.add_text("naics_industry_name", depth_five_naics.name)
+        api.add_text("naics_industry_friendly_name", answer.content['var_6'])
 
-        docxpresso_data.append({
-            "vars": [{
-                "var": "naics_industry_name",
-                "value": depth_five_naics.name
-            }]
-        })
-        docxpresso_data.append({
-            "vars": [{
-                "var": "naics_industry_friendly_name",
-                "value": answer.content['var_6']
-            }]
-        })
-        return docxpresso_data
+    def do_q26(self, answer, api):
+        api.add_text("years_of_exp", answer.content['var_1'])
 
-    def do_q26(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "years_of_exp",
-                "value": answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q27(self, answer, api):
+        api.add_text("business_idea", answer.content['var_1'])
 
-    def do_q27(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "business_idea",
-                "value": answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
-
-    def do_q28(self, docxpresso_data, answer):
+    def do_q28(self, answer, api):
         arr = []
         if answer.content['var_1_other']:
             arr.append(answer.content['var_1_other'])
@@ -267,45 +210,18 @@ class Command(BaseCommand):
             if answer.content['var_5']:
                 arr.append(answer.content['var_5'])
 
-        docxpresso_data.append({
-            "vars": [{
-                "var": "research_sources",
-                "value": arr
-            }],
-            "options": {
-                "element": "list"
-            }
-        })
-        return docxpresso_data
+        api.add_array("research_sources", arr)
 
-    def do_q29(self, docxpresso_data, answer):
+    def do_q29(self, answer, api):
         arr = []
         arr.append(answer.content['var_1'])
         arr.append(answer.content['var_2'])
         arr.append(answer.content['var_3'])
-        docxpresso_data.append({
-            "vars": [{
-                "var": "similar_businesses",
-                "value": arr
-            }],
-            "options": {
-                "element": "list"
-            }
-        })
-        return docxpresso_data
+        api.add_array("similar_businesses", arr)
 
-    def do_q30(self, docxpresso_data, answer):
+    def do_q30(self, answer, api):
         arr = []
         arr.append(answer.content['var_1'])
         arr.append(answer.content['var_2'])
         arr.append(answer.content['var_3'])
-        docxpresso_data.append({
-            "vars": [{
-                "var": "industry_contacts",
-                "value": arr
-            }],
-            "options": {
-                "element": "list"
-            }
-        })
-        return docxpresso_data
+        api.add_array("industry_contacts", arr)
