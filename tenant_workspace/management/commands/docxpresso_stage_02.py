@@ -113,15 +113,6 @@ class Command(BaseCommand):
         # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-        path = default_storage.save(
-            'uploads/'+doc_filename,
-            ContentFile(doc_bin_data)
-        )
-
-        # Save our file.
-        docxpresso_file = TenantFileUpload.objects.create(
-            datafile = path,
-        )
 
         # Fetch the document and then atomically modify it.
         with transaction.atomic():
@@ -132,12 +123,20 @@ class Command(BaseCommand):
             if document.docxpresso_file:
                 document.docxpresso_file.delete()
 
+            # Upload our file to S3 server.
+            path = default_storage.save(
+                'uploads/'+doc_filename,
+                ContentFile(doc_bin_data)
+            )
+
+            # Save our file to DB.
+            docxpresso_file = TenantFileUpload.objects.create(
+                datafile = path,
+            )
+
             # Generate our new file.
             document.docxpresso_file = docxpresso_file
             document.save()
-
-            # Delete the local file.
-            #TODO: Implement this.
 
     def set_answers(self, answers, api):
         for answer in answers.all():
