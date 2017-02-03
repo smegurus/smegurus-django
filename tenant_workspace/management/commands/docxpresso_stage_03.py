@@ -205,14 +205,14 @@ class Command(BaseCommand):
         text += "<p>" + answer.content['var_1'] + "</p>"
         text += "<p>" + answer.content['var_2'] + "</p>"
         text += "<p>" + answer.content['var_3'] + "</p>"
-        api.add_bullets_text("research_sources", text)
+        api.add_html("research_sources", text)
 
     def do_q32(self, answer, api):
         text = ""
         text += "<p>" + answer.content['var_1'] + "</p>"
         text += "<p>" + answer.content['var_2'] + "</p>"
         text += "<p>" + answer.content['var_3'] + "</p>"
-        api.add_bullets_text("product_categories", text)
+        api.add_html("product_categories", text)
 
     def do_q33(self, answer, api):
         api.add_text(
@@ -242,13 +242,13 @@ class Command(BaseCommand):
         text = ""
         for ans in answer.content:
             text += "<p>" + ans['var_3'] + "</p>"
-        api.add_bullets_text("pestel_trends", text)
+        api.add_html("pestel_trends", text)
 
     def do_q38(self, answer, api):
         text = ""
         for ans in answer.content:
             text += "<p>" + ans['var_2'] + "</p>"
-        api.add_bullets_text("specific_sources", text)
+        api.add_html("specific_sources", text)
 
     def do_q39(self, answer, api):
         api.add_text(
@@ -270,7 +270,7 @@ class Command(BaseCommand):
         text = ""
         for ans in answer.content['var_1']:
             text += "<p>" + ans['value'] + "</p>"
-        api.add_bullets_text("how_to_convince", text)
+        api.add_html("how_to_convince", text)
 
     def do_q151(self, answer, api):
         api.add_text(

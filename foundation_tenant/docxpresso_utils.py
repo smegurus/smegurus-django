@@ -51,9 +51,9 @@ class DocxspressoAPI:
             }]
         })
 
-    def add_bullets_text(self, key, value):
+    def add_html(self, key, value):
         """
-        Add bullets per key for document struction.
+        Add html per key for document struction.
 
         Note:
         The content of 'value' parameter must look like this, for example:
