@@ -141,6 +141,34 @@ class DocxspressoAPI:
         """
         self.data.append(array)
 
+    def add_text_to_footer(self, key, value):
+        """
+        Add text value per key for document construction into the footer.
+        """
+        self.data.append({
+            "vars": [{
+                "var": key,
+                "value": value
+            }],
+            "options": {
+                "target": "footer"
+            }
+        })
+
+    def add_text_to_header(self, key, value):
+        """
+        Add text value per key for document construction into the header.
+        """
+        self.data.append({
+            "vars": [{
+                "var": key,
+                "value": value
+            }],
+            "options": {
+                "target": "header"
+            }
+        })
+
     def __str__(self):
         """
         To-string function will return the data used for constructing the

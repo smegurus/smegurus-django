@@ -163,6 +163,7 @@ class Command(BaseCommand):
 
     def do_q21(self, answer, api):
         api.add_text("workspace_name", answer.content['var_1'])
+        api.add_text_to_footer("workspace_name", answer.content['var_1'])
 
     def do_q25(self, answer, api):
         naics_id = answer.content['var_5'] # Depth 5 NAICS ID
