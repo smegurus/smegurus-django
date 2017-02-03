@@ -51,6 +51,23 @@ class DocxspressoAPI:
             }]
         })
 
+    def add_bullets_text(self, key, value):
+        """
+        Add bullets per key for document struction.
+
+        Note:
+        The content of 'value' parameter must look like this, for example:
+        <p>My choice 1</p><p>My choice 3</p><p>My choice 4</p>
+        """
+        self.data.append({
+            "vars": [{
+                "var": key,
+                "value": [value],
+                 "html": 1,
+                 "block-type": 1
+            }]
+        })
+
     def add_array(self, key, array):
         """
         Add array per key for document construction.

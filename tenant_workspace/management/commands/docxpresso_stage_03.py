@@ -1,8 +1,4 @@
 import os.path
-import json
-import urllib3  # Third Party Library
-from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
-from datetime import datetime, timedelta  # Datetime.
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -15,6 +11,7 @@ from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -40,7 +37,13 @@ class Command(BaseCommand):
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
 
-        self.begin_processing(workspace_id)
+        api = DocxspressoAPI(
+            settings.DOCXPRESSO_PUBLIC_KEY,
+            settings.DOCXPRESSO_PRIVATE_KEY,
+            settings.DOCXPRESSO_URL
+        )
+
+        self.begin_processing(workspace_id, api)
 
         # Return a success message to the console.
         self.stdout.write(
@@ -83,60 +86,28 @@ class Command(BaseCommand):
             )
         )
 
-    def begin_processing(self, workspace_id):
+    def begin_processing(self, workspace_id, api):
         workspace = self.get_workspace(workspace_id)
-        document = self.get_document(workspace_id)
         answers = self.get_answers(workspace_id)
-        self.process(workspace, document, answers)
+        self.process(workspace, answers, api)
 
-    def process(self, workspace, document, answers):
+    def process(self, workspace, answers, api):
         # DEBUGGING PURPOSES
         # for answer in answers.all():
         #     print(answer.question.id, answer)
 
-        # Generate timestamp.
-        stem = "workspace_" + str(workspace.id) + "_stage_03"
-        suffix = "odt"
-        filename = stem + '.' + suffix
-        current = datetime.now()
-        timestamp = str(current.strftime('%Y%m%d%H%M%S'))
-
-        # Generate our API key.
-        api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
-        api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
-
-        # Generate our Docxpresso data to submit.
-        docxpresso_data = self.get_docxpresso_data(workspace, document, answers)
-
-        data = {
-            "security": {
-                "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-                "timestamp": timestamp,
-                "APIKEY": api_key_hashed
-            },
-            "template": "templates/stage3.odt",
-            "output": {
-                "format": suffix,
-                "response": "doc",
-                "name": stem
-            },
-            "replace": docxpresso_data
-        }
-
-        # We will convert our Python dictonary into a JSON diconary.
-        encoded_body = json.dumps(data).encode('utf-8')
-
-        # Send AJAX Post to Docxpresso server.
-        http = urllib3.PoolManager()
-        r = http.request(
-            'POST',
-            settings.DOCXPRESSO_URL,
-            # body=encoded_body,
-            fields={
-                "dataJSON": encoded_body
-            }
-            # headers={'Content-Type': 'application/json'}
+        api.new(
+            name="workspace_" + str(workspace.id) + "_stage_03",
+            format="odt",
+            template="templates/stage3.odt"
         )
+
+        # Take our content and populate docxpresso with it.
+        self.set_answers(answers, api)
+
+        # Generate our document!
+        doc_filename = api.get_filename()
+        doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
         # The following three lines will take the 'default_storage' class
@@ -145,12 +116,6 @@ class Command(BaseCommand):
         # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-        path = default_storage.save('uploads/'+filename, ContentFile(r.data))
-
-        # Save our file.
-        docxpresso_file = TenantFileUpload.objects.create(
-            datafile = path
-        )
 
         # Fetch the document and then atomically modify it.
         with transaction.atomic():
@@ -161,234 +126,154 @@ class Command(BaseCommand):
             if document.docxpresso_file:
                 document.docxpresso_file.delete()
 
+            # Upload our file to S3 server.
+            path = default_storage.save(
+                'uploads/'+doc_filename,
+                ContentFile(doc_bin_data)
+            )
+
+            # Save our file to DB.
+            docxpresso_file = TenantFileUpload.objects.create(
+                datafile = path,
+            )
+
             # Generate our new file.
             document.docxpresso_file = docxpresso_file
             document.save()
 
-            # Delete the local file.
-            #TODO: Implement this.
-
-    def get_docxpresso_data(self, workspace, document, answers):
-        docxpresso_data = []
+    def set_answers(self, answers, api):
         for answer in answers.all():
-            if answer.question.pk == 21: # business_name
-                docxpresso_data = self.do_q21(docxpresso_data, answer)
+            if answer.question.pk == 21: # workspace_name
+                self.do_q21(answer, api)
 
             if answer.question.pk == 25: # naics_industry_friendly_name
-                docxpresso_data = self.do_q25(docxpresso_data, answer)
+                self.do_q25(answer, api)
 
             elif answer.question.pk == 27: # business_idea
-                docxpresso_data = self.do_q27(docxpresso_data, answer)
+                self.do_q27(answer, api)
 
             elif answer.question.pk == 28: # research_sources
-                docxpresso_data = self.do_q28(docxpresso_data, answer)
+                self.do_q28(answer, api)
 
             elif answer.question.pk == 32: # product_categories
-                docxpresso_data = self.do_q32(docxpresso_data, answer)
+                self.do_q32(answer, api)
 
             elif answer.question.pk == 33: # customer_type
-                docxpresso_data = self.do_q33(docxpresso_data, answer)
+                self.do_q33(answer, api)
 
             elif answer.question.pk == 34: # business_oppportunity
-                docxpresso_data = self.do_q34(docxpresso_data, answer)
+                self.do_q34(answer, api)
 
             elif answer.question.pk == 35: # not_being_done_because
-                docxpresso_data = self.do_q35(docxpresso_data, answer)
+                self.do_q35(answer, api)
 
             elif answer.question.pk == 36: # business_solution
-                docxpresso_data = self.do_q36(docxpresso_data, answer)
+                self.do_q36(answer, api)
 
             elif answer.question.pk == 37: # pestel_trends
-                docxpresso_data = self.do_q37(docxpresso_data, answer)
+                self.do_q37(answer, api)
 
             elif answer.question.pk == 38: # specific_sources
-                docxpresso_data = self.do_q38(docxpresso_data, answer)
+                self.do_q38(answer, api)
 
             elif answer.question.pk == 39: # geographic_market
-                docxpresso_data = self.do_q39(docxpresso_data, answer)
+                self.do_q39(answer, api)
 
             elif answer.question.pk == 40: # geographic_market | customer_buying_decision
-                docxpresso_data = self.do_q40(docxpresso_data, answer)
+                self.do_q40(answer, api)
 
             elif answer.question.pk == 74: # how_to_convince
-                docxpresso_data = self.do_q74(docxpresso_data, answer)
+                self.do_q74(answer, api)
 
             elif answer.question.pk == 151: # product_distribution
-                docxpresso_data = self.do_q151(docxpresso_data, answer)
+                self.do_q151(answer, api)
 
             # customers_will_purchase ??
             # target_market_characteristics 49
 
-        return docxpresso_data # Return our data.
+    def do_q21(self, answer, api):
+        api.add_text("workspace_name", answer.content['var_1'])
 
-    def do_q21(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "business_name",
-                "value": answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q25(self, answer, api):
+        api.add_text("naics_industry_friendly_name", answer.content['var_6'])
 
-    def do_q25(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "naics_industry_friendly_name",
-                "value": answer.content['var_6']
-            }]
-        })
-        return docxpresso_data
+    def do_q27(self, answer, api):
+        api.add_text("business_idea", answer.content['var_1'])
 
-    def do_q27(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "business_idea",
-                "value": answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q28(self, answer, api):
+        text = ""
+        text += "<p>" + answer.content['var_1'] + "</p>"
+        text += "<p>" + answer.content['var_2'] + "</p>"
+        text += "<p>" + answer.content['var_3'] + "</p>"
+        api.add_bullets_text("research_sources", text)
 
-    def do_q28(self, docxpresso_data, answer):
-        arr = []
-        arr.append(answer.content['var_1'])
-        arr.append(answer.content['var_2'])
-        arr.append(answer.content['var_3'])
-        docxpresso_data.append({
-            "vars": [{
-                "var": "research_sources",
-                "value": arr
-            }],
-            "options": {
-                "element": "list"
-            }
-        })
-        return docxpresso_data
+    def do_q32(self, answer, api):
+        text = ""
+        text += "<p>" + answer.content['var_1'] + "</p>"
+        text += "<p>" + answer.content['var_2'] + "</p>"
+        text += "<p>" + answer.content['var_3'] + "</p>"
+        api.add_bullets_text("product_categories", text)
 
-    def do_q32(self, docxpresso_data, answer):
-        arr = []
-        arr.append(answer.content['var_1'])
-        arr.append(answer.content['var_2'])
-        arr.append(answer.content['var_3'])
-        docxpresso_data.append({
-            "vars": [{
-                "var": "product_categories",
-                "value": arr
-            }],
-            "options": {
-                "element": "list"
-            }
-        })
-        return docxpresso_data
+    def do_q33(self, answer, api):
+        api.add_text(
+            "customer_type",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
-    def do_q33(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "customer_type",
-                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q34(self, answer, api):
+        api.add_text(
+            "business_oppportunity",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
-    def do_q34(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "business_oppportunity",
-                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q35(self, answer, api):
+        api.add_text(
+            "not_being_done_because",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
-    def do_q35(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "not_being_done_because",
-                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q36(self, answer, api):
+        api.add_text(
+            "business_solution",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
-    def do_q36(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "business_solution",
-                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
-
-    def do_q37(self, docxpresso_data, answer):
-        # Get all our trends.
-        arr = []
+    def do_q37(self, answer, api):
+        text = ""
         for ans in answer.content:
-            arr.append(ans['var_3'])
+            text += "<p>" + ans['var_3'] + "</p>"
+        api.add_bullets_text("pestel_trends", text)
 
-        # Generate our data and return it.
-        docxpresso_data.append({
-            "vars": [{
-                "var": "pestel_trends",
-                "value": arr
-            }]
-        })
-        return docxpresso_data
-
-    def do_q38(self, docxpresso_data, answer):
-        # Get all our trends.
-        arr = []
+    def do_q38(self, answer, api):
+        text = ""
         for ans in answer.content:
-            arr.append(ans['var_2'])
+            text += "<p>" + ans['var_2'] + "</p>"
+        api.add_bullets_text("specific_sources", text)
 
-        # Generate our data and return it.
-        docxpresso_data.append({
-            "vars": [{
-                "var": "specific_sources",
-                "value": arr
-            }]
-        })
-        return docxpresso_data
+    def do_q39(self, answer, api):
+        api.add_text(
+            "geographic_market",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
-    def do_q39(self, docxpresso_data, answer):
-        docxpresso_data.append({
-            "vars": [{
-                "var": "geographic_market",
-                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
-
-    def do_q40(self, docxpresso_data, answer): # customer_buying_decision | geographic_market
+    def do_q40(self, answer, api): # customer_buying_decision | geographic_market
         # Compute the answer.
         var_1 = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
 
         # Add our result.
-        docxpresso_data.append({
-            "vars": [{
-                "var": "customer_buying_decision",
-                "value": '-' if answer.content['var_0'] else var_1
-            }]
-        })
-        return docxpresso_data
+        api.add_text(
+            "customer_buying_decision",
+            '-' if answer.content['var_0'] else var_1
+        )
 
-    def do_q74(self, docxpresso_data, answer):
-        # Get all our trends.
-        arr = []
+    def do_q74(self, answer, api):
+        text = ""
         for ans in answer.content['var_1']:
-            arr.append(ans['value'])
+            text += "<p>" + ans['value'] + "</p>"
+        api.add_bullets_text("how_to_convince", text)
 
-        # Generate our data and return it.
-        docxpresso_data.append({
-            "vars": [{
-                "var": "how_to_convince",
-                "value": arr
-            }]
-        })
-        return docxpresso_data
-
-    def do_q151(self, docxpresso_data, answer):
-        # Generate our data and return it.
-        docxpresso_data.append({
-            "vars": [{
-                "var": "product_distribution",
-                "value": answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-            }]
-        })
-        return docxpresso_data
+    def do_q151(self, answer, api):
+        api.add_text(
+            "product_distribution",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )

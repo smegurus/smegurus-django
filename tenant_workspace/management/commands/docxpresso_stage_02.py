@@ -140,7 +140,6 @@ class Command(BaseCommand):
             #TODO: Implement this.
 
     def set_answers(self, answers, api):
-        docxpresso_data = []
         for answer in answers.all():
             if answer.question.pk == 21: # workspace_name
                 self.do_q21(answer, api)
