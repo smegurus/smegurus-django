@@ -27,7 +27,7 @@
             "document_type": 7,
             "number": 2,
             "title": "Do you have a mission statement developed? (If you select 'No', the system will provide a mission statement for you. Click here to see the default mission statement.)",
-            "help": "This is some generic help text.",
+            "help": "This should be a statement to help guide the path of your business. If you are not sure what to write, simply select No and the system will write one for you.",
             "options": {
                 "yes_opt": {
                     "value": "Yes",
@@ -62,7 +62,7 @@
             "document_type": 7,
             "number": 54,
             "title": "Do you have a vision statement developed? (If you select 'No', the system will provide a vision statement for you. Click here to see the default vision statement.)",
-            "help": "This is some generic help text.",
+            "help": "This should be a statement indicating what your company wants to become. If you are not sure what to write, simply select No and the system will write one for you.",
             "options": {
                 "yes_opt": {
                     "value": "Yes",
@@ -95,7 +95,7 @@
             "document_type": 7,
             "number": 62,
             "title": "Please identify 3 of your Key Success Factors.",
-            "help": "This is some generic help text.",
+            "help": "Key Success Factors are those that are necessary for your future success. Please give us 3.",
             "options": {
                 "opt1": [
                     "We will provide excellent customer service",
@@ -126,7 +126,7 @@
             "document_type": 7,
             "number": 49,
             "title": "Identify 3-5 of your company's strengths or write your own.",
-            "help": "This is some generic help text.",
+            "help": "Every company has strengths which help them to stay competitive. Think carefully, and please list at least 3, but no more than 5 of them here.",
             "options": {
                 "opt1": [
                     "The company has a strong and experienced management team",
@@ -176,7 +176,7 @@
             "document_type": 7,
             "number": 52,
             "title": "Choose 3-5 weaknesses that apply to your company (or write your own), and identify how you can resolve each one.",
-            "help": "This is some generic help text.",
+            "help": "Every company has weaknesses which need to be considered. Remember, a weakness is something inside of your business that you can control. Identifying a weakness is not enough to be successful in business. You also need to consider how you will solve this - this is what we call a resolution.",
             "options": {
                 "opt1": [
                     "We are novices to the industry",
@@ -387,7 +387,7 @@
             "document_type": 7,
             "number": 50,
             "title": "Choose 3-5 opportunities that apply to your industry, or write your own.",
-            "help": "This is some generic help text.",
+            "help": "Opportunities are positive things in your industry that are beyond your control and available to everyone in your industry. Please identify at least 3, but no more than 5.",
             "options": {
                 "opt1": [
                     "There has been huge growth in our target market group which creates a need for the services that we provide",
@@ -447,7 +447,7 @@
             "document_type": 7,
             "number": 50,
             "title": "Choose 3-5 threats that apply to your industry (or write your own), and identify how you can mitigate each one.",
-            "help": "This is some generic help text.",
+            "help": "Every company has weaknesses which need to be considered. Remember, a threat is something outside of your business that you cannot control, and that impacts everyone in your industry. Identifying a threat is not enough to be successful in business. You also need to consider how you will handle these. Since these items are outside of your control you cannot solve them, but you can plan for them. This is what we call a mitigation.",
             "options": {
                 "opt1": [
                     "Changes in the industry challenge the ability of firms to compete without a significant investment in technology",
@@ -636,8 +636,8 @@
         "fields": {
             "document_type": 7,
             "number": 55,
-            "title": "Why is no one else doing this yet?",
-            "help": "This is some generic help text.",
+            "title": "What need will you meet for your customers?",
+            "help": "People often buy to meet a need or to solve a problem. Please tell us which need you will meet for your customers.",
             "options": {
                 "opt1": [
                     {
@@ -661,7 +661,7 @@
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": "First, display the text Our company will provide the follow",
+                "stub_1": "Our company will provide the following",
                 "stub_2": "To meet the following need of our clients or market opportunity"
             },
             "dependency": {
@@ -683,8 +683,8 @@
         "fields": {
             "document_type": 7,
             "number": 56,
-            "title": "Why is no one else doing this yet?",
-            "help": "This is some generic help text.",
+            "title": "What makes you different?",
+            "help": "Tell us what you will do to be different from your competition.",
             "options": {
                 "opt1": [
                     {
@@ -759,7 +759,7 @@
             "document_type": 7,
             "number": 58,
             "title": "We will be great at...",
-            "help": "This is some generic help text.",
+            "help": "In order to stand out, your company needs to be great at something. Think carefully and tell us what you will be great at.",
             "options": {
                 "opt1": [
                     {
@@ -806,7 +806,7 @@
             "document_type": 7,
             "number": 57,
             "title": "I see my company as a ________ in my industry (Click label to see a description)",
-            "help": "This is some generic help text.",
+            "help": "Each company has a position in their industry. Click each one to see a description, and choose the one that best fits you.",
             "options": {
                 "opt1": [
                     {
@@ -861,7 +861,7 @@
             "document_type": 7,
             "number": 12,
             "title": "How will you grow your company in the next few years? (choose 3 items)",
-            "help": "This is some generic help text.",
+            "help": "Every company needs a plan to grow. Please choose 3 items that will explain to the reader how you plan to grow your company.",
             "options": {
                 "opt1": [
                     "We will provide excellent customer service",
@@ -898,7 +898,7 @@
             "document_type": 7,
             "number": 12,
             "title": "How will your compete against others in your industry? (choose 3 items)",
-            "help": "This is some generic help text.",
+            "help": "Every company needs a plan to compete. Please choose 3 items that will explain to the reader how you plan to compete in your industry.",
             "options": {
                 "opt1": [
                     "We will maintain a close eye on the competitive landscape",
@@ -933,7 +933,7 @@
             "document_type": 7,
             "number": 59,
             "title": "It will be our strategy to have our prices:",
-            "help": "This is some generic help text.",
+            "help": "Every company needs to plan its pricing. Please choose how you will price your products or services.",
             "options": {
                 "opt1": [
                     {
@@ -972,7 +972,7 @@
             "document_type": 7,
             "number": 60,
             "title": "How will your customers buy your products or services from you?",
-            "help": "This is some generic help text.",
+            "help": "Customers can buy a variety of ways - in-person, online, through a distributor, etc. Please tell us how your customers will purchase from you.",
             "options": {
                 "opt1": [
                     {
@@ -1035,7 +1035,7 @@
             "document_type": 7,
             "number": 61,
             "title": "What is the main challenge associated with this distribution method, and how can you fix it?",
-            "help": "This is some generic help text.",
+            "help": "Getting your products or services to a customer can be challenging. Please describe your challenge that best fits, and what you can do to fix it.",
             "options": {
                 "opt1": [
                     "variable costs",
@@ -1185,7 +1185,7 @@
             "document_type": 7,
             "number": 65,
             "title": "What objections might someone have about your product and how might you respond? List 3 to 5.",
-            "help": "This is some generic help text.",
+            "help": "People will often have reasons or excuses to not buy from you. Think of some that you might hear from a customer, and how you will respond.",
             "options": {
                 "opt1": [
                     "It is too expensive",
@@ -1271,7 +1271,7 @@
             "document_type": 7,
             "number": 66,
             "title": "What is the typical time it takes from when a customer is first interested in your product to when they finally buy?",
-            "help": "This is some generic help text.",
+            "help": "Think of what happens when someone buys a product or service like yours. How long does it take for them to decide that they will actually buy something?",
             "options": {
                 "opt1": [
                     {
@@ -1312,9 +1312,9 @@
             "dependency": {},
             "validation": {
                 "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_min_length_error_message": "Please enter at least 2 characters.",
                 "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+                "opt1_other_max_length_error_message": "Please enter no more than 63 characters."
             },
             "type_id": 4
         }
@@ -1326,7 +1326,7 @@
             "document_type": 7,
             "number": 67,
             "title": "I will offer the the following incentives to get customers to try my products or services",
-            "help": "This is some generic help text.",
+            "help": "There are many ways to get people to try a product or to pay attention to you. At one point in your life you have probably tried something new because of a free trial, free download, a coupon, etc. Think about which of these items could get someone to try out your product or service. ",
             "options": {
                 "opt1": [
                     {
@@ -1474,27 +1474,27 @@
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var5_min_num_error_message": "Please enter a cost amount greater than zero for year 1.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+                "var5_max_num_error_message": "Please enter a cost amount less than a billion for year 1.",
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var6_min_num_error_message": "Please enter a cost amount greater than zero for year 2.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+                "var6_max_num_error_message": "Please enter a cost amount less than a billion for year 2.",
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
                 "var7_max_length": 0,
                 "var7_max_length_error_message": "-",
                 "var7_min_num": 0,
-                "var7_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var7_min_num_error_message": "Please enter a cost amount greater than zero for year 3.",
                 "var7_max_num": 1000000000,
-                "var7_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
+                "var7_max_num_error_message": "Please enter a cost amount less than a billion for year 3."
             },
             "type_id": 36
         }
@@ -1506,7 +1506,7 @@
             "document_type": 7,
             "number": 68,
             "title": "I will use the following physical marketing materials as ways to communicate my product or service to customers",
-            "help": "This is some generic help text.",
+            "help": "There are many ways to reach customers. Here, we need you to think about actual marketing items like flyers, signs, etc.",
             "options": {
                 "opt1": [
                     {
@@ -1638,27 +1638,27 @@
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var5_min_num_error_message": "Please enter a cost amount greater than zero for year 1.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+                "var5_max_num_error_message": "Please enter a cost amount less than a billion for year 1.",
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var6_min_num_error_message": "Please enter a cost amount greater than zero for year 2.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+                "var6_max_num_error_message": "Please enter a cost amount less than a billion for year 2.",
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
                 "var7_max_length": 0,
                 "var7_max_length_error_message": "-",
                 "var7_min_num": 0,
-                "var7_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var7_min_num_error_message": "Please enter a cost amount greater than zero for year 3.",
                 "var7_max_num": 1000000000,
-                "var7_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
+                "var7_max_num_error_message": "Please enter a cost amount less than a billion for year 3."
             },
             "type_id": 36
         }
@@ -1670,7 +1670,7 @@
             "document_type": 7,
             "number": 69,
             "title": "I will reach my customers through the following media campaigns",
-            "help": "This is some generic help text.",
+            "help": "Reaching customers often requires the use of media.  This could be traditional items like radio or newspaper ads, or could be focused around items like facebook.",
             "options": {
                 "opt1": [
                     {
@@ -1826,27 +1826,27 @@
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var5_min_num_error_message": "Please enter a cost amount greater than zero for year 1.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+                "var5_max_num_error_message": "Please enter a cost amount less than a billion for year 1.",
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var6_min_num_error_message": "Please enter a cost amount greater than zero for year 2.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+                "var6_max_num_error_message": "Please enter a cost amount less than a billion for year 2.",
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
                 "var7_max_length": 0,
                 "var7_max_length_error_message": "-",
                 "var7_min_num": 0,
-                "var7_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var7_min_num_error_message": "Please enter a cost amount greater than zero for year 3.",
                 "var7_max_num": 1000000000,
-                "var7_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
+                "var7_max_num_error_message": "Please enter a cost amount less than a billion for year 3."
             },
             "type_id": 36
         }
@@ -1858,7 +1858,7 @@
             "document_type": 7,
             "number": 70,
             "title": "Working with others is a cost-effective way to grow. Cooperating can mean running campaigns together or even joint ventures. List up to 5 potential partnerships you can utilize to grow your company.",
-            "help": "This is some generic help text.",
+            "help": "Many businesses grow quickly by working with other companies. Think of how you could work with someone else to help your business grow.",
             "options": {
                 "opt1": [
                     {
@@ -2026,27 +2026,27 @@
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var6_min_num_error_message": "Please enter a cost amount greater than zero for year 1.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+                "var6_max_num_error_message": "Please enter a cost amount less than a billion for year 1.",
                 "var7_type": "integerfield",
                 "var7_min_length": 0,
                 "var7_min_length_error_message": "-",
                 "var7_max_length": 0,
                 "var7_max_length_error_message": "-",
                 "var7_min_num": 0,
-                "var7_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var7_min_num_error_message": "Please enter a cost amount greater than zero for year 2.",
                 "var7_max_num": 1000000000,
-                "var7_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+                "var7_max_num_error_message": "Please enter a cost amount less than a billion for year 2.",
                 "var8_type": "integerfield",
                 "var8_min_length": 0,
                 "var8_min_length_error_message": "-",
                 "var8_max_length": 0,
                 "var8_max_length_error_message": "-",
                 "var8_min_num": 0,
-                "var8_min_num_error_message": "Please enter a cost amount greater then zero for year 3.",
+                "var8_min_num_error_message": "Please enter a cost amount greater than zero for year 3.",
                 "var8_max_num": 1000000000,
-                "var8_max_num_error_message": "Please enter a cost amount lesser then a billion for year 3."
+                "var8_max_num_error_message": "Please enter a cost amount less than a billion for year 3."
             },
             "type_id": 37
         }
@@ -2057,8 +2057,8 @@
         "fields": {
             "document_type": 7,
             "number": 45,
-            "title": "One of the best ways to grow your company is through referrals from existing companies. Chances are that your clients know more people like them. What creative ways can you use to ask your clients for other people they might know? List up to 5.",
-            "help": "This is some generic help text.",
+            "title": "One of the best ways to grow your company is through referrals from existing customers. Chances are that your customers know more people like them. What creative ways can you use to ask your clients for other people they might know? List up to 5.",
+            "help": "Many companies forget that existing customers can be their best salespeople. This is because a happy customer can tell others about how great you are. The problem is that many businesses forget to ask their customers to connect them to new ones.  Think of how you will work with your customers to find new ones.",
             "options": {
                 "opt1": [
                     {
@@ -2167,7 +2167,7 @@
             "dependency": {},
             "validation": {
                 "arr_min_count": 0,
-                "arr_min_count_error_message": "Please enter at least 5 entry.",
+                "arr_min_count_error_message": "Please enter at least 5 entries.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
                 "var4_type": "integerfield",
@@ -2185,18 +2185,18 @@
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var5_min_num_error_message": "Please enter a cost amount greater than zero.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var5_max_num_error_message": "Please enter a cost amount less than a billion.",
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var6_min_num_error_message": "Please enter a cost amount greater than zero.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
+                "var6_max_num_error_message": "Please enter a cost amount less than a billion."
             },
             "type_id": 40
         }
@@ -2208,7 +2208,7 @@
             "document_type": 7,
             "number": 46,
             "title": "While it is important for entrepreneurs to always think about new business, never forget your existing clients! What creative ways can you use to ensure you keep your current customers happy? List up to 5.",
-            "help": "This is some generic help text.",
+            "help": "Your current customers are very important to the survival and growth of your business. Think about how you can keep them happy so that they keep supporting your business.",
             "options": {
                 "opt1": [
                     {
@@ -2297,7 +2297,7 @@
             "dependency": {},
             "validation": {
                 "arr_min_count": 0,
-                "arr_min_count_error_message": "Please enter at least 5 entry.",
+                "arr_min_count_error_message": "Please enter at least 5 entries.",
                 "arr_max_count": 40,
                 "arr_max_count_error_message": "Please enter no more then 40 entries.",
                 "var4_type": "integerfield",
@@ -2306,27 +2306,27 @@
                 "var4_max_length": 0,
                 "var4_max_length_error_message": "-",
                 "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var4_min_num_error_message": "Please enter a cost amount greater than zero.",
                 "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var4_max_num_error_message": "Please enter a cost amount less than a billion.",
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var5_min_num_error_message": "Please enter a cost amount greater than zero.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion.",
+                "var5_max_num_error_message": "Please enter a cost amount less than a billion.",
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
                 "var6_max_length": 0,
                 "var6_max_length_error_message": "-",
                 "var6_min_num": 0,
-                "var6_min_num_error_message": "Please enter a cost amount greater then zero.",
+                "var6_min_num_error_message": "Please enter a cost amount greater than zero.",
                 "var6_max_num": 1000000000,
-                "var6_max_num_error_message": "Please enter a cost amount lesser then a billion."
+                "var6_max_num_error_message": "Please enter a cost amount less than a billion."
             },
             "type_id": 40
         }
@@ -2338,7 +2338,7 @@
             "document_type": 7,
             "number": 8,
             "title": "Previously, you indicated the costs for Years 1-3 of your Marketing incentives, Physical Marketing items, Social Media, and Partnerships. We have totalled these to create your total marketing costs. To help you with your cashflows, we have automatically calculated values for the first three years of your business. If you are happy with this, you can continue, or modify them.",
-            "help": "This is some generic help text.",
+            "help": "Do not get scared - SMEGurus has just done a whole lot of math for you. This is just showing a break down of what you will spend each month on marketing activities. We have auto calculated these amounts, but if you would like to change these values you can.",
             "options": {},
             "content": {},
             "dependency": {
