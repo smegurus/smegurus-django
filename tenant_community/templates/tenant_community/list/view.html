@@ -97,9 +97,7 @@
                                 <p></p>
                             </div>
                             <div class="panel-footer clearfix">
-                                <div class="text-center">
-                                    <p>{% trans 'Are you having any problems?' %} <a href="{% url 'tenant_help_master' %}">{% trans 'Let us know!' %}</a></p>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -145,9 +143,9 @@
                 <div class="panel-body">
                     <form class="form-horizontal">
                         <div class="input-group">
-                            <input id="id_search" type="text" placeholder="{% trans 'Search for...' %}" class="form-control" />
+                            <input id="id_search" type="text" placeholder="{% trans 'Search for...' %}" class="form-control input-lg" />
                             <span class="input-group-btn">
-                            <button id="id_search_btn" onclick="ajax_search();" type="button" class="btn btn-default">
+                            <button id="id_search_btn" onclick="ajax_search();" type="button" class="btn btn-lg btn-default" style="font-size: 18px">
                                 <em class="fa fa-search"></em>
                             </button>
                             </span>
@@ -227,14 +225,14 @@
                     </form>
 
                     <form class="form-horizontal">
-                        <input id="id_post_title" type="text" placeholder="Title" class="form-control">
+                        <input id="id_post_title" type="text" placeholder="Title" class="form-control input-lg">
                     </form>
 
                     <form method="post" action="" class="mb mt">
-                        <textarea id="id_post_description" rows="4" placeholder="Post a new comment.." class="form-control"></textarea>
+                        <textarea id="id_post_description" rows="4" placeholder="Post a new comment.." class="form-control input-lg"></textarea>
                     </form>
 
-                    <select id="select2-1" multiple="multiple" class="form-control">
+                    <select id="select2-1" multiple="multiple" class="form-control input-lg">
                         {% for tag in tags.all %}
                             <option value="{{ tag.id }}">{{ tag.name }}</option>
                         {% endfor %}
@@ -268,7 +266,7 @@
                         </div>
                         <div class="pull-right">
                             <button id="id_post_btn"
-                                onclick="ajax_post();" type="button" class="btn btn-success">{% trans 'Post' %}</button>
+                                onclick="ajax_post();" type="button" class="btn btn-lg btn-success">{% trans 'Post' %}</button>
                         </div>
                     </div>
                 </div>
