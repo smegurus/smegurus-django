@@ -377,7 +377,7 @@
             "document_type": 3,
             "number": 64,
             "title": "How will you convince them to buy from you?",
-            "help": "People face many choices in today\'s world. How will you show them that your option is the best? Think about items that you can provide them with to educate them, deals that you can give them to try your product or service out, or other ways to convince them.",
+            "help": "People face many choices in today’s world. How will you show them that your option is the best? Think about items that you can provide them with to educate them, deals that you can give them to try your product or service out, or other ways to convince them.",
             "options": {
                 "opt1": [
                     {
@@ -822,7 +822,7 @@
             "document_type": 3,
             "number": 32,
             "title": "Is the size of your industry increasing, decreasing, or staying the same?",
-            "help": "Your advisor will want to know if your industry is growing, shrinking or staying the same. Answering this question will require some research on your part, so don\'t be afraid to take sometime to review various information sources.  Once you can determine if the industry is changing, then please tell us by how much as a percent.",
+            "help": "Your advisor will want to know if your industry is growing, shrinking or staying the same. Answering this question will require some research on your part, so don’t be afraid to take sometime to review various information sources.  Once you can determine if the industry is changing, then please tell us by how much as a percent.",
             "options": {
                 "opt1": [
                     "increasing",
@@ -905,7 +905,7 @@
             "document_type": 3,
             "number": 33,
             "title": "How many <i>potential<\/i> customers exist in your market area for your product?",
-            "help": "Now that we know your geographic market, how many people are within it that could buy from you? Let\'s suppose that you live in a city of 100,000 people and you believe that other businesses will want to buy from you. If there are 1,000 businesses, then these would be your potential customers. Remember to be realistic or no one will believe you."",
+            "help": "Now that we know your geographic market, how many people are within it that could buy from you? Let’s suppose that you live in a city of 100,000 people and you believe that other businesses will want to buy from you. If there are 1,000 businesses, then these would be your potential customers. Remember to be realistic or no one will believe you.",
             "options": {
                 "opt1": [
                     {

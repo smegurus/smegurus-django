@@ -102,6 +102,8 @@ class Command(BaseCommand):
         # Take our stage 2 content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
+        return #TODO: DELETE WHEN READY.
+
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
@@ -181,29 +183,29 @@ class Command(BaseCommand):
     def do_q42(self, answer, api):
         text = answer.content['var_1']
         if answer.content['var_2_other']:
-            text += " " + answer.content['var_2_other']
+            text += _(" by ") + answer.content['var_2_other']
         else:
-            text += " " + answer.content['var_2']
+            text += _(" by ") + answer.content['var_2']
         api.add_text("industry_change_rate",text)
 
     def do_q43(self, answer, api):
-        amount = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        api.add_text("total_potential_customer_base", amount)
-        api.add_text("industry_competition_amount", amount)
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("total_potential_customer_base", text)
 
     def do_q44(self, answer, api):
-        # 44	4	{{industry_competition_level}}
-        pass
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_competition_level", text)
 
     def do_q45(self, answer, api):
-        # 45	4	{{industry_service_level}}
-        pass
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_service_level", text)
 
     def do_q46(self, answer, api):
-        # 46	4	{{industry_price_variation}}
-        pass
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_price_variation", text)
 
     def do_q47(self, answer, api):
+        # print(answer.content)
         # 47	4	{{dc_proximities}}
         # 47	4	{{dc_price_comparisons}}
         # 47	4	{{dc_service_levels}}
