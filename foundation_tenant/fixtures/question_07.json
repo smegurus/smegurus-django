@@ -6,7 +6,7 @@
             "document_type": 7,
             "number": 1,
             "title": "What is the legal name of your company?",
-            "help": "This is some generic help text.",
+            "help": "First, we need you to tell us the legal name of your company - this is how your company appears on government papers. Next, tell us if your company has a short name. For example, a company might be ABC Trucking Company Inc on government papers, but it could be referred to as ABC Trucking, which would be its shortname.",
             "options": {},
             "content": {
                 "stub_1": "Legal Name",
@@ -94,7 +94,7 @@
         "fields": {
             "document_type": 7,
             "number": 62,
-            "title": "List 3 people in your industry that you can talk to:",
+            "title": "Please identify 3 of your Key Success Factors.",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
