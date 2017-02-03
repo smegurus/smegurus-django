@@ -51,7 +51,7 @@ class DocxspressoAPI:
             }]
         })
 
-    def add_html(self, key, value):
+    def add_text_paragraphs(self, key, array):
         """
         Add html per key for document struction.
 
@@ -59,6 +59,10 @@ class DocxspressoAPI:
         The content of 'value' parameter must look like this, for example:
         <p>My choice 1</p><p>My choice 3</p><p>My choice 4</p>
         """
+        value = ""
+        for text in array:
+            value += "<p>" + text + "</p>"
+
         self.data.append({
             "vars": [{
                 "var": key,
@@ -68,7 +72,7 @@ class DocxspressoAPI:
             }]
         })
 
-    def add_array(self, key, array):
+    def add_text_list(self, key, array):
         """
         Add array per key for document construction.
         """

@@ -204,18 +204,20 @@ class Command(BaseCommand):
         api.add_text("business_idea", answer.content['var_1'])
 
     def do_q28(self, answer, api):
-        text = ""
-        text += "<p>" + answer.content['var_1'] + "</p>"
-        text += "<p>" + answer.content['var_2'] + "</p>"
-        text += "<p>" + answer.content['var_3'] + "</p>"
-        api.add_html("research_sources", text)
+        array = [
+            answer.content['var_1'],
+            answer.content['var_2'],
+            answer.content['var_3']
+        ];
+        api.add_text_paragraphs("research_sources", array)
 
     def do_q32(self, answer, api):
-        text = ""
-        text += "<p>" + answer.content['var_1'] + "</p>"
-        text += "<p>" + answer.content['var_2'] + "</p>"
-        text += "<p>" + answer.content['var_3'] + "</p>"
-        api.add_html("product_categories", text)
+        array = [
+            answer.content['var_1'],
+            answer.content['var_2'],
+            answer.content['var_3']
+        ];
+        api.add_text_paragraphs("product_categories", array)
 
     def do_q33(self, answer, api):
         api.add_text(
@@ -242,16 +244,16 @@ class Command(BaseCommand):
         )
 
     def do_q37(self, answer, api):
-        text = ""
+        array = []
         for ans in answer.content:
-            text += "<p>" + ans['var_3'] + "</p>"
-        api.add_html("pestel_trends", text)
+            array.append(ans['var_3'])
+        api.add_text_paragraphs("pestel_trends", array)
 
     def do_q38(self, answer, api):
-        text = ""
+        array = []
         for ans in answer.content:
-            text += "<p>" + ans['var_2'] + "</p>"
-        api.add_html("specific_sources", text)
+            array.append(ans['var_2'])
+        api.add_text_paragraphs("specific_sources", array)
 
     def do_q39(self, answer, api):
         api.add_text(
@@ -270,10 +272,10 @@ class Command(BaseCommand):
         )
 
     def do_q74(self, answer, api):
-        text = ""
+        array = []
         for ans in answer.content['var_1']:
-            text += "<p>" + ans['value'] + "</p>"
-        api.add_html("how_to_convince", text)
+            array.append(ans['value'])
+        api.add_text_paragraphs("how_to_convince", array)
 
     def do_q151(self, answer, api):
         api.add_text(
@@ -288,10 +290,10 @@ class Command(BaseCommand):
         # print(answer.content)
         # print("\n")
 
-        text = ""
+        array = []
         for ans in answer.content:
-            text += "<p>" + ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'] + "</p>"
-        api.add_html("target_market_characteristics", text)
+            array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
+        api.add_text_paragraphs("target_market_characteristics", array)
 
     def do_q52(self, answer, api):
         api.add_text(
