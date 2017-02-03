@@ -188,7 +188,7 @@ class Command(BaseCommand):
             elif answer.question.pk == 151: # product_distribution
                 self.do_q151(answer, api)
 
-            # customers_will_purchase ??
+            # customers_will_purchase 52
             # target_market_characteristics 49
 
     def do_q21(self, answer, api):
