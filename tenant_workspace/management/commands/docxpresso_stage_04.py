@@ -294,7 +294,93 @@ class Command(BaseCommand):
         api.add_custom(custom)
 
     def do_q48(self, answer, api):
-        pass
+        names_array = []
+        proximities_array = []
+        market_shares_array = []
+        price_comparisons_array = []
+        service_levels_array = []
+        main_strengths_array = []
+        competitive_strategy_array = []
+
+        for ans in answer.content:
+            names_array.append(ans['var_2'])
+            proximities_array.append(ans['var_3'])
+            market_shares_array.append(ans['var_4'])
+            price_comparisons_array.append(ans['var_5'])
+            main_strengths_array.append(ans['var_7'])
+            service_levels_array.append(ans['var_6'])
+            competitive_strategy_array.append(ans['var_8'])
+
+        # --- Debugging purposes. ---
+        # print("Name", names_array)
+        # print("Prox", proximities_array)
+        # print("Market", market_shares_array)
+        # print("Price", price_comparisons_array)
+        # print("Strength", main_strengths_array)
+        # print("Customer", service_levels_array)
+        # print("Competitive", competitive_strategy_array)
+        # print("\n")
+
+        # Generate our custom item.
+        names_dict = {
+            "var": 'idc_names',
+            'value': names_array
+        }
+        proximities_dict = {
+            "var": 'idc_proximities',
+            'value': proximities_array
+        }
+        market_shares_dict = {
+            "var": 'idc_market_shares',
+            'value': market_shares_array
+        }
+        price_comparisons_dict = {
+            "var": 'idc_price_comparisons',
+            'value': price_comparisons_array
+        }
+        main_strengths_dict = {
+            "var": 'idc_main_strengths',
+            'value': main_strengths_array
+        }
+        service_levels_dict = {
+            "var": 'idc_service_levels',
+            'value': service_levels_array
+        }
+        competitive_strategy_dict = {
+            "var": 'idc_competitive_strategy',
+            'value': competitive_strategy_array
+        }
+
+        # --- Debugging purposes only. ---
+        # print("Name", names_dict)
+        # print("Proximities", proximities_dict)
+        # print("market_shares", market_shares_dict)
+        # print("price_comparisons", price_comparisons_dict)
+        # print("main_strengths", main_strengths_dict)
+        # print("service_levels", service_levels_dict)
+        # print("competitive_strategy", competitive_strategy_dict)
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                names_dict,
+                proximities_dict,
+                market_shares_dict,
+                price_comparisons_dict,
+                main_strengths_dict,
+                service_levels_dict,
+                # competitive_strategy_dict  # To not include this field.
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q150(self, answer, api):
         # 150	4	{{avg_customer_spending}}
