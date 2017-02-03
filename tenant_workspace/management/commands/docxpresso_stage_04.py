@@ -1,8 +1,4 @@
 import os.path
-import json
-import urllib3  # Third Party Library
-from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
-from datetime import datetime, timedelta  # Datetime.
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -15,6 +11,7 @@ from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -40,7 +37,13 @@ class Command(BaseCommand):
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
 
-        self.begin_processing(workspace_id)
+        api = DocxspressoAPI(
+            settings.DOCXPRESSO_PUBLIC_KEY,
+            settings.DOCXPRESSO_PRIVATE_KEY,
+            settings.DOCXPRESSO_URL
+        )
+
+        self.begin_processing(workspace_id, api)
 
         # Return a success message to the console.
         self.stdout.write(
@@ -80,60 +83,28 @@ class Command(BaseCommand):
             )
         )
 
-    def begin_processing(self, workspace_id):
+    def begin_processing(self, workspace_id, api):
         workspace = self.get_workspace(workspace_id)
-        document = self.get_document(workspace_id)
         answers = self.get_answers(workspace_id)
-        self.process(workspace, document, answers)
+        self.process(workspace, answers, api)
 
-    def process(self, workspace, document, answers):
+    def process(self, workspace, answers, api):
         # DEBUGGING PURPOSES
         # for answer in answers.all():
         #     print(answer.question.id, answer)
 
-        # Generate timestamp.
-        stem = "workspace_" + str(workspace.id) + "_stage_04"
-        suffix = "odt"
-        filename = stem + '.' + suffix
-        current = datetime.now()
-        timestamp = str(current.strftime('%Y%m%d%H%M%S'))
-
-        # Generate our API key.
-        api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
-        api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
-
-        # Generate our Docxpresso data to submit.
-        docxpresso_data = self.get_docxpresso_data(workspace, document, answers)
-
-        data = {
-            "security": {
-                "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-                "timestamp": timestamp,
-                "APIKEY": api_key_hashed
-            },
-            "template": "templates/stage4.odt",
-            "output": {
-                "format": suffix,
-                "response": "doc",
-                "name": stem
-            },
-            "replace": docxpresso_data
-        }
-
-        # We will convert our Python dictonary into a JSON diconary.
-        encoded_body = json.dumps(data).encode('utf-8')
-
-        # Send AJAX Post to Docxpresso server.
-        http = urllib3.PoolManager()
-        r = http.request(
-            'POST',
-            settings.DOCXPRESSO_URL,
-            # body=encoded_body,
-            fields={
-                "dataJSON": encoded_body
-            }
-            # headers={'Content-Type': 'application/json'}
+        api.new(
+            name="workspace_" + str(workspace.id) + "_stage_04",
+            format="odt",
+            template="templates/stage4.odt"
         )
+
+        # Take our stage 2 content and populate docxpresso with it.
+        self.set_answers(workspace, answers, api)
+
+        # Generate our document!
+        doc_filename = api.get_filename()
+        doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
         # The following three lines will take the 'default_storage' class
@@ -142,12 +113,6 @@ class Command(BaseCommand):
         # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-        path = default_storage.save('uploads/'+filename, ContentFile(r.data))
-
-        # Create a new file upload and upload the data to a S3 instance.
-        docxpresso_file = TenantFileUpload.objects.create(
-            datafile = path,
-        )
 
         # Fetch the document and then atomically modify it.
         with transaction.atomic():
@@ -158,14 +123,109 @@ class Command(BaseCommand):
             if document.docxpresso_file:
                 document.docxpresso_file.delete()
 
+            # Upload our file to S3 server.
+            path = default_storage.save(
+                'uploads/'+doc_filename,
+                ContentFile(doc_bin_data)
+            )
+
+            # Save our file to DB.
+            docxpresso_file = TenantFileUpload.objects.create(
+                datafile = path,
+            )
+
             # Generate our new file.
             document.docxpresso_file = docxpresso_file
             document.save()
 
-            # Delete the local file.
-            #TODO: Implement this.
+    def set_answers(self, workspace, answers, api):
+        api.add_text("system_date", str(workspace.created))
 
-    def get_docxpresso_data(self, workspace, document, answers):
-        docxpresso_data = []
-        #TODO: Implement.
-        return docxpresso_data # Return our data.
+        for answer in answers.all():
+            if answer.question.pk == 41:
+                self.do_q41(answer, api)
+
+            elif answer.question.pk == 42:
+                self.do_q42(answer, api)
+
+            elif answer.question.pk == 43:
+                self.do_q43(answer, api)
+
+            elif answer.question.pk == 44:
+                self.do_q44(answer, api)
+
+            elif answer.question.pk == 45:
+                self.do_q45(answer, api)
+
+            elif answer.question.pk == 46:
+                self.do_q46(answer, api)
+
+            elif answer.question.pk == 47:
+                self.do_q47(answer, api)
+
+            elif answer.question.pk == 48:
+                self.do_q48(answer, api)
+
+            elif answer.question.pk == 150:
+                self.do_q150(answer, api)
+
+            elif answer.question.pk == 152:
+                self.do_q152(answer, api)
+
+    def do_q41(self, answer, api):
+        api.add_text(
+            "industry_size",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q42(self, answer, api):
+        text = answer.content['var_1']
+        if answer.content['var_2_other']:
+            text += " " + answer.content['var_2_other']
+        else:
+            text += " " + answer.content['var_2']
+        api.add_text("industry_change_rate",text)
+
+    def do_q43(self, answer, api):
+        amount = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("total_potential_customer_base", amount)
+        api.add_text("industry_competition_amount", amount)
+
+    def do_q44(self, answer, api):
+        # 44	4	{{industry_competition_level}}
+        pass
+
+    def do_q45(self, answer, api):
+        # 45	4	{{industry_service_level}}
+        pass
+
+    def do_q46(self, answer, api):
+        # 46	4	{{industry_price_variation}}
+        pass
+
+    def do_q47(self, answer, api):
+        # 47	4	{{dc_proximities}}
+        # 47	4	{{dc_price_comparisons}}
+        # 47	4	{{dc_service_levels}}
+        # 47	4	{{dc_market_shares}}
+        # 47	4	{{dc_main_strengths}}
+        # 47	4	{{dc_how_compete}}
+        pass
+
+    def do_q48(self, answer, api):
+        # 48	4	{{idc_names}}
+        # 48	4	{{idc_proximities}}
+        # 48	4	{{idc_price_comparisons}}
+        # 48	4	{{idc_service_levels}}
+        # 48	4	{{idc_market_shares}}
+        # 48	4	{{idc_main_strengths}}
+        # 48	4	{{idc_how_compete}}
+        pass
+
+    def do_q150(self, answer, api):
+        # 150	4	{{avg_customer_spending}}
+        pass
+
+    def do_q152(self, answer, api):
+        # 152	4	{{dc_names}}
+        pass
