@@ -357,7 +357,8 @@
 .select2-container--bootstrap .select2-selection--multiple .select2-search--inline .select2-search__field {
   background: transparent;
   padding: 0 12px;
-  height: 32px;
+  height: 46px;
+  font-size: 18px;
   line-height: 1.42857143;
   margin-top: 0;
   min-width: 5em;
