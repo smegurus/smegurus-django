@@ -134,6 +134,13 @@ class DocxspressoAPI:
         # Return the data of our POST response object.
         return r.data
 
+    def add_custom(self, array):
+        """
+        Function used if you have an extremly complex API call to make that
+        you need to run it manually and insert it.
+        """
+        self.data.append(array)
+
     def __str__(self):
         """
         To-string function will return the data used for constructing the
