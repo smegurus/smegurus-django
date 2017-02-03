@@ -1291,12 +1291,12 @@
                         "text": "A month or less"
                     },
                     {
-                        "value": "We will invest in good sales people",
-                        "text": "We will invest in good sales people"
-                    },
-                    {
                         "value": "More than one month",
                         "text": "More than one month"
+                    },
+                    {
+                        "value": "More than six months",
+                        "text": "More than six months"
                     },
                     {
                         "value": "Other",
