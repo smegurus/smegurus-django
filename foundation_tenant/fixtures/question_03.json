@@ -905,7 +905,7 @@
             "document_type": 3,
             "number": 33,
             "title": "How many <i>potential<\/i> customers exist in your market area for your product?",
-            "help": "Now that we know your geographic market, how many people are within it that could buy from you? Let\'s suppose that you live in a city of 100,000 people and you believe that other businesses will want to buy from you. If there are 1,000 businesses, then these would be your potential customers. Remember to be realistic or no one will believe you."",
+            "help": "Now that we know your geographic market, how many people are within it that could buy from you? Let\'s suppose that you live in a city of 100,000 people and you believe that other businesses will want to buy from you. If there are 1,000 businesses, then these would be your potential customers. Remember to be realistic or no one will believe you.",
             "options": {
                 "opt1": [
                     {
