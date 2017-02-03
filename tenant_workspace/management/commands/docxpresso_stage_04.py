@@ -377,7 +377,7 @@ class Command(BaseCommand):
                 price_comparisons_dict,
                 main_strengths_dict,
                 service_levels_dict,
-                # competitive_strategy_dict  # To not include this field.
+                competitive_strategy_dict
             ],
             "options": {
                 "element": "table"
