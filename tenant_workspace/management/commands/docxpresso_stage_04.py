@@ -102,8 +102,6 @@ class Command(BaseCommand):
         # Take our stage 2 content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
-        # return #TODO: DELETE WHEN READY.
-
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
@@ -383,9 +381,9 @@ class Command(BaseCommand):
         api.add_custom(custom)
 
     def do_q150(self, answer, api):
-        # 150	4	{{avg_customer_spending}}
-        pass
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_competition_amount", text)
 
     def do_q152(self, answer, api):
-        # 152	4	{{dc_names}}
-        pass
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("avg_customer_spending", text)
