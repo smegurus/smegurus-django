@@ -79,6 +79,10 @@ class Command(BaseCommand):
         return QuestionAnswer.objects.filter(
             Q(
                 workspace_id=workspace_id,
+                document__document_type__stage_num=2
+            ) |
+            Q(
+                workspace_id=workspace_id,
                 document__document_type__stage_num=4
             )
         )
@@ -142,6 +146,9 @@ class Command(BaseCommand):
         api.add_text("system_date", str(workspace.created))
 
         for answer in answers.all():
+            if answer.question.pk == 21:
+                self.do_q21(answer, api)
+
             if answer.question.pk == 41:
                 self.do_q41(answer, api)
 
@@ -171,6 +178,9 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 152:
                 self.do_q152(answer, api)
+
+    def do_q21(self, answer, api):
+        api.add_text("business_name", answer.content['var_1'])
 
     def do_q41(self, answer, api):
         api.add_text(
