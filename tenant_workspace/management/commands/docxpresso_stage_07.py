@@ -81,6 +81,10 @@ class Command(BaseCommand):
         return QuestionAnswer.objects.filter(
             Q(
                 workspace_id=workspace_id,
+                document__document_type__stage_num=2
+            ) |
+            Q(
+                workspace_id=workspace_id,
                 document__document_type__stage_num=7
             )
         )
@@ -267,9 +271,6 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
-
         # Attach all out tables.
         api.add_custom(custom)
 
@@ -379,9 +380,6 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
-
         # Attach all out tables.
         api.add_custom(custom)
 
@@ -456,9 +454,6 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
-
         # Attach all out tables.
         api.add_custom(custom)
 
@@ -526,9 +521,6 @@ class Command(BaseCommand):
                 "element": "table"
             }
         }
-
-        # --- Debugging purposes only. ---
-        # print(custom)
 
         # Attach all out tables.
         api.add_custom(custom)
@@ -598,9 +590,6 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
-
         # Attach all out tables.
         api.add_custom(custom)
 
@@ -669,14 +658,11 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
 
         # Attach all out tables.
         api.add_custom(custom)
 
     def do_q104(self, answer, api):
-        print(answer.content)
         # 104	7	{{marketing_costs_m1}}
         # 104	7	{{marketing_costs_m2}}
         # 104	7	{{marketing_costs_m3}}
@@ -776,9 +762,6 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
-
         # Attach all out tables.
         api.add_custom(custom)
 
@@ -840,9 +823,6 @@ class Command(BaseCommand):
             }
         }
 
-        # --- Debugging purposes only. ---
-        # print(custom)
-
         # Attach all out tables.
         api.add_custom(custom)
 
@@ -891,9 +871,6 @@ class Command(BaseCommand):
                 "element": "table"
             }
         }
-
-        # --- Debugging purposes only. ---
-        # print(custom)
 
         # Attach all out tables.
         api.add_custom(custom)
