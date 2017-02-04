@@ -308,12 +308,16 @@ class Command(BaseCommand):
         )
 
     def do_q69(self, answer, api):
-        # 69	7	{{pricing_strategy}}
-        print("QID 69") #TODO: IMPLEMENT
+        api.add_text(
+            "pricing_strategy",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q70(self, answer, api):
-        # 70	7	{{how_customer_buys}}
-        print("QID 70") #TODO: IMPLEMENT
+        api.add_text(
+            "how_customer_buys",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q71(self, answer, api):
         # 71	7	{{distribution_challenge}}
@@ -502,10 +506,41 @@ class Command(BaseCommand):
         api.add_custom(custom)
 
     def do_q153(self, answer, api):
-        print(answer.content)
-        # 153	7	{{growth_strategies}}
-        print("QID 153") #TODO: IMPLEMENT
+        array = []
+
+        if answer.content['var_1_other']:
+            array.append(answer.content['var_1_other'])
+        else:
+            array.append(answer.content['var_1'])
+
+        if answer.content['var_2_other']:
+            array.append(answer.content['var_2_other'])
+        else:
+            array.append(answer.content['var_2'])
+
+        if answer.content['var_3_other']:
+            array.append(answer.content['var_3_other'])
+        else:
+            array.append(answer.content['var_3'])
+
+        api.add_text_paragraphs('growth_strategies', array)
 
     def do_q154(self, answer, api):
-        # 154	7	{{competitive_strategies}}
-        print("QID 154") #TODO: IMPLEMENT
+        array = []
+
+        if answer.content['var_1_other']:
+            array.append(answer.content['var_1_other'])
+        else:
+            array.append(answer.content['var_1'])
+
+        if answer.content['var_2_other']:
+            array.append(answer.content['var_2_other'])
+        else:
+            array.append(answer.content['var_2'])
+
+        if answer.content['var_3_other']:
+            array.append(answer.content['var_3_other'])
+        else:
+            array.append(answer.content['var_3'])
+
+        api.add_text_paragraphs('competitive_strategies', array)
