@@ -320,9 +320,14 @@ class Command(BaseCommand):
         )
 
     def do_q71(self, answer, api):
-        # 71	7	{{distribution_challenge}}
-        # 71	7	{{distribution_challenge_resolution}}
-        print("QID 71") #TODO: IMPLEMENT
+        api.add_text(
+            "distribution_challenge",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+        api.add_text(
+            "distribution_challenge_resolution",
+            answer.content['var_2_other'] if answer.content['var_2_other'] else answer.content['var_2']
+        )
 
     def do_q72(self, answer, api):
         array = []
@@ -345,23 +350,117 @@ class Command(BaseCommand):
         api.add_text_paragraphs('key_success_factors', array)
 
     def do_q75(self, answer, api):
-        # 75	7	{{customer_objections}}
-        # 75	7	{{customer_objection_responses}}
-        print("QID 75") #TODO: IMPLEMENT
+        customer_objections_array = []
+        customer_objection_responses_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            customer_objections_array.append(ans['var_2'])
+            customer_objection_responses_array.append(ans['var_3'])
+
+        # Generate our custom item.
+        customer_objections_dict = {
+            "var": 'customer_objections',
+            'value': customer_objections_array
+        }
+        customer_objection_responses_dict = {
+            "var": 'customer_objection_responses',
+            'value': customer_objection_responses_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                customer_objections_dict,
+                customer_objection_responses_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q76(self, answer, api):
-        # 76	7	"{{customer_buying_time}}
-        print("QID 76") #TODO: IMPLEMENT
+        api.add_text(
+            "customer_buying_time",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q77(self, answer, api):
-        # 77	7	{{incentive_types}}
-        # 77	7	{{incentive_impacts}}
-        # 77	7	{{incentive_durations}}
-        # 77	7	{{incentive_cost_types}}
-        # 77	7	{{incentive_y1_costs}}
-        # 77	7	{{incentive_y2_costs}}
-        # 77	7	{{incentive_y3_costs}}
-        print("QID 77") #TODO: IMPLEMENT
+        incentive_types_array = []
+        incentive_impacts_array = []
+        incentive_durations_array = []
+        incentive_cost_types_array = []
+        incentive_y1_costs_array = []
+        incentive_y2_costs_array = []
+        incentive_y3_costs_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            incentive_types_array.append(ans['var_2'])
+            incentive_impacts_array.append(ans['var_3'])
+            incentive_durations_array.append(ans['var_4'])
+            incentive_cost_types_array.append(ans['var_5'])
+            incentive_y1_costs_array.append(ans['var_6'])
+            incentive_y2_costs_array.append(ans['var_7'])
+            incentive_y3_costs_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        incentive_types_dict = {
+            "var": 'incentive_types',
+            'value': incentive_types_array
+        }
+        incentive_impacts_dict = {
+            "var": 'incentive_impacts',
+            'value': incentive_impacts_array
+        }
+        incentive_durations_dict = {
+            "var": 'incentive_durations',
+            'value': incentive_durations_array
+        }
+        incentive_cost_types_dict = {
+            "var": 'incentive_cost_types',
+            'value': incentive_cost_types_array
+        }
+        incentive_y1_costs_dict = {
+            "var": 'incentive_y1_costs',
+            'value': incentive_y1_costs_array
+        }
+        incentive_y2_costs_dict = {
+            "var": 'incentive_y2_costs',
+            'value': incentive_y2_costs_array
+        }
+        incentive_y3_costs_dict = {
+            "var": 'incentive_y3_costs',
+            'value': incentive_y3_costs_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                incentive_types_dict,
+                incentive_impacts_dict,
+                incentive_durations_dict,
+                # incentive_cost_types_dict,
+                incentive_y1_costs_dict,
+                # incentive_y2_costs_dict,
+                # incentive_y3_costs_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q78(self, answer, api):
         # 78	7	{{physical_marketing_types}}
