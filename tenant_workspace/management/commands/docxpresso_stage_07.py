@@ -605,16 +605,78 @@ class Command(BaseCommand):
         api.add_custom(custom)
 
     def do_q80(self, answer, api):
-        # 80	7	{{marketing_partnership_types}}
-        # 80	7	{{marketing_partnership_impacts}}
-        # 80	7	{{marketing_partnership_durations}}
-        # 80	7	{{marketing_partnership_cost_types}}
-        # 80	7	{{marketing_partnership_y1_costs}}
-        # 80	7	{{marketing_partnership_y2_costs}}
-        # 80	7	{{marketing_partnership_y3_costs}}
-        print("QID 80") #TODO: IMPLEMENT
+        marketing_partnership_types_array = []
+        marketing_partnership_impacts_array = []
+        marketing_partnership_durations_array = []
+        marketing_partnership_cost_types_array = []
+        marketing_partnership_y1_costs_array = []
+        marketing_partnership_y2_costs_array = []
+        marketing_partnership_y3_costs_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            marketing_partnership_types_array.append(ans['var_2'])
+            marketing_partnership_impacts_array.append(ans['var_3'])
+            marketing_partnership_durations_array.append(ans['var_4'])
+            marketing_partnership_cost_types_array.append(ans['var_5'])
+            marketing_partnership_y1_costs_array.append(ans['var_6'])
+            marketing_partnership_y2_costs_array.append(ans['var_7'])
+            marketing_partnership_y3_costs_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        marketing_partnership_types_dict = {
+            "var": 'marketing_partnership_types',
+            'value': marketing_partnership_types_array
+        }
+        marketing_partnership_impacts_dict = {
+            "var": 'marketing_partnership_impacts',
+            'value': marketing_partnership_impacts_array
+        }
+        marketing_partnership_durations_dict = {
+            "var": 'marketing_partnership_durations',
+            'value': marketing_partnership_durations_array
+        }
+        marketing_partnership_cost_types_dict = {
+            "var": 'marketing_partnership_cost_types',
+            'value': marketing_partnership_cost_types_array
+        }
+        marketing_partnership_y1_costs_dict = {
+            "var": 'marketing_partnership_y1_costs',
+            'value': marketing_partnership_y1_costs_array
+        }
+        marketing_partnership_y2_costs_dict = {
+            "var": 'marketing_partnership_y2_costs',
+            'value': marketing_partnership_y2_costs_array
+        }
+        marketing_partnership_y3_costs_dict = {
+            "var": 'marketing_partnership_y3_costs',
+            'value': marketing_partnership_y3_costs_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                marketing_partnership_types_dict,
+                marketing_partnership_impacts_dict,
+                marketing_partnership_durations_dict,
+                # marketing_partnership_cost_types_dict,
+                marketing_partnership_y1_costs_dict,
+                # marketing_partnership_y2_costs_dict,
+                # marketing_partnership_y3_costs_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q104(self, answer, api):
+        print(answer.content)
         # 104	7	{{marketing_costs_m1}}
         # 104	7	{{marketing_costs_m2}}
         # 104	7	{{marketing_costs_m3}}
@@ -657,22 +719,132 @@ class Command(BaseCommand):
         print("QID 104") #TODO: IMPLEMENT
 
     def do_q142(self, answer, api):
-        # 142	7	{{marketing_referral_types}}
-        # 142	7	{{marketing_referral_impacts}}
-        # 142	7	{{marketing_referral_cost_types}}
-        # 142	7	{{marketing_referral_y1_costs}}
-        # 142	7	{{marketing_referral_y2_costs}}
-        # 142	7	{{marketing_referral_y3_costs}}
-        print("QID 142") #TODO: IMPLEMENT
+        marketing_referral_types_array = []
+        marketing_referral_impacts_array = []
+        marketing_referral_cost_types_array = []
+        marketing_referral_y1_costs_array = []
+        marketing_referral_y2_costs_array = []
+        marketing_referral_y3_costs_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            marketing_referral_types_array.append(ans['var_2'])
+            marketing_referral_impacts_array.append(ans['var_3'])
+            marketing_referral_cost_types_array.append(ans['var_4'])
+            marketing_referral_y1_costs_array.append(ans['var_5'])
+            marketing_referral_y2_costs_array.append(ans['var_6'])
+            marketing_referral_y3_costs_array.append(ans['var_7'])
+
+        # Generate our custom item.
+        marketing_referral_types_dict = {
+            "var": 'marketing_referral_types',
+            'value': marketing_referral_types_array
+        }
+        marketing_referral_impacts_dict = {
+            "var": 'marketing_referral_impacts',
+            'value': marketing_referral_impacts_array
+        }
+        marketing_referral_cost_types_dict = {
+            "var": 'marketing_referral_cost_types',
+            'value': marketing_referral_cost_types_array
+        }
+        marketing_referral_y1_costs_dict = {
+            "var": 'marketing_referral_y1_costs',
+            'value': marketing_referral_y1_costs_array
+        }
+        marketing_referral_y2_costs_dict = {
+            "var": 'marketing_referral_y2_costs',
+            'value': marketing_referral_y2_costs_array
+        }
+        marketing_referral_y3_costs_dict = {
+            "var": 'marketing_referral_y3_costs',
+            'value': marketing_referral_y3_costs_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                marketing_referral_types_dict,
+                marketing_referral_impacts_dict,
+                # marketing_referral_cost_types_dict,
+                marketing_referral_y1_costs_dict,
+                # marketing_referral_y2_costs_dict,
+                # marketing_referral_y3_costs_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q143(self, answer, api):
-        # 143	7	{{marketing_retention_types}}
-        # 143	7	{{marketing_retention_impacts}}
-        # 143	7	{{marketing_retention_cost_types}}
-        # 143	7	{{marketing_retention_y1_costs}}
-        # 143	7	{{marketing_retention_y2_costs}}
-        # 143	7	{{marketing_retention_y3_costs}}
-        print("QID 143") #TODO: IMPLEMENT
+        marketing_retention_types_array = []
+        marketing_retention_impacts_array = []
+        marketing_retention_cost_types_array = []
+        marketing_retention_y1_costs_array = []
+        marketing_retention_y2_costs_array = []
+        marketing_retention_y3_costs_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            marketing_retention_types_array.append(ans['var_2'])
+            marketing_retention_impacts_array.append(ans['var_3'])
+            marketing_retention_cost_types_array.append(ans['var_4'])
+            marketing_retention_y1_costs_array.append(ans['var_5'])
+            marketing_retention_y2_costs_array.append(ans['var_6'])
+            marketing_retention_y3_costs_array.append(ans['var_7'])
+
+        # Generate our custom item.
+        marketing_retention_types_dict = {
+            "var": 'marketing_retention_types',
+            'value': marketing_retention_types_array
+        }
+        marketing_retention_impacts_dict = {
+            "var": 'marketing_retention_impacts',
+            'value': marketing_retention_impacts_array
+        }
+        marketing_retention_cost_types_dict = {
+            "var": 'marketing_retention_cost_types',
+            'value': marketing_retention_cost_types_array
+        }
+        marketing_retention_y1_costs_dict = {
+            "var": 'marketing_retention_y1_costs',
+            'value': marketing_retention_y1_costs_array
+        }
+        marketing_retention_y2_costs_dict = {
+            "var": 'marketing_retention_y2_costs',
+            'value': marketing_retention_y2_costs_array
+        }
+        marketing_retention_y3_costs_dict = {
+            "var": 'marketing_retention_y3_costs',
+            'value': marketing_retention_y3_costs_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                marketing_retention_types_dict,
+                marketing_retention_impacts_dict,
+                # marketing_retention_cost_types_dict,
+                marketing_retention_y1_costs_dict,
+                # marketing_retention_y2_costs_dict,
+                # marketing_retention_y3_costs_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q147(self, answer, api):
         array = []
