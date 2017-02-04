@@ -78,16 +78,7 @@ class Command(BaseCommand):
         """
         Utility function will return all answers for the parameter workspace ID.
         """
-        return QuestionAnswer.objects.filter(
-            Q(
-                workspace_id=workspace_id,
-                document__document_type__stage_num=2
-            ) |
-            Q(
-                workspace_id=workspace_id,
-                document__document_type__stage_num=7
-            )
-        )
+        return QuestionAnswer.objects.filter(workspace_id=workspace_id)
 
     def begin_processing(self, workspace_id, api):
         workspace = self.get_workspace(workspace_id)
@@ -152,8 +143,16 @@ class Command(BaseCommand):
             if answer.question.pk == 27: # business_idea
                 self.do_q27(answer, api)
 
+            elif answer.question.pk == 47:
+                self.do_q47(answer, api)
+
+            elif answer.question.pk == 48:
+                self.do_q48(answer, api)
+
+            elif answer.question.pk == 49:
+                self.do_q49(answer, api)
+
             elif answer.question.pk == 61:
-                # business_formal_name, business_friendly_name
                 self.do_q61(answer, api)
 
             elif answer.question.pk == 62:
@@ -236,6 +235,153 @@ class Command(BaseCommand):
 
     def do_q27(self, answer, api):
         api.add_text("business_idea", answer.content['var_1'])
+
+    def do_q47(self, answer, api):
+        names_array = []
+        proximities_array = []
+        market_shares_array = []
+        price_comparisons_array = []
+        service_levels_array = []
+        main_strengths_array = []
+        competitive_strategy_array = []
+
+        for ans in answer.content:
+            names_array.append(ans['var_2'])
+            proximities_array.append(ans['var_3'])
+            market_shares_array.append(ans['var_4'])
+            price_comparisons_array.append(ans['var_5'])
+            main_strengths_array.append(ans['var_7'])
+            service_levels_array.append(ans['var_6'])
+            competitive_strategy_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        names_dict = {
+            "var": 'dc_names',
+            'value': names_array
+        }
+        proximities_dict = {
+            "var": 'dc_proximities',
+            'value': proximities_array
+        }
+        market_shares_dict = {
+            "var": 'dc_market_shares',
+            'value': market_shares_array
+        }
+        price_comparisons_dict = {
+            "var": 'dc_price_comparisons',
+            'value': price_comparisons_array
+        }
+        main_strengths_dict = {
+            "var": 'dc_main_strengths',
+            'value': main_strengths_array
+        }
+        service_levels_dict = {
+            "var": 'dc_service_levels',
+            'value': service_levels_array
+        }
+        competitive_strategy_dict = {
+            "var": 'dc_how_compete',
+            'value': competitive_strategy_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                names_dict,
+                proximities_dict,
+                market_shares_dict,
+                price_comparisons_dict,
+                main_strengths_dict,
+                service_levels_dict,
+                competitive_strategy_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_q48(self, answer, api):
+        names_array = []
+        proximities_array = []
+        market_shares_array = []
+        price_comparisons_array = []
+        service_levels_array = []
+        main_strengths_array = []
+        competitive_strategy_array = []
+
+        for ans in answer.content:
+            names_array.append(ans['var_2'])
+            proximities_array.append(ans['var_3'])
+            market_shares_array.append(ans['var_4'])
+            price_comparisons_array.append(ans['var_5'])
+            main_strengths_array.append(ans['var_7'])
+            service_levels_array.append(ans['var_6'])
+            competitive_strategy_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        names_dict = {
+            "var": 'idc_names',
+            'value': names_array
+        }
+        proximities_dict = {
+            "var": 'idc_proximities',
+            'value': proximities_array
+        }
+        market_shares_dict = {
+            "var": 'idc_market_shares',
+            'value': market_shares_array
+        }
+        price_comparisons_dict = {
+            "var": 'idc_price_comparisons',
+            'value': price_comparisons_array
+        }
+        main_strengths_dict = {
+            "var": 'idc_main_strengths',
+            'value': main_strengths_array
+        }
+        service_levels_dict = {
+            "var": 'idc_service_levels',
+            'value': service_levels_array
+        }
+        competitive_strategy_dict = {
+            "var": 'idc_how_compete',
+            'value': competitive_strategy_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                names_dict,
+                proximities_dict,
+                market_shares_dict,
+                price_comparisons_dict,
+                main_strengths_dict,
+                service_levels_dict,
+                competitive_strategy_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_q49(self, answer, api):
+        target_market_types_array = []
+        target_market_first_traits_array = []
+        target_market_second_traits_array = []
+        for ans in answer.content:
+            target_market_types_array.append(ans['var_2'])
+            target_market_first_traits_array.append(ans['var_3'])
+            target_market_second_traits_array.append(ans['var_4'])
+
+        api.add_text_paragraphs("target_market_types", target_market_types_array)
+        api.add_text_paragraphs("target_market_first_traits", target_market_first_traits_array)
+        api.add_text_paragraphs("target_market_second_traits", target_market_second_traits_array)
 
     def do_q61(self, answer, api):
         api.add_text('business_formal_name', answer.content['var_1'])
