@@ -67,3 +67,7 @@ class Command(BaseCommand):
         # Iterate through all the filenames and load them into database.
         for file_name in ordered_file_names:
             call_command('loaddata', file_name, verbosity=0, interactive=False)
+
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully populated tenant.'))
+        )

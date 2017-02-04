@@ -29,6 +29,10 @@ class Command(BaseCommand):
         for file_name in ordered_file_names:
             call_command('loaddata', file_name, verbosity=0, interactive=False)
 
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully imported fixtures'))
+        )
+
 
 #-----------------
 # DEVELOPER NOTES:

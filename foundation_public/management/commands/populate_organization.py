@@ -60,3 +60,7 @@ class Command(BaseCommand):
         # Attach our current logged in User for our Organization.
         org.users.add(owner)
         org.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully created organization.'))
+        )

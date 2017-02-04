@@ -118,6 +118,10 @@ class Command(BaseCommand):
         #     importer = BIZNAICSOptionImporter(full_file_path)
         #     importer.begin_import()
 
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully imported NAICS.'))
+        )
+
 
 #-----------------
 # DEVELOPER NOTES:
