@@ -463,24 +463,146 @@ class Command(BaseCommand):
         api.add_custom(custom)
 
     def do_q78(self, answer, api):
-        # 78	7	{{physical_marketing_types}}
-        # 78	7	{{physical_marketing_impacts}}
-        # 78	7	{{physical_marketing_uses}}
-        # 78	7	{{physical_marketing_cost_types}}
-        # 78	7	{{physical_marketing_y1_costs}}
-        # 78	7	{{physical_marketing_y2_costs}}
-        # 78	7	{{physical_marketing_y3_costs}}
-        print("QID 78") #TODO: IMPLEMENT
+        physical_marketing_types_array = []
+        physical_marketing_impacts_array = []
+        physical_marketing_uses_array = []
+        physical_marketing_cost_types_array = []
+        physical_marketing_y1_costs_array = []
+        physical_marketing_y2_costs_array = []
+        physical_marketing_y3_costs_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            physical_marketing_types_array.append(ans['var_2'])
+            physical_marketing_impacts_array.append(ans['var_3'])
+            physical_marketing_uses_array.append(ans['var_4'])
+            physical_marketing_cost_types_array.append(ans['var_5'])
+            physical_marketing_y1_costs_array.append(ans['var_6'])
+            physical_marketing_y2_costs_array.append(ans['var_7'])
+            physical_marketing_y3_costs_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        physical_marketing_types_dict = {
+            "var": 'physical_marketing_types',
+            'value': physical_marketing_types_array
+        }
+        physical_marketing_impacts_dict = {
+            "var": 'physical_marketing_impacts',
+            'value': physical_marketing_impacts_array
+        }
+        physical_marketing_uses_dict = {
+            "var": 'physical_marketing_uses',
+            'value': physical_marketing_uses_array
+        }
+        physical_marketing_cost_types_dict = {
+            "var": 'physical_marketing_cost_types',
+            'value': physical_marketing_cost_types_array
+        }
+        physical_marketing_y1_costs_dict = {
+            "var": 'physical_marketing_y1_costs',
+            'value': physical_marketing_y1_costs_array
+        }
+        physical_marketing_y2_costs_dict = {
+            "var": 'physical_marketing_y2_costs',
+            'value': physical_marketing_y2_costs_array
+        }
+        physical_marketing_y3_costs_dict = {
+            "var": 'physical_marketing_y3_costs',
+            'value': physical_marketing_y3_costs_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                physical_marketing_types_dict,
+                physical_marketing_impacts_dict,
+                physical_marketing_uses_dict,
+                # physical_marketing_cost_types_dict,
+                physical_marketing_y1_costs_dict,
+                # physical_marketing_y2_costs_dict,
+                # physical_marketing_y3_costs_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q79(self, answer, api):
-        # 79	7	{{media_campaign_types}}
-        # 79	7	{{media_campaign_impacts}}
-        # 79	7	{{media_campaign_durations}}
-        # 79	7	{{media_campaign_cost_types}}
-        # 79	7	{{media_campaign_y1_costs}}
-        # 79	7	{{media_campaign_y2_costs}}
-        # 79	7	{{media_campaign_y3_costs}}
-        print("QID 79") #TODO: IMPLEMENT
+        media_campaign_types_array = []
+        media_campaign_impacts_array = []
+        media_campaign_durations_array = []
+        media_campaign_cost_types_array = []
+        media_campaign_y1_costs_array = []
+        media_campaign_y2_costs_array = []
+        media_campaign_y3_costs_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            media_campaign_types_array.append(ans['var_2'])
+            media_campaign_impacts_array.append(ans['var_3'])
+            media_campaign_durations_array.append(ans['var_4'])
+            media_campaign_cost_types_array.append(ans['var_5'])
+            media_campaign_y1_costs_array.append(ans['var_6'])
+            media_campaign_y2_costs_array.append(ans['var_7'])
+            media_campaign_y3_costs_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        media_campaign_types_dict = {
+            "var": 'media_campaign_types',
+            'value': media_campaign_types_array
+        }
+        media_campaign_impacts_dict = {
+            "var": 'media_campaign_impacts',
+            'value': media_campaign_impacts_array
+        }
+        media_campaign_durations_dict = {
+            "var": 'media_campaign_durations',
+            'value': media_campaign_durations_array
+        }
+        media_campaign_cost_types_dict = {
+            "var": 'media_campaign_cost_types',
+            'value': media_campaign_cost_types_array
+        }
+        media_campaign_y1_costs_dict = {
+            "var": 'media_campaign_y1_costs',
+            'value': media_campaign_y1_costs_array
+        }
+        media_campaign_y2_costs_dict = {
+            "var": 'media_campaign_y2_costs',
+            'value': media_campaign_y2_costs_array
+        }
+        media_campaign_y3_costs_dict = {
+            "var": 'media_campaign_y3_costs',
+            'value': media_campaign_y3_costs_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                media_campaign_types_dict,
+                media_campaign_impacts_dict,
+                media_campaign_durations_dict,
+                # media_campaign_cost_types_dict,
+                media_campaign_y1_costs_dict,
+                # media_campaign_y2_costs_dict,
+                # media_campaign_y3_costs_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q80(self, answer, api):
         # 80	7	{{marketing_partnership_types}}
