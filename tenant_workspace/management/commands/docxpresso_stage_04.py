@@ -103,7 +103,7 @@ class Command(BaseCommand):
             template="templates/stage4.odt"
         )
 
-        # Take our stage 2 content and populate docxpresso with it.
+        # Take our content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
         # Generate our document!

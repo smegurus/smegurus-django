@@ -1,8 +1,4 @@
 import os.path
-import json
-import urllib3  # Third Party Library
-from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
-from datetime import datetime, timedelta  # Datetime.
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -15,6 +11,7 @@ from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -40,11 +37,17 @@ class Command(BaseCommand):
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
 
-        self.begin_processing(workspace_id)
+        api = DocxspressoAPI(
+            settings.DOCXPRESSO_PUBLIC_KEY,
+            settings.DOCXPRESSO_PRIVATE_KEY,
+            settings.DOCXPRESSO_URL
+        )
+
+        self.begin_processing(workspace_id, api)
 
         # Return a success message to the console.
         self.stdout.write(
-            self.style.SUCCESS(_('Finished processing stage 6 for workspace_id #%s.') % str(workspace_id))
+            self.style.SUCCESS(_('Finished processing stage 7 for workspace_id #%s.') % str(workspace_id))
         )
 
     def get_workspace(self, workspace_id):
@@ -80,60 +83,28 @@ class Command(BaseCommand):
             )
         )
 
-    def begin_processing(self, workspace_id):
+    def begin_processing(self, workspace_id, api):
         workspace = self.get_workspace(workspace_id)
-        document = self.get_document(workspace_id)
         answers = self.get_answers(workspace_id)
-        self.process(workspace, document, answers)
+        self.process(workspace, answers, api)
 
-    def process(self, workspace, document, answers):
+    def process(self, workspace, answers, api):
         # DEBUGGING PURPOSES
         # for answer in answers.all():
         #     print(answer.question.id, answer)
 
-        # Generate timestamp.
-        stem = "workspace_" + str(workspace.id) + "_stage_07"
-        suffix = "odt"
-        filename = stem + '.' + suffix
-        current = datetime.now()
-        timestamp = str(current.strftime('%Y%m%d%H%M%S'))
-
-        # Generate our API key.
-        api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
-        api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
-
-        # Generate our Docxpresso data to submit.
-        docxpresso_data = self.get_docxpresso_data(workspace, document, answers)
-
-        data = {
-            "security": {
-                "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-                "timestamp": timestamp,
-                "APIKEY": api_key_hashed
-            },
-            "template": "templates/stage7.odt",
-            "output": {
-                "format": suffix,
-                "response": "doc",
-                "name": stem
-            },
-            "replace": docxpresso_data
-        }
-
-        # We will convert our Python dictonary into a JSON diconary.
-        encoded_body = json.dumps(data).encode('utf-8')
-
-        # Send AJAX Post to Docxpresso server.
-        http = urllib3.PoolManager()
-        r = http.request(
-            'POST',
-            settings.DOCXPRESSO_URL,
-            # body=encoded_body,
-            fields={
-                "dataJSON": encoded_body
-            }
-            # headers={'Content-Type': 'application/json'}
+        api.new(
+            name="workspace_" + str(workspace.id) + "_stage_07",
+            format="odt",
+            template="templates/stage7.odt"
         )
+
+        # Take our content and populate docxpresso with it.
+        self.set_answers(answers, api)
+
+        # Generate our document!
+        doc_filename = api.get_filename()
+        doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
         # The following three lines will take the 'default_storage' class
@@ -142,12 +113,6 @@ class Command(BaseCommand):
         # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-        path = default_storage.save('uploads/'+filename, ContentFile(r.data))
-
-        # Create a new file upload and upload the data to a S3 instance.
-        docxpresso_file = TenantFileUpload.objects.create(
-            datafile = path,
-        )
 
         # Fetch the document and then atomically modify it.
         with transaction.atomic():
@@ -158,14 +123,26 @@ class Command(BaseCommand):
             if document.docxpresso_file:
                 document.docxpresso_file.delete()
 
+            # Upload our file to S3 server.
+            path = default_storage.save(
+                'uploads/'+doc_filename,
+                ContentFile(doc_bin_data)
+            )
+
+            # Save our file to DB.
+            docxpresso_file = TenantFileUpload.objects.create(
+                datafile = path,
+            )
+
             # Generate our new file.
             document.docxpresso_file = docxpresso_file
             document.save()
 
-            # Delete the local file.
-            #TODO: Implement this.
-
-    def get_docxpresso_data(self, workspace, document, answers):
-        docxpresso_data = []
-        #TODO: Implement.
-        return docxpresso_data # Return our data.
+    def set_answers(self, answers, api):
+        for answer in answers.all():
+            pass
+    #         if answer.question.pk == 1:
+    #             self.do_q1(answer, api)
+    #
+    # def do_q1(self, answer, api):
+    #     api.add_text("self_assess_1", answer.content['var_1'])
