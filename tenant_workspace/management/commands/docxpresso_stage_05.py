@@ -1,8 +1,4 @@
 import os.path
-import json
-import urllib3  # Third Party Library
-from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
-from datetime import datetime, timedelta  # Datetime.
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -15,6 +11,7 @@ from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 
@@ -40,7 +37,13 @@ class Command(BaseCommand):
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
 
-        self.begin_processing(workspace_id)
+        api = DocxspressoAPI(
+            settings.DOCXPRESSO_PUBLIC_KEY,
+            settings.DOCXPRESSO_PRIVATE_KEY,
+            settings.DOCXPRESSO_URL
+        )
+
+        self.begin_processing(workspace_id, api)
 
         # Return a success message to the console.
         self.stdout.write(
@@ -76,64 +79,36 @@ class Command(BaseCommand):
         return QuestionAnswer.objects.filter(
             Q(
                 workspace_id=workspace_id,
+                document__document_type__stage_num=3
+            ) |
+            Q(
+                workspace_id=workspace_id,
                 document__document_type__stage_num=5
             )
         )
 
-    def begin_processing(self, workspace_id):
+    def begin_processing(self, workspace_id, api):
         workspace = self.get_workspace(workspace_id)
-        document = self.get_document(workspace_id)
         answers = self.get_answers(workspace_id)
-        self.process(workspace, document, answers)
+        self.process(workspace, answers, api)
 
-    def process(self, workspace, document, answers):
+    def process(self, workspace, answers, api):
         # DEBUGGING PURPOSES
         # for answer in answers.all():
         #     print(answer.question.id, answer)
 
-        # Generate timestamp.
-        stem = "workspace_" + str(workspace.id) + "_stage_05"
-        suffix = "odt"
-        filename = stem + '.' + suffix
-        current = datetime.now()
-        timestamp = str(current.strftime('%Y%m%d%H%M%S'))
-
-        # Generate our API key.
-        api_key = settings.DOCXPRESSO_PUBLIC_KEY + settings.DOCXPRESSO_PRIVATE_KEY + str(timestamp)
-        api_key_hashed = sha1_crypt.hash(api_key) #  (Deprecated: https://passlib.readthedocs.io/en/stable/lib/passlib.hash.sha1_crypt.html)
-
-        # Generate our Docxpresso data to submit.
-        docxpresso_data = self.get_docxpresso_data(workspace, document, answers)
-
-        data = {
-            "security": {
-                "publicKey": settings.DOCXPRESSO_PUBLIC_KEY,
-                "timestamp": timestamp,
-                "APIKEY": api_key_hashed
-            },
-            "template": "templates/stage5.odt",
-            "output": {
-                "format": suffix,
-                "response": "doc",
-                "name": stem
-            },
-            "replace": docxpresso_data
-        }
-
-        # We will convert our Python dictonary into a JSON diconary.
-        encoded_body = json.dumps(data).encode('utf-8')
-
-        # Send AJAX Post to Docxpresso server.
-        http = urllib3.PoolManager()
-        r = http.request(
-            'POST',
-            settings.DOCXPRESSO_URL,
-            # body=encoded_body,
-            fields={
-                "dataJSON": encoded_body
-            }
-            # headers={'Content-Type': 'application/json'}
+        api.new(
+            name="workspace_" + str(workspace.id) + "_stage_05",
+            format="odt",
+            template="templates/stage5.odt"
         )
+
+        # Take our content and populate docxpresso with it.
+        self.set_answers(answers, api)
+
+        # Generate our document!
+        doc_filename = api.get_filename()
+        doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
         # The following three lines will take the 'default_storage' class
@@ -142,12 +117,6 @@ class Command(BaseCommand):
         # we will be saving to S3.
         from django.core.files.storage import default_storage
         from django.core.files.base import ContentFile
-        path = default_storage.save('uploads/'+filename, ContentFile(r.data))
-
-        # Create a new file upload and upload the data to a S3 instance.
-        docxpresso_file = TenantFileUpload.objects.create(
-            datafile = path,
-        )
 
         # Fetch the document and then atomically modify it.
         with transaction.atomic():
@@ -158,14 +127,81 @@ class Command(BaseCommand):
             if document.docxpresso_file:
                 document.docxpresso_file.delete()
 
+            # Upload our file to S3 server.
+            path = default_storage.save(
+                'uploads/'+doc_filename,
+                ContentFile(doc_bin_data)
+            )
+
+            # Save our file to DB.
+            docxpresso_file = TenantFileUpload.objects.create(
+                datafile = path,
+            )
+
             # Generate our new file.
             document.docxpresso_file = docxpresso_file
             document.save()
 
-            # Delete the local file.
-            #TODO: Implement this.
+    def set_answers(self, answers, api):
+        for answer in answers.all():
+            if answer.question.pk == 36: # business_solution
+                self.do_q36(answer, api)
 
-    def get_docxpresso_data(self, workspace, document, answers):
-        docxpresso_data = []
-        #TODO: Implement.
-        return docxpresso_data # Return our data.
+            elif answer.question.pk == 51:
+                self.do_q51(answer, api)
+
+            elif answer.question.pk == 53:
+                self.do_q53(answer, api)
+
+            elif answer.question.pk == 54:
+                self.do_q54(answer, api)
+
+            elif answer.question.pk == 55:
+                self.do_q55(answer, api)
+
+            elif answer.question.pk == 73:
+                self.do_q73(answer, api)
+
+    def do_q36(self, answer, api):
+        api.add_text(
+            "business_solution",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q51(self, answer, api):
+        api.add_text(
+            "customer_price_sensitivity",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q54(self, answer, api):
+        api.add_text(
+            "test_reach_method",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q53(self, answer, api):
+        api.add_text(
+            "test_contact_number",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q55(self, answer, api):
+        api.add_text(
+            "test_contact_agreed",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q73(self, answer, api):
+        array = []
+
+        # Attach all the checkboxes.
+        for ans in answer.content['var_1']:
+            array.append(ans['value'])
+
+        # Attach the other textfield.
+        if answer.content['var_1_other']:
+            array.append(answer.content['var_1_other'])
+
+        # Attach our data to document.
+        api.add_text_paragraphs("test_contact_method", array)
