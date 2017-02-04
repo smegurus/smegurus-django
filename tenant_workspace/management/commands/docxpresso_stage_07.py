@@ -140,8 +140,17 @@ class Command(BaseCommand):
         api.add_text("date", str(today)) # date
 
         for answer in answers.all():
-            if answer.question.pk == 27: # business_idea
+            if answer.question.pk == 25:
+                self.do_q25(answer, api)
+
+            elif answer.question.pk == 27:
                 self.do_q27(answer, api)
+
+            elif answer.question.pk == 32:
+                self.do_q32(answer, api)
+
+            elif answer.question.pk == 44:
+                self.do_q44(answer, api)
 
             elif answer.question.pk == 47:
                 self.do_q47(answer, api)
@@ -188,6 +197,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 72:
                 self.do_q72(answer, api)
 
+            elif answer.question.pk == 74:
+                self.do_q74(answer, api)
+
             elif answer.question.pk == 75:
                 self.do_q75(answer, api)
 
@@ -227,14 +239,35 @@ class Command(BaseCommand):
             elif answer.question.pk == 149:
                 self.do_q149(answer, api)
 
+            elif answer.question.pk == 151:
+                self.do_q151(answer, api)
+
             elif answer.question.pk == 153:
                 self.do_q153(answer, api)
 
             elif answer.question.pk == 154:
                 self.do_q154(answer, api)
 
+    def do_q25(self, answer, api):
+        naics_id = answer.content['var_5'] # Depth 5 NAICS ID
+        depth_five_naics = NAICSOption.objects.get(id=naics_id) # Get the name
+        api.add_text("naics_industry_name", depth_five_naics.name)
+        api.add_text("naics_industry_friendly_name", answer.content['var_6'])
+
     def do_q27(self, answer, api):
         api.add_text("business_idea", answer.content['var_1'])
+
+    def do_q32(self, answer, api):
+        array = [
+            answer.content['var_1'],
+            answer.content['var_2'],
+            answer.content['var_3']
+        ];
+        api.add_text_paragraphs("product_categories", array)
+
+    def do_q44(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_competition_levels", text)
 
     def do_q47(self, answer, api):
         names_array = []
@@ -495,6 +528,12 @@ class Command(BaseCommand):
             array.append(answer.content['var_3'])
 
         api.add_text_paragraphs('key_success_factors', array)
+
+    def do_q74(self, answer, api):
+        array = []
+        for ans in answer.content['var_1']:
+            array.append(ans['value'])
+        api.add_text_paragraphs("how_to_convince", array)
 
     def do_q75(self, answer, api):
         customer_objections_array = []
@@ -1020,6 +1059,12 @@ class Command(BaseCommand):
 
         # Attach all out tables.
         api.add_custom(custom)
+
+    def do_q151(self, answer, api):
+        api.add_text(
+            "product_distribution",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q153(self, answer, api):
         array = []
