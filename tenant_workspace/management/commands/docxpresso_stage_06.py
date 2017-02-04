@@ -1,5 +1,4 @@
 import os.path
-from django.utils import timezone
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -160,7 +159,7 @@ class Command(BaseCommand):
                 # actual_supported_number
                 # validation_outcome_met
                 self.do_q58(answer, api, answers)
-            
+
             if answer.question.pk == 59:
                 # validation_lessons_learned
                 self.do_q59(answer, api)

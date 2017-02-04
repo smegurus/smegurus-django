@@ -141,6 +141,9 @@ class Command(BaseCommand):
             document.save()
 
     def set_answers(self, answers, api):
+        today = timezone.now()
+        api.add_text("date", str(today)) # date
+
         for answer in answers.all():
             if answer.question.pk == 27: # business_idea
                 self.do_q27(answer, api)
@@ -218,12 +221,15 @@ class Command(BaseCommand):
             elif answer.question.pk == 148:
                 self.do_q148(answer, api)
 
+            elif answer.question.pk == 149:
+                self.do_q149(answer, api)
+
             elif answer.question.pk == 153:
                 self.do_q153(answer, api)
 
             elif answer.question.pk == 154:
                 self.do_q154(answer, api)
-                
+
     def do_q27(self, answer, api):
         api.add_text("business_idea", answer.content['var_1'])
 
@@ -274,21 +280,32 @@ class Command(BaseCommand):
         api.add_text('business_vision', answer.content['var_2'])
 
     def do_q65(self, answer, api):
-        # 65	7	{{product_customer_need}}
-        print("QID 65") #TODO: IMPLEMENT
+        api.add_text(
+            "product_customer_need",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q66(self, answer, api):
-        # 66	7	"{{business_how_different}}
-        print("QID 66") #TODO: IMPLEMENT
+        api.add_text(
+            "business_how_different",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q67(self, answer, api):
-        # 67	7	{{market_position}}
-        # 67	7	{{market_position_details}}
-        print("QID 67") #TODO: IMPLEMENT
+        api.add_text(
+            "market_position",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+        api.add_text(
+            "market_position_details",
+            answer.content['var_2_other'] if answer.content['var_2_other'] else answer.content['var_2']
+        )
 
     def do_q68(self, answer, api):
-        # 68	7	{{business_great_at}}
-        print("QID 68") #TODO: IMPLEMENT
+        api.add_text(
+            "business_great_at",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q69(self, answer, api):
         # 69	7	{{pricing_strategy}}
@@ -441,15 +458,51 @@ class Command(BaseCommand):
         api.add_text_paragraphs('business_strengths', array)
 
     def do_q148(self, answer, api):
-        # 148	7	{{business_opportunities}}
-        print("QID 148") #TODO: IMPLEMENT
+        array = []
+
+        for ans in answer.content:
+            array.append(ans['var_2'])
+
+        api.add_text_paragraphs('business_opportunities', array)
 
     def do_q149(self, answer, api):
-        # 149	7	{{business_threats}}
-        # 149	7	{{business_threat_mitigations}}
-        print("QID 149") #TODO: IMPLEMENT
+        business_threats_array = []
+        business_threat_mitigations_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            business_threats_array.append(ans['var_2'])
+            business_threat_mitigations_array.append(ans['var_3'])
+
+        # Generate our custom item.
+        business_threats_dict = {
+            "var": 'business_threats',
+            'value': business_threats_array
+        }
+        business_threat_mitigations_dict = {
+            "var": 'business_threat_mitigations',
+            'value': business_threat_mitigations_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                business_threats_dict,
+                business_threat_mitigations_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q153(self, answer, api):
+        print(answer.content)
         # 153	7	{{growth_strategies}}
         print("QID 153") #TODO: IMPLEMENT
 
