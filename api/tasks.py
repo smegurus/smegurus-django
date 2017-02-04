@@ -1,5 +1,6 @@
 from celery import shared_task
 from django.core.management import call_command
+from foundation_public.models.organizationregistration import PublicOrganizationRegistration
 
 
 # DEVELOPERS NOTE:
@@ -18,6 +19,9 @@ def begin_organization_creation_task(registered_id):
     # Send email to the owner of the Organization letting them know we've successfully
     # finished setting up their tenancy.
     call_command('send_organization_ready_email', str(registered_id))  # foundation_email/management/commands/send_organization_ready_email.py
+
+    # Delete the registered organization.
+    PublicOrganizationRegistration.objects.get(id=registered_id).delete()
 
     # Return nothing.
     return None
