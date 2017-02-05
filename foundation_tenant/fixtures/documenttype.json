@@ -3,7 +3,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 1,
     "fields": {
-        "text": "Entrepreneur Self Assessment",
+        "text": "stage1.odt",
         "is_master": true,
         "stage_num": 1
     }
@@ -11,7 +11,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 2,
     "fields": {
-        "text": "Market Research Summary",
+        "text": "stage2.odt",
         "is_master": true,
         "stage_num": 2
     }
@@ -19,7 +19,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 3,
     "fields": {
-        "text": "Market Research Plan",
+        "text": "stage3.odt",
         "is_master": true,
         "stage_num": 3
     }
@@ -27,7 +27,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 4,
     "fields": {
-        "text": "Concept Validation",
+        "text": "stage4.odt",
         "is_master": true,
         "stage_num": 4
     }
@@ -35,7 +35,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 5,
     "fields": {
-        "text": "Marketing",
+        "text": "stage5.odt",
         "is_master": true,
         "stage_num": 5
     }
@@ -43,7 +43,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 6,
     "fields": {
-        "text": "Sales",
+        "text": "stage6.odt",
         "is_master": true,
         "stage_num": 6
     }
@@ -51,7 +51,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 7,
     "fields": {
-        "text": "Operations",
+        "text": "stage7.odt",
         "is_master": true,
         "stage_num": 7
     }
@@ -59,7 +59,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 8,
     "fields": {
-        "text": "Finances",
+        "text": "stage8.odt",
         "is_master": true,
         "stage_num": 8
     }
@@ -67,7 +67,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 9,
     "fields": {
-        "text": "Analysis",
+        "text": "stage9.odt",
         "is_master": true,
         "stage_num": 9
     }
