@@ -80,11 +80,19 @@
                 },{
                     "previous_position": 9,
                     "current_position": 10,
-                    "next_position": -1,
+                    "next_position": 11,
                     "id": 159,
                     "type": "question",
                     "document_type": 9,
                     "order_num": 2
+                },{
+                    "previous_position": 10,
+                    "current_position": 11,
+                    "next_position": -1,
+                    "id": 96,
+                    "type": "question",
+                    "document_type": 6,
+                    "order_num": 16
                 }
             ],
             "title": "Stage 9: Analysis",

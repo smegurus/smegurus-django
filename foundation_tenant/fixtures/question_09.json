@@ -383,5 +383,48 @@
             },
             "type_id": 21
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 96,
+        "fields": {
+            "document_type": 6,
+            "number": 16,
+            "title": "If you are applying for a loan with a financial institution they often require several additional pieces of information. For confidentiality reasons we do not store your personal information on our system, but we can identify on the Table of Contents that you will be attaching these documents. Please indicate which of the following you will need to attach to your business plan (check all that apply)",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                    "id": "1",
+                    "value": "Resume for each owner",
+                    "text": "Resume for each owner"
+                },
+                {
+                    "id": "2",
+                    "value": "Statement of personal networth",
+                    "text": "Statement of personal networth"
+                },
+                {
+                    "id": "3",
+                    "value": "Credit Report",
+                    "text": "Credit Report"
+                },
+                {
+                    "id": "4",
+                    "value": "Partnership Agreement",
+                    "text": "Partnership Agreement"
+                },
+                {
+                    "id": "5",
+                    "value": "Other",
+                    "text": "Other"
+                }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
     }
 ]
