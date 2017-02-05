@@ -32,22 +32,16 @@ class SendEmailViewMixin(object):
         # list for all the Advisors for each Entrepreneur.
         contact_list = []
         for me in document.workspace.mes.all():
-            # If this User profile has an assigned manager then add this person
-            # to the email else just email the administrator.
             if me.managed_by:
+                # If this User profile has an assigned manager then add this person
+                # to the email else just email the administrator.
                 contact_list.append(me.managed_by.owner.email)
-            else:
-                try:
-                    # Fetch the original administrator for this Organization and assign it to the User after
-                    # finding the User Profile for the account.
-                    owner = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID).earliest('date_joined')
-                    me.managed_by = TenantMe.objects.get(owner=owner)
-                    me.save()
-                except Exception as e
-                    raise CommandError(_('%s.') % str(e))
-
+                
+        if len(contact_list) == 0:
+            admins = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+            for admin in admins.all():
                 # Attach the email to the contact_list.
-                contact_list.append(me.managed_by.email)
+                contact_list.append(admin.email)
 
         # Generate the data.
         url =  resolve_full_url_with_subdmain(
