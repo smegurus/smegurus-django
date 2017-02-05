@@ -508,5 +508,22 @@
             "validation": {},
             "type_id": 61
         }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 162,
+        "fields": {
+            "document_type": 9,
+            "number": 13,
+            "title": "Here, you can add your second product image. Again, this is optional but highly recommended.",
+            "help": "Some generic test.",
+            "options": {},
+            "content": {
+                "opt1_other_stub": "Picture Upload",
+                "opt1_other_type": "imagefield"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 61
+        }
     }
 ]
