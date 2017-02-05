@@ -1193,3 +1193,26 @@ def render_question_type_060(workspace, module, node, question, answer):
         'picked': answer.content,
         'picked_count': len(answer.content)
     }
+
+
+@register.inclusion_tag('templatetags/question/template_061.html')
+def render_question_type_061(workspace, module, node, question, answer):
+    """
+    - uploads an image.
+    """
+    # Fetch the image that is associated with this question's answer.
+    imageupload = None
+    upload_id = answer.content.get('var_2', None)
+    if upload_id:
+        imageupload = TenantImageUpload.objects.get(id=upload_id)
+
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content),
+        'imageupload': imageupload
+    }
