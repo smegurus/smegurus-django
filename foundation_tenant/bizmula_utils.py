@@ -1,250 +1,45 @@
-import os.path
-from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
-from django.db import transaction
-from django.db.models import Q
-from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone  # Timezone.
-from django.core.management import call_command
-from foundation_tenant.models.bizmula.document import Document
-from foundation_tenant.models.bizmula.workspace import Workspace
-from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
-from foundation_tenant.models.base.fileupload import TenantFileUpload
-from foundation_tenant.models.base.naicsoption import NAICSOption
 from foundation_tenant.docxpresso_utils import DocxspressoAPI
-from foundation_tenant.utils import int_or_none
-from smegurus import constants
+from foundation_tenant.models.base.naicsoption import NAICSOption
 
 
-class Command(BaseCommand):
-    help = _('Docxpresso processing command for the particular document in a tenant.')
+class BizmulaAPI(DocxspressoAPI):
+    """
+    Class overrides the Docxpresso API and provides convinence functions
+    for processing questions in the Bizmula Engine.
+    """
+    def do_q1(self, answer, api):
+        api.add_text("self_assess_1", answer.content['var_1'])
 
-    def add_arguments(self, parser):
-        parser.add_argument('id', nargs='+')
+    def do_q2(self, answer, api):
+        api.add_text("self_assess_2", answer.content['var_1'])
 
-    def handle(self, *args, **options):
-        """
-        Function will get the inputted tenant name and doc_id and
-        set the database to the tenant schema and begin processing
-        for the particular document.
-        """
-        schema_name = options['id'][0]
-        workspace_id = int_or_none(options['id'][1])
+    def do_q3(self, answer, api):
+        api.add_text("self_assess_3", answer.content['var_1'])
 
-        # the tenant metadata is stored.
-        from django.db import connection
+    def do_q4(self, answer, api):
+        api.add_text("self_assess_4", answer.content['var_1'])
 
-        # Connection will set it back to our tenant.
-        connection.set_schema(schema_name, True) # Switch to Tenant.
+    def do_q5(self, answer, api):
+        api.add_text("self_assess_5", answer.content['var_1'])
 
-        api = DocxspressoAPI(
-            settings.DOCXPRESSO_PUBLIC_KEY,
-            settings.DOCXPRESSO_PRIVATE_KEY,
-            settings.DOCXPRESSO_URL
-        )
+    def do_q6(self, answer, api):
+        api.add_text("self_assess_6", answer.content['var_1'])
 
-        self.begin_processing(workspace_id, api)
+    def do_q7(self, answer, api):
+        api.add_text("self_assess_7", answer.content['var_1'])
 
-        # Return a success message to the console.
-        self.stdout.write(
-            self.style.SUCCESS(_('Finished processing stage 7 for workspace_id #%s.') % str(workspace_id))
-        )
+    def do_q8(self, answer, api):
+        api.add_text("self_assess_8", answer.content['var_1'])
 
-    def get_workspace(self, workspace_id):
-        """
-        Utility function will return the Workspace for the parameter ID.
-        """
-        try:
-            return Workspace.objects.get(id=workspace_id)
-        except Workspace.DoesNotExist:
-            raise CommandError(_('Cannot find a workspace.'))
-        except Exception as e:
-            raise CommandError(_('Unknown error occured: %s.' % e))
+    def do_q9(self, answer, api):
+        api.add_text("self_assess_9", answer.content['var_1'])
 
-    def get_document(self, workspace_id):
-        try:
-            return Document.objects.get(
-                workspace_id=workspace_id,
-                document_type__stage_num=7
-            )
-        except Workspace.DoesNotExist:
-            raise CommandError(_('Cannot find a workspace.'))
-        except Exception as e:
-            raise CommandError(_('Unknown error occured: %s.' % e))
+    def do_q10(self, answer, api):
+        api.add_text("self_assess_10", answer.content['var_1'])
 
-    def get_answers(self, workspace_id):
-        """
-        Utility function will return all answers for the parameter workspace ID.
-        """
-        return QuestionAnswer.objects.filter(workspace_id=workspace_id)
-
-    def begin_processing(self, workspace_id, api):
-        workspace = self.get_workspace(workspace_id)
-        answers = self.get_answers(workspace_id)
-        self.process(workspace, answers, api)
-
-    def process(self, workspace, answers, api):
-        # DEBUGGING PURPOSES
-        # for answer in answers.all():
-        #     print(answer.question.id, answer)
-
-        api.new(
-            name="workspace_" + str(workspace.id) + "_stage_07",
-            format="odt",
-            template="templates/stage7.odt"
-        )
-
-        # Take our content and populate docxpresso with it.
-        self.set_answers(answers, api)
-
-        # Generate our document!
-        doc_filename = api.get_filename()
-        doc_bin_data = api.generate()
-
-        # DEVELOPERS NOTE:
-        # The following three lines will take the 'default_storage' class
-        # django uses for saving files and apply it. Because we overloaded
-        # this default class with S3 storage, therefore when this code runs
-        # we will be saving to S3.
-        from django.core.files.storage import default_storage
-        from django.core.files.base import ContentFile
-
-        # Fetch the document and then atomically modify it.
-        with transaction.atomic():
-            # Fetch the document.
-            document = self.get_document(workspace.id)
-
-            # If the file already exists then delete it from S3.
-            if document.docxpresso_file:
-                document.docxpresso_file.delete()
-
-            # Upload our file to S3 server.
-            path = default_storage.save(
-                'uploads/'+doc_filename,
-                ContentFile(doc_bin_data)
-            )
-
-            # Save our file to DB.
-            docxpresso_file = TenantFileUpload.objects.create(
-                datafile = path,
-            )
-
-            # Generate our new file.
-            document.docxpresso_file = docxpresso_file
-            document.save()
-
-    def set_answers(self, answers, api):
-        today = timezone.now()
-        api.add_text("date", str(today)) # date
-
-        for answer in answers.all():
-            if answer.question.pk == 25:
-                self.do_q25(answer, api)
-
-            elif answer.question.pk == 27:
-                self.do_q27(answer, api)
-
-            elif answer.question.pk == 32:
-                self.do_q32(answer, api)
-
-            elif answer.question.pk == 44:
-                self.do_q44(answer, api)
-
-            elif answer.question.pk == 47:
-                self.do_q47(answer, api)
-
-            elif answer.question.pk == 48:
-                self.do_q48(answer, api)
-
-            elif answer.question.pk == 49:
-                self.do_q49(answer, api)
-
-            elif answer.question.pk == 61:
-                self.do_q61(answer, api)
-
-            elif answer.question.pk == 62:
-                self.do_q62(answer, api)
-
-            elif answer.question.pk == 63:
-                self.do_q63(answer, api)
-
-            elif answer.question.pk == 64:
-                self.do_q64(answer, api)
-
-            elif answer.question.pk == 65:
-                self.do_q65(answer, api)
-
-            elif answer.question.pk == 66:
-                self.do_q66(answer, api)
-
-            elif answer.question.pk == 67:
-                self.do_q67(answer, api)
-
-            elif answer.question.pk == 68:
-                self.do_q68(answer, api)
-
-            elif answer.question.pk == 69:
-                self.do_q69(answer, api)
-
-            elif answer.question.pk == 70:
-                self.do_q70(answer, api)
-
-            elif answer.question.pk == 71:
-                self.do_q71(answer, api)
-
-            elif answer.question.pk == 72:
-                self.do_q72(answer, api)
-
-            elif answer.question.pk == 74:
-                self.do_q74(answer, api)
-
-            elif answer.question.pk == 75:
-                self.do_q75(answer, api)
-
-            elif answer.question.pk == 76:
-                self.do_q76(answer, api)
-
-            elif answer.question.pk == 77:
-                self.do_q77(answer, api)
-
-            elif answer.question.pk == 78:
-                self.do_q78(answer, api)
-
-            elif answer.question.pk == 79:
-                self.do_q79(answer, api)
-
-            elif answer.question.pk == 80:
-                self.do_q80(answer, api)
-
-            elif answer.question.pk == 104:
-                self.do_q104(answer, api)
-
-            elif answer.question.pk == 142:
-                self.do_q142(answer, api)
-
-            elif answer.question.pk == 142:
-                self.do_q142(answer, api)
-
-            elif answer.question.pk == 143:
-                self.do_q143(answer, api)
-
-            elif answer.question.pk == 147:
-                self.do_q147(answer, api)
-
-            elif answer.question.pk == 148:
-                self.do_q148(answer, api)
-
-            elif answer.question.pk == 149:
-                self.do_q149(answer, api)
-
-            elif answer.question.pk == 151:
-                self.do_q151(answer, api)
-
-            elif answer.question.pk == 153:
-                self.do_q153(answer, api)
-
-            elif answer.question.pk == 154:
-                self.do_q154(answer, api)
+    def do_q21(self, answer, api):
+        api.add_text("workspace_name", answer.content['var_1'])
+        api.add_text_to_footer("workspace_name", answer.content['var_1'])
 
     def do_q25(self, answer, api):
         naics_id = answer.content['var_5'] # Depth 5 NAICS ID
@@ -252,8 +47,60 @@ class Command(BaseCommand):
         api.add_text("naics_industry_name", depth_five_naics.name)
         api.add_text("naics_industry_friendly_name", answer.content['var_6'])
 
+    def do_q26(self, answer, api):
+        api.add_text("years_of_exp", answer.content['var_1'])
+
     def do_q27(self, answer, api):
         api.add_text("business_idea", answer.content['var_1'])
+
+    def do_q28(self, answer, api):
+        arr = []
+        if answer.content['var_1_other']:
+            arr.append(answer.content['var_1_other'])
+        else:
+            if answer.content['var_1']:
+                arr.append(answer.content['var_1'])
+
+        if answer.content['var_2_other']:
+            arr.append(answer.content['var_2_other'])
+        else:
+            if answer.content['var_2']:
+                arr.append(answer.content['var_2'])
+
+        if answer.content['var_3_other']:
+            arr.append(answer.content['var_3_other'])
+        else:
+            if answer.content['var_3']:
+                arr.append(answer.content['var_3'])
+
+        if answer.content['var_4_other']:
+            arr.append(answer.content['var_4_other'])
+        else:
+            if answer.content['var_4']:
+                arr.append(answer.content['var_4'])
+
+        if answer.content['var_5_other']:
+            arr.append(answer.content['var_5_other'])
+        else:
+            if answer.content['var_5']:
+                arr.append(answer.content['var_5'])
+
+        api.add_text_list("research_sources", arr)
+
+    def do_q29(self, answer, api):
+        arr = []
+        arr.append(answer.content['var_1'])
+        arr.append(answer.content['var_2'])
+        arr.append(answer.content['var_3'])
+        api.add_text_list("similar_businesses", arr)
+
+    def do_q30(self, answer, api):
+        arr = []
+        arr.append(answer.content['var_1'])
+        arr.append(answer.content['var_2'])
+        arr.append(answer.content['var_3'])
+        api.add_text_list("industry_contacts", arr)
+
 
     def do_q32(self, answer, api):
         array = [
@@ -263,9 +110,87 @@ class Command(BaseCommand):
         ];
         api.add_text_paragraphs("product_categories", array)
 
+    def do_q33(self, answer, api):
+        api.add_text(
+            "customer_type",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q34(self, answer, api):
+        api.add_text(
+            "business_oppportunity",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q35(self, answer, api):
+        api.add_text(
+            "not_being_done_because",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q36(self, answer, api):
+        api.add_text(
+            "business_solution",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q37(self, answer, api):
+        array = []
+        for ans in answer.content:
+            array.append(ans['var_3'])
+        api.add_text_paragraphs("pestel_trends", array)
+
+    def do_q38(self, answer, api):
+        array = []
+        for ans in answer.content:
+            array.append(ans['var_2'])
+        api.add_text_paragraphs("specific_sources", array)
+
+    def do_q39(self, answer, api):
+        api.add_text(
+            "geographic_market",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q40(self, answer, api): # customer_buying_decision | geographic_market
+        # Compute the answer.
+        var_1 = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+
+        # Add our result.
+        api.add_text(
+            "customer_buying_decision",
+            '-' if answer.content['var_0'] else var_1
+        )
+
+    def do_q41(self, answer, api):
+        api.add_text(
+            "industry_size",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q42(self, answer, api):
+        text = answer.content['var_1']
+        if answer.content['var_2_other']:
+            text += _(" by ") + answer.content['var_2_other']
+        else:
+            text += _(" by ") + answer.content['var_2']
+        api.add_text("industry_change_rate",text)
+
+    def do_q43(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("total_potential_customer_base", text)
+
     def do_q44(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        api.add_text("industry_competition_levels", text)
+        api.add_text("industry_competition_level", text)
+
+    def do_q45(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_service_level", text)
+
+    def do_q46(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_price_variation", text)
 
     def do_q47(self, answer, api):
         names_array = []
@@ -284,6 +209,16 @@ class Command(BaseCommand):
             main_strengths_array.append(ans['var_7'])
             service_levels_array.append(ans['var_6'])
             competitive_strategy_array.append(ans['var_8'])
+
+        # --- Debugging purposes. ---
+        # print("Name", names_array)
+        # print("Prox", proximities_array)
+        # print("Market", market_shares_array)
+        # print("Price", price_comparisons_array)
+        # print("Strength", main_strengths_array)
+        # print("Customer", service_levels_array)
+        # print("Competitive", competitive_strategy_array)
+        # print("\n")
 
         # Generate our custom item.
         names_dict = {
@@ -311,9 +246,18 @@ class Command(BaseCommand):
             'value': service_levels_array
         }
         competitive_strategy_dict = {
-            "var": 'dc_how_compete',
+            "var": 'dc_competitive_strategy',
             'value': competitive_strategy_array
         }
+
+        # --- Debugging purposes only. ---
+        # print("Name", names_dict)
+        # print("Proximities", proximities_dict)
+        # print("market_shares", market_shares_dict)
+        # print("price_comparisons", price_comparisons_dict)
+        # print("main_strengths", main_strengths_dict)
+        # print("service_levels", service_levels_dict)
+        # print("competitive_strategy", competitive_strategy_dict)
 
         # Generate the custom API query.
         custom = {
@@ -330,6 +274,9 @@ class Command(BaseCommand):
                 "element": "table"
             }
         }
+
+        # --- Debugging purposes only. ---
+        # print(custom)
 
         # Attach all out tables.
         api.add_custom(custom)
@@ -351,6 +298,16 @@ class Command(BaseCommand):
             main_strengths_array.append(ans['var_7'])
             service_levels_array.append(ans['var_6'])
             competitive_strategy_array.append(ans['var_8'])
+
+        # --- Debugging purposes. ---
+        # print("Name", names_array)
+        # print("Prox", proximities_array)
+        # print("Market", market_shares_array)
+        # print("Price", price_comparisons_array)
+        # print("Strength", main_strengths_array)
+        # print("Customer", service_levels_array)
+        # print("Competitive", competitive_strategy_array)
+        # print("\n")
 
         # Generate our custom item.
         names_dict = {
@@ -378,9 +335,18 @@ class Command(BaseCommand):
             'value': service_levels_array
         }
         competitive_strategy_dict = {
-            "var": 'idc_how_compete',
+            "var": 'idc_competitive_strategy',
             'value': competitive_strategy_array
         }
+
+        # --- Debugging purposes only. ---
+        # print("Name", names_dict)
+        # print("Proximities", proximities_dict)
+        # print("market_shares", market_shares_dict)
+        # print("price_comparisons", price_comparisons_dict)
+        # print("main_strengths", main_strengths_dict)
+        # print("service_levels", service_levels_dict)
+        # print("competitive_strategy", competitive_strategy_dict)
 
         # Generate the custom API query.
         custom = {
@@ -398,21 +364,83 @@ class Command(BaseCommand):
             }
         }
 
+        # --- Debugging purposes only. ---
+        # print(custom)
+
         # Attach all out tables.
         api.add_custom(custom)
 
     def do_q49(self, answer, api):
-        target_market_types_array = []
-        target_market_first_traits_array = []
-        target_market_second_traits_array = []
+        array = []
         for ans in answer.content:
-            target_market_types_array.append(ans['var_2'])
-            target_market_first_traits_array.append(ans['var_3'])
-            target_market_second_traits_array.append(ans['var_4'])
+            array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
+        api.add_text_paragraphs("target_market_characteristics", array)
 
-        api.add_text_paragraphs("target_market_types", target_market_types_array)
-        api.add_text_paragraphs("target_market_first_traits", target_market_first_traits_array)
-        api.add_text_paragraphs("target_market_second_traits", target_market_second_traits_array)
+    def do_q52(self, answer, api):
+        api.add_text(
+            "customers_will_purchase",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q51(self, answer, api):
+        api.add_text(
+            "customer_price_sensitivity",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q54(self, answer, api):
+        api.add_text(
+            "test_reach_method",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q53(self, answer, api):
+        api.add_text(
+            "test_contact_number",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q55(self, answer, api):
+        api.add_text(
+            "test_contact_agreed",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q56(self, answer, api):
+        api.add_text(
+            "actual_contact_number",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q58(self, q58_answer, api, answers):
+        # Find the other answer to compare to.
+        q56_value = 0
+        for answer in answers.all():
+            if answer.question.pk == 56:
+                q56_value = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+
+        # Find the other value.
+        q58_value = q58_answer.content['var_1_other'] if q58_answer.content['var_1_other'] else q58_answer.content['var_1']
+
+        # # Debugging purposes only.
+        # print("QID56", q56_value)
+        # print("QID58", q58_value)
+
+        # Decision computation.
+        value = "Yes" if q58_value >= q56_value else "No"
+
+        # # Debugging purposes only.
+        # print("QID58 >= QID56 is", value)
+
+        # Record our decision.
+        api.add_text("validation_outcome_met", value)
+
+        # Record another value.
+        api.add_text("actual_supported_number", q56_value)
+
+    def do_q59(self, answer, api):
+        api.add_text("validation_lessons_learned",answer.content['var_1'])
+
 
     def do_q61(self, answer, api):
         api.add_text('business_formal_name', answer.content['var_1'])
@@ -527,11 +555,26 @@ class Command(BaseCommand):
 
         api.add_text_paragraphs('key_success_factors', array)
 
+    def do_q73(self, answer, api):
+        array = []
+
+        # Attach all the checkboxes.
+        for ans in answer.content['var_1']:
+            array.append(ans['value'])
+
+        # Attach the other textfield.
+        if answer.content['var_1_other']:
+            array.append(answer.content['var_1_other'])
+
+        # Attach our data to document.
+        api.add_text_paragraphs("test_contact_method", array)
+
     def do_q74(self, answer, api):
         array = []
         for ans in answer.content['var_1']:
             array.append(ans['value'])
         api.add_text_paragraphs("how_to_convince", array)
+
 
     def do_q75(self, answer, api):
         customer_objections_array = []
@@ -1058,11 +1101,19 @@ class Command(BaseCommand):
         # Attach all out tables.
         api.add_custom(custom)
 
+    def do_q150(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("industry_competition_amount", text)
+
     def do_q151(self, answer, api):
         api.add_text(
             "product_distribution",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
+
+    def do_q152(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("avg_customer_spending", text)
 
     def do_q153(self, answer, api):
         array = []

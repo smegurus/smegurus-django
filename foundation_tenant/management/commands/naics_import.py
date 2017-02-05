@@ -4,6 +4,7 @@ import csv
 import xml.etree.ElementTree as ET
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.naicsoption import NAICSOption
 
 
