@@ -1,0 +1,133 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        {% for option in question.options.opt1 %}
+            {% if option.value == question.options.opt1_other %}
+                $('#{{ option.id }}').click (function (event) {
+                    var is_checked = $('#{{ option.id }}').is(':checked');
+                    if (is_checked) {
+                        console.log("Show");
+                        $('#id_input_1_other_div').show();
+                    } else {
+                        console.log("Hide");
+                        $('#id_input_1_other_div').hide();
+                        $('#id_input_1_other').val('')
+                    }
+                });
+            {% endif %}
+        {% endfor %}
+
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        // FETCH OUR RESULTS.
+        var dict = []; // create an empty array
+        $("input:checkbox[name=type]:checked").each(function(i, obj){
+            dict.push({
+                id:    obj.id,
+                value: obj.value
+            });
+        });
+        var input_1_other = $('#id_input_1_other').val();
+
+        // VALIDATION
+        if (dict.length <= 0) {
+            alert("{% trans 'Please pick something.' %}");
+            return;
+        }
+
+        ajax_do_chain(dict, input_1_other, function(json_result) {  // Update our model.
+            window.location = next_url;
+        });
+    }
+
+    function ajax_do_chain(input_1, input_1_other, callback) {
+        // Debugging purposes.
+        console.log(input_1);
+        console.log(input_1_other);
+
+        // Fetch our pre-created (or previously-saved) "QuestionAnswer"
+        // from our Database and convert it to JSON object.
+        get_tenant_questionanswer(
+            {{ answer.id }},
+            function(question_answer) {
+
+                // Set the JSON object with our picked value and stringify it.
+                question_answer['content'] = JSON.stringify({
+                    'var_1': input_1,
+                    "var_1_other": input_1_other
+                });
+
+                // Save our "QuestionAnswer" model object.
+                set_tenant_questionanswer(
+                    question_answer,
+                    function(json_result) {
+                        callback(json_result);
+                    },
+                    function(error_json_result) {
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end SET ANSWER
+            },
+            function(error_json_result) {
+                var string = JSON.stringify( error_json_result );
+                console.log(string);
+                alert(string);
+            }
+        ); // end GET ANSWER
+    };
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <!-- ROW 1 -->
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
+        <div class="col-sm-10">
+            {% for option in question.options.opt1 %}
+                <div class="checkbox c-checkbox">
+                    <label>
+                        <input id="{{ option.id }}"
+                             type="checkbox"
+                            value="{{ option.value|escape|safe }}"
+                             name="type"
+                        {% for pick in picked.var_1 %}
+                            {% if pick.value == option.value %}
+                                checked="checked"
+                            {% endif %}
+                        {% endfor %} />
+                        <span class="fa fa-check"></span>
+                        {{ option.text|escape|safe }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- end ROW 1 -->
+
+    <br />
+
+    <!-- ROW 2 | OTHER -->
+    <div class="form-group" id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
+        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+        <div class="col-sm-5">
+            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_1_other }}" />
+        </div>
+    </div>
+    <!-- end ROW 2 | OTHER -->
+
+    <br />
+</fieldset>
+<!-- end HTML -->
