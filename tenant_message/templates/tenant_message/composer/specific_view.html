@@ -32,29 +32,29 @@
             <fieldset>
                 <legend>New Message</legend>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">User</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-3 control-label">User</label>
+                    <div class="col-sm-7">
                         <input id="id_readonly_text"
                              type="text"
                       placeholder=""
-                            value="{{ recipient.name }}" class="form-control" disabled />
+                            value="{{ recipient.name }}" class="form-control input-lg" disabled />
                         <!-- <span class="help-block m-b-none">{% trans 'Select a user you want to message.' %}</span> -->
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <div class="form-group">
-                    <label for="input-id-1" class="col-sm-2 control-label">{% trans 'Message' %}</label>
-                    <div class="col-sm-10">
-                        <textarea id="id_description" type="text" class="form-control" rows="5"></textarea>
+                    <label for="input-id-1" class="col-sm-3 control-label">{% trans 'Message' %}</label>
+                    <div class="col-sm-7">
+                        <textarea id="id_description" type="text" class="form-control input-lg" rows="5"></textarea>
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-2">
-                        <button id="id_cancel_btn" onclick="ajax_cancel();" type="button" class="btn btn-default">{% trans 'Cancel' %}</button>
-                        <button id="id_post_btn" onclick="ajax_create_message();" type="button" class="btn btn-primary">{% trans 'Send' %}</button>
+                        <button id="id_cancel_btn" onclick="ajax_cancel();" type="button" class="btn btn-lg btn-back">{% trans 'Cancel' %}</button>
+                        <button id="id_post_btn" onclick="ajax_create_message();" type="button" class="btn btn-lg btn-next">{% trans 'Send' %}</button>
                     </div>
                 </div>
             </fieldset>

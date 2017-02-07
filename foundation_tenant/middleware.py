@@ -57,6 +57,12 @@ class TenantMeMiddleware(object):
                     tenant_me.image = TenantImageUpload.objects.create(
                         owner=request.user,
                     )
+
+                    # STEP 3: Update profile that staff users are managed by themselves.
+                    if tenant_me.is_employee():
+                        tenant_me.managed_by = tenant_me
+
+                    # STEP 4: SAVE
                     tenant_me.save()
         return self.get_response(request)
 

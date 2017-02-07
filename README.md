@@ -42,10 +42,10 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   python --version  # Should return Python 3.4+
   ```
 
-5. **OS X** USERS ONLY: (a) Check what Postgres.app version you are using. (b) For Postgres we need the following $PATH, so just type it in.
+5. **OS X** USERS ONLY: (a) Check what Postgres.app version you are using. (b) For Postgres we need the following $PATH, so just type it in. If you have a different version installed, please change it the `9.6` version to your current version.
 
   ```bash
-  export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+  export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH"
   ```
 
 6. Install the required Python libraries.
@@ -117,8 +117,10 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 
   ```bash
   python manage.py makemigrations;
+  python manage.py migrate;
   python manage.py migrate_schemas
   python manage.py populate_public
+  python manage.py setup_fixtures
   ```
 
 12. Setup your **root** user.
@@ -165,8 +167,8 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 
 2. Add the following:
   ```bash
-  127.0.0.1  smegurus.com
-  127.0.0.1  www.smegurus.com
+  127.0.0.1  smegurus.xyx
+  127.0.0.1  www.smegurus.xyz
   ```
 
 3. Restart the DNS:
@@ -223,4 +225,4 @@ python manage.py test api.tests.test_authentication
 
 #### Viewing Web-Application
 
-In your browser, load up: ```http://smegurus.com```.
+In your browser, load up: ```http://smegurus.xyz```.

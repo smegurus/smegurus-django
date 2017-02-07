@@ -1,30 +1,6 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
-<!-- PAGE JS -->
-{% compress js inline %}
-<script>
-    function ajax_submit() {
-        $("#id_submit_btn").attr('disabled','disabled'); // Disable button.
-        tenant_module_finish(
-            {{ module.id }},
-            function(json_result) {
-                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                //FIXED ISSUE 470
-                alert("{% trans 'You have submitted your work! Please wait for your advisor to review it.' %}")
-                window.location = "{% url 'tenant_workspace_master' workspace.id %}";
-            },
-            function(error_json_result) {
-                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                var string = JSON.stringify( error_json_result );
-                console.log(string);
-                alert(string);
-            }
-        ); // end FINISH
-    }
-</script>
-{% endcompress %}
-<!-- end PAGE JS -->
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
@@ -44,14 +20,11 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="jumbotron">
-                <h1>{% trans 'You are done!' %}</h1>
-                <p>{% trans 'You are ready to submit, click submit to generate a document and have an advisor review your work.' %}</p>
+                <h1>{% trans 'Finished' %}</h1>
+                <p>{% trans 'Your document is being generated. You will receive an email with a download link once it is ready. Click the next button to go back to your dashboard, or you will be automatically taken there in 10 seconds.' %}</p>
                 <p>
-                    <a role="button" class="btn btn-default btn-lg" href="{% url 'tenant_workspace_module_detail' workspace.id module.id last_node.current_position %}">
-                        {% trans 'Back' %}
-                    </a>
-                    <a id="id_submit_btn" role="button" class="btn btn-success btn-lg" onclick="ajax_submit();">
-                        {% trans 'Submit' %}
+                    <a role="button" class="btn btn-primary btn-lg" href="{% url 'tenant_workspace_master' workspace.id %}">
+                        {% trans 'Next' %}
                     </a>
                 </p>
             </div>

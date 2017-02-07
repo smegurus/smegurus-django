@@ -33,7 +33,6 @@ class Command(BaseCommand):
             'governmentbenefitoption.json',
             'identifyoption.json',
             'inforesourcecategory.json',
-            # 'module_dev.json', # DEVELOPMENT ONLY.
             'documenttype.json',
             'module_01.json',
             'module_02.json',
@@ -41,22 +40,34 @@ class Command(BaseCommand):
             'module_04.json',
             'module_05.json',
             'module_06.json',
+            'module_07.json',
+            'module_08.json',
+            'module_09.json',
             'slide_01.json',
             'slide_02.json',
             'slide_03.json',
             'slide_04.json',
             'slide_05.json',
             'slide_06.json',
-            #'question_dev.json', # DEVELOPMENT ONLY.
+            'slide_07.json',
+            'slide_08.json',
+            'slide_09.json',
             'question_01.json',
             'question_02.json',
             'question_03.json',
             'question_04.json',
             'question_05.json',
             'question_06.json',
+            'question_07.json',
+            'question_08.json',
+            'question_09.json',
             'notification.json'
         ]
 
         # Iterate through all the filenames and load them into database.
         for file_name in ordered_file_names:
             call_command('loaddata', file_name, verbosity=0, interactive=False)
+
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully populated tenant.'))
+        )

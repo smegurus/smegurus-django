@@ -15,135 +15,45 @@
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
-                    "id": 81,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 1
+                    "id": 2000,
+                    "type": "slide"
                 },{
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
-                    "id": 82,
+                    "id": 53,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 2
+                    "order_num": 1
                 },{
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
-                    "id": 83,
+                    "id": 54,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 3
+                    "order_num": 2
                 },{
                     "previous_position": 3,
                     "current_position": 4,
                     "next_position": 5,
-                    "id": 84,
+                    "id": 55,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 4
+                    "order_num": 3
                 },{
                     "previous_position": 4,
                     "current_position": 5,
-                    "next_position": 6,
-                    "id": 85,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 5
-                },{
-                    "previous_position": 5,
-                    "current_position": 6,
-                    "next_position": 7,
-                    "id": 86,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 6
-                },{
-                    "previous_position": 6,
-                    "current_position": 7,
-                    "next_position": 8,
-                    "id": 87,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 7
-                },{
-                    "previous_position": 7,
-                    "current_position": 8,
-                    "next_position": 9,
-                    "id": 88,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 8
-                },{
-                    "previous_position": 8,
-                    "current_position": 9,
-                    "next_position": 10,
-                    "id": 89,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 9
-                },{
-                    "previous_position": 9,
-                    "current_position": 10,
-                    "next_position": 11,
-                    "id": 90,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 10
-                },{
-                    "previous_position": 10,
-                    "current_position": 11,
-                    "next_position": 12,
-                    "id": 91,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 11
-                },{
-                    "previous_position": 11,
-                    "current_position": 12,
-                    "next_position": 13,
-                    "id": 92,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 12
-                },{
-                    "previous_position": 12,
-                    "current_position": 13,
-                    "next_position": 14,
-                    "id": 93,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 13
-                },{
-                    "previous_position": 13,
-                    "current_position": 14,
-                    "next_position": 15,
-                    "id": 94,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 14
-                },{
-                    "previous_position": 14,
-                    "current_position": 15,
-                    "next_position": 16,
-                    "id": 95,
-                    "type": "question",
-                    "document_type": 5,
-                    "order_num": 15
-                },{
-                    "previous_position": 15,
-                    "current_position": 16,
                     "next_position": -1,
-                    "id": 96,
+                    "id": 73,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 16
+                    "order_num": 4
                 }
             ],
-            "title": "Stage 5",
+            "title": "Stage 5: Developing My Idea",
             "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
-            "icon": "fa-television",
+            "icon": "icon-bulb",
             "colour": ""
         }
     }

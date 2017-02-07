@@ -118,7 +118,7 @@
                     function(json_error_result) {
                         enable_btn();
                         var string = JSON.stringify( json_error_result );
-                        console.log(error_result);
+                        console.log(json_error_result);
                         alert(string);
                     }
                 ); // end SET POSTALADDRESS
@@ -126,7 +126,7 @@
             function(json_error_result) {
                 enable_btn();
                 var string = JSON.stringify( json_error_result );
-                console.log(error_result);
+                console.log(json_error_result);
                 alert(string);
             }
         ); // end GET POSTALADDRESS

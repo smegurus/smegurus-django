@@ -1,12 +1,1498 @@
 [
     {
         "model": "foundation_tenant.question",
+        "pk": 31,
+        "fields": {
+            "document_type": 3,
+            "number": 21,
+            "title": "Will you offer mainly products, services, or both?",
+            "help": "Some businesses mainly offer products (like lemonade), others offer services (like web design). Some might offer both (plumbers install and fix things). Please choose the option that best fits your business.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Products",
+                        "text": "Products"
+                    },
+                    {
+                        "value": "Services",
+                        "text": "Services"
+                    },
+                    {
+                        "value": "Products and Services",
+                        "text": "Products and Services"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select"
+            },
+            "content": {},
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 32,
+        "fields": {
+            "document_type": 3,
+            "number": 22,
+            "title": "Please list at least 1, but up to 3 product or service categories that you will offer.",
+            "help": "Here we need to know your product <b>categories<\/b>. For example, a restaurant could have dozens of menu items, but normally sells breakfast, lunch, and dinner. So, rather then entering every item you sell, just tell us Breakfast, Lunch, Dinner.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "1.",
+                "stub_2": "2.",
+                "stub_3": "3."
+            },
+            "dependency": {},
+            "validation": {
+                "first_required": true,
+                "second_required": false,
+                "third_required": false,
+                "min_length": 1,
+                "min_length_error_message": "Please enter at minimum 1 characters.",
+                "max_length": 75,
+                "max_length_error_message": "Please enter at maximum 75 characters."
+            },
+            "type_id": 26
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 33,
+        "fields": {
+            "document_type": 3,
+            "number": 23,
+            "title": "What type of customer will your business serve?",
+            "help": "Please describe the type of customer that you plan to seel to by choosing an option from the list.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "A type of person",
+                        "text": "A type of person"
+                    },
+                    {
+                        "value": "A business",
+                        "text": "A business"
+                    },
+                    {
+                        "value": "Group of people",
+                        "text": "Group of people"
+                    },
+                    {
+                        "value": "Government/Institutions",
+                        "text": "Government/Institutions"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 34,
+        "fields": {
+            "document_type": 3,
+            "number": 24,
+            "title": "What is the opportunity you are taking advantage of or problem you seek to solve?",
+            "help": "People often pay for solutions to their problems. Choose or enter your own item which best explains the opportunity you seek or the problem that you will solve for your customers.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Something that can be made more efficient",
+                        "text": "Something that can be made more efficient"
+                    },
+                    {
+                        "value": "A market opportunity that exists because no other product or service like it",
+                        "text": "A market opportunity that exists because no other product or service like it"
+                    },
+                    {
+                        "value": "A problem you are solving",
+                        "text": "A problem you are solving"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 35,
+        "fields": {
+            "document_type": 3,
+            "number": 25,
+            "title": "Why is no one else doing this yet?",
+            "help": "Many people have business ideas but rarely follow through on them. Now that you have your idea, why do you feel that others may not try to do the same thing?",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "It is too expensive",
+                        "text": "It is too expensive"
+                    },
+                    {
+                        "value": "The market is very niche",
+                        "text": "The market is very niche"
+                    },
+                    {
+                        "value": "The industry has high barriers to entry",
+                        "text": "The industry has high barriers to entry"
+                    },
+                    {
+                        "value": "The industry is misunderstood",
+                        "text": "The industry is misunderstood"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 36,
+        "fields": {
+            "document_type": 3,
+            "number": 26,
+            "title": "How will you solve the problem?",
+            "help": "Now that we know more about the problem you are trying to solve for your customer, be specific in how you will solve it.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "a unique customer experience",
+                        "text": "a unique customer experience"
+                    },
+                    {
+                        "value": "customizable products and services",
+                        "text": "customizable products and services"
+                    },
+                    {
+                        "value": "specialized products geared towards a consumer's lifestyle",
+                        "text": "specialized products geared towards a consumer's lifestyle"
+                    },
+                    {
+                        "value": "great food at a low cost",
+                        "text": "great food at a low cost"
+                    },
+                    {
+                        "value": "great food in a family-friendly atmosphere",
+                        "text": "great food in a family-friendly atmosphere"
+                    },
+                    {
+                        "value": "great food and a good ambience",
+                        "text": "great food and a good ambience"
+                    },
+                    {
+                        "value": "a low cost technology solution",
+                        "text": "a low cost technology solution"
+                    },
+                    {
+                        "value": "a customer friendly technology solution",
+                        "text": "a customer friendly technology solution"
+                    },
+                    {
+                        "value": "a flexible technology solution",
+                        "text": "a flexible technology solution"
+                    },
+                    {
+                        "value": "low cost solutions",
+                        "text": "low cost solutions"
+                    },
+                    {
+                        "value": "solutions that improve the quality of life for the customer",
+                        "text": "solutions that improve the quality of life for the customer"
+                    },
+                    {
+                        "value": "a great service for a reasonable cost",
+                        "text": "a great service for a reasonable cost"
+                    },
+                    {
+                        "value": "a do-it-yourself (DIY) solution",
+                        "text": "a do-it-yourself (DIY) solution"
+                    },
+                    {
+                        "value": "a direct to consumer solution",
+                        "text": "a direct to consumer solution"
+                    },
+                    {
+                        "value": "a feasible solution that cuts costs",
+                        "text": "a feasible solution that cuts costs"
+                    },
+                    {
+                        "value": "a feasible solution that enhances service",
+                        "text": "a feasible solution that enhances service"
+                    },
+                    {
+                        "value": "a feasible solution that is accessible to customers",
+                        "text": "a feasible solution that is accessible to customers"
+                    },
+                    {
+                        "value": "an inexpensive product or service",
+                        "text": "an inexpensive product or service"
+                    },
+                    {
+                        "value": "a luxury solution for high-end customers",
+                        "text": "a luxury solution for high-end customers"
+                    },
+                    {
+                        "value": "replacing a complicated process with an app",
+                        "text": "replacing a complicated process with an app"
+                    },
+                    {
+                        "value": "an experience where customers are treated as unique",
+                        "text": "an experience where customers are treated as unique"
+                    },
+                    {
+                        "value": "handmade local products",
+                        "text": "handmade local products"
+                    },
+                    {
+                        "value": "homegrown local products",
+                        "text": "homegrown local products"
+                    },
+                    {
+                        "value": "tested solutions",
+                        "text": "tested solutions"
+                    },
+                    {
+                        "value": "mature solutions",
+                        "text": "mature solutions"
+                    },
+                    {
+                        "value": "simplified customer choices",
+                        "text": "simplified customer choices"
+                    },
+                    {
+                        "value": "enhanced customer service",
+                        "text": "enhanced customer service"
+                    },
+                    {
+                        "value": "a socially responsible solution",
+                        "text": "a socially responsible solution"
+                    },
+                    {
+                        "value": "a collaborative solution",
+                        "text": "a collaborative solution"
+                    },
+                    {
+                        "value": "support for legacy technologies",
+                        "text": "support for legacy technologies"
+                    },
+                    {
+                        "value": "modernized processes",
+                        "text": "modernized processes"
+                    },
+                    {
+                        "value": "efficient processes",
+                        "text": "efficient processes"
+                    },
+                    {
+                        "value": "a solution that meets the needs of all customers",
+                        "text": "a solution that meets the needs of all customers"
+                    },
+                    {
+                        "value": "a solution that meets the needs of the target market",
+                        "text": "a solution that meets the needs of the target market"
+                    },
+                    {
+                        "value": "a locally sourced solution",
+                        "text": "a locally sourced solution"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 74,
+        "fields": {
+            "document_type": 3,
+            "number": 64,
+            "title": "How will you convince them to buy from you?",
+            "help": "People face many choices in today’s world. How will you show them that your option is the best? Think about items that you can provide them with to educate them, deals that you can give them to try your product or service out, or other ways to convince them.",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "Information to guide decision making",
+                        "text": "Information to guide decision making"
+                    },
+                    {
+                        "id": "2",
+                        "value": "Deals/Coupons/New customer specials",
+                        "text": "Deals/Coupons/New customer specials"
+                    },
+                    {
+                        "id": "3",
+                        "value": "Social media page or group",
+                        "text": "Social media page or group"
+                    },
+                    {
+                        "id": "4",
+                        "value": "Speaking to a customer about my products or services",
+                        "text": "Speaking to a customer about my products or services"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Networking",
+                        "text": "Networking"
+                    },
+                    {
+                        "id": "6",
+                        "value": "Engagement on social media",
+                        "text": "Engagement on social media"
+                    },
+                    {
+                        "id": "7",
+                        "value": "Our product is an impulse buy",
+                        "text": "Our product is an impulse buy"
+                    },
+                    {
+                        "id": "8",
+                        "value": "Our product is a staple",
+                        "text": "Our product is a staple"
+                    },
+                    {
+                        "id": "9",
+                        "value": "Our product is high-end",
+                        "text": "Our product is high-end"
+                    },
+                    {
+                        "id": "10",
+                        "value": "Our product is value-priced",
+                        "text": "Our product is value-priced"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 37,
+        "fields": {
+            "document_type": 3,
+            "number": 27,
+            "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
+            "help": "All industries are affected by political, economic, social, technological and environmental issues. Think of 5-10 that could impact your business. Then, using the first dropdown choose the type of trend, and in the second choose the details.  Then click \"Add +\". Be sure to do this until you have at least 5 items.",
+            "options": {
+                "opt1": [
+                    "Political",
+                    "Economic",
+                    "Social",
+                    "Technological",
+                    "Environmental"
+                ],
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "parent": "Political",
+                        "choices": [
+                            "Political Trend 1",
+                            "Political Trend 2",
+                            "Political Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Economic",
+                        "choices": [
+                            "Economic Trend 1",
+                            "Economic Trend 2",
+                            "Economic Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Social",
+                        "choices": [
+                            "Social Trend 1",
+                            "Social Trend 2",
+                            "Social Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Technological",
+                        "choices": [
+                            "Tech Trend 1",
+                            "Tech Trend 2",
+                            "Tech Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Environmental",
+                        "choices": [
+                            "Environmental Trend 1",
+                            "Environmental Trend 2",
+                            "Environmental Trend 3",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                    {
+                        "parent": "Other (Please Specify)",
+                        "choices": [
+                            "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select"
+            },
+            "content": {
+                "stub_1": "Major Issue",
+                "stub_2": "Trend",
+                "stub_3": "Remove",
+                "stub_4": "Please pick a major issue...",
+                "stub_5": "Please pick a trend...",
+                "stub_6": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 issues.",
+                "max": 10,
+                "max_error_message": "Please pick no more then 10 issues.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at least 2 characters.",
+                "opt2_other_max_length": 75,
+                "opt2_other_max_length_error_message": "Please enter at most 75 characters."
+            },
+            "type_id": 33
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 38,
+        "fields": {
+            "document_type": 3,
+            "number": 28,
+            "title": "Provide 5 specific sources (articles, websites, studies, statistics) where you have found information that supports your idea:",
+            "help": "Your advisor will want to know where you found important research information about your business and your industry. Please list 5 specific sources. Be very specific - it is not enough to say \"website\" or \"magazine article\"; we need you to give us something like \"Statistics Canada\" or \"CPA Magazine\".",
+            "options": {},
+            "content": {
+                "stub_1": "Research Sources",
+                "stub_2": "Remove",
+                "stub_3": "Source",
+                "stub_4": "ex: Wikipedia",
+                "stub_5": "Add Source"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 sources for your research.",
+                "max": 15,
+                "max_error_message": "Please pick no more then 15 sources for your research."
+            },
+            "type_id": 29
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 39,
+        "fields": {
+            "document_type": 3,
+            "number": 29,
+            "title": "What is the geographic market that your business will serve? (Part 1 of 2)",
+            "help": "Here we need you to tell us where you will be selling. A pizzeria might sell in London, Ontario, while an e-Commerce site might sell to the online market. Please choose the best option, then continue to the next step.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Neighbourhood",
+                        "text": "Neighbourhood"
+                    },
+                    {
+                        "value": "City",
+                        "text": "City"
+                    },
+                    {
+                        "value": "Region",
+                        "text": "Region"
+                    },
+                    {
+                        "value": "Province or State",
+                        "text": "Province or State"
+                    },
+                    {
+                        "value": "Country",
+                        "text": "Country"
+                    },
+                    {
+                        "value": "Global",
+                        "text": "Global"
+                    },
+                    {
+                        "value": "Online",
+                        "text": "Online"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 40,
+        "fields": {
+            "document_type": 3,
+            "number": 30,
+            "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
+            "help": "Depending on your choice for the last question, please add more details to complete your answer.",
+            "options": [
+                {
+                    "name": "Neighbourhood",
+                    "type": "textfield",
+                    "placeholder": "ex: Downtown, SOHO"
+                },
+                {
+                    "name": "City",
+                    "type": "textfield",
+                    "placeholder": "ex: London"
+                },
+                {
+                    "name": "Region",
+                    "type": "textfield",
+                    "placeholder": "ex: SW Ontario, East Texas"
+                },
+                {
+                    "name": "Province or State",
+                    "type": "selectionfield",
+                    "choices": [
+                        "Alberta",
+                        "British Columbia",
+                        "Manitoba",
+                        "New Brunswick",
+                        "Newfoundland and Labrador",
+                        "Nova Scotia",
+                        "Ontario",
+                        "Prince Edward Island",
+                        "Quebec",
+                        "Saskatchewan",
+                        "Northwest Territories",
+                        "Nunavut",
+                        "Yukon",
+                        "Alabama",
+                        "Alaska",
+                        "Arizona",
+                        "California",
+                        "Colorado",
+                        "Connecticut",
+                        "Delaware",
+                        "District of Columbia",
+                        "Florida",
+                        "Georgia",
+                        "Hawaii",
+                        "Idaho",
+                        "Illinois",
+                        "Indiana",
+                        "Iowa",
+                        "Kansas",
+                        "Kentucky",
+                        "Louisiana",
+                        "Maine",
+                        "Maryland",
+                        "Massachusetts",
+                        "Michigan",
+                        "Minnestoa",
+                        "Mississippi",
+                        "Missouri",
+                        "Montana",
+                        "Nebraska",
+                        "Nevada",
+                        "New Hampshire",
+                        "New Jersey",
+                        "New Mexico",
+                        "New York",
+                        "North Carolina",
+                        "North Dakota",
+                        "Ohio",
+                        "Oklahoma",
+                        "Oregon",
+                        "Pennsylvania",
+                        "Rhode Island",
+                        "South Carolina",
+                        "South Dakota",
+                        "Tennessee",
+                        "Texas",
+                        "Utah",
+                        "Vermont",
+                        "Washington",
+                        "Wester Virginia",
+                        "Wisconsin",
+                        "Wyoming",
+                        "Vermont",
+                        "American Samoa",
+                        "Guam",
+                        "Northern Mariana Islands",
+                        "Puerto Rico",
+                        "U.S. Virgin Islands",
+                        "Aguascalientes",
+                        "Baja California",
+                        "Baja California Sur",
+                        "Capeche",
+                        "Coahuila de Zaragoza",
+                        "Colima",
+                        "Chiapas",
+                        "Chihuahua",
+                        "Distrito Federal",
+                        "Durango",
+                        "Guanajuato",
+                        "Guerrero",
+                        "Hidalgo",
+                        "Jalisco",
+                        "México",
+                        "Michoacán de Ocampo",
+                        "Morelos",
+                        "Nayarit",
+                        "Nuevo León",
+                        "Oaxaca",
+                        "Puebla",
+                        "Querétaro",
+                        "Quintana Roo",
+                        "San Luis Potosí",
+                        "Sinaloa",
+                        "Sonora",
+                        "Tabasco",
+                        "Tamaulipas",
+                        "Tlaxcala",
+                        "Veracruz de Ignacio de la Llave",
+                        "Yucatán",
+                        "Zacatecas",
+                        "Other (Please Specify)"
+                    ]
+                },
+                {
+                    "name": "Country",
+                    "type": "selectionfield",
+                    "choices": [
+                        "United States",
+                        "Canada",
+                        "México",
+                        "Other (Please Specify)"
+                    ]
+                },
+                {
+                    "name": "Global",
+                    "type": "blankfield",
+                    "stub": "You have selected \"Global\", that means the entire physical world is your geographic target. If you are certain, press the \"Next\" button to continue."
+                },
+                {
+                    "name": "Online",
+                    "type": "blankfield",
+                    "stub": "You have selected \"Online\", that means the entire online world is your geographic target. If you are certain, press the \"Next\" button to continue."
+                },
+                {
+                    "name": "Other (Please Specify)",
+                    "type": "textfield",
+                    "placeholder": "ex: Downtown, SOHO"
+                }
+            ],
+            "content": {},
+            "dependency": {
+                "previous_question_id": 39
+            },
+            "validation": {},
+            "type_id": 9
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 41,
+        "fields": {
+            "document_type": 3,
+            "number": 31,
+            "title": "What is the total value of the industry in your target market area (expressed in dollars)?",
+            "help": "Your advisor will want to understand the potential opportunity for your business. You will need to research how much your entire industry sells in one year. You can use Government sites such as Industry Canada, or results from Google. For example, in 2014 the Comic Book Industry for independent publishers was worth approximately $65 Million.  Find the value for your industry and enter it here.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "",
+                "stub_2": "Please write the total value here..."
+            },
+            "dependency": {},
+            "validation": {
+                "type": "integerfield",
+                "min_length": 0,
+                "min_length_error_message": "-",
+                "max_length": 0,
+                "max_length_error_message": "-",
+                "min_num": 0,
+                "min_num_error_message": "Please enter a number greater than zero.",
+                "max_num": 9999999999,
+                "max_num_error_message": "Please enter a number less than 9999999999"
+            },
+            "type_id": 21
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 42,
+        "fields": {
+            "document_type": 3,
+            "number": 32,
+            "title": "Is the size of your industry increasing, decreasing, or staying the same?",
+            "help": "Your advisor will want to know if your industry is growing, shrinking or staying the same. Answering this question will require some research on your part, so don’t be afraid to take sometime to review various information sources.  Once you can determine if the industry is changing, then please tell us by how much as a percent.",
+            "options": {
+                "opt1": [
+                    "increasing",
+                    "decreasing",
+                    "staying the same"
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "parent": "increasing",
+                        "choices": [
+                            "1%",
+                            "2%",
+                            "3%",
+                            "4%",
+                            "5%",
+                            "6%",
+                            "7%",
+                            "8%",
+                            "9%",
+                            "10%",
+                            "15%",
+                            "20%",
+                            "25%",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "decreasing",
+                        "choices": [
+                            "1%",
+                            "2%",
+                            "3%",
+                            "4%",
+                            "5%",
+                            "6%",
+                            "7%",
+                            "8%",
+                            "9%",
+                            "10%",
+                            "15%",
+                            "20%",
+                            "25%",
+                            "other"
+                        ]
+                    },
+                    {
+                        "parent": "staying the same",
+                        "choices": [
+                            "0"
+                        ]
+                    }
+                ],
+                "opt2_other": "other",
+                "opt2_select": "Select"
+            },
+            "content": {
+                "stub_1": "1",
+                "stub_2": "2"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 issues.",
+                "max": 10,
+                "max_error_message": "Please pick no more then 10 issues.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 30
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 43,
+        "fields": {
+            "document_type": 3,
+            "number": 33,
+            "title": "How many <i>potential<\/i> customers exist in your market area for your product?",
+            "help": "Now that we know your geographic market, how many people are within it that could buy from you? Let’s suppose that you live in a city of 100,000 people and you believe that other businesses will want to buy from you. If there are 1,000 businesses, then these would be your potential customers. Remember to be realistic or no one will believe you.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "1,000",
+                        "text": "1,000"
+                    },
+                    {
+                        "value": "2,500",
+                        "text": "2,500"
+                    },
+                    {
+                        "value": "5,000",
+                        "text": "5,000"
+                    },
+                    {
+                        "value": "10,000",
+                        "text": "10,000"
+                    },
+                    {
+                        "value": "25,000",
+                        "text": "25,000"
+                    },
+                    {
+                        "value": "50,000",
+                        "text": "50,000"
+                    },
+                    {
+                        "value": "100,000",
+                        "text": "100,000"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 20,
+                "opt1_other_max_length_error_message": "Please enter at maximum 20 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 44,
+        "fields": {
+            "document_type": 3,
+            "number": 34,
+            "title": "How competitive is your industry?",
+            "help": "Think about the level of competition in your industry, then describe it using the choices below.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "very competitive",
+                        "text": "very competitive"
+                    },
+                    {
+                        "value": "moderately competitive",
+                        "text": "moderately competitive"
+                    },
+                    {
+                        "value": "emerging with few competitors",
+                        "text": "emerging with few competitors"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 45,
+        "fields": {
+            "document_type": 3,
+            "number": 35,
+            "title": "This industry require levels of customer services that are...",
+            "help": "What we need to know is how good does your customer service need to be so that you can compete against others?",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "low",
+                        "text": "low"
+                    },
+                    {
+                        "value": "medium",
+                        "text": "medium"
+                    },
+                    {
+                        "value": "high",
+                        "text": "high"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 46,
+        "fields": {
+            "document_type": 3,
+            "number": 36,
+            "title": "How much do prices vary in this industry?",
+            "help": "Think about how different prices are from competitor to competitor. For example, if you make toothpicks, they all generally cost the same. If you sell make up, it could range from dollar store options to expensive luxury brands. Choose the option that best fits your industry.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "little",
+                        "text": "little"
+                    },
+                    {
+                        "value": "significant",
+                        "text": "a lot"
+                    },
+                    {
+                        "value": "no",
+                        "text": "they do not vary"
+                    }
+                ],
+                "opt1_other": "other",
+                "opt1_select": "Select"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 63,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 4
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 47,
+        "fields": {
+            "document_type": 3,
+            "number": 37,
+            "title": "List up to 5 direct competitors",
+            "help": "Your advisor will want to understand your industry better. Part of this is having a list of businesses that are similar to yours. Also give details on each competitor. Please list 5.",
+            "options": {
+                "opt1": [
+                    "0-5 km",
+                    "5-10 km",
+                    "10-25 km",
+                    "25-50 km",
+                    "50-100 km",
+                    "100 km+",
+                    "online",
+                    "location not relevant to industry"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    "Major",
+                    "Minor"
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select",
+                "opt3": [
+                    "Average",
+                    "Value",
+                    "Premium"
+                ],
+                "opt3_other": "Other (Please Specify)",
+                "opt3_select": "Select",
+                "opt4": [
+                    "Low",
+                    "Medium",
+                    "High"
+                ],
+                "opt4_other": "Other (Please Specify)",
+                "opt4_select": "Select",
+                "opt5": [
+                    "Strong management team",
+                    "Long history in the industry",
+                    "Dedicated customers",
+                    "Other (Please Specify)"
+                ],
+                "opt5_other": "Other (Please Specify)",
+                "opt5_select": "Select",
+                "opt6": [
+                    "Niche target market",
+                    "Focus on diverse product",
+                    "Exceptional customer service",
+                    "Excellent management",
+                    "High Operational efficiency",
+                    "Other (Please Specify)"
+                ],
+                "opt6_other": "Other (Please Specify)",
+                "opt6_select": "Select"
+            },
+            "content": {
+                "stub_1": "Name",
+                "stub_2": "Proximityy",
+                "stub_3": "Market Share",
+                "stub_4": "Pricing",
+                "stub_5": "Customer Service",
+                "stub_6": "Main Strength",
+                "stub_7": "How We Will Compete",
+                "stub_8": "Name",
+                "stub_9": "ex: Dave's Bookstore",
+                "stub_10": "Proximityy",
+                "stub_11": "Market Share",
+                "stub_12": "Pricing",
+                "stub_13": "Customer Service",
+                "stub_14": "Main Strength",
+                "stub_15": "How We Will Compete",
+                "stub_16": "Add Competitor"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 competitors.",
+                "max": 15,
+                "max_error_message": "Please pick no more than 15 competitors."
+            },
+            "type_id": 16
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 48,
+        "fields": {
+            "document_type": 3,
+            "number": 38,
+            "title": "List up to 5 indirect competitors",
+            "help": "Your advisor will want to understand your industry better. Part of this is having a list of businesses that are not exactly like yours, but that could have similar customers. Please list 5.",
+            "options": {
+                "opt1": [
+                    "0-5 km",
+                    "5-10 km",
+                    "10-25 km",
+                    "25-50 km",
+                    "50-100 km",
+                    "100 km+",
+                    "online",
+                    "location not relevant to industry"
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    "Major",
+                    "Minor"
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select",
+                "opt3": [
+                    "Average",
+                    "Value",
+                    "Premium"
+                ],
+                "opt3_other": "Other (Please Specify)",
+                "opt3_select": "Select",
+                "opt4": [
+                    "Low",
+                    "Medium",
+                    "High"
+                ],
+                "opt4_other": "Other (Please Specify)",
+                "opt4_select": "Select",
+                "opt5": [
+                    "Strong management team",
+                    "Long history in the industry",
+                    "Dedicated customers",
+                    "Other (Please Specify)"
+                ],
+                "opt5_other": "Other (Please Specify)",
+                "opt5_select": "Select",
+                "opt6": [
+                    "Niche target market",
+                    "Focus on diverse product",
+                    "Exceptional customer service",
+                    "Excellent management",
+                    "High Operational efficiency",
+                    "Other (Please Specify)"
+                ],
+                "opt6_other": "Other (Please Specify)",
+                "opt6_select": "Select"
+            },
+            "content": {
+                "stub_1": "Name",
+                "stub_2": "Proximityy",
+                "stub_3": "Market Share",
+                "stub_4": "Pricing",
+                "stub_5": "Customer Service",
+                "stub_6": "Main Strength",
+                "stub_7": "How We Will Compete",
+                "stub_8": "Name",
+                "stub_9": "ex: Dave's Bookstore",
+                "stub_10": "Proximityy",
+                "stub_11": "Market Share",
+                "stub_12": "Pricing",
+                "stub_13": "Customer Service",
+                "stub_14": "Main Strength",
+                "stub_15": "How We Will Compete",
+                "stub_16": "Add Competitor"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 5,
+                "min_error_message": "Please pick at least 5 competitors.",
+                "max": 15,
+                "max_error_message": "Please pick no more than 15 competitors."
+            },
+            "type_id": 16
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 49,
+        "fields": {
+            "document_type": 3,
+            "number": 39,
+            "title": "My target market is based on...",
+            "help": "Now we need to learn more about who you are hoping to sell to. First tell us a type, then use the next two dropdowns to better describe them. For example, you might want to target families with a good income. You could select Households, Income, and then the income bracket that best fits your ideal customers.",
+            "options": {
+                "opt1": ["Household type", "Individuals", "Businesses/nonprofits", "Government"],
+                "opt1_select": "Select",
+                "opt1_other": "Other (Please Specify)",
+                "opt2": [
+                    {
+                        "parent": "Political",
+                        "choices": ["Household type", "Individuals", "Businesses/nonprofits", "Government"]
+                    },
+                    {
+                        "parent": "Household type",
+                        "choices": [
+                            "Age",
+                            "Income",
+                            "Trait",
+                            "Location"
+                        ]
+                    },
+                    {
+                        "parent": "Individuals",
+                        "choices": [
+                            "Age",
+                            "Gender",
+                            "Income",
+                            "Trait",
+                            "Location"
+                        ]
+                    },
+                    {
+                        "parent": "Businesses/nonprofits",
+                        "choices": [
+                            "Who are",
+                            "Industry",
+                            "Specializing in",
+                            "With"
+                        ]
+                    },
+                    {
+                        "parent": "Government",
+                        "choices": [
+                            "Type",
+                            "Who are (gov)",
+                            "Focus (gov)"
+                        ]
+                    }
+                ],
+                "opt2_select": "Select",
+                "opt2_other": "Other (Please Specify)",
+                "opt3": [
+                    {
+                        "parent": "Age",
+                        "choices": [
+                            "of all ages", "children", "aged 12-17", "aged 17 and under", "aged 18-34", "aged 20-29", "aged 30-39", "aged 40-49", "aged 50-59", "aged 60-69", "age 55+", "age 65+", "age 70+", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Income",
+                        "choices": [
+                            "0-$24,999", "$25,000-$49,999", "$50,000-$74,999", "$75,000-$99,999", "$100,000+"
+                        ]
+                    },{
+                        "parent": "Trait",
+                        "choices": [
+                            "who are immigrants", "who are Spanish speaking", "who are Chinese speaking", "who are English speaking", "who are single income", "who are dual income", "who are professionals", "who are educated", "singles", "single professionals", "couples with no children", "couples with young children", "couples with teenagers", "couples with adult children living at home", "empty nesters", "Baby Boomers", "Millennials", "Gen X", "Gen Y", "Gen Z",
+                            "The Silent Generation", "large families", "small families", "single mothers", "single fathers", "divorced individuals", "retirees", "widows", "who are health conscious", "who are environmentally conscious", "who are socially conscious", "who are rural dwellers", "who are urbanites", "who are luddites", "who are technophiles", "who are Catholic", "who are Christian", "who are Muslim", "who are Jewish", "Other (Please Specify)"
+
+                        ]
+                    },{
+                        "parent": "Location",
+                        "choices": [
+                            "who live within a 5 minute drive of our location", "who live in our city", "who walk by our location regularly", "who make special trips to come visit us", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Gender",
+                        "choices": [
+                             "Males", "Females", "Males and Females", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Who are",
+                        "choices": [
+                             "wholesalers", "retailers", "restaurants", "web developers", "engineers", "accountants", "lawyers", "doctors", "medical professionals", "athletes", "consultants", "trainers", "teachers", "farmers", "nonprofits", "charities", "sports clubs", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Industry",
+                        "choices": [
+                            "the restaurant industry", "the financial services industry", "the health and beauty industry", "the manufacturing industry", "the agricultural industry", "the IT industry", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Specializing in",
+                        "choices": [
+                            "corporate clients", "high networth clients", "socially minded clients", "connoisseurs", "high growth firms", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "With",
+                        "choices": [
+                            "gross annual sales of $250,000+", "gross annual sales of $500,000+", "gross annual sales of $1,000,000+", "gross annual sales of $10,000,000+", "1-10 employees", "11-20 employees", "21-49 employees", "50-99 employees", "100 or more employees", "several locations", "international locations", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Type",
+                        "choices": [
+                            "Municipal Governments", "County Governments", "Provincial Governments", "State Governments", "National Governments", "Government Agencies", "Military", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Who are (gov)",
+                        "choices": [
+                            "Municipal Governments", "National Governments", "Other (Please Specify)"
+                        ]
+                    },{
+                        "parent": "Focus (gov)",
+                        "choices": [
+                            "focused on education", "focused on health", "focused on economic development", "focused on technology", "focused on innovation", "focused on infrastructure", "Other (Please Specify)"
+                        ]
+                    }
+                ],
+                "opt3_select": "Select",
+                "opt3_other": "Other (Please Specify)"
+            },
+            "content": {
+                "stub_1": "Type",
+                "stub_2": "Trait 1",
+                "stub_3": "Trait 2",
+                "stub_4": "Remove",
+                "stub_5": "Type",
+                "stub_6": "Trait 1",
+                "stub_7": "Trait 2",
+                "stub_8": "Add Target Martket",
+                "stub_9": "Column #9"
+            },
+            "dependency": {},
+            "validation": {
+                "min": 1,
+                "min_error_message": "Please pick at least 1 target market.",
+                "max": 15,
+                "max_error_message": "Please pick no more than 15 target markets.",
+                "opt2_other_min_length": 2,
+                "opt2_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt2_other_max_length": 63,
+                "opt2_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 28
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 50,
+        "fields": {
+            "document_type": 3,
+            "number": 40,
+            "title": "How do customers make buying decisions in this industry",
+            "help": "Think of how customers in your industry make buying decisions. Something like an icecream cone might be something they just see and decide they want (impulse buy).  If they are deciding to buy something like a car, then they will probably take more time and look for one specific item when choosing which car they want. Try to put yourself in the customer's shoes and choose the one that best fits.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "as an impulse buy",
+                        "text": "as an impulse buy"
+                    },
+                    {
+                        "value": "based on research",
+                        "text": "based on research"
+                    },
+                    {
+                        "value": "based on the cost",
+                        "text": "based on the cost"
+                    },
+                    {
+                        "value": "based on the value",
+                        "text": "based on the value"
+                    },
+                    {
+                        "value": "based on their unique needs",
+                        "text": "based on their unique needs"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 51,
+        "fields": {
+            "document_type": 3,
+            "number": 41,
+            "title": "Are your target customers price sensitive?",
+            "help": "When we say price sensitivity, we are asking how much your customers care about the cost of a product or service.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "are price sensitive",
+                        "text": "Yes"
+                    },
+                    {
+                        "value": "are not price sensitive",
+                        "text": "No"
+                    }
+                ],
+                "opt1_other": "other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
         "pk": 52,
         "fields": {
             "document_type": 3,
             "number": 42,
             "title": "My target market will buy from me because I offer them...",
-            "help": "This is some generic help text.",
+            "help": "Why do you think your customer will choose you over a competitor?",
             "options": {
                 "opt1": [
                     {
@@ -49,38 +1535,38 @@
             },
             "type_id": 4
         }
-    },
-    {
+    },{
         "model": "foundation_tenant.question",
-        "pk": 53,
+        "pk": 151,
         "fields": {
             "document_type": 3,
             "number": 43,
-            "title": "How many people will I contact or try to reach in total?",
-            "help": "This is some generic help text.",
+            "title": "My customers will purchase my products or services from me ...",
+            "help": "Where will your customers buy from you?",
             "options": {
                 "opt1": [
                     {
-                        "value": "10",
-                        "text": "10"
-                    },
-                    {
-                        "value": "20",
-                        "text": "20"
-                    },
-                    {
-                        "value": "30",
-                        "text": "30"
-                    },
-                    {
-                        "value": "40",
-                        "text": "40"
-                    },
-                    {
-                        "value": "50",
-                        "text": "50"
-                    },
-                    {
+                        "value": "Directly through a website",
+                        "text": "Directly through a website"
+                    },{
+                        "value": "Directly at my store",
+                        "text": "Directly at my store"
+                    },{
+                        "value": "Directly at my place of business",
+                        "text": "Directly at my place of business"
+                    },{
+                        "value": "Directly at my manufacturing facility",
+                        "text": "Directly at my manufacturing facility"
+                    },{
+                        "value": "Directly at their place of business",
+                        "text": "Directly at their place of business"
+                    },{
+                        "value": "Indirectly through a distributor",
+                        "text": "Indirectly through a distributor"
+                    },{
+                        "value": "Indirectly through another retailer",
+                        "text": "Indirectly through another retailer"
+                    },{
                         "value": "Other",
                         "text": "Other"
                     }
@@ -89,298 +1575,16 @@
                 "opt1_select": "Select"
             },
             "content": {
-                "stub_1": ""
-            },
-            "dependency": {},
-            "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
-            "type_id": 4
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 54,
-        "fields": {
-            "document_type": 3,
-            "number": 44,
-            "title": "How will you reach people?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "I can talk to customers and ask them key questions relating to each of these assumptions",
-                        "text": "I can talk to customers and ask them key questions relating to each of these assumptions"
-                    },
-                    {
-                        "value": "I can set up a fake website that uses Google, LinkedIn, Facebook or Bing key words",
-                        "text": "I can set up a fake website that uses Google, LinkedIn, Facebook or Bing key words"
-                    },
-                    {
-                        "value": "I can talk to people in the industry, suppliers, partners and association members and ask their opinion",
-                        "text": "I can talk to people in the industry, suppliers, partners and association members and ask their opinion"
-                    },
-                    {
-                        "value": "I can talk to people who currently work in this sector and ask their opinion",
-                        "text": "I can talk to people who currently work in this sector and ask their opinion"
-                    },
-                    {
-                        "value": "I can survey friends and family and ask what they would pay",
-                        "text": "I can survey friends and family and ask what they would pay"
-                    },
-                    {
-                        "value": "I can survey people I don't know",
-                        "text": "I can survey people I don't know"
-                    },
-                    {
-                        "value": "I can set up an online survey and email it to people",
-                        "text": "I can set up an online survey and email it to people"
-                    },
-                    {
-                        "value": "Other",
-                        "text": "Other"
-                    }
-                ],
-                "opt1_other": "Other"
-            },
-            "content": {
                 "opt1_other_stub": "Other",
                 "opt1_other_type": "textfield"
             },
-            "dependency": {},
             "validation": {
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
                 "opt1_other_max_length": 50,
                 "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
-            "type_id": 1
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 55,
-        "fields": {
-            "document_type": 3,
-            "number": 45,
-            "title": "How many of them need to agree that my idea is a good one?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "5",
-                        "text": "5"
-                    },
-                    {
-                        "value": "6",
-                        "text": "6"
-                    },
-                    {
-                        "value": "7",
-                        "text": "7"
-                    },
-                    {
-                        "value": "8",
-                        "text": "8"
-                    },
-                    {
-                        "value": "9",
-                        "text": "9"
-                    },
-                    {
-                        "value": "10",
-                        "text": "10"
-                    },
-                    {
-                        "value": "Other",
-                        "text": "Other"
-                    }
-                ],
-                "opt1_other": "Other",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": ""
-            },
-            "dependency": {},
-            "validation": {
-                "opt1_other_min_length": 2,
-                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
-                "opt1_other_max_length": 63,
-                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
-            },
             "type_id": 4
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 56,
-        "fields": {
-            "document_type": 3,
-            "number": 46,
-            "title": "What was the total number of people that you contacted? (Part 1 of 2)",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [],
-                "opt1_other": "Other"
-            },
-            "content": {
-                "stub_1": "",
-                "stub_2": "Please write your total number of people you contacted..."
-            },
-            "dependency": {},
-            "validation": {
-                "type": "integerfield",
-                "min_length": 0,
-                "min_length_error_message": "-",
-                "max_length": 0,
-                "max_length_error_message": "-",
-                "min_num": 0,
-                "min_num_error_message": "-",
-                "max_num": 100,
-                "max_num_error_message": "-"
-            },
-            "type_id": 21
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 57,
-        "fields": {
-            "document_type": 3,
-            "number": 47,
-            "title": "What was the total number of people that you contacted? (Part 2 of 2)",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "value": "I was not able to get enough people",
-                        "text": "I was not able to get enough people"
-                    },
-                    {
-                        "value": "Not enough people clicked on my website",
-                        "text": "Not enough people clicked on my website"
-                    },
-                    {
-                        "value": "Not enough people answered my survey",
-                        "text": "Not enough people answered my survey"
-                    },
-                    {
-                        "value": "I could not find people that matched the criteria",
-                        "text": "I could not find people that matched the criteria"
-                    },
-                    {
-                        "value": "Other",
-                        "text": "Other"
-                    }
-                ],
-                "opt1_other": "Other",
-                "opt1_select": "Select"
-            },
-            "content": {
-                "stub_1": "Why below expectations?",
-                "stub_2": "Congradulations on the number you contacted. Click next to proceed."
-            },
-            "dependency": {
-                "x_pk": 53,
-                "y_pk": 56,
-                "compare": "<="
-            },
-            "validation": {},
-            "type_id": 31
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 58,
-        "fields": {
-            "document_type": 3,
-            "number": 48,
-            "title": "How many people supported my business idea?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [],
-                "opt1_other": "Other"
-            },
-            "content": {
-                "stub_1": "",
-                "stub_2": "Please write how many people supported your idea here."
-            },
-            "dependency": {},
-            "validation": {
-                "type": "integerfield",
-                "min_length": 0,
-                "min_length_error_message": "-",
-                "max_length": 0,
-                "max_length_error_message": "-",
-                "min_num": 0,
-                "min_num_error_message": "Please enter a number greater then zero.",
-                "max_num": 9999999999,
-                "max_num_error_message": "Please enter a number less then 9999999999"
-            },
-            "type_id": 21
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 59,
-        "fields": {
-            "document_type": 3,
-            "number": 49,
-            "title": "What did I learn?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [],
-                "opt1_other": "Other"
-            },
-            "content": {},
-            "dependency": {},
-            "validation": {
-                "min_length": 1,
-                "min_length_error_message": "Please enter at minimum 2 characters.",
-                "max_length": 2057,
-                "max_length_error_message": "Please enter at maximum 1027 characters."
-            },
-            "type_id": 24
-        }
-    },
-    {
-        "model": "foundation_tenant.question",
-        "pk": 60,
-        "fields": {
-            "document_type": 3,
-            "number": 50,
-            "title": "Do I need to adjust any of the following assumptions?",
-            "help": "This is some generic help text.",
-            "options": {
-                "opt1": [
-                    {
-                        "id": "1",
-                        "question_id": 0,
-                        "text": "Business Basics"
-                    },
-                    {
-                        "id": "2",
-                        "question_id": 0,
-                        "text": "Industry"
-                    },
-                    {
-                        "id": "3",
-                        "question_id": 0,
-                        "text": "Client"
-                    }
-                ],
-                "opt1_other": "Other"
-            },
-            "content": {
-                "stub_1": "Question",
-                "stub_2": "",
-                "stub_3": "Visit"
-            },
-            "type_id": 32
         }
     }
 ]

@@ -1,0 +1,102 @@
+[
+{
+    "model": "foundation_tenant.slide",
+    "pk": 4666,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #1 title for Stage 8.",
+        "description": "This is slide #1 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4667,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #2 title for Stage 8.",
+        "description": "This is slide #2 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4668,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #3 title for Stage 8.",
+        "description": "This is slide #3 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4669,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #4 title for Stage 8.",
+        "description": "This is slide #4 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4670,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #5 title for Stage 8.",
+        "description": "This is slide #5 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4671,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #6 title for Stage 8.",
+        "description": "This is slide #6 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4672,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #7 title for Stage 8.",
+        "description": "This is slide #7 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4673,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #8 title for Stage 8.",
+        "description": "This is slide #8 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4674,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #9 title for Stage 8.",
+        "description": "This is slide #9 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4675,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #10 title for Stage 8.",
+        "description": "This is slide #10 description for Stage 8.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 4676,
+    "fields": {
+        "module": 8,
+        "title": "This is slide #10 title for Stage 8.",
+        "description": "This is slide #10 description for Stage 8.",
+        "video_url": ""
+    }
+}
+]

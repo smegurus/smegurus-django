@@ -189,7 +189,7 @@ def render_tags_widget(me):
             # Calculate the average stage number.
             try:
                 avg_stage_num = total_stage_num / entrepreneurs.count()
-            except Exception as e:
+            except ZeroDivisionError:
                 avg_stage_num = 0.00
 
             # Append the calculations for the particular Tag.
@@ -222,7 +222,10 @@ def render_progress_widget(me):
             except Workspace.DoesNotExist:
                 pass
 
-        progress_percent = total_stage_num / entrepreneurs.count()
+        try:
+            progress_percent = total_stage_num / entrepreneurs.count()
+        except ZeroDivisionError:
+            progress_percent = 0.00
 
     # Advisor
     elif me.is_advisor():
@@ -239,7 +242,10 @@ def render_progress_widget(me):
             except Workspace.DoesNotExist:
                 pass
 
-        progress_percent = total_stage_num / entrepreneurs.count()
+        try:
+            progress_percent = total_stage_num / entrepreneurs.count()
+        except ZeroDivisionError:
+            progress_percent = 0.00
 
     # Client
     if me.is_entrepreneur():

@@ -4,6 +4,7 @@ import csv
 import xml.etree.ElementTree as ET
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.naicsoption import NAICSOption
 
 
@@ -117,6 +118,10 @@ class Command(BaseCommand):
         # for full_file_path in options['file_path']:
         #     importer = BIZNAICSOptionImporter(full_file_path)
         #     importer.begin_import()
+
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully imported NAICS.'))
+        )
 
 
 #-----------------

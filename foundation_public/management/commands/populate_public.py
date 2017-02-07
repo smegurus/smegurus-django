@@ -42,6 +42,10 @@ class Command(BaseCommand):
         except Exception as e:
             print(e)
 
+        self.stdout.write(
+            self.style.SUCCESS(_('Successfully setup public database.'))
+        )
+
         # # First tenant.
         # tenant = PublicOrganization(
         #     schema_name='demo',

@@ -14,98 +14,12 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import EmployeePermission
 from api.serializers.foundation_tenant_bizmula import DocumentSerializer
 from api.serializers.misc import JudgementSerializer
+from api.tasks import begin_send_accepted_document_review_notification_task
+from api.tasks import begin_send_rejection_document_review_notification_task
 from foundation_public.utils import resolve_full_url_with_subdmain
 from foundation_tenant.models.bizmula.document import Document
 from smegurus.settings import env_var
 from smegurus import constants
-
-
-class SendEmailViewMixin(object):
-    def send_rejected_document_review_notification(self, document):
-        """
-        Function will send a "Rejected Document Review" email to the Documents
-        assigned Advisor.
-        """
-        # Iterate through all owners of this document and generate the contact
-        # list for all the Entrepreneurs.
-        contact_list = []
-        for me in document.workspace.mes.all():
-            contact_list.append(me.owner.email)
-
-        # Generate the data.
-        url =  resolve_full_url_with_subdmain(
-            self.request.tenant.schema_name,
-            'foundation_auth_user_login',
-            []
-        )
-        web_view_extra_url = resolve_full_url_with_subdmain(
-            self.request.tenant.schema_name,
-            'foundation_email_rejected_document',
-            [document.id,]
-        )
-        subject = "Rejected Document"
-        param = {
-            'user': self.request.user,
-            'document': document,
-            'url': url,
-            'web_view_url': web_view_extra_url,
-        }
-
-        # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('tenant_review/rejected_doc_review.txt', param)
-        html_content = render_to_string('tenant_review/rejected_doc_review.html', param)
-
-        # Generate our address.
-        from_email = env_var('DEFAULT_FROM_EMAIL')
-        to = contact_list
-
-        # Send the email.
-        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-
-    def send_accepted_document_review_notification(self, document):
-        """
-        Function will send a "Accepted Document Review" email to the Documents
-        assigned Advisor.
-        """
-        # Iterate through all owners of this document and generate the contact
-        # list for all the Entrepreneurs.
-        contact_list = []
-        for me in document.workspace.mes.all():
-            contact_list.append(me.owner.email)
-
-        # Generate the data.
-        url =  resolve_full_url_with_subdmain(
-            self.request.tenant.schema_name,
-            'foundation_auth_user_login',
-            []
-        )
-        web_view_extra_url = resolve_full_url_with_subdmain(
-            self.request.tenant.schema_name,
-            'foundation_email_accepted_document',
-            [document.id,]
-        )
-        subject = "Accepted Document"
-        param = {
-            'user': self.request.user,
-            'document': document,
-            'url': url,
-            'web_view_url': web_view_extra_url,
-        }
-
-        # Plug-in the data into our templates and render the data.
-        text_content = render_to_string('tenant_review/accepted_doc_review.txt', param)
-        html_content = render_to_string('tenant_review/accepted_doc_review.html', param)
-
-        # Generate our address.
-        from_email = env_var('DEFAULT_FROM_EMAIL')
-        to = contact_list
-
-        # Send the email.
-        msg = EmailMultiAlternatives(subject, text_content, from_email, to)
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
 
 
 class DocumentFilter(django_filters.FilterSet):
@@ -114,7 +28,7 @@ class DocumentFilter(django_filters.FilterSet):
         fields = ['workspace', 'document_type', 'status']
 
 
-class DocumentViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
+class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     pagination_class = LargeResultsSetPagination
@@ -150,7 +64,7 @@ class DocumentViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         try:
             serializer = JudgementSerializer(data=request.data)
             if serializer.is_valid():
-                # Update the document.
+                # Fetch our document.
                 document = self.get_object()
                 document.status = serializer.data['status']
                 document.description = serializer.data['comment']
@@ -158,21 +72,37 @@ class DocumentViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                 # Send acceptance notification & increment "stage_num".
                 if document.status == constants.DOCUMENT_READY_STATUS:
-                    # Send email.
-                    self.send_accepted_document_review_notification(document)
 
-                    # If the document is a master document for this Module then
-                    # send a notification email to the assigned Advisor.
-                    if document.document_type.is_master:
-                        document.workspace.stage_num += 1
-                        document.workspace.save()
-                        for me in document.workspace.mes.all():
-                            me.stage_num += 1
+                    # Iterate through all the documents for a user and find
+                    # the maximum stage_num.
+                    documents = Document.objects.filter(workspace=document.workspace)
+                    max_stage_num = 0
+                    for doc in documents.all():
+                        if doc.document_type.stage_num > max_stage_num:
+                            max_stage_num = doc.document_type.stage_num
+
+                    max_stage_num += 1  # Set to the next stage level.
+
+                    # Update the stage_num for Workspace and owners.
+                    document.workspace.stage_num = max_stage_num
+                    document.workspace.save()
+                    for me in document.workspace.mes.all():
+                        if me.stage_num < max_stage_num:
+                            me.stage_num = max_stage_num
                             me.save()
+
+                    # Send acceptance email.
+                    begin_send_accepted_document_review_notification_task.delay(
+                        request.tenant.schema_name,
+                        document.id
+                    )
 
                 # Send rejection notification.
                 if document.status == constants.DOCUMENT_CREATED_STATUS:
-                    self.send_rejected_document_review_notification(document)
+                    begin_send_rejection_document_review_notification_task.delay(
+                        request.tenant.schema_name,
+                        document.id
+                    )
 
                 # Send success response.
                 return response.Response(status=status.HTTP_200_OK)

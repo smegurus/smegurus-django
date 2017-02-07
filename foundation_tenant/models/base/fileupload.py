@@ -44,14 +44,17 @@ class TenantFileUpload(models.Model):
     def get_s3_url(self):
         return "https://" + env_var('AWS_STORAGE_BUCKET_NAME') + ".s3.amazonaws.com/media/"+str(self.datafile)
 
-    # def delete(self, *args, **kwargs):
-    #     """
-    #         Overrided delete functionality to include deleting the local file
-    #         that we have stored on the system. Currently the deletion funciton
-    #         is missing this functionality as it's our responsibility to handle
-    #         the local files.
-    #     """
-    #     if self.datafile:
-    #         if os.path.isfile(self.datafile.path):
-    #             os.remove(self.datafile.path)
-    #     super(TenantFileUpload, self).delete(*args, **kwargs) # Call the "real" delete() method
+    def delete(self, *args, **kwargs):
+        """
+            Overrided delete functionality to include deleting the S3 file
+            that we have stored in the cloud.
+        """
+        # If a file was uploaded to the cloud, then we need to remove it.
+        if self.datafile:
+            from django.core.files.storage import default_storage
+            from django.core.files.base import ContentFile
+
+            if default_storage.exists(str(self.datafile)):
+                default_storage.delete(str(self.datafile))
+
+        super(TenantFileUpload, self).delete(*args, **kwargs) # Call the "real" delete() method

@@ -105,7 +105,7 @@
     {% else %}
         <div class="col-sm-6 col-centered">
     {% endif %}
-            <input id="id_input_1" type="number" class="form-control input-lg" placeholder="{{ question.content.stub_2|escape|safe }}" value="{{ picked.var_1 }}" />
+            <input id="id_input_1" type="{% if question.validation.type == "textfield" %}text{% elif question.validation.type == "integerfield"  %}number{% endif %}" class="form-control input-lg" placeholder="{{ question.content.stub_2|escape|safe }}" value="{{ picked.var_1 }}" />
         </div>
     </div>
     <!-- end ROW 2 | OTHER -->

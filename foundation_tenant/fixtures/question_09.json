@@ -1,0 +1,529 @@
+[
+    {
+        "model": "foundation_tenant.question",
+        "pk": 157,
+        "fields": {
+            "document_type": 9,
+            "number": 1,
+            "title": "I need a business plan to...",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "obtain grant",
+                        "text": "obtain grant"
+                    },
+                    {
+                        "value": "secure investor funding",
+                        "text": "secure investor funding"
+                    },
+                    {
+                        "value": "obtain loan",
+                        "text": "obtain loan"
+                    },
+                    {
+                        "value": "obtain financing",
+                        "text": "obtain financing"
+                    },
+                    {
+                        "value": "to launch my business",
+                        "text": "to launch my business"
+                    },
+                    {
+                        "value": "other",
+                        "text": "other"
+                    }
+                ],
+                "opt1_other": "other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 158,
+        "fields": {
+            "document_type": 9,
+            "number": 2,
+            "title": "How will you spend your money? Select up to 5 uses from our list or enter your own.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "Purchase equipment",
+                        "text": "Purchase equipment"
+                    },
+                    {
+                        "value": "Get start-up funding",
+                        "text": "Get start-up funding"
+                    },
+                    {
+                        "value": "Get an operating loan",
+                        "text": "Get an operating loan"
+                    },
+                    {
+                        "value": "Purchase a building",
+                        "text": "Purchase a building"
+                    },
+                    {
+                        "value": "Increase the scale or size of your business",
+                        "text": "Increase the scale or size of your business"
+                    },
+                    {
+                        "value": "Develop a prototype",
+                        "text": "Develop a prototype"
+                    },
+                    {
+                        "value": "Seek a patent/trademark/copyright",
+                        "text": "Seek a patent/trademark/copyright"
+                    },
+                    {
+                        "value": "Purchase a franchise",
+                        "text": "Purchase a franchise"
+                    },
+                    {
+                        "value": "Fund a licensing agreement",
+                        "text": "Fund a licensing agreement"
+                    },
+                    {
+                        "value": "Inventory",
+                        "text": "Inventory"
+                    },
+                    {
+                        "value": "Hire staff",
+                        "text": "Hire staff"
+                    },
+                    {
+                        "value": "Build a technology solution",
+                        "text": "Build a technology solution"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt1_other": "Other (Please Specify)",
+                "opt1_select": "Select",
+                "opt2": [
+                    {
+                        "value": "Needed to launch business",
+                        "text": "Needed to launch business"
+                    },
+                    {
+                        "value": "Required to produce product",
+                        "text": "Required to produce product"
+                    },
+                    {
+                        "value": "Required for efficient operations",
+                        "text": "Required for efficient operations"
+                    },
+                    {
+                        "value": "Required to maximize profitability",
+                        "text": "Required to maximize profitability"
+                    },
+                    {
+                        "value": "Required to maximize service delivery",
+                        "text": "Required to maximize service delivery"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt2_other": "Other (Please Specify)",
+                "opt2_select": "Select",
+                "opt3": [
+                    {
+                        "value": "$1,000",
+                        "text": "$1,000"
+                    },
+                    {
+                        "value": "$2,500",
+                        "text": "$2,500"
+                    },
+                    {
+                        "value": "$5,000",
+                        "text": "$5,000"
+                    },
+                    {
+                        "value": "$10,000",
+                        "text": "$10,000"
+                    },
+                    {
+                        "value": "$25,000",
+                        "text": "$25,000"
+                    },
+                    {
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
+                    }
+                ],
+                "opt3_other": "Other (Please Specify)",
+                "opt3_select": "Select"
+            },
+            "content": {
+                "stub_1": "Description",
+                "stub_2": "Use",
+                "stub_3": "Impact",
+                "stub_4": "Amount",
+                "stub_5": "Remove",
+                "stub_6": "Description",
+                "stub_7": "ex: John Doe",
+                "stub_8": "Use",
+                "stub_9": "Impact",
+                "stub_10": "Amount",
+                "stub_11": "Add"
+            },
+            "dependency": {},
+            "validation": {
+                "arr_min_count": 5,
+                "arr_min_count_error_message": "Please enter at least 5 entries.",
+                "arr_max_count": 20,
+                "arr_max_count_error_message": "Please enter no more then 20 entries."
+            },
+            "type_id": 41
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 89,
+        "fields": {
+            "document_type": 9,
+            "number": 9,
+            "title": "Currently, my customers must pay for products and services ...",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": "All sales are credit or cash at time of sale",
+                        "text": "All sales are credit or cash at time of sale"
+                    },
+                    {
+                        "value": "Customers must pay within 30 days of purchase",
+                        "text": "Customers must pay within 30 days of purchase"
+                    },
+                    {
+                        "value": "Customers must pay within 60 days of purchase",
+                        "text": "Customers must pay within 60 days of purchase"
+                    },
+                    {
+                        "value": "Customers must pay within 90 days of purchase",
+                        "text": "Customers must pay within 90 days of purchase"
+                    },
+                    {
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 1
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 144,
+        "fields": {
+            "document_type": 9,
+            "number": 46,
+            "title": "If you sold only 75% of your sales goal in Year 1, how would your costs change?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": 1,
+                        "text": "There would be no change"
+                    },
+                    {
+                        "value": 2,
+                        "text": "Variable costs would decrease by 25% and fixed costs would remain the same."
+                    },
+                    {
+                        "value": 3,
+                        "text": "All costs would decrease by 25%"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {
+                "q1_qid": 100,
+                "q2_qid": 99,
+                "q3_qid": 77,
+                "q4_qid": 78,
+                "q5_qid": 79,
+                "q6_qid": 80,
+                "q7_qid": 142,
+                "q8_qid": 143,
+                "q9_qid": 85,
+                "q10_qid": 86,
+                "q11_qid": 90,
+                "q12_qid": 105,
+                "q13_qid": 108,
+                "q14_qid": 111,
+                "q15_qid": 114,
+                "q16_qid": 116,
+                "q17_qid": 120,
+                "q18_qid": 122,
+                "q19_qid": 124,
+                "q20_qid": 126,
+                "q21_qid": 128,
+                "q22_qid": 130,
+                "q23_qid": 132,
+                "q24_qid": 134
+            },
+            "validation": {},
+            "type_id": 57
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 145,
+        "fields": {
+            "document_type": 9,
+            "number": 47,
+            "title": "If you sold 125% of your sales goal in Year 1, how would your costs change?",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "value": 1,
+                        "text": "There would be no change."
+                    },
+                    {
+                        "value": 2,
+                        "text": "Variable costs would increase by 25% and fixed costs would remain the same."
+                    },
+                    {
+                        "value": 3,
+                        "text": "All costs would increase by 25%."
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "opt1_other_stub": "Other",
+                "opt1_other_type": "textfield"
+            },
+            "dependency": {
+                "q1_qid": 100,
+                "q2_qid": 99,
+                "q3_qid": 77,
+                "q4_qid": 78,
+                "q5_qid": 79,
+                "q6_qid": 80,
+                "q7_qid": 142,
+                "q8_qid": 143,
+                "q9_qid": 85,
+                "q10_qid": 86,
+                "q11_qid": 90,
+                "q12_qid": 105,
+                "q13_qid": 108,
+                "q14_qid": 111,
+                "q15_qid": 114,
+                "q16_qid": 116,
+                "q17_qid": 120,
+                "q18_qid": 122,
+                "q19_qid": 124,
+                "q20_qid": 126,
+                "q21_qid": 128,
+                "q22_qid": 130,
+                "q23_qid": 132,
+                "q24_qid": 134
+            },
+            "validation": {},
+            "type_id": 58
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 159,
+        "fields": {
+            "document_type": 9,
+            "number": 46,
+            "title": "What is your website address? Every business should have some kind of online presence. Even if you don't have a website (for example www.yourbusiness.com) then you should have at least a facebook page. Please enter it below.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": "",
+                "stub_2": "Please write your website ..."
+            },
+            "dependency": {},
+            "validation": {
+                "type": "textfield",
+                "min_length": 3,
+                "min_length_error_message": "Please enter a website address.",
+                "max_length": 127,
+                "max_length_error_message": "Your website address is too long!",
+                "min_num": 0,
+                "min_num_error_message": "-",
+                "max_num": 100,
+                "max_num_error_message": "-"
+            },
+            "type_id": 21
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 96,
+        "fields": {
+            "document_type": 9,
+            "number": 16,
+            "title": "If you are applying for a loan with a financial institution they often require several additional pieces of information. For confidentiality reasons we do not store your personal information on our system, but we can identify on the Table of Contents that you will be attaching these documents. Please indicate which of the following you will need to attach to your business plan (check all that apply)",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "Resume for each owner",
+                        "text": "Resume for each owner"
+                    },
+                    {
+                        "id": "2",
+                        "value": "Statement of personal networth",
+                        "text": "Statement of personal networth"
+                    },
+                    {
+                        "id": "3",
+                        "value": "Credit Report",
+                        "text": "Credit Report"
+                    },
+                    {
+                        "id": "4",
+                        "value": "Partnership Agreement",
+                        "text": "Partnership Agreement"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Other",
+                        "text": "Other"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 20
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
+        "pk": 160,
+        "fields": {
+            "document_type": 9,
+            "number": 16,
+            "title": "Depending on your business, you might want to have additional details on certain cost types within your business plan. By checking an item below we will generate additional written sections in your business plan. Please check the items which you would like to include additional write-ups for.",
+            "help": "This is some generic help text.",
+            "options": {
+                "opt1": [
+                    {
+                        "id": "1",
+                        "value": "Insurance",
+                        "text": "Insurance"
+                    },
+                    {
+                        "id": "2",
+                        "value": "Memberships and dues",
+                        "text": "Memberships and dues"
+                    },
+                    {
+                        "id": "3",
+                        "value": "Subscriptions and Leases",
+                        "text": "Subscriptions and Leases"
+                    },
+                    {
+                        "id": "4",
+                        "value": "Maintenance, Cleaning and Repairs",
+                        "text": "Maintenance, Cleaning and Repairs"
+                    },
+                    {
+                        "id": "5",
+                        "value": "Tools, Equipment and Technology",
+                        "text": "Tools, Equipment and Technology"
+                    },
+                    {
+                        "id": "6",
+                        "value": "Transportation",
+                        "text": "Transportation"
+                    },
+                    {
+                        "id": "7",
+                        "value": "Book Keeping",
+                        "text": "Book Keeping"
+                    },
+                    {
+                        "id": "8",
+                        "value": "General Office Supplies",
+                        "text": "General Office Supplies"
+                    }
+                ],
+                "opt1_other": "Other"
+            },
+            "content": {
+                "stub_1": ""
+            },
+            "type_id": 60
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 161,
+        "fields": {
+            "document_type": 9,
+            "number": 13,
+            "title": "To help people understand your product better, you should add some pictures. You will have a chance to add two. One here and on the next screen. This is optional, but highly recommended.",
+            "help": "Some generic test.",
+            "options": {},
+            "content": {
+                "opt1_other_stub": "Picture Upload",
+                "opt1_other_type": "imagefield"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 61
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 162,
+        "fields": {
+            "document_type": 9,
+            "number": 13,
+            "title": "Here, you can add your second product image. Again, this is optional but highly recommended.",
+            "help": "Some generic test.",
+            "options": {},
+            "content": {
+                "opt1_other_stub": "Picture Upload",
+                "opt1_other_type": "imagefield"
+            },
+            "dependency": {},
+            "validation": {},
+            "type_id": 61
+        }
+    }
+]

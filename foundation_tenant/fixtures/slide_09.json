@@ -1,0 +1,39 @@
+[
+{
+    "model": "foundation_tenant.slide",
+    "pk": 5666,
+    "fields": {
+        "module": 9,
+        "title": "This is slide #1 title for Stage 9.",
+        "description": "This is slide #1 description for Stage 9.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 5667,
+    "fields": {
+        "module": 9,
+        "title": "This is slide #2 title for Stage 9.",
+        "description": "This is slide #2 description for Stage 9.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 5668,
+    "fields": {
+        "module": 9,
+        "title": "This is slide #3 title for Stage 9.",
+        "description": "This is slide #3 description for Stage 9.",
+        "video_url": ""
+    }
+},{
+    "model": "foundation_tenant.slide",
+    "pk": 5669,
+    "fields": {
+        "module": 9,
+        "title": "Business Plan",
+        "description": "Now, we just need you to answer a few more questions and your business plan will be ready!",
+        "video_url": ""
+    }
+}
+]

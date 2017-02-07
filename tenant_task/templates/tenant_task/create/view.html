@@ -33,10 +33,10 @@
                    <legend>{% trans 'Details' %}</legend>
                    <!-- NAME -->
                    <div class="form-group">
-                      <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
+                      <label class="col-sm-3 control-label">{% trans 'Name' %}</label>
 
-                      <div class="col-sm-10">
-                         <input type="text" class="form-control form-control" id="id_name" value="{{ calendar_event.name }}">
+                      <div class="col-sm-7">
+                         <input type="text" class="form-control input-lg" id="id_name" value="{{ calendar_event.name }}">
                       </div>
 
                    </div>
@@ -46,11 +46,12 @@
 
                      <!-- HAS DUE DATE -->
                      <div class="form-group">
-                           <label class="col-sm-2 control-label">{% trans 'Has due date' %}</label>
-                           <div class="col-sm-10">
-                              <div class="checkbox">
+                           <label class="col-sm-3 control-label">{% trans 'Has due date' %}</label>
+                           <div class="col-sm-7">
+                              <div class="checkbox c-checkbox">
                                  <label>
                                     <input id="is_due" type="checkbox" checked="checked" />
+                                    <span class="fa fa-check"></span>
                                   </label>
                               </div>
                            </div>
@@ -61,11 +62,11 @@
 
                      <!-- DUE DATE -->
                      <div class="form-group">
-                        <label class="col-sm-2 control-label">{% trans 'Due Date &amp; Time' %}</label>
+                        <label class="col-sm-3 control-label">{% trans 'Due Date &amp; Time' %}</label>
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-7">
                             <div id="datetimepicker2" class="input-group date">
-                                  <input type="text" class="form-control" id="id_finish">
+                                  <input type="text" class="form-control input-lg" id="id_finish">
                                   <span class="input-group-addon">
                                      <span class="fa fa-calendar"></span>
                                   </span>
@@ -79,10 +80,10 @@
 
                       <!-- DESCRIPTION -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
+                         <label class="col-sm-3 control-label">{% trans 'Description' %}</label>
 
-                         <div class="col-sm-10">
-                            <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}">{{ calendar_event.description }}</textarea>
+                         <div class="col-sm-7">
+                            <textarea id="id_description" class="form-control input-lg" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this event.' %}">{{ calendar_event.description }}</textarea>
                          </div>
 
                       </div>
@@ -92,11 +93,11 @@
 
                       <!-- RESOURCE -->
                       <div class="form-group">
-                           <label class="col-sm-2 control-label">{% trans 'Resources' %}</label>
-                           <div class="col-sm-10">
+                           <label class="col-sm-3 control-label">{% trans 'Resources' %}</label>
+                           <div class="col-sm-7">
 
                                <!-- RESOURCE TABLE CONTENT -->
-                               <div class="panel-body">
+                               <div class="panel-body" style="padding: 0;margin-top: -10px;">
                                   <div class="table-responsive">
                                      <table class="table table-striped" id="id_resources_table">
                                         <thead>
@@ -132,20 +133,20 @@
                            <input id="id_hidden_file_id" type="hidden" />
                            <!-- end TEMP -->
 
-                           <label class="col-sm-2 control-label">{% trans 'File input' %}</label>
-                           <div class="col-sm-10">
+                           <label class="col-sm-3 control-label">{% trans 'File input' %}</label>
+                           <div class="col-sm-7">
                              <!-- FILE INPUT -->
                              <label class="form-control btn btn-success mt10 curp" id="id_hidden_file_label">
                              <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
                              <input onchange="ajax_upload_file();"
                                           id="id_file"
                                         type="file"
-                                       class="form-control mb10 hide" />
+                                       class="form-control input-lg mb10 hide" />
                              </label>
                              <!-- end FILE INPUT -->
 
                              <!-- FILE LIST -->
-                             <p id="id_hidden_files_list" style="display: none;">
+                             <p id="id_hidden_files_list" style="display: none;margin: 8px 0 10.5px">
                                  <a id="id_hidden_file_url" target="_blank">File Uploaded</a>
                              </p>
                              <!-- end FILE LIST -->
@@ -161,10 +162,10 @@
                       {% if type_of == constants.TASK_BY_CUSTOM_TYPE %}
                       <!-- BY CUSTOM -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Assignees' %}</label>
+                         <label class="col-sm-3 control-label">{% trans 'Assignees' %}</label>
 
-                         <div class="col-sm-10">
-                             <select id="select2-1" multiple="multiple" class="form-control">
+                         <div class="col-sm-7">
+                             <select id="select2-1" multiple="multiple" class="form-control input-lg">
                                  {% for me in all_profiles %}
                                      <option value="{{ me.id }}" {% if me.id == default_me %}selected=""{% endif %}>{{ me.name }}{% if me == request.tenant_me %}&nbsp;{% trans '(Me)' %}{% else %}{% if me.is_employee %}&nbsp;{% trans '(Staff)'%}{% endif %}{% endif %}</option>
                                  {% endfor %}
@@ -176,10 +177,10 @@
                       {% else %}
                       <!-- BY TAG -->
                       <div class="form-group">
-                         <label class="col-sm-2 control-label">{% trans 'Assignees by Tags' %}</label>
+                         <label class="col-sm-3 control-label">{% trans 'Assignees by Tags' %}</label>
 
-                         <div class="col-sm-10">
-                             <select id="select2-1" multiple="multiple" class="form-control">
+                         <div class="col-sm-7">
+                             <select id="select2-1" multiple="multiple" class="form-control input-lg">
                                  {% for tag in tags %}
                                      <option value="{{ tag.id }}">{{ tag.name }}</option>
                                  {% endfor %}
@@ -198,7 +199,7 @@
                 </div>
                 <div class="pull-right">
 
-                    <button onclick="ajax_create();" type="button" class="btn btn-primary btn-lg" id="id_accept_btn">{% trans 'Create' %}</button>
+                    <button onclick="ajax_create();" type="button" class="btn btn-success btn-lg" id="id_accept_btn">{% trans 'Create' %}</button>
                 </div>
                 <!-- end SUBMISSION -->
             </form>

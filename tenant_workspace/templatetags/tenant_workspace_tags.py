@@ -17,6 +17,13 @@ register = template.Library()
 
 
 @register.simple_tag
+def get_percent_by_module_and_node(module, node):
+    rate = node['order_num'] / len(module.nodes)
+    percent = int(rate * 100)
+    return percent
+
+
+@register.simple_tag
 def reverse_previous_node(workspace, module, node):
     if node['previous_position'] == -1:
         return reverse('tenant_workspace_module_start_master', args=[workspace.id, module.id,])
@@ -27,7 +34,7 @@ def reverse_previous_node(workspace, module, node):
 @register.simple_tag
 def reverse_next_node(workspace, module, node):
     if node['next_position'] == -1:
-        return reverse('tenant_workspace_module_finish_master', args=[workspace.id, module.id, 0])
+        return reverse('tenant_workspace_module_submit_master', args=[workspace.id, module.id, 0])
     else:
         return reverse('tenant_workspace_module_detail', args=[workspace.id, module.id, node['next_position'],])
 
@@ -1172,4 +1179,40 @@ def render_question_type_059(workspace, module, node, question, answer):
         'answer': answer,
         'picked': answer.content,
         'picked_count': len(answer.content)
+    }
+
+
+@register.inclusion_tag('templatetags/question/template_060.html')
+def render_question_type_060(workspace, module, node, question, answer):
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content)
+    }
+
+
+@register.inclusion_tag('templatetags/question/template_061.html')
+def render_question_type_061(workspace, module, node, question, answer):
+    """
+    - uploads an image.
+    """
+    # Fetch the image that is associated with this question's answer.
+    imageupload = None
+    upload_id = answer.content.get('var_2', None)
+    if upload_id:
+        imageupload = TenantImageUpload.objects.get(id=upload_id)
+
+    return {
+        'workspace': workspace,
+        'module': module,
+        'node': node,
+        'question': question,
+        'answer': answer,
+        'picked': answer.content,
+        'picked_count': len(answer.content),
+        'imageupload': imageupload
     }
