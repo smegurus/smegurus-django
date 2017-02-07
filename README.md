@@ -168,7 +168,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 2. Add the following:
   ```bash
   127.0.0.1  smegurus.xyx
-  127.0.0.1  www.smegurus.xyz
+  127.0.0.1  www.smegurus.co
   ```
 
 3. Restart the DNS:
@@ -187,7 +187,7 @@ Before you run the application, you need to load up celery in a separate console
 
 If you are developing locally from your machine, use this command.
   ```bash
-  sudo python manage.py runserver smegurus.xyz:80;
+  sudo python manage.py runserver smegurus.co:80;
   ```
 
 Notes:
@@ -225,4 +225,4 @@ python manage.py test api.tests.test_authentication
 
 #### Viewing Web-Application
 
-In your browser, load up: ```http://smegurus.xyz```.
+In your browser, load up: ```http://smegurus.co```.

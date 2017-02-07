@@ -169,7 +169,7 @@ class FoundationPublicModelsWithPublicSchemaTestCases(APITestCase):
     # @transaction.atomic
     # def test_organization_to_string(self):
     #     public_tenant = PublicOrganization(
-    #         domain_url='mikasoftware.smegurus.xyz',
+    #         domain_url='mikasoftware.smegurus.co',
     #         schema_name='mikasoftware',
     #         name='SMEGurus',
     #     )
