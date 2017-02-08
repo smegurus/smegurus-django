@@ -39,33 +39,29 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     # Run the sub-routine for taking the Document object and submitting it to
     # Bizmula "docxpresso" engine.
 
-    # 1. Entrepreneur Self Assessment
     if doc_type == 1:
         call_command('docxpresso_stage_01', schema_name, str(workspace_id))
 
-    # 2. Market Research Summary
-    if doc_type == 2:
+    elif doc_type == 2:
         call_command('docxpresso_stage_02', schema_name, str(workspace_id))
 
-    # 3. Market Research Plan
-    if doc_type == 3:
+    elif doc_type == 3:
         call_command('docxpresso_stage_03', schema_name, str(workspace_id))
 
-    # 4. Concept Validation
-    if doc_type == 4:
+    elif doc_type == 4:
         call_command('docxpresso_stage_04', schema_name, str(workspace_id))
 
-    # 5. Marketing
-    if doc_type == 5:
+    elif doc_type == 5:
         call_command('docxpresso_stage_05', schema_name, str(workspace_id))
 
-    # 6. Sales
-    if doc_type == 6:
+    elif doc_type == 6:
         call_command('docxpresso_stage_06', schema_name, str(workspace_id))
 
-    # 7. Operations
-    if doc_type == 7:
+    elif doc_type == 7:
         call_command('docxpresso_stage_07', schema_name, str(workspace_id))
+
+    elif doc_type == 9:
+        call_command('docxpresso_stage_09', schema_name, str(workspace_id))
 
     # Send email is ready email to the workspace owners.
     call_command('send_doc_ready_email', schema_name, str(doc_id))
