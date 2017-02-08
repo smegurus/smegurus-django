@@ -170,29 +170,29 @@
         "fields": {
             "document_type": 5,
             "number": 63,
-            "title": "Is your business idea related to any of the following?",
+            "title": "How will potential customers find you?",
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
                     {
                         "id": "1",
-                        "value": "By their interest",
-                        "text": "By their interest"
+                        "value": "a web search",
+                        "text": "a web search"
                     },
                     {
                         "id": "2",
-                        "value": "When they approach my place of business or where I sell",
-                        "text": "When they approach my place of business or where I sell"
+                        "value": "approaching my place of business or where I sell",
+                        "text": "approaching my place of business or where I sell"
                     },
                     {
                         "id": "3",
-                        "value": "By E-Mail",
-                        "text": "By E-Mail"
+                        "value": "a media campaign",
+                        "text": "a media campaign"
                     },
                     {
                         "id": "4",
-                        "value": "As the result of a social media campaign",
-                        "text": "As the result of a social media campaign"
+                        "value": "an E-Mail or social media campaign",
+                        "text": "a E-Mail or social media campaign"
                     },
                     {
                         "id": "5",

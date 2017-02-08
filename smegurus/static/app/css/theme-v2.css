@@ -350,3 +350,13 @@ body,
     background-color: #8bc34a;
     color: #ffffff !important;
 }
+
+/* FIXED ISSUE #673 */
+.bg-blue-v2 {
+    background-color: #145dfa;
+    color: #ffffff !important;
+}
+.bg-red-v2-1 {
+    background-color: #f26523;
+    color: #ffffff !important;
+}
