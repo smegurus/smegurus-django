@@ -180,7 +180,46 @@
                             </a>
                             </li>
                             <!-- end DASHBOARD -->
+                            
+                            <!-- MESSAGE -->
+                            <li class=" ">
+                                <a href="#inbox" title="{% trans 'Messages' %}" data-toggle="collapse">
+                                    <div class="pull-right label label-info">{% count_unread_messages request.tenant_me %}</div>
+                                    <em class="icon-envelope"></em>
+                                    <span data-localize="sidebar.nav.MESSAGES">{% trans 'Messages' %}</span>
+                                </a>
+                                <ul id="inbox" class="nav sidebar-subnav collapse">
+                                    <li class="sidebar-subnav-header">{% trans 'Messages' %}</li>
+                                    <li {% if page == 'inbox' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_message_inbox' %}" title="{% trans 'Inbox' %}">
+                                        <span>{% trans 'Inbox' %}</span>
+                                        </a>
+                                    </li>
+                                    <li {% if page == 'archive' %}class=" active"{% endif %}>
+                                        <a href="{% url 'tenant_archive_inbox' %}" title="{% trans 'Archive' %}">
+                                        <span>{% trans 'Archive' %}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- end MESSAGE -->
 
+                            <!-- WORKSPACE -->
+                            {% render_workspace_sidebar_node request.tenant_me page %}
+                            <!-- end WORKSPACE -->
+
+                            <!-- DOCUMENT_REVIEW -->
+                            {% if request.tenant_me.is_employee == True %}
+                            <li {% if page == 'review' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_review_master' %}" title="{% trans 'Reviews' %}">
+                                    <div class="pull-right label label-purple">{% count_has_pending_reviews request.tenant_me %}</div>
+                                    <em class="icon-docs"></em>
+                                    <span data-localize="sidebar.nav.REVIEWS">{% trans 'Reviews' %}</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            <!-- end DOCUMENT_REVIEW -->
+                            
                             <!-- INTAKE -->
                             {% if request.tenant_me.is_org_admin %}
                             <li class=" ">
@@ -205,22 +244,6 @@
                             </li>
                             {% endif %}
                             <!-- end INTAKE -->
-
-                            <!-- WORKSPACE -->
-                            {% render_workspace_sidebar_node request.tenant_me page %}
-                            <!-- end WORKSPACE -->
-
-                            <!-- DOCUMENT_REVIEW -->
-                            {% if request.tenant_me.is_employee == True %}
-                            <li {% if page == 'review' %}class=" active"{% endif %}>
-                                <a href="{% url 'tenant_review_master' %}" title="{% trans 'Reviews' %}">
-                                    <div class="pull-right label label-purple">{% count_has_pending_reviews request.tenant_me %}</div>
-                                    <em class="icon-docs"></em>
-                                    <span data-localize="sidebar.nav.REVIEWS">{% trans 'Reviews' %}</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            <!-- end DOCUMENT_REVIEW -->
 
                             <!-- TASKS -->
                             <li {% if page == 'tasks' %}class=" active"{% endif %}>
@@ -263,37 +286,14 @@
                             </li>
                             <!-- end RESOURCES -->
 
-                            <!-- REWARDS -->
-                            <li {% if page == 'reward' %}class=" active"{% endif %}>
+                            <!-- REWARDS
+                            <li {% if page == 'reward' %}class=" active"{% endif %} style="display: none;">
                                 <a href="{% url 'tenant_reward' %}" title="{% trans 'Perks' %}">
                                     <em class="icon-trophy"></em>
                                     <span data-localize="sidebar.nav.PERKS">{% trans 'Perks' %}</span>
                                 </a>
                             </li>
-                            <!-- end REWARDS -->
-
-                            <!-- MESSAGE -->
-                            <li class=" ">
-                                <a href="#inbox" title="{% trans 'Messages' %}" data-toggle="collapse">
-                                    <div class="pull-right label label-info">{% count_unread_messages request.tenant_me %}</div>
-                                    <em class="icon-envelope"></em>
-                                    <span data-localize="sidebar.nav.MESSAGES">{% trans 'Messages' %}</span>
-                                </a>
-                                <ul id="inbox" class="nav sidebar-subnav collapse">
-                                    <li class="sidebar-subnav-header">{% trans 'Messages' %}</li>
-                                    <li {% if page == 'inbox' %}class=" active"{% endif %}>
-                                        <a href="{% url 'tenant_message_inbox' %}" title="{% trans 'Inbox' %}">
-                                        <span>{% trans 'Inbox' %}</span>
-                                        </a>
-                                    </li>
-                                    <li {% if page == 'archive' %}class=" active"{% endif %}>
-                                        <a href="{% url 'tenant_archive_inbox' %}" title="{% trans 'Archive' %}">
-                                        <span>{% trans 'Archive' %}</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- end MESSAGE -->
+                            end REWARDS -->
 
                             <!-- COMMUNITY -->
                             <li {% if page == 'community' %}class=" active"{% endif %}>
