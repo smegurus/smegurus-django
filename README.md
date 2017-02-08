@@ -167,7 +167,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 
 2. Add the following:
   ```bash
-  127.0.0.1  smegurus.xyx
+  127.0.0.1  smegurus.co
   127.0.0.1  www.smegurus.co
   ```
 
@@ -193,13 +193,6 @@ If you are developing locally from your machine, use this command.
 Notes:
 - When it asks for your password, use your MacOS password.
 
-
-#### Running Production
-If you plan on running a more rugged server that utilizes your installed instance of ``nginx`` then run this command.
-
-```bash
-gunicorn -c gunicorn_config.py smegurus.wsgi
-```
 
 #### Running Unit Tests
 ##### Run All App Tests
