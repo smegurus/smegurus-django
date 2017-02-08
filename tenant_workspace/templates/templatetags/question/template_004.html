@@ -16,6 +16,19 @@
             }
         });
     });
+    
+    /*
+     * FIXED ISSUE #674
+     * Added missing function is_int()
+     */
+     
+    /**
+     *  Validate to check something is an integer.
+     */
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
 
     function ajax_do_chain(callback) {
         // Detect checked value.
