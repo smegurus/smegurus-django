@@ -265,4 +265,4 @@ class TenantMe(AbstractPerson):
         return False
 
     def __str__(self):
-        return str(self.id)
+        return self.owner.get_full_name()

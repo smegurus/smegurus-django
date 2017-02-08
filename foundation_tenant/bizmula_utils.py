@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.models.base.naicsoption import NAICSOption
 
@@ -883,7 +884,6 @@ class BizmulaAPI(DocxspressoAPI):
                 "element": "table"
             }
         }
-
 
         # Attach all out tables.
         api.add_custom(custom)

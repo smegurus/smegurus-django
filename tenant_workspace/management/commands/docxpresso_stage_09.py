@@ -90,7 +90,7 @@ class Command(BaseCommand):
         )
 
         # Take our content and populate docxpresso with it.
-        self.set_answers(answers, api)
+        self.set_answers(workspace, answers, api)
 
         # Generate our document!
         doc_filename = api.get_filename()
@@ -128,10 +128,253 @@ class Command(BaseCommand):
             document.docxpresso_file = docxpresso_file
             document.save()
 
-    def set_answers(self, answers, api):
-        today = timezone.now()
-        api.add_text("date", str(today)) # date
+    def set_answers(self, workspace, answers, api):
+        # Assign date.
+        self.do_date(workspace, api)
 
+        # Assign odwners.
+        self.do_owner_names(workspace, api)
+
+        # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            print(answer.content)
-            print("\n")
+            if answer.question.pk == 1:
+                api.do_q1(answer, api)
+
+            elif answer.question.pk == 2:
+                api.do_q2(answer, api)
+
+            elif answer.question.pk == 3:
+                api.do_q3(answer, api)
+
+            elif answer.question.pk == 4:
+                api.do_q4(answer, api)
+
+            elif answer.question.pk == 5:
+                api.do_q5(answer, api)
+
+            elif answer.question.pk == 6:
+                api.do_q6(answer, api)
+
+            elif answer.question.pk == 7:
+                api.do_q7(answer, api)
+
+            elif answer.question.pk == 8:
+                api.do_q8(answer, api)
+
+            elif answer.question.pk == 9:
+                api.do_q9(answer, api)
+
+            elif answer.question.pk == 10:
+                api.do_q10(answer, api)
+
+            elif answer.question.pk == 21:
+                api.do_q21(answer, api)
+
+            elif answer.question.pk == 25:
+                api.do_q25(answer, api)
+
+            elif answer.question.pk == 26:
+                api.do_q26(answer, api)
+
+            elif answer.question.pk == 27:
+                api.do_q27(answer, api)
+
+            elif answer.question.pk == 28:
+                api.do_q28(answer, api)
+
+            elif answer.question.pk == 29:
+                api.do_q29(answer, api)
+
+            elif answer.question.pk == 30:
+                api.do_q30(answer, api)
+
+            elif answer.question.pk == 32:
+                api.do_q32(answer, api)
+
+            elif answer.question.pk == 33:
+                api.do_q33(answer, api)
+
+            elif answer.question.pk == 34:
+                api.do_q34(answer, api)
+
+            elif answer.question.pk == 35:
+                api.do_q35(answer, api)
+
+            elif answer.question.pk == 36:
+                api.do_q36(answer, api)
+
+            elif answer.question.pk == 37:
+                api.do_q37(answer, api)
+
+            elif answer.question.pk == 38:
+                api.do_q38(answer, api)
+
+            elif answer.question.pk == 39:
+                api.do_q39(answer, api)
+
+            elif answer.question.pk == 40:
+                api.do_q40(answer, api)
+
+            elif answer.question.pk == 41:
+                api.do_q41(answer, api)
+
+            elif answer.question.pk == 42:
+                api.do_q42(answer, api)
+
+            elif answer.question.pk == 43:
+                api.do_q43(answer, api)
+
+            elif answer.question.pk == 44:
+                api.do_q44(answer, api)
+
+            elif answer.question.pk == 45:
+                api.do_q45(answer, api)
+
+            elif answer.question.pk == 46:
+                api.do_q46(answer, api)
+
+            elif answer.question.pk == 47:
+                api.do_q47(answer, api)
+
+            elif answer.question.pk == 48:
+                api.do_q48(answer, api)
+
+            elif answer.question.pk == 49:
+                api.do_q49(answer, api)
+
+            elif answer.question.pk == 51:
+                api.do_q51(answer, api)
+
+            elif answer.question.pk == 52:
+                api.do_q52(answer, api)
+
+            elif answer.question.pk == 53:
+                api.do_q53(answer, api)
+
+            elif answer.question.pk == 54:
+                api.do_q54(answer, api)
+
+            elif answer.question.pk == 55:
+                api.do_q55(answer, api)
+
+            elif answer.question.pk == 56:
+                # actual_contact_number
+                api.do_q56(answer, api)
+
+            elif answer.question.pk == 58:
+                # actual_supported_number
+                # validation_outcome_met
+                api.do_q58(answer, api, answers)
+
+            elif answer.question.pk == 59:
+                # validation_lessons_learned
+                api.do_q59(answer, api)
+
+            elif answer.question.pk == 61:
+                api.do_q61(answer, api)
+
+            elif answer.question.pk == 62:
+                api.do_q62(answer, api)
+
+            elif answer.question.pk == 63:
+                api.do_q63(answer, api)
+
+            elif answer.question.pk == 64:
+                api.do_q64(answer, api)
+
+            elif answer.question.pk == 65:
+                api.do_q65(answer, api)
+
+            elif answer.question.pk == 66:
+                api.do_q66(answer, api)
+
+            elif answer.question.pk == 67:
+                api.do_q67(answer, api)
+
+            elif answer.question.pk == 68:
+                api.do_q68(answer, api)
+
+            elif answer.question.pk == 69:
+                api.do_q69(answer, api)
+
+            elif answer.question.pk == 70:
+                api.do_q70(answer, api)
+
+            elif answer.question.pk == 71:
+                api.do_q71(answer, api)
+
+            elif answer.question.pk == 72:
+                api.do_q72(answer, api)
+
+            elif answer.question.pk == 73:
+                api.do_q73(answer, api)
+
+            elif answer.question.pk == 74:
+                api.do_q74(answer, api)
+
+            elif answer.question.pk == 75:
+                api.do_q75(answer, api)
+
+            elif answer.question.pk == 76:
+                api.do_q76(answer, api)
+
+            elif answer.question.pk == 77:
+                api.do_q77(answer, api)
+
+            elif answer.question.pk == 78:
+                api.do_q78(answer, api)
+
+            elif answer.question.pk == 79:
+                api.do_q79(answer, api)
+
+            elif answer.question.pk == 80:
+                api.do_q80(answer, api)
+
+            elif answer.question.pk == 104:
+                api.do_q104(answer, api)
+
+            elif answer.question.pk == 142:
+                api.do_q142(answer, api)
+
+            elif answer.question.pk == 142:
+                api.do_q142(answer, api)
+
+            elif answer.question.pk == 143:
+                api.do_q143(answer, api)
+
+            elif answer.question.pk == 147:
+                api.do_q147(answer, api)
+
+            elif answer.question.pk == 148:
+                api.do_q148(answer, api)
+
+            elif answer.question.pk == 149:
+                api.do_q149(answer, api)
+
+            elif answer.question.pk == 150:
+                api.do_q150(answer, api)
+
+            elif answer.question.pk == 151:
+                api.do_q151(answer, api)
+
+            elif answer.question.pk == 152:
+                api.do_q152(answer, api)
+
+            elif answer.question.pk == 153:
+                api.do_q153(answer, api)
+
+            elif answer.question.pk == 154:
+                api.do_q154(answer, api)
+
+    def do_owner_names(self, workspace, api):
+        names = ""
+        for me in workspace.mes.all():
+            if names == "":
+                names += str(me)
+            else:
+                names += ", " + str(me)
+        api.add_text("owner_names", names)
+
+    def do_date(self, workspace, api):
+        today = timezone.now()
+        api.add_text("date", str(today))
