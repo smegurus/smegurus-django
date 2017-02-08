@@ -11,6 +11,12 @@ def index_page(request):
     })
 
 
+def start_page(request):
+    return render(request, 'public_home/start_view.html',{
+        'organizations': PublicOrganization.objects.all(),
+    })
+
+
 def term_page(request):
     # print("TENANT", request.tenant.schema_name)
     # print("USER", request.user)
