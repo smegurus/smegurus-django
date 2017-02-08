@@ -20,7 +20,7 @@ TEST_USER_LASTNAME = ""
 class FoundationPublicMiddlewareWithPublicSchemaTestCase(APITestCase, FastTenantTestCase):
     """
     DEVELOPERS NOTE:
-        - This unit test is dependent on the "public_index" app.
+        - This unit test is dependent on the "public_home" app.
     """
     fixtures = []
 

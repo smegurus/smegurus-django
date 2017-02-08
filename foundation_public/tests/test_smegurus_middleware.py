@@ -89,12 +89,12 @@ class SMEGurusTokenMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTestCas
         )
         self.assertTrue(authenticated_user)
 
-        response = authorized_client.get(reverse('public_index'))
+        response = authorized_client.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)
 
     @transaction.atomic
     def test_token_middleware_with_anonymous_user(self):
-        response = self.c.get(reverse('public_index'))
+        response = self.c.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)
 
     @transaction.atomic
@@ -116,5 +116,5 @@ class SMEGurusTokenMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTestCas
         token = Token.objects.get(user__email=TEST_USER_EMAIL)
         token.delete()
 
-        response = authorized_client.get(reverse('public_index'))
+        response = authorized_client.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)

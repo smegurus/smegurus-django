@@ -66,5 +66,5 @@ class DefaultLanguageRedirectMiddleware(object):
 
         # Detect the homepage has been landed on without default langauge.
         if len(user_url) and user_url == "/":
-            return HttpResponseRedirect(reverse('public_index'))
+            return HttpResponseRedirect(reverse('public_home'))
         return self.get_response(request)

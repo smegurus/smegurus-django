@@ -1,0 +1,78 @@
+{% load staticfiles compress i18n %}
+<!DOCTYPE html>
+<html lang="{{ request.language }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
+        <title>{% trans 'SME Gurus: 404 Error' %}</title>
+        <!-- =============== VENDOR STYLES ===============-->
+        <!-- FONT AWESOME-->
+        <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.min.css' %}">
+        <!-- SIMPLE LINE ICONS-->
+        <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}">
+        <!-- =============== BOOTSTRAP STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}" id="bscss">
+        <!-- =============== APP STYLES ===============-->
+        <link rel="stylesheet" href="{% static 'app/css/app.css' %}" id="maincss">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="abs-center wd-xl">
+                <br /><br />
+                <!-- START panel-->
+                <div class="text-center mb-xl">
+                    <div class="mb-lg">
+                        <em class="fa fa-exclamation-triangle fa-5x text-muted"></em>
+                    </div>
+                    <div class="text-lg mb-lg">{% trans '404' %}</div>
+                    <p class="lead m0">{% trans 'We couldn\'t find this page.' %}</p>
+                    <p>{% trans 'The page you are looking for does not exists.' %}</p>
+                </div>
+                {% comment %}
+                <div class="input-group mb-xl">
+                    <input type="text" placeholder="Try with a search" class="form-control">
+                    <span class="input-group-btn">
+                    <button type="button" class="btn btn-default">
+                    <em class="fa fa-search"></em>
+                    </button>
+                    </span>
+                </div>
+                {% endcomment %}
+                <ul class="list-inline text-center text-sm mb-xl">
+                    <li><a href="{% url 'public_home' %}" class="text-muted">{% trans 'Go to Index' %}</a>
+                    </li>
+                    <li class="text-muted">|</li>
+                    <li><a href="{% url 'foundation_auth_user_login' %}" class="text-muted">{% trans 'Login' %}</a>
+                    </li>
+                    <li class="text-muted">|</li>
+                    <li><a href="{% url 'foundation_auth_user_registration' %}" class="text-muted">{% trans 'Register' %}</a>
+                    </li>
+                </ul>
+                <div class="p-lg text-center">
+                    <span>&copy;</span>
+                    <span>2016</span>
+                    <span>-</span>
+                    <span>SME Gurus</span>
+                    <br>
+                    <!--<span>Bootstrap Admin Template</span>-->
+                </div>
+            </div>
+        </div>
+        <!-- =============== VENDOR SCRIPTS ===============-->
+        <!-- MODERNIZR-->
+        <script src="{% static 'vendor/modernizr/modernizr.custom.js' %}"></script>
+        <!-- JQUERY-->
+        <script src="{% static 'vendor/jquery/dist/jquery.js' %}"></script>
+        <!-- BOOTSTRAP-->
+        <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.js' %}"></script>
+        <!-- STORAGE API-->
+        <script src="{% static 'vendor/jQuery-Storage-API/jquery.storageapi.js' %}"></script>
+        <!-- PARSLEY-->
+        <script src="{% static 'vendor/parsleyjs/dist/parsley.min.js' %}"></script>
+        <!-- =============== APP SCRIPTS ===============-->
+        <script src="{% static 'app/js/app.js' %}"></script>
+    </body>
+</html>

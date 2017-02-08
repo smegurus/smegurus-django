@@ -39,7 +39,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^', include('foundation_public.urls')),
-    url(r'^', include('public_index.urls')),
+    url(r'^', include('public_home.urls')),
     url(r'^', include('public_admin.urls')),
     url(r'^', include('foundation_auth.urls')),
     url(r'^', include('foundation_email.urls')),
@@ -65,6 +65,6 @@ urlpatterns += i18n_patterns(
 
 
 # # Custom errors.
-handler403 = "public_index.views.http_403_page"
-handler404 = "public_index.views.http_404_page"
-handler500 = "public_index.views.http_500_page"
+handler403 = "public_home.views.http_403_page"
+handler404 = "public_home.views.http_404_page"
+handler500 = "public_home.views.http_500_page"

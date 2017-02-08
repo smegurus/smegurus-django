@@ -23,7 +23,7 @@ TEST_USER_LASTNAME = ""
 class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTestCase):
     """
     DEVELOPERS NOTE:
-        - This unit test is dependent on the "public_index" app.
+        - This unit test is dependent on the "public_home" app.
     """
     fixtures = []
 
@@ -71,7 +71,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
 
         # Run the test.
         client = TenantClient(self.tenant)
-        response = client.get(reverse('public_index'))
+        response = client.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)
 
         # Verify that no "Me" objects are created.
@@ -99,7 +99,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
             username=TEST_USER_USERNAME,
             password=TEST_USER_PASSWORD
         )
-        response = client.get(reverse('public_index'))
+        response = client.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)
 
         # Verify
@@ -111,7 +111,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
 class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     """
     DEVELOPERS NOTE:
-        - This unit test is dependent on the "public_index" app.
+        - This unit test is dependent on the "public_home" app.
     """
     fixtures = []
 
@@ -158,7 +158,7 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
 
         # Run the test.
         client = TenantClient(self.tenant)
-        response = client.get(reverse('public_index'))
+        response = client.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)
 
         # Verify that no "Me" objects are created.
@@ -186,7 +186,7 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
             username=TEST_USER_USERNAME,
             password=TEST_USER_PASSWORD
         )
-        response = client.get(reverse('public_index'))
+        response = client.get(reverse('public_home'))
         self.assertEqual(response.status_code, 200)
 
         # Verify
