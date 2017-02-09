@@ -979,6 +979,46 @@ class BizmulaAPI(DocxspressoAPI):
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
 
+    def do_q91(self, answer, api):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+
+        # Generate our custom item.
+        c1_dict = {
+            "var": 'management_names',
+            'value': col1_array
+        }
+        c2_dict = {
+            "var": 'management_roles',
+            'value': col2_array
+        }
+        c3_dict = {
+            "var": 'management_expertises',
+            'value': col3_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
     def do_q97(self, answer, api):
         api.add_text(
             "cogs_are_you",
