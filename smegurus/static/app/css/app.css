@@ -164,7 +164,9 @@ hr {
   text-decoration: none !important;
 }
 .panel.panel-default {
-  border-top-width: 3px;
+  /* Fixed issue 670 and 671*/
+  /*border-top-width: 3px;*/
+  border: none;
 }
 .well {
   border: 1px solid #dde6e9;
