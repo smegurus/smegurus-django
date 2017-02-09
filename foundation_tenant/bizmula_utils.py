@@ -996,18 +996,30 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("unit_sales_y3_total", answer.content['yr3_total'])
 
     def do_q100(self, answer, api):
+        api.add_text("cogs_labour_year1", answer.content['labour_yr1'])
+        api.add_text("cogs_labour_year2", answer.content['labour_yr2'])
+        api.add_text("cogs_labour_year3", answer.content['labour_yr3'])
+
+        api.add_text("cogs_material_year1", answer.content['materials_yr1'])
+        api.add_text("cogs_material_year2", answer.content['materials_yr2'])
+        api.add_text("cogs_material_year3", answer.content['materials_yr3'])
+
         api.add_text("cogs_materials_year1", answer.content['materials_yr1'])
         api.add_text("cogs_materials_year2", answer.content['materials_yr2'])
         api.add_text("cogs_materials_year3", answer.content['materials_yr3'])
+
         api.add_text("cogs_overhead_year1", answer.content['overhead_yr1'])
         api.add_text("cogs_overhead_year2", answer.content['overhead_yr2'])
         api.add_text("cogs_overhead_year3", answer.content['overhead_yr3'])
+
         api.add_text("total_cogs_year1", answer.content['total_cogs_yr1'])
         api.add_text("total_cogs_year2", answer.content['total_cogs_yr2'])
         api.add_text("total_cogs_year3", answer.content['total_cogs_yr3'])
+
         api.add_text("sales_price_per_unit_year1", answer.content['sales_per_unit_yr1'])
         api.add_text("sales_price_per_unit_year2", answer.content['sales_per_unit_yr2'])
         api.add_text("sales_price_per_unit_year3", answer.content['sales_per_unit_yr3'])
+
         api.add_text("gross_margin_percent_year1", answer.content['profit_percent_yr1'])
         api.add_text("gross_margin_percent_year2", answer.content['profit_percent_yr2'])
         api.add_text("gross_margin_percent_year3", answer.content['profit_percent_yr3'])
@@ -1141,6 +1153,56 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_overhead_m35", answer.content['overhead_month_35_other'] if answer.content['overhead_month_35_other'] else answer.content['overhead_month_35'])
         api.add_text("cogs_overhead_m36", answer.content['overhead_month_36_other'] if answer.content['overhead_month_36_other'] else answer.content['overhead_month_36'])
         # api.add_text("cogs_overhead_y1_total", answer.content['overhead_month_12_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_12'])
+
+    def do_q102(self, answer, api):
+        print("QID 102")
+
+    def do_q103(self, answer, api):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+        col4_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['title'])
+            col2_array.append(ans['yr1_percent'])
+            col3_array.append(ans['yr2_percent'])
+            col4_array.append(ans['yr3_percent'])
+
+        # Generate our custom item.
+        col1_dict = {
+            "var": 'target_market_types',
+            'value': col1_array
+        }
+        col2_dict = {
+            "var": 'sales_year1_targetmarkets',
+            'value': col2_array
+        }
+        col3_dict = {
+            "var": 'sales_year2_targetmarkets',
+            'value': col2_array
+        }
+        col4_dict = {
+            "var": 'sales_year3_targetmarkets',
+            'value': col2_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                col1_dict,
+                col2_dict,
+                col3_dict,
+                col4_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q104(self, answer, api):
         # 104	7	{{marketing_costs_m1}}

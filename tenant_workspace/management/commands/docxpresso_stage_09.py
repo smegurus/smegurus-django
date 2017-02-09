@@ -93,8 +93,7 @@ class Command(BaseCommand):
         self.set_answers(workspace, answers, api)
 
 
-        return #TODO: Delete.
-
+        
 
         # Generate our document!
         doc_filename = api.get_filename()
@@ -363,6 +362,12 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 101:
                 api.do_q101(answer, api)
+
+            elif answer.question.pk == 102:
+                api.do_q102(answer, api)
+
+            elif answer.question.pk == 103:
+                api.do_q103(answer, api)
 
             elif answer.question.pk == 104:
                 api.do_q104(answer, api)
