@@ -16,12 +16,12 @@
             }
         });
     });
-    
+
     /*
      * FIXED ISSUE #674
      * Added missing function is_int()
      */
-     
+
     /**
      *  Validate to check something is an integer.
      */
@@ -76,14 +76,29 @@
         var input_1 = $('#id_input_1').val();
         var input_1_other = $('#id_input_1_other').val();
         if (input_1 == "{{ question.options.opt1_other }}") {
-            if (input_1_other.length < {{ question.validation.opt1_other_min_length }}) {
-                alert("{{ question.validation.opt1_other_min_length_error_message }}");
-                return;
+
+            if ("{{ question.validation.type }}" == "textfield") {
+                // IF WE ARE PROCESSING A "TEXTFIELD" THEN APPLY THE APPROPRIATE VALIDATION.
+                if (input_1_other.length < {{ question.validation.min_length }}) {
+                    alert("{{ question.validation.min_length_error_message }}");
+                    return;
+                }
+                if (input_1_other.length > {{ question.validation.max_length }}) {
+                    alert("{{ question.validation.max_length_error_message }}");
+                    return;
+                }
             }
-            if (is_int(input_1_other) == false) {
-                alert("{% trans 'Please enter only whole numbers, no dollars signs, commas, letters, or other special characters.' %}");
-                return;
+            else if ("{{ question.validation.type }}" == "integerfield") {
+                if (input_1_other.length < {{ question.validation.opt1_other_min_length }}) {
+                    alert("{{ question.validation.opt1_other_min_length_error_message }}");
+                    return;
+                }
+                if (is_int(input_1_other) == false) {
+                    alert("{% trans 'Please enter only whole numbers, no dollars signs, commas, letters, or other special characters.' %}");
+                    return;
+                }
             }
+
         } else {
             if (input_1 == "{{ question.options.opt1_select }}") {
                 alert("{% trans 'Please fill pick a choice.' %}");
