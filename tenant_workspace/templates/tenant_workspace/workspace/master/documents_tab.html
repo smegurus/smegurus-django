@@ -5,7 +5,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th style="display: none;">ID #</th>
                     <th>{% trans 'Document Name' %}</th>
                     <th>{% trans 'Status' %}</th>
                     <th>{% trans 'File' %}</th>
@@ -20,7 +19,6 @@
                     {% elif document.status == constants.DOCUMENT_CREATED_STATUS %}
                         <tr class="danger">
                     {% endif %}
-                    <td style="display: none;">{{ document.id }}</td>
                     <td>{{ document|escape|safe }}</td>
                     <td>
                         {% if document.status == constants.DOCUMENT_READY_STATUS %}
