@@ -360,3 +360,12 @@ body,
     background-color: #f26523;
     color: #ffffff !important;
 }
+
+/* FIXED ISSUE #677*/
+.col-sm-12-6{
+	width:22%;
+}
+
+.col-sm-12-7{
+	width:30%;
+}
