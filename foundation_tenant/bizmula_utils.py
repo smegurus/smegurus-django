@@ -888,6 +888,48 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
+    def do_q81(self, answer, api):
+        print("QID 81")
+
+    def do_q82(self, answer, api):
+        api.add_text(
+            "business_legal_structure",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q83(self, answer, api):
+        api.add_text("business_st_address", answer.content['var_1'])
+        api.add_text("business_city", answer.content['var_2'])
+        api.add_text("business_country", answer.content['var_3'])
+        api.add_text("business_province", answer.content['var_4'])
+
+    def do_q87(self, answer, api): #TODO: BUGFIX
+        # 87 {{category_1_products}}	First dropdown IF Product Category 1, Second Dropdown
+        # 87 {{category_2_products}}	First dropdown IF Product Category 2, Second Dropdown
+        # 87 {{category_3_products}}	First dropdown IF Product Category 3, Second Dropdown
+        print("QID 87")
+
+    def do_q88(self, answer, api):
+        api.add_text(
+            "business_verb",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q97(self, answer, api):
+        api.add_text(
+            "cogs_are_you",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q98(self, answer, api):
+        api.add_text(
+            "cogs_how_to_forecast",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
+    def do_q99(self, answer, api):
+        print("QID 99")
+
     def do_q104(self, answer, api):
         # 104	7	{{marketing_costs_m1}}
         # 104	7	{{marketing_costs_m2}}
