@@ -5,11 +5,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID #</th>
+                    <th style="display: none;">ID #</th>
                     <th>{% trans 'Document Name' %}</th>
                     <th>{% trans 'Status' %}</th>
                     <th>{% trans 'File' %}</th>
-                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +20,7 @@
                     {% elif document.status == constants.DOCUMENT_CREATED_STATUS %}
                         <tr class="danger">
                     {% endif %}
-                    <td>{{ document.id }}</td>
+                    <td style="display: none;">{{ document.id }}</td>
                     <td>{{ document|escape|safe }}</td>
                     <td>
                         {% if document.status == constants.DOCUMENT_READY_STATUS %}
@@ -44,7 +43,6 @@
                         -
                         {% endif %}
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 {% endfor %}
             </tbody>
