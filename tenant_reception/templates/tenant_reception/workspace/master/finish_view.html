@@ -11,7 +11,7 @@
             {{ module.id }},
             function(json_result) {
                 $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                alert("{% trans 'You have submitted your results! Please wait while an advisor will look at your work.' %}")
+                alert("{% trans 'You have submitted your work! Please wait for your advisor to review it.' %}")
                 window.location = "{% url 'tenant_reception' %}";
             },
             function(error_json_result) {
