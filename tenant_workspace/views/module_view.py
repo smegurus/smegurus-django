@@ -39,8 +39,6 @@ def detail_page(request, workspace_id, module_id, node_id):
     node_id = int_or_none(node_id)
     node = module.get_node(node_id)
 
-    print(node)
-
     # Either load up a "Slide" or load up the "Question".
     if node['type'] == "slide":
         return render(request, 'tenant_workspace/module/detail/slice_view.html',{

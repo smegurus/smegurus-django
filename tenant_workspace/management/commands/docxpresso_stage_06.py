@@ -104,7 +104,7 @@ class Command(BaseCommand):
         )
 
         # Take our content and populate docxpresso with it.
-        self.set_answers(answers, api)
+        self.set_answers(workspace, answers, api)
 
         # Generate our document!
         doc_filename = api.get_filename()
@@ -142,9 +142,8 @@ class Command(BaseCommand):
             document.docxpresso_file = docxpresso_file
             document.save()
 
-    def set_answers(self, answers, api):
-        today = timezone.now()
-        api.add_text("date", str(today))
+    def set_answers(self, workspace, answers, api):
+        self.do_date(api)
 
         for answer in answers.all():
             if answer.question.pk == 21:
@@ -163,6 +162,10 @@ class Command(BaseCommand):
             if answer.question.pk == 59:
                 # validation_lessons_learned
                 self.do_q59(answer, api)
+
+    def do_date(self, api):
+        today = timezone.now()
+        api.add_text("date", "{:%Y-%m-%d}".format(today))
 
     def do_q21(self, answer, api):
         api.add_text("workspace_name", answer.content['var_1'])

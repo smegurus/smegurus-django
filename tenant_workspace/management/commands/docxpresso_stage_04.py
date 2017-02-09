@@ -143,7 +143,7 @@ class Command(BaseCommand):
             document.save()
 
     def set_answers(self, workspace, answers, api):
-        api.add_text("system_date", str(workspace.created))
+        self.do_system_date(workspace, api)
 
         for answer in answers.all():
             if answer.question.pk == 21:
@@ -178,6 +178,9 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 152:
                 self.do_q152(answer, api)
+
+    def do_system_date(self, workspace, api):
+        api.add_text("system_date", "{:%Y-%m-%d}".format(workspace.created))
 
     def do_q21(self, answer, api):
         api.add_text("business_name", answer.content['var_1'])

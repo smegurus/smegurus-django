@@ -32,10 +32,6 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     """
     Asynchronously process our document. Email owner when process completes.
     """
-    # print("DOC_ID", doc_id)
-    # print("DOC_TYPE", doc_type)
-    # print("TENANT", schema_name)
-
     # Run the sub-routine for taking the Document object and submitting it to
     # Bizmula "docxpresso" engine.
 

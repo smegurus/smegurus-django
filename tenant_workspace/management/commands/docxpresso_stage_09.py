@@ -130,7 +130,7 @@ class Command(BaseCommand):
 
     def set_answers(self, workspace, answers, api):
         # Assign date.
-        self.do_date(workspace, api)
+        self.do_date(api)
 
         # Assign odwners.
         self.do_owner_names(workspace, api)
@@ -365,6 +365,10 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 154:
                 api.do_q154(answer, api)
+
+    def do_date(self, api):
+        today = timezone.now()
+        api.add_text("date", "{:%Y-%m-%d}".format(today))
 
     def do_owner_names(self, workspace, api):
         names = ""

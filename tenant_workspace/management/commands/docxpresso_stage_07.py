@@ -134,8 +134,7 @@ class Command(BaseCommand):
             document.save()
 
     def set_answers(self, answers, api):
-        today = timezone.now()
-        api.add_text("date", str(today)) # date
+        self.do_date(api)
 
         for answer in answers.all():
             if answer.question.pk == 25:
@@ -245,6 +244,10 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 154:
                 self.do_q154(answer, api)
+
+    def do_date(self, api):
+        today = timezone.now()
+        api.add_text("date", "{:%Y-%m-%d}".format(today))
 
     def do_q25(self, answer, api):
         naics_id = answer.content['var_5'] # Depth 5 NAICS ID
