@@ -1020,7 +1020,50 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_q92(self, answer, api):
-        print(answer.content)
+        api.add_text(
+            "management_strength_1",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+        api.add_text(
+            "management_strength_2",
+            answer.content['var_2_other'] if answer.content['var_2_other'] else answer.content['var_2']
+        )
+        api.add_text(
+            "management_strength_3",
+            answer.content['var_3_other'] if answer.content['var_3_other'] else answer.content['var_3']
+        )
+
+    def do_q93(self, answer, api):
+        col1_array = []
+        col2_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+        # Generate our custom item.
+        c1_dict = {
+            "var": 'management_weaknesses',
+            'value': col1_array
+        }
+        c2_dict = {
+            "var": 'management_weakness_resolutions',
+            'value': col2_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q97(self, answer, api):
         api.add_text(
@@ -1325,6 +1368,45 @@ class BizmulaAPI(DocxspressoAPI):
         # 104	7	{{marketing_costs_m36}}
         # 104	7	{{marketing_costs_y3_total}}
         print("QID 104") #TODO: IMPLEMENT
+
+    def do_q105(self, answer, api):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+        # Generate our custom item.
+        c1_dict = {
+            "var": 'advisor_names',
+            'value': col1_array
+        }
+        c2_dict = {
+            "var": 'advisor_company_names',
+            'value': col2_array
+        }
+        c3_dict = {
+            "var": 'advisor_roles',
+            'value': col3_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q142(self, answer, api):
         marketing_referral_types_array = []
