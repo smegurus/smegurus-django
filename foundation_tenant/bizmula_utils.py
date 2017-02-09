@@ -1019,6 +1019,9 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
+    def do_q92(self, answer, api):
+        print(answer.content)
+
     def do_q97(self, answer, api):
         api.add_text(
             "cogs_are_you",

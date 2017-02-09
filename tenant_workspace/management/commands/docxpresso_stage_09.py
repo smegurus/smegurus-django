@@ -92,6 +92,10 @@ class Command(BaseCommand):
         # Take our content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
+
+        return #TODO: Delete.
+
+
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
