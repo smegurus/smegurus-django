@@ -92,6 +92,10 @@ class Command(BaseCommand):
         # Take our content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
+
+        return #TODO: Delete.
+
+
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
@@ -353,6 +357,12 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 99:
                 api.do_q99(answer, api)
+
+            elif answer.question.pk == 100:
+                api.do_q100(answer, api)
+
+            elif answer.question.pk == 101:
+                api.do_q101(answer, api)
 
             elif answer.question.pk == 104:
                 api.do_q104(answer, api)
