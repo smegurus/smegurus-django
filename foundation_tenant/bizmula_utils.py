@@ -103,13 +103,13 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text_list("industry_contacts", arr)
 
 
-    def do_q32(self, answer, api):
-        array = [
-            answer.content['var_1'],
-            answer.content['var_2'],
-            answer.content['var_3']
-        ];
-        api.add_text_paragraphs("product_categories", array)
+    # def do_q32(self, answer, api):
+    #     array = [
+    #         answer.content['var_1'],
+    #         answer.content['var_2'],
+    #         answer.content['var_3']
+    #     ];
+    #     api.add_text_paragraphs("product_categories", array)
 
     def do_q33(self, answer, api):
         api.add_text(
@@ -903,11 +903,38 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("business_country", answer.content['var_3'])
         api.add_text("business_province", answer.content['var_4'])
 
-    def do_q87(self, answer, api): #TODO: BUGFIX
-        # 87 {{category_1_products}}	First dropdown IF Product Category 1, Second Dropdown
-        # 87 {{category_2_products}}	First dropdown IF Product Category 2, Second Dropdown
-        # 87 {{category_3_products}}	First dropdown IF Product Category 3, Second Dropdown
-        print("QID 87")
+    def do_q87(self, answer, api):
+        product_categories_array = []
+        category_1_products_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            product_categories_array.append(ans['var_2'])
+            category_1_products_array.append(ans['var_3'])
+
+        # Generate our custom item.
+        product_categories_dict = {
+            "var": 'product_categories',
+            'value': product_categories_array
+        }
+        category_1_product_dict = {
+            "var": 'category_1_products',
+            'value': category_1_products_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                product_categories_dict,
+                category_1_product_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q88(self, answer, api):
         api.add_text(
