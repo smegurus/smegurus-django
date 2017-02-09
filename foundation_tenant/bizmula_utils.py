@@ -889,7 +889,44 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_q81(self, answer, api):
-        print("QID 81")
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+
+        # Generate our custom item.
+        col1_dict = {
+            "var": 'owner_names',
+            'value': col1_array
+        }
+        col2_dict = {
+            "var": 'owner_percentages',
+            'value': col2_array
+        }
+        col3_dict = {
+            "var": 'owner_types',
+            'value': col3_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                col1_dict,
+                col2_dict,
+                col3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q82(self, answer, api):
         api.add_text(
@@ -1181,11 +1218,11 @@ class BizmulaAPI(DocxspressoAPI):
         }
         col3_dict = {
             "var": 'sales_year2_targetmarkets',
-            'value': col2_array
+            'value': col3_array
         }
         col4_dict = {
             "var": 'sales_year3_targetmarkets',
-            'value': col2_array
+            'value': col4_array
         }
 
         # Generate the custom API query.

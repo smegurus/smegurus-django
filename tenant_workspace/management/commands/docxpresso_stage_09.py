@@ -92,9 +92,6 @@ class Command(BaseCommand):
         # Take our content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
-
-        
-
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
@@ -134,9 +131,6 @@ class Command(BaseCommand):
     def set_answers(self, workspace, answers, api):
         # Assign date.
         self.do_date(api)
-
-        # Assign odwners.
-        self.do_owner_names(workspace, api)
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
