@@ -1026,6 +1026,18 @@ class BizmulaAPI(DocxspressoAPI):
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
 
+    def do_q90(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'license_types',
+            'license_processes',
+            'license_complete_percents',
+            'license_y1_costs',
+            'license_y2_costs',
+            'license_y3_costs'
+        )
+
     def do_q91(self, answer, api):
         col1_array = []
         col2_array = []
@@ -1476,6 +1488,36 @@ class BizmulaAPI(DocxspressoAPI):
     def do_q119(self, answer, api):
         self.do_type52(answer, api, "supplies_costs")
 
+    def do_q120(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'comm_types',
+            'comm_details',
+            'comm_cost_types',
+            'comm_y1_costs',
+            'comm_y2_costs',
+            'comm_y3_costs'
+        )
+
+    def do_q121(self, answer, api):
+        self.do_type52(answer, api, "comm_costs")
+
+    def do_q122(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'sub_types',
+            'sub_details',
+            'sub_cost_types',
+            'sub_y1_costs',
+            'sub_y2_costs',
+            'sub_y3_costs'
+        )
+
+    def do_q123(self, answer, api):
+        self.do_type52(answer, api, "sub_costs")
+
     def do_q124(self, answer, api):
         self.do_type50(
             answer,
@@ -1490,6 +1532,66 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q125(self, answer, api):
         self.do_type52(answer, api, "sales_expense")
+
+    def do_q126(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'mem_types',
+            'mem_details',
+            'mem_cost_types',
+            'mem_y1_costs',
+            'mem_y2_costs',
+            'mem_y3_costs'
+        )
+
+    def do_q127(self, answer, api):
+        self.do_type52(answer, api, "mem_costs")
+
+    def do_q128(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'lease_types',
+            'lease_details',
+            'lease_cost_types',
+            'lease_y1_costs',
+            'lease_y2_costs',
+            'lease_y3_costs'
+        )
+
+    def do_q129(self, answer, api):
+        self.do_type52(answer, api, "lease_costs")
+
+    def do_q130(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'maintain_types',
+            'maintain_details',
+            'maintain_cost_types',
+            'maintain_y1_costs',
+            'maintain_y2_costs',
+            'maintain_y3_costs'
+        )
+
+    def do_q131(self, answer, api):
+        self.do_type52(answer, api, "maintain_costs")
+
+    def do_q132(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'other_types',
+            'other_details',
+            'other_cost_types',
+            'other_y1_costs',
+            'other_y2_costs',
+            'other_y3_costs'
+        )
+
+    def do_q133(self, answer, api):
+        self.do_type52(answer, api, "other_costs")
 
     def do_q139(self, answer, api):
         self.do_type50(

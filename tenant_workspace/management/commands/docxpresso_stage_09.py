@@ -92,8 +92,6 @@ class Command(BaseCommand):
         # Take our content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
-        return #TODO: Delete.
-
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
@@ -353,6 +351,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 88:
                 api.do_q88(answer, api)
 
+            elif answer.question.pk == 90:
+                api.do_q90(answer, api)
+
             elif answer.question.pk == 91:
                 api.do_q91(answer, api)
 
@@ -428,11 +429,47 @@ class Command(BaseCommand):
             elif answer.question.pk == 119:
                 api.do_q119(answer, api)
 
+            elif answer.question.pk == 120:
+                api.do_q120(answer, api)
+
+            elif answer.question.pk == 121:
+                api.do_q121(answer, api)
+
+            elif answer.question.pk == 122:
+                api.do_q122(answer, api)
+
+            elif answer.question.pk == 123:
+                api.do_q123(answer, api)
+
             elif answer.question.pk == 124:
                 api.do_q124(answer, api)
 
-            elif answer.question.pk == 124:
+            elif answer.question.pk == 125:
                 api.do_q125(answer, api)
+
+            elif answer.question.pk == 126:
+                api.do_q126(answer, api)
+
+            elif answer.question.pk == 127:
+                api.do_q127(answer, api)
+
+            elif answer.question.pk == 128:
+                api.do_q128(answer, api)
+
+            elif answer.question.pk == 129:
+                api.do_q129(answer, api)
+
+            elif answer.question.pk == 130:
+                api.do_q130(answer, api)
+
+            elif answer.question.pk == 131:
+                api.do_q131(answer, api)
+
+            elif answer.question.pk == 132:
+                api.do_q132(answer, api)
+
+            elif answer.question.pk == 133:
+                api.do_q133(answer, api)
 
             elif answer.question.pk == 139:
                 api.do_q139(answer, api)
