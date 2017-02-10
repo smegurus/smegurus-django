@@ -5,15 +5,15 @@
         {% include 'tenant_configuration/entrepreneur/12_js.html' %}
     {% endcompress %}
 
-    <h2 class="text-center pv">{% trans 'What is your ZIP/Postal Code' %}</h2>
+    <h2 class="text-center pv">{% trans 'What is your Postal Code?' %}</h2>
 
     <!-- HTML -->
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group" id="id_postal_code_div">
-            <label class="col-sm-2 control-label">{% trans 'ZIP/Postal Code' %}</label>
-            <div class="col-sm-10">
-                <input id="id_postal_code" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.address.postal_code|escape|safe }}" maxlength="127" />
+            <label class="col-sm-4 control-label" style="text-align: right;margin-top: 8px;">{% trans 'ZIP/Postal Code' %}</label>
+            <div class="col-sm-6">
+                <input id="id_postal_code" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.address.postal_code|escape|safe }}" maxlength="127" />
             </div>
         </div>
         <!-- end ROW 1 -->
