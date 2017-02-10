@@ -1373,32 +1373,36 @@ class BizmulaAPI(DocxspressoAPI):
         col1_array = []
         col2_array = []
         col3_array = []
+        col4_array = []
+        col5_array = []
+        col6_array = []
 
         # Populate rows.
         for ans in answer.content:
             col1_array.append(ans['var_2'])
             col2_array.append(ans['var_3'])
             col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
+            col5_array.append(ans['var_6'])
+            col6_array.append(ans['var_7'])
+
         # Generate our custom item.
-        c1_dict = {
-            "var": 'advisor_names',
-            'value': col1_array
-        }
-        c2_dict = {
-            "var": 'advisor_company_names',
-            'value': col2_array
-        }
-        c3_dict = {
-            "var": 'advisor_roles',
-            'value': col3_array
-        }
+        c1_dict = {"var": 'salary_types', 'value': col1_array}
+        c2_dict = {"var": 'salary_details', 'value': col2_array}
+        c3_dict = {"var": 'salary_cost_types', 'value': col3_array}
+        c4_dict = {"var": 'salary_year1_costs', 'value': col4_array}
+        c5_dict = {"var": 'salary_year2_costs', 'value': col5_array}
+        c6_dict = {"var": 'salary_year3_costs', 'value': col6_array}
 
         # Generate the custom API query.
         custom = {
             "vars": [
                 c1_dict,
                 c2_dict,
-                c3_dict
+                c3_dict,
+                c4_dict,
+                c5_dict,
+                c6_dict
             ],
             "options": {
                 "element": "table"
@@ -1407,6 +1411,47 @@ class BizmulaAPI(DocxspressoAPI):
 
         # Attach all out tables.
         api.add_custom(custom)
+
+    def do_q106(self, answer, api):
+        api.add_text("salary_cost_m1", answer.content['m1'])
+        api.add_text("salary_cost_m2", answer.content['m2'])
+        api.add_text("salary_cost_m3", answer.content['m3'])
+        api.add_text("salary_cost_m4", answer.content['m4'])
+        api.add_text("salary_cost_m5", answer.content['m5'])
+        api.add_text("salary_cost_m6", answer.content['m6'])
+        api.add_text("salary_cost_m7", answer.content['m7'])
+        api.add_text("salary_cost_m8", answer.content['m8'])
+        api.add_text("salary_cost_m9", answer.content['m9'])
+        api.add_text("salary_cost_m10", answer.content['m10'])
+        api.add_text("salary_cost_m11", answer.content['m11'])
+        api.add_text("salary_cost_m12", answer.content['m12'])
+        api.add_text("salary_cost_y1_total", answer.content['yr1_total'])
+        api.add_text("salary_cost_m13", answer.content['m13'])
+        api.add_text("salary_cost_m14", answer.content['m14'])
+        api.add_text("salary_cost_m15", answer.content['m15'])
+        api.add_text("salary_cost_m16", answer.content['m16'])
+        api.add_text("salary_cost_m17", answer.content['m17'])
+        api.add_text("salary_cost_m18", answer.content['m18'])
+        api.add_text("salary_cost_m19", answer.content['m19'])
+        api.add_text("salary_cost_m20", answer.content['m20'])
+        api.add_text("salary_cost_m21", answer.content['m21'])
+        api.add_text("salary_cost_m22", answer.content['m22'])
+        api.add_text("salary_cost_m23", answer.content['m23'])
+        api.add_text("salary_cost_m24", answer.content['m24'])
+        api.add_text("salary_cost_y2_total", answer.content['yr2_total'])
+        api.add_text("salary_cost_m25", answer.content['m25'])
+        api.add_text("salary_cost_m26", answer.content['m26'])
+        api.add_text("salary_cost_m27", answer.content['m27'])
+        api.add_text("salary_cost_m28", answer.content['m28'])
+        api.add_text("salary_cost_m29", answer.content['m29'])
+        api.add_text("salary_cost_m30", answer.content['m30'])
+        api.add_text("salary_cost_m31", answer.content['m31'])
+        api.add_text("salary_cost_m32", answer.content['m32'])
+        api.add_text("salary_cost_m33", answer.content['m33'])
+        api.add_text("salary_cost_m34", answer.content['m34'])
+        api.add_text("salary_cost_m35", answer.content['m35'])
+        api.add_text("salary_cost_m36", answer.content['m36'])
+        api.add_text("salary_cost_y3_total", answer.content['yr3_total'])
 
     def do_q142(self, answer, api):
         marketing_referral_types_array = []
