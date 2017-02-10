@@ -1593,6 +1593,57 @@ class BizmulaAPI(DocxspressoAPI):
     def do_q133(self, answer, api):
         self.do_type52(answer, api, "other_costs")
 
+    def do_q134(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'misc_types',
+            'misc_details',
+            'misc_cost_types',
+            'misc_y1_costs',
+            'misc_y2_costs',
+            'misc_y3_costs'
+        )
+
+    def do_q135(self, answer, api):
+        self.do_type52(answer, api, "misc_costs")
+
+    def do_q136(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'asset_names',
+            'asset_deps',
+            'asset_cost_types',
+            'asset_y1_costs',
+            'asset_y2_costs',
+            'asset_y3_costs'
+        )
+
+    def do_q137(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'interest_items',
+            'interest_details',
+            'interest_cost_types',
+            'interest_y1_costs',
+            'interest_y2_costs',
+            'interest_y3_costs'
+        )
+
+    def do_q138(self, answer, api):
+        self.do_type50(
+            answer,
+            api,
+            'tax_items',
+            'tax_details',
+            'tax_cost_types',
+            'tax_y1_costs',
+            'tax_y2_costs',
+            'tax_y3_costs'
+        )
+
     def do_q139(self, answer, api):
         self.do_type50(
             answer,
