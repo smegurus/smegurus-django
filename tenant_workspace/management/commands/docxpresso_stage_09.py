@@ -93,7 +93,7 @@ class Command(BaseCommand):
         self.set_answers(workspace, answers, api)
 
 
-        # return #TODO: Delete.
+        return #TODO: Delete.
 
 
         # Generate our document!
@@ -340,6 +340,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 83:
                 api.do_q83(answer, api)
 
+            elif answer.question.pk == 85:
+                api.do_q85(answer, api)
+
             elif answer.question.pk == 87:
                 api.do_q87(answer, api)
 
@@ -384,6 +387,15 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 106:
                 api.do_q106(answer, api)
+
+            elif answer.question.pk == 107:
+                api.do_q107(answer, api)
+
+            elif answer.question.pk == 111:
+                api.do_q111(answer, api)
+
+            elif answer.question.pk == 112:
+                api.do_q112(answer, api)
 
             elif answer.question.pk == 142:
                 api.do_q142(answer, api)
