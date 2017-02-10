@@ -401,8 +401,8 @@
                 "opt1": [
                     {
                         "id": "1",
-                        "value": "Resume for each owner",
-                        "text": "Resume for each owner"
+                        "value": "Owner Resumes",
+                        "text": "Owner Resumes"
                     },
                     {
                         "id": "2",
@@ -411,8 +411,8 @@
                     },
                     {
                         "id": "3",
-                        "value": "Credit Report",
-                        "text": "Credit Report"
+                        "value": "Credit Reports",
+                        "text": "Credit Reports"
                     },
                     {
                         "id": "4",
