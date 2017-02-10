@@ -1621,6 +1621,133 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("admin_cost_m36", answer.content['m_36'] if answer.content['m_36'] else answer.content['m_36_r'])
         api.add_text("admin_cost_y3_total", answer.content['yr_3'] if answer.content['yr_3'] else answer.content['yr_3_r'])
 
+    def do_q124(self, answer, api):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+        col4_array = []
+        col5_array = []
+        col6_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
+            col5_array.append(ans['var_6'])
+            col6_array.append(ans['var_7'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'sales_expense_types', 'value': col1_array}
+        c2_dict = {"var": 'sales_expense_details', 'value': col2_array}
+        c3_dict = {"var": 'sales_expense_cost_types', 'value': col3_array}
+        c4_dict = {"var": 'sales_y1_costs', 'value': col4_array}
+        c5_dict = {"var": 'sales_y2_costs', 'value': col5_array}
+        c6_dict = {"var": 'sales_y3_costs', 'value': col6_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict,
+                c4_dict,
+                c5_dict,
+                c6_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_q125(self, answer, api):
+        api.add_text("sales_expense_m1", answer.content['m_01'] if answer.content['m_01'] else answer.content['m_01_r'])
+        api.add_text("sales_expense_m2", answer.content['m_02'] if answer.content['m_02'] else answer.content['m_02_r'])
+        api.add_text("sales_expense_m3", answer.content['m_03'] if answer.content['m_03'] else answer.content['m_03_r'])
+        api.add_text("sales_expense_m4", answer.content['m_04'] if answer.content['m_04'] else answer.content['m_04_r'])
+        api.add_text("sales_expense_m5", answer.content['m_05'] if answer.content['m_05'] else answer.content['m_05_r'])
+        api.add_text("sales_expense_m6", answer.content['m_06'] if answer.content['m_06'] else answer.content['m_06_r'])
+        api.add_text("sales_expense_m7", answer.content['m_07'] if answer.content['m_07'] else answer.content['m_07_r'])
+        api.add_text("sales_expense_m8", answer.content['m_08'] if answer.content['m_08'] else answer.content['m_08_r'])
+        api.add_text("sales_expense_m9", answer.content['m_09'] if answer.content['m_09'] else answer.content['m_09_r'])
+        api.add_text("sales_expense_m10", answer.content['m_10'] if answer.content['m_10'] else answer.content['m_10_r'])
+        api.add_text("sales_expense_m11", answer.content['m11'] if answer.content['m_11'] else answer.content['m_11_r'])
+        api.add_text("sales_expense_m12", answer.content['m12'] if answer.content['m_12'] else answer.content['m_12_r'])
+        api.add_text("sales_expense_y1_total", answer.content['yr_1'] if answer.content['yr_1'] else answer.content['yr_1_r'])
+        api.add_text("sales_expense_m13", answer.content['m_13'] if answer.content['m_13'] else answer.content['m_13_r'])
+        api.add_text("sales_expense_m14", answer.content['m_14'] if answer.content['m_14'] else answer.content['m_14_r'])
+        api.add_text("sales_expense_m15", answer.content['m_15'] if answer.content['m_15'] else answer.content['m_15_r'])
+        api.add_text("sales_expense_m16", answer.content['m_16'] if answer.content['m_16'] else answer.content['m_16_r'])
+        api.add_text("sales_expense_m17", answer.content['m_17'] if answer.content['m_17'] else answer.content['m_17_r'])
+        api.add_text("sales_expense_m18", answer.content['m_18'] if answer.content['m_18'] else answer.content['m_18_r'])
+        api.add_text("sales_expense_m19", answer.content['m_19'] if answer.content['m_19'] else answer.content['m_19_r'])
+        api.add_text("sales_expense_m20", answer.content['m_20'] if answer.content['m_20'] else answer.content['m_20_r'])
+        api.add_text("sales_expense_m21", answer.content['m_21'] if answer.content['m_21'] else answer.content['m_21_r'])
+        api.add_text("sales_expense_m22", answer.content['m_22'] if answer.content['m_22'] else answer.content['m_22_r'])
+        api.add_text("sales_expense_m23", answer.content['m_23'] if answer.content['m_23'] else answer.content['m_23_r'])
+        api.add_text("sales_expense_m24", answer.content['m_24'] if answer.content['m_24'] else answer.content['m_24_r'])
+        api.add_text("sales_expense_y2_total", answer.content['yr_1'] if answer.content['yr_2'] else answer.content['yr_2_r'])
+        api.add_text("sales_expense_m25", answer.content['m_25'] if answer.content['m_25'] else answer.content['m_25_r'])
+        api.add_text("sales_expense_m26", answer.content['m_26'] if answer.content['m_26'] else answer.content['m_26_r'])
+        api.add_text("sales_expense_m27", answer.content['m_27'] if answer.content['m_27'] else answer.content['m_27_r'])
+        api.add_text("sales_expense_m28", answer.content['m_28'] if answer.content['m_28'] else answer.content['m_28_r'])
+        api.add_text("sales_expense_m29", answer.content['m_29'] if answer.content['m_29'] else answer.content['m_29_r'])
+        api.add_text("sales_expense_m30", answer.content['m_30'] if answer.content['m_30'] else answer.content['m_30_r'])
+        api.add_text("sales_expense_m31", answer.content['m_31'] if answer.content['m_31'] else answer.content['m_31_r'])
+        api.add_text("sales_expense_m32", answer.content['m_32'] if answer.content['m_32'] else answer.content['m_32_r'])
+        api.add_text("sales_expense_m33", answer.content['m_33'] if answer.content['m_33'] else answer.content['m_33_r'])
+        api.add_text("sales_expense_m34", answer.content['m_34'] if answer.content['m_34'] else answer.content['m_34_r'])
+        api.add_text("sales_expense_m35", answer.content['m_35'] if answer.content['m_35'] else answer.content['m_35_r'])
+        api.add_text("sales_expense_m36", answer.content['m_36'] if answer.content['m_36'] else answer.content['m_36_r'])
+        api.add_text("sales_expense_y3_total", answer.content['yr_3'] if answer.content['yr_3'] else answer.content['yr_3_r'])
+
+    def do_q139(self, answer, api):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+        col4_array = []
+        col5_array = []
+        col6_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
+            col5_array.append(ans['var_6'])
+            col6_array.append(ans['var_7'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'sales_expense_types', 'value': col1_array}
+        c2_dict = {"var": 'sales_expense_details', 'value': col2_array}
+        c3_dict = {"var": 'sales_expense_cost_types', 'value': col3_array}
+        c4_dict = {"var": 'sales_y1_costs', 'value': col4_array}
+        c5_dict = {"var": 'sales_y2_costs', 'value': col5_array}
+        c6_dict = {"var": 'sales_y3_costs', 'value': col6_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict,
+                c4_dict,
+                c5_dict,
+                c6_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
     def do_q142(self, answer, api):
         marketing_referral_types_array = []
         marketing_referral_impacts_array = []
