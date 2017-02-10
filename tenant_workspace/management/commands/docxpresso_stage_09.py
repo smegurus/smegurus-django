@@ -336,6 +336,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 83:
                 api.do_q83(answer, api)
 
+            elif answer.question.pk == 84:
+                api.do_q84(answer, api)
+
             elif answer.question.pk == 85:
                 api.do_q85(answer, api)
 
@@ -402,6 +405,12 @@ class Command(BaseCommand):
             elif answer.question.pk == 139:
                 api.do_q139(answer, api)
 
+            elif answer.question.pk == 140:
+                api.do_q140(answer, api)
+
+            elif answer.question.pk == 141:
+                api.do_q141(answer, api)
+
             elif answer.question.pk == 142:
                 api.do_q142(answer, api)
 
@@ -410,6 +419,9 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 143:
                 api.do_q143(answer, api)
+
+            elif answer.question.pk == 146:
+                api.do_q146(answer, api)
 
             elif answer.question.pk == 147:
                 api.do_q147(answer, api)
@@ -434,6 +446,9 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 154:
                 api.do_q154(answer, api)
+
+            elif answer.question.pk == 155:
+                api.do_q155(answer, api)
 
     def do_date(self, api):
         today = timezone.now()

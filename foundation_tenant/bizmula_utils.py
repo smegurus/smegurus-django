@@ -929,16 +929,40 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_q82(self, answer, api):
-        api.add_text(
-            "business_legal_structure",
-            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        )
+        api.add_text("business_legal_structure", answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1'])
 
     def do_q83(self, answer, api):
         api.add_text("business_st_address", answer.content['var_1'])
         api.add_text("business_city", answer.content['var_2'])
         api.add_text("business_country", answer.content['var_3'])
         api.add_text("business_province", answer.content['var_4'])
+
+    def do_q84(self, answer, api):
+        col1_array = []
+        col2_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'business_space_uses', 'value': col1_array}
+        c2_dict = {"var": 'business_sqft_sizes', 'value': col2_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q85(self, answer, api):
         col1_array = []
@@ -1748,6 +1772,52 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
+    def do_q140(self, answer, api):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+        col4_array = []
+        col5_array = []
+        col6_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
+            col5_array.append(ans['var_6'])
+            col6_array.append(ans['var_7'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'asset_items', 'value': col1_array}
+        c2_dict = {"var": 'asset_types', 'value': col2_array}
+        c3_dict = {"var": 'asset_details', 'value': col3_array}
+        c4_dict = {"var": 'asset_y1_costs', 'value': col4_array}
+        c5_dict = {"var": 'asset_y2_costs', 'value': col5_array}
+        c6_dict = {"var": 'sales_y3_costs', 'value': col6_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict,
+                c4_dict,
+                c5_dict,
+                c6_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_q141(self, answer, api):
+        api.add_text("months_startup_inventory", answer.content['var_1'])
+
     def do_q142(self, answer, api):
         marketing_referral_types_array = []
         marketing_referral_impacts_array = []
@@ -1870,6 +1940,9 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
+    def do_q146(self, answer, api):
+        api.add_text("ent_cash_req", answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1'])
+
     def do_q147(self, answer, api):
         array = []
 
@@ -1971,4 +2044,20 @@ class BizmulaAPI(DocxspressoAPI):
         else:
             array.append(answer.content['var_3'])
 
-        api.add_text_paragraphs('competitive_strategies', array)
+        api.add_text_paragraphs('location_benefits_1', array)
+
+    def do_q155(self, answer, api):
+        if answer.content['var_1_other']:
+            api.add_text('location_benefits_1', answer.content['var_1_other'])
+        else:
+            api.add_text('location_benefits_1', answer.content['var_1'])
+
+        if answer.content['var_2_other']:
+            api.add_text('location_benefits_2', answer.content['var_2_other'])
+        else:
+            api.add_text('location_benefits_2', answer.content['var_2'])
+
+        if answer.content['var_3_other']:
+            api.add_text('location_benefits_3', answer.content['var_3_other'])
+        else:
+            api.add_text('location_benefits_3', answer.content['var_3'])
