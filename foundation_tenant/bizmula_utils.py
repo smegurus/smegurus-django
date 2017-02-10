@@ -194,182 +194,30 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("industry_price_variation", text)
 
     def do_q47(self, answer, api):
-        names_array = []
-        proximities_array = []
-        market_shares_array = []
-        price_comparisons_array = []
-        service_levels_array = []
-        main_strengths_array = []
-        competitive_strategy_array = []
-
-        for ans in answer.content:
-            names_array.append(ans['var_2'])
-            proximities_array.append(ans['var_3'])
-            market_shares_array.append(ans['var_4'])
-            price_comparisons_array.append(ans['var_5'])
-            main_strengths_array.append(ans['var_7'])
-            service_levels_array.append(ans['var_6'])
-            competitive_strategy_array.append(ans['var_8'])
-
-        # --- Debugging purposes. ---
-        # print("Name", names_array)
-        # print("Prox", proximities_array)
-        # print("Market", market_shares_array)
-        # print("Price", price_comparisons_array)
-        # print("Strength", main_strengths_array)
-        # print("Customer", service_levels_array)
-        # print("Competitive", competitive_strategy_array)
-        # print("\n")
-
-        # Generate our custom item.
-        names_dict = {
-            "var": 'dc_names',
-            'value': names_array
-        }
-        proximities_dict = {
-            "var": 'dc_proximities',
-            'value': proximities_array
-        }
-        market_shares_dict = {
-            "var": 'dc_market_shares',
-            'value': market_shares_array
-        }
-        price_comparisons_dict = {
-            "var": 'dc_price_comparisons',
-            'value': price_comparisons_array
-        }
-        main_strengths_dict = {
-            "var": 'dc_main_strengths',
-            'value': main_strengths_array
-        }
-        service_levels_dict = {
-            "var": 'dc_service_levels',
-            'value': service_levels_array
-        }
-        competitive_strategy_dict = {
-            "var": 'dc_competitive_strategy',
-            'value': competitive_strategy_array
-        }
-
-        # --- Debugging purposes only. ---
-        # print("Name", names_dict)
-        # print("Proximities", proximities_dict)
-        # print("market_shares", market_shares_dict)
-        # print("price_comparisons", price_comparisons_dict)
-        # print("main_strengths", main_strengths_dict)
-        # print("service_levels", service_levels_dict)
-        # print("competitive_strategy", competitive_strategy_dict)
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                names_dict,
-                proximities_dict,
-                market_shares_dict,
-                price_comparisons_dict,
-                main_strengths_dict,
-                service_levels_dict,
-                competitive_strategy_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # --- Debugging purposes only. ---
-        # print(custom)
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'dc_names',
+            'dc_proximities',
+            'dc_market_shares',
+            'dc_price_comparisons',
+            'dc_main_strengths',
+            'dc_service_levels',
+            'dc_competitive_strategy'
+        )
 
     def do_q48(self, answer, api):
-        names_array = []
-        proximities_array = []
-        market_shares_array = []
-        price_comparisons_array = []
-        service_levels_array = []
-        main_strengths_array = []
-        competitive_strategy_array = []
-
-        for ans in answer.content:
-            names_array.append(ans['var_2'])
-            proximities_array.append(ans['var_3'])
-            market_shares_array.append(ans['var_4'])
-            price_comparisons_array.append(ans['var_5'])
-            main_strengths_array.append(ans['var_7'])
-            service_levels_array.append(ans['var_6'])
-            competitive_strategy_array.append(ans['var_8'])
-
-        # --- Debugging purposes. ---
-        # print("Name", names_array)
-        # print("Prox", proximities_array)
-        # print("Market", market_shares_array)
-        # print("Price", price_comparisons_array)
-        # print("Strength", main_strengths_array)
-        # print("Customer", service_levels_array)
-        # print("Competitive", competitive_strategy_array)
-        # print("\n")
-
-        # Generate our custom item.
-        names_dict = {
-            "var": 'idc_names',
-            'value': names_array
-        }
-        proximities_dict = {
-            "var": 'idc_proximities',
-            'value': proximities_array
-        }
-        market_shares_dict = {
-            "var": 'idc_market_shares',
-            'value': market_shares_array
-        }
-        price_comparisons_dict = {
-            "var": 'idc_price_comparisons',
-            'value': price_comparisons_array
-        }
-        main_strengths_dict = {
-            "var": 'idc_main_strengths',
-            'value': main_strengths_array
-        }
-        service_levels_dict = {
-            "var": 'idc_service_levels',
-            'value': service_levels_array
-        }
-        competitive_strategy_dict = {
-            "var": 'idc_competitive_strategy',
-            'value': competitive_strategy_array
-        }
-
-        # --- Debugging purposes only. ---
-        # print("Name", names_dict)
-        # print("Proximities", proximities_dict)
-        # print("market_shares", market_shares_dict)
-        # print("price_comparisons", price_comparisons_dict)
-        # print("main_strengths", main_strengths_dict)
-        # print("service_levels", service_levels_dict)
-        # print("competitive_strategy", competitive_strategy_dict)
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                names_dict,
-                proximities_dict,
-                market_shares_dict,
-                price_comparisons_dict,
-                main_strengths_dict,
-                service_levels_dict,
-                competitive_strategy_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # --- Debugging purposes only. ---
-        # print(custom)
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'idc_names',
+            'idc_proximities',
+            'idc_market_shares',
+            'idc_price_comparisons',
+            'idc_main_strengths',
+            'idc_service_levels',
+            'idc_competitive_strategy'
+        )
 
     def do_q49(self, answer, api):
         array = []
@@ -617,276 +465,56 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q77(self, answer, api):
-        incentive_types_array = []
-        incentive_impacts_array = []
-        incentive_durations_array = []
-        incentive_cost_types_array = []
-        incentive_y1_costs_array = []
-        incentive_y2_costs_array = []
-        incentive_y3_costs_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            incentive_types_array.append(ans['var_2'])
-            incentive_impacts_array.append(ans['var_3'])
-            incentive_durations_array.append(ans['var_4'])
-            incentive_cost_types_array.append(ans['var_5'])
-            incentive_y1_costs_array.append(ans['var_6'])
-            incentive_y2_costs_array.append(ans['var_7'])
-            incentive_y3_costs_array.append(ans['var_8'])
-
-        # Generate our custom item.
-        incentive_types_dict = {
-            "var": 'incentive_types',
-            'value': incentive_types_array
-        }
-        incentive_impacts_dict = {
-            "var": 'incentive_impacts',
-            'value': incentive_impacts_array
-        }
-        incentive_durations_dict = {
-            "var": 'incentive_durations',
-            'value': incentive_durations_array
-        }
-        incentive_cost_types_dict = {
-            "var": 'incentive_cost_types',
-            'value': incentive_cost_types_array
-        }
-        incentive_y1_costs_dict = {
-            "var": 'incentive_y1_costs',
-            'value': incentive_y1_costs_array
-        }
-        incentive_y2_costs_dict = {
-            "var": 'incentive_y2_costs',
-            'value': incentive_y2_costs_array
-        }
-        incentive_y3_costs_dict = {
-            "var": 'incentive_y3_costs',
-            'value': incentive_y3_costs_array
-        }
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                incentive_types_dict,
-                incentive_impacts_dict,
-                incentive_durations_dict,
-                # incentive_cost_types_dict,
-                incentive_y1_costs_dict,
-                # incentive_y2_costs_dict,
-                # incentive_y3_costs_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'incentive_types',
+            'incentive_impacts',
+            'incentive_durations',
+            'incentive_cost_types',
+            'incentive_y1_costs',
+            'incentive_y2_costs',
+            'incentive_y3_costs',
+        )
 
     def do_q78(self, answer, api):
-        physical_marketing_types_array = []
-        physical_marketing_impacts_array = []
-        physical_marketing_uses_array = []
-        physical_marketing_cost_types_array = []
-        physical_marketing_y1_costs_array = []
-        physical_marketing_y2_costs_array = []
-        physical_marketing_y3_costs_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            physical_marketing_types_array.append(ans['var_2'])
-            physical_marketing_impacts_array.append(ans['var_3'])
-            physical_marketing_uses_array.append(ans['var_4'])
-            physical_marketing_cost_types_array.append(ans['var_5'])
-            physical_marketing_y1_costs_array.append(ans['var_6'])
-            physical_marketing_y2_costs_array.append(ans['var_7'])
-            physical_marketing_y3_costs_array.append(ans['var_8'])
-
-        # Generate our custom item.
-        physical_marketing_types_dict = {
-            "var": 'physical_marketing_types',
-            'value': physical_marketing_types_array
-        }
-        physical_marketing_impacts_dict = {
-            "var": 'physical_marketing_impacts',
-            'value': physical_marketing_impacts_array
-        }
-        physical_marketing_uses_dict = {
-            "var": 'physical_marketing_uses',
-            'value': physical_marketing_uses_array
-        }
-        physical_marketing_cost_types_dict = {
-            "var": 'physical_marketing_cost_types',
-            'value': physical_marketing_cost_types_array
-        }
-        physical_marketing_y1_costs_dict = {
-            "var": 'physical_marketing_y1_costs',
-            'value': physical_marketing_y1_costs_array
-        }
-        physical_marketing_y2_costs_dict = {
-            "var": 'physical_marketing_y2_costs',
-            'value': physical_marketing_y2_costs_array
-        }
-        physical_marketing_y3_costs_dict = {
-            "var": 'physical_marketing_y3_costs',
-            'value': physical_marketing_y3_costs_array
-        }
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                physical_marketing_types_dict,
-                physical_marketing_impacts_dict,
-                physical_marketing_uses_dict,
-                # physical_marketing_cost_types_dict,
-                physical_marketing_y1_costs_dict,
-                # physical_marketing_y2_costs_dict,
-                # physical_marketing_y3_costs_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'physical_marketing_types',
+            'physical_marketing_impacts',
+            'physical_marketing_uses',
+            'physical_marketing_cost_types',
+            'physical_marketing_y1_costs',
+            'physical_marketing_y2_costs',
+            'physical_marketing_y3_costs',
+        )
 
     def do_q79(self, answer, api):
-        media_campaign_types_array = []
-        media_campaign_impacts_array = []
-        media_campaign_durations_array = []
-        media_campaign_cost_types_array = []
-        media_campaign_y1_costs_array = []
-        media_campaign_y2_costs_array = []
-        media_campaign_y3_costs_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            media_campaign_types_array.append(ans['var_2'])
-            media_campaign_impacts_array.append(ans['var_3'])
-            media_campaign_durations_array.append(ans['var_4'])
-            media_campaign_cost_types_array.append(ans['var_5'])
-            media_campaign_y1_costs_array.append(ans['var_6'])
-            media_campaign_y2_costs_array.append(ans['var_7'])
-            media_campaign_y3_costs_array.append(ans['var_8'])
-
-        # Generate our custom item.
-        media_campaign_types_dict = {
-            "var": 'media_campaign_types',
-            'value': media_campaign_types_array
-        }
-        media_campaign_impacts_dict = {
-            "var": 'media_campaign_impacts',
-            'value': media_campaign_impacts_array
-        }
-        media_campaign_durations_dict = {
-            "var": 'media_campaign_durations',
-            'value': media_campaign_durations_array
-        }
-        media_campaign_cost_types_dict = {
-            "var": 'media_campaign_cost_types',
-            'value': media_campaign_cost_types_array
-        }
-        media_campaign_y1_costs_dict = {
-            "var": 'media_campaign_y1_costs',
-            'value': media_campaign_y1_costs_array
-        }
-        media_campaign_y2_costs_dict = {
-            "var": 'media_campaign_y2_costs',
-            'value': media_campaign_y2_costs_array
-        }
-        media_campaign_y3_costs_dict = {
-            "var": 'media_campaign_y3_costs',
-            'value': media_campaign_y3_costs_array
-        }
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                media_campaign_types_dict,
-                media_campaign_impacts_dict,
-                media_campaign_durations_dict,
-                # media_campaign_cost_types_dict,
-                media_campaign_y1_costs_dict,
-                # media_campaign_y2_costs_dict,
-                # media_campaign_y3_costs_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'media_campaign_types',
+            'media_campaign_impacts',
+            'media_campaign_durations',
+            'media_campaign_cost_types',
+            'media_campaign_y1_costs',
+            'media_campaign_y2_costs',
+            'media_campaign_y3_costs',
+        )
 
     def do_q80(self, answer, api):
-        marketing_partnership_types_array = []
-        marketing_partnership_impacts_array = []
-        marketing_partnership_durations_array = []
-        marketing_partnership_cost_types_array = []
-        marketing_partnership_y1_costs_array = []
-        marketing_partnership_y2_costs_array = []
-        marketing_partnership_y3_costs_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            marketing_partnership_types_array.append(ans['var_2'])
-            marketing_partnership_impacts_array.append(ans['var_3'])
-            marketing_partnership_durations_array.append(ans['var_4'])
-            marketing_partnership_cost_types_array.append(ans['var_5'])
-            marketing_partnership_y1_costs_array.append(ans['var_6'])
-            marketing_partnership_y2_costs_array.append(ans['var_7'])
-            marketing_partnership_y3_costs_array.append(ans['var_8'])
-
-        # Generate our custom item.
-        marketing_partnership_types_dict = {
-            "var": 'marketing_partnership_types',
-            'value': marketing_partnership_types_array
-        }
-        marketing_partnership_impacts_dict = {
-            "var": 'marketing_partnership_impacts',
-            'value': marketing_partnership_impacts_array
-        }
-        marketing_partnership_durations_dict = {
-            "var": 'marketing_partnership_durations',
-            'value': marketing_partnership_durations_array
-        }
-        marketing_partnership_cost_types_dict = {
-            "var": 'marketing_partnership_cost_types',
-            'value': marketing_partnership_cost_types_array
-        }
-        marketing_partnership_y1_costs_dict = {
-            "var": 'marketing_partnership_y1_costs',
-            'value': marketing_partnership_y1_costs_array
-        }
-        marketing_partnership_y2_costs_dict = {
-            "var": 'marketing_partnership_y2_costs',
-            'value': marketing_partnership_y2_costs_array
-        }
-        marketing_partnership_y3_costs_dict = {
-            "var": 'marketing_partnership_y3_costs',
-            'value': marketing_partnership_y3_costs_array
-        }
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                marketing_partnership_types_dict,
-                marketing_partnership_impacts_dict,
-                marketing_partnership_durations_dict,
-                # marketing_partnership_cost_types_dict,
-                marketing_partnership_y1_costs_dict,
-                # marketing_partnership_y2_costs_dict,
-                # marketing_partnership_y3_costs_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'marketing_partnership_types',
+            'marketing_partnership_impacts',
+            'marketing_partnership_durations',
+            'marketing_partnership_cost_types',
+            'marketing_partnership_y1_costs',
+            'marketing_partnership_y2_costs',
+            'marketing_partnership_y3_costs',
+        )
 
     def do_q81(self, answer, api):
         col1_array = []
@@ -975,6 +603,7 @@ class BizmulaAPI(DocxspressoAPI):
             'pro_fee_y2_costs',
             'pro_fee_y3_costs'
         )
+
     def do_q86(self, answer, api):
         self.do_type50(
             answer,
@@ -1123,6 +752,19 @@ class BizmulaAPI(DocxspressoAPI):
 
         # Attach all out tables.
         api.add_custom(custom)
+
+    def do_q95(self, answer, api):
+        self.do_type43(
+            answer,
+            api,
+            'milestone_names',
+            'milestone_risks',
+            'milestone_persons',
+            'milestone_starts',
+            'milestone_ends',
+            'milestone_costs',
+            'milestone_completions'
+        )
 
     def do_q97(self, answer, api):
         api.add_text(
@@ -1855,6 +1497,53 @@ class BizmulaAPI(DocxspressoAPI):
                 c5_dict,
                 c6_dict,
                 c7_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_type43(self, answer, api, key1, key2, key3, key4, key5, key6, key7):
+        col1_array = []
+        col2_array = []
+        col3_array = []
+        col4_array = []
+        col5_array = []
+        col6_array = []
+        col7_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
+            col5_array.append(ans['var_6'])
+            col6_array.append(ans['var_7'])
+            col7_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        c1_dict = {"var": key1, 'value': col1_array}
+        c2_dict = {"var": key2, 'value': col2_array}
+        c3_dict = {"var": key3, 'value': col3_array}
+        c4_dict = {"var": key4, 'value': col4_array}
+        c5_dict = {"var": key5, 'value': col5_array}
+        c6_dict = {"var": key6, 'value': col6_array}
+        c7_dict = {"var": key6, 'value': col7_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict,
+                c4_dict,
+                c5_dict,
+                c6_dict,
+                c7_dict,
             ],
             "options": {
                 "element": "table"
