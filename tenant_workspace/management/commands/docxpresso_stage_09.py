@@ -422,6 +422,12 @@ class Command(BaseCommand):
             elif answer.question.pk == 117:
                 api.do_q117(answer, api)
 
+            elif answer.question.pk == 118:
+                api.do_q118(answer, api)
+
+            elif answer.question.pk == 119:
+                api.do_q119(answer, api)
+
             elif answer.question.pk == 124:
                 api.do_q124(answer, api)
 
