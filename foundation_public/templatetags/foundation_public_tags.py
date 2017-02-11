@@ -3,7 +3,7 @@ from django import template
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import resolve, reverse # Reverse
+from django.core.urlresolvers import resolve, reverse
 from django.contrib.sites.models import Site
 from foundation_public.utils import get_pretty_formatted_date
 from smegurus.settings import env_var
