@@ -1373,12 +1373,12 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("low_cogs_labour_y1", answer.content['var_2']['labour']['yr1'])
         api.add_text("low_cogs_labour_y2", answer.content['var_2']['labour']['yr2'])
         api.add_text("low_cogs_labour_y3", answer.content['var_2']['labour']['yr3'])
-        # {{low_cogs_mat_y1}}
-        # {{low_cogs_mat_y2}}
-        # {{low_cogs_mat_y3}}
-        # {{low_cogs_oh_y1}}
-        # {{low_cogs_oh_y2}}
-        # {{low_cogs_oh_y3}}
+        api.add_text("low_cogs_mat_y1", answer.content['var_2']['materials']['yr1'])
+        api.add_text("low_cogs_mat_y2", answer.content['var_2']['materials']['yr2'])
+        api.add_text("low_cogs_mat_y3", answer.content['var_2']['materials']['yr3'])
+        api.add_text("low_cogs_oh_y1", answer.content['var_2']['overhead']['yr1'])
+        api.add_text("low_cogs_oh_y2", answer.content['var_2']['overhead']['yr2'])
+        api.add_text("low_cogs_oh_y3", answer.content['var_2']['overhead']['yr3'])
         api.add_text("low_tot_var_y1", answer.content['var_2']['total_variable_costs']['yr1'])
         api.add_text("low_tot_var_y2", answer.content['var_2']['total_variable_costs']['yr2'])
         api.add_text("low_tot_var_y3", answer.content['var_2']['total_variable_costs']['yr3'])
@@ -1418,12 +1418,12 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("hi_cogs_labour_y1", answer.content['var_2']['labour']['yr1'])
         api.add_text("hi_cogs_labour_y2", answer.content['var_2']['labour']['yr2'])
         api.add_text("hi_cogs_labour_y3", answer.content['var_2']['labour']['yr3'])
-        # {{hi_cogs_mat_y1}}
-        # {{hi_cogs_mat_y2}}
-        # {{hi_cogs_mat_y3}}
-        # {{hi_cogs_oh_y1}}
-        # {{hi_cogs_oh_y2}}
-        # {{hi_cogs_oh_y3}}
+        api.add_text("hi_cogs_mat_y1", answer.content['var_2']['materials']['yr1'])
+        api.add_text("hi_cogs_mat_y2", answer.content['var_2']['materials']['yr2'])
+        api.add_text("hi_cogs_mat_y3", answer.content['var_2']['materials']['yr3'])
+        api.add_text("hi_cogs_oh_y1", answer.content['var_2']['overhead']['yr1'])
+        api.add_text("hi_cogs_oh_y2", answer.content['var_2']['overhead']['yr2'])
+        api.add_text("hi_cogs_oh_y3", answer.content['var_2']['overhead']['yr3'])
         api.add_text("hi_tot_var_y1", answer.content['var_2']['total_variable_costs']['yr1'])
         api.add_text("hi_tot_var_y2", answer.content['var_2']['total_variable_costs']['yr2'])
         api.add_text("hi_tot_var_y3", answer.content['var_2']['total_variable_costs']['yr3'])
