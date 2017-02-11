@@ -336,8 +336,8 @@ class Command(BaseCommand):
             elif answer.question.pk == 83:
                 api.do_q83(answer, api)
 
-            elif answer.question.pk == 84:
-                api.do_q84(answer, api)
+            # elif answer.question.pk == 84:  #BUG: Investigate why this errors.
+            #     api.do_q84(answer, api)
 
             elif answer.question.pk == 85:
                 api.do_q85(answer, api)
