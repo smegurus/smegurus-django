@@ -988,6 +988,7 @@ class BizmulaAPI(DocxspressoAPI):
         print("QID 102")
 
     def do_q103(self, answer, api):
+        # Note: Cannot use "do_type41" function
         col1_array = []
         col2_array = []
         col3_array = []
@@ -995,7 +996,7 @@ class BizmulaAPI(DocxspressoAPI):
 
         # Populate rows.
         for ans in answer.content:
-            col1_array.append(ans['title'])
+            col1_array.append(ans['title']) # These need to be var_1, etc to support "do_type41".
             col2_array.append(ans['yr1_percent'])
             col3_array.append(ans['yr2_percent'])
             col4_array.append(ans['yr3_percent'])
@@ -1466,58 +1467,24 @@ class BizmulaAPI(DocxspressoAPI):
             api.add_text('location_benefits_3', answer.content['var_3'])
 
     def do_q156(self, answer, api):
-        col1_array = []
-        col2_array = []
-        col3_array = []
-        col4_array = []
-        col5_array = []
-        col6_array = []
-        col7_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            col1_array.append(ans['var_2'])
-            col2_array.append(ans['var_3'])
-            col3_array.append(ans['var_4'])
-            col4_array.append(ans['var_5'])
-            col5_array.append(ans['var_6'])
-            col6_array.append(ans['var_7'])
-            col7_array.append(ans['var_8'])
-
-        # Generate our custom item.
-        c1_dict = {"var": 'suppliers_names', 'value': col1_array}
-        c2_dict = {"var": 'supplier_products', 'value': col2_array}
-        c3_dict = {"var": 'supplier_proximities', 'value': col3_array}
-        c4_dict = {"var": 'supplier_terms', 'value': col4_array}
-        c5_dict = {"var": 'supplier_price_levels', 'value': col5_array}
-        c6_dict = {"var": 'supplier_strengths', 'value': col6_array}
-        c7_dict = {"var": 'supplier_relationships', 'value': col7_array}
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                c1_dict,
-                c2_dict,
-                c3_dict,
-                c4_dict,
-                c5_dict,
-                c6_dict,
-                c7_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'suppliers_names',
+            'supplier_products',
+            'supplier_proximities',
+            'supplier_terms',
+            'supplier_price_levels',
+            'supplier_strengths',
+            'supplier_relationships'
+        )
 
     def do_q157(self, answer, api):
         api.add_text(
             "bp_reason",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
-        
+
     def do_q158(self, answer, api):
         self.do_type41(
             answer,
@@ -1528,28 +1495,32 @@ class BizmulaAPI(DocxspressoAPI):
             'fund_amounts'
         )
 
-    def do_type41(self, answer, api, key1, key2, key3, key4):  # 3 Col Table
+    def do_type41(self, answer, api, key1, key2, key3, key4):  # 4 Col Table
         col1_array = []
         col2_array = []
         col3_array = []
+        col4_array = []
 
         # Populate rows.
         for ans in answer.content:
             col1_array.append(ans['var_2'])
             col2_array.append(ans['var_3'])
             col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
 
         # Generate our custom item.
         c1_dict = {"var": key1, 'value': col1_array}
         c2_dict = {"var": key2, 'value': col2_array}
         c3_dict = {"var": key3, 'value': col3_array}
+        c4_dict = {"var": key4, 'value': col4_array}
 
         # Generate the custom API query.
         custom = {
             "vars": [
                 c1_dict,
                 c2_dict,
-                c3_dict
+                c3_dict,
+                c4_dict
             ],
             "options": {
                 "element": "table"
