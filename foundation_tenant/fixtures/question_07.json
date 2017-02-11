@@ -487,7 +487,7 @@
                         ]
                     },
                     {
-                        "parent": "There are low barriers to entry for this industry, which creates competition",
+                        "parent": "There are low barriers to entry for this industry",
                         "choices": [
                             "We will focus on our differentiation strategy",
                             "We will focus on being operationally efficient",
@@ -815,8 +815,8 @@
         "fields": {
             "document_type": 7,
             "number": 32,
-            "title": "Is the size of your industry increasing, decreasing, or staying the same?",
-            "help": "Your advisor will want to know if your industry is growing, shrinking or staying the same. Answering this question will require some research on your part, so don’t be afraid to take sometime to review various information sources.  Once you can determine if the industry is changing, then please tell us by how much as a percent.",
+            "title": "How would you define your market position?",
+            "help": "Your advisor will want to know how you see yourself in the market.",
             "options": {
                 "opt1": [
                     "Leader",
