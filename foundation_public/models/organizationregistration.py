@@ -1,5 +1,6 @@
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_tenants.models import TenantMixin, DomainMixin
 from smegurus import constants
@@ -43,13 +44,7 @@ class PublicOrganizationRegistration(AbstractPublicThing):
         """
         Reverse the URL of the request + view name for this Organization.
         """
-        from django.contrib.sites.shortcuts import get_current_site # Reverse
-        from django.core.urlresolvers import resolve, reverse # Reverse
-        from django.contrib.sites.models import Site
-        from smegurus.settings import env_var
-
-        http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
         if self.schema_name:
-            return http_protocol + self.schema_name + '.%s' % Site.objects.get_current().domain + reverse(view_name)
+            return settings.SMEGURUS_APP_HTTP_PROTOCOL + self.schema_name + '.%s' % settings.SMEGURUS_APP_HTTP_DOMAIN + reverse(view_name)
         else:
-            return http_protocol + '%s' % Site.objects.get_current().domain + reverse(view_name)
+            return settings.SMEGURUS_APP_HTTP_PROTOCOL + '%s' % settings.SMEGURUS_APP_HTTP_DOMAIN + reverse(view_name)

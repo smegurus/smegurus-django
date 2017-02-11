@@ -1,8 +1,9 @@
 import os
 import sys
 from decimal import *
-from django.contrib.sites.models import Site
 from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.sites.models import Site
 from django.db.models import Sum
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -40,8 +41,7 @@ class Command(BaseCommand):
         # Send a notification email.  #
         #-----------------------------#
         # Variables used to generate your output.
-        http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
-        url = http_protocol + '%s' % Site.objects.get_current().domain + '/en/login/'
+        url = settings.SMEGURUS_APP_HTTP_PROTOCOL + '%s' % settings.SMEGURUS_APP_HTTP_DOMAIN + '/en/login/'
         subject_text = 'You are enrolled!'
         html_text = _('Congradulations you have been enrolled! Click the link to get started: %(url)s') % {'url': str(url)}
 

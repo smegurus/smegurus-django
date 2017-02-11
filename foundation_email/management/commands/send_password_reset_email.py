@@ -1,4 +1,5 @@
 from django.core.signing import Signer
+from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand, CommandError
 from django.core.mail import send_mail
@@ -31,8 +32,7 @@ class Command(BaseCommand):
         value = signer.sign(id_sting)
 
         # Variables used to generate your output.
-        http_protocol = 'https://' if env_var("SECURE_SSL_REDIRECT") else 'http://'
-        url = http_protocol + '%s' % Site.objects.get_current().domain + '/en/password_reset/' + value + '/'
+        url = settings.SMEGURUS_APP_HTTP_PROTOCOL + '%s' % settings.SMEGURUS_APP_HTTP_DOMAIN + '/en/password_reset/' + value + '/'
         subject_text = 'Account Password Reset'
         html_text = _('Click the following link to reset your password: %(url)s') % {'url': str(url)}
 
