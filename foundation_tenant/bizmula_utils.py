@@ -1268,6 +1268,7 @@ class BizmulaAPI(DocxspressoAPI):
             'asset_y2_costs',
             'asset_y3_costs'
         )
+        print("QID 136 - bugfix")
 
     def do_q137(self, answer, api):
         self.do_type50(
@@ -1280,6 +1281,7 @@ class BizmulaAPI(DocxspressoAPI):
             'interest_y2_costs',
             'interest_y3_costs'
         )
+        print("QID 137 - bugfix")
 
     def do_q138(self, answer, api):
         self.do_type50(
@@ -1292,6 +1294,7 @@ class BizmulaAPI(DocxspressoAPI):
             'tax_y2_costs',
             'tax_y3_costs'
         )
+        print("QID 138 - bugfix")
 
     def do_q139(self, answer, api):
         self.do_type50(
@@ -1343,6 +1346,14 @@ class BizmulaAPI(DocxspressoAPI):
             'marketing_retention_y2_costs',
             'marketing_retention_y3_costs'
         )
+
+    def do_q144(self, answer, api):
+        print(answer.content)
+        print("QID 144")
+
+    def do_q145(self, answer, api):
+        # print(answer.content)
+        print("QID 145")
 
     def do_q146(self, answer, api):
         api.add_text("ent_cash_req", answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1'])
