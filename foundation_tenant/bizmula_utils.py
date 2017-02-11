@@ -655,6 +655,12 @@ class BizmulaAPI(DocxspressoAPI):
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
 
+    def do_q89(self, answer, api):
+        api.add_text(
+            "customer_terms",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+
     def do_q90(self, answer, api):
         self.do_type50(
             answer,
@@ -1506,7 +1512,54 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
-    def do_type43(self, answer, api, key1, key2, key3, key4, key5, key6, key7):
+    def do_q157(self, answer, api):
+        api.add_text(
+            "bp_reason",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
+        
+    def do_q158(self, answer, api):
+        self.do_type41(
+            answer,
+            api,
+            'fund_names',
+            'fund_uses',
+            'fund_impacts',
+            'fund_amounts'
+        )
+
+    def do_type41(self, answer, api, key1, key2, key3, key4):  # 3 Col Table
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+
+        # Generate our custom item.
+        c1_dict = {"var": key1, 'value': col1_array}
+        c2_dict = {"var": key2, 'value': col2_array}
+        c3_dict = {"var": key3, 'value': col3_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_type43(self, answer, api, key1, key2, key3, key4, key5, key6, key7):  # 7 Col Table
         col1_array = []
         col2_array = []
         col3_array = []
@@ -1553,7 +1606,7 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
-    def do_type50(self, answer, api, key1, key2, key3, key4, key5, key6):
+    def do_type50(self, answer, api, key1, key2, key3, key4, key5, key6):  # 6 Col Table
         col1_array = []
         col2_array = []
         col3_array = []

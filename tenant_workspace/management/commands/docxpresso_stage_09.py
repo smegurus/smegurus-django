@@ -92,6 +92,8 @@ class Command(BaseCommand):
         # Take our content and populate docxpresso with it.
         self.set_answers(workspace, answers, api)
 
+        return
+
         # Generate our document!
         doc_filename = api.get_filename()
         doc_bin_data = api.generate()
@@ -351,6 +353,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 88:
                 api.do_q88(answer, api)
 
+            elif answer.question.pk == 89:
+                api.do_q89(answer, api)
+
             elif answer.question.pk == 90:
                 api.do_q90(answer, api)
 
@@ -539,6 +544,12 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 156:
                 api.do_q156(answer, api)
+
+            elif answer.question.pk == 157:
+                api.do_q157(answer, api)
+
+            elif answer.question.pk == 158:
+                api.do_q158(answer, api)
 
     def do_date(self, api):
         today = timezone.now()

@@ -132,34 +132,34 @@
         console.log(input_4_other);
 
         // CREATE HTML ROW.
-        // COL 1
+        // ROW 1
         var html_row = "<tr id=\""+row_index+"\">";
 
-        // COL 2
+        // COL 1
         html_row += "<td>"+input_1+"</td>";
 
-        // COL 3
+        // COL 2
         if (input_2 == "{{ question.options.opt1_other }}") {
             html_row += "<td>"+input_2_other+"</td>";
         } else {
             html_row += "<td>"+input_2+"</td>";
         }
 
-        // COL 4
+        // COL 3
         if (input_3 == "{{ question.options.opt2_other }}") {
             html_row += "<td>"+input_3_other+"</td>";
         } else {
             html_row += "<td>"+input_3+"</td>";
         }
 
-        // COL 5
+        // COL 4
         if (input_4 == "{{ question.options.opt3_other }}") {
             html_row += "<td>"+input_4_other+"</td>";
         } else {
             html_row += "<td>"+input_4+"</td>";
         }
 
-        // COL 6
+        // COL 5
         html_row += "<td>";
         var onclick_js = "delete_row("+row_index+")";
         html_row += "<button type=\"button\" class=\"mb-sm btn btn-danger\" onclick=\""+onclick_js+"\">{% trans 'Delete' %}</button>";
@@ -224,11 +224,13 @@
             var col1 = row[0];
             var col2 = row[1];
             var col3 = row[2];
+            var col4 = row[3];
             new_arr.push({
                 "var_1": i,
                 "var_2": col1,
                 "var_3": col2,
-                "var_4": col3
+                "var_4": col3,
+                "var_5": col4
             });
         }
 
