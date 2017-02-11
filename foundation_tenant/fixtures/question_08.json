@@ -77,7 +77,7 @@
                 "stub_4": "Category",
                 "stub_5": "Product",
                 "stub_6": "Ex: Widget",
-                "stub_7": "Add Use"
+                "stub_7": "Add +"
             },
             "dependency": {
                 "q1_qid": 32
@@ -932,7 +932,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Sales Manager.",
                 "stub_11": "Variable/Fixed",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -940,7 +940,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1148,7 +1148,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Book keeping.",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -1156,7 +1156,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1263,7 +1263,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Affiliate commissions.",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -1271,7 +1271,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1376,7 +1376,7 @@
                 "stub_7": "",
                 "stub_8": "Item",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: iPad",
                 "stub_11": "Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -1384,7 +1384,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1442,6 +1442,10 @@
             "help": "This is some generic help text.",
             "options": {
                 "opt1": [
+                      {
+                        "value": 0,
+                        "text": "0"
+                    },
                     {
                         "value": 1,
                         "text": "1"
@@ -1709,7 +1713,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1938,7 +1942,7 @@
                 "stub_5": "Square Footage",
                 "stub_6": "ex. 100",
                 "stub_7": "sq. ft.",
-                "stub_8": "Add Use"
+                "stub_8": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2030,7 +2034,7 @@
                 "stub_7": "",
                 "stub_8": "Cost Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Electricity costs",
                 "stub_11": "Variable/Fixed",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2038,7 +2042,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2240,7 +2244,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Commercial General Liabilty",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2248,7 +2252,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2405,7 +2409,7 @@
                 "stub_14": "ex. 100",
                 "stub_15": "Year 3 Cost",
                 "stub_16": "ex. 100",
-                "stub_17": "Add Use"
+                "stub_17": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2500,7 +2504,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: delivery to local clients",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2508,7 +2512,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2613,7 +2617,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Account fees",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2621,7 +2625,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2723,7 +2727,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Paper",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2731,7 +2735,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2837,7 +2841,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Business phone",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2845,7 +2849,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2951,7 +2955,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Photocopier",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -2959,7 +2963,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3065,7 +3069,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Association fees",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -3073,7 +3077,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3181,7 +3185,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Delivery van lease",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -3189,7 +3193,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3294,7 +3298,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Ex: Server maintenance",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -3302,7 +3306,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3403,7 +3407,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Please enter details here",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -3411,7 +3415,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3512,7 +3516,7 @@
                 "stub_7": "",
                 "stub_8": "Type",
                 "stub_9": "Details",
-                "stub_10": "Ex: Because my account told me to.",
+                "stub_10": "Please enter details here",
                 "stub_11": "Cost Type",
                 "stub_12": "Year 1 Cost",
                 "stub_13": "ex. 100",
@@ -3520,7 +3524,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3631,7 +3635,7 @@
                 "stub_15": "ex. 100",
                 "stub_16": "Year 3 Cost",
                 "stub_17": "ex. 100",
-                "stub_18": "Add Use"
+                "stub_18": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3714,7 +3718,7 @@
                 "stub_16": "ex. 100",
                 "stub_17": "Year 3 Cost",
                 "stub_18": "ex. 100",
-                "stub_19": "Add Use"
+                "stub_19": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -3777,8 +3781,8 @@
         "fields": {
             "document_type": 8,
             "number": 42,
-            "title": "Please detail business taxes payable, details, and costs in Years 1-3.",
-            "help": "This is some generic help text.",
+            "title": "Please list business taxes payable, details, and costs in Years 1-3.",
+            "help": "We need you to list any taxes that your business could pay in the first 3 years, including income and property taxes.",
             "options": {
                 "opt1": [
                     "fixed",
@@ -3806,19 +3810,19 @@
                 "stub_16": "ex. 100",
                 "stub_17": "Year 3 Cost",
                 "stub_18": "ex. 100",
-                "stub_19": "Add Use"
+                "stub_19": "Add +"
             },
             "dependency": {},
             "validation": {
                 "arr_min_count": 0,
                 "arr_min_count_error_message": "-",
                 "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+                "arr_max_count_error_message": "Please enter no more than 20 entries.",
                 "var1_type": "textfield",
                 "var1_min_length": 2,
                 "var1_min_length_error_message": "Please enter a text with at leaset 2 characters in Item.",
                 "var1_max_length": 511,
-                "var1_max_length_error_message": "Please enter a text with no less then 511 chracters in Item.",
+                "var1_max_length_error_message": "Please enter a text with no less than 511 chracters in Item.",
                 "var1_min_num": 0,
                 "var1_min_num_error_message": "-",
                 "var1_max_num": 0,
@@ -3838,18 +3842,18 @@
                 "var4_max_length": 0,
                 "var4_max_length_error_message": "-",
                 "var4_min_num": 0,
-                "var4_min_num_error_message": "Please enter a cost amount greater then zero for year 1.",
+                "var4_min_num_error_message": "Please enter a cost amount greater than zero for year 1.",
                 "var4_max_num": 1000000000,
-                "var4_max_num_error_message": "Please enter a cost amount lesser then a billion for year 1.",
+                "var4_max_num_error_message": "Please enter a cost amount lesser than a billion for year 1.",
                 "var5_type": "integerfield",
                 "var5_min_length": 0,
                 "var5_min_length_error_message": "-",
                 "var5_max_length": 0,
                 "var5_max_length_error_message": "-",
                 "var5_min_num": 0,
-                "var5_min_num_error_message": "Please enter a cost amount greater then zero for year 2.",
+                "var5_min_num_error_message": "Please enter a cost amount greater than zero for year 2.",
                 "var5_max_num": 1000000000,
-                "var5_max_num_error_message": "Please enter a cost amount lesser then a billion for year 2.",
+                "var5_max_num_error_message": "Please enter a cost amount lesser than a billion for year 2.",
                 "var6_type": "integerfield",
                 "var6_min_length": 0,
                 "var6_min_length_error_message": "-",
@@ -3870,7 +3874,7 @@
             "document_type": 8,
             "number": 15,
             "title": "Identify 3 to 5 key things you must do in the next year to ensure the success of your business, rate how important they are, how much they will cost to implement ($) and when they must be completed by",
-            "help": "This is some generic help text.",
+            "help": "Milestones are key activities that you need to accomplish to launch your business successfully.",
             "options": {
                 "opt1": [
                     "Secure start-up funding",
@@ -3948,7 +3952,7 @@
                 "arr_min_count": 1,
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
+                "arr_max_count_error_message": "Please enter no more than 20 entries."
             },
             "type_id": 43
         }
