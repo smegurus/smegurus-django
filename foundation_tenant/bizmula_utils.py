@@ -1394,7 +1394,48 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q145(self, answer, api):
         # print(answer.content)
-        print("QID 145")
+        api.add_text("hi_rev_y1", answer.content['var_2']['revenue']['yr1'])
+        api.add_text("hi_rev_y2", answer.content['var_2']['revenue']['yr2'])
+        api.add_text("hi_rev_y3", answer.content['var_2']['revenue']['yr3'])
+        api.add_text("hi_cogs_y1", answer.content['var_2']['cogs']['yr1'])
+        api.add_text("hi_cogs_y2", answer.content['var_2']['cogs']['yr2'])
+        api.add_text("hi_cogs_y3", answer.content['var_2']['cogs']['yr3'])
+        api.add_text("hi_gp_y1", answer.content['var_2']['gross_profit']['yr1'])
+        api.add_text("hi_gp_y2", answer.content['var_2']['gross_profit']['yr2'])
+        api.add_text("hi_gp_y3", answer.content['var_2']['gross_profit']['yr3'])
+        api.add_text("hi_gp_percent_y1", answer.content['var_2']['gross_margin_percent']['yr1'])
+        api.add_text("hi_gp_percent_y2", answer.content['var_2']['gross_margin_percent']['yr2'])
+        api.add_text("hi_gp_percent_y3", answer.content['var_2']['gross_margin_percent']['yr3'])
+        api.add_text("hi_net_profit_y1", answer.content['var_2']['net_profit']['yr1'])
+        api.add_text("hi_net_profit_y2", answer.content['var_2']['net_profit']['yr2'])
+        api.add_text("hi_net_profit_y3", answer.content['var_2']['net_profit']['yr3'])
+        api.add_text("hi_net_profit_percent_y1", answer.content['var_2']['net_profit_percent']['yr1'])
+        api.add_text("hi_net_profit_percent_y2", answer.content['var_2']['net_profit_percent']['yr2'])
+        api.add_text("hi_net_profit_percent_y3", answer.content['var_2']['net_profit_percent']['yr3'])
+        api.add_text("hi_sales_y1", answer.content['var_2']['total_sales']['yr1'])
+        api.add_text("hi_sales_y2", answer.content['var_2']['total_sales']['yr2'])
+        api.add_text("hi_sales_y3", answer.content['var_2']['total_sales']['yr3'])
+        api.add_text("hi_cogs_labour_y1", answer.content['var_2']['labour']['yr1'])
+        api.add_text("hi_cogs_labour_y2", answer.content['var_2']['labour']['yr2'])
+        api.add_text("hi_cogs_labour_y3", answer.content['var_2']['labour']['yr3'])
+        # {{hi_cogs_mat_y1}}
+        # {{hi_cogs_mat_y2}}
+        # {{hi_cogs_mat_y3}}
+        # {{hi_cogs_oh_y1}}
+        # {{hi_cogs_oh_y2}}
+        # {{hi_cogs_oh_y3}}
+        api.add_text("hi_tot_var_y1", answer.content['var_2']['total_variable_costs']['yr1'])
+        api.add_text("hi_tot_var_y2", answer.content['var_2']['total_variable_costs']['yr2'])
+        api.add_text("hi_tot_var_y3", answer.content['var_2']['total_variable_costs']['yr3'])
+        api.add_text("hi_tot_var_ex_cogs_y1", answer.content['var_2']['total_variable_costs_excluding_cogs']['yr1'])
+        api.add_text("hi_tot_var_ex_cogs_y2", answer.content['var_2']['total_variable_costs_excluding_cogs']['yr2'])
+        api.add_text("hi_tot_var_ex_cogs_y3", answer.content['var_2']['total_variable_costs_excluding_cogs']['yr3'])
+        api.add_text("hi_tot_fc_y1", answer.content['var_2']['total_fixed']['yr1'])
+        api.add_text("hi_tot_fc_y2", answer.content['var_2']['total_fixed']['yr2'])
+        api.add_text("hi_tot_fc_y3", answer.content['var_2']['total_fixed']['yr3'])
+        api.add_text("hi_gen_exp_y1", answer.content['var_2']['general_and_marketing_expenses']['yr1'])
+        api.add_text("hi_gen_exp_y2", answer.content['var_2']['general_and_marketing_expenses']['yr2'])
+        api.add_text("hi_gen_exp_y3", answer.content['var_2']['general_and_marketing_expenses']['yr3'])
 
     def do_q146(self, answer, api):
         api.add_text("ent_cash_req", answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1'])
