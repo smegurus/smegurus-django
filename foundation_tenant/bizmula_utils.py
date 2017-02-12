@@ -1438,8 +1438,15 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("hi_gen_exp_y3", answer.content['var_2']['general_and_marketing_expenses']['yr3'])
 
     def do_q146(self, answer, api):
-        print(answer.content)
-        api.add_text("ent_cash_req", answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1'])
+        # Convert
+        value_str = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        value_str = value_str.replace('$', '')
+        value_str = value_str.replace(',', '')
+        value = float(value_str)
+
+        # Input.
+        api.add_text("ent_cash_req", value)
+        api.add_text("ent_cash_req_6mths", value * 6.00)
 
     def do_q147(self, answer, api):
         array = []
