@@ -1369,6 +1369,30 @@ class BizmulaAPI(DocxspressoAPI):
             'tax_y3_costs'
         )
 
+    def do_q136_q137_q138(self, qid_136_answer, qid_137_answer, qid_138_answer, api):
+        yr1_total = 0
+        yr2_total = 0
+        yr3_total = 0
+
+        # Populate rows.
+        for ans in qid_136_answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+        for ans in qid_137_answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+        for ans in qid_138_answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+
+        # total = yr1_total + yr2_total + yr3_total
+        api.add_text("tid_total_y1", yr1_total)
+        # api.add_text("tid_total_y1", taxes_total)
+        # api.add_text("tid_total_y1", taxes_total)
+
     def do_q139(self, answer, api):
         self.do_type50(
             answer,

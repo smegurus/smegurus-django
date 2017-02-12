@@ -132,6 +132,11 @@ class Command(BaseCommand):
         # Assign date.
         self.do_date(api)
 
+        # Some questions need to be stored for later reuse.
+        qid_136_answer = None
+        qid_137_answer = None
+        qid_138_answer = None
+
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
             if answer.question.pk == 1:
@@ -485,12 +490,15 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 136:
                 api.do_q136(answer, api)
+                qid_136_answer = answer
 
             elif answer.question.pk == 137:
                 api.do_q137(answer, api)
+                qid_137_answer = answer
 
             elif answer.question.pk == 138:
                 api.do_q138(answer, api)
+                qid_138_answer = answer
 
             elif answer.question.pk == 139:
                 api.do_q139(answer, api)
@@ -554,6 +562,9 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 158:
                 api.do_q158(answer, api)
+
+        # Perform specific computations based on previous saved answers.
+        api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer)
 
     def do_date(self, api):
         today = timezone.now()
