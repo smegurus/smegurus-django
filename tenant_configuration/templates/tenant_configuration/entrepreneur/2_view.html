@@ -38,7 +38,7 @@
         <br/>
 
         <!-- Image Upload Button -->
-        <label class="form-control btn btn-success mt10 curp" >
+        <label class="form-control btn btn-success btn-lg mt10 curp" style="height: auto;">
             <em class="fa fa-upload"></em>&nbsp;&nbsp;{% trans 'Upload profile picture' %}
             <input id="id_image"
              onchange="ajax_upload_image();"
@@ -53,11 +53,11 @@
         <button onclick="ajax_save_and_continue();"
                      id="id_continue_btn"
                    type="button"
-                  class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+                  class="btn btn-block btn-primary btn-lg">{% trans 'Save &amp; Continue' %}</button>
     </form>
 
     <a onclick="ajax_cancel_and_continue();"
             id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+         class="btn btn-block btn-lg btn-default">{% trans 'Skip this for now' %}</a>
 
 {% endblock content %}
