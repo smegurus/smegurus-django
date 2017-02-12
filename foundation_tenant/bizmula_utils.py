@@ -1123,6 +1123,22 @@ class BizmulaAPI(DocxspressoAPI):
         self.do_type52(answer, api, "bank_fees")
 
     def do_q118(self, answer, api):
+        yr1_total = 0
+        yr2_total = 0
+        yr3_total = 0
+
+        # Populate rows.
+        for ans in answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+
+        # Populate the totals.
+        api.add_text("supplies_costs_y1_total", yr1_total)
+        api.add_text("supplies_costs_y2_total", yr2_total)
+        api.add_text("supplies_costs_y3_total", yr3_total)
+
+        # Populate the table.
         self.do_type50(
             answer,
             api,
@@ -1761,3 +1777,8 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text(prefix+"_m35", answer.content['m_35'] if answer.content['m_35'] else answer.content['m_35_r'])
         api.add_text(prefix+"_m36", answer.content['m_36'] if answer.content['m_36'] else answer.content['m_36_r'])
         api.add_text(prefix+"_y3_total", answer.content['yr_3'] if answer.content['yr_3'] else answer.content['yr_3_r'])
+
+    def string_to_float(self, string):
+        string = string.replace('$', '')
+        string = string.replace(',', '')
+        return float(string)
