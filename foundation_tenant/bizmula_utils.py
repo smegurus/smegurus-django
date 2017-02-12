@@ -1438,6 +1438,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("hi_gen_exp_y3", answer.content['var_2']['general_and_marketing_expenses']['yr3'])
 
     def do_q146(self, answer, api):
+        print(answer.content)
         api.add_text("ent_cash_req", answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1'])
 
     def do_q147(self, answer, api):
