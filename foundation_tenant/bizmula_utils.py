@@ -1287,6 +1287,26 @@ class BizmulaAPI(DocxspressoAPI):
         print("QID 136 - bugfix")
 
     def do_q137(self, answer, api):
+        yr1_total = 0
+        yr2_total = 0
+        yr3_total = 0
+
+        # Populate rows.
+        for ans in answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+
+        # Populate "taxes_total".
+        taxes_total = yr1_total + yr2_total + yr3_total
+        api.add_text("interest_total", taxes_total)
+
+        # # Populate the annual totals.
+        api.add_text("interest_total_y1", yr1_total)
+        api.add_text("interest_total_y2", yr2_total)
+        api.add_text("interest_total_y3", yr3_total)
+
+        # Populate the table.
         self.do_type50(
             answer,
             api,
