@@ -1390,8 +1390,8 @@ class BizmulaAPI(DocxspressoAPI):
 
         # total = yr1_total + yr2_total + yr3_total
         api.add_text("tid_total_y1", yr1_total)
-        # api.add_text("tid_total_y1", taxes_total)
-        # api.add_text("tid_total_y1", taxes_total)
+        api.add_text("tid_total_y2", yr2_total)
+        api.add_text("tid_total_y3", yr3_total)
 
     def do_q139(self, answer, api):
         self.do_type50(
@@ -1692,6 +1692,12 @@ class BizmulaAPI(DocxspressoAPI):
             'fund_impacts',
             'fund_amounts'
         )
+
+    def do_q161(self, answer, api):
+        api.add_picture('prod_image1', answer.content['var_3'])
+
+    def do_q162(self, answer, api):
+        api.add_picture('prod_image2', answer.content['var_3'])
 
     def do_type41(self, answer, api, key1, key2, key3, key4):  # 4 Col Table
         col1_array = []

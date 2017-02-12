@@ -141,6 +141,26 @@ class DocxspressoAPI:
         """
         self.data.append(array)
 
+    def add_picture(self, key, value, pixel_width=175, pixel_height=175):
+        """
+        Add picture value per key for document construction.
+        """
+        self.data.append({
+            "vars": [
+                {
+                    "var": key,
+                    "value": [
+                        value
+                    ],
+                    "width": str(pixel_width)+"px",
+                    "height": str(pixel_height)+"px"
+                }
+            ],
+            "options": {
+                "element": "image"
+            }
+        })
+
     def add_text_to_footer(self, key, value):
         """
         Add text value per key for document construction into the footer.

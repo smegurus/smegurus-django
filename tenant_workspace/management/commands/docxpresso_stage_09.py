@@ -563,8 +563,14 @@ class Command(BaseCommand):
             elif answer.question.pk == 158:
                 api.do_q158(answer, api)
 
+            elif answer.question.pk == 161:
+                api.do_q161(answer, api)
+
+            elif answer.question.pk == 162:
+                api.do_q162(answer, api)
+
         # Perform specific computations based on previous saved answers.
-        api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer)
+        api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer, api)
 
     def do_date(self, api):
         today = timezone.now()
