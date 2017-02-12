@@ -136,10 +136,12 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q37(self, answer, api):
-        array = []
-        for ans in answer.content:
-            array.append(ans['var_3'])
-        api.add_text_paragraphs("pestel_trends", array)
+        self.do_type33(
+            answer,
+            api,
+            'pestel_trend_types',
+            'pestel_trends',
+        )
 
     def do_q38(self, answer, api):
         array = []
@@ -183,7 +185,7 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q44(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        api.add_text("industry_competition_level", text)
+        api.add_text("industry_competition_levels", text)
 
     def do_q45(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
@@ -1698,6 +1700,33 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q162(self, answer, api):
         api.add_picture('prod_image2', answer.content['var_3'])
+
+    def do_type33(self, answer, api, key1, key2):  # 2 Col Table
+        col1_array = []
+        col2_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+
+        # Generate our custom item.
+        c1_dict = {"var": key1, 'value': col1_array}
+        c2_dict = {"var": key2, 'value': col2_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_type41(self, answer, api, key1, key2, key3, key4):  # 4 Col Table
         col1_array = []
