@@ -1274,6 +1274,26 @@ class BizmulaAPI(DocxspressoAPI):
         self.do_type52(answer, api, "misc_costs")
 
     def do_q136(self, answer, api):
+        yr1_total = 0
+        yr2_total = 0
+        yr3_total = 0
+
+        # Populate rows.
+        for ans in answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+
+        # Populate "taxes_total".
+        taxes_total = yr1_total + yr2_total + yr3_total
+        api.add_text("depreciation_total", taxes_total)
+
+        # # Populate the annual totals.
+        api.add_text("depreciation_total_y1", yr1_total)
+        api.add_text("depreciation_total_y2", yr2_total)
+        api.add_text("depreciation_total_y3", yr3_total)
+
+        # Populate the table.
         self.do_type50(
             answer,
             api,
@@ -1284,7 +1304,6 @@ class BizmulaAPI(DocxspressoAPI):
             'asset_y2_costs',
             'asset_y3_costs'
         )
-        print("QID 136 - bugfix")
 
     def do_q137(self, answer, api):
         yr1_total = 0
@@ -1317,7 +1336,6 @@ class BizmulaAPI(DocxspressoAPI):
             'interest_y2_costs',
             'interest_y3_costs'
         )
-        print("QID 137 - bugfix")
 
     def do_q138(self, answer, api):
         yr1_total = 0
