@@ -5,14 +5,22 @@
 <!-- PAGE JS -->
 {% compress js inline %}
 <script>
+
+$(document).ready(function () {
+        // BUGFIX: This code makes modals work.
+        $('#submitmodal').appendTo("body"); // REQUIRED.
+    }); // end DOCUMENT START
+
+
     function ajax_submit() {
         $("#id_submit_btn").attr('disabled','disabled'); // Disable button.
         tenant_module_finish(
             {{ module.id }},
             function(json_result) {
                 $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                alert("{% trans 'You have submitted your work! Please wait for your advisor to review it.' %}")
-                window.location = "{% url 'tenant_reception' %}";
+                
+                $('#submitmodal').modal('toggle'); $('#submitmodal').modal('show');
+                
             },
             function(error_json_result) {
                 $("#id_submit_btn").removeAttr('disabled'); // Enable button.
@@ -21,6 +29,9 @@
                 alert(string);
             }
         ); // end FINISH
+    }
+    function after_submit_redirect() {
+        window.location = "{% url 'tenant_reception' %}";
     }
 </script>
 {% endcompress %}
@@ -54,6 +65,27 @@
         </div>
     </div>
     <!-- end CONTENT -->
+    
+    <div class="modal fade" id="submitmodal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="helpModalLabel">{% trans 'Submitted' %}</h4>
+          </div>
+          <div class="modal-body">
+              <p>You have submitted your work! Please wait for your advisor to review it.</p>
+          </div>
+          <div class="modal-footer">
+            <!-- BACK BUTTON -->
+            <button type="button" class="btn btn-lg btn-next" onclick="after_submit_redirect();" data-dismiss="modal">{% trans 'OK' %}</button>
+            <!-- end BACK BUTTON -->
+          </div>
+        </div>
+      </div>
+    </div>
 
 </div>
 <!-- end PAGE CONTENT -->
