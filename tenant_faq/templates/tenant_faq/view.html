@@ -10,20 +10,20 @@
     <div class="container container-md">
         <div class="row mb-lg">
             <div class="col-md-8">
-                <div class="h1 text-bold">{% trans 'FAQs' %}</div>
-                <p class="text-muted">{% trans 'Praesent id mauris urna, et tristique lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.' %}</p>
+                <div class="h1 text-bold">{% trans 'Help Centre' %}</div>
+                <p class="text-muted">{% trans 'Here are some of our most common help requests. If you can't find your answer here, then be sure to get in touch with us via E-Mail or phone.' %}</p>
             </div>
             <div class="col-md-4">
                 <div class="panel">
                     <div class="panel-body text-center">
-                        <p class="mb-lg">{% trans 'We are here to help!' %}'</p>
+                        <p class="mb-lg">{% trans 'Have a question?' %}'</p>
                         <p class="mb-lg"><em class="fa fa-envelope"></em>
                             <span style="margin-left: 10px;margin-top: -3px">support@smegurus.com</span>
                         </p>
                         <p class="mb-lg"><em class="fa fa-phone"></em>
                             <span style="margin-left: 10px;">(519)520-3443</span>
                         </p>
-                        <button onclick="" type="button" class="btn btn-info">{% trans 'Contact support' %}</button>
+                        <button onclick="#" type="button" class="btn hide btn-info">{% trans 'Contact support' %}</button>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                                 {{ faq_item.answer_text|escape|safe }}
 
                                 <!-- LIKE / DISLIKE -->
-                                <div class="pull-right">
+                                <div class="pull-right hide">
                                     <small class="text-muted mr">{% trans 'Was this information useful?' %}</small>
                                     <button onclick="ajax_like({{ faq_item.id }});"
                                                type="button"
