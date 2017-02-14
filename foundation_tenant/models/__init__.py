@@ -3,6 +3,7 @@
 #------------
 from foundation_tenant.models.base.fileupload import TenantFileUpload
 from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.models.base.abstract_creativework import AbstractCreativeWork
 from foundation_tenant.models.base.abstract_mediaobject import AbstractMediaObject
 from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption

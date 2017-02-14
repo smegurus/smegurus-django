@@ -180,7 +180,7 @@
                             </a>
                             </li>
                             <!-- end DASHBOARD -->
-                            
+
                             <!-- MESSAGE -->
                             <li class=" ">
                                 <a href="#inbox" title="{% trans 'Messages' %}" data-toggle="collapse">
@@ -219,7 +219,7 @@
                             </li>
                             {% endif %}
                             <!-- end DOCUMENT_REVIEW -->
-                            
+
                             <!-- INTAKE -->
                             {% if request.tenant_me.is_org_admin %}
                             <li class=" ">
@@ -485,6 +485,7 @@
                     {% include "api/tenant/bizmula/tenant_documenttype.html" %}
                     {% include "api/tenant/bizmula/tenant_question.html" %}
                     {% include "api/tenant/bizmula/tenant_questionanswer.html" %}
+                    {% include "foundation_tenant/s3_js.html" %}
                     <script>
                         function ajax_logout() {
                             sign_off(

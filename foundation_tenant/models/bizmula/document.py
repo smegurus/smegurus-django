@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.documenttype import DocumentType
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.s3file import S3File
 from smegurus import constants
 
 
@@ -50,7 +50,7 @@ class Document(AbstractThing):
         default=constants.DOCUMENT_CREATED_STATUS,
     )
     docxpresso_file = models.ForeignKey(
-        TenantFileUpload,
+        S3File,
         help_text=_('The files uploaded by a User.'),
         blank=True,
         null=True,

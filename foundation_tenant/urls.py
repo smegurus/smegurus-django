@@ -1,9 +1,9 @@
 from django.conf.urls import include, url
-from foundation.views import decoratorsview
+from foundation_tenant.views import s3_views
 
 
 urlpatterns = (
-    # url(r'^tenant/name$', views.tenant_name, name='tenant_name'),
-    # url(r'^tenant/access$', views.tenant_access_status, name='tenant_access_status'),
-    url(r'^tenant/is_valid$', decoratorsview.tenant_is_valid, name='tenant_is_valid'),
+    # Simple Storage Service
+    url(r'^s3file/(.*)/get_timed_url$', s3_views.s3file_timed_url, name='foundation_s3file_60_sec_timed_url'),
+    url(r'^s3file/(.*)/delete$', s3_views.delete_s3file, name='foundation_delete_s3file')
 )

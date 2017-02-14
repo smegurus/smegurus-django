@@ -39,6 +39,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^', include('foundation_public.urls')),
+    url(r'^', include('foundation_tenant.urls')),
     url(r'^', include('public_home.urls')),
     url(r'^', include('public_admin.urls')),
     url(r'^', include('foundation_auth.urls')),

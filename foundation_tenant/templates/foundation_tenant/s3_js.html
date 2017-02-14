@@ -1,0 +1,79 @@
+{% load staticfiles i18n %}
+<script>
+    /*
+     *  ----------------
+     *  DEVELOPERS NOTE:
+     *  ----------------
+     *  All our secure document handling is done by this javascript file and
+     *  this javascript file requires to be included in the any template view
+     *  that will be handling documents.
+     *
+     *  Code is dependent on python package:
+     *    - foundation.views.s3file_timed_url
+     */
+
+     /**
+      * Source: http://stackoverflow.com/a/15832662
+      */
+     function downloadURI(uri, name) {
+         var link = document.createElement("a");
+         link.download = name;
+         link.href = uri;
+         document.body.appendChild(link);
+         link.click();
+         document.body.removeChild(link);
+         delete link;
+    }
+
+    /**
+     *  Function will make a call to our system to generate a temporary URL
+     *  where this User may download the file. Then once the file was returned
+     *  this function will download the file for the User.
+     */
+    function download_s3file(signed_id) {
+        if (signed_id.length <= 0) {
+            alert("No file detected.")
+            return;
+        }
+
+        // Generate the URL to call.
+        var url = "{% url 'foundation_s3file_60_sec_timed_url' 'placeholder' %}";
+        var details_url = url.replace("placeholder", signed_id);
+
+        $.ajax({
+            url: details_url,
+            context: document.body,
+            success: function(json_result){
+                // Get our download URL.
+                var url = json_result['url'];
+                console.log(url);
+
+                // Create a HTML link element and fill it with our URL and click on it.
+                downloadURI(url, signed_id);
+            }
+        }); // end AJAX call.
+    }
+
+    /**
+     *  Function will make a call to our system to delete the particular file
+     *  if it meets all our requirements.
+     */
+    function delete_s3file(signed_id) {
+        if (signed_id.length <= 0) {
+            alert("No file detected.")
+            return;
+        }
+
+        // Generate the URL to call.
+        var url = "{% url 'foundation_delete_s3file' 'placeholder' %}";
+        var details_url = url.replace("placeholder", signed_id);
+
+        $.ajax({
+            url: details_url,
+            context: document.body,
+            success: function(json_result){
+                location.reload(true); // Reload the page and make sure it's fresh.
+            }
+        }); // end AJAX call.
+    }
+</script>

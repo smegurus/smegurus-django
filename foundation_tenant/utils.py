@@ -1,15 +1,19 @@
+import time
+import base64
+import hashlib
+from django.conf import settings
+from datetime import datetime, timedelta
+from django.conf import settings
+from django.contrib.auth.models import User, Group
+from django.core.signing import Signer
+from django.core.urlresolvers import reverse
+from django.db.models import Q
+from django.utils import crypto
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from datetime import datetime, timedelta
+
+
 from foundation_public.utils import latest_date_between
-from foundation_tenant.models.base.communitypost import CommunityPost
-from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
-from foundation_tenant.models.base.calendarevent import CalendarEvent
-from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
-from foundation_tenant.models.base.intake import Intake
-from foundation_tenant.models.base.note import Note
-from foundation_tenant.models.base.task import Task
 
 
 def get_pretty_formatted_date(created):
@@ -28,3 +32,62 @@ def int_or_none(value):
         return int(value)
     except Exception as e:
         return None
+
+
+def float_or_none(value):
+    try:
+        return float(value)
+    except Exception as e:
+        return None
+
+
+def get_random_string(length=31,
+                    allowed_chars='abcdefghijkmnpqrstuvwxyz'
+                                       'ABCDEFGHIJKLMNPQRSTUVWXYZ'
+                                       '23456789'):
+    """
+    Random string generator simplified from Django.
+    """
+    return crypto.get_random_string(length, allowed_chars)
+
+
+def django_sign(plaintext_value):
+    """
+    Function will take the plaintext value and sign with the django SECRET_KEY.
+    """
+    # Convert our User's ID into an encrypted value.
+    # Note: https://docs.djangoproject.com/en/dev/topics/signing/
+    signer = Signer()
+    id_sting = str(plaintext_value).encode()
+    return signer.sign(id_sting)
+
+
+def django_unsign(signed_value):
+    """
+    Function will take the signed value and get the plaintext value by cheching
+    this django SECRET_KEY.
+    """
+    try:
+        # Convert our signed value into a text.
+        signer = Signer()
+        return signer.unsign(signed_value)
+    except Exception as e:
+        return 0
+
+
+def is_email_unique(email):
+    """
+    Utility function checks to see if parameter email is unique or not.
+    """
+    return not User.objects.filter(email=email).exists()
+
+
+def generate_hash():
+    """
+    Utility function generate will generate a hash on a timestamp.
+    """
+    hash = hashlib.sha1()
+    time_str = str(time.time())
+    utf8_time_str = time_str.encode('utf-8')
+    hash.update(utf8_time_str)
+    return  hash.hexdigest()

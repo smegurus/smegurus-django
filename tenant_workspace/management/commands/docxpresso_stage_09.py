@@ -9,7 +9,7 @@ from django.core.management import call_command
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.bizmula_utils import BizmulaAPI
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
@@ -113,16 +113,13 @@ class Command(BaseCommand):
             if document.docxpresso_file:
                 document.docxpresso_file.delete()
 
-            # Upload our file to S3 server.
-            path = default_storage.save(
-                'uploads/'+doc_filename,
-                ContentFile(doc_bin_data)
-            )
-
             # Save our file to DB.
-            docxpresso_file = TenantFileUpload.objects.create(
-                datafile = path,
+            docxpresso_file = S3File.objects.create(
+                stem=doc_filename,
+                suffix='odt',
+                owner=document.owner
             )
+            docxpresso_file.upload_file(doc_bin_data)
 
             # Generate our new file.
             document.docxpresso_file = docxpresso_file
