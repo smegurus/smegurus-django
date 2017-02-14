@@ -12,10 +12,6 @@ from foundation_tenant.s3utils import PrivateS3Bucket
 URL_EXPIRY_TIME_IN_SECONDS = 60
 
 
-private_s3 = PrivateS3Bucket() # Connect to our private s3 server and keep a
-                               # singleton object loaded in memory.
-
-
 class S3FileManager(models.Manager):
     def delete_all(self):
         """Utility function will delete all the S3 files in our system."""
@@ -112,6 +108,7 @@ class S3File(models.Model):
         Generates a unique time-limited URL to access this file.
         """
         # Return our timed URL.
+        private_s3 = PrivateS3Bucket()
         return private_s3.get_limited_url(self.key, URL_EXPIRY_TIME_IN_SECONDS)
 
     def delete(self, *args, **kwargs):
@@ -121,6 +118,7 @@ class S3File(models.Model):
         from the database.
         """
         if self.key:
+            private_s3 = PrivateS3Bucket()
             private_s3.delete_file(self.key) # Delete from S3 server.
         super(S3File, self).delete(*args, **kwargs) # Call the "real" delete() method
 
@@ -133,6 +131,7 @@ class S3File(models.Model):
         from django.core.files.base import ContentFile
 
         # Upload our file to S3 server.
+        private_s3 = PrivateS3Bucket()
         return private_s3.upload_file(
             ContentFile(bin_data),
             self.key
