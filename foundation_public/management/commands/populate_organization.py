@@ -39,7 +39,7 @@ class Command(BaseCommand):
             contact_point=contact_point,
             address=address,
             schema_name=registered_org.schema_name,
-            name=registered_org.name
+            legal_name=registered_org.name
         )
 
         # Perform a custom post-save action.

@@ -336,7 +336,7 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     )
 
     def __str__(self):
-        return str(self.name)
+        return str(self.legal_name)
 
     def reverse(self, view_name):
         """
