@@ -1,6 +1,14 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress tenant_workspace_tags question046_tag question049_tag question057_tag question058_tag %}
 {% block content %}
+<style>
+    .wrapper section{
+        padding-bottom: 10px;
+    }
+    .wrapper footer{
+        display: none;
+    }
+</style>
 {% compress js inline %}
 <!-- PAGE JS -->
 <script>
@@ -214,8 +222,6 @@
                  </div>
                  <!-- end NEXT BUTTON -->
              </form>
-         </div>
-         <div class="panel-footer">
          </div>
      </div>
     <!-- end CONTENT -->
