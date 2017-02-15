@@ -90,11 +90,12 @@ SHARED_APPS = (
   "compressor",
   'sorl.thumbnail',
   'corsheaders',
+  'django.contrib.postgres', # Postgres full-text search: https://docs.djangoproject.com/en/1.10/ref/contrib/postgres/search/
+  'anymail',                 # https://github.com/anymail/django-anymail
 )
 
 TENANT_APPS = (
   # your tenant-specific apps
-  'corsheaders',
   'foundation_tenant',
   'api',
   'foundation_auth',
@@ -244,13 +245,20 @@ LOCALE_PATHS = (
 
 
 # Email
-#
+# https://docs.djangoproject.com/en/1.10/topics/email/
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = env_var("MAILGUN_ACCESS_KEY")
-MAILGUN_SERVER_NAME = env_var("MAILGUN_SERVER_NAME")
+EMAIL_BACKEND = env_var("EMAIL_BACKEND")
 DEFAULT_FROM_EMAIL = env_var("DEFAULT_FROM_EMAIL")
 DEFAULT_TO_EMAIL = env_var("DEFAULT_TO_EMAIL")
+
+
+# Anymail
+#  https://github.com/anymail/django-anymail
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": env_var("MAILGUN_ACCESS_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env_var("MAILGUN_SERVER_NAME"),
+}
 
 
 # Amazon S3 Service
