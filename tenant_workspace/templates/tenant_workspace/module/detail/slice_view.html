@@ -1,6 +1,14 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress tenant_workspace_tags %}
 {% block content %}
+<style>
+    .wrapper section{
+        padding-bottom: 10px;
+    }
+    .wrapper footer{
+        display: none;
+    }
+</style>
 <!-- PAGE HTML -->
 <div class="content-wrapper">
     <!-- TITLE & BREADCRUMBS -->
@@ -59,8 +67,6 @@
                             </a>
                         </div>
                         <!-- end NEXT BUTTON -->
-                    </div>
-                    <div class="panel-footer">
                     </div>
                 </div>
                 <!-- END panel-->
