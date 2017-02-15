@@ -17,13 +17,11 @@ class WorkspaceManager(models.Manager):
 class Workspace(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_workspaces'
+        db_table = 'smeg_workspaces'
         verbose_name = _('Workspace')
         verbose_name_plural = _('Workspaces')
 
     objects = WorkspaceManager()
-    created = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
     name = models.CharField(
         _("Name"),
         max_length=63,
@@ -35,6 +33,7 @@ class Workspace(models.Model):
         _("Stage Number"),
         help_text=_('Track what stage this Workspace belongs to.'),
         default=1,
+        db_index=True,
     )
     mes = models.ManyToManyField(
         TenantMe,
@@ -43,6 +42,8 @@ class Workspace(models.Model):
         related_name="workspace_mes_%(app_label)s_%(class)s_related",
         db_index=True,
     )
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.name)

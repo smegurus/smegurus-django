@@ -15,7 +15,7 @@ class SlideManager(models.Manager):
 class Slide(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_slides'
+        db_table = 'smeg_slides'
         verbose_name = _('Slide')
         verbose_name_plural = _('Slides')
 

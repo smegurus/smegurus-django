@@ -40,11 +40,6 @@ class QuestionAnswerViewSet(viewsets.ModelViewSet):
         # Update our model.
         answer = serializer.save()
 
-        # DEVELOPERS NOTE:
-        # Our javascript function will stringify the data and send it to us as
-        # a single string. We will then take the string and convert it into a
-        # JSON dictionary and save it to the model.
-
         # Save data as json.
         answer.content = answer.content
         answer.save()

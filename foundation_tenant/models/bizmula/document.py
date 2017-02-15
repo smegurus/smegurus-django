@@ -22,7 +22,7 @@ class Document(AbstractThing):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_documents'
+        db_table = 'smeg_documents'
         verbose_name = _('Document')
         verbose_name_plural = _('Documents')
 
@@ -33,7 +33,8 @@ class Document(AbstractThing):
         blank=True,
         null=True,
         related_name="document_workspace_%(app_label)s_%(class)s_related",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        db_index=True,
     )
     document_type = models.ForeignKey(
         DocumentType,
@@ -48,6 +49,7 @@ class Document(AbstractThing):
         choices=constants.DOCUMENT_STATUS_OPTIONS,
         help_text=_('The status of this Document.'),
         default=constants.DOCUMENT_CREATED_STATUS,
+        db_index=True,
     )
     docxpresso_file = models.ForeignKey(
         S3File,
@@ -57,6 +59,8 @@ class Document(AbstractThing):
         related_name='%(app_label)s_%(class)s_file_related',
         on_delete=models.SET_NULL
     )
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.name)

@@ -19,7 +19,7 @@ class QuestionAnswer(models.Model):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_question_answers'
+        db_table = 'smeg_question_answers'
         verbose_name = _('Question Answer')
         verbose_name_plural = _('Question Answers')
 
@@ -54,6 +54,8 @@ class QuestionAnswer(models.Model):
         blank=True,
         default={}
     )
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.question)

@@ -17,7 +17,7 @@ class Question(models.Model):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_questions'
+        db_table = 'smeg_questions'
         verbose_name = _('Question')
         verbose_name_plural = _('Questions')
         ordering = ("number",)

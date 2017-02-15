@@ -14,7 +14,7 @@ class ModuleManager(models.Manager):
 class Module(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_modules'
+        db_table = 'smeg_modules'
         verbose_name = _('Module')
         verbose_name_plural = _('Modules')
 

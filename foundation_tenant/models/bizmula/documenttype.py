@@ -15,7 +15,7 @@ class DocumentType(models.Model):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'biz_document_types'
+        db_table = 'smeg_document_types'
         verbose_name = _('Document Type')
         verbose_name_plural = _('Document Types')
 
@@ -36,6 +36,7 @@ class DocumentType(models.Model):
         _("Stage Number"),
         help_text=_('Track what stage this Document belongs to.'),
         default=1,
+        db_index=True,
     )
 
     def __str__(self):
