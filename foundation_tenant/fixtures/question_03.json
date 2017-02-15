@@ -73,7 +73,7 @@
             "document_type": 3,
             "number": 23,
             "title": "What type of customer will your business serve?",
-            "help": "Please describe the type of customer that you plan to seel to by choosing an option from the list.",
+            "help": "In this question you need to identify at a very high level, who your customer will be. You can sell to people or a type of person, you can sell to other businesses, groups of people, for example women, or governments and institutions. Who will you be selling to?",
             "options": {
                 "opt1": [
                     {
@@ -116,7 +116,7 @@
             "document_type": 3,
             "number": 24,
             "title": "What is the opportunity you are taking advantage of or problem you seek to solve?",
-            "help": "People often pay for solutions to their problems. Choose or enter your own item which best explains the opportunity you seek or the problem that you will solve for your customers.",
+            "help": "Why are you looking to start a business? Generally, you are solving a problem or taking advantage of a market opportunity.",
             "options": {
                 "opt1": [
                     {
@@ -159,7 +159,7 @@
             "document_type": 3,
             "number": 25,
             "title": "Why is no one else doing this yet?",
-            "help": "Many people have business ideas but rarely follow through on them. Now that you have your idea, why do you feel that others may not try to do the same thing?",
+            "help": "It is important to think about what is going to make your idea unique. There is something you want to do that is different than the norm. What about it specifically makes your idea unique?",
             "options": {
                 "opt1": [
                     {
@@ -386,7 +386,7 @@
         "fields": {
             "document_type": 3,
             "number": 64,
-            "title": "How will you convince them to buy from you?",
+            "title": "How will you convince your customers to buy from you?",
             "help": "People face many choices in today’s world. How will you show them that your option is the best? Think about items that you can provide them with to educate them, deals that you can give them to try your product or service out, or other ways to convince them.",
             "options": {
                 "opt1": [
@@ -463,6 +463,7 @@
                     "Economic",
                     "Social",
                     "Technological",
+                    "Legal",    
                     "Environmental"
                 ],
                 "opt1_select": "Select",
@@ -470,45 +471,79 @@
                     {
                         "parent": "Political",
                         "choices": [
-                            "Political Trend 1",
-                            "Political Trend 2",
-                            "Political Trend 3",
+                        "There is an election coming and my industry is an issue",
+                        "The employment laws in this sector are lax",
+                        "The employment laws in this sector are strict", 
+                        "The tax rates in this sector are high",
+                        "The tax rates in this sector are low",
                             "Other (Please Specify)"
                         ]
                     },
                     {
                         "parent": "Economic",
                         "choices": [
-                            "Economic Trend 1",
-                            "Economic Trend 2",
-                            "Economic Trend 3",
+                            "Our currency is fluctuating a lot",
+                            "Our currency is low",
+                            "We are in a recession and people are buying less", 
+                            "We are in an economic growth phase and people are buying more",
+                            "Unemployment is up",
+                            "Unemployment is down",
+                            "Spending power is up",
+                            "Spending power is down",
                             "Other (Please Specify)"
                         ]
                     },
                     {
                         "parent": "Social",
                         "choices": [
-                            "Social Trend 1",
-                            "Social Trend 2",
-                            "Social Trend 3",
+                            "Families are becoming smaller",
+                            "Families are busier",
+                            "Both parents are working",
+                            "People are more religious",
+                            "People are less religious",
+                            "People eat out more",
+                            "People spend more time online",
+                            "People are becoming more diverse",
+                            "Cities are getting bigger",
+                            "More young people live at home longer",
+                            "Education levels are going up",
                             "Other (Please Specify)"
                         ]
                     },
                     {
                         "parent": "Technological",
                         "choices": [
-                            "Tech Trend 1",
-                            "Tech Trend 2",
-                            "Tech Trend 3",
+                            "Technology is making things faster",
+                            "Technology is automating related tasks",
+                            "Technology is making things in this industry easier",
+                            "Technology is not used well in this sector",
+                            "There is no automation in the sector",
+                            "There is are new developments that will change this sector",
+                            "Other (Please Specify)"
+                        ]
+                    },
+                     {
+                        "parent": "Legal",
+                        "choices": [
+                            "There are a lot of laws that impact this industry",
+                            "There is a lot of legislation and regulations in this industry",
+                            "There is a lot of paperwork and approvals to obtain",
+                            "There are new laws that will impact this sector",
+                            "There are few regulations in this sector",
+                            "There are not many laws that impact the sector",
                             "Other (Please Specify)"
                         ]
                     },
                     {
                         "parent": "Environmental",
                         "choices": [
-                            "Environmental Trend 1",
-                            "Environmental Trend 2",
-                            "Environmental Trend 3",
+                            "People and companies are recycling more",
+                            "People and companies are more environmentally conscious",
+                            "People and companies are demanding better solutions from industry",
+                            "This industry is subject to many environmental regulations",
+                            "This industry is not subject to environmental regulations",
+                            "We will have to be conscious of our triple bottom line",
+                            "We have to worry about environmental sustainability",
                             "Other (Please Specify)"
                         ]
                     },
@@ -576,7 +611,7 @@
         "fields": {
             "document_type": 3,
             "number": 29,
-            "title": "What is the geographic market that your business will serve? (Part 1 of 2)",
+            "title": "What is the geographic market that your business will serve?",
             "help": "Here we need you to tell us where you will be selling. A pizzeria might sell in London, Ontario, while an e-Commerce site might sell to the online market. Please choose the best option, then continue to the next step.",
             "options": {
                 "opt1": [
@@ -635,7 +670,7 @@
         "fields": {
             "document_type": 3,
             "number": 30,
-            "title": "What is the geographic market that your business will serve? (Part 2 of 2)",
+            "title": "Can you name the specific market for us? For example <i>London</i> or <i>Lakeshore, Toronto</i>.",
             "help": "Depending on your choice for the last question, please add more details to complete your answer.",
             "options": [
                 {
@@ -1286,7 +1321,7 @@
         "fields": {
             "document_type": 3,
             "number": 39,
-            "title": "My target market is based on...",
+            "title": "The customers who will buy your product or service are your target market. Tell us two things about them that are important.",
             "help": "Now we need to learn more about who you are hoping to sell to. First tell us a type, then use the next two dropdowns to better describe them. For example, you might want to target families with a good income. You could select Households, Income, and then the income bracket that best fits your ideal customers.",
             "options": {
                 "opt1": ["Household type", "Individuals", "Businesses/nonprofits", "Government"],
@@ -1435,29 +1470,29 @@
         "fields": {
             "document_type": 3,
             "number": 40,
-            "title": "How do customers make buying decisions in this industry",
+            "title": "How do customers make buying decisions in this industry?",
             "help": "Think of how customers in your industry make buying decisions. Something like an icecream cone might be something they just see and decide they want (impulse buy).  If they are deciding to buy something like a car, then they will probably take more time and look for one specific item when choosing which car they want. Try to put yourself in the customer's shoes and choose the one that best fits.",
             "options": {
                 "opt1": [
                     {
-                        "value": "as an impulse buy",
-                        "text": "as an impulse buy"
+                        "value": "By impulse",
+                        "text": "By impulse"
                     },
                     {
-                        "value": "based on research",
-                        "text": "based on research"
+                        "value": "Through research",
+                        "text": "Through research"
                     },
                     {
-                        "value": "based on the cost",
-                        "text": "based on the cost"
+                        "value": "By price",
+                        "text": "By price"
                     },
                     {
-                        "value": "based on the value",
-                        "text": "based on the value"
+                        "value": "By value derived",
+                        "text": "By value derived"
                     },
                     {
-                        "value": "based on their unique needs",
-                        "text": "based on their unique needs"
+                        "value": "By customer unique needs",
+                        "text": "By customer unique needs"
                     },
                     {
                         "value": "other",
