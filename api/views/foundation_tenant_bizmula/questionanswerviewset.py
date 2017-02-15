@@ -46,5 +46,5 @@ class QuestionAnswerViewSet(viewsets.ModelViewSet):
         # JSON dictionary and save it to the model.
 
         # Save data as json.
-        answer.content = json.loads(answer.content)
+        answer.content = answer.content
         answer.save()
