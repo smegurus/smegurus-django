@@ -109,8 +109,7 @@
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             {% comment %}
             ITERATE THROUGH ALL THE OPTIONS AND SEE WHICH ONE MATCHES THE
             PREVIOUSLY SUBMITTED ANSWER AND RENDER THE GUI ACCORDINGLY.
@@ -125,9 +124,9 @@
             <!-- TEXTFIELD -->
             {% if mega_option.type == "textfield" %}
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{ mega_option.name }}</label>
-                <div class="col-sm-10">
-                    <input id="id_input_1" type="text" class="form-control" placeholder="{{ mega_option.placeholder }}" value="{% if picked.var_0 == mega_option.name %}{{ picked.var_1 }}{% endif %}" />
+                <label class="col-sm-3 control-label">{{ mega_option.name }}</label>
+                <div class="col-sm-6">
+                    <input id="id_input_1" type="text" class="form-control input-lg" placeholder="{{ mega_option.placeholder }}" value="{% if picked.var_0 == mega_option.name %}{{ picked.var_1 }}{% endif %}" />
                     <!-- <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> -->
                 </div>
             </div>
@@ -137,10 +136,10 @@
             <!-- SELECTIONFIELD -->
             {% if mega_option.type == "selectionfield" %}
             <div class="form-group">
-                <label class="col-sm-2 control-label">{{ mega_option.name }}</label>
-                <div class="col-sm-10">
+                <label class="col-sm-3 control-label">{{ mega_option.name }}</label>
+                <div class="col-sm-6">
                     <!-- OPTIONS -->
-                    <select id="id_input_1" class="form-control">
+                    <select id="id_input_1" class="form-control input-lg">
                         {% for choice in mega_option.choices %}
                             <option value="{{ choice }}" {% if picked.var_1 == choice %}selected="selected"{% endif %}>{{ choice }}</option>
                         {% endfor %}
@@ -149,7 +148,7 @@
                     <!-- OTHER -->
                     <div id="id_input_1_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
                         <br />
-                        <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="{% if picked.var_0 == mega_option.name %}{{ picked.var_1_other }}{% endif %}" />
+                        <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="" value="{% if picked.var_0 == mega_option.name %}{{ picked.var_1_other }}{% endif %}" />
                     </div>
                     <!-- end OTHER -->
                 </div>
