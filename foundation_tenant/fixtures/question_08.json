@@ -268,6 +268,25 @@
     },
     {
         "model": "foundation_tenant.question",
+        "pk": 163,
+        "fields": {
+            "document_type": 8,
+            "number": 3,
+            "title": "Based on your responses, the following are your forecasted sales volumes for years 1 to 3",
+            "help": "This is some generic help text.",
+            "options": {},
+            "content": {},
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 62
+        }
+    },
+    {
+        "model": "foundation_tenant.question",
         "pk": 100,
         "fields": {
             "document_type": 8,
