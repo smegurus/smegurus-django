@@ -439,9 +439,14 @@
                         "id": "10",
                         "value": "Our product is value-priced",
                         "text": "Our product is value-priced"
+                    },
+                    {
+                        "id": "11",
+                        "value": "Other (Please Specify)",
+                        "text": "Other (Please Specify)"
                     }
                 ],
-                "opt1_other": "Other"
+                "opt1_other": "Other (Please Specify)"
             },
             "content": {
                 "stub_1": ""
@@ -463,7 +468,7 @@
                     "Economic",
                     "Social",
                     "Technological",
-                    "Legal",    
+                    "Legal",
                     "Environmental"
                 ],
                 "opt1_select": "Select",
@@ -473,7 +478,7 @@
                         "choices": [
                         "There is an election coming and my industry is an issue",
                         "The employment laws in this sector are lax",
-                        "The employment laws in this sector are strict", 
+                        "The employment laws in this sector are strict",
                         "The tax rates in this sector are high",
                         "The tax rates in this sector are low",
                             "Other (Please Specify)"
@@ -484,7 +489,7 @@
                         "choices": [
                             "Our currency is fluctuating a lot",
                             "Our currency is low",
-                            "We are in a recession and people are buying less", 
+                            "We are in a recession and people are buying less",
                             "We are in an economic growth phase and people are buying more",
                             "Unemployment is up",
                             "Unemployment is down",
