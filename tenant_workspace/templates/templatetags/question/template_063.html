@@ -1,0 +1,51 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        window.location = next_url;
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+
+
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-12">
+            <!-- BIZMULA EXPENSE TABLE YEAR 1 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year 1' %}</th>
+                        <th>{% trans 'Year 2' %}</th>
+                        <th>{% trans 'Year 3' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                       <td>$&nbsp;{{ picked.yr1 }}</td>
+                       <td>$&nbsp;{{ picked.yr2 }}</td>
+                       <td>$&nbsp;{{ picked.yr3 }}</td>
+                   </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</fieldset>
+<!-- end HTML -->
