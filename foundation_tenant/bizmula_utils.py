@@ -172,11 +172,16 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q42(self, answer, api):
+        # Item 1
         text = answer.content['var_1']
+        api.add_text("industry_change_type",text)
+
+        # Item 2
+        text = None
         if answer.content['var_2_other']:
-            text += _(" by ") + answer.content['var_2_other']
+            text = answer.content['var_2_other']
         else:
-            text += _(" by ") + answer.content['var_2']
+            text = answer.content['var_2']
         api.add_text("industry_change_rate",text)
 
     def do_q43(self, answer, api):
