@@ -421,7 +421,7 @@
                 "opt2_select": "Select",
                 "opt3": [
                     "Average",
-                    "Value",
+                    "Bargain",
                     "Premium"
                 ],
                 "opt3_other": "Other (Please Specify)",
@@ -454,7 +454,7 @@
             },
             "content": {
                 "stub_1": "Name",
-                "stub_2": "Proximityy",
+                "stub_2": "Proximity",
                 "stub_3": "Market Share",
                 "stub_4": "Pricing",
                 "stub_5": "Customer Service",
@@ -462,7 +462,7 @@
                 "stub_7": "How We Will Compete",
                 "stub_8": "Name",
                 "stub_9": "ex: Dave’s Bookstore",
-                "stub_10": "Proximityy",
+                "stub_10": "Proximity",
                 "stub_11": "Market Share",
                 "stub_12": "Pricing",
                 "stub_13": "Customer Service",
@@ -509,7 +509,7 @@
                 "opt2_select": "Select",
                 "opt3": [
                     "Average",
-                    "Value",
+                    "Bargain",
                     "Premium"
                 ],
                 "opt3_other": "Other (Please Specify)",
@@ -542,7 +542,7 @@
             },
             "content": {
                 "stub_1": "Name",
-                "stub_2": "Proximityy",
+                "stub_2": "Proximity",
                 "stub_3": "Market Share",
                 "stub_4": "Pricing",
                 "stub_5": "Customer Service",
@@ -550,7 +550,7 @@
                 "stub_7": "How We Will Compete",
                 "stub_8": "Name",
                 "stub_9": "ex: Dave's Bookstore",
-                "stub_10": "Proximityy",
+                "stub_10": "Proximity",
                 "stub_11": "Market Share",
                 "stub_12": "Pricing",
                 "stub_13": "Customer Service",
