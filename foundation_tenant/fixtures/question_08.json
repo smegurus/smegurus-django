@@ -4058,23 +4058,9 @@
             "options": {},
             "content": {},
             "dependency": {
-                "q1_qid": 104,
-                "q2_qid": 106,
-                "q3_qid": 107,
-                "q4_qid": 112,
-                "q5_qid": 125,
-                "q6_qid": 110,
-                "q7_qid": 115,
-                "q8_qid": 113,
-                "q9_qid": 109,
-                "q10_qid": 117,
-                "q11_qid": 119,
-                "q12_qid": 121,
-                "q13_qid": 127,
-                "q14_qid": 129,
-                "q15_qid": 131,
-                "q16_qid": 133,
-                "q17_qid": 135
+                "q1_qid": 99,
+                "q2_qid": 163,
+                "q3_qid": 165
             },
             "validation": {
                 "opt1_other_min_length": 2,
