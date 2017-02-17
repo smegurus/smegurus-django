@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress tenant_workspace_tags question046_tag question049_tag question057_tag question058_tag question062_tag question063_tag %}
+{% load staticfiles i18n compress tenant_workspace_tags question046_tag question049_tag question057_tag question058_tag question062_tag question063_tag question064_tag %}
 {% block content %}
 <style>
     .wrapper section{
@@ -207,6 +207,8 @@
                      {% render_question_type_062 workspace module node question answer %}
                  {% elif question.type_id == 63 %}
                      {% render_question_type_063 workspace module node question answer %}
+                 {% elif question.type_id == 64 %}
+                     {% render_question_type_064 workspace module node question answer %}
                  {% endif %}
                  <!-- end QUESTION CONTENT -->
 
