@@ -125,7 +125,6 @@ def render_question_type_065(workspace, module, node, question, answer):
     # DEBUGGING PURPOSES ONLY
     # print(answer.content)
 
-
     # Return result.
     return {
         'workspace': workspace,
