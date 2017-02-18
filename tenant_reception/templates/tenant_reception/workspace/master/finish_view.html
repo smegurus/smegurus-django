@@ -5,22 +5,29 @@
 <!-- PAGE JS -->
 {% compress js inline %}
 <script>
-
-$(document).ready(function () {
+    $(document).ready(function () {
         // BUGFIX: This code makes modals work.
         $('#submitmodal').appendTo("body"); // REQUIRED.
     }); // end DOCUMENT START
 
-
     function ajax_submit() {
         $("#id_submit_btn").attr('disabled','disabled'); // Disable button.
-        tenant_module_finish(
+        tenant_module_generate_docxpresso_doc(
             {{ module.id }},
             function(json_result) {
-                $("#id_submit_btn").removeAttr('disabled'); // Enable button.
-                
-                $('#submitmodal').modal('toggle'); $('#submitmodal').modal('show');
-                
+                tenant_module_finish(
+                    {{ module.id }},
+                    function(json_result) {
+                        $("#id_submit_btn").removeAttr('disabled'); // Enable button.
+                        $('#submitmodal').modal('toggle'); $('#submitmodal').modal('show');
+                    },
+                    function(error_json_result) {
+                        $("#id_submit_btn").removeAttr('disabled'); // Enable button.
+                        var string = JSON.stringify( error_json_result );
+                        console.log(string);
+                        alert(string);
+                    }
+                ); // end FINISH
             },
             function(error_json_result) {
                 $("#id_submit_btn").removeAttr('disabled'); // Enable button.
@@ -30,6 +37,7 @@ $(document).ready(function () {
             }
         ); // end FINISH
     }
+
     function after_submit_redirect() {
         window.location = "{% url 'tenant_reception' %}";
     }
@@ -65,7 +73,7 @@ $(document).ready(function () {
         </div>
     </div>
     <!-- end CONTENT -->
-    
+
     <div class="modal fade" id="submitmodal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

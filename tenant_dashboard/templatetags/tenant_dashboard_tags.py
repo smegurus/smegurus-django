@@ -250,7 +250,7 @@ def render_progress_widget(me):
     # Client
     if me.is_entrepreneur():
         try:
-            workspace = Workspace.objects.filter(mes__id=entrepreneur.id).latest('last_modified')
+            workspace = Workspace.objects.filter(mes__id=me.id).latest('last_modified')
             progress_percent = workspace.stage_num / TOTAL_STAGE_NUM
         except Workspace.DoesNotExist:
             pass

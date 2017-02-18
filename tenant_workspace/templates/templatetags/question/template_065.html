@@ -1,0 +1,60 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        window.location = next_url;
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <div class="col-sm-12 col-centered">
+
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                   <thead>
+                      <tr>
+                         <th></th>
+                         <th>{% trans 'Year 1' %}</th>
+                         <th>{% trans 'Year 2' %}</th>
+                         <th>{% trans 'Year 3' %}</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr>
+                         <td>{% trans 'Total Contribution Margin (CM)' %}</td>
+                         <td>{{ picked.contribution_margin_unit.yr1 }}</td>
+                         <td>{{ picked.contribution_margin_unit.yr2 }}</td>
+                         <td>{{ picked.contribution_margin_unit.yr3 }}</td>
+                      </tr>
+                      <tr>
+                         <td>{% trans 'Total Breakeven in Units (BE)' %}</td>
+                         <td>{{ picked.break_even_units.yr1 }}</td>
+                         <td>{{ picked.break_even_units.yr2 }}</td>
+                         <td>{{ picked.break_even_units.yr3 }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+
+
+
+        </div>
+    </div>
+        </div>
+</fieldset>
+<!-- end HTML -->

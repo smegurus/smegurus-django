@@ -1,0 +1,242 @@
+{% load staticfiles i18n compress foundation_public_tags %}
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // FILL IN.
+    }); // end DOCUMENT START
+
+    /**
+     *  Function will load up the next URL after checking to see if the
+     *  option was selected for this question.
+     */
+    function question_answer_protected_next(next_url) {
+        window.location = next_url;
+    }
+</script>
+{% endcompress %}
+<!-- end JS -->
+<!-- HTML -->
+<fieldset>
+    <legend>
+        {{ node.order_num }}. {{ question.title|escape|safe }}
+    </legend>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
+        <div class="col-sm-12">
+            <!-- BIZMULA EXPENSE TABLE YEAR 1 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 1' %}</th>
+                        <th>{% trans 'Month 2' %}</th>
+                        <th>{% trans 'Month 3' %}</th>
+                        <th>{% trans 'Month 4' %}</th>
+                        <th>{% trans 'Month 5' %}</th>
+                        <th>{% trans 'Month 6' %}</th>
+                        <th>{% trans 'Month 7' %}</th>
+                        <th>{% trans 'Month 8' %}</th>
+                        <th>{% trans 'Month 9' %}</th>
+                        <th>{% trans 'Month 10' %}</th>
+                        <th>{% trans 'Month 11' %}</th>
+                        <th>{% trans 'Month 12' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '1' %}</td>
+                         <td>
+                             <input id="id_m1" type="number" class="form-control" placeholder="-" value="{{ picked.m1 }}">
+                         </td>
+                         <td>
+                             <input id="id_m2" type="number" class="form-control" placeholder="-" value="{{ picked.m2 }}">
+                         </td>
+                         <td>
+                             <input id="id_m3" type="number" class="form-control" placeholder="-" value="{{ picked.m3 }}">
+                         </td>
+                         <td>
+                             <input id="id_m4" type="number" class="form-control" placeholder="-" value="{{ picked.m4 }}">
+                         </td>
+                         <td>
+                             <input id="id_m5" type="number" class="form-control" placeholder="-" value="{{ picked.m5 }}">
+                         </td>
+                         <td>
+                             <input id="id_m6" type="number" class="form-control" placeholder="-" value="{{ picked.m6 }}">
+                         </td>
+                         <td>
+                             <input id="id_m7" type="number" class="form-control" placeholder="-" value="{{ picked.m7 }}">
+                         </td>
+                         <td>
+                             <input id="id_m8" type="number" class="form-control" placeholder="-" value="{{ picked.m8 }}">
+                         </td>
+                         <td>
+                             <input id="id_m9" type="number" class="form-control" placeholder="-" value="{{ picked.m9 }}">
+                         </td>
+                         <td>
+                             <input id="id_m10" type="number" class="form-control" placeholder="-" value="{{ picked.m10 }}">
+                         </td>
+                         <td>
+                             <input id="id_m11" type="number" class="form-control" placeholder="-" value="{{ picked.m11 }}">
+                         </td>
+                         <td>
+                             <input id="id_m12" type="number" class="form-control" placeholder="-" value="{{ picked.m12 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr1_total" type="number" class="form-control" placeholder="-" value="{{ picked.yr1_total }}" readonly=true>
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end BIZMULA EXPENSE TABLE YEAR 1 -->
+
+            <br />
+            <br />
+
+            <!-- BIZMULA EXPENSE TABLE YEAR 2 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 13' %}</th>
+                        <th>{% trans 'Month 14' %}</th>
+                        <th>{% trans 'Month 15' %}</th>
+                        <th>{% trans 'Month 16' %}</th>
+                        <th>{% trans 'Month 17' %}</th>
+                        <th>{% trans 'Month 18' %}</th>
+                        <th>{% trans 'Month 19' %}</th>
+                        <th>{% trans 'Month 20' %}</th>
+                        <th>{% trans 'Month 21' %}</th>
+                        <th>{% trans 'Month 22' %}</th>
+                        <th>{% trans 'Month 23' %}</th>
+                        <th>{% trans 'Month 24' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '2' %}</td>
+                         <td>
+                             <input id="id_m13" type="number" class="form-control" placeholder="-" value="{{ picked.m13 }}">
+                         </td>
+                         <td>
+                             <input id="id_m14" type="number" class="form-control" placeholder="-" value="{{ picked.m14 }}">
+                         </td>
+                         <td>
+                             <input id="id_m15" type="number" class="form-control" placeholder="-" value="{{ picked.m15 }}">
+                         </td>
+                         <td>
+                             <input id="id_m16" type="number" class="form-control" placeholder="-" value="{{ picked.m16 }}">
+                         </td>
+                         <td>
+                             <input id="id_m17" type="number" class="form-control" placeholder="-" value="{{ picked.m17 }}">
+                         </td>
+                         <td>
+                             <input id="id_m18" type="number" class="form-control" placeholder="-" value="{{ picked.m18 }}">
+                         </td>
+                         <td>
+                             <input id="id_m19" type="number" class="form-control" placeholder="-" value="{{ picked.m19 }}">
+                         </td>
+                         <td>
+                             <input id="id_m20" type="number" class="form-control" placeholder="-" value="{{ picked.m20 }}">
+                         </td>
+                         <td>
+                             <input id="id_m21" type="number" class="form-control" placeholder="-" value="{{ picked.m21 }}">
+                         </td>
+                         <td>
+                             <input id="id_m22" type="number" class="form-control" placeholder="-" value="{{ picked.m22 }}">
+                         </td>
+                         <td>
+                             <input id="id_m23" type="number" class="form-control" placeholder="-" value="{{ picked.m23 }}">
+                         </td>
+                         <td>
+                             <input id="id_m24" type="number" class="form-control" placeholder="-" value="{{ picked.m24 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr2_total" type="number" class="form-control" placeholder="-" value="{{ picked.yr2_total }}" readonly=true>
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- end BIZMULA EXPENSE TABLE YEAR 2 -->
+
+            <br />
+            <br />
+
+            <!-- BIZMULA EXPENSE TABLE YEAR 3 -->
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans 'Year' %}</th>
+                        <th>{% trans 'Month 25' %}</th>
+                        <th>{% trans 'Month 26' %}</th>
+                        <th>{% trans 'Month 27' %}</th>
+                        <th>{% trans 'Month 28' %}</th>
+                        <th>{% trans 'Month 29' %}</th>
+                        <th>{% trans 'Month 30' %}</th>
+                        <th>{% trans 'Month 31' %}</th>
+                        <th>{% trans 'Month 32' %}</th>
+                        <th>{% trans 'Month 33' %}</th>
+                        <th>{% trans 'Month 34' %}</th>
+                        <th>{% trans 'Month 35' %}</th>
+                        <th>{% trans 'Month 36' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans '3' %}</td>
+                         <td>
+                             <input id="id_m25" type="number" class="form-control" placeholder="-" value="{{ picked.m25 }}">
+                         </td>
+                         <td>
+                             <input id="id_m26" type="number" class="form-control" placeholder="-" value="{{ picked.m26 }}">
+                         </td>
+                         <td>
+                             <input id="id_m27" type="number" class="form-control" placeholder="-" value="{{ picked.m27 }}">
+                         </td>
+                         <td>
+                             <input id="id_m28" type="number" class="form-control" placeholder="-" value="{{ picked.m28 }}">
+                         </td>
+                         <td>
+                             <input id="id_m29" type="number" class="form-control" placeholder="-" value="{{ picked.m29 }}">
+                         </td>
+                         <td>
+                             <input id="id_m30" type="number" class="form-control" placeholder="-" value="{{ picked.m30 }}">
+                         </td>
+                         <td>
+                             <input id="id_m31" type="number" class="form-control" placeholder="-" value="{{ picked.m31 }}">
+                         </td>
+                         <td>
+                             <input id="id_m32" type="number" class="form-control" placeholder="-" value="{{ picked.m32 }}">
+                         </td>
+                         <td>
+                             <input id="id_m33" type="number" class="form-control" placeholder="-" value="{{ picked.m33 }}">
+                         </td>
+                         <td>
+                             <input id="id_m34" type="number" class="form-control" placeholder="-" value="{{ picked.m34 }}">
+                         </td>
+                         <td>
+                             <input id="id_m35" type="number" class="form-control" placeholder="-" value="{{ picked.m35 }}">
+                         </td>
+                         <td>
+                             <input id="id_m36" type="number" class="form-control" placeholder="-" value="{{ picked.m36 }}">
+                         </td>
+                         <td>
+                             <input id="id_yr3_total" type="number" class="form-control" placeholder="-" value="{{ picked.yr3_total }}" readonly=true>
+                         </td>
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+            <!-- BIZMULA EXPENSE TABLE YEAR 3 -->
+        </div>
+    </div>
+</fieldset>
+<!-- end HTML -->

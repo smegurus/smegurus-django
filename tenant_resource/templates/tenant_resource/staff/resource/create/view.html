@@ -1,6 +1,14 @@
 {% extends 'foundation_tenant/base.html' %}
 {% load staticfiles i18n compress %}
 {% block content %}
+<style>
+    .wrapper section{
+        padding-bottom: 10px;
+    }
+    .wrapper footer{
+        display: none;
+    }
+</style>
 <!-- PAGE JS -->
 {% compress js inline %}
     {% include 'foundation_public/loadingbox_js.html' %}
@@ -43,9 +51,9 @@
                                 <legend>{% trans 'Details' %}</legend>
                                 <!-- CATEGORY -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'Category' %}</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control form-control" id="id_category">
+                                    <label class="col-sm-3 control-label">{% trans 'Category' %}</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <select class="form-control form-control input-lg" id="id_category">
                                             {% for category in categories.all %}
                                             <option value="{{ category.id }}">{{ category.name }}</option>
                                             {% endfor %}
@@ -58,10 +66,12 @@
 
                                 <!-- STAGE -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'Viewable by' %}</label>
-                                    <div class="col-sm-10">
-                                        <label class="checkbox-inline"><input type="checkbox" value="option1" id="id_is_for_entrepreneur">{% trans 'Entrepreneurs' %}</label>
-                                        <label class="checkbox-inline"><input type="checkbox" value="option2" id="id_is_for_staff">{% trans 'Staff' %}</label>
+                                    <label class="col-sm-3 control-label">{% trans 'Viewable by' %}</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <label class="checkbox-inline c-checkbox">
+                                            <input type="checkbox" value="option1" id="id_is_for_entrepreneur"><span class="fa fa-check"></span>{% trans 'Entrepreneurs' %}</label>
+                                        <label class="checkbox-inline c-checkbox">
+                                            <input type="checkbox" value="option2" id="id_is_for_staff"><span class="fa fa-check"></span>{% trans 'Staff' %}</label>
                                     </div>
                                 </div>
                                 <!-- end STAGE -->
@@ -70,28 +80,28 @@
 
                                 <!-- ENTREPRNEUR ACCESS -->
                                 <div class="form-group" id="id_entrepreneur_access_div" style="display: none;">
-                                    <label class="col-sm-2 control-label">&nbsp;</label>
-                                    <div class="col-sm-10">
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_1" type="radio" name="stage_num" value="1" checked="" />{% trans 'Stage 1 or greater (all entrepreneurs)' %}</label>
+                                    <label class="col-sm-3 control-label">&nbsp;</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_1" type="radio" name="stage_num" value="1" checked="" /><span class="fa fa-circle"></span>{% trans 'Stage 1 or greater (all entrepreneurs)' %}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_2" type="radio" name="stage_num" value="2" />{% trans 'Stage 2 or greater' %}</label>
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_2" type="radio" name="stage_num" value="2"><span class="fa fa-circle"></span>{% trans 'Stage 2 or greater' %}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_3" type="radio" name="stage_num" value="3" />{% trans 'Stage 3 or greater' %}</label>
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_3" type="radio" name="stage_num" value="3"><span class="fa fa-circle"></span>{% trans 'Stage 3 or greater' %}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_4" type="radio" name="stage_num" value="4">{% trans 'Stage 4 or greater' %}</label>
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_4" type="radio" name="stage_num" value="4"><span class="fa fa-circle"></span>{% trans 'Stage 4 or greater' %}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_5" type="radio" name="stage_num" value="5">{% trans 'Stage 5 or greater' %}</label>
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_5" type="radio" name="stage_num" value="5"><span class="fa fa-circle"></span>{% trans 'Stage 5 or greater' %}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="6">{% trans 'Stage 6 or greater' %}</label>
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="6"><span class="fa fa-circle"></span>{% trans 'Stage 6 or greater' %}</label>
                                         </div>
-                                        <div class="radio">
-                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="7">{% trans 'Stage 7 or greater (all entrepreneurs)' %}</label>
+                                        <div class="radio c-radio">
+                                            <label><input id="id_is_stage_6" type="radio" name="stage_num" value="7"><span class="fa fa-circle"></span>{% trans 'Stage 7 or greater (all entrepreneurs)' %}</label>
                                         </div>
                                         <br />
                                         <br />
@@ -101,36 +111,36 @@
 
                                 <!-- NAME -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'Name' %}</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control" id="id_name" placeholder="{% trans 'Ex.: Task' %}" maxlength="100" />
+                                    <label class="col-sm-3 control-label">{% trans 'Name' %}</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <input type="text" class="form-control input-lg" id="id_name" placeholder="{% trans 'Ex.: Task' %}" maxlength="100" />
                                     </div>
                                 </div>
                                 <!-- end NAME -->
                                 <br /><br />
                                 <!-- DESCRIPTION -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'Description' %}</label>
-                                    <div class="col-sm-10">
-                                        <textarea id="id_description" class="form-control" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}" maxlength="250"></textarea>
+                                    <label class="col-sm-3 control-label">{% trans 'Description' %}</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <textarea id="id_description" class="form-control input-lg" name="textarea" rows="10" placeholder="{% trans 'Please write some details about this resource.' %}" maxlength="250"></textarea>
                                     </div>
                                 </div>
                                 <!-- end DESCRIPTION -->
                                 <br /><br />
                                 <!-- URL -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'URL' %}</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control form-control" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}">
+                                    <label class="col-sm-3 control-label">{% trans 'URL' %}</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <input type="text" class="form-control input-lg" id="id_url" placeholder="{% trans 'Ex.: http://smegurus.com/task/1/' %}">
                                     </div>
                                 </div>
                                 <!-- end URL -->
                                 <br /><br />
                                 <!-- TAGS -->
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">{% trans 'Tags' %}</label>
-                                    <div class="col-sm-10">
-                                        <select id="select2-1" multiple="multiple" class="form-control">
+                                    <label class="col-sm-3 control-label">{% trans 'Tags' %}</label>
+                                    <div class="col-sm-5 col-centered">
+                                        <select id="select2-1" multiple="multiple" class="form-control input-lg">
                                             {% for tag in tags %}
                                                 <option value="{{ tag.id }}">{{ tag.name }}</option>
                                             {% endfor %}
@@ -142,10 +152,10 @@
                                 <!-- FILE UPLOADS -->
                                 <div id="id_upload_div">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">{% trans 'File' %}</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-3 control-label">{% trans 'File' %}</label>
+                                        <div class="col-sm-4 col-centered">
                                             <!-- TABLE CONTENT -->
-                                            <div class="panel-body">
+                                            <div class="panel-body" style="padding: 0 5px 10px;">
                                                <div class="table-responsive">
                                                   <table class="table table-striped" id="id_uploads_table">
                                                      <thead>
@@ -163,7 +173,7 @@
                                             <!-- end TABLE CONTENT -->
 
                                             <!-- UPLOAD BUTTON -->
-                                            <label class="form-control btn btn-success curp" id="id_upload_btn_label">
+                                            <label class="form-control btn btn-success btn-lg curp" id="id_upload_btn_label" style="font-size: 18px;height: auto;">
                                             <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload a File...' %}
                                             <input onchange="ajax_upload_file();"
                                                 id="id_file"
