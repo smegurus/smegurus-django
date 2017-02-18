@@ -23,8 +23,224 @@
     </legend>
     <div class="form-group">
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
-            <!-- FILL IN -->
+        <div class="col-sm-12">
+
+            <h1>Start-Up Surplus/Deficit</h1>
+            <p>{{ picked.net_startup_deficit_surplus }}</p>
+            <br/>
+
+            <h1>Revenue</h1>
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans '' %}</th>
+                        <th>{% trans 'Month 1' %}</th>
+                        <th>{% trans 'Month 2' %}</th>
+                        <th>{% trans 'Month 3' %}</th>
+                        <th>{% trans 'Month 4' %}</th>
+                        <th>{% trans 'Month 5' %}</th>
+                        <th>{% trans 'Month 6' %}</th>
+                        <th>{% trans 'Month 7' %}</th>
+                        <th>{% trans 'Month 8' %}</th>
+                        <th>{% trans 'Month 9' %}</th>
+                        <th>{% trans 'Month 10' %}</th>
+                        <th>{% trans 'Month 11' %}</th>
+                        <th>{% trans 'Month 12' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans 'Total Sales' %}</td>
+                         <td>
+                             {{ picked.total_sales_m1 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m2 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m3 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m4 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m5 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m6 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m7 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m8 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m9 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m10 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m11 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_m12 }}
+                         </td>
+                         <td>
+                             {{ picked.total_sales_y1 }}
+                         </td>
+
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+
+            <br />
+
+            <h1>Cost of Goods Sold</h1>
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans '' %}</th>
+                        <th>{% trans 'Month 1' %}</th>
+                        <th>{% trans 'Month 2' %}</th>
+                        <th>{% trans 'Month 3' %}</th>
+                        <th>{% trans 'Month 4' %}</th>
+                        <th>{% trans 'Month 5' %}</th>
+                        <th>{% trans 'Month 6' %}</th>
+                        <th>{% trans 'Month 7' %}</th>
+                        <th>{% trans 'Month 8' %}</th>
+                        <th>{% trans 'Month 9' %}</th>
+                        <th>{% trans 'Month 10' %}</th>
+                        <th>{% trans 'Month 11' %}</th>
+                        <th>{% trans 'Month 12' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans 'Total Sales' %}</td>
+                         <td>
+                             {{ picked.total_cogs_m1 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m2 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m3 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m4 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m5 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m6 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m7 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m8 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m9 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m10 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m11 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_m12 }}
+                         </td>
+                         <td>
+                             {{ picked.total_cogs_y1 }}
+                         </td>
+
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+
+
+            <br />
+
+            <h1>Profit Margin</h1>
+            <div class="table-responsive">
+               <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                     <tr>
+                        <th>{% trans '' %}</th>
+                        <th>{% trans 'Month 1' %}</th>
+                        <th>{% trans 'Month 2' %}</th>
+                        <th>{% trans 'Month 3' %}</th>
+                        <th>{% trans 'Month 4' %}</th>
+                        <th>{% trans 'Month 5' %}</th>
+                        <th>{% trans 'Month 6' %}</th>
+                        <th>{% trans 'Month 7' %}</th>
+                        <th>{% trans 'Month 8' %}</th>
+                        <th>{% trans 'Month 9' %}</th>
+                        <th>{% trans 'Month 10' %}</th>
+                        <th>{% trans 'Month 11' %}</th>
+                        <th>{% trans 'Month 12' %}</th>
+                        <th><b>{% trans 'TOTAL' %}</b></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                         <td>{% trans 'Total Sales' %}</td>
+                         <td>
+                             {{ picked.gross_profit_m1 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m2 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m3 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m4 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m5 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m6 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m7 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m8 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m9 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m10 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m11 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_m12 }}
+                         </td>
+                         <td>
+                             {{ picked.gross_profit_yr1 }}
+                         </td>
+
+                      </tr>
+                  </tbody>
+               </table>
+            </div>
+
         </div>
     </div>
 </fieldset>
