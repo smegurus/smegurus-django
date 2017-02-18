@@ -1,5 +1,5 @@
 {% extends 'foundation_tenant/base.html' %}
-{% load staticfiles i18n compress tenant_workspace_tags question046_tag question049_tag question057_tag question058_tag question062_tag question063_tag question064_tag question065_tag question066_tag %}
+{% load staticfiles i18n compress tenant_workspace_tags qt_046_tag qt_049_tag qt_057_tag qt_058_tag qt_062_tag qt_063_tag qt_064_tag qt_065_tag qt_066_tag qt_067_tag %}
 {% block content %}
 <style>
     .wrapper section{
@@ -214,6 +214,8 @@
                      {% render_question_type_065 workspace module node question answer %}
                  {% elif question.type_id == 66 %}
                      {% render_question_type_066 workspace module node question answer %}
+                 {% elif question.type_id == 67 %}
+                     {% render_question_type_067 workspace module node question answer %}
                  {% endif %}
                  <!-- end QUESTION CONTENT -->
 

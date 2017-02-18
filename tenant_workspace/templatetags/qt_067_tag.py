@@ -92,8 +92,8 @@ def get_table_for_qid(workspace, qid):
     return get_processed_table(answer.content)
 
 
-@register.inclusion_tag('templatetags/question/template_066.html')
-def render_question_type_066(workspace, module, node, question, answer):
+@register.inclusion_tag('templatetags/question/template_067.html')
+def render_question_type_067(workspace, module, node, question, answer):
     #================================#
     # Fetch & pre-process questions. #
     #================================#
