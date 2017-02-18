@@ -113,7 +113,6 @@ def get_salary(q3):
 
 
 def get_short_term_assets(answer_content):
-    print(answer_content)
     total_yr1 = 0.0
     total_yr2 = 0.0
     total_yr3 = 0.0
@@ -183,13 +182,10 @@ def render_question_type_066(workspace, module, node, question, answer):
     #==============#
     # COMPUTATIONS #
     #==============#
-    total_yr1 = 0.0
-    total_yr2 = 0.0
-    total_yr3 = 0.0
-
     # Start-up Costs
     #------------------------
-    long_term_assets = get_long_term_assets(q4) # Assets Owned.
+    # Assets Owned.
+    long_term_assets = get_long_term_assets(q4)
 
     # Cash Required
     #------------------------

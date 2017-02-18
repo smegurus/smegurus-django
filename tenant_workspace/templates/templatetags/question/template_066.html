@@ -25,6 +25,34 @@
         <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
         <div class="col-sm-10">
             <!-- FILL IN -->
+
+            <h1>Start-up Costs</h1>
+            <p>Assets Owned: ${{ picked.asset_y1_costs_total }}</p>
+            <br>
+
+            <h1>Cash Required</h1>
+            <p>Assets to Purchase: ${{ picked.equipment_y1_costs }}</p>
+            <p>Inventory: ${{ picked.startup_inventory_req }}</p>
+            <p>Salary: ${{ picked.ent_cash_startup_req }}</p>
+            <br>
+
+            <h1>Total Start-up Costs</h1>
+            <p>${{ picked.cash_required }}</p>
+            <br>
+
+            <h1>Funds Available</h1>
+            <p>Savings: ${{ picked.short_term_assets_y1 }}</p>
+            <p>Short Torm Liabilties: ${{ picked.short_term_liabilities_y1 }}</p>
+            <p>Long Torm Liabilties: ${{ picked.long_term_liabilities_y1 }}</p>
+            <br>
+
+            <h1>Total Funds Available</h1>
+            <p>${{ picked.funds_available }}</p>
+            <br>
+
+            <h1>Start-up Deficit/Surplus</h1>
+            <p>${{ picked.net_startup_deficit_surplus }}</p>
+            <br>
         </div>
     </div>
 </fieldset>
