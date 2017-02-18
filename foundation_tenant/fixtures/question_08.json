@@ -1663,9 +1663,7 @@
                 "opt1": [
                     "Equipment I already own",
                     "Savings",
-                    "Pre-sales",
                     "Credit cards",
-                    "Supplier credit",
                     "Line of credit",
                     "Short-term loan",
                     "Long-term loan",
@@ -1687,24 +1685,14 @@
                             "Short-term Asset"
                         ]
                     },
-                    {
-                        "parent": "Pre-sales",
-                        "choices": [
-                            "Short-term Liability"
-                        ]
-                    },
+                    
                     {
                         "parent": "Credit cards",
                         "choices": [
                             "Short-term liability"
                         ]
                     },
-                    {
-                        "parent": "Supplier credit",
-                        "choices": [
-                            "Short-term liability"
-                        ]
-                    },
+                
                     {
                         "parent": "Line of credit",
                         "choices": [
