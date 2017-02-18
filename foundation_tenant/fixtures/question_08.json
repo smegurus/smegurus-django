@@ -4076,6 +4076,31 @@
         "fields": {
             "document_type": 8,
             "number": 3,
+            "title": "Based on your responses, the following are your sales.... St 9 Start-up Costs",
+            "help": "This is some generic help text.",
+            "options": {},
+            "content": {},
+            "dependency": {
+                "q1_qid": 139,
+                "q2_qid": 101,
+                "q3_qid": 146,
+                "q4_qid": 140,
+                "q5_qid": 141
+            },
+            "validation": {
+                "opt1_other_min_length": 2,
+                "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
+                "opt1_other_max_length": 50,
+                "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
+            },
+            "type_id": 66
+        }
+    },{
+        "model": "foundation_tenant.question",
+        "pk": 168,
+        "fields": {
+            "document_type": 8,
+            "number": 3,
             "title": "Based on your responses, the following are your sales.... St 9 Cashflows Y1",
             "help": "This is some generic help text.",
             "options": {},
@@ -4105,7 +4130,7 @@
                 "opt1_other_max_length": 50,
                 "opt1_other_max_length_error_message": "Please enter at maximum 63 characters."
             },
-            "type_id": 66
+            "type_id": 67
         }
     }
 ]
