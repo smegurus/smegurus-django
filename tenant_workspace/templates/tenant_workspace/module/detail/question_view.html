@@ -4,6 +4,7 @@
 <style>
     .wrapper section{
         padding-bottom: 10px;
+        margin-bottom: 0px !important;
     }
     .wrapper footer{
         display: none;
@@ -65,7 +66,7 @@
     <!-- Questions PROGRESS BAR start -->
     <div class="col-lg-12" style="20px auto 0px;">
         <div class="progress progress-striped">
-            <div role="progressbar" aria-valuenow="{% get_percent_by_module_and_node module node %}" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-warning progress-{% get_percent_by_module_and_node module node %}">
+            <div role="progressbar" aria-valuenow="{% get_percent_by_module_and_node module node %}" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-warning" style="width: {% get_percent_by_module_and_node module node %}%;">
                 {% get_percent_by_module_and_node module node %}% {% trans 'Complete' %}
             </div>
         </div>
