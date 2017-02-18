@@ -1548,6 +1548,9 @@ class BizmulaAPI(DocxspressoAPI):
         value_str = value_str.replace(',', '')
         value = float(value_str)
 
+        # Multiple by 12 to indicate that we are multiplying for entire year.
+        value *= 12.00
+
         # Input.
         api.add_text("ent_cash_req", value)
         api.add_text("ent_cash_req_6mths", value * 6.00)
