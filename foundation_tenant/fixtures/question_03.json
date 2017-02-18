@@ -568,7 +568,7 @@
                 "stub_3": "Remove",
                 "stub_4": "Please pick a major issue...",
                 "stub_5": "Please pick a trend...",
-                "stub_6": "Add"
+                "stub_6": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -598,7 +598,7 @@
                 "stub_2": "Remove",
                 "stub_3": "Source",
                 "stub_4": "ex: Wikipedia",
-                "stub_5": "Add Source"
+                "stub_5": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1220,7 +1220,7 @@
                 "stub_13": "Customer Service",
                 "stub_14": "Main Strength",
                 "stub_15": "How We Will Compete",
-                "stub_16": "Add Competitor"
+                "stub_16": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1308,7 +1308,7 @@
                 "stub_13": "Customer Service",
                 "stub_14": "Main Strength",
                 "stub_15": "How We Will Compete",
-                "stub_16": "Add Competitor"
+                "stub_16": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1452,7 +1452,7 @@
                 "stub_5": "Type",
                 "stub_6": "Trait 1",
                 "stub_7": "Trait 2",
-                "stub_8": "Add Target Martket",
+                "stub_8": "Add +",
                 "stub_9": "Column #9"
             },
             "dependency": {},
