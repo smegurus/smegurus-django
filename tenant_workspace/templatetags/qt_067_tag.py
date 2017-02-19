@@ -234,6 +234,30 @@ def get_profit_margine(total_sales, total_cogs):
         'gross_profit_yr3': total_sales['total_sales_y3'] - total_cogs['total_cogs_y3']
     }
 
+def attach_table(computation, key, data):
+    return merge_two_dicts(computation, {
+        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
+        key+'_m1': data['m_01'], key+'_m2': data['m_02'], key+'_m3': data['m_03'],
+        key+'_m4': data['m_04'], key+'_m5': data['m_05'], key+'_m6': data['m_06'],
+        key+'_m7': data['m_07'], key+'_m8': data['m_08'], key+'_m9': data['m_09'],
+        key+'_m10': data['m_10'], key+'_m11': data['m_11'], key+'_m12': data['m_12'],
+        key+'_yr1': data['yr_1'],
+
+        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
+        key+'_m13': data['m_13'], key+'_m14': data['m_14'], key+'_m15': data['m_15'],
+        key+'_m16': data['m_16'], key+'_m17': data['m_17'], key+'_m18': data['m_18'],
+        key+'_m19': data['m_19'], key+'_m20': data['m_20'], key+'_m21': data['m_21'],
+        key+'_m22': data['m_22'], key+'_m23': data['m_23'], key+'_m24': data['m_24'],
+        key+'_yr2': data['yr_2'],
+
+        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
+        key+'_m25': data['m_25'], key+'_m26': data['m_26'], key+'_m27': data['m_27'],
+        key+'_m28': data['m_28'], key+'_m29': data['m_30'], key+'_m31': data['m_31'],
+        key+'_m32': data['m_32'], key+'_m33': data['m_33'], key+'_m34': data['m_33'],
+        key+'_m34': data['m_34'], key+'_m35': data['m_35'], key+'_m36': data['m_36'],
+        key+'_yr3': 0 #data['yr_3']
+    })
+
 
 @register.inclusion_tag('templatetags/question/template_067.html')
 def render_question_type_067(workspace, module, node, question, answer):
@@ -367,284 +391,24 @@ def render_question_type_067(workspace, module, node, question, answer):
 
     # General & Admin Expenses
     #------------------------
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'location_costs_m1': loc_specific_costs['m_01'], 'location_costs_m2': loc_specific_costs['m_02'], 'location_costs_m3': loc_specific_costs['m_03'],
-        'location_costs_m4': loc_specific_costs['m_04'], 'location_costs_m5': loc_specific_costs['m_05'], 'location_costs_m6': loc_specific_costs['m_06'],
-        'location_costs_m7': loc_specific_costs['m_07'], 'location_costs_m8': loc_specific_costs['m_08'], 'location_costs_m9': loc_specific_costs['m_09'],
-        'location_costs_m10': loc_specific_costs['m_10'], 'location_costs_m11': loc_specific_costs['m_11'], 'location_costs_m12': loc_specific_costs['m_12'],
-        'location_costs_yr1': loc_specific_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'location_costs_m13': loc_specific_costs['m_13'], 'location_costs_m14': loc_specific_costs['m_14'], 'location_costs_m15': loc_specific_costs['m_15'],
-        'location_costs_m16': loc_specific_costs['m_16'], 'location_costs_m17': loc_specific_costs['m_17'], 'location_costs_m18': loc_specific_costs['m_18'],
-        'location_costs_m19': loc_specific_costs['m_19'], 'location_costs_m20': loc_specific_costs['m_20'], 'location_costs_m21': loc_specific_costs['m_21'],
-        'location_costs_m22': loc_specific_costs['m_22'], 'location_costs_m23': loc_specific_costs['m_23'], 'location_costs_m24': loc_specific_costs['m_24'],
-        'location_costs_yr2': loc_specific_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'location_costs_m25': loc_specific_costs['m_25'], 'location_costs_m26': loc_specific_costs['m_26'], 'location_costs_m27': loc_specific_costs['m_27'],
-        'location_costs_m28': loc_specific_costs['m_28'], 'location_costs_m29': loc_specific_costs['m_30'], 'location_costs_m31': loc_specific_costs['m_31'],
-        'location_costs_m32': loc_specific_costs['m_32'], 'location_costs_m33': loc_specific_costs['m_33'], 'location_costs_m34': loc_specific_costs['m_33'],
-        'location_costs_m34': loc_specific_costs['m_34'], 'location_costs_m35': loc_specific_costs['m_35'], 'location_costs_m36': loc_specific_costs['m_36'],
-        'location_costs_yr3': 0 #loc_specific_costs['yr_3']
-    })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'insurance_costs_m1': insurance_costs['m_01'], 'insurance_costs_m2': insurance_costs['m_02'], 'insurance_costs_m3': insurance_costs['m_03'],
-        'insurance_costs_m4': insurance_costs['m_04'], 'insurance_costs_m5': insurance_costs['m_05'], 'insurance_costs_m6': insurance_costs['m_06'],
-        'insurance_costs_m7': insurance_costs['m_07'], 'insurance_costs_m8': insurance_costs['m_08'], 'insurance_costs_m9': insurance_costs['m_09'],
-        'insurance_costs_m10': insurance_costs['m_10'], 'insurance_costs_m11': insurance_costs['m_11'], 'insurance_costs_m12': insurance_costs['m_12'],
-        'insurance_costs_yr1': insurance_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'insurance_costs_m13': insurance_costs['m_13'], 'insurance_costs_m14': insurance_costs['m_14'], 'insurance_costs_m15': insurance_costs['m_15'],
-        'insurance_costs_m16': insurance_costs['m_16'], 'insurance_costs_m17': insurance_costs['m_17'], 'insurance_costs_m18': insurance_costs['m_18'],
-        'insurance_costs_m19': insurance_costs['m_19'], 'insurance_costs_m20': insurance_costs['m_20'], 'insurance_costs_m21': insurance_costs['m_21'],
-        'insurance_costs_m22': insurance_costs['m_22'], 'insurance_costs_m23': insurance_costs['m_23'], 'insurance_costs_m24': insurance_costs['m_24'],
-        'insurance_costs_yr2': insurance_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'insurance_costs_m25': insurance_costs['m_25'], 'insurance_costs_m26': insurance_costs['m_26'], 'insurance_costs_m27': insurance_costs['m_27'],
-        'insurance_costs_m28': insurance_costs['m_28'], 'insurance_costs_m29': insurance_costs['m_30'], 'insurance_costs_m31': insurance_costs['m_31'],
-        'insurance_costs_m32': insurance_costs['m_32'], 'insurance_costs_m33': insurance_costs['m_33'], 'insurance_costs_m34': insurance_costs['m_33'],
-        'insurance_costs_m34': insurance_costs['m_34'], 'insurance_costs_m35': insurance_costs['m_35'], 'insurance_costs_m36': insurance_costs['m_36'],
-        'insurance_costs_yr3': 0 #insurance_costs['yr_3']
-    })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'admin_costs_m1': admin_costs['m_01'], 'admin_costs_m2': admin_costs['m_02'], 'admin_costs_m3': admin_costs['m_03'],
-        'admin_costs_m4': admin_costs['m_04'], 'admin_costs_m5': admin_costs['m_05'], 'admin_costs_m6': admin_costs['m_06'],
-        'admin_costs_m7': admin_costs['m_07'], 'admin_costs_m8': admin_costs['m_08'], 'admin_costs_m9': admin_costs['m_09'],
-        'admin_costs_m10': admin_costs['m_10'], 'admin_costs_m11': admin_costs['m_11'], 'admin_costs_m12': admin_costs['m_12'],
-        'admin_costs_yr1': admin_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'admin_costs_m13': admin_costs['m_13'], 'admin_costs_m14': admin_costs['m_14'], 'admin_costs_m15': admin_costs['m_15'],
-        'admin_costs_m16': admin_costs['m_16'], 'admin_costs_m17': admin_costs['m_17'], 'admin_costs_m18': admin_costs['m_18'],
-        'admin_costs_m19': admin_costs['m_19'], 'admin_costs_m20': admin_costs['m_20'], 'admin_costs_m21': admin_costs['m_21'],
-        'admin_costs_m22': admin_costs['m_22'], 'admin_costs_m23': admin_costs['m_23'], 'admin_costs_m24': admin_costs['m_24'],
-        'admin_costs_yr2': admin_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'admin_costs_m25': admin_costs['m_25'], 'admin_costs_m26': admin_costs['m_26'], 'admin_costs_m27': admin_costs['m_27'],
-        'admin_costs_m28': admin_costs['m_28'], 'admin_costs_m29': admin_costs['m_30'], 'admin_costs_m31': admin_costs['m_31'],
-        'admin_costs_m32': admin_costs['m_32'], 'admin_costs_m33': admin_costs['m_33'], 'admin_costs_m34': admin_costs['m_33'],
-        'admin_costs_m34': admin_costs['m_34'], 'admin_costs_m35': admin_costs['m_35'], 'admin_costs_m36': admin_costs['m_36'],
-        'admin_costs_yr3': 0 #admin_costs['yr_3']
-    })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'license_costs_m1': license_reg_costs['m_01'], 'license_costs_m2': license_reg_costs['m_02'], 'license_costs_m3': license_reg_costs['m_03'],
-        'license_costs_m4': license_reg_costs['m_04'], 'license_costs_m5': license_reg_costs['m_05'], 'license_costs_m6': license_reg_costs['m_06'],
-        'license_costs_m7': license_reg_costs['m_07'], 'license_costs_m8': license_reg_costs['m_08'], 'license_costs_m9': license_reg_costs['m_09'],
-        'license_costs_m10': license_reg_costs['m_10'], 'license_costs_m11': license_reg_costs['m_11'], 'license_costs_m12': license_reg_costs['m_12'],
-        'license_costs_yr1': license_reg_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'license_costs_m13': license_reg_costs['m_13'], 'license_costs_m14': license_reg_costs['m_14'], 'license_costs_m15': license_reg_costs['m_15'],
-        'license_costs_m16': license_reg_costs['m_16'], 'license_costs_m17': license_reg_costs['m_17'], 'license_costs_m18': license_reg_costs['m_18'],
-        'license_costs_m19': license_reg_costs['m_19'], 'license_costs_m20': license_reg_costs['m_20'], 'license_costs_m21': license_reg_costs['m_21'],
-        'license_costs_m22': license_reg_costs['m_22'], 'license_costs_m23': license_reg_costs['m_23'], 'license_costs_m24': license_reg_costs['m_24'],
-        'license_costs_yr2': license_reg_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'license_costs_m25': license_reg_costs['m_25'], 'license_costs_m26': license_reg_costs['m_26'], 'license_costs_m27': license_reg_costs['m_27'],
-        'license_costs_m28': license_reg_costs['m_28'], 'license_costs_m29': license_reg_costs['m_30'], 'license_costs_m31': license_reg_costs['m_31'],
-        'license_costs_m32': license_reg_costs['m_32'], 'license_costs_m33': license_reg_costs['m_33'], 'license_costs_m34': license_reg_costs['m_33'],
-        'license_costs_m34': license_reg_costs['m_34'], 'license_costs_m35': license_reg_costs['m_35'], 'license_costs_m36': license_reg_costs['m_36'],
-        'license_costs_yr3': 0 #license_reg_costs['yr_3']
-    })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'marketing_costs_m1': marketing_costs['m_01'], 'marketing_costs_m2': marketing_costs['m_02'], 'marketing_costs_m3': marketing_costs['m_03'],
-        'marketing_costs_m4': marketing_costs['m_04'], 'marketing_costs_m5': marketing_costs['m_05'], 'marketing_costs_m6': marketing_costs['m_06'],
-        'marketing_costs_m7': marketing_costs['m_07'], 'marketing_costs_m8': marketing_costs['m_08'], 'marketing_costs_m9': marketing_costs['m_09'],
-        'marketing_costs_m10': marketing_costs['m_10'], 'marketing_costs_m11': marketing_costs['m_11'], 'marketing_costs_m12': marketing_costs['m_12'],
-        'marketing_costs_yr1': marketing_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'marketing_costs_m13': marketing_costs['m_13'], 'marketing_costs_m14': marketing_costs['m_14'], 'marketing_costs_m15': marketing_costs['m_15'],
-        'marketing_costs_m16': marketing_costs['m_16'], 'marketing_costs_m17': marketing_costs['m_17'], 'marketing_costs_m18': marketing_costs['m_18'],
-        'marketing_costs_m19': marketing_costs['m_19'], 'marketing_costs_m20': marketing_costs['m_20'], 'marketing_costs_m21': marketing_costs['m_21'],
-        'marketing_costs_m22': marketing_costs['m_22'], 'marketing_costs_m23': marketing_costs['m_23'], 'marketing_costs_m24': marketing_costs['m_24'],
-        'marketing_costs_yr2': marketing_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'marketing_costs_m25': marketing_costs['m_25'], 'marketing_costs_m26': marketing_costs['m_26'], 'marketing_costs_m27': marketing_costs['m_27'],
-        'marketing_costs_m28': marketing_costs['m_28'], 'marketing_costs_m29': marketing_costs['m_30'], 'marketing_costs_m31': marketing_costs['m_31'],
-        'marketing_costs_m32': marketing_costs['m_32'], 'marketing_costs_m33': marketing_costs['m_33'], 'marketing_costs_m34': marketing_costs['m_33'],
-        'marketing_costs_m34': marketing_costs['m_34'], 'marketing_costs_m35': marketing_costs['m_35'], 'marketing_costs_m36': marketing_costs['m_36'],
-        'marketing_costs_yr3': 0 #marketing_costs['yr_3']
-    })
-
-    # computation = merge_two_dicts(computation, {
-    #     # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-    #     'sales_expense_m1': sales_expense['m_01'], 'sales_expense_m2': sales_expense['m_02'], 'sales_expense_m3': sales_expense['m_03'],
-    #     'sales_expense_m4': sales_expense['m_04'], 'sales_expense_m5': sales_expense['m_05'], 'sales_expense_m6': sales_expense['m_06'],
-    #     'sales_expense_m7': sales_expense['m_07'], 'sales_expense_m8': sales_expense['m_08'], 'sales_expense_m9': sales_expense['m_09'],
-    #     'sales_expense_m10': sales_expense['m_10'], 'sales_expense_m11': sales_expense['m_11'], 'sales_expense_m12': sales_expense['m_12'],
-    #     'sales_expense_yr1': sales_expense['yr_1'],
-    #
-    #     # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-    #     'sales_expense_m13': sales_expense['m_13'], 'sales_expense_m14': sales_expense['m_14'], 'sales_expense_m15': sales_expense['m_15'],
-    #     'sales_expense_m16': sales_expense['m_16'], 'sales_expense_m17': sales_expense['m_17'], 'sales_expense_m18': sales_expense['m_18'],
-    #     'sales_expense_m19': sales_expense['m_19'], 'sales_expense_m20': sales_expense['m_20'], 'sales_expense_m21': sales_expense['m_21'],
-    #     'sales_expense_m22': sales_expense['m_22'], 'sales_expense_m23': sales_expense['m_23'], 'sales_expense_m24': sales_expense['m_24'],
-    #     'sales_expense_yr2': sales_expense['yr_2'],
-    #
-    #     # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-    #     'sales_expense_m25': sales_expense['m_25'], 'sales_expense_m26': sales_expense['m_26'], 'sales_expense_m27': sales_expense['m_27'],
-    #     'sales_expense_m28': sales_expense['m_28'], 'sales_expense_m29': sales_expense['m_30'], 'sales_expense_m31': sales_expense['m_31'],
-    #     'sales_expense_m32': sales_expense['m_32'], 'sales_expense_m33': sales_expense['m_33'], 'sales_expense_m34': sales_expense['m_33'],
-    #     'sales_expense_m34': sales_expense['m_34'], 'sales_expense_m35': sales_expense['m_35'], 'sales_expense_m36': sales_expense['m_36'],
-    #     'sales_expense_yr3': 0 #sales_expense['yr_3']
-    # })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'bank_fees_m1': banking_costs['m_01'], 'bank_fees_m2': banking_costs['m_02'], 'bank_fees_m3': banking_costs['m_03'],
-        'bank_fees_m4': banking_costs['m_04'], 'bank_fees_m5': banking_costs['m_05'], 'bank_fees_m6': banking_costs['m_06'],
-        'bank_fees_m7': banking_costs['m_07'], 'bank_fees_m8': banking_costs['m_08'], 'bank_fees_m9': banking_costs['m_09'],
-        'bank_fees_m10': banking_costs['m_10'], 'bank_fees_m11': banking_costs['m_11'], 'bank_fees_m12': banking_costs['m_12'],
-        'bank_fees_yr1': banking_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'bank_fees_m13': banking_costs['m_13'], 'bank_fees_m14': banking_costs['m_14'], 'bank_fees_m15': banking_costs['m_15'],
-        'bank_fees_m16': banking_costs['m_16'], 'bank_fees_m17': banking_costs['m_17'], 'bank_fees_m18': banking_costs['m_18'],
-        'bank_fees_m19': banking_costs['m_19'], 'bank_fees_m20': banking_costs['m_20'], 'bank_fees_m21': banking_costs['m_21'],
-        'bank_fees_m22': banking_costs['m_22'], 'bank_fees_m23': banking_costs['m_23'], 'bank_fees_m24': banking_costs['m_24'],
-        'bank_fees_yr2': banking_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'bank_fees_m25': banking_costs['m_25'], 'bank_fees_m26': banking_costs['m_26'], 'bank_fees_m27': banking_costs['m_27'],
-        'bank_fees_m28': banking_costs['m_28'], 'bank_fees_m29': banking_costs['m_30'], 'bank_fees_m31': banking_costs['m_31'],
-        'bank_fees_m32': banking_costs['m_32'], 'bank_fees_m33': banking_costs['m_33'], 'bank_fees_m34': banking_costs['m_33'],
-        'bank_fees_m34': banking_costs['m_34'], 'bank_fees_m35': banking_costs['m_35'], 'bank_fees_m36': banking_costs['m_36'],
-        'bank_fees_yr3': 0 #banking_costs['yr_3']
-    })
-
-    # computation = merge_two_dicts(computation, {
-    #     # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-    #     'bank_fees_m1': salaries['m_01'], 'bank_fees_m2': salaries['m_02'], 'bank_fees_m3': salaries['m_03'],
-    #     'bank_fees_m4': salaries['m_04'], 'bank_fees_m5': salaries['m_05'], 'bank_fees_m6': salaries['m_06'],
-    #     'bank_fees_m7': salaries['m_07'], 'bank_fees_m8': salaries['m_08'], 'bank_fees_m9': salaries['m_09'],
-    #     'bank_fees_m10': salaries['m_10'], 'bank_fees_m11': salaries['m_11'], 'bank_fees_m12': salaries['m_12'],
-    #     'bank_fees_yr1': salaries['yr_1'],
-    #
-    #     # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-    #     'bank_fees_m13': salaries['m_13'], 'bank_fees_m14': salaries['m_14'], 'bank_fees_m15': salaries['m_15'],
-    #     'bank_fees_m16': salaries['m_16'], 'bank_fees_m17': salaries['m_17'], 'bank_fees_m18': salaries['m_18'],
-    #     'bank_fees_m19': salaries['m_19'], 'bank_fees_m20': salaries['m_20'], 'bank_fees_m21': salaries['m_21'],
-    #     'bank_fees_m22': salaries['m_22'], 'bank_fees_m23': salaries['m_23'], 'bank_fees_m24': salaries['m_24'],
-    #     'bank_fees_yr2': salaries['yr_2'],
-    #
-    #     # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-    #     'bank_fees_m25': salaries['m_25'], 'bank_fees_m26': salaries['m_26'], 'bank_fees_m27': salaries['m_27'],
-    #     'bank_fees_m28': salaries['m_28'], 'bank_fees_m29': salaries['m_30'], 'bank_fees_m31': salaries['m_31'],
-    #     'bank_fees_m32': salaries['m_32'], 'bank_fees_m33': salaries['m_33'], 'bank_fees_m34': salaries['m_33'],
-    #     'bank_fees_m34': salaries['m_34'], 'bank_fees_m35': salaries['m_35'], 'bank_fees_m36': salaries['m_36'],
-    #     'bank_fees_yr3': 0 #salaries['yr_3']
-    # })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'comm_costs_m1': communication_costs['m_01'], 'comm_costs_m2': communication_costs['m_02'], 'comm_costs_m3': communication_costs['m_03'],
-        'comm_costs_m4': communication_costs['m_04'], 'comm_costs_m5': communication_costs['m_05'], 'comm_costs_m6': communication_costs['m_06'],
-        'comm_costs_m7': communication_costs['m_07'], 'comm_costs_m8': communication_costs['m_08'], 'comm_costs_m9': communication_costs['m_09'],
-        'comm_costs_m10': communication_costs['m_10'], 'comm_costs_m11': communication_costs['m_11'], 'comm_costs_m12': communication_costs['m_12'],
-        'comm_costs_yr1': communication_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'comm_costs_m13': communication_costs['m_13'], 'comm_costs_m14': communication_costs['m_14'], 'comm_costs_m15': communication_costs['m_15'],
-        'comm_costs_m16': communication_costs['m_16'], 'comm_costs_m17': communication_costs['m_17'], 'comm_costs_m18': communication_costs['m_18'],
-        'comm_costs_m19': communication_costs['m_19'], 'comm_costs_m20': communication_costs['m_20'], 'comm_costs_m21': communication_costs['m_21'],
-        'comm_costs_m22': communication_costs['m_22'], 'comm_costs_m23': communication_costs['m_23'], 'comm_costs_m24': communication_costs['m_24'],
-        'comm_costs_yr2': communication_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'comm_costs_m25': communication_costs['m_25'], 'comm_costs_m26': communication_costs['m_26'], 'comm_costs_m27': communication_costs['m_27'],
-        'comm_costs_m28': communication_costs['m_28'], 'comm_costs_m29': communication_costs['m_30'], 'comm_costs_m31': communication_costs['m_31'],
-        'comm_costs_m32': communication_costs['m_32'], 'comm_costs_m33': communication_costs['m_33'], 'comm_costs_m34': communication_costs['m_33'],
-        'comm_costs_m34': communication_costs['m_34'], 'comm_costs_m35': communication_costs['m_35'], 'comm_costs_m36': communication_costs['m_36'],
-        'comm_costs_yr3': 0 #communication_costs['yr_3']
-    })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'transportation_costs_m1': transportation_costs['m_01'], 'transportation_costs_m2': transportation_costs['m_02'], 'transportation_costs_m3': transportation_costs['m_03'],
-        'transportation_costs_m4': transportation_costs['m_04'], 'transportation_costs_m5': transportation_costs['m_05'], 'transportation_costs_m6': transportation_costs['m_06'],
-        'transportation_costs_m7': transportation_costs['m_07'], 'transportation_costs_m8': transportation_costs['m_08'], 'transportation_costs_m9': transportation_costs['m_09'],
-        'transportation_costs_m10': transportation_costs['m_10'], 'transportation_costs_m11': transportation_costs['m_11'], 'transportation_costs_m12': transportation_costs['m_12'],
-        'transportation_costs_yr1': transportation_costs['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'transportation_costs_m13': transportation_costs['m_13'], 'transportation_costs_m14': transportation_costs['m_14'], 'transportation_costs_m15': transportation_costs['m_15'],
-        'transportation_costs_m16': transportation_costs['m_16'], 'transportation_costs_m17': transportation_costs['m_17'], 'transportation_costs_m18': transportation_costs['m_18'],
-        'transportation_costs_m19': transportation_costs['m_19'], 'transportation_costs_m20': transportation_costs['m_20'], 'transportation_costs_m21': transportation_costs['m_21'],
-        'transportation_costs_m22': transportation_costs['m_22'], 'transportation_costs_m23': transportation_costs['m_23'], 'transportation_costs_m24': transportation_costs['m_24'],
-        'transportation_costs_yr2': transportation_costs['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'transportation_costs_m25': transportation_costs['m_25'], 'transportation_costs_m26': transportation_costs['m_26'], 'transportation_costs_m27': transportation_costs['m_27'],
-        'transportation_costs_m28': transportation_costs['m_28'], 'transportation_costs_m29': transportation_costs['m_30'], 'transportation_costs_m31': transportation_costs['m_31'],
-        'transportation_costs_m32': transportation_costs['m_32'], 'transportation_costs_m33': transportation_costs['m_33'], 'transportation_costs_m34': transportation_costs['m_33'],
-        'transportation_costs_m34': transportation_costs['m_34'], 'transportation_costs_m35': transportation_costs['m_35'], 'transportation_costs_m36': transportation_costs['m_36'],
-        'transportation_costs_yr3': 0 #transportation_costs['yr_3']
-    })
-
-    # computation = merge_two_dicts(computation, {
-    #     # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-    #     'sub_costs_m1': sub_costs['m_01'], 'sub_costs_m2': sub_costs['m_02'], 'sub_costs_m3': sub_costs['m_03'],
-    #     'sub_costs_m4': sub_costs['m_04'], 'sub_costs_m5': sub_costs['m_05'], 'sub_costs_m6': sub_costs['m_06'],
-    #     'sub_costs_m7': sub_costs['m_07'], 'sub_costs_m8': sub_costs['m_08'], 'sub_costs_m9': sub_costs['m_09'],
-    #     'sub_costs_m10': sub_costs['m_10'], 'sub_costs_m11': sub_costs['m_11'], 'sub_costs_m12': sub_costs['m_12'],
-    #     'sub_costs_yr1': sub_costs['yr_1'],
-    #
-    #     # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-    #     'sub_costs_m13': sub_costs['m_13'], 'sub_costs_m14': sub_costs['m_14'], 'sub_costs_m15': sub_costs['m_15'],
-    #     'sub_costs_m16': sub_costs['m_16'], 'sub_costs_m17': sub_costs['m_17'], 'sub_costs_m18': sub_costs['m_18'],
-    #     'sub_costs_m19': sub_costs['m_19'], 'sub_costs_m20': sub_costs['m_20'], 'sub_costs_m21': sub_costs['m_21'],
-    #     'sub_costs_m22': sub_costs['m_22'], 'sub_costs_m23': sub_costs['m_23'], 'sub_costs_m24': sub_costs['m_24'],
-    #     'sub_costs_yr2': sub_costs['yr_2'],
-    #
-    #     # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-    #     'sub_costs_m25': sub_costs['m_25'], 'sub_costs_m26': sub_costs['m_26'], 'sub_costs_m27': sub_costs['m_27'],
-    #     'sub_costs_m28': sub_costs['m_28'], 'sub_costs_m29': sub_costs['m_30'], 'sub_costs_m31': sub_costs['m_31'],
-    #     'sub_costs_m32': sub_costs['m_32'], 'sub_costs_m33': sub_costs['m_33'], 'sub_costs_m34': sub_costs['m_33'],
-    #     'sub_costs_m34': sub_costs['m_34'], 'sub_costs_m35': sub_costs['m_35'], 'sub_costs_m36': sub_costs['m_36'],
-    #     'sub_costs_yr3': 0 #sub_costs['yr_3']
-    # })
-
-    computation = merge_two_dicts(computation, {
-        # - - - - - - - - - - - - - - # YEAR 1 # - - - - - - - - - - - - - - #
-        'lease_costs_m1': equipment_lease['m_01'], 'lease_costs_m2': equipment_lease['m_02'], 'lease_costs_m3': equipment_lease['m_03'],
-        'lease_costs_m4': equipment_lease['m_04'], 'lease_costs_m5': equipment_lease['m_05'], 'lease_costs_m6': equipment_lease['m_06'],
-        'lease_costs_m7': equipment_lease['m_07'], 'lease_costs_m8': equipment_lease['m_08'], 'lease_costs_m9': equipment_lease['m_09'],
-        'lease_costs_m10': equipment_lease['m_10'], 'lease_costs_m11': equipment_lease['m_11'], 'lease_costs_m12': equipment_lease['m_12'],
-        'lease_costs_yr1': equipment_lease['yr_1'],
-
-        # - - - - - - - - - - - - - - # YEAR 2 # - - - - - - - - - - - - - - #
-        'lease_costs_m13': equipment_lease['m_13'], 'lease_costs_m14': equipment_lease['m_14'], 'lease_costs_m15': equipment_lease['m_15'],
-        'lease_costs_m16': equipment_lease['m_16'], 'lease_costs_m17': equipment_lease['m_17'], 'lease_costs_m18': equipment_lease['m_18'],
-        'lease_costs_m19': equipment_lease['m_19'], 'lease_costs_m20': equipment_lease['m_20'], 'lease_costs_m21': equipment_lease['m_21'],
-        'lease_costs_m22': equipment_lease['m_22'], 'lease_costs_m23': equipment_lease['m_23'], 'lease_costs_m24': equipment_lease['m_24'],
-        'lease_costs_yr2': equipment_lease['yr_2'],
-
-        # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
-        'lease_costs_m25': equipment_lease['m_25'], 'lease_costs_m26': equipment_lease['m_26'], 'lease_costs_m27': equipment_lease['m_27'],
-        'lease_costs_m28': equipment_lease['m_28'], 'lease_costs_m29': equipment_lease['m_30'], 'lease_costs_m31': equipment_lease['m_31'],
-        'lease_costs_m32': equipment_lease['m_32'], 'lease_costs_m33': equipment_lease['m_33'], 'lease_costs_m34': equipment_lease['m_33'],
-        'lease_costs_m34': equipment_lease['m_34'], 'lease_costs_m35': equipment_lease['m_35'], 'lease_costs_m36': equipment_lease['m_36'],
-        'lease_costs_yr3': 0 #equipment_lease['yr_3']
-    })
-
-
-
+    computation= attach_table(computation, 'location_costs', loc_specific_costs)
+    computation= attach_table(computation, 'insurance_costs', insurance_costs)
+    computation= attach_table(computation, 'admin_costs', admin_costs)
+    computation= attach_table(computation, 'license_costs', license_reg_costs)
+    computation= attach_table(computation, 'marketing_costs', marketing_costs)
+    # sales_expense
+    computation= attach_table(computation, 'bank_fees', banking_costs)
+    # salaries
+    computation= attach_table(computation, 'comm_costs', communication_costs)
+    computation= attach_table(computation, 'transportation_costs', transportation_costs)
+    # sub_costs
+    computation= attach_table(computation, 'lease_costs', equipment_lease)
+    computation= attach_table(computation, 'maintain_costs', maintain_costs)
+    # computation= attach_table(computation, 'supplies_costs', maintain_costs)
+    # computation= attach_table(computation, 'pro_fee_cost', maintain_costs)
+    computation= attach_table(computation, 'mem_costs', membership_fees)
+    computation= attach_table(computation, 'other_costs', other_costs)
+    computation= attach_table(computation, 'misc_costs', misc_costs)
 
     #=============#
     # SAVING DATA #
