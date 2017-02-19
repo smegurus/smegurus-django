@@ -365,6 +365,14 @@ def render_question_type_067(workspace, module, node, question, answer):
     )
     q20 = q20.content
 
+    # PK106 - Salaries
+    q21_qid = int_or_none(question.dependency['q21_qid'])
+    salaries = get_table_for_qid(workspace, q21_qid)
+
+    # PK122 - Subscriptions
+    # q22_qid = int_or_none(question.dependency['q22_qid'])
+    # salaries = get_table_for_qid(workspace, q22_qid)
+
     #====================================#
     # Pre-Process question computations. #
     #====================================#
@@ -396,16 +404,16 @@ def render_question_type_067(workspace, module, node, question, answer):
     computation= attach_table(computation, 'admin_costs', admin_costs)
     computation= attach_table(computation, 'license_costs', license_reg_costs)
     computation= attach_table(computation, 'marketing_costs', marketing_costs)
-    # sales_expense
+    computation= attach_table(computation, 'sales_expenses', sales_expenses)
     computation= attach_table(computation, 'bank_fees', banking_costs)
-    # salaries
+    computation= attach_table(computation, 'salary_cost', salaries)
     computation= attach_table(computation, 'comm_costs', communication_costs)
     computation= attach_table(computation, 'transportation_costs', transportation_costs)
-    # sub_costs
+    # Subscriptions | sub_costs
     computation= attach_table(computation, 'lease_costs', equipment_lease)
     computation= attach_table(computation, 'maintain_costs', maintain_costs)
-    # computation= attach_table(computation, 'supplies_costs', maintain_costs)
-    # computation= attach_table(computation, 'pro_fee_cost', maintain_costs)
+    computation= attach_table(computation, 'supplies_costs', office_supplies_cost)
+    computation= attach_table(computation, 'pro_fee_cost', pro_fees)
     computation= attach_table(computation, 'mem_costs', membership_fees)
     computation= attach_table(computation, 'other_costs', other_costs)
     computation= attach_table(computation, 'misc_costs', misc_costs)
