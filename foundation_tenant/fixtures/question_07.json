@@ -100,7 +100,7 @@
                 "opt1": [
                     "We will provide excellent customer service",
                     "Our service will be competitively priced",
-                    "We are providing an nnivative/cutting edge service",
+                    "We are providing an innovative service",
                     "We will invest in marketing and business development",
                     "We will invest in good sales people",
                     "We will ensure the right employees are put in the roles most suited to them",
@@ -153,7 +153,7 @@
             "content": {
                 "stub_1": "Strength",
                 "stub_2": "",
-                "stub_3": "Add Strength"
+                "stub_3": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -364,7 +364,7 @@
                 "stub_3": "",
                 "stub_4": "Weakness",
                 "stub_5": "Resolution",
-                "stub_6": "Add Weakness / Resolution"
+                "stub_6": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -424,7 +424,7 @@
             "content": {
                 "stub_1": "Opportunity",
                 "stub_2": "",
-                "stub_3": "Add Opportunity"
+                "stub_3": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -614,7 +614,7 @@
                 "stub_3": "Remove",
                 "stub_4": "Threat",
                 "stub_5": "Resolution",
-                "stub_6": "Add Threat / Resolution"
+                "stub_6": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1277,7 +1277,7 @@
                 "stub_3": "",
                 "stub_4": "Objection",
                 "stub_5": "Resolution",
-                "stub_6": "Add Objection / Resolution"
+                "stub_6": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1494,7 +1494,7 @@
                 "stub_16": "Ex: 10000",
                 "stub_17": "Year 3 Cost",
                 "stub_18": "Ex: 10000",
-                "stub_19": "Add"
+                "stub_19": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1658,7 +1658,7 @@
                 "stub_16": "Ex: 10000",
                 "stub_17": "Year 3 Cost",
                 "stub_18": "Ex: 10000",
-                "stub_19": "Add"
+                "stub_19": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -1846,7 +1846,7 @@
                 "stub_16": "Ex: 10000",
                 "stub_17": "Year 3 Cost",
                 "stub_18": "Ex: 10000",
-                "stub_19": "Add"
+                "stub_19": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2037,7 +2037,7 @@
                 "stub_19": "Ex: 10000",
                 "stub_20": "Year 3 Cost",
                 "stub_21": "Ex: 10000",
-                "stub_22": "Add"
+                "stub_22": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2196,7 +2196,7 @@
                 "stub_14": "ex. 100",
                 "stub_15": "Year 3 Cost",
                 "stub_16": "ex. 100",
-                "stub_17": "Add Use"
+                "stub_17": "Add +"
             },
             "dependency": {},
             "validation": {
@@ -2326,7 +2326,7 @@
                 "stub_14": "ex. 100",
                 "stub_15": "Year 3 Cost",
                 "stub_16": "ex. 100",
-                "stub_17": "Add Use"
+                "stub_17": "Add +"
             },
             "dependency": {},
             "validation": {
