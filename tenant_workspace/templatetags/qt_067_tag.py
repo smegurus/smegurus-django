@@ -369,10 +369,6 @@ def render_question_type_067(workspace, module, node, question, answer):
     q21_qid = int_or_none(question.dependency['q21_qid'])
     salaries = get_table_for_qid(workspace, q21_qid)
 
-    # PK122 - Subscriptions
-    # q22_qid = int_or_none(question.dependency['q22_qid'])
-    # salaries = get_table_for_qid(workspace, q22_qid)
-
     #====================================#
     # Pre-Process question computations. #
     #====================================#
@@ -417,6 +413,10 @@ def render_question_type_067(workspace, module, node, question, answer):
     computation= attach_table(computation, 'mem_costs', membership_fees)
     computation= attach_table(computation, 'other_costs', other_costs)
     computation= attach_table(computation, 'misc_costs', misc_costs)
+
+    # Total G & A Expenses
+    #------------------------
+    # total_g_a_m1
 
     #=============#
     # SAVING DATA #
