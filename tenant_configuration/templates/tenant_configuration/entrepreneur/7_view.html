@@ -11,63 +11,68 @@
     <fieldset id="questionForm">
         <!-- ROW 1 -->
         <div class="form-group">
-            <div class="col-sm-12-7 col-centered">
+            <div class="col-sm-5 col-centered">
 
                 <!-- 1 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_1" {% if request.tenant_me.education_or_training_status == 1 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="1" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'Highschool' %}
                     </label>
                 </div>
                 <!-- end 1 OPTION -->
 
                 <!-- 2 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_2" {% if request.tenant_me.education_or_training_status == 2 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="2" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'Post-Secondary' %}
                     </label>
                 </div>
                 <!-- end 2 OPTION -->
 
                 <!-- 3 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_3" {% if request.tenant_me.education_or_training_status == 3 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="3" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'Private career training' %}
                    </label>
                 </div>
                 <!-- end 3 OPTION -->
 
                 <!-- 4 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_4" {% if request.tenant_me.education_or_training_status == 4 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="4" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'Specialized employment program' %}
                     </label>
                 </div>
                 <!-- end 4 OPTION -->
 
                 <!-- 5 OPTION -->
-                <div class="radio">
+                <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_5" {% if request.tenant_me.education_or_training_status == 5 %}checked="checked"{% endif %}
                              type="radio"
                              name="optionsRadios"
                             value="5" />
+                            <span class="fa fa-circle"></span>
                             {% trans 'other' %}
                     </label>
                 </div>
@@ -80,10 +85,10 @@
         <br />
 
         <!-- ROW 2 -->
-        <div class="form-group" id="id_education_or_training_status_other_div" {% if not picked.var_1_other %}style="display: none;"{% endif %}>
-            <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-            <div class="col-sm-10">
-                <input id="id_education_or_training_status_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.education_or_training_status_other }}" maxlength="127" />
+        <div class="form-group" id="id_education_or_training_status_other_div" {% if not request.tenant_me.education_or_training_status_other %}style="display: none;"{% endif %}>
+            <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
+            <div class="col-sm-5">
+                <input id="id_education_or_training_status_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.education_or_training_status_other }}" maxlength="127" />
             </div>
         </div>
         <!-- end ROW 2 -->
@@ -97,10 +102,10 @@
     <button onclick="ajax_save_and_continue();"
                  id="id_continue_btn"
                type="button"
-              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+              class="btn btn-block btn-primary btn-lg mt-lg mb-lg">{% trans 'Save &amp; Continue' %}</button>
 
     <a onclick="ajax_cancel_and_continue();"
             id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+         class="btn btn-block btn-lg btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
