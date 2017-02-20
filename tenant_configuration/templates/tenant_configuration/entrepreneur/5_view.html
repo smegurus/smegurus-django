@@ -12,7 +12,7 @@
         <!-- ROW 1 -->
         <div class="form-group">
             
-            <div class="col-sm-12">
+            <div class="col-sm-5 col-centered">
 
                 <div class="fieldWrapper">
                     {% if form.place_of_birth.errors %}
@@ -22,7 +22,7 @@
                         {% endfor %}
                         </ol>
                     {% endif %}
-                    <label for="{{ form.place_of_birth.id_for_label }}">{{ form.place_of_birth.label }}:</label>
+                    
                     {{ form.place_of_birth }}
                 </div>
                 <!-- end EMAIL -->
@@ -42,10 +42,10 @@
     <button onclick="ajax_save_and_continue();"
                  id="id_continue_btn"
                type="button"
-              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+              class="btn btn-block btn-primary mt-lg mb-lg btn-lg">{% trans 'Save &amp; Continue' %}</button>
 
     <a onclick="ajax_cancel_and_continue();"
             id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+         class="btn btn-block btn-default btn-lg">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
