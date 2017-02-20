@@ -538,8 +538,8 @@
         "fields": {
             "document_type": 8,
             "number": 11,
-            "title": "List, your management team by name proposed role, and area of expertise (Min 1, Max 10)",
-            "help": "This is some generic help text.",
+            "title": "List your management team by name proposed role, and area of expertise (Min 1, Max 10)",
+            "help": "Here we need you to list all of the people that will be involved in managing your business.",
             "options": {
                 "opt1": [
                     {
