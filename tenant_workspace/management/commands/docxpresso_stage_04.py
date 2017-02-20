@@ -177,6 +177,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 152:
                 self.do_q152(answer, api)
 
+            elif answer.question.pk == 169:
+                self.do_q169(answer, api)
+
     def do_system_date(self, workspace, api):
         api.add_text("system_date", "{:%Y-%m-%d}".format(workspace.created))
 
@@ -403,3 +406,7 @@ class Command(BaseCommand):
     def do_q152(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         api.add_text("avg_customer_spending", text)
+
+    def do_q169(self, answer, api):
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("supplier_amount", text)
