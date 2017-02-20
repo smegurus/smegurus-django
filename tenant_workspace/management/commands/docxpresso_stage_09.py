@@ -12,6 +12,7 @@ from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.bizmula_utils import BizmulaAPI
 from foundation_tenant.utils import int_or_none
+from foundation_tenant.utils import get_random_string
 from smegurus import constants
 
 
@@ -123,7 +124,8 @@ class Command(BaseCommand):
             docxpresso_file = S3File.objects.create(
                 stem=doc_filename,
                 suffix='odt',
-                owner=document.owner
+                owner=document.owner,
+                key=doc_filename
             )
             docxpresso_file.upload_file(doc_bin_data)
 
@@ -571,6 +573,15 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 162:
                 api.do_q162(answer, api)
+
+            elif answer.question.pk == 167:
+                api.do_q167(answer, api)
+
+            elif answer.question.pk == 168:
+                api.do_q168(answer, api)
+
+            elif answer.question.pk == 169:
+                api.do_q169(answer, api)
 
         # Perform specific computations based on previous saved answers.
         api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer, api)

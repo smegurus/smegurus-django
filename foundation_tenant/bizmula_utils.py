@@ -1707,6 +1707,15 @@ class BizmulaAPI(DocxspressoAPI):
             pass
             # api.add_picture('prod_image1', '')
 
+    def do_q167(self, answer, api):
+        print("QID 167")
+
+    def do_q168(self, answer, api):
+        print("QID 168")
+
+    def do_q169(self, answer, api):
+        print("QID 169")
+
     def do_q162(self, answer, api):
         try:
             api.add_picture('prod_image2', answer.content['var_3'])

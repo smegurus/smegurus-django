@@ -137,7 +137,8 @@ class Command(BaseCommand):
             docxpresso_file = S3File.objects.create(
                 stem=doc_filename,
                 suffix='odt',
-                owner=document.owner
+                owner=document.owner,
+                key=doc_filename
             )
             docxpresso_file.upload_file(doc_bin_data)
 
