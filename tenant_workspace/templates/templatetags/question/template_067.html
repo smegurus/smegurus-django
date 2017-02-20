@@ -32,6 +32,8 @@
             <!--#############################################################-->
             <!--#                          YEAR 1                           #-->
             <!--#############################################################-->
+            <h1>{% trans 'Year 1' %}</h1>
+            <!-- REVENUE -->
             <h1>{% trans 'Revenue' %}</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
@@ -183,7 +185,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- end REVENUE -->
             <br />
+            <!-- G & A EXPENSES -->
             <h1>General & Admin Expenses</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
@@ -965,7 +969,9 @@
                     </tbody>
                 </table>
             </div>
+            <!-- end G & A EXPENSES -->
             <br />
+            <!-- NET PROFIT -->
             <h1>{% trans 'Net Profit' %}</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
@@ -1096,7 +1102,1097 @@
         </table>
     </div>
     <!-- end NET CASH -->
+
+
+
+
+
+
+
+
+    <br/>
+    <!--#############################################################-->
+    <!--#                          YEAR 2                           #-->
+    <!--#############################################################-->
+    {% comment %}
+    <!-- REVENUE -->
+    <h1>{% trans 'Year 2' %}</h1>
+    <h1>{% trans 'Revenue' %}</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans '' %}</th>
+                    <th>{% trans 'Month 13' %}</th>
+                    <th>{% trans 'Month 14' %}</th>
+                    <th>{% trans 'Month 15' %}</th>
+                    <th>{% trans 'Month 16' %}</th>
+                    <th>{% trans 'Month 17' %}</th>
+                    <th>{% trans 'Month 18' %}</th>
+                    <th>{% trans 'Month 19' %}</th>
+                    <th>{% trans 'Month 20' %}</th>
+                    <th>{% trans 'Month 21' %}</th>
+                    <th>{% trans 'Month 22' %}</th>
+                    <th>{% trans 'Month 23' %}</th>
+                    <th>{% trans 'Month 24' %}</th>
+                    <th><b>{% trans 'TOTAL' %}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% trans 'Total Sales' %}</td>
+                    <td>
+                        {{ picked.total_sales_m13 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m14 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m15 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m16 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m17 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m18 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m19 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m20 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m21 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m22 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m23 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_m24 }}
+                    </td>
+                    <td>
+                        {{ picked.total_sales_y2 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Cost of Goods Sold' %}</td>
+                    <td>
+                        {{ picked.total_cogs_m13 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m14 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m15 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m16 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m17 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m18 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m19 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m20 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m21 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m22 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m23 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_m24 }}
+                    </td>
+                    <td>
+                        {{ picked.total_cogs_y1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Profit Margin' %}</td>
+                    <td>
+                        {{ picked.gross_profit_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.gross_profit_yr1 }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <!-- end REVENUE -->
+    <br />
+    <!-- G & A EXPENSES -->
+    <h1>General & Admin Expenses</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans '' %}</th>
+                    <th>{% trans 'Month 1' %}</th>
+                    <th>{% trans 'Month 2' %}</th>
+                    <th>{% trans 'Month 3' %}</th>
+                    <th>{% trans 'Month 4' %}</th>
+                    <th>{% trans 'Month 5' %}</th>
+                    <th>{% trans 'Month 6' %}</th>
+                    <th>{% trans 'Month 7' %}</th>
+                    <th>{% trans 'Month 8' %}</th>
+                    <th>{% trans 'Month 9' %}</th>
+                    <th>{% trans 'Month 10' %}</th>
+                    <th>{% trans 'Month 11' %}</th>
+                    <th>{% trans 'Month 12' %}</th>
+                    <th><b>{% trans 'TOTAL' %}</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% trans 'Location Costs' %}</td>
+                    <td>
+                        {{ picked.location_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.location_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Insurance' %}</td>
+                    <td>
+                        {{ picked.insurance_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.insurance_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Admin/Support' %}</td>
+                    <td>
+                        {{ picked.admin_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.admin_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Licenses and Permits' %}</td>
+                    <td>
+                        {{ picked.license_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.license_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Marketing' %}</td>
+                    <td>
+                        {{ picked.marketing_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.marketing_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Sales Expenses' %}</td>
+                    <td>
+                        {{ picked.sales_expenses_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.sales_expenses_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Bank Fees' %}</td>
+                    <td>
+                        {{ picked.bank_fees_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.bank_fees_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Salaries' %}</td>
+                    <td>
+                        {{ picked.salary_cost_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.salary_cost_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Communication Costs' %}</td>
+                    <td>
+                        {{ picked.comm_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.comm_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Subscriptions' %}</td>
+                    <td>
+                        {{ picked.sub_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.sub_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Equipment Leases' %}</td>
+                    <td>
+                        {{ picked.maintain_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.lease_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Maintenance and Repairs' %}</td>
+                    <td>
+                        {{ picked.maintain_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.maintain_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'General Supplies' %}</td>
+                    <td>
+                        {{ picked.supplies_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.supplies_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Professional Fees' %}</td>
+                    <td>
+                        {{ picked.pro_fee_cost_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.pro_fee_cost_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Membership Fees' %}</td>
+                    <td>
+                        {{ picked.mem_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.mem_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Other' %}</td>
+                    <td>
+                        {{ picked.other_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.other_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Misc.' %}</td>
+                    <td>
+                        {{ picked.misc_costs_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_m12 }}
+                    </td>
+                    <td>
+                        {{ picked.misc_costs_yr1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>{% trans 'Total.' %}</b></td>
+                    <td>
+                        <b>{{ picked.total_g_a_m1 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m2 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m3 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m4 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m5 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m6 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m7 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m8 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m9 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m10 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m11 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_m12 }}</b>
+                    </td>
+                    <td>
+                        <b>{{ picked.total_g_a_yr1 }}</b>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- end G & A EXPENSES -->
+    <br />
+    <!-- NET PROFIT -->
+    <h1>{% trans 'Net Profit' %}</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>{% trans 'Month 1' %}</th>
+                <th>{% trans 'Month 2' %}</th>
+                <th>{% trans 'Month 3' %}</th>
+                <th>{% trans 'Month 4' %}</th>
+                <th>{% trans 'Month 5' %}</th>
+                <th>{% trans 'Month 6' %}</th>
+                <th>{% trans 'Month 7' %}</th>
+                <th>{% trans 'Month 8' %}</th>
+                <th>{% trans 'Month 9' %}</th>
+                <th>{% trans 'Month 10' %}</th>
+                <th>{% trans 'Month 11' %}</th>
+                <th>{% trans 'Month 12' %}</th>
+                <th><b>{% trans 'TOTAL' %}</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{ picked.net_profit_m1 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m2 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m3 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m4 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m5 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m6 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m7 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m8 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m9 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m10 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m11 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_m12 }}
+                </td>
+                <td>
+                    {{ picked.net_profit_yr1 }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- end NET PROFIT -->
+<br />
+<!-- NET CASH -->
+<h1>{% trans 'Net Cash' %}</h1>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>{% trans 'Month 1' %}</th>
+            <th>{% trans 'Month 2' %}</th>
+            <th>{% trans 'Month 3' %}</th>
+            <th>{% trans 'Month 4' %}</th>
+            <th>{% trans 'Month 5' %}</th>
+            <th>{% trans 'Month 6' %}</th>
+            <th>{% trans 'Month 7' %}</th>
+            <th>{% trans 'Month 8' %}</th>
+            <th>{% trans 'Month 9' %}</th>
+            <th>{% trans 'Month 10' %}</th>
+            <th>{% trans 'Month 11' %}</th>
+            <th>{% trans 'Month 12' %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {{ picked.net_cash_m1 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m2 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m3 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m4 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m5 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m6 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m7 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m8 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m9 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m10 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m11 }}
+            </td>
+            <td>
+                {{ picked.net_cash_m12 }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<!-- end NET CASH -->
+{% endcomment %}
+
+
+
+
+
+    </div>
+    <!-- end form-group-->
 </div>
 </fieldset>
 <!-- end HTML -->
