@@ -110,7 +110,7 @@
         <br />
 
         <!-- ROW 2 -->
-        <div class="form-group" id="id_challenges_becoming_entrepreneur_other_div" {{% if not request.tenant_me.challenges_becoming_entrepreneur_other %}style="display: none;"{% endif %}>
+        <div class="form-group" id="id_challenges_becoming_entrepreneur_other_div" {% if not request.tenant_me.challenges_becoming_entrepreneur_other %}style="display: none;"{% endif %}>
             <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
             <div class="col-sm-5">
                 <input id="id_challenges_becoming_entrepreneur_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.challenges_becoming_entrepreneur_other }}" maxlength="127" />
@@ -127,10 +127,10 @@
     <button onclick="ajax_save_and_continue();"
                  id="id_continue_btn"
                type="button"
-              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+              class="btn btn-block btn-primary mb-lg mt-lg btn-lg">{% trans 'Save &amp; Continue' %}</button>
 
     <a onclick="ajax_cancel_and_continue();"
             id="id_skip_btn"
-         class="btn btn-block btn-default">{% trans 'Skip (Not Recommended)' %}</a>
+         class="btn btn-block btn-lg btn-default">{% trans 'Skip (Not Recommended)' %}</a>
 
 {% endblock content %}
