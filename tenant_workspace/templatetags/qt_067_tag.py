@@ -307,6 +307,54 @@ def sum_tables(array_1, array_2):
         # 'yr_3': array_1['yr_3'] + array_2['yr_3'], #BUG: Fix to support.
     }
 
+def get_net_profit(array_1, array_2):
+    return {
+        # yr1
+        'm_01': array_1['gross_profit_m1'] - array_2['m_01'],
+        'm_02': array_1['gross_profit_m2'] - array_2['m_02'],
+        'm_03': array_1['gross_profit_m3'] - array_2['m_03'],
+        'm_04': array_1['gross_profit_m4'] - array_2['m_04'],
+        'm_05': array_1['gross_profit_m5'] - array_2['m_05'],
+        'm_06': array_1['gross_profit_m6'] - array_2['m_06'],
+        'm_07': array_1['gross_profit_m7'] - array_2['m_07'],
+        'm_08': array_1['gross_profit_m8'] - array_2['m_08'],
+        'm_09': array_1['gross_profit_m9'] - array_2['m_09'],
+        'm_10': array_1['gross_profit_m10'] - array_2['m_10'],
+        'm_11': array_1['gross_profit_m11'] - array_2['m_11'],
+        'm_12': array_1['gross_profit_m12'] - array_2['m_12'],
+        'yr_1': array_1['gross_profit_yr1'] - array_2['yr_1'],
+
+        # yr2
+        'm_13': array_1['gross_profit_m13'] - array_2['m_13'],
+        'm_14': array_1['gross_profit_m14'] - array_2['m_14'],
+        'm_15': array_1['gross_profit_m15'] - array_2['m_15'],
+        'm_16': array_1['gross_profit_m16'] - array_2['m_16'],
+        'm_17': array_1['gross_profit_m17'] - array_2['m_17'],
+        'm_18': array_1['gross_profit_m18'] - array_2['m_18'],
+        'm_19': array_1['gross_profit_m19'] - array_2['m_19'],
+        'm_20': array_1['gross_profit_m20'] - array_2['m_20'],
+        'm_21': array_1['gross_profit_m21'] - array_2['m_21'],
+        'm_22': array_1['gross_profit_m22'] - array_2['m_22'],
+        'm_23': array_1['gross_profit_m23'] - array_2['m_23'],
+        'm_24': array_1['gross_profit_m24'] - array_2['m_24'],
+        'yr_2': array_1['gross_profit_yr2'] - array_2['yr_2'],
+
+        # yr3
+        'm_25': array_1['gross_profit_m25'] - array_2['m_25'],
+        'm_26': array_1['gross_profit_m26'] - array_2['m_26'],
+        'm_27': array_1['gross_profit_m27'] - array_2['m_27'],
+        'm_28': array_1['gross_profit_m28'] - array_2['m_28'],
+        'm_29': array_1['gross_profit_m29'] - array_2['m_29'],
+        'm_30': array_1['gross_profit_m30'] - array_2['m_30'],
+        'm_31': array_1['gross_profit_m31'] - array_2['m_31'],
+        'm_32': array_1['gross_profit_m32'] - array_2['m_32'],
+        'm_33': array_1['gross_profit_m33'] - array_2['m_33'],
+        'm_34': array_1['gross_profit_m34'] - array_2['m_34'],
+        'm_35': array_1['gross_profit_m35'] - array_2['m_35'],
+        'm_36': array_1['gross_profit_m36'] - array_2['m_36'],
+        # 'yr_3': array_1['gross_profit_yr3'] - array_2['yr_3'], #BUG: Fix to support.
+    }
+
 
 @register.inclusion_tag('templatetags/question/template_067.html')
 def render_question_type_067(workspace, module, node, question, answer):
@@ -486,7 +534,12 @@ def render_question_type_067(workspace, module, node, question, answer):
     total_g_a = sum_tables(total_g_a, membership_fees)
     total_g_a = sum_tables(total_g_a, other_costs)
     total_g_a = sum_tables(total_g_a, misc_costs)
-    computation = merge_two_dicts(computation, { "total_g_a": total_g_a })
+    computation= attach_table(computation, 'total_g_a', total_g_a)
+
+    # Net Profit
+    #------------
+    net_profit = get_net_profit(gross_profit, total_g_a)
+    computation = attach_table(computation, 'net_profit', net_profit)
 
     #=============#
     # SAVING DATA #
