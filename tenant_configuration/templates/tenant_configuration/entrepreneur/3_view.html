@@ -39,21 +39,7 @@
                     </label>
                 </div>
                 <!-- end FEMALE OPTION -->
-
-                <!-- ANOTHER OPTION -->
-                <div class="radio c-radio">
-                    <label>
-                        <input id="optionsRadios_another" {% if request.tenant_me.gender == constants.ME_ANOTHER_GENDER_ID %}checked="checked"{% endif %}
-                             type="radio"
-                             name="optionsRadios"
-                            value="{{ constants.ME_ANOTHER_GENDER_ID }}" />
-                            <span class="fa fa-circle"></span>
-                            {% trans 'Another' %}
-                    </label>
-                </div>
-                <!-- end ANOTHER OPTION -->
-
-                <!-- ANOTHER OPTION -->
+                <!-- OTHER OPTION -->
                 <div class="radio c-radio">
                     <label>
                         <input id="optionsRadios_other" {% if request.tenant_me.gender == constants.ME_OTHER_GENDER_ID %}checked="checked"{% endif %}
@@ -64,7 +50,7 @@
                             {% trans 'Other' %}
                     </label>
                 </div>
-                <!-- end ANOTHER OPTION -->
+                <!-- end OTHER OPTION -->
 
             </div>
         </div>
@@ -85,12 +71,11 @@
     </fieldset>
     <!-- end HTML -->
 
-
     <br/>
 
     <button onclick="ajax_save_and_continue();"
                  id="id_continue_btn"
                type="button"
-              class="btn btn-block btn-primary mt-lg">{% trans 'Save &amp; Continue' %}</button>
+              class="btn btn-block btn-primary btn-lg">{% trans 'Save &amp; Continue' %}</button>
 
 {% endblock content %}
