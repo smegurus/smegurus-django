@@ -115,7 +115,7 @@
         <div class="form-group" id="id_employment_status_other_div" {% if not request.tenant_me.employment_status_other %}style="display: none;"{% endif %}>
             <label class="col-sm-4 control-label" style="text-align: right;">{% trans 'Other' %}</label>
             <div class="col-sm-5">
-                <input id="id_employment_status_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.employment_status_other }}" maxlength="127" />
+                <input id="id_employment_status_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="{{ request.tenant_me.employment_status_other }}" maxlength="127" />
             </div>
         </div>
         <!-- end ROW 2 -->
