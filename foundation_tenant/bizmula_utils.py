@@ -1701,10 +1701,18 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q161(self, answer, api):
-        api.add_picture('prod_image1', answer.content['var_3'])
+        try:
+            api.add_picture('prod_image1', answer.content['var_3'])
+        except Exception as e:
+            pass
+            # api.add_picture('prod_image1', '')
 
     def do_q162(self, answer, api):
-        api.add_picture('prod_image2', answer.content['var_3'])
+        try:
+            api.add_picture('prod_image2', answer.content['var_3'])
+        except Exception as e:
+            pass
+            # api.add_picture('prod_image1', '')
 
     def do_type33(self, answer, api, key1, key2):  # 2 Col Table
         col1_array = []
