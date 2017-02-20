@@ -125,7 +125,13 @@ class Command(BaseCommand):
 
             # If the file already exists then delete it from S3.
             if document.docxpresso_file:
-                document.docxpresso_file.delete()
+                # Try deleting the previously uploaded file and if the file
+                # does not exist or ANY error occurs then catch it here and
+                # safely continue our application.
+                try:
+                    document.docxpresso_file.delete()
+                except Exception as e:
+                    print("WARNING: ", str(e))
 
             # Save our file to DB.
             docxpresso_file = S3File.objects.create(
