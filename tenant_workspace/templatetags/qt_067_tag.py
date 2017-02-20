@@ -375,6 +375,10 @@ def render_question_type_067(workspace, module, node, question, answer):
     q21_qid = int_or_none(question.dependency['q21_qid'])
     salaries = get_table_for_qid(workspace, q21_qid)
 
+    # PK123 - Subscription
+    q22_qid = int_or_none(question.dependency['q22_qid'])
+    subscriptions = get_table_for_qid(workspace, q22_qid)
+
     #====================================#
     # Pre-Process question computations. #
     #====================================#
@@ -416,7 +420,7 @@ def render_question_type_067(workspace, module, node, question, answer):
     computation= attach_table(computation, 'salary_cost', salaries)
     computation= attach_table(computation, 'comm_costs', communication_costs)
     computation= attach_table(computation, 'transportation_costs', transportation_costs)
-    # Subscriptions | sub_costs
+    computation= attach_table(computation, 'sub_costs', subscriptions)    
     computation= attach_table(computation, 'lease_costs', equipment_lease)
     computation= attach_table(computation, 'maintain_costs', maintain_costs)
     computation= attach_table(computation, 'supplies_costs', office_supplies_cost)
