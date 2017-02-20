@@ -971,7 +971,6 @@
                 <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>{% trans '' %}</th>
                         <th>{% trans 'Month 1' %}</th>
                         <th>{% trans 'Month 2' %}</th>
                         <th>{% trans 'Month 3' %}</th>
@@ -989,50 +988,115 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{% trans 'Location Costs' %}</td>
                         <td>
-                            {{ picked.location_costs_m1 }}
+                            {{ picked.net_profit_m1 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m2 }}
+                            {{ picked.net_profit_m2 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m3 }}
+                            {{ picked.net_profit_m3 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m4 }}
+                            {{ picked.net_profit_m4 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m5 }}
+                            {{ picked.net_profit_m5 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m6 }}
+                            {{ picked.net_profit_m6 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m7 }}
+                            {{ picked.net_profit_m7 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m8 }}
+                            {{ picked.net_profit_m8 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m9 }}
+                            {{ picked.net_profit_m9 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m10 }}
+                            {{ picked.net_profit_m10 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m11 }}
+                            {{ picked.net_profit_m11 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_m12 }}
+                            {{ picked.net_profit_m12 }}
                         </td>
                         <td>
-                            {{ picked.location_costs_yr1 }}
+                            {{ picked.net_profit_yr1 }}
                         </td>
                     </tr>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
+        <!-- end NET PROFIT -->
+        <br />
+        <!-- NET CASH -->
+        <h1>{% trans 'Net Cash' %}</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans 'Month 1' %}</th>
+                    <th>{% trans 'Month 2' %}</th>
+                    <th>{% trans 'Month 3' %}</th>
+                    <th>{% trans 'Month 4' %}</th>
+                    <th>{% trans 'Month 5' %}</th>
+                    <th>{% trans 'Month 6' %}</th>
+                    <th>{% trans 'Month 7' %}</th>
+                    <th>{% trans 'Month 8' %}</th>
+                    <th>{% trans 'Month 9' %}</th>
+                    <th>{% trans 'Month 10' %}</th>
+                    <th>{% trans 'Month 11' %}</th>
+                    <th>{% trans 'Month 12' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ picked.net_cash_m1 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m2 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m3 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m4 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m5 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m6 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m7 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m8 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m9 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m10 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m11 }}
+                    </td>
+                    <td>
+                        {{ picked.net_cash_m12 }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <!-- end NET CASH -->
+    </div>
+</div>
 </fieldset>
 <!-- end HTML -->

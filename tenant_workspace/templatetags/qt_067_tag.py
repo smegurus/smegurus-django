@@ -541,6 +541,53 @@ def render_question_type_067(workspace, module, node, question, answer):
     net_profit = get_net_profit(gross_profit, total_g_a)
     computation = attach_table(computation, 'net_profit', net_profit)
 
+    # Net Cash Position
+    #------------
+    start = q20['net_startup_deficit_surplus']
+    net_cash_position = {
+        "net_cash_m0": start
+    }
+    #Yr1
+    net_cash_position['net_cash_m1'] = net_cash_position['net_cash_m0'] + net_profit['m_01']
+    net_cash_position['net_cash_m2'] = net_cash_position['net_cash_m1'] + net_profit['m_02']
+    net_cash_position['net_cash_m3'] = net_cash_position['net_cash_m2'] + net_profit['m_03']
+    net_cash_position['net_cash_m4'] = net_cash_position['net_cash_m3'] + net_profit['m_04']
+    net_cash_position['net_cash_m5'] = net_cash_position['net_cash_m4'] + net_profit['m_05']
+    net_cash_position['net_cash_m6'] = net_cash_position['net_cash_m5'] + net_profit['m_06']
+    net_cash_position['net_cash_m7'] = net_cash_position['net_cash_m6'] + net_profit['m_07']
+    net_cash_position['net_cash_m8'] = net_cash_position['net_cash_m7'] + net_profit['m_08']
+    net_cash_position['net_cash_m9'] = net_cash_position['net_cash_m8'] + net_profit['m_09']
+    net_cash_position['net_cash_m10'] = net_cash_position['net_cash_m9'] + net_profit['m_10']
+    net_cash_position['net_cash_m11'] = net_cash_position['net_cash_m10'] + net_profit['m_11']
+    net_cash_position['net_cash_m12'] = net_cash_position['net_cash_m11'] + net_profit['m_12']
+    # Yr2
+    net_cash_position['net_cash_m13'] = net_cash_position['net_cash_m12'] + net_profit['m_13']
+    net_cash_position['net_cash_m14'] = net_cash_position['net_cash_m13'] + net_profit['m_14']
+    net_cash_position['net_cash_m15'] = net_cash_position['net_cash_m14'] + net_profit['m_15']
+    net_cash_position['net_cash_m16'] = net_cash_position['net_cash_m15'] + net_profit['m_16']
+    net_cash_position['net_cash_m17'] = net_cash_position['net_cash_m16'] + net_profit['m_17']
+    net_cash_position['net_cash_m18'] = net_cash_position['net_cash_m17'] + net_profit['m_18']
+    net_cash_position['net_cash_m19'] = net_cash_position['net_cash_m18'] + net_profit['m_19']
+    net_cash_position['net_cash_m20'] = net_cash_position['net_cash_m19'] + net_profit['m_20']
+    net_cash_position['net_cash_m21'] = net_cash_position['net_cash_m20'] + net_profit['m_21']
+    net_cash_position['net_cash_m22'] = net_cash_position['net_cash_m21'] + net_profit['m_22']
+    net_cash_position['net_cash_m23'] = net_cash_position['net_cash_m22'] + net_profit['m_23']
+    net_cash_position['net_cash_m24'] = net_cash_position['net_cash_m23'] + net_profit['m_24']
+    # YR2
+    net_cash_position['net_cash_m25'] = net_cash_position['net_cash_m24'] + net_profit['m_25']
+    net_cash_position['net_cash_m26'] = net_cash_position['net_cash_m25'] + net_profit['m_26']
+    net_cash_position['net_cash_m27'] = net_cash_position['net_cash_m26'] + net_profit['m_27']
+    net_cash_position['net_cash_m28'] = net_cash_position['net_cash_m27'] + net_profit['m_28']
+    net_cash_position['net_cash_m29'] = net_cash_position['net_cash_m28'] + net_profit['m_29']
+    net_cash_position['net_cash_m30'] = net_cash_position['net_cash_m29'] + net_profit['m_30']
+    net_cash_position['net_cash_m31'] = net_cash_position['net_cash_m30'] + net_profit['m_31']
+    net_cash_position['net_cash_m32'] = net_cash_position['net_cash_m31'] + net_profit['m_32']
+    net_cash_position['net_cash_m33'] = net_cash_position['net_cash_m32'] + net_profit['m_33']
+    net_cash_position['net_cash_m34'] = net_cash_position['net_cash_m33'] + net_profit['m_34']
+    net_cash_position['net_cash_m35'] = net_cash_position['net_cash_m34'] + net_profit['m_35']
+    net_cash_position['net_cash_m36'] = net_cash_position['net_cash_m35'] + net_profit['m_36']
+    computation = merge_two_dicts(computation, net_cash_position)
+
     #=============#
     # SAVING DATA #
     #=============#
