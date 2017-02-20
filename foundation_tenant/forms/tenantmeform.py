@@ -24,7 +24,7 @@ class TenantMeForm(forms.ModelForm):
         }
         widgets = {
             'place_of_birth': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
         #     'name': TextInput(attrs={
         #         'class': u'form-control',
