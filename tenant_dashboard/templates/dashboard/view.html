@@ -30,7 +30,7 @@
 </div>
 <!-- END widgets box-->
 <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-12">
         <!-- WIDGET-->
         {% if request.tenant_me.is_entrepreneur %}
             {% render_pending_tasks_widget request.tenant_me %}
@@ -39,11 +39,14 @@
         {% endif %}
         <!-- end WIDGET-->
     </div>
+    {% comment %}
+    <!-- TODO: UNCOMMENT AND BUGFIX & IMPLEMENT -->
     <div class="col-lg-3">
         <!-- WIDGET-->
         {% render_progress_widget request.tenant_me %}
         <!-- end WIDGET-->
     </div>
+    {% endcomment %}
 </div>
 
 <div class="row">

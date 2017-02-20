@@ -14,6 +14,7 @@ from foundation_public.models.language import PublicLanguage
 from foundation_public.models.openinghoursspecification import PublicOpeningHoursSpecification
 from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
+from foundation_tenant.utils import int_or_none
 
 
 HOW_DISCOVERED_OPTIONS = (
@@ -46,6 +47,26 @@ CHALLENGE_OPTIONS = (
 )
 
 
+class PublicOrganizationManager(models.Manager):
+    def delete_all(self):
+        """
+        Helper function which will delete all the HouseSections in DB.
+        """
+        items = PublicOrganization.objects.all()
+        for item in items.all():
+            item.delete()
+
+    def get_by_pk_or_none(self, pk):
+        """
+        Helper function which gets the HouseSection object by PK parameter or
+        returns None result.
+        """
+        try:
+            return PublicOrganization.objects.get(pk=int_or_none(pk))
+        except PublicOrganization.DoesNotExist:
+            return None
+            
+
 class PublicOrganization(TenantMixin, AbstractPublicThing):
     """
     An organization such as a school, NGO, corporation, club, etc.
@@ -57,6 +78,8 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         db_table = 'smeg_organizations'
         verbose_name = 'Organization'
         verbose_name_plural = 'Organizations'
+
+    objects = PublicOrganizationManager()
 
     # Payment Information.
     on_trial = models.BooleanField(default=False)
@@ -346,6 +369,11 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
             return settings.SMEGURUS_APP_HTTP_PROTOCOL + self.schema_name + '.%s' % settings.SMEGURUS_APP_HTTP_DOMAIN + reverse(view_name)
         else:
             return settings.SMEGURUS_APP_HTTP_PROTOCOL + '%s' % settings.SMEGURUS_APP_HTTP_DOMAIN + reverse(view_name)
+
+    def load_schema(self):
+        from django.db import connection
+        # Connection will set it back to our tenant.
+        connection.set_schema(self.schema_name, True) # Switch to Tenant.
 
 
 class PublicDomain(DomainMixin):
