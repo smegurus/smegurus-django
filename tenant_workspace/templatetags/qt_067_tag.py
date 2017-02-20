@@ -259,9 +259,52 @@ def attach_table(computation, key, data):
     })
 
 
-def merge_tables(array_1, array_2):
+def sum_tables(array_1, array_2):
     return {
-        # 'm_01': array_1[''] + array_2[''] #TODO: Implement.
+        # yr1
+        'm_01': array_1['m_01'] + array_2['m_01'],
+        'm_02': array_1['m_02'] + array_2['m_02'],
+        'm_03': array_1['m_03'] + array_2['m_03'],
+        'm_04': array_1['m_04'] + array_2['m_04'],
+        'm_05': array_1['m_05'] + array_2['m_05'],
+        'm_06': array_1['m_06'] + array_2['m_06'],
+        'm_07': array_1['m_07'] + array_2['m_07'],
+        'm_08': array_1['m_08'] + array_2['m_08'],
+        'm_09': array_1['m_09'] + array_2['m_09'],
+        'm_10': array_1['m_10'] + array_2['m_10'],
+        'm_11': array_1['m_11'] + array_2['m_11'],
+        'm_12': array_1['m_12'] + array_2['m_12'],
+        'yr_1': array_1['yr_1'] + array_2['yr_1'],
+
+        # yr2
+        'm_13': array_1['m_13'] + array_2['m_13'],
+        'm_14': array_1['m_14'] + array_2['m_14'],
+        'm_15': array_1['m_15'] + array_2['m_15'],
+        'm_16': array_1['m_16'] + array_2['m_16'],
+        'm_17': array_1['m_17'] + array_2['m_17'],
+        'm_18': array_1['m_18'] + array_2['m_18'],
+        'm_19': array_1['m_19'] + array_2['m_19'],
+        'm_20': array_1['m_20'] + array_2['m_20'],
+        'm_21': array_1['m_21'] + array_2['m_21'],
+        'm_22': array_1['m_22'] + array_2['m_22'],
+        'm_23': array_1['m_23'] + array_2['m_23'],
+        'm_24': array_1['m_24'] + array_2['m_24'],
+        'yr_2': array_1['yr_2'] + array_2['yr_2'],
+
+        # yr3
+        'm_25': array_1['m_25'] + array_2['m_25'],
+        'm_26': array_1['m_26'] + array_2['m_26'],
+        'm_27': array_1['m_27'] + array_2['m_27'],
+        'm_28': array_1['m_28'] + array_2['m_28'],
+        'm_29': array_1['m_29'] + array_2['m_29'],
+        'm_30': array_1['m_30'] + array_2['m_30'],
+        'm_31': array_1['m_31'] + array_2['m_31'],
+        'm_32': array_1['m_32'] + array_2['m_32'],
+        'm_33': array_1['m_33'] + array_2['m_33'],
+        'm_34': array_1['m_34'] + array_2['m_34'],
+        'm_35': array_1['m_35'] + array_2['m_35'],
+        'm_36': array_1['m_36'] + array_2['m_36'],
+        # 'yr_3': array_1['yr_3'] + array_2['yr_3'], #BUG: Fix to support.
     }
 
 
@@ -384,11 +427,6 @@ def render_question_type_067(workspace, module, node, question, answer):
     #====================================#
     gross_profit = get_profit_margine(total_sales, total_cogs)
 
-    # general_and_marketing_expenses
-    total_g_a = {}
-    total_g_a = merge_tables(total_g_a, loc_specific_costs)
-    print(total_g_a)
-
     #================================#
     # Process question computations. #
     #================================#
@@ -420,7 +458,7 @@ def render_question_type_067(workspace, module, node, question, answer):
     computation= attach_table(computation, 'salary_cost', salaries)
     computation= attach_table(computation, 'comm_costs', communication_costs)
     computation= attach_table(computation, 'transportation_costs', transportation_costs)
-    computation= attach_table(computation, 'sub_costs', subscriptions)    
+    computation= attach_table(computation, 'sub_costs', subscriptions)
     computation= attach_table(computation, 'lease_costs', equipment_lease)
     computation= attach_table(computation, 'maintain_costs', maintain_costs)
     computation= attach_table(computation, 'supplies_costs', office_supplies_cost)
@@ -431,7 +469,24 @@ def render_question_type_067(workspace, module, node, question, answer):
 
     # Total G & A Expenses
     #------------------------
-    # total_g_a_m1
+    total_g_a = sum_tables(loc_specific_costs, insurance_costs)
+    total_g_a = sum_tables(total_g_a, admin_costs)
+    total_g_a = sum_tables(total_g_a, license_reg_costs)
+    total_g_a = sum_tables(total_g_a, marketing_costs)
+    total_g_a = sum_tables(total_g_a, sales_expenses)
+    total_g_a = sum_tables(total_g_a, banking_costs)
+    total_g_a = sum_tables(total_g_a, salaries)
+    total_g_a = sum_tables(total_g_a, communication_costs)
+    total_g_a = sum_tables(total_g_a, transportation_costs)
+    total_g_a = sum_tables(total_g_a, subscriptions)
+    total_g_a = sum_tables(total_g_a, equipment_lease)
+    total_g_a = sum_tables(total_g_a, maintain_costs)
+    total_g_a = sum_tables(total_g_a, office_supplies_cost)
+    total_g_a = sum_tables(total_g_a, pro_fees)
+    total_g_a = sum_tables(total_g_a, membership_fees)
+    total_g_a = sum_tables(total_g_a, other_costs)
+    total_g_a = sum_tables(total_g_a, misc_costs)
+    computation = merge_two_dicts(computation, { "total_g_a": total_g_a })
 
     #=============#
     # SAVING DATA #
