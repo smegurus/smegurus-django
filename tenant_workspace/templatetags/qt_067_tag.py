@@ -39,7 +39,8 @@ def get_processed_table(data):
     Utility function for taking a table and picking the custom overriden values
     or the default values for the entire table.
     """
-    return {
+    # Take the row and see if we are to use a custom value or the default value.
+    arr = {
         # Year 1
         'm_01':  get_processed_row(data, 'm_01'),
         'm_02':  get_processed_row(data, 'm_02'),
@@ -83,7 +84,54 @@ def get_processed_table(data):
         'm_34':  get_processed_row(data, 'm_34'),
         'm_35':  get_processed_row(data, 'm_35'),
         'm_36':  get_processed_row(data, 'm_36'),
-        'yr_1':  get_processed_row(data, 'yr_1')
+        'yr_3':  get_processed_row(data, 'yr_3')
+    }
+    # Find any 'None' values and replace them with zeros.
+    return {
+        # Year 1
+        'm_01':  0 if arr['m_01'] == None else arr['m_01'],
+        'm_02':  0 if arr['m_02'] == None else arr['m_02'],
+        'm_03':  0 if arr['m_03'] == None else arr['m_03'],
+        'm_04':  0 if arr['m_04'] == None else arr['m_04'],
+        'm_05':  0 if arr['m_05'] == None else arr['m_05'],
+        'm_06':  0 if arr['m_06'] == None else arr['m_06'],
+        'm_07':  0 if arr['m_07'] == None else arr['m_07'],
+        'm_08':  0 if arr['m_08'] == None else arr['m_08'],
+        'm_09':  0 if arr['m_09'] == None else arr['m_09'],
+        'm_10':  0 if arr['m_10'] == None else arr['m_10'],
+        'm_11':  0 if arr['m_11'] == None else arr['m_11'],
+        'm_12':  0 if arr['m_12'] == None else arr['m_12'],
+        'yr_1':  0 if arr['yr_1'] == None else arr['yr_1'],
+
+        # Year 2
+        'm_13':  0 if arr['m_13'] == None else arr['m_13'],
+        'm_14':  0 if arr['m_14'] == None else arr['m_14'],
+        'm_15':  0 if arr['m_15'] == None else arr['m_15'],
+        'm_16':  0 if arr['m_16'] == None else arr['m_16'],
+        'm_17':  0 if arr['m_17'] == None else arr['m_17'],
+        'm_18':  0 if arr['m_18'] == None else arr['m_18'],
+        'm_19':  0 if arr['m_19'] == None else arr['m_19'],
+        'm_20':  0 if arr['m_20'] == None else arr['m_20'],
+        'm_21':  0 if arr['m_21'] == None else arr['m_21'],
+        'm_22':  0 if arr['m_22'] == None else arr['m_22'],
+        'm_23':  0 if arr['m_23'] == None else arr['m_23'],
+        'm_24':  0 if arr['m_24'] == None else arr['m_24'],
+        'yr_2':  0 if arr['yr_2'] == None else arr['yr_2'],
+
+        # Year 3
+        'm_25':  0 if arr['m_25'] == None else arr['m_25'],
+        'm_26':  0 if arr['m_26'] == None else arr['m_26'],
+        'm_27':  0 if arr['m_27'] == None else arr['m_27'],
+        'm_28':  0 if arr['m_28'] == None else arr['m_28'],
+        'm_29':  0 if arr['m_29'] == None else arr['m_29'],
+        'm_30':  0 if arr['m_30'] == None else arr['m_30'],
+        'm_31':  0 if arr['m_31'] == None else arr['m_31'],
+        'm_32':  0 if arr['m_32'] == None else arr['m_32'],
+        'm_33':  0 if arr['m_33'] == None else arr['m_33'],
+        'm_34':  0 if arr['m_34'] == None else arr['m_34'],
+        'm_35':  0 if arr['m_35'] == None else arr['m_35'],
+        'm_36':  0 if arr['m_36'] == None else arr['m_36'],
+        'yr_3':  0 if arr['yr_3'] == None else arr['yr_3']
     }
 
 
@@ -262,49 +310,49 @@ def attach_table(computation, key, data):
 def sum_tables(array_1, array_2):
     return {
         # yr1
-        'm_01': array_1['m_01'] + array_2['m_01'],
-        'm_02': array_1['m_02'] + array_2['m_02'],
-        'm_03': array_1['m_03'] + array_2['m_03'],
-        'm_04': array_1['m_04'] + array_2['m_04'],
-        'm_05': array_1['m_05'] + array_2['m_05'],
-        'm_06': array_1['m_06'] + array_2['m_06'],
-        'm_07': array_1['m_07'] + array_2['m_07'],
-        'm_08': array_1['m_08'] + array_2['m_08'],
-        'm_09': array_1['m_09'] + array_2['m_09'],
-        'm_10': array_1['m_10'] + array_2['m_10'],
-        'm_11': array_1['m_11'] + array_2['m_11'],
-        'm_12': array_1['m_12'] + array_2['m_12'],
-        'yr_1': array_1['yr_1'] + array_2['yr_1'],
+        'm_01': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_02': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_03': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_04': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_05': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_06': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_07': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_08': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_09': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_10': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_11': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_12': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'yr_1': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
 
         # yr2
-        'm_13': array_1['m_13'] + array_2['m_13'],
-        'm_14': array_1['m_14'] + array_2['m_14'],
-        'm_15': array_1['m_15'] + array_2['m_15'],
-        'm_16': array_1['m_16'] + array_2['m_16'],
-        'm_17': array_1['m_17'] + array_2['m_17'],
-        'm_18': array_1['m_18'] + array_2['m_18'],
-        'm_19': array_1['m_19'] + array_2['m_19'],
-        'm_20': array_1['m_20'] + array_2['m_20'],
-        'm_21': array_1['m_21'] + array_2['m_21'],
-        'm_22': array_1['m_22'] + array_2['m_22'],
-        'm_23': array_1['m_23'] + array_2['m_23'],
-        'm_24': array_1['m_24'] + array_2['m_24'],
-        'yr_2': array_1['yr_2'] + array_2['yr_2'],
+        'm_13': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_14': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_15': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_16': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_17': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_18': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_19': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_20': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_21': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_22': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_23': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_24': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'yr_2': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
 
         # yr3
-        'm_25': array_1['m_25'] + array_2['m_25'],
-        'm_26': array_1['m_26'] + array_2['m_26'],
-        'm_27': array_1['m_27'] + array_2['m_27'],
-        'm_28': array_1['m_28'] + array_2['m_28'],
-        'm_29': array_1['m_29'] + array_2['m_29'],
-        'm_30': array_1['m_30'] + array_2['m_30'],
-        'm_31': array_1['m_31'] + array_2['m_31'],
-        'm_32': array_1['m_32'] + array_2['m_32'],
-        'm_33': array_1['m_33'] + array_2['m_33'],
-        'm_34': array_1['m_34'] + array_2['m_34'],
-        'm_35': array_1['m_35'] + array_2['m_35'],
-        'm_36': array_1['m_36'] + array_2['m_36'],
-        # 'yr_3': array_1['yr_3'] + array_2['yr_3'], #BUG: Fix to support.
+        'm_25': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_26': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_27': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_28': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_29': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_30': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_31': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_32': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_33': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_34': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_35': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'm_36': 0 if array_1['m_01'] == None else array_1['m_01'] + 0 if array_2['m_01'] == None else array_2['m_01'],
+        'yr_3': array_1['yr_3'] + array_2['yr_3']
     }
 
 def get_net_profit(array_1, array_2):
@@ -352,7 +400,7 @@ def get_net_profit(array_1, array_2):
         'm_34': array_1['gross_profit_m34'] - array_2['m_34'],
         'm_35': array_1['gross_profit_m35'] - array_2['m_35'],
         'm_36': array_1['gross_profit_m36'] - array_2['m_36'],
-        # 'yr_3': array_1['gross_profit_yr3'] - array_2['yr_3'], #BUG: Fix to support.
+        'yr_3': array_1['gross_profit_yr3'] - array_2['yr_3']
     }
 
 
