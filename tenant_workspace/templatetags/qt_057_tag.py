@@ -58,12 +58,28 @@ def matrix_add_by(arr1, arr2):
 
 
 def matrix_divide_by(arr1, arr2):
-    return {
-        'yr1': arr1['yr1'] / arr2['yr1'],
-        "yr2": arr1['yr2'] / arr2['yr2'],
-        "yr3": arr1['yr3'] / arr2['yr3'],
-        "total": arr1['total'] / arr2['total']
-    }
+    computation = {}
+    try:
+        computation['yr1'] = arr1['yr1'] / arr2['yr1'],
+    except ZeroDivisionError:
+        computation['yr1'] = 0
+
+    try:
+        computation['yr2'] = arr1['yr2'] / arr2['yr2'],
+    except ZeroDivisionError:
+        computation['yr1'] = 0
+
+    try:
+        computation['yr3'] = arr1['yr3'] / arr2['yr3'],
+    except ZeroDivisionError:
+        computation['yr3'] = 0
+
+    try:
+        computation['total'] = arr1['total'] / arr2['total'],
+    except ZeroDivisionError:
+        computation['total'] = 0
+
+    return computation
 
 
 def calculate_revenue(forcast, units_sold):
