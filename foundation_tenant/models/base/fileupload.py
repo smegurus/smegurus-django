@@ -4,22 +4,22 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from smegurus.settings import env_var
 
-class TenantFileUploadManager(models.Manager):
+class FileUploadManager(models.Manager):
     def delete_all(self):
-        items = TenantFileUpload.objects.all()
+        items = FileUpload.objects.all()
         for item in items.all():
             item.delete()
 
 
-class TenantFileUpload(models.Model):
+class FileUpload(models.Model):
     """A file uploaded object restricted to specific tenants only."""
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'smeg_tenant_file_uploads'
+        db_table = 'smeg_file_uploads'
         verbose_name = 'File Upload'
         verbose_name_plural = 'File Uploads'
 
-    objects = TenantFileUploadManager()
+    objects = FileUploadManager()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     datafile = models.FileField(
@@ -57,4 +57,4 @@ class TenantFileUpload(models.Model):
             if default_storage.exists(str(self.datafile)):
                 default_storage.delete(str(self.datafile))
 
-        super(TenantFileUpload, self).delete(*args, **kwargs) # Call the "real" delete() method
+        super(FileUpload, self).delete(*args, **kwargs) # Call the "real" delete() method

@@ -9,7 +9,7 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from smegurus import constants
 
 
@@ -57,7 +57,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantImageUpload.objects.delete_all()
+        ImageUpload.objects.delete_all()
         TenantMe.objects.delete_all()
         items = User.objects.all()
         for item in items.all():

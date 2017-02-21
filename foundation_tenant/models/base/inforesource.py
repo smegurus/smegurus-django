@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.imageupload import TenantImageUpload
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
@@ -53,7 +53,7 @@ class InfoResource(AbstractThing):
         db_index=True,
     )
     uploads = models.ManyToManyField(
-        TenantFileUpload,
+        FileUpload,
         help_text=_('The files uploaded by a User.'),
         blank=True,
         related_name='info_resources_uploads_%(app_label)s_%(class)s_related',

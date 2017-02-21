@@ -4,22 +4,22 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.me import TenantMe
 
 
-class TenantVisitorManager(models.Manager):
+class VisitorManager(models.Manager):
     def delete_all(self):
-        items = TenantVisitor.objects.all()
+        items = Visitor.objects.all()
         for item in items.all():
             item.delete()
 
 
-class TenantVisitor(models.Model):
+class Visitor(models.Model):
     """The model used to store what URL location was visted and from what User/IP."""
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'smeg_tenant_visitors'
-        verbose_name = 'Tenant Visitor'
-        verbose_name_plural = 'Tenant Visitors'
+        db_table = 'smeg_visitors'
+        verbose_name = 'Visitor'
+        verbose_name_plural = 'Visitors'
 
-    objects = TenantVisitorManager()
+    objects = VisitorManager()
     created = models.DateTimeField(auto_now_add=True)
     me = models.ForeignKey(
         TenantMe,

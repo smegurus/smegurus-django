@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
-class TenantImageUploadManager(models.Manager):
+class ImageUploadManager(models.Manager):
     def delete_all(self):
-        items = TenantImageUpload.objects.all()
+        items = ImageUpload.objects.all()
         for item in items.all():
             item.delete()
 
 
-class TenantImageUpload(models.Model):
+class ImageUpload(models.Model):
     """
     An image upload file restricted to specific tenants only.
 
@@ -19,11 +19,11 @@ class TenantImageUpload(models.Model):
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'smeg_tenant_image_uploads'
+        db_table = 'smeg_image_uploads'
         verbose_name = 'Image Upload'
         verbose_name_plural = 'Image Uploads'
 
-    objects = TenantImageUploadManager()
+    objects = ImageUploadManager()
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     imagefile = models.ImageField(
@@ -54,4 +54,4 @@ class TenantImageUpload(models.Model):
     #     if self.imagefile:
     #         if os.path.isfile(self.imagefile.path):
     #             os.remove(self.imagefile.path)
-    #     super(TenantImageUpload, self).delete(*args, **kwargs) # Call the "real" delete() method
+    #     super(ImageUpload, self).delete(*args, **kwargs) # Call the "real" delete() method

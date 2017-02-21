@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.calendarevent import CalendarEvent
@@ -134,7 +134,7 @@ class Task(AbstractThing):
     # Upload Task Fields   #
     #----------------------#
     uploads = models.ManyToManyField(
-        TenantFileUpload,
+        FileUpload,
         help_text=_('The files uploaded by a User.'),
         blank=True,
         related_name='task_uploads_%(app_label)s_%(class)s_related',

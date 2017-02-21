@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 
 
 class BrandManager(models.Manager):
@@ -25,7 +25,7 @@ class Brand(AbstractThing):
 
     objects = BrandManager()
     logo = models.ForeignKey(
-        TenantImageUpload,
+        ImageUpload,
         help_text=_('An associated logo.'),
         null=True,
         blank=True,

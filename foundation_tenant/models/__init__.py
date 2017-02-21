@@ -1,8 +1,8 @@
 #------------
 #    BASE
 #------------
-from foundation_tenant.models.base.fileupload import TenantFileUpload
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.fileupload import FileUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.models.base.abstract_creativework import AbstractCreativeWork
 from foundation_tenant.models.base.abstract_mediaobject import AbstractMediaObject
@@ -39,7 +39,7 @@ from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
-from foundation_tenant.models.base.visitor import TenantVisitor
+from foundation_tenant.models.base.visitor import Visitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
 from foundation_tenant.models.base.notification import Notification

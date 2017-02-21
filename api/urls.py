@@ -29,8 +29,8 @@ from api.views.foundation_public.functionviewset import IsEmailUniqueViewSet
 from api.views.foundation_public.functionviewset import IsOrganizationSchemaNameUniqueViewSet
 
 # TENANT - BASE
-from api.views.foundation_tenant_base.tenantfileuploadviewset import TenantFileUploadViewSet
-from api.views.foundation_tenant_base.tenantimageuploadviewset import TenantImageUploadViewSet
+from api.views.foundation_tenant_base.tenantfileuploadviewset import FileUploadViewSet
+from api.views.foundation_tenant_base.tenantimageuploadviewset import ImageUploadViewSet
 from api.views.foundation_tenant_base.countryoptionviewset import TenantCountryOptionViewSet
 from api.views.foundation_tenant_base.provinceoptionviewset import TenantProvinceOptionViewSet
 from api.views.foundation_tenant_base.cityoptionviewset import TenantCityOptionViewSet
@@ -90,8 +90,8 @@ router.register(r'publicorganizationregistration', PublicOrganizationRegistratio
 router.register(r'publicorganization', PublicOrganizationViewSet)
 
 # TENANT - BASE
-router.register(r'tenantfileupload', TenantFileUploadViewSet)
-router.register(r'tenantimageupload', TenantImageUploadViewSet)
+router.register(r'tenantfileupload', FileUploadViewSet)
+router.register(r'tenantimageupload', ImageUploadViewSet)
 router.register(r'tenantcountryoption', TenantCountryOptionViewSet)
 router.register(r'tenantprovinceoption', TenantProvinceOptionViewSet)
 router.register(r'tenantcityoption', TenantCityOptionViewSet)

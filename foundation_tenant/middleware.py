@@ -3,8 +3,8 @@ from django.utils import timezone
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.base.imageupload import TenantImageUpload
-from foundation_tenant.models.base.visitor import TenantVisitor
+from foundation_tenant.models.base.imageupload import ImageUpload
+from foundation_tenant.models.base.visitor import Visitor
 
 
 class TenantTimezoneMiddleware(object):
@@ -54,7 +54,7 @@ class TenantMeMiddleware(object):
                         owner=request.user,
                         name='User #' + str(request.user.id) + ' Contact Point',
                     )
-                    tenant_me.image = TenantImageUpload.objects.create(
+                    tenant_me.image = ImageUpload.objects.create(
                         owner=request.user,
                     )
 
@@ -67,7 +67,7 @@ class TenantMeMiddleware(object):
         return self.get_response(request)
 
 
-class TenantVisitorMiddleware(object):
+class VisitorMiddleware(object):
     """The purpose of this middleware is to save what the User sees."""
 
     def __init__(self, get_response):
@@ -76,7 +76,7 @@ class TenantVisitorMiddleware(object):
     def __call__(self, request):
         if not request.tenant.schema_name in ['public', 'test']:
             if request.user.is_authenticated():
-                TenantVisitor.objects.create(
+                Visitor.objects.create(
                     me=request.tenant_me,
                     path=request.path,
                     ip_address=request.ip_address

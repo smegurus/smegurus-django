@@ -1,8 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.imageupload import TenantImageUpload
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from smegurus import constants
 
 

@@ -9,7 +9,7 @@ from django.core.management import call_command
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
 from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.docxpresso_utils import DocxspressoAPI

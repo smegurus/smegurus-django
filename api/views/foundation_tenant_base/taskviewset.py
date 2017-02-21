@@ -17,7 +17,7 @@ from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission
 from api.serializers.foundation_tenant_base import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from api.serializers.misc import DateTimeSerializer, IntegerSerializer
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
@@ -290,7 +290,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             if serializer.is_valid():
                 # Lookup file.
                 upload_id = serializer.data['value']
-                file_upload = TenantFileUpload.objects.get(id=upload_id)
+                file_upload = FileUpload.objects.get(id=upload_id)
 
                 # Attach file.
                 task = self.get_object()

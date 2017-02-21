@@ -8,8 +8,8 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.base.fileupload import TenantFileUpload
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.fileupload import FileUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
 from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.language import Language
@@ -43,7 +43,7 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.base.visitor import TenantVisitor
+from foundation_tenant.models.base.visitor import Visitor
 
 
 TEST_USER_EMAIL = "ledo@gah.com"

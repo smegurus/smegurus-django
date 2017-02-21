@@ -17,7 +17,7 @@ from foundation_tenant.models.base.inforesourcecategory import InfoResourceCateg
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from smegurus import constants
 
 
@@ -90,7 +90,7 @@ class InfoResourceCategoryAPIWithTenantSchemaTestCase(APITestCase, FastTenantTes
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         InfoResourceCategory.objects.delete_all()
-        TenantFileUpload.objects.delete_all()
+        FileUpload.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():

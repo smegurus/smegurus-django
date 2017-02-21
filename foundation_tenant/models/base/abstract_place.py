@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.geocoordinate import GeoCoordinate
 from foundation_tenant.models.base.openinghoursspecification import OpeningHoursSpecification
@@ -67,7 +67,7 @@ class AbstractPlace(AbstractThing):
         null=True,
     )
     logo = models.ForeignKey(
-        TenantImageUpload,
+        ImageUpload,
         help_text=_('An associated logo.'),
         null=True,
         blank=True,
@@ -81,7 +81,7 @@ class AbstractPlace(AbstractThing):
         related_name='place_hours_available_%(app_label)s_%(class)s_related',
     )
     photo = models.ForeignKey(
-        TenantImageUpload,
+        ImageUpload,
         help_text=_('A photograph of this place.'),
         null=True,
         blank=True,

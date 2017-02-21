@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 
 
 class AbstractThing(models.Model):
@@ -38,7 +38,7 @@ class AbstractThing(models.Model):
         default='',
     )
     image = models.ForeignKey(
-        TenantImageUpload,
+        ImageUpload,
         help_text=_('An image of the item.'),
         null=True,
         blank=True,

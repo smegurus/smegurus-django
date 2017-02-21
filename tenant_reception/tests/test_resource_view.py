@@ -19,7 +19,7 @@ from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.inforesource import InfoResource
-from foundation_tenant.models.base.visitor import TenantVisitor
+from foundation_tenant.models.base.visitor import Visitor
 from smegurus import constants
 
 

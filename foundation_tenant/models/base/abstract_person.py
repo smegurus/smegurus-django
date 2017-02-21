@@ -6,7 +6,7 @@ from foundation_tenant.models.base.place import Place
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.country import Country
 from foundation_tenant.models.base.brand import Brand
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 
 
 class AbstractPerson(AbstractThing):

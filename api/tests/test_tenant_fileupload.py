@@ -15,7 +15,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_public.models.banned import BannedIP
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
@@ -27,7 +27,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class APIFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -61,7 +61,7 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APITenantFileUploadWithTenantSchemaTestCase, self).setUp()
+        super(APIFileUploadWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -71,10 +71,10 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         self.unauthorized_client = TenantClient(self.tenant)
         self.authorized_client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
 
-        TenantFileUpload.objects.bulk_create([
-            TenantFileUpload(owner=self.user),
-            TenantFileUpload(owner=self.user),
-            TenantFileUpload(owner=self.user),
+        FileUpload.objects.bulk_create([
+            FileUpload(owner=self.user),
+            FileUpload(owner=self.user),
+            FileUpload(owner=self.user),
         ])
 
         # Above taken from:
@@ -82,14 +82,14 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def tearDown(self):
-        TenantFileUpload.objects.delete_all()
+        FileUpload.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APITenantFileUploadWithTenantSchemaTestCase, self).tearDown()
+        # super(APIFileUploadWithTenantSchemaTestCase, self).tearDown()
 
     def _create_test_file(self, path):
         """
@@ -106,7 +106,7 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_to_string(self):
         # Create a new object with our specific test data.
-        entry = TenantFileUpload.objects.create(
+        entry = FileUpload.objects.create(
             id=2030,
             owner=self.user,
         )
@@ -175,12 +175,12 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put(self):
         # Delete any previous data.
-        uploads = TenantFileUpload.objects.all()
+        uploads = FileUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Create a new object with our specific test data.
-        TenantFileUpload.objects.create(id=1,)
+        FileUpload.objects.create(id=1,)
 
         # Run the test.
         url = reverse('tenantfileupload-list')+'1/'
@@ -190,12 +190,12 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_authorization(self):
         # Delete any previous data.
-        uploads = TenantFileUpload.objects.all()
+        uploads = FileUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Create a new object with our specific test data.
-        TenantFileUpload.objects.create(id=1, owner_id=self.user.id,)
+        FileUpload.objects.create(id=1, owner_id=self.user.id,)
         data = {
             'id': 1,
             'owner': self.user.id
@@ -218,12 +218,12 @@ class APITenantFileUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_authentication(self):
         # Step 1: Delete any previous data.
-        uploads = TenantFileUpload.objects.all()
+        uploads = FileUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Step 2: Set the location variables.
-        TenantFileUpload.objects.create(id=1, owner_id=self.user.id,)
+        FileUpload.objects.create(id=1, owner_id=self.user.id,)
         url = reverse('tenantfileupload-list')+'1/'
 
         # Step 3: Test & verify.

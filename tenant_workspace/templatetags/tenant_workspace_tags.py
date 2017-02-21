@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import get_object_or_404
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.naicsoption import NAICSOption
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.bizmula.question import Question
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 from smegurus import constants
@@ -192,7 +192,7 @@ def render_question_type_011(workspace, module, node, question, answer):
     upload_id = answer.content.get('var_2', None)
     if upload_id:
         upload_id = int_or_none(upload_id)
-        imageupload = TenantImageUpload.objects.get(id=upload_id)
+        imageupload = ImageUpload.objects.get(id=upload_id)
 
     return {
         'workspace': workspace,
@@ -516,7 +516,7 @@ def render_question_type_023(workspace, module, node, question, answer):
     imageupload = None
     upload_id = answer.content.get('var_2', None)
     if upload_id:
-        imageupload = TenantImageUpload.objects.get(id=upload_id)
+        imageupload = ImageUpload.objects.get(id=upload_id)
 
     return {
         'workspace': workspace,
@@ -1204,7 +1204,7 @@ def render_question_type_061(workspace, module, node, question, answer):
     imageupload = None
     upload_id = answer.content.get('var_2', None)
     if upload_id:
-        imageupload = TenantImageUpload.objects.get(id=upload_id)
+        imageupload = ImageUpload.objects.get(id=upload_id)
 
     return {
         'workspace': workspace,

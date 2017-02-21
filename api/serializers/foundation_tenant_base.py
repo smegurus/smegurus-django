@@ -10,8 +10,8 @@ from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.base.fileupload import TenantFileUpload
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.fileupload import FileUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.naicsoption import NAICSOption
 from foundation_tenant.models.base.language import Language
 from foundation_tenant.models.base.postaladdress import PostalAddress
@@ -37,7 +37,7 @@ from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
-from foundation_tenant.models.base.visitor import TenantVisitor
+from foundation_tenant.models.base.visitor import Visitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
 from foundation_tenant.models.base.notification import Notification
@@ -51,15 +51,15 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('username', 'email', 'groups')
 
 
-class TenantImageUploadSerializer(serializers.ModelSerializer):
+class ImageUploadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TenantImageUpload
+        model = ImageUpload
         fields = ('id', 'imagefile', 'created', 'last_modified', 'owner',)
 
 
-class TenantFileUploadSerializer(serializers.ModelSerializer):
+class FileUploadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TenantFileUpload
+        model = FileUpload
         fields = ('id', 'datafile', 'created', 'last_modified', 'owner',)
 
 

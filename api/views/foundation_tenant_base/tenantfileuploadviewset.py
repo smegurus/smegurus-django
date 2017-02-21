@@ -5,26 +5,26 @@ from rest_framework import permissions
 from rest_framework import filters
 from api.permissions import IsOwnerOrReadOnly
 from api.pagination import LargeResultsSetPagination
-from api.serializers.foundation_tenant_base import TenantFileUploadSerializer
-from foundation_tenant.models.base.fileupload import TenantFileUpload
+from api.serializers.foundation_tenant_base import FileUploadSerializer
+from foundation_tenant.models.base.fileupload import FileUpload
 
 
-class TenantFileUploadFilter(django_filters.FilterSet):
+class FileUploadFilter(django_filters.FilterSet):
     class Meta:
-        model = TenantFileUpload
+        model = FileUpload
         fields = ['created','last_modified','owner',]
 
 
-class TenantFileUploadViewSet(viewsets.ModelViewSet):
-    queryset = TenantFileUpload.objects.all()
-    serializer_class = TenantFileUploadSerializer
+class FileUploadViewSet(viewsets.ModelViewSet):
+    queryset = FileUpload.objects.all()
+    serializer_class = FileUploadSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
-    filter_class = TenantFileUploadFilter
+    filter_class = FileUploadFilter
 
     def perform_create(self, serializer):
-        """Add owner to the TenantFileUpload when being created for the first time"""
+        """Add owner to the FileUpload when being created for the first time"""
         # Include the owner attribute directly, rather than from request data.
         instance = serializer.save(
             owner=self.request.user,

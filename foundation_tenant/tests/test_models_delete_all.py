@@ -8,8 +8,8 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.base.fileupload import TenantFileUpload
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.fileupload import FileUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
 from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.language import Language
@@ -43,7 +43,7 @@ from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.base.visitor import TenantVisitor
+from foundation_tenant.models.base.visitor import Visitor
 from foundation_tenant.models.base.inforesource import InfoResource
 
 
@@ -644,10 +644,10 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_tenant_visitor_delete_all(self):
         # Setup our unit test.
-        count = TenantVisitor.objects.all().count()
+        count = Visitor.objects.all().count()
         self.assertEqual(count, 0)
-        TenantVisitor.objects.bulk_create([
-            TenantVisitor(
+        Visitor.objects.bulk_create([
+            Visitor(
                 id = 1111,
                 me=TenantMe.objects.create(
                     id = 1111,
@@ -656,7 +656,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 path="/en/",
                 ip_address="127.0.0.1"
             ),
-            TenantVisitor(
+            Visitor(
                 id = 2222,
                 me = TenantMe.objects.create(
                     id = 1112,
@@ -665,7 +665,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 path="/en/",
                 ip_address="127.0.0.1"
             ),
-            TenantVisitor(
+            Visitor(
                 id = 3333,
                 me = TenantMe.objects.create(
                     id = 1113,
@@ -674,7 +674,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 path="/en/",
                 ip_address="127.0.0.1"
             ),
-            TenantVisitor(
+            Visitor(
                 id = 4444,
                 me = TenantMe.objects.create(
                     id = 1114,
@@ -683,7 +683,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 path="/en/",
                 ip_address="127.0.0.1"
             ),
-            TenantVisitor(
+            Visitor(
                 id = 5555,
                 me = TenantMe.objects.create(
                     id = 1115,
@@ -693,12 +693,12 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
                 ip_address="127.0.0.1"
             ),
         ])
-        count = TenantVisitor.objects.all().count()
+        count = Visitor.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        TenantVisitor.objects.delete_all()
-        count = TenantVisitor.objects.all().count()
+        Visitor.objects.delete_all()
+        count = Visitor.objects.all().count()
         self.assertEqual(count, 0)
 
         # Cleanup

@@ -17,7 +17,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from api.views import authentication
 from foundation_public.models.banned import BannedIP
-from foundation_tenant.models.base.imageupload import TenantImageUpload
+from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.me import TenantMe
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
@@ -29,7 +29,7 @@ TEST_USER_USERNAME = "ledo"
 TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 
 
-class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class APIImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -63,7 +63,7 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APITenantImageUploadWithTenantSchemaTestCase, self).setUp()
+        super(APIImageUploadWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -77,23 +77,23 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         # http://www.django-rest-framework.org/api-guide/testing/#authenticating
 
         # Initialize our test data.
-        TenantImageUpload.objects.bulk_create([
-            TenantImageUpload(owner=self.user),
-            TenantImageUpload(owner=self.user),
-            TenantImageUpload(owner=self.user),
+        ImageUpload.objects.bulk_create([
+            ImageUpload(owner=self.user),
+            ImageUpload(owner=self.user),
+            ImageUpload(owner=self.user),
         ])
 
     @transaction.atomic
     def tearDown(self):
         """Delete all the images we uploaded for this Test"""
-        TenantImageUpload.objects.delete_all()
+        ImageUpload.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         TenantMe.objects.delete_all()            
         users = User.objects.all()
         for user in users.all():
             user.delete()
-        # super(APITenantImageUploadWithTenantSchemaTestCase, self).tearDown()
+        # super(APIImageUploadWithTenantSchemaTestCase, self).tearDown()
 
     def _create_test_image(self, path):
         # Create the image.
@@ -110,7 +110,7 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_to_string(self):
         # Create a new object with our specific test data.
-        upload = TenantImageUpload.objects.create(
+        upload = ImageUpload.objects.create(
             id=2030,
             owner=self.user,
         )
@@ -201,12 +201,12 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_authenticated_user(self):
         # Delete any previous data.
-        uploads = TenantImageUpload.objects.all()
+        uploads = ImageUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Create a new object with our specific test data.
-        TenantImageUpload.objects.create(id=1, owner_id=self.user.id,)
+        ImageUpload.objects.create(id=1, owner_id=self.user.id,)
 
         # Run the test.
         url = reverse('tenantimageupload-list')+'1/'
@@ -226,16 +226,16 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         token = Token.objects.get(user=user)
 
         # Perform this unit test.
-        # Step 1: Log in and get the first TenantImageUpload object.
+        # Step 1: Log in and get the first ImageUpload object.
         client = TenantClient(self.tenant, HTTP_AUTHORIZATION='Token ' + token.key)
 
         # Delete any previous data.
-        uploads = TenantImageUpload.objects.all()
+        uploads = ImageUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Create a new object with our specific test data.
-        TenantImageUpload.objects.create(id=1, owner_id=self.user.id,)
+        ImageUpload.objects.create(id=1, owner_id=self.user.id,)
 
         # Run the test.
         url = reverse('tenantimageupload-list')+'1/'
@@ -259,12 +259,12 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_authenticated_user(self):
         # Step 1: Delete any previous data.
-        uploads = TenantImageUpload.objects.all()
+        uploads = ImageUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Step 2: Setup variables.
-        TenantImageUpload.objects.create(id=1, owner_id=self.user.id,)
+        ImageUpload.objects.create(id=1, owner_id=self.user.id,)
         url = reverse('tenantimageupload-list')+'1/'
 
         # Step 3: Test & verify.
@@ -274,12 +274,12 @@ class APITenantImageUploadWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_different_owner(self):
         # Step 1: Delete any previous data.
-        uploads = TenantImageUpload.objects.all()
+        uploads = ImageUpload.objects.all()
         for upload in uploads.all():
             upload.delete()
 
         # Step 2: Initialize our test user.
-        TenantImageUpload.objects.create(id=1, owner_id=self.user.id,)
+        ImageUpload.objects.create(id=1, owner_id=self.user.id,)
         user = User.objects.create_user(  # Create our user.
             email='h@h.com',
             username='h@h.com',
