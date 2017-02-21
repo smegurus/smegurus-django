@@ -14,6 +14,7 @@ from foundation_public.models.language import PublicLanguage
 from foundation_public.models.openinghoursspecification import PublicOpeningHoursSpecification
 from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
+from foundation_tenant.utils import generate_hash
 from foundation_tenant.utils import int_or_none
 
 
@@ -65,7 +66,7 @@ class PublicOrganizationManager(models.Manager):
             return PublicOrganization.objects.get(pk=int_or_none(pk))
         except PublicOrganization.DoesNotExist:
             return None
-            
+
 
 class PublicOrganization(TenantMixin, AbstractPublicThing):
     """
@@ -356,6 +357,14 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         blank=True,
         null=True,
         default='America/Toronto',
+    )
+    key = models.CharField(
+        _("S3 Key"),
+        max_length=127,
+        help_text=_('The unique salt value for this Organization used in cryptographic signing.'),
+        default=generate_hash,
+        unique=True,
+        blank=True
     )
 
     def __str__(self):

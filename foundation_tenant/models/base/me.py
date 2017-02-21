@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.abstract_person import AbstractPerson
+from foundation_tenant.utils import generate_hash
 from smegurus import constants
 
 
@@ -229,6 +230,14 @@ class TenantMe(AbstractPerson):
         null=True,
         related_name="tenant_me_managed_by_%(app_label)s_%(class)s_related",
         on_delete=models.SET_NULL
+    )
+    key = models.CharField(
+        _("S3 Key"),
+        max_length=127,
+        help_text=_('The unique salt value for this User Profile used in cryptographic signing.'),
+        default=generate_hash,
+        unique=True,
+        blank=True
     )
 
     def is_entrepreneur(self):
