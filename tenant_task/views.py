@@ -14,7 +14,7 @@ from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.intake import Intake
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.calendarevent import CalendarEvent
@@ -70,7 +70,7 @@ def task_master_create_page(request):
         'sub_page': 'create',
         'type_of': int_or_none(request.GET.get('type_of')),
         'default_me': int_or_none(request.GET.get('default_me')),
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
         'tags': Tag.objects.filter(is_program=True),
         'inforesources': InfoResource.objects.all(),
     })
@@ -93,7 +93,7 @@ def task_edit_details_page(request, id):
         # Resources
         'inforesources': InfoResource.objects.all(),
         # Members.
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
     })
 
 
@@ -114,7 +114,7 @@ def task_info_details_page(request, id):
         # Resources
         'resources': InfoResource.objects.all(),
         # Members.
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
     })
 
 
@@ -135,5 +135,5 @@ def task_info_details_page(request, id):
         # Resources
         'resources': InfoResource.objects.all(),
         # Members.
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
     })

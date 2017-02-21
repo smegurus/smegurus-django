@@ -13,7 +13,7 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from tenant_configuration.decorators import tenant_configuration_required
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus import constants
 
 
@@ -41,11 +41,11 @@ def inbox_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def compose_page(request):
-    entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
-    mentors = TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
-    advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
-    managers = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
-    admins = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+    entrepreneurs = Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
+    mentors = Me.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
+    advisors = Me.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+    managers = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
+    admins = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
     return render(request, 'tenant_message/composer/generic_view.html',{
         'page': 'composer',
         'entrepreneurs': entrepreneurs,
@@ -63,12 +63,12 @@ def compose_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def specific_compose_page(request, id):
-    entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
-    mentors = TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
-    advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
-    managers = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
-    admins = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-    recipient = get_object_or_404(TenantMe,pk=id)
+    entrepreneurs = Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
+    mentors = Me.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID)
+    advisors = Me.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+    managers = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
+    admins = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+    recipient = get_object_or_404(Me,pk=id)
     return render(request, 'tenant_message/composer/specific_view.html',{
         'page': 'composer',
         'entrepreneurs': entrepreneurs,

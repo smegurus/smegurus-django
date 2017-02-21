@@ -36,7 +36,7 @@ from foundation_tenant.models.base.communitypost import CommunityPost
 from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.note import Note
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
@@ -106,7 +106,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
         user = User.objects.get(username='1')
         user.groups.add(group)
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=user,
         )
@@ -121,7 +121,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         user = User.objects.get(username='1')
         user.groups.add(group)
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=user,
         )
@@ -136,7 +136,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
         user = User.objects.get(username='1')
         user.groups.add(group)
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=user,
         )
@@ -151,7 +151,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         user = User.objects.get(username='1')
         user.groups.add(group)
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=user,
         )
@@ -166,7 +166,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         user = User.objects.get(username='1')
         user.groups.add(group)
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=user,
         )
@@ -181,7 +181,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         group = Group.objects.get(id=constants.ADVISOR_GROUP_ID)
         user = User.objects.get(username='1')
         user.groups.add(group)
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=user,
         )
@@ -193,38 +193,38 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_tenant_get_by_owner_or_none_with_success(self):
         user = User.objects.get(username='1')
-        TenantMe.objects.create(
+        Me.objects.create(
             id=999,
             owner=user,
         )
-        me = TenantMe.objects.get_by_owner_or_none(owner=user)
+        me = Me.objects.get_by_owner_or_none(owner=user)
         self.assertIsNotNone(me)
         me.delete()
 
     @transaction.atomic
     def test_tenant_me_get_by_owner_or_none_with_none(self):
-        target_me = TenantMe.objects.create(
+        target_me = Me.objects.create(
             id=666,
             owner=User.objects.get(username='1'),
         )
-        search_me = TenantMe.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
+        search_me = Me.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
         self.assertIsNone(search_me)
         target_me.delete()
 
     @transaction.atomic
     def test_calendar_event_get_by_owner_or_none_with_none(self):
-        target_me = TenantMe.objects.create(
+        target_me = Me.objects.create(
             id=666,
             owner=User.objects.get(username='1'),
         )
-        search_me = TenantMe.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
+        search_me = Me.objects.get_by_owner_or_none(owner=User.objects.get(username='2'))
         self.assertIsNone(search_me)
         target_me.delete()
 
 #TODO: IMPLEMENT
     # @transaction.atomic
     # def test_basic_task_get_absolute_url(self):
-    #     me = TenantMe.objects.create(
+    #     me = Me.objects.create(
     #         id=1,
     #         owner=User.objects.get(username='1'),
     #         name='Ice Age',

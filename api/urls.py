@@ -59,7 +59,7 @@ from api.views.foundation_tenant_base.taskviewset import TaskViewSet
 from api.views.foundation_tenant_base.inforesourcecategoryviewset import InfoResourceCategoryViewSet
 from api.views.foundation_tenant_base.inforesourceviewset import InfoResourceViewSet
 from api.views.foundation_tenant_base.functionviewset import FinalizeTenantSetupFunctionViewSet
-from api.views.foundation_tenant_base.meviewset import TenantMeViewSet
+from api.views.foundation_tenant_base.meviewset import MeViewSet
 from api.views.foundation_tenant_base.notificationviewset import NotificationViewSet
 
 # TENANT - BIZMULA
@@ -121,7 +121,7 @@ router.register(r'tenantnotification', NotificationViewSet)
 router.register(r'tenanttask', TaskViewSet)
 router.register(r'tenantinforesourcecategory', InfoResourceCategoryViewSet)
 router.register(r'tenantinforesource', InfoResourceViewSet)
-router.register(r'tenantme', TenantMeViewSet)
+router.register(r'tenantme', MeViewSet)
 
 # TENANT - BIZMULA
 router.register(r'tenantworkspace', WorkspaceViewSet)

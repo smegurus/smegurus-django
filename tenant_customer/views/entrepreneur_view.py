@@ -13,7 +13,7 @@ from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
 from foundation_public.models.organization import PublicOrganization
 from foundation_tenant.utils import int_or_none
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.intake import Intake
@@ -58,7 +58,7 @@ def master_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def details_page(request, id):
-    me = get_object_or_404(TenantMe, pk=id)
+    me = get_object_or_404(Me, pk=id)
     return render(request, 'tenant_customer/entrepreneur/details/view.html',{
         'page': 'client-entrepreneur',
         'me': me,
@@ -108,7 +108,7 @@ def create_page(request):
         owner=user,
         name='User #' + str(user.id) + ' Contact Point',
     )
-    me = TenantMe.objects.create(
+    me = Me.objects.create(
         owner=user,
         address=address,
         contact_point=contact_point,
@@ -141,7 +141,7 @@ def create_step_one_page(request, pk):
     # Render our View.
     return render(request, 'tenant_customer/entrepreneur/create/1/view.html',{
         'page': 'client-entrepreneur',
-        'me': get_object_or_404(TenantMe, pk=pk)
+        'me': get_object_or_404(Me, pk=pk)
     })
 
 
@@ -158,7 +158,7 @@ def create_step_one_page(request, pk):
 @tenant_profile_required
 @tenant_configuration_required
 def create_step_two_page(request, pk):
-    me = get_object_or_404(TenantMe, pk=pk)
+    me = get_object_or_404(Me, pk=pk)
 
     # Fetch all the provinces for this Address.
     provinces = [] if not me.address.country else ProvinceOption.objects.filter(country=me.address.country)
@@ -191,7 +191,7 @@ def create_step_two_page(request, pk):
 @tenant_profile_required
 @tenant_configuration_required
 def create_step_three_page(request, pk):
-    me = get_object_or_404(TenantMe, pk=pk)
+    me = get_object_or_404(Me, pk=pk)
     intake = get_object_or_404(Intake, me=me)
 
     # Get the first depth.
@@ -261,7 +261,7 @@ def create_step_three_page(request, pk):
 @tenant_profile_required
 @tenant_configuration_required
 def update_page(request, pk):
-    me = get_object_or_404(TenantMe, pk=pk)
+    me = get_object_or_404(Me, pk=pk)
     intake = get_object_or_404(Intake, me=me)
 
     # Fetch all the provinces for this Address.

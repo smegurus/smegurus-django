@@ -15,7 +15,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.countryoption import CountryOption
 from foundation_public.models.provinceoption import ProvinceOption
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants
@@ -80,7 +80,7 @@ class APIProvinceOptionOptionWithPublicSchemaTestCase(APITestCase, TenantTestCas
         CountryOption.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

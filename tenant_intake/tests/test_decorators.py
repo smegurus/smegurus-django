@@ -12,7 +12,7 @@ from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
 from foundation_public.models.organization import PublicOrganization
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.intake import Intake
@@ -81,7 +81,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         country = CountryOption.objects.create(id=1, name='Avalan')
         province = ProvinceOption.objects.create(id=1, name='Colony 01', country=country)
         city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country,)
-        self.me = TenantMe.objects.create(
+        self.me = Me.objects.create(
             owner=self.user,
             address=PostalAddress.objects.create(
                 country=CountryOption.objects.get(id=1),
@@ -96,7 +96,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         Intake.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         groups = Group.objects.all()
         for user in users.all():
@@ -111,7 +111,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(entrepreneur_group)
         self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
+        me, created = Me.objects.get_or_create(owner=self.user)
         me.is_in_intake=True
         me.save()
 
@@ -127,7 +127,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
         entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(entrepreneur_group)
         self.user.save()
-        me, created = TenantMe.objects.get_or_create(owner=self.user)
+        me, created = Me.objects.get_or_create(owner=self.user)
         me.is_in_intake=False
         me.save()
 
@@ -147,7 +147,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 #        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
 #        self.user.groups.add(entrepreneur_group)
 #        self.user.save()
-#        me, created = TenantMe.objects.get_or_create(owner=self.user)
+#        me, created = Me.objects.get_or_create(owner=self.user)
 #        me.is_in_intake=True
 #        me.save()
 #
@@ -168,7 +168,7 @@ class TenantIntakeDecoratorWithTenantSchemaTestCase(APITestCase, TenantTestCase)
 #        entrepreneur_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
 #        self.user.groups.add(entrepreneur_group)
 #        self.user.save()
-#        me, created = TenantMe.objects.get_or_create(owner=self.user)
+#        me, created = Me.objects.get_or_create(owner=self.user)
 #        me.is_in_intake=False
 #        me.save()
 #

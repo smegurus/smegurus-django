@@ -17,7 +17,7 @@ from api.permissions import IsOwnerOrIsAnEmployee
 from api.serializers.foundation_tenant_base  import CalendarEventSerializer
 from api.serializers.misc  import IntegerSerializer
 from foundation_tenant.models.base.calendarevent import CalendarEvent
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.tag import Tag
 from smegurus.settings import env_var
 from smegurus import constants
@@ -96,7 +96,7 @@ class CalendarEventViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         # assign the Users from each group into this event.
         if calendar_event.type_of == constants.CALENDAR_EVENT_BY_TAG_TYPE:
             for tag in calendar_event.tags.all():
-                me = TenantMe.objects.get(tags__id=tag.id)
+                me = Me.objects.get(tags__id=tag.id)
                 calendar_event.pending.add(me)
 
         self.send_notification(calendar_event)  # Send notification to all users.

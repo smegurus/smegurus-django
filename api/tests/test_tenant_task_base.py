@@ -14,7 +14,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from api.views import authentication
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -95,7 +95,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Task.objects.delete_all()
         SortedLogEventByCreated.objects.delete_all()
         SortedCommentPostByCreated.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -108,7 +108,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_list_with_authenticated_user(self):
-        me = TenantMe.objects.create(  # Create our models.
+        me = Me.objects.create(  # Create our models.
             id=1,
             owner=self.user,
         )
@@ -122,7 +122,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -142,7 +142,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_with_authenticated_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -162,7 +162,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -188,7 +188,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_put_with_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -215,7 +215,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_by_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -230,7 +230,7 @@ class APITaskBaseWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_by_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )

@@ -18,7 +18,7 @@ from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission
 from api.serializers.foundation_tenant_base import TaskSerializer, SortedLogEventByCreatedSerializer, SortedCommentPostByCreatedSerializer
 from api.serializers.misc import DateTimeSerializer, IntegerSerializer
 from foundation_tenant.models.base.fileupload import FileUpload
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -109,7 +109,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         if task.type_of == constants.TASK_BY_TAG_TYPE:
             for tag in task.tags.all():
                 try:
-                    me = TenantMe.objects.get(tags__id=tag.id)
+                    me = Me.objects.get(tags__id=tag.id)
                     task.opening.add(me)
                 except Exception as e:
                     pass
@@ -126,7 +126,7 @@ class TaskViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         task.log_events.add(log_event)
 
     def perform_update(self, serializer):
-        """Update "TenantMe" model and its associated models."""
+        """Update "Me" model and its associated models."""
         task = serializer.save()  # Update the 'Task' model.
 
         # Add myself to the participants.

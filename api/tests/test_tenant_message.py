@@ -15,7 +15,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants
@@ -85,7 +85,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Message.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -128,7 +128,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         recipient_user.is_active = True
         recipient_user.save()
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             owner=recipient_user
         )
 
@@ -172,7 +172,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_original_sender(self):
         # Create our sender.
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             owner=self.user,
         )
 
@@ -184,7 +184,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         recipient_user.is_active = True
         recipient_user.save()
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             owner=recipient_user
         )
 
@@ -214,7 +214,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put_with_different_sender(self):
         # Create our CURRENT sender.
-        TenantMe.objects.create(
+        Me.objects.create(
             owner=self.user,
         )
 
@@ -226,7 +226,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             owner=sender_user
         )
 
@@ -238,7 +238,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         recipient_user.is_active = True
         recipient_user.save()
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             owner=recipient_user
         )
 
@@ -267,7 +267,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_anonymous_user(self):
         # Create our CURRENT sender.
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             owner=self.user,
         )
 
@@ -290,7 +290,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_sender(self):
         # Create our SENDER user.
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             owner=self.user,
         )
 
@@ -302,7 +302,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         recipient_user.is_active = True
         recipient_user.save()
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             owner=recipient_user
         )
 
@@ -326,7 +326,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_recipient(self):
         # Create our CURRENT sender.
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             owner=self.user,
         )
 
@@ -338,7 +338,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             owner=sender_user
         )
 
@@ -362,7 +362,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_delete_with_different_sender(self):
         # Create our CURRENT sender.
-        TenantMe.objects.create(
+        Me.objects.create(
             owner=self.user,
         )
 
@@ -374,7 +374,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             owner=sender_user
         )
 
@@ -386,7 +386,7 @@ class APIMessageWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         )
         recipient_user.is_active = True
         recipient_user.save()
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             owner=recipient_user
         )
 

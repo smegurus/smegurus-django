@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -93,7 +93,7 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
         Task.objects.delete_all()
         SortedLogEventByCreated.objects.delete_all()
         SortedCommentPostByCreated.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -109,7 +109,7 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_task_master_page_with_data(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -139,7 +139,7 @@ class TenantTaskTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_task_edit_details_page(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,

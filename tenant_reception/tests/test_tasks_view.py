@@ -10,11 +10,11 @@ from django_tenants.test.client import TenantClient
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -94,7 +94,7 @@ class TenantReceptionTaskTestCases(APITestCase, TenantTestCase):
         self.tenant.save()
 
         # Setup User.
-        self.me = TenantMe.objects.create(
+        self.me = Me.objects.create(
             id=666,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -107,7 +107,7 @@ class TenantReceptionTaskTestCases(APITestCase, TenantTestCase):
         Task.objects.delete_all()
         SortedLogEventByCreated.objects.delete_all()
         SortedCommentPostByCreated.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

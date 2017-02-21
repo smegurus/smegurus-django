@@ -8,7 +8,7 @@ from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.tag import Tag
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.utils import get_pretty_formatted_date
@@ -87,15 +87,15 @@ def render_entrepreneurs_aggregate_widget(me):
 
     if me.is_org_admin():
         title = "Total Clients"
-        count = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID).count()
+        count = Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID).count()
 
     elif me.is_manager():
         title = "Total Clients"
-        count = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID).count()
+        count = Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID).count()
 
     elif me.is_advisor():
         title = "Total Assigned Clients"
-        count = TenantMe.objects.filter(
+        count = Me.objects.filter(
             owner__groups__id=constants.ENTREPRENEUR_GROUP_ID,
             managed_by=me
         ).count()
@@ -144,7 +144,7 @@ def render_tags_widget(me):
         # Iterate through all Tags in our system.
         for tag in tags.all():
             # Fetch all the entrepreneurs that belong to this tag.
-            entrepreneurs = TenantMe.objects.filter(
+            entrepreneurs = Me.objects.filter(
                 owner__groups__id=constants.ENTREPRENEUR_GROUP_ID,
                 tags__id=tag.id,
                 managed_by=me
@@ -176,7 +176,7 @@ def render_tags_widget(me):
         # Iterate through all Tags in our system.
         for tag in tags.all():
             # Fetch all the entrepreneurs that belong to this tag.
-            entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID, tags__id=tag.id)
+            entrepreneurs = Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID, tags__id=tag.id)
 
             # Iterate through all the entrepreneurs.
             for entrepreneur in entrepreneurs.all():
@@ -212,7 +212,7 @@ def render_progress_widget(me):
 
     # Admin or Manager.
     if me.is_org_admin() or me.is_manager():
-        entrepreneurs = TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
+        entrepreneurs = Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
 
         # Iterate through all the entrepreneurs.
         for entrepreneur in entrepreneurs.all():
@@ -229,7 +229,7 @@ def render_progress_widget(me):
 
     # Advisor
     elif me.is_advisor():
-        entrepreneurs = TenantMe.objects.filter(
+        entrepreneurs = Me.objects.filter(
             owner__groups__id=constants.ENTREPRENEUR_GROUP_ID,
             managed_by=me
         )

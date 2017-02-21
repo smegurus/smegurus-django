@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants
@@ -21,7 +21,7 @@ TEST_USER_FIRST_NAME = "Ledo"
 TEST_USER_LAST_NAME = ""
 
 
-class TenantMessageTestCases(APITestCase, TenantTestCase):
+class MessageTestCases(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -69,7 +69,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English
-        super(TenantMessageTestCases, self).setUp()
+        super(MessageTestCases, self).setUp()
         # Initialize our test data.
         self.user = User.objects.get(username=TEST_USER_USERNAME)
         token = Token.objects.get(user=self.user)
@@ -91,14 +91,14 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         Message.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = Group.objects.all()
         for item in items.all():
             item.delete()
         items = User.objects.all()
         for item in items.all():
             item.delete()
-        # super(TenantMessageTestCases, self).tearDown()
+        # super(MessageTestCases, self).tearDown()
 
     @transaction.atomic
     def test_inbox_page(self):
@@ -118,7 +118,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_specific_composer_page(self):
-        recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
+        recipient, created = Me.objects.get_or_create(owner=self.user,)
         url = reverse('tenant_message_specific_composer', args=[recipient.id,])
         response = self.authorized_client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -128,7 +128,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_conversation_page(self):
         # Create our sender.
-        recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
+        recipient, created = Me.objects.get_or_create(owner=self.user,)
 
         # Create our recipient
         sender_user = User.objects.create_user(
@@ -138,7 +138,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             id=666,
             owner=sender_user
         )
@@ -163,7 +163,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_archive_conversation_page(self):
         # Create our sender.
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             id=999,
             owner=self.user,
         )
@@ -176,7 +176,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             id=666,
             owner=sender_user
         )
@@ -205,7 +205,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_archive_details_page(self):
         # Create our sender.
-        recipient = TenantMe.objects.create(
+        recipient = Me.objects.create(
             id=999,
             owner=self.user,
         )
@@ -218,7 +218,7 @@ class TenantMessageTestCases(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             id=666,
             owner=sender_user
         )

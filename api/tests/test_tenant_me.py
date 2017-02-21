@@ -13,7 +13,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.intake import Intake
@@ -27,7 +27,7 @@ TEST_USER_FIRSTNAME = "Ledo"
 TEST_USER_LASTNAME = ""
 
 
-class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
+class APIMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     fixtures = []
 
     def setup_tenant(self, tenant):
@@ -61,7 +61,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def setUp(self):
         translation.activate('en')  # Set English.
-        super(APITenantMeWithTenantSchemaTestCase, self).setUp()
+        super(APIMeWithTenantSchemaTestCase, self).setUp()
 
         # Initialize our test data.
         self.user = User.objects.get()
@@ -85,11 +85,11 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         Intake.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
-        # super(APITenantMeWithTenantSchemaTestCase, self).tearDown()
+        # super(APIMeWithTenantSchemaTestCase, self).tearDown()
 
     @transaction.atomic
     def test_list(self):
@@ -124,10 +124,10 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_put(self):
         # Delete any previous data.
-        items = TenantMe.objects.delete_all()
+        items = Me.objects.delete_all()
 
         # Create a new object with our specific test data.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -151,7 +151,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             owner=self.user,
             name='User #' + str(self.user.id) + ' Contact Point',
         )
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner_id=self.user.id,
             address=address,
@@ -183,7 +183,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             owner=self.user,
         )
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=self.user,
         )
@@ -196,7 +196,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_delete_with_authentication_case_two(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=self.user,
         )
@@ -207,7 +207,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     def test_delete_with_authentication_case_three(self):
         group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
         )
@@ -217,7 +217,7 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_admit_me_with_entrepreneur_user(self):
         # Setup our object.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
             is_in_intake=False,
@@ -230,13 +230,13 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        me = TenantMe.objects.get(id=1)
+        me = Me.objects.get(id=1)
         self.assertFalse(me.is_in_intake)
 
     @transaction.atomic
     def test_admit_me_with_org_manager_user(self):
         # Setup our object.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
             is_in_intake=False,
@@ -252,13 +252,13 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        me = TenantMe.objects.get(id=1)
+        me = Me.objects.get(id=1)
         self.assertTrue(me.is_in_intake)
 
     @transaction.atomic
     def test_expel_me_with_entrepreneur_user(self):
         # Setup our object.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
             is_in_intake=True,
@@ -271,13 +271,13 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        me = TenantMe.objects.get(id=1)
+        me = Me.objects.get(id=1)
         self.assertTrue(me.is_in_intake)
 
     @transaction.atomic
     def test_expel_me_with_org_manager_user(self):
         # Setup our object.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
             is_in_intake=True,
@@ -293,16 +293,16 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        me = TenantMe.objects.get(id=1)
+        me = Me.objects.get(id=1)
         self.assertFalse(me.is_in_intake)
 
     @transaction.atomic
     def test_unlock_with_success(self):
         # Delete any previous data.
-        items = TenantMe.objects.delete_all()
+        items = Me.objects.delete_all()
 
         # Create a new object with our specific test data.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
             is_locked=False,
@@ -324,10 +324,10 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_unlock_with_missing_password(self):
         # Delete any previous data.
-        items = TenantMe.objects.delete_all()
+        items = Me.objects.delete_all()
 
         # Create a new object with our specific test data.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -347,10 +347,10 @@ class APITenantMeWithTenantSchemaTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_unlock_with_wrong_password(self):
         # Delete any previous data.
-        items = TenantMe.objects.delete_all()
+        items = Me.objects.delete_all()
 
         # Create a new object with our specific test data.
-        TenantMe.objects.create(
+        Me.objects.create(
             id=1,
             owner=self.user,
         )

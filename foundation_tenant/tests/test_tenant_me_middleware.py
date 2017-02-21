@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.imageupload import ImageUpload
@@ -58,7 +58,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         ImageUpload.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
@@ -67,7 +67,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
     @transaction.atomic
     def test_tenantmemiddleware_with_unauthenticated_user_in_public_schema(self):
         # Verify that no "Me" objects are created.
-        self.assertEqual(TenantMe.objects.all().count(), 0)
+        self.assertEqual(Me.objects.all().count(), 0)
 
         # Run the test.
         client = TenantClient(self.tenant)
@@ -75,13 +75,13 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
         self.assertEqual(response.status_code, 200)
 
         # Verify that no "Me" objects are created.
-        self.assertEqual(TenantMe.objects.all().count(), 0)
+        self.assertEqual(Me.objects.all().count(), 0)
 
 
     @transaction.atomic
     def test_tenantmemiddleware_with_authenticated_user_in_public_schema(self):
         # Verify that no "Me" objects are created.
-        self.assertEqual(TenantMe.objects.all().count(), 0)
+        self.assertEqual(Me.objects.all().count(), 0)
 
         # Create our User and run our test.
         user = User.objects.create_user(  # Create our User.
@@ -103,7 +103,7 @@ class FoundationTenantMiddlewareWithPublicSchemaTestCase(APITestCase, TenantTest
         self.assertEqual(response.status_code, 200)
 
         # Verify
-        me = TenantMe.objects.get_by_owner_or_none(owner=user)
+        me = Me.objects.get_by_owner_or_none(owner=user)
         self.assertIsNone(me)
 
 
@@ -145,7 +145,7 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -154,7 +154,7 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
     @transaction.atomic
     def test_tenantmemiddleware_with_unauthenticated_user_in_tenant_schema(self):
         # Verify that no "Me" objects are created.
-        self.assertEqual(TenantMe.objects.all().count(), 0)
+        self.assertEqual(Me.objects.all().count(), 0)
 
         # Run the test.
         client = TenantClient(self.tenant)
@@ -162,13 +162,13 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
         self.assertEqual(response.status_code, 200)
 
         # Verify that no "Me" objects are created.
-        self.assertEqual(TenantMe.objects.all().count(), 0)
+        self.assertEqual(Me.objects.all().count(), 0)
 
 
     @transaction.atomic
     def test_tenantmemiddleware_with_authenticated_user_in_tenant_schema(self):
         # Verify that no "Me" objects are created.
-        self.assertEqual(TenantMe.objects.all().count(), 0)
+        self.assertEqual(Me.objects.all().count(), 0)
 
         # Create our User and run our test.
         user = User.objects.create_user(  # Create our User.
@@ -190,5 +190,5 @@ class FoundationTenantMiddlewareWithTenantSchemaTestCase(APITestCase, TenantTest
         self.assertEqual(response.status_code, 200)
 
         # Verify
-        me = TenantMe.objects.get_by_owner_or_none(owner=user)
+        me = Me.objects.get_by_owner_or_none(owner=user)
         self.assertIsNotNone(me)

@@ -12,7 +12,7 @@ from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.intake import Intake
@@ -93,7 +93,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
         country = CountryOption.objects.create(id=1, name='Avalan')
         province = ProvinceOption.objects.create(id=1, name='Colony 01', country=country)
         city = CityOption.objects.create(id=1, name='Megazone 23', province=province, country=country,)
-        self.me = TenantMe.objects.create(
+        self.me = Me.objects.create(
             owner=self.user,
             address=PostalAddress.objects.create(
                 country=CountryOption.objects.get(id=1),
@@ -118,7 +118,7 @@ class TenantIntakeEntrepreneurTestCases(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

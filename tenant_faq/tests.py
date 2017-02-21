@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 
@@ -84,7 +84,7 @@ class TenantFAQTestCases(APITestCase, TenantTestCase):
         self.tenant.save()
 
         # Setup User.
-        TenantMe.objects.create(
+        Me.objects.create(
             owner=self.user,
         )
 
@@ -92,7 +92,7 @@ class TenantFAQTestCases(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

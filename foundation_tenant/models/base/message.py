@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_creativework import AbstractCreativeWork
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
 class MessageManager(models.Manager):
@@ -46,7 +46,7 @@ class Message(AbstractCreativeWork):
         auto_now_add=True
     )
     recipient = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user whom this message is sent to.'),
         blank=True,
         null=True,
@@ -54,7 +54,7 @@ class Message(AbstractCreativeWork):
         on_delete=models.CASCADE
     )
     sender = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user whom this message originates from.'),
         blank=True,
         null=True,
@@ -62,7 +62,7 @@ class Message(AbstractCreativeWork):
         on_delete=models.CASCADE
     )
     participants = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who are participating in this message.'),
         blank=True,
         related_name="message_participants_%(app_label)s_%(class)s_related"

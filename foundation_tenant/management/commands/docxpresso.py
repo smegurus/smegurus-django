@@ -11,7 +11,7 @@ from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.slide import Slide
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.utils import int_or_none
 from smegurus import constants
 

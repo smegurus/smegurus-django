@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import FastTenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.inforesource import InfoResource
@@ -93,7 +93,7 @@ class TenantResourceTestCases(APITestCase, FastTenantTestCase):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
         InfoResource.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

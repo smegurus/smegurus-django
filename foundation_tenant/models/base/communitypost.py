@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
 class CommunityPostManager(models.Manager):
@@ -35,7 +35,7 @@ class CommunityPost(AbstractThing):
         related_name="community_post_likers_%(app_label)s_%(class)s_related"
     )
     me = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user whom owns this thing.'),
         blank=True,
         null=True,

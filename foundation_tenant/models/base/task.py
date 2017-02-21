@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.tag import Tag
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.calendarevent import CalendarEvent
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -61,7 +61,7 @@ class Task(AbstractThing):
         help_text=_('The date/time this task will finish.'),
     )
     assigned_by = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user whom assigned this task.'),
         blank=True,
         null=True,
@@ -69,19 +69,19 @@ class Task(AbstractThing):
         on_delete=models.CASCADE
     )
     participants = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who are participating in this task.'),
         blank=True,
         related_name="task_participants_%(app_label)s_%(class)s_related"
     )
     opening = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who are not participating in this task.'),
         blank=True,
         related_name="task_opening_%(app_label)s_%(class)s_related"
     )
     closures = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who are participating in this task.'),
         blank=True,
         related_name="task_closures_%(app_label)s_%(class)s_related"

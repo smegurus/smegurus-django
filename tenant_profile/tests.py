@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.countryoption import CountryOption
@@ -93,7 +93,7 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
         country = CountryOption.objects.create(id=1, name='Avalon')
         province = ProvinceOption.objects.create(id=1, name='Colony', country=country)
         city = CityOption.objects.create(id=1, name='Sector 666', province=province, country=country)
-        self.me = TenantMe.objects.create(
+        self.me = Me.objects.create(
             owner=self.user,
             address=PostalAddress.objects.create(
                 id=1,
@@ -116,7 +116,7 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
         CityOption.objects.delete_all()
         ProvinceOption.objects.delete_all()
         CountryOption.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -142,7 +142,7 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
     def test_locked_page(self):
         """Load up the lock page and verify User is locked afterwards"""
         # Pre-test to verify the User is NOT locked out.
-        me = TenantMe.objects.get(owner=self.user)
+        me = Me.objects.get(owner=self.user)
         self.assertFalse(me.is_locked)
 
         # Run our test.
@@ -153,14 +153,14 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
         # self.assertIn(b'Profile Settings',response.content)
 
         # Verfiy our User has been locked out.
-        me = TenantMe.objects.get(owner=self.user)
+        me = Me.objects.get(owner=self.user)
         self.assertTrue(me.is_locked)
 
     @transaction.atomic
     def test_tenant_profile_required_decorator_with_redirect(self):
         """Load up the lock page and verify User is locked afterwards"""
         # Pre-configure to lock the user out.
-        me = TenantMe.objects.get(owner=self.user)
+        me = Me.objects.get(owner=self.user)
         me.is_locked = True
         me.save()
 
@@ -183,7 +183,7 @@ class TenantProfileTestCases(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_profile_page_with_redirect_on_lockout(self):
         # Pre-configure to lock the user out.
-        me = TenantMe.objects.get(owner=self.user)
+        me = Me.objects.get(owner=self.user)
         me.is_locked = True
         me.save()
 

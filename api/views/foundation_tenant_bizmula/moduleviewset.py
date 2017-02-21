@@ -19,7 +19,7 @@ from foundation_public.utils import resolve_full_url_with_subdmain
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -45,7 +45,7 @@ class SendEmailViewMixin(object):
                 contact_list.append(org_admin_user.email)
 
                 # Assign the original admininistrator User to this unmanaged user.
-                me.managed_by = TenantMe.objects.get(owner=org_admin_user)
+                me.managed_by = Me.objects.get(owner=org_admin_user)
                 me.save()
 
         # Generate the data.

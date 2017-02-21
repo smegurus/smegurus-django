@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.forms.noteform import NoteForm
 from smegurus import constants
@@ -24,7 +24,7 @@ from smegurus import constants
     constants.SYSTEM_ADMIN_GROUP_ID,
 ])
 def entrepreneur_master_page(request, id):
-    me = get_object_or_404(TenantMe, pk=int(id))
+    me = get_object_or_404(Me, pk=int(id))
     notes = Note.objects.filter(me=me)
     return render(request, 'tenant_note/master/view.html',{
         'page': 'note',
@@ -44,7 +44,7 @@ def entrepreneur_master_page(request, id):
     constants.SYSTEM_ADMIN_GROUP_ID,
 ])
 def entrepreneur_details_page(request, me_id, note_id):
-    me = get_object_or_404(TenantMe, pk=int(me_id))
+    me = get_object_or_404(Me, pk=int(me_id))
     note = get_object_or_404(Note, pk=int(note_id))
     return render(request, 'tenant_note/details/view.html',{
         'page': 'note',
@@ -64,7 +64,7 @@ def entrepreneur_details_page(request, me_id, note_id):
     constants.SYSTEM_ADMIN_GROUP_ID,
 ])
 def entrepreneur_create_page(request, id):
-    me = get_object_or_404(TenantMe, pk=int(id))
+    me = get_object_or_404(Me, pk=int(id))
     return render(request, 'tenant_note/create/view.html',{
         'page': 'note',
         'me': me,

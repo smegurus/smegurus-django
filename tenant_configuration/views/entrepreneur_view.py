@@ -6,7 +6,7 @@ from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
 from rest_framework import status
 from foundation_public.decorators import group_required
-from foundation_tenant.forms.tenantmeform import TenantMeForm
+from foundation_tenant.forms.tenantmeform import MeForm
 from smegurus import constants
 
 
@@ -20,7 +20,7 @@ def config_entr_step_one_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_two_page(request):
     return render(request, 'tenant_configuration/entrepreneur/2_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -28,7 +28,7 @@ def config_entr_step_two_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_three_page(request):
     return render(request, 'tenant_configuration/entrepreneur/3_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -36,7 +36,7 @@ def config_entr_step_three_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_four_page(request):
     return render(request, 'tenant_configuration/entrepreneur/4_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -44,7 +44,7 @@ def config_entr_step_four_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_five_page(request):
     return render(request, 'tenant_configuration/entrepreneur/5_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -52,7 +52,7 @@ def config_entr_step_five_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_six_page(request):
     return render(request, 'tenant_configuration/entrepreneur/6_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -60,7 +60,7 @@ def config_entr_step_six_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_seven_page(request):
     return render(request, 'tenant_configuration/entrepreneur/7_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -68,7 +68,7 @@ def config_entr_step_seven_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_eight_page(request):
     return render(request, 'tenant_configuration/entrepreneur/8_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -76,7 +76,7 @@ def config_entr_step_eight_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_nine_page(request):
     return render(request, 'tenant_configuration/entrepreneur/9_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -84,7 +84,7 @@ def config_entr_step_nine_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_ten_page(request):
     return render(request, 'tenant_configuration/entrepreneur/10_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -92,7 +92,7 @@ def config_entr_step_ten_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_eleven_page(request):
     return render(request, 'tenant_configuration/entrepreneur/11_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -100,7 +100,7 @@ def config_entr_step_eleven_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_twelve_page(request):
     return render(request, 'tenant_configuration/entrepreneur/12_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })
 
 
@@ -108,5 +108,5 @@ def config_entr_step_twelve_page(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 def config_entr_step_thirteen_page(request):
     return render(request, 'tenant_configuration/entrepreneur/13_view.html',{
-        'form': TenantMeForm(instance=request.tenant_me)
+        'form': MeForm(instance=request.tenant_me)
     })

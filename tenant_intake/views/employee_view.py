@@ -9,7 +9,7 @@ from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.intake import Intake
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.cityoption import CityOption
@@ -75,7 +75,7 @@ def held_intake_master_page(request):
 @tenant_profile_required
 def pending_intake_details_page(request, id):
     intake = get_object_or_404(Intake, pk=id)
-    advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+    advisors = Me.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
     tags = Tag.objects.filter(is_program=True)
     return render(request, 'tenant_intake/employee/details/view.html',{
         'page': 'intake-pending',
@@ -100,7 +100,7 @@ def pending_intake_details_page(request, id):
 @tenant_profile_required
 def held_intake_details_page(request, id):
     intake = get_object_or_404(Intake, pk=id)
-    advisors = TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+    advisors = Me.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
     tags = Tag.objects.filter(is_program=True)
     return render(request, 'tenant_intake/employee/details/view.html',{
         'page': 'intake-held',

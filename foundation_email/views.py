@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, Group
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import condition
 from foundation_public.utils import resolve_full_url_with_subdmain
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.note import Note

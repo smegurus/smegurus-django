@@ -9,7 +9,7 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants
@@ -52,7 +52,7 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
         user.save()
 
         # Setup Profiles
-        # me = TenantMe.objects.get(owner=user)
+        # me = Me.objects.get(owner=user)
         # me.is_in_intake=True
         # me.save()
 
@@ -77,7 +77,7 @@ class FoundationAuthViewsWithPublicSchemaTestCases(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
@@ -288,7 +288,7 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         user.save()
 
         # Setup Profiles
-        # me = TenantMe.objects.get(owner=user)
+        # me = Me.objects.get(owner=user)
         # me.is_in_intake=True
         # me.save()
 
@@ -317,7 +317,7 @@ class FoundationAuthViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()

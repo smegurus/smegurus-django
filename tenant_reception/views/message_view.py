@@ -6,7 +6,7 @@ from django.utils.translation import get_language
 from django.contrib.auth.models import User, Group
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus import constants
 
 
@@ -26,7 +26,7 @@ def inbox_page(request):
 
 @login_required(login_url='/en/login')
 def compose_page(request):
-    admins = TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+    admins = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
     return render(request, 'tenant_reception/message/create/view.html',{
         'page': 'composer',
         'admins': admins,

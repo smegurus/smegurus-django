@@ -12,7 +12,7 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
@@ -33,7 +33,7 @@ from smegurus import constants
 @tenant_profile_required
 @tenant_configuration_required
 def master_page(request):
-    team_members = TenantMe.objects.filter(
+    team_members = Me.objects.filter(
         Q(owner__groups__id=constants.MENTOR_GROUP_ID) |
         Q(owner__groups__id=constants.ADVISOR_GROUP_ID) |
         Q(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID) |
@@ -113,7 +113,7 @@ def create_page(request):
         name='User #' + str(user.id) + ' Contact Point',
         telephone=telephone,
     )
-    me = TenantMe.objects.create(
+    me = Me.objects.create(
         owner=user,
         address=address,
         contact_point=contact_point,
@@ -138,7 +138,7 @@ def create_page(request):
 @tenant_configuration_required
 def update_page(request, pk):
     # Fetch the user.
-    me = get_object_or_404(TenantMe, pk=pk)
+    me = get_object_or_404(Me, pk=pk)
 
     # Fetch all the provinces for this Address.
     provinces = [] if not me.address.country else ProvinceOption.objects.filter(country=me.address.country)

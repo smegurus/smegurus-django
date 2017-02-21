@@ -10,7 +10,7 @@ from tenant_reception.decorators import tenant_reception_required
 from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.base.notification import Notification
 from foundation_tenant.models.base.task import Task
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus import constants
 
 

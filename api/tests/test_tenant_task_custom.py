@@ -15,7 +15,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from api.views import authentication
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -96,7 +96,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Task.objects.delete_all()
         SortedLogEventByCreated.objects.delete_all()
         SortedCommentPostByCreated.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -104,7 +104,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_log_event_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -131,7 +131,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_log_event_with_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -170,7 +170,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         new_user.is_active = True
         new_user.save()
 
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=new_user,
             notify_when_task_had_an_interaction=True,
@@ -201,7 +201,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_comment_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -230,7 +230,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_comment_with_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -271,7 +271,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         new_user.is_active = True
         new_user.save()
 
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=new_user,
             notify_when_task_had_an_interaction=True,
@@ -305,7 +305,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_complete_task_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -336,7 +336,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_complete_task_with_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -377,7 +377,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         new_user.is_active = True
         new_user.save()
 
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=new_user,
             notify_when_task_had_an_interaction=True,
@@ -410,7 +410,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_incomplete_task_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -441,7 +441,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_incomplete_task_with_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -482,7 +482,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         new_user.is_active = True
         new_user.save()
 
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=new_user,
             notify_when_task_had_an_interaction=True,
@@ -515,7 +515,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_set_calendar_event_with_anonymous_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -537,7 +537,7 @@ class APITaskCustomWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_set_calendar_event_with_owner_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,

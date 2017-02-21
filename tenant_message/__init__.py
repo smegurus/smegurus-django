@@ -1,1 +1,1 @@
-default_app_config = 'tenant_message.apps.TenantMessageConfig'
+default_app_config = 'tenant_message.apps.MessageConfig'

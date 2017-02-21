@@ -7,7 +7,7 @@ from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.intake import Intake
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.task import Task
 from smegurus import constants
@@ -38,9 +38,9 @@ def task_details_page(request, id):
         # Tags.
         'tags': Tag.objects.all(),
         # Members.
-        'entrepreneurs': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID),
-        'mentors': TenantMe.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID),
-        'advisors': TenantMe.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID),
-        'managers': TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID),
-        'admins': TenantMe.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID),
+        'entrepreneurs': Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID),
+        'mentors': Me.objects.filter(owner__groups__id=constants.MENTOR_GROUP_ID),
+        'advisors': Me.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID),
+        'managers': Me.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID),
+        'admins': Me.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID),
     })

@@ -34,7 +34,7 @@ from foundation_tenant.models.base.faqgroup import FAQGroup
 from foundation_tenant.models.base.communitypost import CommunityPost
 from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated

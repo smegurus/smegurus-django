@@ -14,7 +14,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from django.core.management import call_command
 from smegurus import constants
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus.settings import env_var
 
 
@@ -63,7 +63,7 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
         super(AdmitMeTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
         self.user = User.objects.get()
-        TenantMe.objects.create(
+        Me.objects.create(
             owner=self.user,
         )
 
@@ -75,7 +75,7 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        mes = TenantMe.objects.all()
+        mes = Me.objects.all()
         for me in mes.all():
             me.delete()
         # super(AdmitMeTestCase, self).tearDown()
@@ -83,7 +83,7 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_admit_me_with_employee_user(self):
         # Pre-test that we are properly configured.
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
@@ -94,14 +94,14 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
 
         # Test & Verify.
         call_command('admit_me',str(me.id))
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 1)
 
     @transaction.atomic
     def test_admit_me_with_non_employee_user(self):
         # Pre-test that we are properly configured.
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
@@ -112,6 +112,6 @@ class AdmitMeTestCase(APITestCase, TenantTestCase):
 
         # Test & Verify.
         call_command('admit_me',str(me.id))
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)

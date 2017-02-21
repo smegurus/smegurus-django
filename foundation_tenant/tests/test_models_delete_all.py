@@ -36,7 +36,7 @@ from foundation_tenant.models.base.communitypost import CommunityPost
 from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.note import Note
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
@@ -109,35 +109,35 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Intake.objects.bulk_create([
             Intake(
                 id = 1111,
-                me=TenantMe.objects.create(
+                me=Me.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 )
             ),
             Intake(
                 id = 2222,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 )
             ),
             Intake(
                 id = 3333,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 )
             ),
             Intake(
                 id = 4444,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 )
             ),
             Intake(
                 id = 5555,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1115,
                     owner=User.objects.get(username='1'),
                 )
@@ -152,7 +152,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
 
     @transaction.atomic
     def test_place_delete_all(self):
@@ -274,21 +274,21 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     @transaction.atomic
     def test_tenant_me_delete_all(self):
         # Setup our unit test.
-        count = TenantMe.objects.all().count()
+        count = Me.objects.all().count()
         self.assertEqual(count, 0)
-        TenantMe.objects.bulk_create([
-            TenantMe(id=1, owner=User.objects.get(username='1')),
-            TenantMe(id=2, owner=User.objects.get(username='2')),
-            TenantMe(id=3, owner=User.objects.get(username='3')),
-            TenantMe(id=4, owner=User.objects.get(username='4')),
-            TenantMe(id=5, owner=User.objects.get(username='5')),
+        Me.objects.bulk_create([
+            Me(id=1, owner=User.objects.get(username='1')),
+            Me(id=2, owner=User.objects.get(username='2')),
+            Me(id=3, owner=User.objects.get(username='3')),
+            Me(id=4, owner=User.objects.get(username='4')),
+            Me(id=5, owner=User.objects.get(username='5')),
         ])
-        count = TenantMe.objects.all().count()
+        count = Me.objects.all().count()
         self.assertEqual(count, 5)
 
         # Run our test and verify.
-        TenantMe.objects.delete_all()
-        count = TenantMe.objects.all().count()
+        Me.objects.delete_all()
+        count = Me.objects.all().count()
         self.assertEqual(count, 0)
 
     @transaction.atomic
@@ -308,7 +308,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
         # Run our test and verify.
         CalendarEvent.objects.delete_all()
-        count = TenantMe.objects.all().count()
+        count = Me.objects.all().count()
         self.assertEqual(count, 0)
 
     @transaction.atomic
@@ -422,35 +422,35 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Note.objects.bulk_create([
             Note(
                 id = 1111,
-                me=TenantMe.objects.create(
+                me=Me.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 )
             ),
             Note(
                 id = 2222,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 )
             ),
             Note(
                 id = 3333,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 )
             ),
             Note(
                 id = 4444,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 )
             ),
             Note(
                 id = 5555,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1115,
                     owner=User.objects.get(username='1'),
                 )
@@ -465,7 +465,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
 
     @transaction.atomic
     def test_ordered_log_event_delete_all(self):
@@ -475,7 +475,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         SortedLogEventByCreated.objects.bulk_create([
             SortedLogEventByCreated(
                 id = 1111,
-                me=TenantMe.objects.create(
+                me=Me.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 ),
@@ -483,7 +483,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedLogEventByCreated(
                 id = 2222,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 ),
@@ -491,7 +491,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedLogEventByCreated(
                 id = 3333,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 ),
@@ -499,7 +499,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedLogEventByCreated(
                 id = 4444,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 ),
@@ -507,7 +507,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedLogEventByCreated(
                 id = 5555,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1115,
                     owner=User.objects.get(username='1'),
                 ),
@@ -523,7 +523,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
 
     @transaction.atomic
     def test_ordered_log_event_delete_all(self):
@@ -533,7 +533,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         SortedCommentPostByCreated.objects.bulk_create([
             SortedCommentPostByCreated(
                 id = 1111,
-                me=TenantMe.objects.create(
+                me=Me.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 ),
@@ -541,7 +541,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedCommentPostByCreated(
                 id = 2222,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 ),
@@ -549,7 +549,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedCommentPostByCreated(
                 id = 3333,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 ),
@@ -557,7 +557,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedCommentPostByCreated(
                 id = 4444,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 ),
@@ -565,7 +565,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             SortedCommentPostByCreated(
                 id = 5555,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1115,
                     owner=User.objects.get(username='1'),
                 ),
@@ -581,7 +581,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
 
     @transaction.atomic
     def test_task_delete_all(self):
@@ -591,7 +591,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Task.objects.bulk_create([
             Task(
                 id = 1111,
-                assigned_by=TenantMe.objects.create(
+                assigned_by=Me.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 ),
@@ -599,7 +599,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Task(
                 id = 2222,
-                assigned_by = TenantMe.objects.create(
+                assigned_by = Me.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 ),
@@ -607,7 +607,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Task(
                 id = 3333,
-                assigned_by = TenantMe.objects.create(
+                assigned_by = Me.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 ),
@@ -615,7 +615,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Task(
                 id = 4444,
-                assigned_by = TenantMe.objects.create(
+                assigned_by = Me.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 ),
@@ -623,7 +623,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Task(
                 id = 5555,
-                assigned_by = TenantMe.objects.create(
+                assigned_by = Me.objects.create(
                     id = 1115,
                     owner=User.objects.get(username='1'),
                 ),
@@ -639,7 +639,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
 
     @transaction.atomic
     def test_tenant_visitor_delete_all(self):
@@ -649,7 +649,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         Visitor.objects.bulk_create([
             Visitor(
                 id = 1111,
-                me=TenantMe.objects.create(
+                me=Me.objects.create(
                     id = 1111,
                     owner=User.objects.get(username='1')
                 ),
@@ -658,7 +658,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Visitor(
                 id = 2222,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1112,
                     owner=User.objects.get(username='1'),
                 ),
@@ -667,7 +667,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Visitor(
                 id = 3333,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1113,
                     owner=User.objects.get(username='1'),
                 ),
@@ -676,7 +676,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Visitor(
                 id = 4444,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1114,
                     owner=User.objects.get(username='1'),
                 ),
@@ -685,7 +685,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
             ),
             Visitor(
                 id = 5555,
-                me = TenantMe.objects.create(
+                me = Me.objects.create(
                     id = 1115,
                     owner=User.objects.get(username='1'),
                 ),
@@ -702,7 +702,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
         self.assertEqual(count, 0)
 
         # Cleanup
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
 
     @transaction.atomic
     def test_governmentbenfitoption_delete_all(self):

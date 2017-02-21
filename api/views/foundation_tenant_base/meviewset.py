@@ -12,33 +12,33 @@ from rest_framework import response
 from rest_framework.decorators import detail_route
 from api.pagination import LargeResultsSetPagination
 from api.permissions import IsOwnerOrIsAnEmployee, EmployeePermission, IsOwner, ManagerPermission
-from api.serializers.foundation_tenant_base import TenantMeSerializer
+from api.serializers.foundation_tenant_base import MeSerializer
 from api.serializers.misc import JSONDictionarySerializer
 from api.serializers.misc import IntegerSerializer
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from smegurus import constants
 
 
-class TenantMeFilter(django_filters.FilterSet):
+class MeFilter(django_filters.FilterSet):
     class Meta:
-        model = TenantMe
+        model = Me
         fields = ['owner', 'tags', 'stage_num', 'managed_by',]
 
 
-class TenantMeViewSet(viewsets.ModelViewSet):
-    queryset = TenantMe.objects.all()
-    serializer_class = TenantMeSerializer
+class MeViewSet(viewsets.ModelViewSet):
+    queryset = Me.objects.all()
+    serializer_class = MeSerializer
     pagination_class = LargeResultsSetPagination
     authentication_classes = (authentication.TokenAuthentication,)
     permission_classes = (permissions.IsAuthenticated, IsOwnerOrIsAnEmployee, )
-    filter_class = TenantMeFilter
+    filter_class = MeFilter
 
     def perform_update(self, serializer):
-        """Update "TenantMe" model and its associated models."""
-        # Update the 'TenantMe' model.
+        """Update "Me" model and its associated models."""
+        # Update the 'Me' model.
         me = serializer.save()
         me.name = me.given_name + " " + me.family_name
         me.save()
@@ -153,7 +153,7 @@ class TenantMeViewSet(viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated, EmployeePermission])
     def set_stage_num(self, request, pk=None):
-        """Function will set the 'stage_num' for this TenantMe."""
+        """Function will set the 'stage_num' for this Me."""
         try:
             serializer = IntegerSerializer(data=request.data)
             if serializer.is_valid():

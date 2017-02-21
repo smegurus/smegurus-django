@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.calendarevent import CalendarEvent
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
 

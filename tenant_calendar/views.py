@@ -11,7 +11,7 @@ from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.calendarevent import CalendarEvent
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
 
@@ -43,7 +43,7 @@ def calendar_master_page(request):
 def calendar_create_page(request):
     return render(request, 'tenant_calendar/create/view.html',{
         'page': 'calendar',
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
         'tags': Tag.objects.filter(is_program=True),
         'type_of': int_or_none(request.GET.get('type_of')),
         'constants': constants
@@ -60,7 +60,7 @@ def calendar_edit_details_page(request, id):
         'page': 'calendar',
         'calendar_items': CalendarEvent.objects.filter(owner=request.user),
         'calendar_event': get_object_or_404(CalendarEvent, id=int(id)),
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
         'constants': constants,
     })
 
@@ -75,6 +75,6 @@ def calendar_info_details_page(request, id):
         'page': 'calendar',
         'calendar_items': CalendarEvent.objects.filter(owner=request.user),
         'calendar_event': get_object_or_404(CalendarEvent, id=int(id)),
-        'all_profiles': TenantMe.objects.all(),
+        'all_profiles': Me.objects.all(),
         'constants': constants,
     })

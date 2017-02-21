@@ -141,7 +141,7 @@ MIDDLEWARE = [
     'foundation_public.middleware.NoSniffMiddleware',                 # Custom
     'foundation_public.middleware.DefaultLanguageRedirectMiddleware', # Custom
     'foundation_tenant.middleware.TenantTimezoneMiddleware',          # Custom
-    'foundation_tenant.middleware.TenantMeMiddleware',                # Custom
+    'foundation_tenant.middleware.MeMiddleware',                # Custom
     'foundation_tenant.middleware.VisitorMiddleware',           # Custom
     'htmlmin.middleware.MarkRequestMiddleware',                       # Third Party
 ]

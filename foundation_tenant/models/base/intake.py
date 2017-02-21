@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
 from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.tag import Tag
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.naicsoption import NAICSOption
 from smegurus import constants
@@ -77,7 +77,7 @@ class Intake(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     me = models.OneToOneField(
-        TenantMe,
+        Me,
         help_text=_('The User that this Intake belongs to.'),
         on_delete=models.CASCADE,
     )

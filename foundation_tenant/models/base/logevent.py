@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
 class LogEventManager(models.Manager):
@@ -25,7 +25,7 @@ class LogEvent(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     me = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user whom caused this log event.'),
         blank=True,
         null=True,

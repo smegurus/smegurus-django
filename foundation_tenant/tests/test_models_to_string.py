@@ -36,7 +36,7 @@ from foundation_tenant.models.base.communitypost import CommunityPost
 from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.note import Note
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
@@ -103,7 +103,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_intake_to_string(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -166,7 +166,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_tenant_me_to_string(self):
-        obj = TenantMe.objects.create(
+        obj = Me.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
         )
@@ -231,7 +231,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_entrepreneur_note_to_string(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -246,7 +246,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_ordered_log_event_to_string(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -262,7 +262,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_ordered_comment_post_to_string(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -278,7 +278,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
 
     @transaction.atomic
     def test_task_to_string(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=User.objects.get(username='1'),
             name='Ice Age',
@@ -296,7 +296,7 @@ class FoundationTenantModelsWithTenantSchemaTestCases(APITestCase, TenantTestCas
     def test_tenant_visitor_to_string_by_user(self):
         vistor = Visitor.objects.create(
             id=1,
-            me=TenantMe.objects.create(
+            me=Me.objects.create(
                 id = 1111,
                 owner=User.objects.get(username='1'),
                 name="Ledo"

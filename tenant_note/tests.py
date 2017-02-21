@@ -9,7 +9,7 @@ from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
 from foundation_tenant.models.base.note import Note
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 
@@ -90,7 +90,7 @@ class TenantNoteTestCase(APITestCase, TenantTestCase):
     def tearDown(self):
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
@@ -98,7 +98,7 @@ class TenantNoteTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_master_page(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             owner=self.user,
         )
 
@@ -110,7 +110,7 @@ class TenantNoteTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_create_page(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             owner=self.user,
         )
 
@@ -122,7 +122,7 @@ class TenantNoteTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_details_page(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             owner=self.user,
         )
         note = Note.objects.create(

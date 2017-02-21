@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
 class VisitorManager(models.Manager):
@@ -22,7 +22,7 @@ class Visitor(models.Model):
     objects = VisitorManager()
     created = models.DateTimeField(auto_now_add=True)
     me = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user whom owns this thing. Anonymous users have this field set to NULL.'),
         on_delete=models.CASCADE
     )

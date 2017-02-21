@@ -32,7 +32,7 @@ from foundation_tenant.models.base.faqgroup import FAQGroup
 from foundation_tenant.models.base.communitypost import CommunityPost
 from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
@@ -151,10 +151,10 @@ class TellUsYourNeedSerializer(serializers.ModelSerializer):
         fields = ('id', 'owner', 'needs_financial_management', 'needs_sales', 'needs_social_media', 'needs_other', 'other',)
 
 
-class TenantMeSerializer(serializers.ModelSerializer):
+class MeSerializer(serializers.ModelSerializer):
     is_in_intake = serializers.BooleanField(read_only=True)
     class Meta:
-        model = TenantMe
+        model = Me
         fields = ('id', 'owner', 'is_in_intake', 'tags', 'image', 'description',
                   'url', 'telephone', 'is_tos_signed', 'stage_num',
                   'is_setup', 'is_locked', 'notify_when_task_had_an_interaction',
@@ -217,7 +217,7 @@ class FAQItemSerializer(serializers.ModelSerializer):
 
 class CommunityPostSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
-    me = TenantMeSerializer(many=False, required=False, read_only=True)
+    me = MeSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
     class Meta:
         model = CommunityPost
@@ -236,9 +236,9 @@ class CommunityAdvertisementSerializer(serializers.ModelSerializer):
 
 class MessageSerializer(serializers.ModelSerializer):
     owner = UserSerializer(many=False, required=False, read_only=True)
-    sender = TenantMeSerializer(many=False, required=False, read_only=True)
+    sender = MeSerializer(many=False, required=False, read_only=True)
     image_url = serializers.URLField(source='image.imagefile.url', read_only=True)
-    participants = TenantMeSerializer(many=True, required=False, read_only=True)
+    participants = MeSerializer(many=True, required=False, read_only=True)
     class Meta:
         model = Message
         fields = ('id', 'created', 'last_modified', 'owner', 'name',

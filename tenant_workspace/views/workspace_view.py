@@ -9,7 +9,7 @@ from tenant_profile.decorators import tenant_profile_required
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.document import Document
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus import constants
 
 
@@ -18,7 +18,7 @@ from smegurus import constants
 def create_page(request):
     return render(request, 'tenant_workspace/workspace/create/view.html',{
         'page': 'workspace-add',
-        'mes': TenantMe.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
+        'mes': Me.objects.filter(owner__groups__id=constants.ENTREPRENEUR_GROUP_ID)
     })
 
 
@@ -41,5 +41,5 @@ def master_page(request, workspace_id):
         'workspace': workspace,
         'modules': modules,
         'documents': documents,
-        'mes': TenantMe.objects.all()
+        'mes': Me.objects.all()
     })

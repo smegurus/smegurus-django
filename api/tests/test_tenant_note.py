@@ -13,7 +13,7 @@ from rest_framework.test import APIClient
 from rest_framework.test import APITestCase
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.note import Note
@@ -86,7 +86,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
         Note.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()
@@ -139,7 +139,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_with_authenticated_management_group_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -159,7 +159,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_with_authenticated_advisor_group_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -179,7 +179,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_post_with_authenticated_entrepreneur_group_user(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -203,7 +203,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),
@@ -230,7 +230,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),
@@ -257,7 +257,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),
@@ -284,7 +284,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),
@@ -316,7 +316,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),
@@ -333,7 +333,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),
@@ -351,7 +351,7 @@ class APINoteWithTenantSchemaTestCase(APITestCase, TenantTestCase):
             id=1,
             name='Test Note',
             description='This is a test note',
-            me = TenantMe.objects.create(
+            me = Me.objects.create(
                 id=1,
                 owner=self.user,
             ),

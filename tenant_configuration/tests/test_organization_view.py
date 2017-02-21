@@ -9,7 +9,7 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.businessidea import BusinessIdea
@@ -81,7 +81,7 @@ class FoundationConfigurationOrganizationViewsWithTenatSchemaTestCases(APITestCa
         ContactPoint.objects.delete_all()
         BusinessIdea.objects.delete_all()
         Tag.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

@@ -13,30 +13,30 @@ TASK_EMAIL_FREQUENCY_OPTIONS = (
     (constants.EXCESSIVE_EMAIL_FREQUENCY_STATUS, _('Send all emails')),
 )
 
-class TenantMeManager(models.Manager):
+class MeManager(models.Manager):
     def get_by_owner_or_none(self, owner):
         try:
-            return TenantMe.objects.get(owner=owner)
-        except TenantMe.DoesNotExist:
+            return Me.objects.get(owner=owner)
+        except Me.DoesNotExist:
             return None
 
     def delete_all(self):
-        items = TenantMe.objects.all()
+        items = Me.objects.all()
         for item in items.all():
             item.delete()
 
 
-class TenantMe(AbstractPerson):
+class Me(AbstractPerson):
     """
-    The object to represent the "TenantMe" object for all the tenanted objects.
+    The object to represent the "Me" object for all the tenanted objects.
     """
     class Meta:
         app_label = 'foundation_tenant'
-        db_table = 'smeg_tenant_mes'
+        db_table = 'smeg_mes'
         verbose_name = 'Tenant Me'
         verbose_name_plural = 'Tenant Mes'
 
-    objects = TenantMeManager()
+    objects = MeManager()
     is_in_intake = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY
         _("Is in Intake Process"),
         blank=True,
@@ -231,14 +231,20 @@ class TenantMe(AbstractPerson):
         related_name="tenant_me_managed_by_%(app_label)s_%(class)s_related",
         on_delete=models.SET_NULL
     )
-    key = models.CharField(
-        _("S3 Key"),
+    salt = models.CharField(
+        _("Salt"),
         max_length=127,
-        help_text=_('The unique salt value for this User Profile used in cryptographic signing.'),
+        help_text=_('The unique salt value for this User Profile which is used in cryptographic signing.'),
         default=generate_hash,
         unique=True,
         blank=True
     )
+    is_unsubscribed = models.BooleanField(
+        _("Is Unsubscribed"),
+        default=False,
+        blank=True
+    )
+
 
     def is_entrepreneur(self):
         for my_group in self.owner.groups.all():

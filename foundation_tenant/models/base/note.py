@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.abstract_thing import AbstractThing
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
 class NoteManager(models.Manager):
@@ -20,7 +20,7 @@ class Note(AbstractThing):
 
     objects = NoteManager()
     me = models.ForeignKey(
-        TenantMe,
+        Me,
         help_text=_('The user profile that this Note belongs to.'),
         on_delete=models.CASCADE,
     )

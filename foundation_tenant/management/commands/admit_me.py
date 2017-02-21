@@ -10,7 +10,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.utils.translation import ugettext_lazy as _
 from django.core.management import call_command
 from smegurus import constants
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus.settings import env_var
 
 
@@ -23,11 +23,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for me_id in options['id']:
             try:
-                me = TenantMe.objects.get(id=me_id)
+                me = Me.objects.get(id=me_id)
                 for group in me.owner.groups.all():
                     if group.id in constants.MANAGEMENT_EMPLOYEE_GROUP_IDS:
                         self.begin_processing(me)
-            except TenantMe.DoesNotExist:
+            except Me.DoesNotExist:
                 pass
 
     def begin_processing(self, me):

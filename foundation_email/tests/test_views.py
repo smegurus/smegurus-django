@@ -9,7 +9,7 @@ from rest_framework import status
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from foundation_public.models.organization import PublicOrganization
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.intake import Intake
@@ -80,7 +80,7 @@ TEST_USER_PASSWORD = "GalacticAllianceOfHumankind"
 #         Note.objects.delete_all()
 #         PostalAddress.objects.delete_all()
 #         ContactPoint.objects.delete_all()
-#         TenantMe.objects.delete_all()
+#         Me.objects.delete_all()
 #         items = User.objects.all()
 #         for item in items.all():
 #             item.delete()
@@ -157,7 +157,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         Note.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
@@ -177,7 +177,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_pending_intake_with_admin_user(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -201,7 +201,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_pending_intake_with_non_admin_user(self):
         target_group = Group.objects.get(id=constants.ENTREPRENEUR_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -231,7 +231,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_approved_intake_with_owner_user(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -268,7 +268,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         user.is_active = True
         user.save()
         user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=user,
         )
@@ -298,7 +298,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_rejected_intake_with_owner_user(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -335,7 +335,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
         user.is_active = True
         user.save()
         user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=666,
             owner=user,
         )
@@ -372,7 +372,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_message_with_participant(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -393,7 +393,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_message_without_participant(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=1,
             owner=self.user,
         )
@@ -427,7 +427,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_task_with_participant(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,
@@ -457,7 +457,7 @@ class FoundationEmailViewsWithTenatSchemaTestCases(APITestCase, TenantTestCase):
     def test_task_without_participant(self):
         target_group = Group.objects.get(id=constants.ORGANIZATION_ADMIN_GROUP_ID)
         self.user.groups.add(target_group)
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,

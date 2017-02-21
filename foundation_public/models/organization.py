@@ -358,10 +358,10 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         null=True,
         default='America/Toronto',
     )
-    key = models.CharField(
-        _("S3 Key"),
+    salt = models.CharField(
+        _("Salt"),
         max_length=127,
-        help_text=_('The unique salt value for this Organization used in cryptographic signing.'),
+        help_text=_('The unique salt value for this Organization which is used in cryptographic signing.'),
         default=generate_hash,
         unique=True,
         blank=True

@@ -5,7 +5,7 @@ from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from smegurus import constants
 from foundation_tenant.models.base.intake import Intake
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
 def tenant_intake_required(view_func):

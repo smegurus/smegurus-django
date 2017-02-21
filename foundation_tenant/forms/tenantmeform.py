@@ -6,12 +6,12 @@ from django.forms.widgets import EmailInput, Select
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 
 
-class TenantMeForm(forms.ModelForm):
+class MeForm(forms.ModelForm):
     class Meta:
-        model = TenantMe
+        model = Me
         fields = ['gender', 'gender_other', 'level_of_education', 'level_of_education_other',
         'place_of_birth', 'place_of_birth_other', 'employment_status', 'employment_status_other',
         'education_or_training_status', 'education_or_training_status_other', 'why_be_entrepreneur',

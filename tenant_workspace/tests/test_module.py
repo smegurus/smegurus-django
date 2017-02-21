@@ -8,7 +8,7 @@ from rest_framework.test import APITestCase
 from django_tenants.test.cases import FastTenantTestCase
 from django_tenants.test.client import TenantClient
 from smegurus import constants
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.bizmula.workspace import Workspace
@@ -81,7 +81,7 @@ class TenantWorkspaceModuleTestCases(APITestCase, FastTenantTestCase):
         self.tenant.save()
 
         # Setup User.
-        self.me = TenantMe.objects.create(
+        self.me = Me.objects.create(
             owner=self.user,
         )
         self.workspace = Workspace.objects.create(
@@ -100,7 +100,7 @@ class TenantWorkspaceModuleTestCases(APITestCase, FastTenantTestCase):
         Module.objects.delete_all()
         PostalAddress.objects.delete_all()
         ContactPoint.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         users = User.objects.all()
         for user in users.all():
             user.delete()

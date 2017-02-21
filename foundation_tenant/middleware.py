@@ -1,6 +1,6 @@
 import pytz
 from django.utils import timezone
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.imageupload import ImageUpload
@@ -22,7 +22,7 @@ class TenantTimezoneMiddleware(object):
         return self.get_response(request)
 
 
-class TenantMeMiddleware(object):
+class MeMiddleware(object):
     """
         The purpose of this middleware is to lookup the 'Me' object for
         the authenticated user and attach it to the request. If the user
@@ -36,11 +36,11 @@ class TenantMeMiddleware(object):
     def __call__(self, request):
         if not request.tenant.schema_name in ['public', 'test']:
             if request.user.is_authenticated():
-                # STEP 1: Get or create a TenantMe.
-                tenant_me, created = TenantMe.objects.get_or_create(owner=request.user)
+                # STEP 1: Get or create a Me.
+                tenant_me, created = Me.objects.get_or_create(owner=request.user)
                 request.tenant_me = tenant_me
 
-                # STEP 2: Populate the TenantMe object.
+                # STEP 2: Populate the Me object.
                 if created:
                     tenant_me.name = request.user.first_name+' '+request.user.last_name
                     tenant_me.given_name = request.user.first_name

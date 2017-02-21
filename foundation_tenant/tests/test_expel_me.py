@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 from django_tenants.test.cases import TenantTestCase
 from django_tenants.test.client import TenantClient
 from django.core.management import call_command
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from smegurus import constants
 from smegurus.settings import env_var
 
@@ -63,7 +63,7 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
         super(ExpeltMeTestCase, self).setUp()
         self.c = TenantClient(self.tenant)
         self.user = User.objects.get()
-        TenantMe.objects.create(
+        Me.objects.create(
             owner=self.user,
             is_in_intake=True,
         )
@@ -76,7 +76,7 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
         groups = Group.objects.all()
         for group in groups.all():
             group.delete()
-        mes = TenantMe.objects.all()
+        mes = Me.objects.all()
         for me in mes.all():
             me.delete()
         # super(ExpeltMeTestCase, self).tearDown()
@@ -84,7 +84,7 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_expel_me_with_employee_user(self):
         # Pre-test that we are properly configured.
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
@@ -95,14 +95,14 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
 
         # Test & Verify.
         call_command('expel_me',str(me.id))
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertFalse(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 1)
 
     @transaction.atomic
     def test_expel_me_with_non_employee_user(self):
         # Pre-test that we are properly configured.
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)
 
@@ -113,6 +113,6 @@ class ExpeltMeTestCase(APITestCase, TenantTestCase):
 
         # Test & Verify.
         call_command('expel_me',str(me.id))
-        me = TenantMe.objects.get(owner__username=TEST_USER_USERNAME)
+        me = Me.objects.get(owner__username=TEST_USER_USERNAME)
         self.assertTrue(me.is_in_intake)
         self.assertEqual(len(mail.outbox), 0)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
@@ -52,19 +52,19 @@ class CalendarEvent(AbstractThing):
         related_name="calendar_event_tags_%(app_label)s_%(class)s_related"
     )
     pending = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who need to review whether they will attend this event or not.'),
         blank=True,
         related_name="calendar_event_pending_%(app_label)s_%(class)s_related"
     )
     attendees = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who are participating in this event.'),
         blank=True,
         related_name="calendar_event_attendees_%(app_label)s_%(class)s_related"
     )
     absentees = models.ManyToManyField(
-        TenantMe,
+        Me,
         help_text=_('The users who are participating in this event.'),
         blank=True,
         related_name="calendar_event_absentee_%(app_label)s_%(class)s_related"

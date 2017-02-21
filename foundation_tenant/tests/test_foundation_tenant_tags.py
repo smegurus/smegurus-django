@@ -15,7 +15,7 @@ from foundation_tenant.templatetags.foundation_tenant_tags import is_note_protec
 from foundation_tenant.templatetags.foundation_tenant_tags import count_pending_tasks
 from foundation_tenant.templatetags.foundation_tenant_tags import pretty_formatted_date
 from foundation_tenant.models.base.message import Message
-from foundation_tenant.models.base.me import TenantMe
+from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.intake import Intake
@@ -79,7 +79,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
         Intake.objects.delete_all()
         Note.objects.delete_all()
         Message.objects.delete_all()
-        TenantMe.objects.delete_all()
+        Me.objects.delete_all()
         items = User.objects.all()
         for item in items.all():
             item.delete()
@@ -88,7 +88,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_count_unread_messages_with_one_result(self):
         # Create our sender.
-        recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
+        recipient, created = Me.objects.get_or_create(owner=self.user,)
 
         # Create our recipient
         sender_user = User.objects.create_user(
@@ -98,7 +98,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
         )
         sender_user.is_active = True
         sender_user.save()
-        sender = TenantMe.objects.create(
+        sender = Me.objects.create(
             id=666,
             owner=sender_user
         )
@@ -117,7 +117,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_count_unread_messages_with_zero_results(self):
         # Create our sender.
-        recipient, created = TenantMe.objects.get_or_create(owner=self.user,)
+        recipient, created = Me.objects.get_or_create(owner=self.user,)
         self.assertEqual(count_unread_messages(recipient.id), 0)
 
     @transaction.atomic
@@ -127,7 +127,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_count_new_intakes_with_one_result(self):
         # Make Me setup.
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             owner=self.user,
         )
         me.is_setup = True
@@ -145,7 +145,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_is_note_protected_by_intake(self):
         # Create our data.
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             owner=self.user,
         )
         note = Note.objects.create(
@@ -165,7 +165,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
     @transaction.atomic
     def test_is_note_protected_by_nothing(self):
         # Create our data.
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             owner=self.user,
         )
         note = Note.objects.create(
@@ -179,7 +179,7 @@ class FoundationTemplateTagsTestCase(APITestCase, TenantTestCase):
 
     @transaction.atomic
     def test_count_pending_tasks(self):
-        me = TenantMe.objects.create(
+        me = Me.objects.create(
             id=999,
             owner=self.user,
             notify_when_task_had_an_interaction=True,

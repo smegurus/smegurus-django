@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class TenantMessageConfig(AppConfig):
+class MessageConfig(AppConfig):
     name = 'tenant_message'
