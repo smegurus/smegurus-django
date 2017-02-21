@@ -1,0 +1,22 @@
+[
+    {
+        "model": "foundation_tenant.module",
+        "pk": 10,
+        "fields": {
+            "stage_num": 19,
+            "nodes": [
+                {
+                    "previous_position": -1,
+                    "current_position": 0,
+                    "next_position": -1,
+                    "id": 6666,
+                    "type": "slide"
+                }
+            ],
+            "title": "Stage 10: Business Plan",
+            "description": "<p>This is a simple description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.<\/p>",
+            "icon": "fa-briefcase",
+            "colour": ""
+        }
+    }
+]
