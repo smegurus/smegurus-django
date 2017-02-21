@@ -4,17 +4,17 @@
     "pk": 4666,
     "fields": {
         "module": 8,
-        "title": "This is slide #1 title for Stage 8.",
-        "description": "This is slide #1 description for Stage 8.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_12.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 4667,
     "fields": {
         "module": 8,
-        "title": "This is slide #2 title for Stage 8.",
-        "description": "This is slide #2 description for Stage 8.",
+        "title": "",
+        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_8_1.jpeg\" />",
         "video_url": ""
     }
 },{
@@ -22,44 +22,44 @@
     "pk": 4668,
     "fields": {
         "module": 8,
-        "title": "This is slide #3 title for Stage 8.",
-        "description": "This is slide #3 description for Stage 8.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_13.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 4669,
     "fields": {
         "module": 8,
-        "title": "This is slide #4 title for Stage 8.",
-        "description": "This is slide #4 description for Stage 8.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_14.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 4670,
     "fields": {
         "module": 8,
-        "title": "This is slide #5 title for Stage 8.",
-        "description": "This is slide #5 description for Stage 8.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_15.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 4671,
     "fields": {
         "module": 8,
-        "title": "This is slide #6 title for Stage 8.",
-        "description": "This is slide #6 description for Stage 8.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_16.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 4672,
     "fields": {
         "module": 8,
-        "title": "This is slide #7 title for Stage 8.",
-        "description": "This is slide #7 description for Stage 8.",
+        "title": "",
+        "description": "<ul><li>Learning to Make Decisions - http://smallbusiness.chron.com/top-5-biggest-decisions-business-owners-make-10131.html</li><li>Build Your Management Team - https://www.entrepreneur.com/article/83618</li><li>How to Build an Executive Team - http://www.wikihow.com/Build-a-Management-Team</li></ul>",
         "video_url": ""
     }
 },{
@@ -67,8 +67,8 @@
     "pk": 4673,
     "fields": {
         "module": 8,
-        "title": "This is slide #8 title for Stage 8.",
-        "description": "This is slide #8 description for Stage 8.",
+        "title": "Congrats! You are Half Done. You are an Operations Master!",
+        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_8_36.jpg\" />",
         "video_url": ""
     }
 },{
@@ -76,8 +76,8 @@
     "pk": 4674,
     "fields": {
         "module": 8,
-        "title": "This is slide #9 title for Stage 8.",
-        "description": "This is slide #9 description for Stage 8.",
+        "title": "Dealing with Stress",
+        "description": "<p>This far in, we know this is stressful. So take a break and learn how to manage your stress as an Entrepreneur</p><p>https://www.entrepreneur.com/article/282539</p><p>Stress Management tips for Entrepreneurs from BDC</p><p>https://www.bdc.ca/en/articles-tools/entrepreneurial-skills/be-effective-leader/pages/stress-management-tips-entrepreneurs.aspx</p><p>Stress and the Entrepreneur</p><p>https://www.entrepreneur.com/article/271055</p>",
         "video_url": ""
     }
 },{
@@ -85,8 +85,8 @@
     "pk": 4675,
     "fields": {
         "module": 8,
-        "title": "This is slide #10 title for Stage 8.",
-        "description": "This is slide #10 description for Stage 8.",
+        "title": "",
+        "description": "",
         "video_url": ""
     }
 },{
@@ -94,8 +94,8 @@
     "pk": 4676,
     "fields": {
         "module": 8,
-        "title": "This is slide #10 title for Stage 8.",
-        "description": "This is slide #10 description for Stage 8.",
+        "title": "",
+        "description": "",
         "video_url": ""
     }
 }

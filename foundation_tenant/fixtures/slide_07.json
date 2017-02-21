@@ -4,44 +4,44 @@
     "pk": 3666,
     "fields": {
         "module": 7,
-        "title": "This is slide #1 title for Stage 7.",
-        "description": "This is slide #1 description for Stage 7.",
-        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_07.mp4"
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_08.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 3667,
     "fields": {
         "module": 7,
-        "title": "This is slide #2 title for Stage 7.",
-        "description": "This is slide #2 description for Stage 7.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_09.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 3668,
     "fields": {
         "module": 7,
-        "title": "This is slide #3 title for Stage 7.",
-        "description": "This is slide #3 description for Stage 7.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_10.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 3669,
     "fields": {
         "module": 7,
-        "title": "This is slide #4 title for Stage 7.",
-        "description": "This is slide #4 description for Stage 7.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_11.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 3670,
     "fields": {
         "module": 7,
-        "title": "This is slide #5 title for Stage 7.",
-        "description": "This is slide #5 description for Stage 7.",
+        "title": "More Marketing Resources",
+        "description": "<ul><li>Learning Materials - https://www.hubspot.com/free-marketing-resources</li><li>Resources from the American Marketing Association - https://www.ama.org/resources/Pages/default.aspx</li><li>The Essential List of Startup Marketing Resources - https://ryangum.com/startup-marketing-resources/</li></ul>",
         "video_url": ""
     }
 }

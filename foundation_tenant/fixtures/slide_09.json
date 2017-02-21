@@ -4,26 +4,26 @@
     "pk": 5666,
     "fields": {
         "module": 9,
-        "title": "This is slide #1 title for Stage 9.",
-        "description": "This is slide #1 description for Stage 9.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_17.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 5667,
     "fields": {
         "module": 9,
-        "title": "This is slide #2 title for Stage 9.",
-        "description": "This is slide #2 description for Stage 9.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_18.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 5668,
     "fields": {
         "module": 9,
-        "title": "This is slide #3 title for Stage 9.",
-        "description": "This is slide #3 description for Stage 9.",
+        "title": "Start-Up Mistakes",
+        "description": "<p>As you get ready to launch, you are going to make mistakes. Why not learn from the best, and see if you can avoid the mistakes these entrepreneurs made.</p><p>Key Start-Up Mistakes to Avoid</p><p>http://paulgraham.com/startupmistakes.html</p><p>10 Start-up Mistakes that Kill Businesses</p><p>http://fundersandfounders.com/startup-mistakes/</p><p>Biggest Startup Mistakes and How to Avoid them</p><p>http://www.forbes.com/sites/tomtaulli/2014/08/13/biggest-startup-mistakes-and-how-to-avoid-them/#3afb49a12044</p>",
         "video_url": ""
     }
 },{
@@ -31,8 +31,8 @@
     "pk": 5669,
     "fields": {
         "module": 9,
-        "title": "Business Plan",
-        "description": "Now, we just need you to answer a few more questions and your business plan will be ready!",
+        "title": "",
+        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_9_8.png\" />",
         "video_url": ""
     }
 }
