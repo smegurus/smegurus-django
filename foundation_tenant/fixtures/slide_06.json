@@ -5,7 +5,17 @@
     "fields": {
         "module": 6,
         "title": "",
-        "description": "<p>Want to Become a Master Validator? Check out the Lean Startup Machine and their Validation Board. An Awesome way to keep track of all your assumptions and challenges.</p><h1>What Do I do If My Tests Failed?</h1><p>If your tests failed, don’t stress! You are still at the beginning of your journey. Some of the best entrepreneurs have failed. Failure just gives you a chance to get it right next time.</p>",
+        "description": "<p>Want to Become a Master Validator? Check out the Lean Startup Machine and their Validation Board. An Awesome way to keep track of all your assumptions and challenges.</p><h1>What Do I do If My Tests Failed?</h1><p>If your tests failed, don’t stress! You are still at the beginning of your journey. Some of the best entrepreneurs have failed. Failure just gives you a chance to get it right next time.</p><img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_6_0.png\" />",
+        "video_url": ""
+    }
+},
+{
+    "model": "foundation_tenant.slide",
+    "pk": 2667,
+    "fields": {
+        "module": 6,
+        "title": "",
+        "description": "<p></p>",
         "video_url": ""
     }
 }

@@ -6,7 +6,7 @@
         "module": 7,
         "title": "This is slide #1 title for Stage 7.",
         "description": "This is slide #1 description for Stage 7.",
-        "video_url": ""
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_07.mp4"
     }
 },{
     "model": "foundation_tenant.slide",

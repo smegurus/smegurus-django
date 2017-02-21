@@ -4,8 +4,8 @@
     "pk": 666,
     "fields": {
         "module": 2,
-        "title": "This is slide #1 title for Stage 2.",
-        "description": "This is slide #1 description for Stage 2.",
+        "title": "",
+        "description": "",
         "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_04.mp4"
     }
 },{
