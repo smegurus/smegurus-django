@@ -67,11 +67,19 @@ def matrix_divide_by(arr1, arr2):
 
 
 def calculate_revenue(forcast, units_sold):
+    # Pre-process.
+    forcast_yr1 = 0 if forcast['sales_per_unit_yr1'] == None else forcast['sales_per_unit_yr1']
+    forcast_yr2 = 0 if forcast['sales_per_unit_yr2'] == None else forcast['sales_per_unit_yr2']
+    forcast_yr3 = 0 if forcast['sales_per_unit_yr3'] == None else forcast['sales_per_unit_yr3']
+    units_sold_yr1 = 0 if units_sold['yr1_total'] == None else units_sold['yr1_total']
+    units_sold_yr2 = 0 if units_sold['yr2_total'] == None else units_sold['yr2_total']
+    units_sold_yr3 = 0 if units_sold['yr3_total'] == None else units_sold['yr3_total']
+
     # Caclulate the revenue per year
     revenue = {
-        'yr1': forcast['sales_per_unit_yr1'] * units_sold['yr1_total'],
-        'yr2': forcast['sales_per_unit_yr2'] * units_sold['yr2_total'],
-        'yr3': forcast['sales_per_unit_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast_yr1 * units_sold_yr1,
+        'yr2': forcast_yr2 * units_sold_yr2,
+        'yr3': forcast_yr3 * units_sold_yr3,
     }
 
     # Calculate the total revenue for three years.
@@ -81,11 +89,19 @@ def calculate_revenue(forcast, units_sold):
 
 
 def calculate_cogs(forcast, units_sold):
+    # Pre-process.
+    forcast_yr1 = 0 if forcast['total_cogs_yr1'] == None else forcast['total_cogs_yr1']
+    forcast_yr2 = 0 if forcast['total_cogs_yr2'] == None else forcast['total_cogs_yr2']
+    forcast_yr3 = 0 if forcast['total_cogs_yr3'] == None else forcast['total_cogs_yr3']
+    units_sold_yr1 = 0 if units_sold['yr1_total'] == None else units_sold['yr1_total']
+    units_sold_yr2 = 0 if units_sold['yr2_total'] == None else units_sold['yr2_total']
+    units_sold_yr3 = 0 if units_sold['yr3_total'] == None else units_sold['yr3_total']
+
     # Caclulate the revenue per year
     cogs = {
-        'yr1': forcast['total_cogs_yr1'] * units_sold['yr1_total'],
-        'yr2': forcast['total_cogs_yr2'] * units_sold['yr2_total'],
-        'yr3': forcast['total_cogs_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast_yr1 * units_sold_yr1,
+        'yr2': forcast_yr2 * units_sold_yr2,
+        'yr3': forcast_yr3 * units_sold_yr3
     }
 
     # Calculate the total revenue for three years.
@@ -95,11 +111,19 @@ def calculate_cogs(forcast, units_sold):
 
 
 def calculate_labour(forcast, units_sold):
+    # Pre-process.
+    forcast_yr1 = 0 if forcast['labour_yr1'] == None else forcast['labour_yr1']
+    forcast_yr2 = 0 if forcast['labour_yr2'] == None else forcast['labour_yr2']
+    forcast_yr3 = 0 if forcast['labour_yr3'] == None else forcast['labour_yr3']
+    units_sold_yr1 = 0 if units_sold['yr1_total'] == None else units_sold['yr1_total']
+    units_sold_yr2 = 0 if units_sold['yr2_total'] == None else units_sold['yr2_total']
+    units_sold_yr3 = 0 if units_sold['yr3_total'] == None else units_sold['yr3_total']
+
     # Caclulate the revenue per year
     labour = {
-        'yr1': forcast['labour_yr1'] * units_sold['yr1_total'],
-        'yr2': forcast['labour_yr2'] * units_sold['yr2_total'],
-        'yr3': forcast['labour_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast_yr1 * units_sold_yr1,
+        'yr2': forcast_yr2 * units_sold_yr2,
+        'yr3': forcast_yr3 * units_sold_yr3
     }
 
     # Calculate the total revenue for three years.
@@ -109,20 +133,38 @@ def calculate_labour(forcast, units_sold):
 
 
 def calculate_materials(forcast, units_sold):
+    # Pre-process.
+    forcast_yr1 = 0 if forcast['materials_yr1'] == None else forcast['materials_yr1']
+    forcast_yr2 = 0 if forcast['materials_yr2'] == None else forcast['materials_yr2']
+    forcast_yr3 = 0 if forcast['materials_yr3'] == None else forcast['materials_yr3']
+    units_sold_yr1 = 0 if units_sold['yr1_total'] == None else units_sold['yr1_total']
+    units_sold_yr2 = 0 if units_sold['yr2_total'] == None else units_sold['yr2_total']
+    units_sold_yr3 = 0 if units_sold['yr3_total'] == None else units_sold['yr3_total']
+
+    # Compute
     materials = {
-        'yr1': forcast['materials_yr1'] * units_sold['yr1_total'],
-        'yr2': forcast['materials_yr2'] * units_sold['yr2_total'],
-        'yr3': forcast['materials_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast_yr1 * units_sold_yr1,
+        'yr2': forcast_yr2 * units_sold_yr2,
+        'yr3': forcast_yr3 * units_sold_yr3
     }
     materials['total'] = materials['yr1'] + materials['yr2'] + materials['yr3']
     return materials
 
 
 def calculate_overhead(forcast, units_sold):
+    # Pre-process.
+    forcast_yr1 = 0 if forcast['overhead_yr1'] == None else forcast['overhead_yr1']
+    forcast_yr2 = 0 if forcast['overhead_yr2'] == None else forcast['overhead_yr2']
+    forcast_yr3 = 0 if forcast['overhead_yr3'] == None else forcast['overhead_yr3']
+    units_sold_yr1 = 0 if units_sold['yr1_total'] == None else units_sold['yr1_total']
+    units_sold_yr2 = 0 if units_sold['yr2_total'] == None else units_sold['yr2_total']
+    units_sold_yr3 = 0 if units_sold['yr3_total'] == None else units_sold['yr3_total']
+
+    # Compute
     overhead = {
-        'yr1': forcast['overhead_yr1'] * units_sold['yr1_total'],
-        'yr2': forcast['overhead_yr2'] * units_sold['yr2_total'],
-        'yr3': forcast['overhead_yr3'] * units_sold['yr3_total'],
+        'yr1': forcast_yr1 * units_sold_yr1,
+        'yr2': forcast_yr2 * units_sold_yr2,
+        'yr3': forcast_yr3 * units_sold_yr3
     }
     overhead['total'] = overhead['yr1'] + overhead['yr2'] + overhead['yr3']
     return overhead

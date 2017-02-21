@@ -40,11 +40,16 @@ def render_question_type_063(workspace, module, node, question, answer):
         workspace=workspace
     )
 
+    # Pre-process values.
+    sales_volume_yr1_total = 0 if sales_volume.content['yr1_total'] == None else sales_volume.content['yr1_total']
+    sales_volume_yr2_total = 0 if sales_volume.content['yr2_total'] == None else sales_volume.content['yr2_total']
+    sales_volume_yr3_total = 0 if sales_volume.content['yr3_total'] == None else sales_volume.content['yr3_total']
+
     # Calculate Total COGS volume.
     total_cogs_volume = {
-        'yr1': cogs_volume.content['total_cogs_yr1'] * sales_volume.content['yr1_total'],
-        'yr2': cogs_volume.content['total_cogs_yr2'] * sales_volume.content['yr2_total'],
-        'yr3': cogs_volume.content['total_cogs_yr3'] * sales_volume.content['yr3_total']
+        'yr1': cogs_volume.content['total_cogs_yr1'] * sales_volume_yr1_total,
+        'yr2': cogs_volume.content['total_cogs_yr2'] * sales_volume_yr2_total,
+        'yr3': cogs_volume.content['total_cogs_yr3'] * sales_volume_yr3_total
     }
 
     # Calculate gross profit.
