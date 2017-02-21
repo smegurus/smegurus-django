@@ -4,17 +4,17 @@
     "pk": 1999,
     "fields": {
         "module": 5,
-        "title": "This is slide #1 title for Stage 5.",
-        "description": "This is slide #1 description for Stage 5.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_07.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 2000,
     "fields": {
         "module": 5,
-        "title": "This is slide #2 title for Stage 5.",
-        "description": "This is slide #2 description for Stage 5.",
+        "title": "More Reading on Concept Validation",
+        "description": "<ul><li>https://www.smashingmagazine.com/2014/04/a-guide-to-validating-product-ideas-with-quick-and-simple-experiments/</li><li>https://www.leanstartupmachine.com/validationboard/</li><li>http://tech.co/lean-startup-machine-validation-board-2012-10</li></ul>",
         "video_url": ""
     }
 }

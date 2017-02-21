@@ -4,8 +4,8 @@
     "pk": 2666,
     "fields": {
         "module": 6,
-        "title": "This is slide #1 title for Stage 6.",
-        "description": "This is slide #1 description for Stage 6.",
+        "title": "",
+        "description": "<p>Want to Become a Master Validator? Check out the Lean Startup Machine and their Validation Board. An Awesome way to keep track of all your assumptions and challenges.</p><h1>What Do I do If My Tests Failed?</h1><p>If your tests failed, don’t stress! You are still at the beginning of your journey. Some of the best entrepreneurs have failed. Failure just gives you a chance to get it right next time.</p>",
         "video_url": ""
     }
 }

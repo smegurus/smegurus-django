@@ -6,15 +6,15 @@
         "module": 2,
         "title": "This is slide #1 title for Stage 2.",
         "description": "This is slide #1 description for Stage 2.",
-        "video_url": ""
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_04.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 667,
     "fields": {
         "module": 2,
-        "title": "This is slide #2 title for Stage 2.",
-        "description": "This is slide #2 description for Stage 2.",
+        "title": "Market Research is About Planning",
+        "description": "Doing your Market Research is a hard but important part of  your journey. In the next few questions you will complete a market research report that will go to your advisor.",
         "video_url": ""
     }
 },{
@@ -22,8 +22,8 @@
     "pk": 668,
     "fields": {
         "module": 2,
-        "title": "This is slide #3 title for Stage 2.",
-        "description": "This is slide #3 description for Stage 2.",
+        "title": "Get Ready to Market Research",
+        "description": "",
         "video_url": ""
     }
 },{
@@ -31,8 +31,8 @@
     "pk": 669,
     "fields": {
         "module": 2,
-        "title": "This is slide #4 title for Stage 2.",
-        "description": "This is slide #4 description for Stage 2.",
+        "title": "Important Market Research Links.",
+        "description": "Here are some Useful Market Research Links to Help you get Started:<ul><li>United States Census Bureau  https://www.census.gov/</li><li>Statistics Canada http://www.statcan.gc.ca/eng/start</li><li>Canada Industry Trends http://www.ic.gc.ca/eic/site/icgc.nsf/eng/h_07063.html</li></ul>",
         "video_url": ""
     }
 }

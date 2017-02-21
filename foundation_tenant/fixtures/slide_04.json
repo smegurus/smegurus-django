@@ -4,17 +4,17 @@
     "pk": 1666,
     "fields": {
         "module": 4,
-        "title": "This is slide #1 title for Stage 4.",
-        "description": "This is slide #1 description for Stage 4.",
-        "video_url": ""
+        "title": "Stage 4.",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_06.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 1667,
     "fields": {
         "module": 4,
-        "title": "This is slide #2 title for Stage 4.",
-        "description": "This is slide #2 description for Stage 4.",
+        "title": "How To Industry Research",
+        "description": "",
         "video_url": ""
     }
 },{
@@ -22,8 +22,8 @@
     "pk": 1668,
     "fields": {
         "module": 4,
-        "title": "This is slide #3 title for Stage 4.",
-        "description": "This is slide #3 description for Stage 4.",
+        "title": "Useful Industry Research Links",
+        "description": "<ul><li>Price Waterhouse Cooper - http://www.pwc.com/us/en/industry.html</li><li>Retail Council of Canada - http://www.retailcouncil.org/research/industry-research</li><li>Industry Canada - http://www.ic.gc.ca/eic/site/icgc.nsf/eng/h_07063.html</li></ul>",
         "video_url": ""
     }
 },{

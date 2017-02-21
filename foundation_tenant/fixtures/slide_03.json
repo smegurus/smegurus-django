@@ -4,17 +4,17 @@
     "pk": 999,
     "fields": {
         "module": 3,
-        "title": "This is slide #1 title for Stage 3.",
-        "description": "This is slide #1 description for Stage 3.",
-        "video_url": ""
+        "title": "",
+        "description": "",
+        "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_05.mp4"
     }
 },{
     "model": "foundation_tenant.slide",
     "pk": 1000,
     "fields": {
         "module": 3,
-        "title": "This is slide #2 title for Stage 3.",
-        "description": "This is slide #2 description for Stage 3.",
+        "title": "Getting To Know Your Market",
+        "description": "It is hard to know what your market size will be and who will be your market. You need to take some guesses and commit. Don't worry none of this is set in stone. You just need to get started and you can come back to it at any time.",
         "video_url": ""
     }
 },{
@@ -22,7 +22,7 @@
     "pk": 1001,
     "fields": {
         "module": 3,
-        "title": "This is slide #3 title for Stage 3.",
+        "title": "Get To Know Your Market Size",
         "description": "This is slide #3 description for Stage 3.",
         "video_url": ""
     }
@@ -31,8 +31,8 @@
     "pk": 1002,
     "fields": {
         "module": 3,
-        "title": "This is slide #4 title for Stage 3.",
-        "description": "This is slide #4 description for Stage 3.",
+        "title": "Useful Market Size Articles and Links",
+        "description": "<h1>Useful Market Research Links</h1><p>http://blog.marketresearch.com/5-steps-to-estimate-market-size</p><p>https://www.b2binternational.com/publications/market-size-techniques/</p><p>https://www.entrepreneur.com/article/270853</p>",
         "video_url": ""
     }
 }
