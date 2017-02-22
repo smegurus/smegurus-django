@@ -2,6 +2,7 @@ import os
 import sys
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.db import connection # Used for django tenants.
 from django.utils.translation import ugettext_lazy as _
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.contactpoint import PublicContactPoint
@@ -16,6 +17,12 @@ class Command(BaseCommand):
         parser.add_argument('id', nargs='+')
 
     def handle(self, *args, **options):
+        # Connection needs first to be at the public schema, as this is where
+        # the database needs to be set before creating a new tenant. If this is
+        # not done then django-tenants will raise a "Can't create tenant outside
+        # the public schema." error.
+        connection.set_schema_to_public() # Switch to Public.
+
         # Fetch our registered Organization.
         for registered_id in options['id']:
             try:
