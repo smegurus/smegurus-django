@@ -130,7 +130,7 @@
                         $('#id_accept_btn').prop("disabled", false);
                         var string = JSON.stringify( error_json_result );
                         console.log(string);
-                        alert(string);
+                        alert("{% trans 'Please select a tag for this entrepreneur.' %}");
                     }
                 ); // end SET ME
             },
@@ -138,7 +138,7 @@
                 $('#id_accept_btn').prop("disabled", false);
                 var string = JSON.stringify( error_json_result );
                 console.log(string);
-                alert(string);
+                alert("{% trans 'Ivalid email address or no email found.' %}");
             }
         ); // end ME
     }
