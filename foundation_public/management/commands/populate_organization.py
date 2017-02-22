@@ -28,8 +28,8 @@ class Command(BaseCommand):
             try:
                 registered_org = PublicOrganizationRegistration.objects.get(id=int(registered_id))
                 self.begin_processing(registered_org)
-            except PublicOrganization.DoesNotExist:
-                return None
+            except PublicOrganizationRegistration.DoesNotExist:
+                raise CommandError(_('Organization registration doest not exist at specificed ID'))
 
     def begin_processing(self, registered_org):
         owner = registered_org.owner
@@ -69,5 +69,5 @@ class Command(BaseCommand):
         org.save()
 
         self.stdout.write(
-            self.style.SUCCESS(_('Successfully created organization.'))
+            self.style.SUCCESS(_('Successfully created organization tenant.'))
         )
