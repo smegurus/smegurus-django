@@ -13,7 +13,7 @@
                             {% for message in messages.all %}
 
                                 {% if message.recipient == request.tenant_me %}
-                                    div class="conversation-item item-left clearfix" id="{{ message.id }}">
+                                    <div class="conversation-item item-left clearfix" id="{{ message.id }}">
                                 {% else %}
                                     <div class="conversation-item item-right clearfix" id="{{ message.id }}">
                                 {% endif %}
