@@ -83,11 +83,20 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     objects = PublicOrganizationManager()
 
     # Payment Information.
-    on_trial = models.BooleanField(default=False)
+    on_trial = models.BooleanField(
+        default=False,
+        blank=True
+    )
     paid_until =  models.DateField(
         auto_now_add=True,
         blank=True,
         null=True,
+    )
+    is_suspended = models.BooleanField(
+        _("Is Suspended"),
+        help_text=_('Variable controls if the entire tenant is suspended or not.'),
+        default=False,
+        blank=True
     )
 
     # Django-Tenant Information.
