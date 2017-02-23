@@ -1,5 +1,6 @@
 import django_filters
 from django.contrib.auth.models import User
+from django.db import connection # Used for django tenants.
 from rest_framework import authentication
 from rest_framework import generics, permissions, status, response, views, filters, mixins
 from rest_framework import viewsets
@@ -31,10 +32,16 @@ class PublicOrganizationRegistrationViewSet(viewsets.ModelViewSet):
         """
         Override the "create" functionality to include ...
         """
+        # Connection needs first to be at the public schema, as this is where
+        # the database needs to be set before creating a new tenant. If this is
+        # not done then django-tenants will raise a "Can't create tenant outside
+        # the public schema." error.
+        connection.set_schema_to_public() # Switch to Public.
+
         # Pre-save action: Include the owner attribute directly, rather
         # than from request data.
         org = serializer.save()
 
-    
+        # Populate the organization in an asynch process.
         from api.tasks import begin_organization_creation_task
         begin_organization_creation_task.delay(org.id)

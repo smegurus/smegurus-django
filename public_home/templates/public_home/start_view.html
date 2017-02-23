@@ -12,17 +12,12 @@
             <li>
                 <a href="{% url 'foundation_auth_user_login' %}">Login</a>
             </li>
-            {% if user.is_authenticate %}
-                <li>
-                    <a href="{% url 'tenant_dashboard' %}">Dashboard</a>
-                </li>
-            {% endif %}
             <li>
                 <a href="{% url 'foundation_auth_password_reset' %}">Password Reset</a>
             </li>
         </ul>
     </p>
-    <h2>Entrepreneurs</h2>
+    <h2>Tenants</h2>
     <p>
 
         <ul>

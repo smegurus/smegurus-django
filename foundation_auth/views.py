@@ -19,7 +19,6 @@ from foundation_public.models.countryoption import CountryOption
 from foundation_public.models.provinceoption import ProvinceOption
 from foundation_public.models.cityoption import CityOption
 from smegurus import constants
-from smegurus.settings import env_var
 
 
 def user_registration_page(request):
