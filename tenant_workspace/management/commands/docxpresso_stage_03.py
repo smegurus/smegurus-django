@@ -271,10 +271,15 @@ class Command(BaseCommand):
         )
 
     def do_q40(self, answer, api): # customer_buying_decision | geographic_market
-        api.add_text(
-            "geographic_market_details",
-            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        )
+        company_market = None
+        if answer.content['var_1_other']:
+            company_market = answer.content['var_1_other']
+        else:
+            if answer.content['var_1']:
+                company_market = answer.content['var_1']
+            else:
+                company_market = answer.content['var_0']
+        api.add_text("geographic_market_details", company_market)
 
     def do_q50(self, answer, api): # customer_buying_decision | geographic_market
         api.add_text(

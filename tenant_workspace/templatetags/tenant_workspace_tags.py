@@ -314,9 +314,11 @@ def render_question_type_013(workspace, module, node, question, answer):
         question_id=q3_qid,
         workspace=workspace
     )
-    a3 = None
+    geographic_market_details = None
     if a3_raw.content:
-        a3 = a3_raw.content
+        geographic_market_details = a3_raw.content
+
+    print(geographic_market_details)
 
     # Generate custom text from previous questions.
     # 1. Generate company name.
@@ -326,7 +328,14 @@ def render_question_type_013(workspace, module, node, question, answer):
         company_name = a1['var_3']
 
     # 2. Generate geographic info.
-    company_market = a3['var_1'] if len( a3['var_1']) else a3['var_0'] # Note: Handle "Online" and "Worldwide".
+    company_market = None # Note: Handle "Online" and "Worldwide".
+    if geographic_market_details['var_1_other']:
+        company_market = geographic_market_details['var_1_other']
+    else:
+        if geographic_market_details['var_1']:
+            company_market = geographic_market_details['var_1']
+        else:
+            company_market = geographic_market_details['var_0']
 
     # 3. Generate text.
     mission_statement = _("To provide customers of %(companyname)s in the %(companymarket)s market with the best possible value and customer experience, maintaining operational efficiency and providing a reasonable return for our shareholders and owners.") % {'companyname': company_name, 'companymarket': company_market}
@@ -339,7 +348,7 @@ def render_question_type_013(workspace, module, node, question, answer):
         'question': question,
         'answer': answer,
         'picked': picked,
-        'default_mission_statement': None
+        'default_mission_statement': mission_statement
     }
 
 
