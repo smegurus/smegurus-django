@@ -4,7 +4,7 @@
         "pk": 31,
         "fields": {
             "document_type": 3,
-            "number": 21,
+            "number": 1,
             "title": "Will you offer mainly products, services, or both?",
             "help": "Some businesses mainly offer products (like lemonade), others offer services (like web design). Some might offer both (plumbers install and fix things). Please choose the option that best fits your business.",
             "options": {
@@ -41,7 +41,7 @@
         "pk": 32,
         "fields": {
             "document_type": 3,
-            "number": 22,
+            "number": 2,
             "title": "Please list at least 1, but up to 3 product or service categories that you will offer.",
             "help": "Here we need to know your product <b>categories<\/b>. For example, a restaurant could have dozens of menu items, but normally sells breakfast, lunch, and dinner. So, rather then entering every item you sell, just tell us Breakfast, Lunch, Dinner.",
             "options": {
@@ -71,7 +71,7 @@
         "pk": 33,
         "fields": {
             "document_type": 3,
-            "number": 23,
+            "number": 3,
             "title": "What type of customer will your business serve?",
             "help": "In this question you need to identify at a very high level, who your customer will be. You can sell to people or a type of person, you can sell to other businesses, groups of people, for example women, or governments and institutions. Who will you be selling to?",
             "options": {
@@ -114,7 +114,7 @@
         "pk": 34,
         "fields": {
             "document_type": 3,
-            "number": 24,
+            "number": 4,
             "title": "What is the opportunity you are taking advantage of or problem you seek to solve?",
             "help": "Why are you looking to start a business? Generally, you are solving a problem or taking advantage of a market opportunity.",
             "options": {
@@ -157,7 +157,7 @@
         "pk": 35,
         "fields": {
             "document_type": 3,
-            "number": 25,
+            "number": 5,
             "title": "Why is no one else doing this yet?",
             "help": "It is important to think about what is going to make your idea unique. There is something you want to do that is different than the norm. What about it specifically makes your idea unique?",
             "options": {
@@ -209,7 +209,7 @@
         "pk": 36,
         "fields": {
             "document_type": 3,
-            "number": 26,
+            "number": 6,
             "title": "How will you solve the problem?",
             "help": "Now that we know more about the problem you are trying to solve for your customer, be specific in how you will solve it.",
             "options": {
@@ -385,7 +385,7 @@
         "pk": 74,
         "fields": {
             "document_type": 3,
-            "number": 64,
+            "number": 7,
             "title": "How will you convince your customers to buy from you?",
             "help": "People face many choices in today’s world. How will you show them that your option is the best? Think about items that you can provide them with to educate them, deals that you can give them to try your product or service out, or other ways to convince them.",
             "options": {
@@ -459,7 +459,7 @@
         "pk": 37,
         "fields": {
             "document_type": 3,
-            "number": 27,
+            "number": 8,
             "title": " What are 5-10 Trends or current issues that impact your business idea or industry?",
             "help": "All industries are affected by political, economic, social, technological and environmental issues. Think of 5-10 that could impact your business. Then, using the first dropdown choose the type of trend, and in the second choose the details.  Then click \"Add +\". Be sure to do this until you have at least 5 items.",
             "options": {
@@ -589,7 +589,7 @@
         "pk": 38,
         "fields": {
             "document_type": 3,
-            "number": 28,
+            "number": 9,
             "title": "Provide 5 specific sources (articles, websites, studies, statistics) where you have found information that supports your idea:",
             "help": "Your advisor will want to know where you found important research information about your business and your industry. Please list 5 specific sources. Be very specific - it is not enough to say \"website\" or \"magazine article\"; we need you to give us something like \"Statistics Canada\" or \"CPA Magazine\".",
             "options": {},
@@ -615,7 +615,7 @@
         "pk": 39,
         "fields": {
             "document_type": 3,
-            "number": 29,
+            "number": 10,
             "title": "What is the geographic market that your business will serve?",
             "help": "Here we need you to tell us where you will be selling. A pizzeria might sell in London, Ontario, while an e-Commerce site might sell to the online market. Please choose the best option, then continue to the next step.",
             "options": {
@@ -674,7 +674,7 @@
         "pk": 40,
         "fields": {
             "document_type": 3,
-            "number": 30,
+            "number": 11,
             "title": "Can you name the specific market for us? For example <i>London</i> or <i>Lakeshore, Toronto</i>.",
             "help": "Depending on your choice for the last question, please add more details to complete your answer.",
             "options": [
@@ -839,7 +839,7 @@
         "pk": 41,
         "fields": {
             "document_type": 3,
-            "number": 31,
+            "number": 12,
             "title": "What is the total value of the industry in your target market area (expressed in dollars)?",
             "help": "Your advisor will want to understand the potential opportunity for your business. You will need to research how much your entire industry sells in one year. You can use Government sites such as Industry Canada, or results from Google. For example, in 2014 the Comic Book Industry for independent publishers was worth approximately $65 Million.  Find the value for your industry and enter it here.",
             "options": {
@@ -870,7 +870,7 @@
         "pk": 42,
         "fields": {
             "document_type": 3,
-            "number": 32,
+            "number": 13,
             "title": "Is the size of your industry increasing, decreasing, or staying the same?",
             "help": "Your advisor will want to know if your industry is growing, shrinking or staying the same. Answering this question will require some research on your part, so don’t be afraid to take sometime to review various information sources.  Once you can determine if the industry is changing, then please tell us by how much as a percent.",
             "options": {
@@ -953,7 +953,7 @@
         "pk": 43,
         "fields": {
             "document_type": 3,
-            "number": 33,
+            "number": 14,
             "title": "How many <i>potential<\/i> customers exist in your market area for your product?",
             "help": "Now that we know your geographic market, how many people are within it that could buy from you? Let’s suppose that you live in a city of 100,000 people and you believe that other businesses will want to buy from you. If there are 1,000 businesses, then these would be your potential customers. Remember to be realistic or no one will believe you.",
             "options": {
@@ -1017,7 +1017,7 @@
         "pk": 44,
         "fields": {
             "document_type": 3,
-            "number": 34,
+            "number": 15,
             "title": "How competitive is your industry?",
             "help": "Think about the level of competition in your industry, then describe it using the choices below.",
             "options": {
@@ -1061,7 +1061,7 @@
         "pk": 45,
         "fields": {
             "document_type": 3,
-            "number": 35,
+            "number": 16,
             "title": "This industry require levels of customer services that are...",
             "help": "What we need to know is how good does your customer service need to be so that you can compete against others?",
             "options": {
@@ -1105,7 +1105,7 @@
         "pk": 46,
         "fields": {
             "document_type": 3,
-            "number": 36,
+            "number": 17,
             "title": "How much do prices vary in this industry?",
             "help": "Think about how different prices are from competitor to competitor. For example, if you make toothpicks, they all generally cost the same. If you sell make up, it could range from dollar store options to expensive luxury brands. Choose the option that best fits your industry.",
             "options": {
@@ -1149,7 +1149,7 @@
         "pk": 47,
         "fields": {
             "document_type": 3,
-            "number": 37,
+            "number": 18,
             "title": "List up to 5 direct competitors",
             "help": "Your advisor will want to understand your industry better. Part of this is having a list of businesses that are similar to yours. Also give details on each competitor. Please list 5.",
             "options": {
@@ -1237,7 +1237,7 @@
         "pk": 48,
         "fields": {
             "document_type": 3,
-            "number": 38,
+            "number": 19,
             "title": "List up to 5 indirect competitors",
             "help": "Your advisor will want to understand your industry better. Part of this is having a list of businesses that are not exactly like yours, but that could have similar customers. Please list 5.",
             "options": {
@@ -1325,7 +1325,7 @@
         "pk": 49,
         "fields": {
             "document_type": 3,
-            "number": 39,
+            "number": 20,
             "title": "The customers who will buy your product or service are your target market. Tell us two things about them that are important.",
             "help": "Now we need to learn more about who you are hoping to sell to. First tell us a type, then use the next two dropdowns to better describe them. For example, you might want to target families with a good income. You could select Households, Income, and then the income bracket that best fits your ideal customers.",
             "options": {
@@ -1474,7 +1474,7 @@
         "pk": 50,
         "fields": {
             "document_type": 3,
-            "number": 40,
+            "number": 21,
             "title": "How do customers make buying decisions in this industry?",
             "help": "Think of how customers in your industry make buying decisions. Something like an icecream cone might be something they just see and decide they want (impulse buy).  If they are deciding to buy something like a car, then they will probably take more time and look for one specific item when choosing which car they want. Try to put yourself in the customer's shoes and choose the one that best fits.",
             "options": {
@@ -1525,7 +1525,7 @@
         "pk": 51,
         "fields": {
             "document_type": 3,
-            "number": 41,
+            "number": 22,
             "title": "Are your target customers price sensitive?",
             "help": "When we say price sensitivity, we are asking how much your customers care about the cost of a product or service.",
             "options": {
@@ -1560,7 +1560,7 @@
         "pk": 52,
         "fields": {
             "document_type": 3,
-            "number": 42,
+            "number": 23,
             "title": "My target market will buy from me because I offer them...",
             "help": "Why do you think your customer will choose you over a competitor?",
             "options": {
@@ -1615,7 +1615,7 @@
         "pk": 151,
         "fields": {
             "document_type": 3,
-            "number": 43,
+            "number": 24,
             "title": "My customers will purchase my products or services from me ...",
             "help": "Where will your customers buy from you?",
             "options": {
