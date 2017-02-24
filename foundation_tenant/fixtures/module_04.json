@@ -30,7 +30,7 @@
                     "id": 41,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 1
+                    "order_num": 3
                 },{
                     "previous_position": 3,
                     "current_position": 4,
@@ -38,7 +38,7 @@
                     "id": 42,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 2
+                    "order_num": 4
                 },{
                     "previous_position": 4,
                     "current_position": 5,
@@ -46,7 +46,7 @@
                     "id": 43,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 3
+                    "order_num": 5
                 },{
                     "previous_position": 5,
                     "current_position": 6,
@@ -54,7 +54,7 @@
                     "id": 152,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 4
+                    "order_num": 6
                 },{
                     "previous_position": 6,
                     "current_position": 7,
@@ -62,7 +62,7 @@
                     "id": 44,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 5
+                    "order_num": 7
                 },{
                     "previous_position": 7,
                     "current_position": 8,
@@ -70,7 +70,7 @@
                     "id": 150,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 6
+                    "order_num": 8
                 },{
                     "previous_position": 8,
                     "current_position": 9,
@@ -78,7 +78,7 @@
                     "id": 45,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 7
+                    "order_num": 9
                 },{
                     "previous_position": 9,
                     "current_position": 10,
@@ -86,7 +86,7 @@
                     "id": 46,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 8
+                    "order_num": 10
                 },{
                     "previous_position": 10,
                     "current_position": 11,
@@ -94,7 +94,7 @@
                     "id": 47,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 9
+                    "order_num": 11
                 },{
                     "previous_position": 11,
                     "current_position": 12,
@@ -102,7 +102,7 @@
                     "id": 48,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 10
+                    "order_num": 12
                 },{
                     "previous_position": 12,
                     "current_position": 13,
@@ -110,7 +110,7 @@
                     "id": 169,
                     "type": "question",
                     "document_type": 4,
-                    "order_num": 10
+                    "order_num": 13
                 }
             ],
             "title": "Stage 4: Industry Research",

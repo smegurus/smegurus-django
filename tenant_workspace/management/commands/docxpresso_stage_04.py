@@ -230,182 +230,30 @@ class Command(BaseCommand):
         api.add_text("industry_price_variation", text)
 
     def do_q47(self, answer, api):
-        names_array = []
-        proximities_array = []
-        market_shares_array = []
-        price_comparisons_array = []
-        service_levels_array = []
-        main_strengths_array = []
-        competitive_strategy_array = []
-
-        for ans in answer.content:
-            names_array.append(ans['var_2'])
-            proximities_array.append(ans['var_3'])
-            market_shares_array.append(ans['var_4'])
-            price_comparisons_array.append(ans['var_5'])
-            main_strengths_array.append(ans['var_7'])
-            service_levels_array.append(ans['var_6'])
-            competitive_strategy_array.append(ans['var_8'])
-
-        # --- Debugging purposes. ---
-        # print("Name", names_array)
-        # print("Prox", proximities_array)
-        # print("Market", market_shares_array)
-        # print("Price", price_comparisons_array)
-        # print("Strength", main_strengths_array)
-        # print("Customer", service_levels_array)
-        # print("Competitive", competitive_strategy_array)
-        # print("\n")
-
-        # Generate our custom item.
-        names_dict = {
-            "var": 'dc_names',
-            'value': names_array
-        }
-        proximities_dict = {
-            "var": 'dc_proximities',
-            'value': proximities_array
-        }
-        market_shares_dict = {
-            "var": 'dc_market_shares',
-            'value': market_shares_array
-        }
-        price_comparisons_dict = {
-            "var": 'dc_price_comparisons',
-            'value': price_comparisons_array
-        }
-        main_strengths_dict = {
-            "var": 'dc_main_strengths',
-            'value': main_strengths_array
-        }
-        service_levels_dict = {
-            "var": 'dc_service_levels',
-            'value': service_levels_array
-        }
-        competitive_strategy_dict = {
-            "var": 'dc_competitive_strategy',
-            'value': competitive_strategy_array
-        }
-
-        # --- Debugging purposes only. ---
-        # print("Name", names_dict)
-        # print("Proximities", proximities_dict)
-        # print("market_shares", market_shares_dict)
-        # print("price_comparisons", price_comparisons_dict)
-        # print("main_strengths", main_strengths_dict)
-        # print("service_levels", service_levels_dict)
-        # print("competitive_strategy", competitive_strategy_dict)
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                names_dict,
-                proximities_dict,
-                market_shares_dict,
-                price_comparisons_dict,
-                main_strengths_dict,
-                service_levels_dict,
-                competitive_strategy_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # --- Debugging purposes only. ---
-        # print(custom)
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'dc_names',
+            'dc_proximities',
+            'dc_market_shares',
+            'dc_price_comparisons',
+            'dc_main_strengths',
+            'dc_service_levels',
+            'dc_competitive_strategy'
+        )
 
     def do_q48(self, answer, api):
-        names_array = []
-        proximities_array = []
-        market_shares_array = []
-        price_comparisons_array = []
-        service_levels_array = []
-        main_strengths_array = []
-        competitive_strategy_array = []
-
-        for ans in answer.content:
-            names_array.append(ans['var_2'])
-            proximities_array.append(ans['var_3'])
-            market_shares_array.append(ans['var_4'])
-            price_comparisons_array.append(ans['var_5'])
-            main_strengths_array.append(ans['var_7'])
-            service_levels_array.append(ans['var_6'])
-            competitive_strategy_array.append(ans['var_8'])
-
-        # --- Debugging purposes. ---
-        # print("Name", names_array)
-        # print("Prox", proximities_array)
-        # print("Market", market_shares_array)
-        # print("Price", price_comparisons_array)
-        # print("Strength", main_strengths_array)
-        # print("Customer", service_levels_array)
-        # print("Competitive", competitive_strategy_array)
-        # print("\n")
-
-        # Generate our custom item.
-        names_dict = {
-            "var": 'idc_names',
-            'value': names_array
-        }
-        proximities_dict = {
-            "var": 'idc_proximities',
-            'value': proximities_array
-        }
-        market_shares_dict = {
-            "var": 'idc_market_shares',
-            'value': market_shares_array
-        }
-        price_comparisons_dict = {
-            "var": 'idc_price_comparisons',
-            'value': price_comparisons_array
-        }
-        main_strengths_dict = {
-            "var": 'idc_main_strengths',
-            'value': main_strengths_array
-        }
-        service_levels_dict = {
-            "var": 'idc_service_levels',
-            'value': service_levels_array
-        }
-        competitive_strategy_dict = {
-            "var": 'idc_competitive_strategy',
-            'value': competitive_strategy_array
-        }
-
-        # --- Debugging purposes only. ---
-        # print("Name", names_dict)
-        # print("Proximities", proximities_dict)
-        # print("market_shares", market_shares_dict)
-        # print("price_comparisons", price_comparisons_dict)
-        # print("main_strengths", main_strengths_dict)
-        # print("service_levels", service_levels_dict)
-        # print("competitive_strategy", competitive_strategy_dict)
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                names_dict,
-                proximities_dict,
-                market_shares_dict,
-                price_comparisons_dict,
-                main_strengths_dict,
-                service_levels_dict,
-                competitive_strategy_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # --- Debugging purposes only. ---
-        # print(custom)
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type43(
+            answer,
+            api,
+            'idc_names',
+            'idc_proximities',
+            'idc_market_shares',
+            'idc_price_comparisons',
+            'idc_main_strengths',
+            'idc_service_levels',
+            'idc_competitive_strategy'
+        )
 
     def do_q150(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
@@ -418,3 +266,59 @@ class Command(BaseCommand):
     def do_q169(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         api.add_text("supplier_amount", text)
+
+    def do_type43(self, answer, api, key1, key2, key3, key4, key5, key6, key7):  # 7 Col Table
+        col1_array = []
+        col2_array = []
+        col3_array = []
+        col4_array = []
+        col5_array = []
+        col6_array = []
+        col7_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+            col4_array.append(ans['var_5'])
+            col5_array.append(ans['var_6'])
+            col6_array.append(ans['var_7'])
+            col7_array.append(ans['var_8'])
+
+        # Generate our custom item.
+        c1_dict = {"var": key1, 'value': col1_array}
+        c2_dict = {"var": key2, 'value': col2_array}
+        c3_dict = {"var": key3, 'value': col3_array}
+        c4_dict = {"var": key4, 'value': col4_array}
+        c5_dict = {"var": key5, 'value': col5_array}
+        c6_dict = {"var": key6, 'value': col6_array}
+        c7_dict = {"var": key7, 'value': col7_array}
+
+        # print(c1_dict)
+        # print(c2_dict)
+        # print(c3_dict)
+        # print(c4_dict)
+        # print(c5_dict)
+        # print(c6_dict)
+        # print(c7_dict)
+        # print("\n\n")
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict,
+                c4_dict,
+                c5_dict,
+                c6_dict,
+                c7_dict,
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
