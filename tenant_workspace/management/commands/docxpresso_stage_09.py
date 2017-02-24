@@ -250,6 +250,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 49:
                 api.do_q49(answer, api)
 
+            elif answer.question.pk == 50:
+                api.do_q50(answer, api)
+
             elif answer.question.pk == 51:
                 api.do_q51(answer, api)
 

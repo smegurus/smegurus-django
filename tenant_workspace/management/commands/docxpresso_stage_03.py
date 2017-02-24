@@ -188,6 +188,9 @@ class Command(BaseCommand):
             elif answer.question.pk == 40: # geographic_market | customer_buying_decision
                 self.do_q40(answer, api)
 
+            elif answer.question.pk == 50: # customer_buying_decision
+                self.do_q50(answer, api)
+
             elif answer.question.pk == 74: # how_to_convince
                 self.do_q74(answer, api)
 
@@ -253,13 +256,13 @@ class Command(BaseCommand):
         array = []
         for ans in answer.content:
             array.append(ans['var_3'])
-        api.add_text_paragraphs("pestel_trends", array)
+        api.add_unordered_list("pestel_trends", array)
 
     def do_q38(self, answer, api):
         array = []
         for ans in answer.content:
             array.append(ans['var_2'])
-        api.add_text_paragraphs("specific_sources", array)
+        api.add_unordered_list("specific_sources", array)
 
     def do_q39(self, answer, api):
         api.add_text(
@@ -268,13 +271,15 @@ class Command(BaseCommand):
         )
 
     def do_q40(self, answer, api): # customer_buying_decision | geographic_market
-        # Compute the answer.
-        var_1 = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text(
+            "geographic_market_details",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
-        # Add our result.
+    def do_q50(self, answer, api): # customer_buying_decision | geographic_market
         api.add_text(
             "customer_buying_decision",
-            '-' if answer.content['var_0'] else var_1
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
 
     def do_q74(self, answer, api):
