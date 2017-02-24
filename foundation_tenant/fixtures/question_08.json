@@ -6,7 +6,7 @@
             "document_type": 8,
             "number": 2,
             "title": "What is the legal structure of your company?",
-            "help": "This is some generic help text.",
+            "help": "Companies can have many forms.  Many small businesses start as sole proprietorships because they only have one owner. If you are starting a business with someone, it may be a partnership. If your company has shareholders, then you will be a corporation. If you are unsure as to which best describes your business, then do some research or ask your advisor.",
             "options": {
                 "opt1": [
                     {
@@ -58,7 +58,7 @@
             "document_type": 8,
             "number": 7,
             "title": "Please list the specific products you will offer under each category?",
-            "help": "This is some generic help text.",
+            "help": "Previously, you told us your broad product categories. Now we need you to go a bit deeper with more details. For example, if you had a product category of books, you could add products like art books, graphic novels, and fiction under it.",
             "options": {
                 "opt1": [
                     "Rent",
@@ -86,7 +86,7 @@
                 "arr_min_count": 1,
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
+                "arr_max_count_error_message": "Please enter no more than 20 entries."
             },
             "type_id": 39
         }
@@ -98,7 +98,7 @@
             "document_type": 8,
             "number": 8,
             "title": "Which verb best describes what you will do?",
-            "help": "This is some generic help text.",
+            "help": "Imagine that you had to describe what you do to someone that you meet on the street. Then pick the word that fits best.",
             "options": {
                 "opt1": [
                     {
@@ -166,7 +166,7 @@
             "document_type": 8,
             "number": 1,
             "title": "Cost of Goods sold - To help forecast out your costs, we need to estimate your cost for any materials or labour that go into the product of your product. If you are a re-seller or retailer, you also need to understand your purchase costs and anything else that you do to the product to get it ready for sale, including logistical costs. Are you ...",
-            "help": "This is some generic help text.",
+            "help": "This will help your advisor to understand how you put your product or service together.",
             "options": {
                 "opt1": [
                     {
@@ -834,7 +834,7 @@
                         ]
                     },
                     {
-                        "parent": "Lack of sales training or experience",
+                        "parent": "Lack of sales experience",
                         "choices": [
                             "Hire sales staff",
                             "Take sales training course",
