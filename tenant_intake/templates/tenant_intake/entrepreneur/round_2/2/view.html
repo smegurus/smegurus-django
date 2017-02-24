@@ -4,57 +4,39 @@
     {% compress js inline %}
         {% include 'tenant_intake/entrepreneur/round_2/2/js.html' with intake=intake %}
     {% endcompress %}
-    <div class="content-wrapper">
-
-<div class="panel panel-default">
-    <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round Two' %}</div>
-    <div class="panel-body">
-        <div id="example-vertical" role="application" class="wizard clearfix vertical">
-
-            <!-- PAGE SIDEBAR -->
-            {% include 'tenant_intake/entrepreneur/round_2/sidebar_view.html' with page=2 %}
-            <!-- end PAGE SIDEBAR -->
-
-            <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
-                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
-                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
+<div class="content-wrapper">
+        <h3 class="blk-h3">{% trans 'Entrepreneur Intake Form - Round Two' %}</h3>
                     <!-- OPTIONS -->
-                    <div class="form-group has-feedback" id="id_how_can_we_help_div">
-                        <label for="signupInputText1" class="text-muted">
-                            <label for="id_how_can_we_help">{% trans 'Do you currently receive any of the following government benefits? (select all that apply)' %}</label>
-                        </label>
+                    <div class="form-group" id="id_how_can_we_help_div">
+                        <h2 class="text-center pv">
+                            <label for="signupInputText1">
+                                <label for="id_how_can_we_help">{% trans 'Do you currently receive any of the following government benefits? (select all that apply)' %}</label>
+                            </label>
+                        </h2>
+                        <div class="col-sm-6 col-centered">
                         {% for identity in identities.all %}
-                            <input value="{{ identity.id }}"
-                            {% if identity in intake.identities.all %}
-                                 checked="checked"
-                            {% endif %}
-                                   class="source"
-                                      id="id_identity_{{ identity.id }}"
-                                    type="checkbox" />{{ identity.name }}
-                            <br><br>
+                        <div class="checkbox c-checkbox">
+                            <label>
+                                <input value="{{ identity.id }}"
+                                {% if identity in intake.identities.all %}
+                                     checked="checked"
+                                {% endif %}
+                                       class="source"
+                                          id="id_identity_{{ identity.id }}"
+                                        type="checkbox" />
+                                        <span class="fa fa-check"></span>
+                                        {{ identity.name }}
+                            </label>
+                        </div>
                         {% endfor %}
+                        </div>
                     </div>
                     <!-- end OPTIONS -->
 
-                </section>
+            <div class="actions text-center clearfix">
+                    <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg mb-lg btn-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
+                    <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
             </div>
-            <!-- end PAGE CONTENT -->
-
-            <div class="actions clearfix">
-                <ul role="menu" aria-label="Pagination">
-                    <li class="disabled" aria-disabled="true">
-                        <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
-                    </li>
-                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
 
 </div>
-
 {% endblock content %}
