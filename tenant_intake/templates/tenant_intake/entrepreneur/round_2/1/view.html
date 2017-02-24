@@ -4,72 +4,62 @@
     {% compress js inline %}
         {% include 'tenant_intake/entrepreneur/round_2/1/js.html' with intake=intake %}
     {% endcompress %}
+    <!-- end PAGE JS -->
+    <!-- PAGE CONTENT -->
     <div class="content-wrapper">
-
-<div class="panel panel-default">
-    <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round Two' %}</div>
-    <div class="panel-body">
-        <div id="example-vertical" role="application" class="wizard clearfix vertical">
-
-            <!-- PAGE SIDEBAR -->
-            {% include 'tenant_intake/entrepreneur/round_2/sidebar_view.html' with page=1 %}
-            <!-- end PAGE SIDEBAR -->
-
-            <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 550px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
-                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
-                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
+        <h3 class="blk-h3">{% trans 'Entrepreneur Intake Form - Round Two' %}</h3>
+    
                     <!-- OPTIONS -->
-                    <div class="form-group has-feedback" id="id_how_can_we_help_div">
-                        <label for="signupInputText1" class="text-muted">
-                            <label for="id_how_can_we_help">{% trans 'Do you currently receive any of the following government benefits? (select all that apply)' %}</label>
-                        </label>
+                    <div class="form-group" id="id_how_can_we_help_div">
+                        <h2 class="text-center pv">
+                            <label for="signupInputText1" style="font-weight: 400;">
+                                <label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'Do you currently receive any of the following government benefits? (select all that apply)' %}</label>
+                            </label>
+                        </h2>
+                        
+                        <div class="col-sm-6 col-centered">
                         {% for benefit in benefits.all %}
+                        <div class="checkbox c-checkbox">
+                            <label>
                             <input value="{{ benefit.id }}"
                             {% if benefit in intake.government_benefits.all %}
                                  checked="checked"
                             {% endif %}
                                    class="source"
                                       id="id_benefit_{{ benefit.id }}"
-                                    type="checkbox" />{{ benefit.name }}
-                            <br><br>
+                                    type="checkbox" />
+                                    <span class="fa fa-check"></span>
+                                    {{ benefit.name }}
+                            </label>
+                        </div>
                         {% endfor %}
+                        </div>
                     </div>
                     <!-- end OPTIONS -->
 
                     <!-- OTHER -->
-                    <div id="id_other_government_benefit_div">
-                        <div class="form-group has-feedback">
-                            <label for="signupInputText1" class="text-muted">
-                                <label for="id_other_government_benefit">
-                                    {% trans 'Other Government Benefit' %}:
+                    <div id="id_other_government_benefit_div" class="form-group">
+                            <h2 class="text-center pv">
+                                <label for="signupInputText1" style="font-weight: 400;">
+                                    <label for="id_other_government_benefit" style="font-weight: 400;">
+                                        {% trans 'Other Government Benefit' %}:
+                                    </label>
                                 </label>
-                            </label>
-                            <input class="form-control"
+                            </h2>
+                            <div class="col-sm-6 col-centered">
+                            <input class="form-control input-lg"
                                       id="id_other_government_benefit"
                                maxlength="127"
                                     type="text"
                                    value="{{ intake.other_government_benefit }}" />
                             <br>
-                        </div>
+                            </div>
                     </div>
                     <!-- end OTHER -->
 
-                </section>
+            <div class="actions text-center clearfix">
+                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
             </div>
-            <!-- end PAGE CONTENT -->
-
-            <div class="actions clearfix">
-                <ul role="menu" aria-label="Pagination">
-                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
-</div>
-
-</div>
 
 {% endblock content %}
