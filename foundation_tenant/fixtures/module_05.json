@@ -24,7 +24,7 @@
                     "id": 53,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 1
+                    "order_num": 2
                 },{
                     "previous_position": 2,
                     "current_position": 3,
@@ -32,7 +32,7 @@
                     "id": 54,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 2
+                    "order_num": 3
                 },{
                     "previous_position": 3,
                     "current_position": 4,
@@ -40,7 +40,7 @@
                     "id": 55,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 3
+                    "order_num": 4
                 },{
                     "previous_position": 4,
                     "current_position": 5,
@@ -48,7 +48,7 @@
                     "id": 73,
                     "type": "question",
                     "document_type": 5,
-                    "order_num": 4
+                    "order_num": 5
                 }
             ],
             "title": "Stage 5: Developing My Idea",

@@ -80,9 +80,11 @@ class Command(BaseCommand):
         return QuestionAnswer.objects.filter(
             Q(
                 workspace_id=workspace_id,
+                document__document_type__stage_num=2
+            ) | Q(
+                workspace_id=workspace_id,
                 document__document_type__stage_num=3
-            ) |
-            Q(
+            ) | Q(
                 workspace_id=workspace_id,
                 document__document_type__stage_num=5
             )
@@ -105,7 +107,7 @@ class Command(BaseCommand):
         )
 
         # Take our content and populate docxpresso with it.
-        self.set_answers(answers, api)
+        self.set_answers(workspace, answers, api)
 
         # Generate our document!
         doc_filename = api.get_filename()
@@ -148,9 +150,14 @@ class Command(BaseCommand):
             document.docxpresso_file = docxpresso_file
             document.save()
 
-    def set_answers(self, answers, api):
+    def set_answers(self, workspace, answers, api):
+        self.do_system_date(workspace, api)
+
         for answer in answers.all():
-            if answer.question.pk == 36: # business_solution
+            if answer.question.pk == 21: # workspace_name
+                self.do_q21(answer, api)
+
+            elif answer.question.pk == 36: # business_solution
                 self.do_q36(answer, api)
 
             elif answer.question.pk == 51:
@@ -167,6 +174,13 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 73:
                 self.do_q73(answer, api)
+
+    def do_system_date(self, workspace, api):
+        api.add_text("date", "{:%Y-%m-%d}".format(workspace.created))
+
+    def do_q21(self, answer, api):
+        api.add_text("workspace_name", answer.content['var_1'])
+        api.add_text_to_footer("workspace_name", answer.content['var_1'])
 
     def do_q36(self, answer, api):
         api.add_text(
