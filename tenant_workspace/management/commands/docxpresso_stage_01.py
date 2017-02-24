@@ -123,7 +123,6 @@ class Command(BaseCommand):
                     print("WARNING: ", str(e))
 
             # Save our file to DB.
-            print(doc_modified_filename)
             docxpresso_file = S3File.objects.create(
                 stem=doc_filename,
                 suffix='odt',
