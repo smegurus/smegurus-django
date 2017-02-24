@@ -109,6 +109,7 @@ class Command(BaseCommand):
 
         # Generate our document!
         doc_filename = api.get_filename()
+        doc_modified_filename = settings.SMEGURUS_APP_DOCXPRESSO_FILE_PREFIX+doc_filename
         doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
@@ -139,7 +140,7 @@ class Command(BaseCommand):
                 stem=doc_filename,
                 suffix='odt',
                 owner=document.owner,
-                key=doc_filename
+                key=doc_modified_filename
             )
             docxpresso_file.upload_file(doc_bin_data)
 
