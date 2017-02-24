@@ -104,6 +104,7 @@ class Command(BaseCommand):
 
         # Generate our document!
         doc_filename = api.get_filename()
+        doc_modified_filename = settings.SMEGURUS_APP_DOCXPRESSO_FILE_PREFIX+doc_filename
         doc_bin_data = api.generate()
 
         # Fetch the document and then atomically modify it.
@@ -122,11 +123,12 @@ class Command(BaseCommand):
                     print("WARNING: ", str(e))
 
             # Save our file to DB.
+            print(doc_modified_filename)
             docxpresso_file = S3File.objects.create(
                 stem=doc_filename,
                 suffix='odt',
                 owner=document.owner,
-                key=doc_filename
+                key=doc_modified_filename
             )
             docxpresso_file.upload_file(doc_bin_data)
 
