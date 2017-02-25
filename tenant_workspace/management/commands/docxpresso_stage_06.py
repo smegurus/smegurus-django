@@ -207,7 +207,7 @@ class Command(BaseCommand):
         api.add_text("validation_outcome_met", value)
 
         # Record another value.
-        api.add_text("actual_supported_number", q56_value)
+        api.add_text("actual_supported_number", q58_value)
 
     def do_q59(self, answer, api):
         api.add_text("validation_lessons_learned",answer.content['var_1'])
