@@ -138,17 +138,83 @@ class Command(BaseCommand):
         # Assign date.
         self.do_date(api)
 
-        # Some questions need to be stored for later reuse.
-        qid_136_answer = None
-        qid_137_answer = None
-        qid_138_answer = None
-
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            pass
+            if answer.question.pk == 61:
+                api.do_q61(answer, api)
 
-        # Perform specific computations based on previous saved answers.
-        api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer, api)
+            elif answer.question.pk == 101:
+                api.do_q101(answer, api)
+
+            elif answer.question.pk == 104:
+                api.do_q104(answer, api)
+
+            elif answer.question.pk == 106:
+                api.do_q106(answer, api)
+
+            elif answer.question.pk == 107:
+                api.do_q107(answer, api)
+
+            elif answer.question.pk == 109:
+                api.do_q109(answer, api)
+
+            elif answer.question.pk == 110:
+                api.do_q110(answer, api)
+
+            elif answer.question.pk == 111:
+                api.do_q111(answer, api)
+
+            elif answer.question.pk == 113:
+                api.do_q113(answer, api)
+
+            elif answer.question.pk == 115:
+                api.do_q115(answer, api)
+
+            elif answer.question.pk == 117:
+                api.do_q117(answer, api)
+
+            elif answer.question.pk == 118:
+                api.do_q118(answer, api)
+
+            elif answer.question.pk == 120:
+                api.do_q120(answer, api)
+
+            elif answer.question.pk == 123:
+                api.do_q123(answer, api)
+
+            elif answer.question.pk == 125:
+                api.do_q125(answer, api)
+
+            elif answer.question.pk == 127:
+                api.do_q127(answer, api)
+
+            elif answer.question.pk == 129:
+                api.do_q129(answer, api)
+
+            elif answer.question.pk == 131:
+                api.do_q131(answer, api)
+
+            elif answer.question.pk == 133:
+                api.do_q133(answer, api)
+
+            elif answer.question.pk == 135:
+                api.do_q135(answer, api)
+
+            elif answer.question.pk == 136:
+                api.do_q136(answer, api)
+
+            elif answer.question.pk == 137:
+                api.do_q137(answer, api)
+
+            elif answer.question.pk == 138:
+                api.do_q138(answer, api)
+
+            elif answer.question.pk == 163:
+                api.do_q163(answer, api)
+
+            elif answer.question.pk == 167:
+                api.do_q167(answer, api)
+
 
     def do_date(self, api):
         today = timezone.now()
