@@ -96,6 +96,7 @@ class Command(BaseCommand):
         # Generate our document!
         doc_filename = api.get_filename()
         doc_modified_filename = settings.SMEGURUS_APP_DOCXPRESSO_FILE_PREFIX+doc_filename
+        # return #TODO: REMOVE
         doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
@@ -140,7 +141,13 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            if answer.question.pk == 168:
+            if answer.question.pk == 101:
+                api.do_q101(answer, api)
+            elif answer.question.pk == 137:
+                api.do_q137(answer, api)
+            elif answer.question.pk == 138:
+                api.do_q138(answer, api)
+            elif answer.question.pk == 168:
                 api.do_q168(answer, api)
 
     def do_date(self, api):

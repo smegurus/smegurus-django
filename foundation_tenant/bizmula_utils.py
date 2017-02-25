@@ -1732,6 +1732,9 @@ class BizmulaAPI(DocxspressoAPI):
             value = answer.content[key]
             api.add_text(key, value)
 
+            if "cogs" in key:
+                print(key, "|", value)
+
     def do_q169(self, answer, api):
         print("QID 169")
 
@@ -1740,7 +1743,6 @@ class BizmulaAPI(DocxspressoAPI):
             api.add_picture('prod_image2', answer.content['var_3'])
         except Exception as e:
             pass
-            # api.add_picture('prod_image1', '')
 
     def do_type33(self, answer, api, key1, key2):  # 2 Col Table
         col1_array = []
