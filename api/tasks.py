@@ -56,6 +56,9 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     elif doc_type == 7:
         call_command('docxpresso_stage_07', schema_name, str(workspace_id))
 
+    elif doc_type == 8:
+        call_command('docxpresso_stage_08', schema_name, str(workspace_id))
+
     elif doc_type == 9:
         call_command('docxpresso_stage_09', schema_name, str(workspace_id))
 

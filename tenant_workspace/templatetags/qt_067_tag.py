@@ -303,7 +303,7 @@ def attach_table(computation, key, data):
         key+'_m28': data['m_28'], key+'_m29': data['m_30'], key+'_m31': data['m_31'],
         key+'_m32': data['m_32'], key+'_m33': data['m_33'], key+'_m34': data['m_33'],
         key+'_m34': data['m_34'], key+'_m35': data['m_35'], key+'_m36': data['m_36'],
-        key+'_yr3': 0 #data['yr_3'] #BUG: Investigate why this causes error.
+        key+'_yr3': data['yr_3']
     })
 
 

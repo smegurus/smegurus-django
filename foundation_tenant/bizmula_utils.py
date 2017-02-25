@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.models.base.naicsoption import NAICSOption
+from foundation_public.utils import merge_two_dicts
 
 
 class BizmulaAPI(DocxspressoAPI):
@@ -102,6 +103,11 @@ class BizmulaAPI(DocxspressoAPI):
         arr.append(answer.content['var_3'])
         api.add_text_list("industry_contacts", arr)
 
+    def do_q31(self, answer, api):
+        api.add_text(
+            "product_or_service",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     # def do_q32(self, answer, api):
     #     array = [
@@ -119,7 +125,7 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q34(self, answer, api):
         api.add_text(
-            "business_oppportunity",
+            "business_opportunity",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
 
@@ -1718,7 +1724,10 @@ class BizmulaAPI(DocxspressoAPI):
         print("QID 167")
 
     def do_q168(self, answer, api):
-        print("QID 168")
+        # Iterate through all the keys/values and save it.
+        for key in answer.content:
+            value = answer.content[key]
+            api.add_text(key, value)
 
     def do_q169(self, answer, api):
         print("QID 169")
