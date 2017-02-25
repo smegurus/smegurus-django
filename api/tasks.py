@@ -62,6 +62,9 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     elif doc_type == 9:
         call_command('docxpresso_stage_09', schema_name, str(workspace_id))
 
+    elif doc_type == 10:
+        call_command('docxpresso_stage_10', schema_name, str(workspace_id))
+
     # Send email is ready email to the workspace owners.
     call_command('send_doc_ready_email', schema_name, str(doc_id))
 
