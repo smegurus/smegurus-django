@@ -86,7 +86,7 @@ class Command(BaseCommand):
     def process(self, workspace, answers, api):
         api.new(
             name="workspace_" + str(workspace.id) + "_stage_09",
-            format="odt",
+            format="ods",
             template="templates/stage9.ods"
         )
 
@@ -124,7 +124,7 @@ class Command(BaseCommand):
             # Save our file to DB.
             docxpresso_file = S3File.objects.create(
                 stem=doc_filename,
-                suffix='odt',
+                suffix='ods',
                 owner=document.owner,
                 key=doc_modified_filename
             )
@@ -140,81 +140,8 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            if answer.question.pk == 61:
-                api.do_q61(answer, api)
-
-            elif answer.question.pk == 101:
-                api.do_q101(answer, api)
-
-            elif answer.question.pk == 104:
-                api.do_q104(answer, api)
-
-            elif answer.question.pk == 106:
-                api.do_q106(answer, api)
-
-            elif answer.question.pk == 107:
-                api.do_q107(answer, api)
-
-            elif answer.question.pk == 109:
-                api.do_q109(answer, api)
-
-            elif answer.question.pk == 110:
-                api.do_q110(answer, api)
-
-            elif answer.question.pk == 111: #admin_cost
-                api.do_q111(answer, api)
-
-            elif answer.question.pk == 113:
-                api.do_q113(answer, api)
-
-            elif answer.question.pk == 115:
-                api.do_q115(answer, api)
-
-            elif answer.question.pk == 117:
-                api.do_q117(answer, api)
-
-            elif answer.question.pk == 118: #supplies_costs
-                api.do_q118(answer, api)
-
-            elif answer.question.pk == 120: #comm_costs
-                api.do_q120(answer, api)
-
-            elif answer.question.pk == 123:
-                api.do_q123(answer, api)
-
-            elif answer.question.pk == 125:
-                api.do_q125(answer, api)
-
-            elif answer.question.pk == 127:
-                api.do_q127(answer, api)
-
-            elif answer.question.pk == 129:
-                api.do_q129(answer, api)
-
-            elif answer.question.pk == 131:
-                api.do_q131(answer, api)
-
-            elif answer.question.pk == 133:
-                api.do_q133(answer, api)
-
-            elif answer.question.pk == 135:
-                api.do_q135(answer, api)
-
-            elif answer.question.pk == 136:
-                api.do_q136(answer, api)
-
-            elif answer.question.pk == 137:
-                api.do_q137(answer, api)
-
-            elif answer.question.pk == 138:
-                api.do_q138(answer, api)
-
-            elif answer.question.pk == 163: #total_sales
-                api.do_q163(answer, api)
-
-            elif answer.question.pk == 167: #equipment_y1_costs_total | long_term_liabilities_y1
-                api.do_q167(answer, api)
-
+            if answer.question.pk == 168:
+                api.do_q168(answer, api)
 
     def do_date(self, api):
         today = timezone.now()
