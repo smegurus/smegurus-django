@@ -30,7 +30,7 @@
                     "id": 157,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 1
+                    "order_num": 3
                 },{
                     "previous_position": 3,
                     "current_position": 4,
@@ -38,7 +38,7 @@
                     "id": 158,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 2
+                    "order_num": 4
                 },{
                     "previous_position": 4,
                     "current_position": 5,
@@ -46,7 +46,7 @@
                     "id": 89,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 3
+                    "order_num": 5
                 },{
                     "previous_position": 5,
                     "current_position": 6,
@@ -54,7 +54,7 @@
                     "id": 144,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 4
+                    "order_num": 6
                 },{
                     "previous_position": 6,
                     "current_position": 7,
@@ -62,7 +62,7 @@
                     "id": 145,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 5
+                    "order_num": 7
                 },{
                     "previous_position": 7,
                     "current_position": 8,
@@ -76,7 +76,7 @@
                     "id": 159,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 2
+                    "order_num": 9
                 },{
                     "previous_position": 9,
                     "current_position": 10,
@@ -84,7 +84,7 @@
                     "id": 96,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 16
+                    "order_num": 10
                 },{
                     "previous_position": 10,
                     "current_position": 11,
@@ -92,7 +92,7 @@
                     "id": 160,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 16
+                    "order_num": 11
                 },{
                     "previous_position": 11,
                     "current_position": 12,
@@ -100,7 +100,7 @@
                     "id": 161,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 16
+                    "order_num": 12
                 },{
                     "previous_position": 12,
                     "current_position": 13,
@@ -108,7 +108,7 @@
                     "id": 162,
                     "type": "question",
                     "document_type": 9,
-                    "order_num": 16
+                    "order_num": 13
                 }
             ],
             "title": "Stage 9: Analysis",
