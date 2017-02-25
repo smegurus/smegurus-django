@@ -25,17 +25,17 @@ def matrix_subtract_by(arr1, arr2):
 def matrix_divide_by(arr1, arr2):
     computation = {}
     try:
-        computation['yr1'] = arr1['yr1'] / arr2['yr1'],
+        computation['yr1'] = arr1['yr1'] / arr2['yr1']
     except Exception as e:
         computation['yr1'] = 0
 
     try:
-        computation['yr2'] = arr1['yr2'] / arr2['yr2'],
+        computation['yr2'] = arr1['yr2'] / arr2['yr2']
     except Exception as e:
         computation['yr1'] = 0
 
     try:
-        computation['yr3'] = arr1['yr3'] / arr2['yr3'],
+        computation['yr3'] = arr1['yr3'] / arr2['yr3']
     except Exception as e:
         computation['yr3'] = 0
 

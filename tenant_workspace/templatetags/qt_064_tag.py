@@ -21,20 +21,52 @@ register = template.Library()
 
 
 def scalar_add_by(arr, value):
+    yr1 = 0
+    yr2 = 0
+    yr3 = 0
+    total = 0
+    if arr['yr1']:
+        yr1 = arr['yr1']
+
+    if arr['yr2']:
+        yr2 = arr['yr2']
+
+    if arr['yr3']:
+        yr3 = arr['yr3']
+
+    if arr['total']:
+        total = arr['total']
+
     return {
-        'yr1': arr['yr1'] + value,
-        "yr2": arr['yr2'] + value,
-        "yr3": arr['yr3'] + value,
-        "total": arr['total'] + value
+        'yr1': yr1 + value,
+        "yr2": yr2 + value,
+        "yr3": yr3 + value,
+        "total": total + value
     }
 
 
 def scalar_multiply_by(arr, value):
+    yr1 = 0
+    yr2 = 0
+    yr3 = 0
+    total = 0
+    if arr['yr1']:
+        yr1 = arr['yr1']
+
+    if arr['yr2']:
+        yr2 = arr['yr2']
+
+    if arr['yr3']:
+        yr3 = arr['yr3']
+
+    if arr['total']:
+        total = arr['total']
+
     return {
-        'yr1': arr['yr1'] * value,
-        "yr2": arr['yr2'] * value,
-        "yr3": arr['yr3'] * value,
-        "total": arr['total'] * value
+        'yr1': yr1 * value,
+        "yr2": yr2 * value,
+        "yr3": yr3 * value,
+        "total": total * value
     }
 
 
@@ -59,22 +91,22 @@ def matrix_add_by(arr1, arr2):
 def matrix_divide_by(arr1, arr2):
     computation = {}
     try:
-        computation['yr1'] = arr1['yr1'] / arr2['yr1'],
+        computation['yr1'] = arr1['yr1'] / arr2['yr1']
     except Exception as e:
         computation['yr1'] = 0
 
     try:
-        computation['yr2'] = arr1['yr2'] / arr2['yr2'],
+        computation['yr2'] = arr1['yr2'] / arr2['yr2']
     except Exception as e:
         computation['yr1'] = 0
 
     try:
-        computation['yr3'] = arr1['yr3'] / arr2['yr3'],
+        computation['yr3'] = arr1['yr3'] / arr2['yr3']
     except Exception as e:
         computation['yr3'] = 0
 
     try:
-        computation['total'] = arr1['total'] / arr2['total'],
+        computation['total'] = arr1['total'] / arr2['total']
     except Exception as e:
         computation['total'] = 0
 
