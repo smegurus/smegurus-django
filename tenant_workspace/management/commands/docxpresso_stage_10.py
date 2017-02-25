@@ -65,7 +65,7 @@ class Command(BaseCommand):
         try:
             return Document.objects.get(
                 workspace_id=workspace_id,
-                document_type__stage_num=9
+                document_type__stage_num=10
             )
         except Workspace.DoesNotExist:
             raise CommandError(_('Cannot find a workspace.'))
@@ -145,7 +145,450 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            pass
+            if answer.question.pk == 1:
+                api.do_q1(answer, api)
+
+            elif answer.question.pk == 2:
+                api.do_q2(answer, api)
+
+            elif answer.question.pk == 3:
+                api.do_q3(answer, api)
+
+            elif answer.question.pk == 4:
+                api.do_q4(answer, api)
+
+            elif answer.question.pk == 5:
+                api.do_q5(answer, api)
+
+            elif answer.question.pk == 6:
+                api.do_q6(answer, api)
+
+            elif answer.question.pk == 7:
+                api.do_q7(answer, api)
+
+            elif answer.question.pk == 8:
+                api.do_q8(answer, api)
+
+            elif answer.question.pk == 9:
+                api.do_q9(answer, api)
+
+            elif answer.question.pk == 10:
+                api.do_q10(answer, api)
+
+            elif answer.question.pk == 21:
+                api.do_q21(answer, api)
+
+            elif answer.question.pk == 25:
+                api.do_q25(answer, api)
+
+            elif answer.question.pk == 26:
+                api.do_q26(answer, api)
+
+            elif answer.question.pk == 27:
+                api.do_q27(answer, api)
+
+            elif answer.question.pk == 28:
+                api.do_q28(answer, api)
+
+            elif answer.question.pk == 29:
+                api.do_q29(answer, api)
+
+            elif answer.question.pk == 30:
+                api.do_q30(answer, api)
+
+            # elif answer.question.pk == 32:
+            #     api.do_q32(answer, api)
+
+            elif answer.question.pk == 33:
+                api.do_q33(answer, api)
+
+            elif answer.question.pk == 34:
+                api.do_q34(answer, api)
+
+            elif answer.question.pk == 35:
+                api.do_q35(answer, api)
+
+            elif answer.question.pk == 36:
+                api.do_q36(answer, api)
+
+            elif answer.question.pk == 37:
+                api.do_q37(answer, api)
+
+            elif answer.question.pk == 38:
+                api.do_q38(answer, api)
+
+            elif answer.question.pk == 39:
+                api.do_q39(answer, api)
+
+            elif answer.question.pk == 40:
+                api.do_q40(answer, api)
+
+            elif answer.question.pk == 41:
+                api.do_q41(answer, api)
+
+            elif answer.question.pk == 42:
+                api.do_q42(answer, api)
+
+            elif answer.question.pk == 43:
+                api.do_q43(answer, api)
+
+            elif answer.question.pk == 44:
+                api.do_q44(answer, api)
+
+            elif answer.question.pk == 45:
+                api.do_q45(answer, api)
+
+            elif answer.question.pk == 46:
+                api.do_q46(answer, api)
+
+            elif answer.question.pk == 47:
+                api.do_q47(answer, api)
+
+            elif answer.question.pk == 48:
+                api.do_q48(answer, api)
+
+            elif answer.question.pk == 49:
+                api.do_q49(answer, api)
+
+            elif answer.question.pk == 50:
+                api.do_q50(answer, api)
+
+            elif answer.question.pk == 51:
+                api.do_q51(answer, api)
+
+            elif answer.question.pk == 52:
+                api.do_q52(answer, api)
+
+            elif answer.question.pk == 53:
+                api.do_q53(answer, api)
+
+            elif answer.question.pk == 54:
+                api.do_q54(answer, api)
+
+            elif answer.question.pk == 55:
+                api.do_q55(answer, api)
+
+            elif answer.question.pk == 56:
+                # actual_contact_number
+                api.do_q56(answer, api)
+
+            elif answer.question.pk == 58:
+                # actual_supported_number
+                # validation_outcome_met
+                api.do_q58(answer, api, answers)
+
+            elif answer.question.pk == 59:
+                # validation_lessons_learned
+                api.do_q59(answer, api)
+
+            elif answer.question.pk == 61:
+                api.do_q61(answer, api)
+
+            elif answer.question.pk == 62:
+                api.do_q62(answer, api)
+
+            elif answer.question.pk == 63:
+                api.do_q63(answer, api)
+
+            elif answer.question.pk == 64:
+                api.do_q64(answer, api)
+
+            elif answer.question.pk == 65:
+                api.do_q65(answer, api)
+
+            elif answer.question.pk == 66:
+                api.do_q66(answer, api)
+
+            elif answer.question.pk == 67:
+                api.do_q67(answer, api)
+
+            elif answer.question.pk == 68:
+                api.do_q68(answer, api)
+
+            elif answer.question.pk == 69:
+                api.do_q69(answer, api)
+
+            elif answer.question.pk == 70:
+                api.do_q70(answer, api)
+
+            elif answer.question.pk == 71:
+                api.do_q71(answer, api)
+
+            elif answer.question.pk == 72:
+                api.do_q72(answer, api)
+
+            elif answer.question.pk == 73:
+                api.do_q73(answer, api)
+
+            elif answer.question.pk == 74:
+                api.do_q74(answer, api)
+
+            elif answer.question.pk == 75:
+                api.do_q75(answer, api)
+
+            elif answer.question.pk == 76:
+                api.do_q76(answer, api)
+
+            elif answer.question.pk == 77:
+                api.do_q77(answer, api)
+
+            elif answer.question.pk == 78:
+                api.do_q78(answer, api)
+
+            elif answer.question.pk == 79:
+                api.do_q79(answer, api)
+
+            elif answer.question.pk == 80:
+                api.do_q80(answer, api)
+
+            elif answer.question.pk == 81:
+                api.do_q81(answer, api)
+
+            elif answer.question.pk == 82:
+                api.do_q82(answer, api)
+
+            elif answer.question.pk == 83:
+                api.do_q83(answer, api)
+
+            # elif answer.question.pk == 84:  #BUG: Investigate why this errors.
+            #     api.do_q84(answer, api)
+
+            elif answer.question.pk == 85:
+                api.do_q85(answer, api)
+
+            elif answer.question.pk == 86:
+                api.do_q86(answer, api)
+
+            elif answer.question.pk == 87:
+                api.do_q87(answer, api)
+
+            elif answer.question.pk == 88:
+                api.do_q88(answer, api)
+
+            elif answer.question.pk == 89:
+                api.do_q89(answer, api)
+
+            elif answer.question.pk == 90:
+                api.do_q90(answer, api)
+
+            elif answer.question.pk == 91:
+                api.do_q91(answer, api)
+
+            elif answer.question.pk == 92:
+                api.do_q92(answer, api)
+
+            elif answer.question.pk == 93:
+                api.do_q93(answer, api)
+
+            elif answer.question.pk == 95:
+                api.do_q95(answer, api)
+
+            elif answer.question.pk == 97:
+                api.do_q97(answer, api)
+
+            elif answer.question.pk == 98:
+                api.do_q98(answer, api)
+
+            elif answer.question.pk == 99:
+                api.do_q99(answer, api)
+
+            elif answer.question.pk == 100:
+                api.do_q100(answer, api)
+
+            elif answer.question.pk == 101:
+                api.do_q101(answer, api)
+
+            elif answer.question.pk == 102:
+                api.do_q102(answer, api)
+
+            elif answer.question.pk == 103:
+                api.do_q103(answer, api)
+
+            elif answer.question.pk == 104:
+                api.do_q104(answer, api)
+
+            elif answer.question.pk == 105:
+                api.do_q105(answer, api)
+
+            elif answer.question.pk == 106:
+                api.do_q106(answer, api)
+
+            elif answer.question.pk == 107:
+                api.do_q107(answer, api)
+
+            elif answer.question.pk == 109:
+                api.do_q109(answer, api)
+
+            elif answer.question.pk == 108:
+                api.do_q108(answer, api)
+
+            elif answer.question.pk == 110:
+                api.do_q110(answer, api)
+
+            elif answer.question.pk == 111:
+                api.do_q111(answer, api)
+
+            elif answer.question.pk == 112:
+                api.do_q112(answer, api)
+
+            elif answer.question.pk == 113:
+                api.do_q113(answer, api)
+
+            elif answer.question.pk == 114:
+                api.do_q114(answer, api)
+
+            elif answer.question.pk == 116:
+                api.do_q116(answer, api)
+
+            elif answer.question.pk == 117:
+                api.do_q117(answer, api)
+
+            elif answer.question.pk == 118:
+                api.do_q118(answer, api)
+
+            elif answer.question.pk == 119:
+                api.do_q119(answer, api)
+
+            elif answer.question.pk == 120:
+                api.do_q120(answer, api)
+
+            elif answer.question.pk == 121:
+                api.do_q121(answer, api)
+
+            elif answer.question.pk == 122:
+                api.do_q122(answer, api)
+
+            elif answer.question.pk == 123:
+                api.do_q123(answer, api)
+
+            elif answer.question.pk == 124:
+                api.do_q124(answer, api)
+
+            elif answer.question.pk == 125:
+                api.do_q125(answer, api)
+
+            elif answer.question.pk == 126:
+                api.do_q126(answer, api)
+
+            elif answer.question.pk == 127:
+                api.do_q127(answer, api)
+
+            elif answer.question.pk == 128:
+                api.do_q128(answer, api)
+
+            elif answer.question.pk == 129:
+                api.do_q129(answer, api)
+
+            elif answer.question.pk == 130:
+                api.do_q130(answer, api)
+
+            elif answer.question.pk == 131:
+                api.do_q131(answer, api)
+
+            elif answer.question.pk == 132:
+                api.do_q132(answer, api)
+
+            elif answer.question.pk == 133:
+                api.do_q133(answer, api)
+
+            elif answer.question.pk == 134:
+                api.do_q134(answer, api)
+
+            elif answer.question.pk == 135:
+                api.do_q135(answer, api)
+
+            elif answer.question.pk == 136:
+                api.do_q136(answer, api)
+                qid_136_answer = answer
+
+            elif answer.question.pk == 137:
+                api.do_q137(answer, api)
+                qid_137_answer = answer
+
+            elif answer.question.pk == 138:
+                api.do_q138(answer, api)
+                qid_138_answer = answer
+
+            elif answer.question.pk == 139:
+                api.do_q139(answer, api)
+
+            elif answer.question.pk == 140:
+                api.do_q140(answer, api)
+
+            elif answer.question.pk == 141:
+                api.do_q141(answer, api)
+
+            elif answer.question.pk == 142:
+                api.do_q142(answer, api)
+
+            elif answer.question.pk == 142:
+                api.do_q142(answer, api)
+
+            elif answer.question.pk == 143:
+                api.do_q143(answer, api)
+
+            elif answer.question.pk == 144:
+                api.do_q144(answer, api)
+
+            elif answer.question.pk == 145:
+                api.do_q145(answer, api)
+
+            elif answer.question.pk == 146:
+                api.do_q146(answer, api)
+
+            elif answer.question.pk == 147:
+                api.do_q147(answer, api)
+
+            elif answer.question.pk == 148:
+                api.do_q148(answer, api)
+
+            elif answer.question.pk == 149:
+                api.do_q149(answer, api)
+
+            elif answer.question.pk == 150:
+                api.do_q150(answer, api)
+
+            elif answer.question.pk == 151:
+                api.do_q151(answer, api)
+
+            elif answer.question.pk == 152:
+                api.do_q152(answer, api)
+
+            elif answer.question.pk == 153:
+                api.do_q153(answer, api)
+
+            elif answer.question.pk == 154:
+                api.do_q154(answer, api)
+
+            elif answer.question.pk == 155:
+                api.do_q155(answer, api)
+
+            elif answer.question.pk == 156:
+                api.do_q156(answer, api)
+
+            elif answer.question.pk == 157:
+                api.do_q157(answer, api)
+
+            elif answer.question.pk == 158:
+                api.do_q158(answer, api)
+
+            elif answer.question.pk == 161:
+                api.do_q161(answer, api)
+
+            elif answer.question.pk == 162:
+                api.do_q162(answer, api)
+
+            elif answer.question.pk == 167:
+                api.do_q167(answer, api)
+
+            elif answer.question.pk == 168:
+                api.do_q168(answer, api)
+
+            elif answer.question.pk == 169:
+                api.do_q169(answer, api)
+
+        # Perform specific computations based on previous saved answers.
+        api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer, api)
 
     def do_date(self, api):
         today = timezone.now()
