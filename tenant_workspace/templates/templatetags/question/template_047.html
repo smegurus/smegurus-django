@@ -95,14 +95,13 @@
         // Debugging Purposes Only.
         console.log(arr);
 
-
         // VALIDATE THAT YR1, YR2, & YR3 TOTAL 100%
         {% if q1_answer.var_1 and q1_answer.var_2 and q1_answer.var_3 %}
             //TODO: Implement summing all three vertical rows and erroring if they do not sum 100%
         {% elif q1_answer.var_1 and q1_answer.var_2 and q1_answer.var_3 == None  %}
-            //TODO: Implement summing all twp vertical rows and erroring if they do not sum 100%
+            //TODO: Implement summing all two vertical rows and erroring if they do not sum 100%
         {% elif q1_answer.var_1 and q1_answer.var_2 == None and q1_answer.var_3 == None  %}
-            //TODO: Implement summing all twp vertical rows and erroring if they do not sum 100%
+            //TODO: Implement summing all single vertical rows and erroring if they do not sum 100%
         {% endif %}
 
         // SAVE TO OUR DATABASE.
