@@ -161,7 +161,7 @@ class Command(BaseCommand):
             elif answer.question.pk == 110:
                 api.do_q110(answer, api)
 
-            elif answer.question.pk == 111:
+            elif answer.question.pk == 111: #admin_cost
                 api.do_q111(answer, api)
 
             elif answer.question.pk == 113:
@@ -173,10 +173,10 @@ class Command(BaseCommand):
             elif answer.question.pk == 117:
                 api.do_q117(answer, api)
 
-            elif answer.question.pk == 118:
+            elif answer.question.pk == 118: #supplies_costs
                 api.do_q118(answer, api)
 
-            elif answer.question.pk == 120:
+            elif answer.question.pk == 120: #comm_costs
                 api.do_q120(answer, api)
 
             elif answer.question.pk == 123:
@@ -209,10 +209,10 @@ class Command(BaseCommand):
             elif answer.question.pk == 138:
                 api.do_q138(answer, api)
 
-            elif answer.question.pk == 163:
+            elif answer.question.pk == 163: #total_sales
                 api.do_q163(answer, api)
 
-            elif answer.question.pk == 167:
+            elif answer.question.pk == 167: #equipment_y1_costs_total | long_term_liabilities_y1
                 api.do_q167(answer, api)
 
 
