@@ -87,7 +87,7 @@ class Command(BaseCommand):
         api.new(
             name="workspace_" + str(workspace.id) + "_stage_09",
             format="odt",
-            template="templates/stage9.odt"
+            template="templates/stage9.ods"
         )
 
         # Take our content and populate docxpresso with it.
