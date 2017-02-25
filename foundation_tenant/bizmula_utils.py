@@ -156,16 +156,15 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q40(self, answer, api): # customer_buying_decision | geographic_market
-        api.add_text(
-            "geographic_market_details",
-            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        )
-
-    def do_q50(self, answer, api): # customer_buying_decision | geographic_market
-        api.add_text(
-            "customer_buying_decision",
-            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        )
+        company_market = None
+        if answer.content['var_1_other']:
+            company_market = answer.content['var_1_other']
+        else:
+            if answer.content['var_1']:
+                company_market = answer.content['var_1']
+            else:
+                company_market = answer.content['var_0']
+        api.add_text("geographic_market_details", company_market)
 
     def do_q41(self, answer, api):
         api.add_text(
@@ -233,6 +232,12 @@ class BizmulaAPI(DocxspressoAPI):
         for ans in answer.content:
             array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
         api.add_text_paragraphs("target_market_characteristics", array)
+
+    def do_q50(self, answer, api): # customer_buying_decision | geographic_market
+        api.add_text(
+            "customer_buying_decision",
+            answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        )
 
     def do_q52(self, answer, api):
         api.add_text(
@@ -337,7 +342,7 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
-    def do_q63(self, answer, api): #BUG: NULL IS BEING RETURNED, MUST INVESTIGATE.
+    def do_q63(self, answer, api):
         api.add_text('business_mission', answer.content['var_2'])
 
     def do_q64(self, answer, api):
