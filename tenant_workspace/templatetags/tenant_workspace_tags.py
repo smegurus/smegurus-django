@@ -668,8 +668,8 @@ def render_question_type_031(workspace, module, node, question, answer):
 
     # Perform our comparison.
     x_compare_y_result = False
-    if compare == "<=":
-        if x <= y:
+    if compare == ">=":
+        if x >= y:
             x_compare_y_result = True
 
     return {

@@ -71,7 +71,7 @@
             "dependency": {
                 "x_pk": 53,
                 "y_pk": 56,
-                "compare": "<="
+                "compare": ">="
             },
             "validation": {},
             "type_id": 31
