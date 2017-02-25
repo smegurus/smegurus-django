@@ -21,20 +21,52 @@ register = template.Library()
 
 
 def scalar_add_by(arr, value):
+    yr1 = 0
+    yr2 = 0
+    yr3 = 0
+    total = 0
+    if arr['yr1']:
+        yr1 = arr['yr1']
+
+    if arr['yr2']:
+        yr2 = arr['yr2']
+
+    if arr['yr3']:
+        yr3 = arr['yr3']
+
+    if arr['total']:
+        total = arr['total']
+
     return {
-        'yr1': arr['yr1'] + value,
-        "yr2": arr['yr2'] + value,
-        "yr3": arr['yr3'] + value,
-        "total": arr['total'] + value
+        'yr1': yr1 + value,
+        "yr2": yr2 + value,
+        "yr3": yr3 + value,
+        "total": total + value
     }
 
 
 def scalar_multiply_by(arr, value):
+    yr1 = 0
+    yr2 = 0
+    yr3 = 0
+    total = 0
+    if arr['yr1']:
+        yr1 = arr['yr1']
+
+    if arr['yr2']:
+        yr2 = arr['yr2']
+
+    if arr['yr3']:
+        yr3 = arr['yr3']
+
+    if arr['total']:
+        total = arr['total']
+
     return {
-        'yr1': arr['yr1'] * value,
-        "yr2": arr['yr2'] * value,
-        "yr3": arr['yr3'] * value,
-        "total": arr['total'] * value
+        'yr1': yr1 * value,
+        "yr2": yr2 * value,
+        "yr3": yr3 * value,
+        "total": total * value
     }
 
 
