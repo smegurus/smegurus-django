@@ -1825,24 +1825,16 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text('break_even_units_total', answer.content['break_even_units']['total'])
 
     def do_q167(self, answer, api):
-        api.add_text('asset_y1_costs_total', answer.content['asset_y1_costs_total'])
-        api.add_text('funds_available', answer.content['funds_available'])
-        api.add_text('equipment_y1_costs', answer.content['equipment_y1_costs'])
-        api.add_text('short_term_assets_y1', answer.content['long_term_liabilities_y1'])
-        api.add_text('cash_required', answer.content['cash_required'])
-        api.add_text('net_startup_deficit_surplus', answer.content['net_startup_deficit_surplus'])
-        api.add_text('ent_cash_startup_req', answer.content['ent_cash_startup_req'])
-        api.add_text('startup_inventory_req', answer.content['startup_inventory_req'])
-        api.add_text('short_term_liabilities_y1', answer.content['short_term_liabilities_y1'])
+        # Iterate through all the keys/values and save it.
+        for key in answer.content:
+            value = answer.content[key]
+            api.add_text(key, value)
 
     def do_q168(self, answer, api):
         # Iterate through all the keys/values and save it.
         for key in answer.content:
             value = answer.content[key]
             api.add_text(key, value)
-
-            # if "misc_costs" in key:
-            #     print(key, "|", value)
 
     def do_q169(self, answer, api):
         print("QID 169")
