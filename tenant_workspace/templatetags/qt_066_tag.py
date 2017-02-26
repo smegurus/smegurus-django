@@ -217,13 +217,23 @@ def render_question_type_066(workspace, module, node, question, answer):
     #=============#
     answer.content = {
         'asset_y1_costs_total': long_term_assets['yr1'],
-        'equipment_y1_costs': equipment_costs['yr1'],
+        'asset_y2_costs_total': long_term_assets['yr2'],
+        'asset_y3_costs_total': long_term_assets['yr3'],
+        'equipment_y1_costs_total': equipment_costs['yr1'],
+        'equipment_y2_costs_total': equipment_costs['yr2'],
+        'equipment_y3_costs_total': equipment_costs['yr3'],
         'startup_inventory_req': startup_inventory_req,
         'ent_cash_startup_req': ent_cash_startup_req,
         'cash_required': cash_required,
         'short_term_assets_y1': short_term_assets['yr1'],
+        'short_term_assets_y1': short_term_assets['yr2'],
+        'short_term_assets_y1': short_term_assets['yr3'],
         'short_term_liabilities_y1': short_term_liabilities['yr1'],
+        'short_term_liabilities_y2': short_term_liabilities['yr2'],
+        'short_term_liabilities_y3': short_term_liabilities['yr3'],
         'long_term_liabilities_y1': long_term_liabilities['yr1'],
+        'long_term_liabilities_y2': long_term_liabilities['yr2'],
+        'long_term_liabilities_y3': long_term_liabilities['yr3'],
         'funds_available': funds_available,
         'net_startup_deficit_surplus': net_startup_deficit_surplus
     }
