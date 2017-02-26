@@ -890,7 +890,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_materials_m10", answer.content['materials_month_10_other'] if answer.content['materials_month_10_other'] else answer.content['materials_month_10'])
         api.add_text("cogs_materials_m11", answer.content['materials_month_11_other'] if answer.content['materials_month_11_other'] else answer.content['materials_month_11'])
         api.add_text("cogs_materials_m12", answer.content['materials_month_12_other'] if answer.content['materials_month_12_other'] else answer.content['materials_month_12'])
-        # api.add_text("cogs_materials_y1_total", answer.content['materials_month_12_other'] if answer.content['materials_month_12_other'] else answer.content['materials_month_12'])
+        api.add_text("cogs_materials_y1_total", answer.content['materials_month_12_other'] if answer.content['materials_month_12_other'] else answer.content['materials_month_12'])
 
         api.add_text("cogs_materials_m13", answer.content['materials_month_13_other'] if answer.content['materials_month_1_other'] else answer.content['materials_month_13'])
         api.add_text("cogs_materials_m14", answer.content['materials_month_14_other'] if answer.content['materials_month_2_other'] else answer.content['materials_month_14'])
@@ -904,7 +904,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_materials_m22", answer.content['materials_month_22_other'] if answer.content['materials_month_10_other'] else answer.content['materials_month_22'])
         api.add_text("cogs_materials_m23", answer.content['materials_month_23_other'] if answer.content['materials_month_11_other'] else answer.content['materials_month_23'])
         api.add_text("cogs_materials_m24", answer.content['materials_month_24_other'] if answer.content['materials_month_12_other'] else answer.content['materials_month_24'])
-        # api.add_text("cogs_materials_y1_total", answer.content['materials_month_12_other'] if answer.content['materials_month_12_other'] else answer.content['materials_month_12'])
+        api.add_text("cogs_materials_y2_total", answer.content['materials_month_24_other'] if answer.content['materials_month_24_other'] else answer.content['materials_month_24'])
 
         api.add_text("cogs_materials_m25", answer.content['materials_month_25_other'] if answer.content['materials_month_25_other'] else answer.content['materials_month_25'])
         api.add_text("cogs_materials_m26", answer.content['materials_month_26_other'] if answer.content['materials_month_26_other'] else answer.content['materials_month_26'])
@@ -918,7 +918,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_materials_m34", answer.content['materials_month_34_other'] if answer.content['materials_month_34_other'] else answer.content['materials_month_34'])
         api.add_text("cogs_materials_m35", answer.content['materials_month_35_other'] if answer.content['materials_month_35_other'] else answer.content['materials_month_35'])
         api.add_text("cogs_materials_m36", answer.content['materials_month_36_other'] if answer.content['materials_month_36_other'] else answer.content['materials_month_36'])
-        # api.add_text("cogs_materials_y1_total", answer.content['materials_month_12_other'] if answer.content['materials_month_12_other'] else answer.content['materials_month_12'])
+        api.add_text("cogs_materials_y3_total", answer.content['materials_month_35_other'] if answer.content['materials_month_36_other'] else answer.content['materials_month_36'])
 
         api.add_text("cogs_labour_m1", answer.content['labour_month_1_other'] if answer.content['labour_month_1_other'] else answer.content['labour_month_1'])
         api.add_text("cogs_labour_m2", answer.content['labour_month_2_other'] if answer.content['labour_month_2_other'] else answer.content['labour_month_2'])
@@ -932,7 +932,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_labour_m10", answer.content['labour_month_10_other'] if answer.content['labour_month_10_other'] else answer.content['labour_month_10'])
         api.add_text("cogs_labour_m11", answer.content['labour_month_11_other'] if answer.content['labour_month_11_other'] else answer.content['labour_month_11'])
         api.add_text("cogs_labour_m12", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
-        # api.add_text("cogs_labour_y1_total", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
+        api.add_text("cogs_labour_y1_total", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
 
         api.add_text("cogs_labour_m13", answer.content['labour_month_13_other'] if answer.content['labour_month_1_other'] else answer.content['labour_month_13'])
         api.add_text("cogs_labour_m14", answer.content['labour_month_14_other'] if answer.content['labour_month_2_other'] else answer.content['labour_month_14'])
@@ -946,7 +946,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_labour_m22", answer.content['labour_month_22_other'] if answer.content['labour_month_10_other'] else answer.content['labour_month_22'])
         api.add_text("cogs_labour_m23", answer.content['labour_month_23_other'] if answer.content['labour_month_11_other'] else answer.content['labour_month_23'])
         api.add_text("cogs_labour_m24", answer.content['labour_month_24_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_24'])
-        # api.add_text("cogs_labour_y1_total", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
+        api.add_text("cogs_labour_y2_total", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
 
         api.add_text("cogs_labour_m25", answer.content['labour_month_25_other'] if answer.content['labour_month_25_other'] else answer.content['labour_month_25'])
         api.add_text("cogs_labour_m26", answer.content['labour_month_26_other'] if answer.content['labour_month_26_other'] else answer.content['labour_month_26'])
@@ -960,7 +960,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_labour_m34", answer.content['labour_month_34_other'] if answer.content['labour_month_34_other'] else answer.content['labour_month_34'])
         api.add_text("cogs_labour_m35", answer.content['labour_month_35_other'] if answer.content['labour_month_35_other'] else answer.content['labour_month_35'])
         api.add_text("cogs_labour_m36", answer.content['labour_month_36_other'] if answer.content['labour_month_36_other'] else answer.content['labour_month_36'])
-        # api.add_text("cogs_labour_y1_total", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
+        api.add_text("cogs_labour_y3_total", answer.content['labour_month_12_other'] if answer.content['labour_month_12_other'] else answer.content['labour_month_12'])
 
         api.add_text("cogs_overhead_m1", answer.content['overhead_month_1_other'] if answer.content['overhead_month_1_other'] else answer.content['overhead_month_1'])
         api.add_text("cogs_overhead_m2", answer.content['overhead_month_2_other'] if answer.content['overhead_month_2_other'] else answer.content['overhead_month_2'])
@@ -974,7 +974,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_overhead_m10", answer.content['overhead_month_10_other'] if answer.content['overhead_month_10_other'] else answer.content['overhead_month_10'])
         api.add_text("cogs_overhead_m11", answer.content['overhead_month_11_other'] if answer.content['overhead_month_11_other'] else answer.content['overhead_month_11'])
         api.add_text("cogs_overhead_m12", answer.content['overhead_month_12_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_12'])
-        # api.add_text("cogs_overhead_y1_total", answer.content['overhead_month_12_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_12'])
+        api.add_text("cogs_overhead_y1_total", answer.content['overhead_month_12_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_12'])
 
         api.add_text("cogs_overhead_m13", answer.content['overhead_month_13_other'] if answer.content['overhead_month_1_other'] else answer.content['overhead_month_13'])
         api.add_text("cogs_overhead_m14", answer.content['overhead_month_14_other'] if answer.content['overhead_month_2_other'] else answer.content['overhead_month_14'])
@@ -988,7 +988,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_overhead_m22", answer.content['overhead_month_22_other'] if answer.content['overhead_month_10_other'] else answer.content['overhead_month_22'])
         api.add_text("cogs_overhead_m23", answer.content['overhead_month_23_other'] if answer.content['overhead_month_11_other'] else answer.content['overhead_month_23'])
         api.add_text("cogs_overhead_m24", answer.content['overhead_month_24_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_24'])
-        # api.add_text("cogs_overhead_y1_total", answer.content['overhead_month_12_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_12'])
+        api.add_text("cogs_overhead_y2_total", answer.content['overhead_month_24_other'] if answer.content['overhead_month_24_other'] else answer.content['overhead_month_24'])
 
         api.add_text("cogs_overhead_m25", answer.content['overhead_month_25_other'] if answer.content['overhead_month_25_other'] else answer.content['overhead_month_25'])
         api.add_text("cogs_overhead_m26", answer.content['overhead_month_26_other'] if answer.content['overhead_month_26_other'] else answer.content['overhead_month_26'])
@@ -1002,7 +1002,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_overhead_m34", answer.content['overhead_month_34_other'] if answer.content['overhead_month_34_other'] else answer.content['overhead_month_34'])
         api.add_text("cogs_overhead_m35", answer.content['overhead_month_35_other'] if answer.content['overhead_month_35_other'] else answer.content['overhead_month_35'])
         api.add_text("cogs_overhead_m36", answer.content['overhead_month_36_other'] if answer.content['overhead_month_36_other'] else answer.content['overhead_month_36'])
-        # api.add_text("cogs_overhead_y1_total", answer.content['overhead_month_12_other'] if answer.content['overhead_month_12_other'] else answer.content['overhead_month_12'])
+        api.add_text("cogs_overhead_y3_total", answer.content['overhead_month_36_other'] if answer.content['overhead_month_36_other'] else answer.content['overhead_month_36'])
 
     def do_q102(self, answer, api):
         print("QID 102")
@@ -1732,8 +1732,8 @@ class BizmulaAPI(DocxspressoAPI):
             value = answer.content[key]
             api.add_text(key, value)
 
-            if "cogs" in key:
-                print(key, "|", value)
+            # if "misc_costs" in key:
+            #     print(key, "|", value)
 
     def do_q169(self, answer, api):
         print("QID 169")

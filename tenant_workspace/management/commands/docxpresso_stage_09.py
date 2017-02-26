@@ -96,6 +96,7 @@ class Command(BaseCommand):
         # Generate our document!
         doc_filename = api.get_filename()
         doc_modified_filename = settings.SMEGURUS_APP_DOCXPRESSO_FILE_PREFIX+doc_filename
+        # print(api)
         # return #TODO: REMOVE
         doc_bin_data = api.generate()
 
