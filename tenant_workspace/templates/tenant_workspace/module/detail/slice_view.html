@@ -4,6 +4,7 @@
 <style>
     .wrapper section{
         padding-bottom: 10px;
+        margin-bottom: 0;
     }
     .wrapper footer{
         display: none;
@@ -31,7 +32,9 @@
             <div class="col-lg-12">
                 <!-- START panel-->
                 <div id="panelDemo7" class="panel panel-default">
-                    <div class="panel-heading" {% if slide.video_url %}style="display: none;"{% endif %}>{{ slide.title }}</div>
+                    <div class="panel-heading" {% if slide.video_url %}style="display: none;"{% endif %}>
+                        <h2 class="text-center pv">{{ slide.title }}</h2>
+                    </div>
                     <div class="panel-body">
                         <!-- VIDEO PLAYER -->
                         {% if slide.video_url %}
@@ -48,7 +51,7 @@
                         <!-- BODY TEXT -->
                         {% if not slide.video_url %}{{ slide.description|escape|safe }}{% endif %}
                         <!-- end BODY TEXT -->
-                        <br /><br /><br />
+                        <br /><br />
                         <!-- PREVIOUS BUTTON -->
                         <div class="pull-left">
                             <a id="id_previous_node_a" href="{% reverse_previous_node workspace module node %}">
