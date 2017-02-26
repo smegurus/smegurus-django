@@ -23,7 +23,7 @@
     "fields": {
         "module": 2,
         "title": "Get Ready to Market Research",
-        "description": "<img src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_2_2.jpg\" />",
+        "description": "<img src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_2_2.jpg\" class=\"slide_img\" />",
         "video_url": ""
     }
 },{
@@ -32,7 +32,7 @@
     "fields": {
         "module": 2,
         "title": "Important Market Research Links.",
-        "description": "Here are some Useful Market Research Links to Help you get Started:<ul><li>United States Census Bureau  https://www.census.gov/</li><li>Statistics Canada http://www.statcan.gc.ca/eng/start</li><li>Canada Industry Trends http://www.ic.gc.ca/eic/site/icgc.nsf/eng/h_07063.html</li></ul>",
+        "description": "Here are some Useful Market Research Links to Help you get Started:<ul><li><a href=\"https://www.census.gov/\">United States Census Bureau</a></li><li><a href=\"http://www.statcan.gc.ca/eng/start\">Statistics Canada</a></li><li><a href=\"http://www.ic.gc.ca/eic/site/icgc.nsf/eng/h_07063.html\">Canada Industry Trends</a></li></ul>",
         "video_url": ""
     }
 }
