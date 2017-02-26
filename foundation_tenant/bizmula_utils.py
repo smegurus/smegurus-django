@@ -1723,8 +1723,117 @@ class BizmulaAPI(DocxspressoAPI):
     def do_q163(self, answer, api):
         print("QID 163")
 
+    def do_q165(self, answer, api):
+        # Total Sales
+        api.add_text('total_sales_yr1', answer.content['total_sales']['yr1'])
+        api.add_text('total_sales_yr2', answer.content['total_sales']['yr2'])
+        api.add_text('total_sales_yr3', answer.content['total_sales']['yr3'])
+        api.add_text('total_sales_total', answer.content['total_sales']['total'])
+
+        # Labour
+        api.add_text('labour_yr1', answer.content['labour']['yr1'])
+        api.add_text('labour_yr2', answer.content['labour']['yr2'])
+        api.add_text('labour_yr3', answer.content['labour']['yr3'])
+        api.add_text('labour_total', answer.content['labour']['total'])
+
+        # net_profit_percent
+        api.add_text('net_profit_percent_yr1', answer.content['net_profit_percent']['yr1'])
+        api.add_text('net_profit_percent_yr2', answer.content['net_profit_percent']['yr2'])
+        api.add_text('net_profit_percent_yr3', answer.content['net_profit_percent']['yr3'])
+        api.add_text('net_profit_percent_total', answer.content['net_profit_percent']['total'])
+
+        # gross_profit
+        api.add_text('gross_profit_yr1', answer.content['gross_profit']['yr1'])
+        api.add_text('gross_profit_yr2', answer.content['gross_profit']['yr2'])
+        api.add_text('gross_profit_yr3', answer.content['gross_profit']['yr3'])
+        api.add_text('gross_profit_total', answer.content['gross_profit']['total'])
+
+        # revenue
+        api.add_text('revenue_yr1', answer.content['revenue']['yr1'])
+        api.add_text('revenue_yr2', answer.content['revenue']['yr2'])
+        api.add_text('revenue_yr3', answer.content['revenue']['yr3'])
+        api.add_text('revenue', answer.content['revenue']['total'])
+
+        # revenue
+        api.add_text('net_profit_yr1', answer.content['net_profit']['yr1'])
+        api.add_text('net_profit_yr2', answer.content['net_profit']['yr2'])
+        api.add_text('net_profit_yr3', answer.content['net_profit']['yr3'])
+        api.add_text('net_profit', answer.content['net_profit']['total'])
+
+        # overhead
+        api.add_text('overhead_yr1', answer.content['overhead']['yr1'])
+        api.add_text('overhead_yr2', answer.content['overhead']['yr2'])
+        api.add_text('overhead_yr3', answer.content['overhead']['yr3'])
+        api.add_text('overhead_total', answer.content['overhead']['total'])
+
+        # gross_margin_percent
+        api.add_text('gross_margin_percent_yr1', answer.content['overhead']['yr1'])
+        api.add_text('gross_margin_percent_yr2', answer.content['overhead']['yr2'])
+        api.add_text('gross_margin_percent_yr3', answer.content['overhead']['yr3'])
+        api.add_text('gross_margin_percent_total', answer.content['overhead']['total'])
+
+        # materials
+        api.add_text('materials_yr1', answer.content['overhead']['yr1'])
+        api.add_text('materials_yr2', answer.content['overhead']['yr2'])
+        api.add_text('materials_yr3', answer.content['overhead']['yr3'])
+        api.add_text('materials_total', answer.content['overhead']['total'])
+
+        # general_and_marketing_expenses
+        api.add_text('general_and_marketing_expenses_yr1', answer.content['general_and_marketing_expenses']['yr1'])
+        api.add_text('general_and_marketing_expenses_yr2', answer.content['general_and_marketing_expenses']['yr2'])
+        api.add_text('general_and_marketing_expenses_yr3', answer.content['general_and_marketing_expenses']['yr3'])
+        api.add_text('general_and_marketing_expenses_total', answer.content['general_and_marketing_expenses']['total'])
+
+        # net_profit_rate
+        api.add_text('net_profit_rate_yr1', answer.content['net_profit_rate']['yr1'])
+        api.add_text('net_profit_rate_yr2', answer.content['net_profit_rate']['yr2'])
+        api.add_text('net_profit_rate_yr3', answer.content['net_profit_rate']['yr3'])
+        api.add_text('net_profit_rate_total', answer.content['net_profit_rate']['total'])
+
+        # total_variable_costs
+        api.add_text('total_variable_costs_yr1', answer.content['total_variable_costs']['yr1'])
+        api.add_text('total_variable_costs_yr2', answer.content['total_variable_costs']['yr2'])
+        api.add_text('total_variable_costs_yr3', answer.content['total_variable_costs']['yr3'])
+        api.add_text('total_variable_costs_total', answer.content['total_variable_costs']['total'])
+
+        # gross_margin_rate
+        api.add_text('gross_margin_rate_yr1', answer.content['gross_margin_rate']['yr1'])
+        api.add_text('gross_margin_rate_yr2', answer.content['gross_margin_rate']['yr2'])
+        api.add_text('gross_margin_rate_yr3', answer.content['gross_margin_rate']['yr3'])
+        api.add_text('gross_margin_rate_total', answer.content['gross_margin_rate']['total'])
+
+        # gross_margin_rate
+        api.add_text('total_fixed_yr1', answer.content['total_fixed']['yr1'])
+        api.add_text('total_fixed_yr2', answer.content['total_fixed']['yr2'])
+        api.add_text('total_fixed_yr3', answer.content['total_fixed']['yr3'])
+        api.add_text('total_fixed_total', answer.content['total_fixed']['total'])
+
+        # cogs
+        api.add_text('cogs_yr1', answer.content['cogs']['yr1'])
+        api.add_text('cogs_yr2', answer.content['cogs']['yr2'])
+        api.add_text('cogs_yr3', answer.content['cogs']['yr3'])
+        api.add_text('cogs_total', answer.content['cogs']['total'])
+
+    def do_q166(self, answer, api):
+        api.add_text('contribution_margin_unit_yr1', answer.content['contribution_margin_unit']['yr1'])
+        api.add_text('contribution_margin_unit_yr2', answer.content['contribution_margin_unit']['yr2'])
+        api.add_text('contribution_margin_unit_yr3', answer.content['contribution_margin_unit']['yr3'])
+        api.add_text('contribution_margin_unit_total', answer.content['contribution_margin_unit']['total'])
+        api.add_text('break_even_units_yr1', answer.content['break_even_units']['yr1'])
+        api.add_text('break_even_units_yr2', answer.content['break_even_units']['yr2'])
+        api.add_text('break_even_units_yr3', answer.content['break_even_units']['yr3'])
+        api.add_text('break_even_units_total', answer.content['break_even_units']['total'])
+
     def do_q167(self, answer, api):
-        print("QID 167")
+        api.add_text('asset_y1_costs_total', answer.content['asset_y1_costs_total'])
+        api.add_text('funds_available', answer.content['funds_available'])
+        api.add_text('equipment_y1_costs', answer.content['equipment_y1_costs'])
+        api.add_text('short_term_assets_y1', answer.content['long_term_liabilities_y1'])
+        api.add_text('cash_required', answer.content['cash_required'])
+        api.add_text('net_startup_deficit_surplus', answer.content['net_startup_deficit_surplus'])
+        api.add_text('ent_cash_startup_req', answer.content['ent_cash_startup_req'])
+        api.add_text('startup_inventory_req', answer.content['startup_inventory_req'])
+        api.add_text('short_term_liabilities_y1', answer.content['short_term_liabilities_y1'])
 
     def do_q168(self, answer, api):
         # Iterate through all the keys/values and save it.
