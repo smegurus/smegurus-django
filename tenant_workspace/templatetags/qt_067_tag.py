@@ -300,9 +300,10 @@ def attach_table(computation, key, data):
 
         # - - - - - - - - - - - - - - # YEAR 3 # - - - - - - - - - - - - - - #
         key+'_m25': data['m_25'], key+'_m26': data['m_26'], key+'_m27': data['m_27'],
-        key+'_m28': data['m_28'], key+'_m29': data['m_30'], key+'_m31': data['m_31'],
-        key+'_m32': data['m_32'], key+'_m33': data['m_33'], key+'_m34': data['m_33'],
-        key+'_m34': data['m_34'], key+'_m35': data['m_35'], key+'_m36': data['m_36'],
+        key+'_m28': data['m_28'], key+'_m29': data['m_29'], key+'_m30': data['m_30'],
+        key+'_m31': data['m_31'], key+'_m32': data['m_32'], key+'_m33': data['m_33'],
+        key+'_m34': data['m_33'], key+'_m34': data['m_34'], key+'_m35': data['m_35'],
+        key+'_m36': data['m_36'],
         key+'_yr3': data['yr_3']
     })
 
