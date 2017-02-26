@@ -131,15 +131,13 @@ def render_question_type_065(workspace, module, node, question, answer):
     #=======#
     # Saved #
     #=======#
-
     answer.content = {
         'contribution_margin_unit': contribution_margin_unit,
-        'break_even_units': break_even_units
+        'break_even_units': break_even_units,
+        'total_fixed_costs': total_fixed_costs,
+        'total_variable_costs': total_variable_costs
     }
     answer.save()
-
-    # DEBUGGING PURPOSES ONLY
-    # print(answer.content)
 
     # Return result.
     return {

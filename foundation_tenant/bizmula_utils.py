@@ -1718,7 +1718,12 @@ class BizmulaAPI(DocxspressoAPI):
             api.add_picture('prod_image1', answer.content['var_3'])
         except Exception as e:
             pass
-            # api.add_picture('prod_image1', '')
+
+    def do_q162(self, answer, api):
+        try:
+            api.add_picture('prod_image2', answer.content['var_3'])
+        except Exception as e:
+            pass
 
     def do_q163(self, answer, api):
         print("QID 163")
@@ -1823,6 +1828,14 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text('break_even_units_yr2', answer.content['break_even_units']['yr2'])
         api.add_text('break_even_units_yr3', answer.content['break_even_units']['yr3'])
         api.add_text('break_even_units_total', answer.content['break_even_units']['total'])
+        api.add_text('total_fixed_costs_yr1', answer.content['total_fixed_costs']['yr1'])
+        api.add_text('total_fixed_costs_yr2', answer.content['total_fixed_costs']['yr2'])
+        api.add_text('total_fixed_costs_yr3', answer.content['total_fixed_costs']['yr3'])
+        api.add_text('total_fixed_costs_total', answer.content['total_fixed_costs']['total'])
+        api.add_text('total_variable_costs_yr1', answer.content['total_variable_costs']['yr1'])
+        api.add_text('total_variable_costs_yr2', answer.content['total_variable_costs']['yr2'])
+        api.add_text('total_variable_costs_yr3', answer.content['total_variable_costs']['yr3'])
+        api.add_text('total_variable_costs_total', answer.content['total_variable_costs']['total'])
 
     def do_q167(self, answer, api):
         # Iterate through all the keys/values and save it.
@@ -1838,12 +1851,6 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q169(self, answer, api):
         print("QID 169")
-
-    def do_q162(self, answer, api):
-        try:
-            api.add_picture('prod_image2', answer.content['var_3'])
-        except Exception as e:
-            pass
 
     def do_type33(self, answer, api, key1, key2):  # 2 Col Table
         col1_array = []
