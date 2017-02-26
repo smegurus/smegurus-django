@@ -10,11 +10,11 @@
         <h3 class="blk-h3">{% trans 'Entrepreneur Intake Form - Round One' %}</h3>
                     <!-- OPTIONS -->
                     <div class="form-group" id="id_how_can_we_help_div">
-                        <h2 class="text-center pv">
+                        <h3 class="text-center pv">
                             <label for="signupInputText1" style="font-weight: 400;">
                                 <label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'As part of using the SME Gurus platform through <insert org name>, we need you to agree to the following conditions. You can click the links to read the documents, and once you are satisfied, please type in your name below to agree and sign them digitally.' %}</label>
                             </label>
-                        </h2>
+                        </h3>
                         <h2 class="text-center pv">
                             <label for="signupInputText1" style="font-weight: 400;">
                                 <label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'I have read and agree to:' %}</label>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <!-- end OPTIONS -->
-
+                    <div class="col-sm-6 col-centered">
                     <!-- has_signed_with_name -->
                     <div id="id_other_government_benefit_div">
                         <div class="form-group">
@@ -78,13 +78,14 @@
                         </div>
                         </br>
                     </div>
+                    </div>
                     <!-- end has_signed_with_name -->
 
-                <h2 class="text-center pv">
+                <h3 class="text-center pv">
                     <label for="signupInputText1" style="font-weight: 400;">
-                        {% blocktrans with name=request.tenant.name telephone=request.tenant.telephone %}By clicking submit, you agree to all of the terms above. If you do not wish to agree, you may not continue to use this use this system until contacting <b>{{ name }}</b> at <b>{{ telephone }}</b>{% endblocktrans %}
+                        {% blocktrans with name=request.tenant.name telephone=request.tenant.telephone %}By clicking submit, you agree to all of the terms above. If you do not agree, you may not continue to use this system, and we recommend that you contact your host organization.{% endblocktrans %}
                     </label>
-                </h2>
+                </h3>
                 
             <div class="actions text-center clearfix">
                         <button id="id_back_btn" type="button" class="btn btn-block btn-default btn-lg mb-lg mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
