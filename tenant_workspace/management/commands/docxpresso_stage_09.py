@@ -144,10 +144,14 @@ class Command(BaseCommand):
         for answer in answers.all():
             if answer.question.pk == 101:
                 api.do_q101(answer, api)
+            elif answer.question.pk == 136:
+                api.do_q136(answer, api)
             elif answer.question.pk == 137:
                 api.do_q137(answer, api)
             elif answer.question.pk == 138:
                 api.do_q138(answer, api)
+            elif answer.question.pk == 166:
+                api.do_q166(answer, api)
             elif answer.question.pk == 168:
                 api.do_q168(answer, api)
 
