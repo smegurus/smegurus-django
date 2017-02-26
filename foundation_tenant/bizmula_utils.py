@@ -1064,17 +1064,17 @@ class BizmulaAPI(DocxspressoAPI):
             api,
             'salary_types',
             'salary_details',
-            'salary_cost_types',
+            'salary_costs_types',
             'salary_year1_costs',
             'salary_year2_costs',
             'salary_year3_costs'
         )
 
     def do_q106(self, answer, api):
-        self.do_type52(answer, api, "salary_cost")
+        self.do_type52(answer, api, "salary_costs")
 
     def do_q107(self, answer, api):
-        self.do_type52(answer, api, "pro_fee_cost")
+        self.do_type52(answer, api, "pro_fee_costs")
 
     def do_q108(self, answer, api):
         self.do_type50(
