@@ -27,6 +27,7 @@
                 $('#id_input_1_other_div').show();
             } else {
                 $('#id_input_1_other_div').hide();
+                $('#id_input_1_other').val("");
             }
         });
     }); // end DOCUMENT START
@@ -366,10 +367,10 @@
                 <fieldset>
                     <!-- ROW 2 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_9|escape|safe }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_9|escape|safe }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_1" class="form-control">
+                            <select id="id_input_1" class="form-control input-lg">
                                 <option value="">{{ question.options.opt1_select }}</option>
                                 {% for item in question.options.opt1 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -384,10 +385,10 @@
 
                     <!-- ROW 2 | OTHER -->
                     <div class="form-group" style="display: none;" id="id_input_1_other_div">
-                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-6">
                             <!-- OTHER -->
-                            <input id="id_input_1_other" type="text" class="form-control" placeholder="" value="" />
+                            <input id="id_input_1_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             <!-- end OTHER -->
                         </div>
                     </div>
@@ -397,10 +398,10 @@
 
                     <!-- ROW 3 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_10|escape|safe }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_10|escape|safe }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_2" class="form-control">
+                            <select id="id_input_2" class="form-control input-lg">
                                 <option value="">{{ question.options.opt2_select }}</option>
                                 {% for item in question.options.opt2 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -415,9 +416,9 @@
 
                     <!-- ROW 4 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_11 }}</label>
-                        <div class="col-sm-10">
-                            <input id="id_input_3" type="text" class="form-control" placeholder="{{ question.content.stub_12 }}" value="" />
+                        <label class="col-sm-4 control-label">{{ question.content.stub_11 }}</label>
+                        <div class="col-sm-6">
+                            <input id="id_input_3" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_12 }}" value="" />
                         </div>
                     </div>
                     <!-- end ROW 4 -->
@@ -426,9 +427,9 @@
 
                     <!-- ROW 5 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_13 }}</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="id_input_4">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_13 }}</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="id_input_4" class="form-control input-lg ">
                         </div>
                     </div>
                     <!-- end ROW 5 -->
@@ -437,9 +438,9 @@
 
                     <!-- ROW 6 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_14 }}</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="id_input_5">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_14 }}</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="id_input_5" class="form-control input-lg ">
                         </div>
                     </div>
                     <!-- end ROW 6 -->
@@ -448,10 +449,10 @@
 
                     <!-- ROW 7 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_15 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_15 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_6" class="form-control">
+                            <select id="id_input_6" class="form-control input-lg">
                                 <option value="">{{ question.options.opt3_select }}</option>
                                 {% for item in question.options.opt3 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -465,11 +466,11 @@
                     <br />
 
                     <!-- ROW 7 | OTHER -->
-                    <div class="form-group" style="display: none;" id="id_input_1_other_div">
-                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-                        <div class="col-sm-10">
+                    <div class="form-group" style="display: none;" id="id_input_6_other_div">
+                        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-6">
                             <!-- OTHER -->
-                            <input id="id_input_6_other" type="text" class="form-control" placeholder="" value="" />
+                            <input id="id_input_6_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             <!-- end OTHER -->
                         </div>
                     </div>
@@ -479,10 +480,10 @@
 
                     <!-- ROW 8 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_16 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{{ question.content.stub_16 }}</label>
+                        <div class="col-sm-6">
                             <!-- OPTIONS -->
-                            <select id="id_input_7" class="form-control">
+                            <select id="id_input_7" class="form-control input-lg">
                                 <option value="">{{ question.options.opt4_select }}</option>
                                 {% for item in question.options.opt4 %}
                                     <option value="{{ item }}">{{ item }}</option>
@@ -497,10 +498,10 @@
 
                     <!-- ROW 9 | OTHER -->
                     <div class="form-group" style="display: none;" id="id_input_7_other_div">
-                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-6">
                             <!-- OTHER -->
-                            <input id="id_input_7_other" type="text" class="form-control" placeholder="" value="" />
+                            <input id="id_input_7_other" type="text" class="form-control input-lg" placeholder="" value="" />
                             <!-- end OTHER -->
                         </div>
                     </div>
