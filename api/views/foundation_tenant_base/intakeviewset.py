@@ -25,6 +25,21 @@ from smegurus.settings import env_var
 from smegurus import constants
 
 
+def remove_duplicates(values):
+    """
+    Source: https://www.dotnetperls.com/duplicates-python
+    """
+    output = []
+    seen = set()
+    for value in values:
+        # If value has not been encountered yet,
+        # ... add it to both list and set.
+        if value not in seen:
+            output.append(value)
+            seen.add(value)
+    return output
+
+
 class JudgeIntakeSerializer(serializers.Serializer):
     status = serializers.IntegerField(required=True,)
     comment = serializers.CharField(max_length=2055, required=False,)
@@ -187,8 +202,11 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             for me in mes.all():
                 contact_list.append(me.owner.email)
 
+            # Remove duplicates.
+            contact_list_result = remove_duplicates(contact_list)
+
             # Send the email to our group.
-            self.send_intake_is_pending(intake, contact_list)
+            self.send_intake_is_pending(intake, contact_list_result)
 
             # Mark the Intake object as complete after sending notification.
             intake.status = constants.PENDING_REVIEW_STATUS
@@ -279,7 +297,7 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
     def crm_update(self, request, pk=None):
         # Connection will set it back to our tenant.
         connection.set_schema(request.tenant.schema_name, True) # Switch to Tenant.
-        
+
         # Fetch the Intake object we will perform our operation on.
         intake = self.get_object()
 
