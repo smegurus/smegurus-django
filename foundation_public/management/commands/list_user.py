@@ -19,6 +19,9 @@ class Command(BaseCommand):
 
         users = User.objects.all()
         for user in users.all():
+            group_names = ""
+            for group in user.groups.all():
+                group_names += str(group)+", "
             self.stdout.write(
-                self.style.SUCCESS("ID "+user.get_full_name()+" - "+str(user)+" - "+user.email)
+                self.style.SUCCESS("ID "+str(user.id)+" - "+user.get_full_name()+" - "+user.email)+" - "+group_names
             )
