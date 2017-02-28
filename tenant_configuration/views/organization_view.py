@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.utils import translation
 from django.core.urlresolvers import resolve, reverse
+from django.db import connection
 from rest_framework import status
 from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
@@ -28,7 +29,6 @@ from smegurus.settings import env_var
 def config_org_step_one_page(request):
     # Connection needs first to be at the public schema, as this is where
     # the tenant metadata is stored.
-    from django.db import connection
     connection.set_schema_to_public()
 
     # Fetch all the provinces for this Address.
