@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import condition
 from django.db.models import Q
+from django.db import connection # Used for django tenants.
 from django.core.urlresolvers import reverse
 from foundation_public.decorators import group_required
 from foundation_public.utils import latest_date_between
@@ -36,6 +37,9 @@ def entrepreneur_func(request):
 @group_required([constants.ENTREPRENEUR_GROUP_ID,])
 # @condition(last_modified_func=entrepreneur_func)
 def intake_entr_round_one_step_one_page(request):
+    # Connection will set it back to our tenant.
+    connection.set_schema(request.tenant.schema_name, True) # Switch to Tenant.
+
     intake, create = Intake.objects.get_or_create(me=request.tenant_me)
     return render(request, 'tenant_intake/entrepreneur/round_1/1/view.html',{
         'intake': intake,

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string    # HTML to TXT
+from django.db import connection # Used for django tenants.
 from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework import permissions
@@ -19,6 +20,7 @@ from api.permissions import IsMeOrIsAnEmployee, IsMe, EmployeePermission
 from api.serializers.foundation_tenant_base  import IntakeSerializer
 from foundation_tenant.models.base.intake import Intake
 from foundation_tenant.models.base.note import Note
+from foundation_tenant.models.base.me import Me
 from smegurus.settings import env_var
 from smegurus import constants
 
@@ -159,6 +161,9 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
     def complete_intake(self, request, pk=None):
+        # Connection will set it back to our tenant.
+        connection.set_schema(request.tenant.schema_name, True) # Switch to Tenant.
+
         try:
             # Attempt to fetch the Object by the unique identifier.
             intake = Intake.objects.get(pk=pk)
@@ -172,15 +177,15 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
             # Generate our email list.
             contact_list = []
-            users = User.objects.filter(groups__id=constants.ADVISOR_GROUP_ID)
-            for user in users.all():
-                contact_list.append(user.email)
-            users = User.objects.filter(groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
-            for user in users.all():
-                contact_list.append(user.email)
-            users = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
-            for user in users.all():
-                contact_list.append(user.email)
+            mes = Me.objects.filter(owner__groups__id=constants.ADVISOR_GROUP_ID)
+            for me in mes.all():
+                contact_list.append(me.owner.email)
+            mes = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_MANAGER_GROUP_ID)
+            for me in mes.all():
+                contact_list.append(me.owner.email)
+            mes = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
+            for me in mes.all():
+                contact_list.append(me.owner.email)
 
             # Send the email to our group.
             self.send_intake_is_pending(intake, contact_list)
@@ -211,6 +216,9 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
         Function will change the status to either 'Rejected' or 'Accepted' including
         a comment from the employee.
         """
+        # Connection will set it back to our tenant.
+        connection.set_schema(request.tenant.schema_name, True) # Switch to Tenant.
+
         try:
             serializer = JudgeIntakeSerializer(data=request.data)
             if serializer.is_valid():
@@ -269,6 +277,9 @@ class IntakeViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
     @detail_route(methods=['put'], permission_classes=[permissions.IsAuthenticated,])
     def crm_update(self, request, pk=None):
+        # Connection will set it back to our tenant.
+        connection.set_schema(request.tenant.schema_name, True) # Switch to Tenant.
+        
         # Fetch the Intake object we will perform our operation on.
         intake = self.get_object()
 
