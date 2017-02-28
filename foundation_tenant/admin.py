@@ -1,12 +1,7 @@
 from django.contrib import admin
-#------------
-#    BASE
-#------------
 from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.s3file import S3File
-from foundation_tenant.models.base.abstract_creativework import AbstractCreativeWork
-from foundation_tenant.models.base.abstract_mediaobject import AbstractMediaObject
 from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
 from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.countryoption import CountryOption
@@ -18,9 +13,7 @@ from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.openinghoursspecification import OpeningHoursSpecification
 from foundation_tenant.models.base.contactpoint import ContactPoint
 from foundation_tenant.models.base.geocoordinate import GeoCoordinate
-from foundation_tenant.models.base.abstract_place import AbstractPlace
 from foundation_tenant.models.base.country import Country
-from foundation_tenant.models.base.abstract_intangible import AbstractIntangible
 from foundation_tenant.models.base.brand import Brand
 from foundation_tenant.models.base.place import Place
 from foundation_tenant.models.base.abstract_person import AbstractPerson
@@ -44,7 +37,6 @@ from foundation_tenant.models.base.visitor import Visitor
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
 from foundation_tenant.models.base.notification import Notification
-
 from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.question import Question
 from foundation_tenant.models.bizmula.workspace import Workspace
@@ -53,7 +45,26 @@ from foundation_tenant.models.bizmula.module import Module
 from foundation_tenant.models.bizmula.slide import Slide
 from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 
-
+admin.site.register(FileUpload)
+admin.site.register(ImageUpload)
+admin.site.register(S3File)
+admin.site.register(GovernmentBenefitOption)
+admin.site.register(IdentifyOption)
+admin.site.register(CountryOption)
+admin.site.register(ProvinceOption)
+admin.site.register(CityOption)
+admin.site.register(NAICSOption)
+admin.site.register(Language)
+admin.site.register(PostalAddress)
+admin.site.register(OpeningHoursSpecification)
+admin.site.register(ContactPoint)
+admin.site.register(GeoCoordinate)
+admin.site.register(Country)
+admin.site.register(Brand)
+admin.site.register(Tag)
+admin.site.register(BusinessIdea)
+admin.site.register(TellUsYourNeed)
+admin.site.register(CalendarEvent)
 admin.site.register(Intake)
 admin.site.register(Admission)
 admin.site.register(FAQItem)
