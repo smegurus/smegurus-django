@@ -15,9 +15,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Connection needs first to be at the public schema, as this is where
-        # the database needs to be set before creating a new tenant. If this is
-        # not done then django-tenants will raise a "Can't create tenant outside
-        # the public schema." error.
+        # the database needs to be set before activating user.
         connection.set_schema_to_public() # Switch to Public.
 
         # Fetch our registered Organization.

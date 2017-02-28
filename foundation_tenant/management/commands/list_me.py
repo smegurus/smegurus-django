@@ -22,8 +22,11 @@ class Command(BaseCommand):
         try:
             mes = Me.objects.all()
             for me in mes.all():
+                group_names = ""
+                for group in me.owner.groups.all():
+                    group_names += str(group)+", "
                 self.stdout.write(
-                    self.style.SUCCESS("ID "+str(me.id)+" - "+str(me) + " - " + me.email)
+                    self.style.SUCCESS("ID "+str(me.id)+" - "+str(me) + " - " + me.email + " - " + group_names)
                 )
         except Me.DoesNotExist:
             raise CommandError(_('Me doest not exist at specificed email'))
