@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 
 class Command(BaseCommand):
-    help = _('Creates a tenant for the inputted organization registration id.')
+    help = _('Creates turns a user into a system root user.')
 
     def add_arguments(self, parser):
         parser.add_argument('email', nargs='+')
