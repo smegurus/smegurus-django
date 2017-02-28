@@ -21,5 +21,5 @@ class Command(BaseCommand):
             for group in user.groups.all():
                 group_names += str(group)+", "
             self.stdout.write(
-                self.style.SUCCESS("ID "+str(user.id)+" - "+user.get_full_name()+" - "+user.email)+" - "+group_names
+                self.style.SUCCESS("ID "+str(user.id)+" - "+user.get_full_name()+" - "+user.email+" - "+group_names)
             )
