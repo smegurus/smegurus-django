@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         schema_name = options['id'][0]
-        email = int_or_none(options['id'][1])
+        email = options['id'][1]
 
         # Connection will set it back to our tenant.
         connection.set_schema(schema_name, True) # Switch to Tenant.
