@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import resolve, reverse
 from django.contrib.auth.models import User, Group
+from django.db import connection
 from django.utils.translation import get_language
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -63,7 +64,6 @@ def create_page(request):
 
     # Connection needs first to be at the public schema, as this is where
     # the tenant metadata is stored.
-    from django.db import connection
     connection.set_schema_to_public() # Switch to Public.
 
     # Fetch the data.
