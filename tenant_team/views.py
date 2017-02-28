@@ -59,6 +59,8 @@ def master_page(request):
 def create_page(request):
     """Function will create a new emplee and redirect to the page of updating data."""
     country_id = 0
+    schema_name = request.tenant.schema_name
+
     # Connection needs first to be at the public schema, as this is where
     # the tenant metadata is stored.
     from django.db import connection
@@ -91,7 +93,7 @@ def create_page(request):
     request.tenant.save()
 
     # Connection will set it back to our tenant.
-    connection.set_schema(request.tenant.schema_name, True) # Switch back to Tenant.
+    connection.set_schema(schema_name, True) # Switch back to Tenant.
 
     # Begin...
     address = PostalAddress.objects.create(

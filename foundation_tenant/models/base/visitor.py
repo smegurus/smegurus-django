@@ -38,3 +38,17 @@ class Visitor(models.Model):
 
     def __str__(self):
         return str(self.path) + " by " + str(self.me.name)
+
+
+
+class SortedVisitorsByLatestCreation(Visitor):
+    """
+    Proxy model which will automatically return querys which are sorted
+    by the lastest creation date.
+    """
+    class Meta:
+        proxy = True
+        app_label = 'foundation_tenant'
+        ordering = ('-created',)
+        verbose_name = _('Sorted Visitor by Latest Creation')
+        verbose_name_plural = _('Sorted Visitors by Latest Creation')

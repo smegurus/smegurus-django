@@ -40,6 +40,7 @@ from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.visitor import Visitor
+from foundation_tenant.models.base.visitor import SortedVisitorsByLatestCreation
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
 from foundation_tenant.models.base.notification import Notification

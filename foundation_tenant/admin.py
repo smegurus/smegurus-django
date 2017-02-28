@@ -34,6 +34,7 @@ from foundation_tenant.models.base.logevent import SortedLogEventByCreated
 from foundation_tenant.models.base.commentpost import SortedCommentPostByCreated
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.visitor import Visitor
+from foundation_tenant.models.base.visitor import SortedVisitorsByLatestCreation
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
 from foundation_tenant.models.base.notification import Notification
@@ -78,6 +79,7 @@ admin.site.register(SortedLogEventByCreated)
 admin.site.register(SortedCommentPostByCreated)
 admin.site.register(Task)
 admin.site.register(Visitor)
+admin.site.register(SortedVisitorsByLatestCreation)
 admin.site.register(InfoResourceCategory)
 admin.site.register(InfoResource)
 admin.site.register(Notification)

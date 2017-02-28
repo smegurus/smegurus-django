@@ -30,7 +30,7 @@ def config_org_step_one_page(request):
     # the tenant metadata is stored.
     from django.db import connection
     connection.set_schema_to_public()
-        
+
     # Fetch all the provinces for this Address.
     provinces = [] if not request.tenant.address.country else ProvinceOption.objects.filter(country=request.tenant.address.country)
 
@@ -51,6 +51,8 @@ def config_org_step_one_page(request):
 @login_required(login_url='/en/login')
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_two_page(request):
+    # Connection will set it back to our tenant.
+    connection.set_schema(request.tenant.schema_name, True) # Switch back to Tenant.
     return render(request, 'tenant_configuration/organization/2/view.html',{
         'org_form': PublicOrganizationForm(request.tenant),
     })
