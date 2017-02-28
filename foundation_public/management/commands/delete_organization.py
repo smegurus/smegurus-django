@@ -9,7 +9,7 @@ from foundation_public.models.organization import PublicOrganization
 
 
 class Command(BaseCommand):
-    help = _('Creates a tenant for the inputted organization registration id.')
+    help = _('Deletes tenant with schema name.')
 
     def add_arguments(self, parser):
         parser.add_argument('schema_name', nargs='+')

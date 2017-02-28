@@ -8,7 +8,7 @@ from foundation_public.models.organization import PublicOrganization
 
 
 class Command(BaseCommand):
-    help = _('List organization tenants in our system.')
+    help = _('List all organization in our system.')
 
     def handle(self, *args, **options):
         # Connection needs first to be at the public schema, as this is where
