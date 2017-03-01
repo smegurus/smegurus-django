@@ -138,7 +138,7 @@
                     "This service is needed and does not currently exist",
                     "Our company already has letters of intent from customers",
                     "Our company has a reputation for excellence in the industry",
-                    "Our management meam has indepth expterise and knowledge of the industry",
+                    "Our management team has indepth expertise and knowledge of the industry",
                     "We have established customer relationships that can easily be migrated",
                     "We have strong distribution channels",
                     "Our service offering is state of the art and significantly ahead of competitors",
@@ -160,7 +160,7 @@
                 "arr_min_count": 3,
                 "arr_min_count_error_message": "Please enter at least 3 entries.",
                 "arr_max_count": 5,
-                "arr_max_count_error_message": "Please enter no more then 5 entries.",
+                "arr_max_count_error_message": "Please enter no more than 5 entries.",
                 "opt1_other_min_length": 2,
                 "opt1_other_min_length_error_message": "Please enter at minimum 2 characters.",
                 "opt1_other_max_length": 63,
@@ -691,6 +691,14 @@
                         "value": "We will provide excellent customer service",
                         "text": "We will provide excellent customer service"
                     },
+                     {
+                        "value": "We will engage heavily with our customers",
+                        "text": "We will engage heavily with our customers"
+                    },
+                                         {
+                        "value": "We will build a community for our customers",
+                        "text": "We will build a community for our customers"
+                    },
                     {
                         "value": "Our service will be competitively priced",
                         "text": "Our service will be competitively priced"
@@ -921,8 +929,7 @@
             "options": {
                 "opt1": [
                     "We will maintain a close eye on the competitive landscape",
-                    "we will be aware of the price charged by our competitors",
-                    "We will be aware of competitors in the landscape",
+                    "We will be aware of the price charged by our competitors",
                     "We will promote every opportunity for organizational effectiveness and efficiency",
                     "We will be improving our internal organizational processes",
                     "We will invest in technology",
@@ -2026,7 +2033,7 @@
                 "stub_8": "Y3 ($)",
                 "stub_9": "",
                 "stub_10": "Partner",
-                "stub_11": "Ex: Bartlomiej Mika",
+                "stub_11": "Ex: Mika Software Inc.",
                 "stub_12": "Strategy",
                 "stub_13": "Impact",
                 "stub_14": "# of months (1-12)",
@@ -2044,12 +2051,12 @@
                 "arr_min_count": 1,
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries.",
+                "arr_max_count_error_message": "Please enter no more than 20 entries.",
                 "var1_type": "textfield",
                 "var1_min_length": 2,
                 "var1_min_length_error_message": "Please enter more then two characters for Partner.",
                 "var1_max_length": 1000,
-                "var1_max_length_error_message": "Please enter no more then 1000 characters for Partner.",
+                "var1_max_length_error_message": "Please enter no more than 1000 characters for Partner.",
                 "var1_min_num": 0,
                 "var1_min_num_error_message": "-",
                 "var1_max_num": 1000000000,
