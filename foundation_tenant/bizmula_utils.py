@@ -109,13 +109,13 @@ class BizmulaAPI(DocxspressoAPI):
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
 
-    # def do_q32(self, answer, api):
-    #     array = [
-    #         answer.content['var_1'],
-    #         answer.content['var_2'],
-    #         answer.content['var_3']
-    #     ];
-    #     api.add_unordered_list("product_categories", array)
+    def do_q32(self, answer, api):
+        array = [
+            answer.content['var_1'],
+            answer.content['var_2'],
+            answer.content['var_3']
+        ];
+        api.add_unordered_list("product_categories", array)
 
     def do_q33(self, answer, api):
         api.add_text(
@@ -233,24 +233,24 @@ class BizmulaAPI(DocxspressoAPI):
             'idc_competitive_strategy'
         )
 
-    def do_q49(self, answer, api):
-        array = []
-        for ans in answer.content:
-            array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
-        api.add_text_paragraphs("target_market_characteristics", array)
-
     # def do_q49(self, answer, api): #TODO: INVESTIGATE POTENTIALLY USE THIS.
-    #     target_market_types_array = []
-    #     target_market_first_traits_array = []
-    #     target_market_second_traits_array = []
+    #     array = []
     #     for ans in answer.content:
-    #         target_market_types_array.append(ans['var_2'])
-    #         target_market_first_traits_array.append(ans['var_3'])
-    #         target_market_second_traits_array.append(ans['var_4'])
-    #
-    #     api.add_unordered_list("target_market_types", target_market_types_array)
-    #     api.add_unordered_list("target_market_first_traits", target_market_first_traits_array)
-    #     api.add_unordered_list("target_market_second_traits", target_market_second_traits_array)
+    #         array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
+    #     api.add_text_paragraphs("target_market_characteristics", array)
+
+    def do_q49(self, answer, api):
+        target_market_types_array = []
+        target_market_first_traits_array = []
+        target_market_second_traits_array = []
+        for ans in answer.content:
+            target_market_types_array.append(ans['var_2'])
+            target_market_first_traits_array.append(ans['var_3'])
+            target_market_second_traits_array.append(ans['var_4'])
+
+        api.add_unordered_list("target_market_types", target_market_types_array)
+        api.add_unordered_list("target_market_first_traits", target_market_first_traits_array)
+        api.add_unordered_list("target_market_second_traits", target_market_second_traits_array)
 
     def do_q50(self, answer, api): # customer_buying_decision | geographic_market
         api.add_text(
