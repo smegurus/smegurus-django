@@ -78,15 +78,23 @@ def detail_page(request, workspace_id, module_id, node_id):
 @login_required(login_url='/en/login')
 @tenant_configuration_required
 def submit_master_page(request, workspace_id, module_id, previous_node_id):
+    """
+    Function will generate the document which will be submitted for processing
+    using the API.
+    """
     # Fetch our associated models.
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     module = get_object_or_404(Module, pk=int_or_none(module_id))
 
-    # Fetch the document associated with this Module.
+    # Fetch the document type.
     document_type_id = module.get_document_type_id()
-    document = Document.objects.get(
+    document_type = DocumentType.objects.get(id=document_type_id)
+
+    # Fetch the document associated with this Module.
+    document, created = Document.objects.get_or_create(
         workspace=workspace,
-        document_type_id=document_type_id
+        document_type=document_type,
+        name=document_type.text
     )
 
     # Render the template.

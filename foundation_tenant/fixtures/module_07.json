@@ -10,31 +10,36 @@
                     "current_position": 0,
                     "next_position": 1,
                     "id": 3666,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 7
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
                     "id": 3667,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 7
                 },{
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
                     "id": 3668,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 7
                 },{
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
                     "id": 3669,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 7
                 },{
                     "previous_position": 3,
                     "current_position": 4,
                     "next_position": 5,
                     "id": 3670,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 7
                 },{
                     "previous_position": 4,
                     "current_position": 5,

@@ -10,28 +10,32 @@
                     "current_position": 0,
                     "next_position": 1,
                     "id": 999,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 3
                 },
                 {
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
                     "id": 1000,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 3
                 },
                 {
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
                     "id": 1001,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 3
                 },
                 {
                     "previous_position": 2,
                     "current_position": 3,
                     "next_position": 4,
                     "id": 1002,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 3
                 },{
                     "previous_position": 3,
                     "current_position": 4,

@@ -10,13 +10,15 @@
                     "current_position": 0,
                     "next_position": 1,
                     "id": 2666,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 6
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
                     "id": 2667,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 6
                 },{
                     "previous_position": 1,
                     "current_position": 2,

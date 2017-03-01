@@ -10,19 +10,22 @@
                     "current_position": 0,
                     "next_position": 1,
                     "id": 1666,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 4
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
                     "id": 1667,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 4
                 },{
                     "previous_position": 1,
                     "current_position": 2,
                     "next_position": 3,
                     "id": 1668,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 4
                 },{
                     "previous_position": 2,
                     "current_position": 3,

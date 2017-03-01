@@ -100,6 +100,5 @@ class Module(models.Model):
     def get_document_type_id(self):
         """Return the 'document_type' identification of this model."""
         for node in self.nodes:
-            if node['type'] == "question":
-                return node['document_type']
+            return node['document_type']
         return None

@@ -10,7 +10,8 @@
                     "current_position": 0,
                     "next_position": -1,
                     "id": 6666,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 10
                 }
             ],
             "title": "Stage 10: Business Plan",

@@ -10,13 +10,15 @@
                     "current_position": 0,
                     "next_position": 1,
                     "id": 4666,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
                     "id": 4667,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 1,
                     "current_position": 2,
@@ -118,19 +120,22 @@
                     "current_position": 14,
                     "next_position": 15,
                     "id": 4668,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 14,
                     "current_position": 15,
                     "next_position": 16,
                     "id": 4669,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 15,
                     "current_position": 16,
                     "next_position": 17,
                     "id": 4670,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 16,
                     "current_position": 17,
@@ -240,13 +245,15 @@
                     "current_position": 30,
                     "next_position": 31,
                     "id": 4671,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 30,
                     "current_position": 31,
                     "next_position": 32,
                     "id": 4672,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 31,
                     "current_position": 32,
@@ -284,13 +291,15 @@
                     "current_position": 36,
                     "next_position": 37,
                     "id": 4673,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 36,
                     "current_position": 37,
                     "next_position": 38,
                     "id": 4674,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 37,
                     "current_position": 38,
@@ -344,13 +353,15 @@
                     "current_position": 44,
                     "next_position": 45,
                     "id": 4675,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 44,
                     "current_position": 45,
                     "next_position": 46,
                     "id": 4676,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 8
                 },{
                     "previous_position": 45,
                     "current_position": 46,

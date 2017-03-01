@@ -67,7 +67,7 @@
     "model": "foundation_tenant.documenttype",
     "pk": 9,
     "fields": {
-        "text": "stage9.odt",
+        "text": "stage9.ods",
         "is_master": true,
         "stage_num": 9
     }

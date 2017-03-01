@@ -10,13 +10,15 @@
                     "current_position": 0,
                     "next_position": 1,
                     "id": 1,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 1
                 },{
                     "previous_position": 0,
                     "current_position": 1,
                     "next_position": 2,
                     "id": 2,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 1
                 },{
                     "previous_position": 1,
                     "current_position": 2,
@@ -102,7 +104,8 @@
                     "current_position": 12,
                     "next_position": -1,
                     "id": 3,
-                    "type": "slide"
+                    "type": "slide",
+                    "document_type": 1
                 }
             ],
             "title": "Stage 1: Overview",
