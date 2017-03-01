@@ -523,7 +523,7 @@
                             "Technology is making things in this industry easier",
                             "Technology is not used well in this sector",
                             "There is no automation in the sector",
-                            "There is are new developments that will change this sector",
+                            "There are new developments that will change this sector",
                             "Other (Please Specify)"
                         ]
                     },
@@ -575,7 +575,7 @@
                 "min": 5,
                 "min_error_message": "Please pick at least 5 issues.",
                 "max": 10,
-                "max_error_message": "Please pick no more then 10 issues.",
+                "max_error_message": "Please pick no more than 10 issues.",
                 "opt2_other_min_length": 2,
                 "opt2_other_min_length_error_message": "Please enter at least 2 characters.",
                 "opt2_other_max_length": 75,
@@ -605,7 +605,7 @@
                 "min": 5,
                 "min_error_message": "Please pick at least 5 sources for your research.",
                 "max": 15,
-                "max_error_message": "Please pick no more then 15 sources for your research."
+                "max_error_message": "Please pick no more than 15 sources for your research."
             },
             "type_id": 29
         }
