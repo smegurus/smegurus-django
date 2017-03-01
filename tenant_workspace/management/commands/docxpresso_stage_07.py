@@ -270,7 +270,7 @@ class Command(BaseCommand):
             answer.content['var_2'],
             answer.content['var_3']
         ];
-        api.add_text_paragraphs("product_categories", array)
+        api.add_unordered_list("product_categories", array)
 
     def do_q44(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
@@ -419,9 +419,9 @@ class Command(BaseCommand):
             target_market_first_traits_array.append(ans['var_3'])
             target_market_second_traits_array.append(ans['var_4'])
 
-        api.add_text_paragraphs("target_market_types", target_market_types_array)
-        api.add_text_paragraphs("target_market_first_traits", target_market_first_traits_array)
-        api.add_text_paragraphs("target_market_second_traits", target_market_second_traits_array)
+        api.add_unordered_list("target_market_types", target_market_types_array)
+        api.add_unordered_list("target_market_first_traits", target_market_first_traits_array)
+        api.add_unordered_list("target_market_second_traits", target_market_second_traits_array)
 
     def do_q61(self, answer, api):
         api.add_text('business_formal_name', answer.content['var_1'])
@@ -534,7 +534,7 @@ class Command(BaseCommand):
         else:
             array.append(answer.content['var_3'])
 
-        api.add_text_paragraphs('key_success_factors', array)
+        api.add_unordered_list('key_success_factors', array)
 
     def do_q74(self, answer, api):
         array = []
@@ -1024,7 +1024,7 @@ class Command(BaseCommand):
         for ans in answer.content:
             array.append(ans['var_2'])
 
-        api.add_text_paragraphs('business_strengths', array)
+        api.add_unordered_list('business_strengths', array)
 
     def do_q148(self, answer, api):
         array = []
@@ -1032,7 +1032,7 @@ class Command(BaseCommand):
         for ans in answer.content:
             array.append(ans['var_2'])
 
-        api.add_text_paragraphs('business_opportunities', array)
+        api.add_unordered_list('business_opportunities', array)
 
     def do_q149(self, answer, api):
         business_threats_array = []
@@ -1091,7 +1091,7 @@ class Command(BaseCommand):
         else:
             array.append(answer.content['var_3'])
 
-        api.add_text_paragraphs('growth_strategies', array)
+        api.add_unordered_list('growth_strategies', array)
 
     def do_q154(self, answer, api):
         array = []
@@ -1111,4 +1111,4 @@ class Command(BaseCommand):
         else:
             array.append(answer.content['var_3'])
 
-        api.add_text_paragraphs('competitive_strategies', array)
+        api.add_unordered_list('competitive_strategies', array)

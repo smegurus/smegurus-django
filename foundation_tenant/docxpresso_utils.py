@@ -125,7 +125,8 @@ class DocxspressoAPI:
             "output": {
                 "format": self.format,
                 "response": self.response,
-                "name": self.name
+                "name": self.name,
+                "repairVariables": True
             },
             "replace": self.data
         }
