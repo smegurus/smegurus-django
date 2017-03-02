@@ -142,7 +142,9 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            if answer.question.pk == 99:
+            if answer.question.pk == 61:
+                api.do_q61(answer, api)
+            elif answer.question.pk == 99:
                 api.do_q99(answer, api)
             elif answer.question.pk == 100:
                 api.do_q100(answer, api)
