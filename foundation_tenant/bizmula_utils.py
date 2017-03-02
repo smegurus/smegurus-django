@@ -263,24 +263,21 @@ class BizmulaAPI(DocxspressoAPI):
             'idc_competitive_strategy'
         )
 
-    # def do_q49(self, answer, api): #TODO: INVESTIGATE POTENTIALLY USE THIS.
-    #     array = []
-    #     for ans in answer.content:
-    #         array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
-    #     api.add_text_paragraphs("target_market_characteristics", array)
-
     def do_q49(self, answer, api):
-        target_market_types_array = []
-        target_market_first_traits_array = []
-        target_market_second_traits_array = []
-        for ans in answer.content:
-            target_market_types_array.append(ans['var_2'])
-            target_market_first_traits_array.append(ans['var_3'])
-            target_market_second_traits_array.append(ans['var_4'])
+        # Generate table.
+        self.do_type40(
+            answer,
+            api,
+            'target_market_types',
+            'target_market_first_traits',
+            'target_market_second_traits'
+        )
 
-        api.add_unordered_list("target_market_types", target_market_types_array)
-        api.add_unordered_list("target_market_first_traits", target_market_first_traits_array)
-        api.add_unordered_list("target_market_second_traits", target_market_second_traits_array)
+        # Generate bullet points.
+        array = []
+        for ans in answer.content:
+            array.append(ans['var_2'] + " - " + ans['var_3'] + " - " + ans['var_4'])
+        api.add_text_paragraphs("target_market_characteristics", array)
 
     def do_q50(self, answer, api): # customer_buying_decision | geographic_market
         api.add_text(
@@ -1911,6 +1908,37 @@ class BizmulaAPI(DocxspressoAPI):
             "vars": [
                 c1_dict,
                 c2_dict,
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
+
+    def do_type40(self, answer, api, key1, key2, key3):  # 3 Col Table
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_4'])
+
+        # Generate our custom item.
+        c1_dict = {"var": key1, 'value': col1_array}
+        c2_dict = {"var": key2, 'value': col2_array}
+        c3_dict = {"var": key3, 'value': col3_array}
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
             ],
             "options": {
                 "element": "table"
