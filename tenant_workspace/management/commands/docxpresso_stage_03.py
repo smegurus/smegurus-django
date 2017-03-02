@@ -218,7 +218,7 @@ class Command(BaseCommand):
             answer.content['var_2'],
             answer.content['var_3']
         ];
-        api.add_text_paragraphs("research_sources", array)
+        api.add_unordered_list("research_sources", array)
 
     def do_q32(self, answer, api):
         array = [
@@ -226,7 +226,7 @@ class Command(BaseCommand):
             answer.content['var_2'],
             answer.content['var_3']
         ];
-        api.add_text_paragraphs("product_categories", array)
+        api.add_unordered_list("product_categories", array)
 
     def do_q33(self, answer, api):
         api.add_text(
