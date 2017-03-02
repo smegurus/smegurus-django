@@ -7,7 +7,7 @@
     $(document).ready(function () {
         // Show "Other" field if the "Other" option was selected.
         $(document).on('change','#id_input_2',function(){
-            var input_2 = $('#id_input_1').val();
+            var input_2 = $('#id_input_2').val();
             if (input_2 == "{{ question.options.opt1_other }}") {
                 $('#id_input_2_other_div').show();
             } else {
