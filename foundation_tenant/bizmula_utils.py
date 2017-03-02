@@ -142,12 +142,42 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q37(self, answer, api):
-        self.do_type33(
-            answer,
-            api,
-            'pestel_trend_types',
-            'pestel_trends',
-        )
+        # self.do_type33(
+        #     answer,
+        #     api,
+        #     'pestel_trend_types',
+        #     'pestel_trends',
+        # )
+
+
+        # col1_array = []
+        # col2_array = []
+        #
+        # # Populate rows.
+        # for ans in answer.content:
+        #     col1_array.append(ans['var_2'])
+        #     col2_array.append(ans['var_3'])
+        #
+        # # Generate our custom item.
+        # c1_dict = {"var": 'pestel_trend_types', 'value': col1_array}
+        # c2_dict = {"var": 'pestel_trends', 'value': col2_array}
+        #
+        # # Generate the custom API query.
+        # custom = {
+        #     "vars": [
+        #         c1_dict,
+        #         c2_dict
+        #     ],
+        #     "options": {
+        #         "element": "table"
+        #     }
+        # }
+        #
+        # print(custom)
+
+        # Attach all out tables.
+        # api.add_custom(custom)
+        print("QID 37 - BUG")
 
     def do_q38(self, answer, api):
         array = []
@@ -1953,7 +1983,7 @@ class BizmulaAPI(DocxspressoAPI):
         c4_dict = {"var": key4, 'value': col4_array}
         c5_dict = {"var": key5, 'value': col5_array}
         c6_dict = {"var": key6, 'value': col6_array}
-        c7_dict = {"var": key6, 'value': col7_array}
+        c7_dict = {"var": key7, 'value': col7_array}
 
         # Generate the custom API query.
         custom = {
