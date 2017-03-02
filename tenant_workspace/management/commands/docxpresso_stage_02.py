@@ -215,18 +215,18 @@ class Command(BaseCommand):
             if answer.content['var_5']:
                 arr.append(answer.content['var_5'])
 
-        api.add_text_list("research_sources", arr)
+        api.add_unordered_list("research_sources", arr)
 
     def do_q29(self, answer, api):
         arr = []
         arr.append(answer.content['var_1'])
         arr.append(answer.content['var_2'])
         arr.append(answer.content['var_3'])
-        api.add_text_list("similar_businesses", arr)
+        api.add_unordered_list("similar_businesses", arr)
 
     def do_q30(self, answer, api):
         arr = []
         arr.append(answer.content['var_1'])
         arr.append(answer.content['var_2'])
         arr.append(answer.content['var_3'])
-        api.add_text_list("industry_contacts", arr)
+        api.add_unordered_list("industry_contacts", arr)

@@ -72,20 +72,6 @@ class DocxspressoAPI:
             }]
         })
 
-    def add_text_list(self, key, array):
-        """
-        Add array per key for document construction.
-        """
-        self.data.append({
-            "vars": [{
-                "var": key,
-                "value": array
-            }],
-            "options": {
-                "element": "list"
-            }
-        })
-
     def add_unordered_list(self, key, array): #BUG: DOES NOT WORK AS ADVERTISED.
         """
         Add array per key to generate unordered list of items.
