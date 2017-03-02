@@ -659,6 +659,10 @@
                         "text": "Development "
                     },
                     {
+                        "value": "Project Management ",
+                        "text": "Project Management "
+                    },
+                    {
                         "value": "Inventory Management ",
                         "text": "Inventory Management "
                     },
@@ -688,7 +692,7 @@
                 "arr_min_count": 1,
                 "arr_min_count_error_message": "Please enter at least 1 entry.",
                 "arr_max_count": 20,
-                "arr_max_count_error_message": "Please enter no more then 20 entries."
+                "arr_max_count_error_message": "Please enter no more than 20 entries."
             },
             "type_id": 41
         }
