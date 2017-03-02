@@ -177,7 +177,7 @@ class BizmulaAPI(DocxspressoAPI):
 
         # Attach all out tables.
         # api.add_custom(custom)
-        print("QID 37 - BUG")
+        print("QID 37")
 
     def do_q38(self, answer, api):
         array = []
@@ -1508,7 +1508,6 @@ class BizmulaAPI(DocxspressoAPI):
         )
 
     def do_q144(self, answer, api):
-        # print(answer.content)
         api.add_text("low_rev_y1", answer.content['var_2']['revenue']['yr1'])
         api.add_text("low_rev_y2", answer.content['var_2']['revenue']['yr2'])
         api.add_text("low_rev_y3", answer.content['var_2']['revenue']['yr3'])
@@ -1553,7 +1552,6 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("low_gen_exp_y3", answer.content['var_2']['general_and_marketing_expenses']['yr3'])
 
     def do_q145(self, answer, api):
-        # print(answer.content)
         api.add_text("hi_rev_y1", answer.content['var_2']['revenue']['yr1'])
         api.add_text("hi_rev_y2", answer.content['var_2']['revenue']['yr2'])
         api.add_text("hi_rev_y3", answer.content['var_2']['revenue']['yr3'])
