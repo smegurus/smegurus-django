@@ -12,6 +12,7 @@
                         {% for field in form %}
                             {% if field.id_for_label == 'id_do_you_own_a_biz' or field.id_for_label == 'id_do_you_own_a_biz_other' %}
                                 <div class="form-group" id="{{ field.id_for_label }}_div">
+                                    <fieldset class="mgn-below">
                                     <h2 class="text-center pv">
                                         <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
                                     </h2>
@@ -19,6 +20,7 @@
                                         {{ field }}
                                         {{ field.errors }}<br/>
                                     </div>
+                                    </fieldset>
                                 </div>
                             {% endif %}
                         {% endfor %}
