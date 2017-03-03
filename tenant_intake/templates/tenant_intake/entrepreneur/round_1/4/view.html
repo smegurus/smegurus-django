@@ -12,14 +12,16 @@
                         {% for field in form %}
                             {% if field.id_for_label == 'id_has_telephone'  %}
                                 <div class="form-group">
-                                    <h2 class="text-center pv">
-                                        <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
-                                    </h2>
-                                    <div class="col-sm-6 col-centered">
-                                        {{ field }}
-                                        {{ field.errors }}
-                                        <br/>
-                                    </div>
+                                    <fieldset class="mgn-below">
+                                        <h2 class="text-center pv">
+                                            <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
+                                        </h2>
+                                        <div class="col-sm-6 col-centered">
+                                            {{ field }}
+                                            {{ field.errors }}
+                                            <br/>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             {% endif %}
                         {% endfor %}
@@ -28,23 +30,26 @@
                         <!-- TELEPHONE -->
                         <div id="id_telephone_div">
                             <div class="form-group">
-                                <h2 class="text-center pv"><label style="font-weight: 400;">{% trans 'Country*' %}</label></h2>
-                                <div class="col-sm-6 col-centered">
-                                    <select id="id_country" class="form-control input-lg">
-                                        {% if request.tenant_me.address.country == None %}
-                                            <option value="0" selected="selected"> {% trans 'Please select a country' %}</option>
-                                        {% endif %}
-                                        {% for country in countries.all %}
-                                            <option value="{{ country.id }}" {% if request.tenant_me.address.country == country %}selected{% endif %}>
-                                                {{ country.name }}
-                                            </option>
-                                        {% endfor %}
-                                    </select>
-                                    <br />
-                                </div>
+                                <fieldset class="mgn-below">
+                                    <h2 class="text-center pv"><label style="font-weight: 400;">{% trans 'Country*' %}</label></h2>
+                                    <div class="col-sm-6 col-centered">
+                                        <select id="id_country" class="form-control input-lg">
+                                            {% if request.tenant_me.address.country == None %}
+                                                <option value="0" selected="selected"> {% trans 'Please select a country' %}</option>
+                                            {% endif %}
+                                            {% for country in countries.all %}
+                                                <option value="{{ country.id }}" {% if request.tenant_me.address.country == country %}selected{% endif %}>
+                                                    {{ country.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <br />
+                                    </div>
+                                </fieldset>
                             </div>
         
                             <div class="form-group">
+                                <fieldset class="mgn-below">
                                     <h2 class="text-center pv">
                                         <label for="signupInputText1" style="font-weight: 400;">
                                             <label for="id_telephone" style="font-weight: 400;">
@@ -56,18 +61,21 @@
                                         <input class="form-control input-lg" id="id_telephone" maxlength="255" name="telephone" type="text" value="{{ form.instance.telephone }}" {% if request.tenant_me.address.country == country %}disabled{% endif %} />
                                         <br>
                                     </div>
+                                </fieldset>
                             </div>
                         
                             {% for field in form %}
                                 {% if field.id_for_label == 'id_telephone_time' %}
                                     <div class="form-group">
-                                        <h2 class="text-center pv">
-                                            <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
-                                        </h2>
-                                        <div class="col-sm-6 col-centered">
-                                         {{ field }}
-                                        {{ field.errors }}<br/>
-                                        </div>
+                                        <fieldset class="mgn-below">
+                                            <h2 class="text-center pv">
+                                                <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
+                                            </h2>
+                                            <div class="col-sm-6 col-centered">
+                                             {{ field }}
+                                            {{ field.errors }}<br/>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -77,7 +85,7 @@
 
             <div class="actions text-center clearfix">
                     <button id="id_back_btn" type="button" class="btn btn-block btn-default btn-lg mt-lg mb-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
-                    <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
+                    <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
             </div>
 </div>
 {% endblock content %}
