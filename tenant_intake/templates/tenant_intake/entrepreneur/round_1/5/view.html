@@ -10,6 +10,7 @@
         <h3 class="blk-h3">{% trans 'Entrepreneur Intake Form - Round One' %}</h3>
                     <!-- OPTIONS -->
                     <div class="form-group" id="id_how_can_we_help_div">
+                        <fieldset class="mgn-below">
                         <h3 class="text-center pv">
                             <label for="signupInputText1" style="font-weight: 400;">
                                 <label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'As part of using the SME Gurus platform through <insert org name>, we need you to agree to the following conditions. You can click the links to read the documents, and once you are satisfied, please type in your name below to agree and sign them digitally.' %}</label>
@@ -63,30 +64,33 @@
                             </label>
                             </div>
                         </div>
+                        </fieldset>
                     </div>
                     <!-- end OPTIONS -->
-                    <div class="col-sm-6 col-centered">
-                    <!-- has_signed_with_name -->
-                    <div id="id_other_government_benefit_div">
-                        <div class="form-group">
-                            <input class="form-control input-lg"
-                             placeholder="{% trans '(Please type in your full name)' %}"
-                                      id="id_has_signed_with_name"
-                               maxlength="127"
-                                    type="text"
-                                   value="{{ intake.has_signed_with_name }}" />
+                    <fieldset class="mgn-below">
+                        <div class="col-sm-6 col-centered">
+                        <!-- has_signed_with_name -->
+                        <div id="id_other_government_benefit_div">
+                            <div class="form-group">
+                                <input class="form-control input-lg"
+                                 placeholder="{% trans '(Please type in your full name)' %}"
+                                          id="id_has_signed_with_name"
+                                   maxlength="127"
+                                        type="text"
+                                       value="{{ intake.has_signed_with_name }}" />
+                            </div>
+                            </br>
                         </div>
-                        </br>
-                    </div>
-                    </div>
+                        </div>
+                    </fieldset>
                     <!-- end has_signed_with_name -->
-
-                <h3 class="text-center pv">
-                    <label for="signupInputText1" style="font-weight: 400;">
+                <fieldset class="mgn-below">
+                <h4 class="text-center pv">
+                    <label for="signupInputText1">
                         {% blocktrans with name=request.tenant.name telephone=request.tenant.telephone %}By clicking submit, you agree to all of the terms above. If you do not agree, you may not continue to use this system, and we recommend that you contact your host organization.{% endblocktrans %}
                     </label>
-                </h3>
-                
+                </h4>
+                </fieldset>
             <div class="actions text-center clearfix">
                         <button id="id_back_btn" type="button" class="btn btn-block btn-default btn-lg mb-lg mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
                         <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
