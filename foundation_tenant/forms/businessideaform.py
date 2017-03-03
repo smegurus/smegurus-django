@@ -20,22 +20,22 @@ class BusinessIdeaForm(forms.ModelForm):
         }
         widgets = {
             'industry': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
         #     'name': TextInput(attrs={
-        #         'class': u'form-control',
+        #         'class': u'form-control input-lg',
         #         'placeholder': _('Enter name.')
         #     }),
         #     'url': TextInput(attrs={
-        #         'class': u'form-control',
+        #         'class': u'form-control input-lg',
         #         'placeholder': _('Enter website URL.')
         #     }),
         #     'facebook_url': TextInput(attrs={
-        #         'class': u'form-control',
+        #         'class': u'form-control input-lg',
         #         'placeholder': _('Enter Facebook URL.')
         #     }),
         #     'twitter_url': TextInput(attrs={
-        #         'class': u'form-control',
+        #         'class': u'form-control input-lg',
         #         'placeholder': _('Enter Twitter URL.')
         #     }),
         }
