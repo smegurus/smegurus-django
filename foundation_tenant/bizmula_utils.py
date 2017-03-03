@@ -1864,7 +1864,8 @@ class BizmulaAPI(DocxspressoAPI):
             api.add_text(key, value)
 
     def do_q169(self, answer, api):
-        print("QID 169")
+        text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
+        api.add_text("supplier_amount", text)
 
     def do_type33(self, answer, api, key1, key2):  # 2 Col Table
         col1_array = []
