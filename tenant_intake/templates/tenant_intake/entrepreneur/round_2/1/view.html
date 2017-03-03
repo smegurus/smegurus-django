@@ -11,6 +11,7 @@
     
                     <!-- OPTIONS -->
                     <div class="form-group" id="id_how_can_we_help_div">
+                        <fieldset class="mgn-below">
                         <h2 class="text-center pv">
                             <label for="signupInputText1" style="font-weight: 400;">
                                 <label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'Do you currently receive any of the following government benefits? (select all that apply)' %}</label>
@@ -34,11 +35,13 @@
                         </div>
                         {% endfor %}
                         </div>
+                        </fieldset>
                     </div>
                     <!-- end OPTIONS -->
 
                     <!-- OTHER -->
                     <div id="id_other_government_benefit_div" class="form-group">
+                        <fieldset class="mgn-below">
                             <h2 class="text-center pv">
                                 <label for="signupInputText1" style="font-weight: 400;">
                                     <label for="id_other_government_benefit" style="font-weight: 400;">
@@ -54,6 +57,7 @@
                                    value="{{ intake.other_government_benefit }}" />
                             <br>
                             </div>
+                        </fieldset>
                     </div>
                     <!-- end OTHER -->
 
