@@ -782,6 +782,15 @@ class BizmulaAPI(DocxspressoAPI):
         # Attach all out tables.
         api.add_custom(custom)
 
+    def do_q94(self, answer, api):
+        self.do_type40(
+            answer,
+            api,
+            'advisor_names',
+            'advisor_company_names',
+            'advisor_roles'
+        )
+
     def do_q95(self, answer, api):
         self.do_type43(
             answer,
@@ -1113,7 +1122,7 @@ class BizmulaAPI(DocxspressoAPI):
             api,
             'salary_types',
             'salary_details',
-            'salary_costs_types',
+            'salary_cost_types',
             'salary_year1_costs',
             'salary_year2_costs',
             'salary_year3_costs'
