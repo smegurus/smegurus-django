@@ -16,6 +16,7 @@
 
         {% if q1_answer.var_1 %}
             // GET INPUT.
+            arr['c1'] = "{{ q1_answer.var_1 }}";
             arr['c1_yr1_percent'] = $('#id_category1_yr1').val();
             arr['c1_yr2_percent'] = $('#id_category1_yr2').val();
             arr['c1_yr3_percent'] = $('#id_category1_yr3').val();
@@ -42,6 +43,7 @@
 
         {% if q1_answer.var_2 %}
             // GET INPUT.
+            arr['c2'] = "{{ q1_answer.var_2 }}";
             arr['c2_yr1_percent'] = $('#id_category2_yr1').val();
             arr['c2_yr2_percent'] = $('#id_category2_yr2').val();
             arr['c2_yr3_percent'] = $('#id_category2_yr3').val();
@@ -68,6 +70,7 @@
 
         {% if q1_answer.var_3 %}
             // GET INPUT.
+            arr['c3'] = "{{ q1_answer.var_3 }}";
             arr['c3_yr1_percent'] = $('#id_category3_yr1').val();
             arr['c3_yr2_percent'] = $('#id_category3_yr2').val();
             arr['c3_yr3_percent'] = $('#id_category3_yr3').val();
@@ -168,7 +171,7 @@
                     <tbody>
                         {% if q1_answer.var_1 %}
                         <tr>
-                            <td>{{ q1_answer.var_1 }}</td>
+                            <td id="id_category_1">{{ q1_answer.var_1 }}</td>
                             <td>
                                 <input id="id_category1_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_5 }}" value="{{ picked.c1_yr1_percent }}" />
                             </td>
@@ -182,7 +185,7 @@
                         {% endif %}
                         {% if q1_answer.var_2 %}
                         <tr>
-                            <td>{{ q1_answer.var_2 }}</td>
+                            <td id="id_category_2">{{ q1_answer.var_2 }}</td>
                             <td>
                                 <input id="id_category2_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_8 }}" value="{{ picked.c2_yr1_percent }}" />
                             </td>
@@ -196,7 +199,7 @@
                         {% endif %}
                         {% if q1_answer.var_3 %}
                         <tr>
-                            <td>{{ q1_answer.var_3 }}</td>
+                            <td id="id_category_3">{{ q1_answer.var_3 }}</td>
                             <td>
                                 <input id="id_category3_yr1" type="number" class="form-control" placeholder="{{ question.content.stub_11 }}" value="{{ picked.c3_yr1_percent }}" />
                             </td>

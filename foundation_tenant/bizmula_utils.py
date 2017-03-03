@@ -301,15 +301,8 @@ class BizmulaAPI(DocxspressoAPI):
         # Find the other value.
         q58_value = q58_answer.content['var_1_other'] if q58_answer.content['var_1_other'] else q58_answer.content['var_1']
 
-        # # Debugging purposes only.
-        # print("QID56", q56_value)
-        # print("QID58", q58_value)
-
         # Decision computation.
         value = "Yes" if q58_value >= q56_value else "No"
-
-        # # Debugging purposes only.
-        # print("QID58 >= QID56 is", value)
 
         # Record our decision.
         api.add_text("validation_outcome_met", value)
@@ -1015,7 +1008,53 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("cogs_overhead_y3_total", answer.content['overhead_month_36_other'] if answer.content['overhead_month_36_other'] else answer.content['overhead_month_36'])
 
     def do_q102(self, answer, api):
-        print("QID 102")
+        # Note: Cannot use "do_type41" function
+        col1_array = []
+        col2_array = []
+
+        # Generate COL1
+        if answer.content['c2']:
+            col1_array.append(answer.content['c1'])
+
+        if answer.content['c2']:
+            col1_array.append(answer.content['c2'])
+
+        if answer.content['c3']:
+            col1_array.append(answer.content['c3'])
+
+        # Generate COL2
+        if answer.content['c1_yr1_percent']:
+            col2_array.append(answer.content['c1_yr1_percent']+"%")
+
+        if answer.content['c2_yr1_percent']:
+            col2_array.append(answer.content['c2_yr1_percent']+"%")
+
+        if answer.content['c3_yr1_percent']:
+            col2_array.append(answer.content['c3_yr1_percent']+"%")
+
+        # Generate our custom item.
+        col1_dict = {
+            "var": 'product_categories_col1',
+            'value': col1_array
+        }
+        col2_dict = {
+            "var": 'sales_year1_categories_col2',
+            'value': col2_array
+        }
+
+        # Generate the custom API query.
+        custom = {
+            "vars": [
+                col1_dict,
+                col2_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        }
+
+        # Attach all out tables.
+        api.add_custom(custom)
 
     def do_q103(self, answer, api):
         # Note: Cannot use "do_type41" function
