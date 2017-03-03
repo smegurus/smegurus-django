@@ -13,7 +13,7 @@
                                 <label for="id_how_can_we_help">{% trans 'Your date of birth helps your advisor to understand programs and incentives that you may be eligible for. This is optional.' %}</label>
                             </label>
                         </h2>
-                        <fieldset>
+                        <fieldset class="mgn-below">
                            <div class="form-group">
                               <label class="col-sm-4 control-label mt text-right">{% trans 'Date of Birth' %}</label>
                               <div class="col-sm-6">
@@ -29,7 +29,7 @@
                     <!-- end OPTIONS -->
 
             <div class="actions text-center clearfix">
-                        <button id="id_back_btn" type="button" class="btn btn-block btn-default btn-lg mb-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
+                        <button id="id_back_btn" type="button" class="btn btn-block btn-default btn-lg mt-lg mb-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
                         <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
             </div>
 </div>
