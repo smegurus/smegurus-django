@@ -1611,6 +1611,9 @@ class BizmulaAPI(DocxspressoAPI):
 
         api.add_unordered_list('business_strengths', array)
 
+        # Pick the first one and assign it.
+        api.add_text("business_strengths_1", array[0])
+
     def do_q148(self, answer, api):
         array = []
 
@@ -1651,6 +1654,9 @@ class BizmulaAPI(DocxspressoAPI):
 
         # Attach all out tables.
         api.add_custom(custom)
+
+        # Pick the first one ad assign it.
+        api.add_text("business_threats_1", business_threats_array[0])
 
     def do_q150(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
