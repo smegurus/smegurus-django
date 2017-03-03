@@ -12,7 +12,7 @@
                     <p class="text-center pv">Now, we need to identify which of your tags are programs that run or plan to offer in the short-term - this will help clients filling out an online intake form, and will make them available for signup. If you do not set any tags as programs, then the system will create a 'General intake' option for your clients.</p>
 
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <fieldset class="blue-lbl col-sm-12">
+                        <fieldset class="blue-lbl">
                             <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
                         </fieldset>
                     </form>
