@@ -9,40 +9,15 @@
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
 <div class="content-wrapper">
-<div class="panel panel-default">
-    <!-- <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div> -->
-    <div class="panel-body">
-        <div id="example-vertical" role="application" class="wizard clearfix vertical">
-
-            <!-- PAGE SIDEBAR -->
-            {% include 'tenant_configuration/organization/sidebar_view.html' with page=8 %}
-            <!-- end PAGE SIDEBAR -->
-
-            <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 475px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
-                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Logo</h4>
-                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
                     <h2 class="text-center pv">{% trans 'You\'re Ready To Start' %}</h2>
-                    <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
-
-                    <br/>
-
-                </section>
+                    <fieldset class="blue-lbl">
+                        <p class="text-center pv">{% trans 'Your organization is all set up. Now, you can add advisors, or go to your dashboard and start using SME Gurus.' %}</p>
+                    </fieldset>
+                    
+            <div class="actions text-center clearfix">
+                        <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg mb-lg btn-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
+                        <button id="id_continue_btn" type="button" class="btn btn-block btn-success btn-lg" onclick="ajax_dashboard();" role="menuitem">{% trans 'Submit' %}</button>
             </div>
-            <!-- end PAGE CONTENT -->
-
-            <div class="actions clearfix">
-                <ul role="menu" aria-label="Pagination">
-                    <li class="disabled" aria-disabled="true">
-                        <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
-                    </li>
-                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-success mt-lg" onclick="ajax_dashboard();" role="menuitem">{% trans 'Submit' %}</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- end PAGE HTML -->
 {% endblock content %}
