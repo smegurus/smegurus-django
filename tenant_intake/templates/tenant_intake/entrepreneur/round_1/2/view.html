@@ -12,14 +12,16 @@
                         {% for field in form %}
                             {% if field.id_for_label == 'id_how_did_you_hear' or field.id_for_label == 'id_how_did_you_hear_other' %}
                                 <div class="form-group" id="{{ field.id_for_label }}_div">
-                                    <h2 class="text-center pv">
-                                        <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
-                                    </h2>
-                                    <div class="col-sm-6 col-centered">
-                                         {{ field }}
-                                        {{ field.errors }}
-                                        <br/>
-                                    </div>
+                                    <fieldset class="mgn-below">
+                                        <h2 class="text-center pv">
+                                            <label for="signupInputText1" style="font-weight: 400;">{{ field.label_tag }}</label>
+                                        </h2>
+                                        <div class="col-sm-6 col-centered">
+                                             {{ field }}
+                                            {{ field.errors }}
+                                            <br/>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             {% endif %}
                         {% endfor %}
