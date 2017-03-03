@@ -5,25 +5,11 @@
         {% include 'tenant_intake/entrepreneur/round_2/4/js.html' with intake=intake %}
     {% endcompress %}
     <div class="content-wrapper">
-
-<div class="panel panel-default">
-    <div class="panel-heading">{% trans 'Entrepreneur Intake Form - Round Two' %}</div>
-    <div class="panel-body">
-        <div id="example-vertical" role="application" class="wizard clearfix vertical">
-
-            <!-- PAGE SIDEBAR -->
-            {% include 'tenant_intake/entrepreneur/round_2/sidebar_view.html' with page=4 %}
-            <!-- end PAGE SIDEBAR -->
-
-            <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
-                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">Keyboard</h4>
-                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-
+            <h3 class="blk-h3">{% trans 'Entrepreneur Intake Form - Round Two' %}</h3>
                     <!-- HAS BUSINESS IDEAS -->
-                    <div class="form-group has-feedback" id="id_has_business_idea_div">
-                        <label for="signupInputText1" class="text-muted">
-
+                    <div class="form-group" id="id_has_business_idea_div">
+                        <div class="col-sm-6 text-center col-centered">
+                            <div class="checkbox c-checkbox">
                             <input value="{{ identity.id }}"
                             {% if intake.has_business_idea %}
                                  checked="checked"
@@ -31,32 +17,34 @@
                                    class="source"
                                       id="id_has_business_idea"
                                     type="checkbox" />
-
-                            <label for="id_how_can_we_help">{% trans 'I have a business idea.' %}</label>
-                        </label>
+                                     <span class="fa fa-check"></span>
+                                    {% trans 'I have a business idea.' %}
+                            </div>
+                        </div>
                     </div>
                     <!-- end HAS BUSINESS IDEAS -->
 
-                    <br />
-
                     <!-- OPTIONS -->
-                    <div class="form-group has-feedback" id="id_how_can_we_help_div">
-                        <label for="signupInputText1" class="text-muted">
-                            <label for="id_how_can_we_help">{% trans 'What sector does your current business idea mainly fall into?' %}</label>
-                        </label>
-
+                    <div class="form-group" id="id_how_can_we_help_div">
+                        <h2 class="text-center pv">
+                            <label for="signupInputText1" style="font-weight: 400;">
+                                <label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'What sector does your current business idea mainly fall into?' %}</label>
+                            </label>
+                        </h2>
+                        
                         <!-- DEPTH ONE -->
                         <fieldset id="id_depth_one_fieldset">
                            <div class="form-group mb">
-                              <label class="col-sm-2 control-label mb">Depth One</label>
-                              <div class="col-sm-10">
-                                  <select id="id_naics_depth_one" class="form-control">
+                               <div class="col-sm-6 col-centered">
+                                <label class="control-label mb">Depth One</label>
+                              
+                                  <select id="id_naics_depth_one" class="form-control input-lg">
                                       {% if intake.naics_depth_one == None %}<option>----</option>{% endif %}
                                       {% for option in depth_one_results.all %}
                                           <option value="{{ option.id }}" {% if option.id == intake.naics_depth_one.id %}selected="true"{% endif %}>{{ option.name }}</option>
                                       {% endfor %}
                                   </select>
-                              </div>
+                                </div>
                            </div>
                         </fieldset>
                         <!-- end DEPTH ONE -->
@@ -64,15 +52,16 @@
                         <!-- DEPTH TWO -->
                         <fieldset id="id_depth_two_fieldset">
                            <div class="form-group mb">
-                              <label class="col-sm-2 control-label mb">Depth Two</label>
-                              <div class="col-sm-10">
-                                  <select id="id_naics_depth_two" class="form-control" {% if intake.naics_depth_two == None and intake.naics_depth_one == None %}disabled="true"{% endif %}>
+                              <div class="col-sm-6 col-centered">
+                              <label class="control-label mb">Depth Two</label>
+                              
+                                  <select id="id_naics_depth_two" class="form-control input-lg" {% if intake.naics_depth_two == None and intake.naics_depth_one == None %}disabled="true"{% endif %}>
                                       {% if naics_depth_two == None %}<option>----</option>{% endif %}
                                       {% for option in depth_two_results.all %}
                                           <option value="{{ option.id }}" {% if option == intake.naics_depth_two %}selected="true"{% endif %}>{{ option.name }}</option>
                                       {% endfor %}
                                   </select>
-                              </div>
+                               </div>
                            </div>
                         </fieldset>
                         <!-- end DEPTH TWO -->
@@ -80,9 +69,10 @@
                         <!-- DEPTH THREE -->
                         <fieldset id="id_depth_three_fieldset">
                            <div class="form-group mb">
-                              <label class="col-sm-2 control-label mb">Depth Three</label>
-                              <div class="col-sm-10">
-                                  <select id="id_naics_depth_three" class="form-control" {% if intake.naics_depth_three == None and intake.naics_depth_two == None %}disabled="true"{% endif %}>
+                               <div class="col-sm-6 col-centered">
+                                <label class="control-label mb">Depth Three</label>
+                              
+                                  <select id="id_naics_depth_three" class="form-control input-lg" {% if intake.naics_depth_three == None and intake.naics_depth_two == None %}disabled="true"{% endif %}>
                                       {% if naics_depth_three == None %}<option>----</option>{% endif %}
                                       {% for option in depth_three_results.all %}
                                           <option value="{{ option.id }}" {% if option == intake.naics_depth_three %}selected="true"{% endif %}>{{ option.name }}</option>
@@ -96,9 +86,10 @@
                         <!-- DEPTH FOUR -->
                         <fieldset id="id_depth_four_fieldset">
                            <div class="form-group mb">
-                              <label class="col-sm-2 control-label mb">Depth Four</label>
-                              <div class="col-sm-10">
-                                  <select id="id_naics_depth_four" class="form-control" {% if intake.naics_depth_four == None and intake.naics_depth_three == None %}disabled="true"{% endif %}>
+                               <div class="col-sm-6 col-centered">
+                                <label class="control-label mb">Depth Four</label>
+                            
+                                  <select id="id_naics_depth_four" class="form-control input-lg" {% if intake.naics_depth_four == None and intake.naics_depth_three == None %}disabled="true"{% endif %}>
                                       {% if naics_depth_four == None %}<option>----</option>{% endif %}
                                       {% for option in depth_four_results.all %}
                                           <option value="{{ option.id }}" {% if option == intake.naics_depth_four %}selected="true"{% endif %}>{{ option.name }}</option>
@@ -110,11 +101,12 @@
                         <!-- end DEPTH FOUR -->
 
                         <!-- DEPTH FIVE -->
-                        <fieldset id="id_depth_five_fieldset">
+                        <fieldset id="id_depth_five_fieldset" class="mgn-below">
                            <div class="form-group mb">
-                              <label class="col-sm-2 control-label mb">Depth Five</label>
-                              <div class="col-sm-10">
-                                  <select id="id_naics_depth_five" class="form-control" {% if intake.naics_depth_five == None and intake.naics_depth_four == None %}disabled="true"{% endif %}>
+                               <div class="col-sm-6 col-centered">
+                                <label class="control-label mb">Depth Five</label>
+                            
+                                  <select id="id_naics_depth_five" class="form-control input-lg" {% if intake.naics_depth_five == None and intake.naics_depth_four == None %}disabled="true"{% endif %}>
                                       {% if naics_depth_one == None %}<option>----</option>{% endif %}
                                       {% for option in depth_five_results.all %}
                                           <option value="{{ option.id }}" {% if option == intake.naics_depth_five %}selected="true"{% endif %}>{{ option.name }}</option>
@@ -125,29 +117,13 @@
                         </fieldset>
                         <!-- end DEPTH FIVE -->
 
-                        <br><br>
-
                     </div>
                     <!-- end OPTIONS -->
 
-                </section>
+            <div class="actions text-center clearfix">
+                        <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg mb-lg btn-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
+                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
             </div>
-            <!-- end PAGE CONTENT -->
-
-            <div class="actions clearfix">
-                <ul role="menu" aria-label="Pagination">
-                    <li class="disabled" aria-disabled="true">
-                        <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
-                    </li>
-                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
-</div>
-
-</div>
 
 {% endblock content %}
