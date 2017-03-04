@@ -1192,17 +1192,55 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("supplies_costs_y2_total", yr2_total)
         api.add_text("supplies_costs_y3_total", yr3_total)
 
-        # Populate the table.
-        self.do_type50(
-            answer,
-            api,
-            'supplies_types',
-            'supplies_details',
-            'supplies_cost_types',
-            'supplies_y1_costs',
-            'supplies_y2_costs',
-            'supplies_y3_costs'
-        )
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": 'supplies_types', 'value': ['-']},
+                    {"var": 'supplies_details', 'value': ['-']},
+                    {"var": 'supplies_y1_costs', 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # 'supplies_types',
+        # 'supplies_details',
+        # 'supplies_cost_types',
+        # 'supplies_y1_costs',
+        # 'supplies_y2_costs',
+        # 'supplies_y3_costs'
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_5'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'supplies_types', 'value': col1_array}
+        c2_dict = {"var": 'supplies_details', 'value': col2_array}
+        c3_dict = {"var": 'supplies_y1_costs', 'value': col3_array}
+
+        # Generate the custom API query & attach our table.
+        api.add_custom({
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        })
 
     def do_q119(self, answer, api):
         self.do_type52(answer, api, "supplies_costs")
@@ -1580,16 +1618,48 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("tid_total_y3", yr3_total)
 
     def do_q139(self, answer, api):
-        self.do_type50(
-            answer,
-            api,
-            'sales_expense_types',
-            'sales_expense_details',
-            'sales_expense_cost_types',
-            'sales_y1_costs',
-            'sales_y2_costs',
-            'sales_y3_costs'
-        )
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": 'equipment_types', 'value': ['-']},
+                    {"var": 'equipment_details', 'value': ['-']},
+                    {"var": 'equipment_y1_costs', 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_5'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'equipment_types', 'value': col1_array}
+        c2_dict = {"var": 'equipment_details', 'value': col2_array}
+        c3_dict = {"var": 'equipment_y1_costs', 'value': col3_array}
+
+        # Generate the custom API query & attach our table.
+        api.add_custom({
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        })
 
     def do_q140(self, answer, api):
         self.do_type50(
