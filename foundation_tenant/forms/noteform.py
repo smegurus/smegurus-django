@@ -19,11 +19,11 @@ class NoteForm(forms.ModelForm):
         }
         widgets = {
             'name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter title.')
             }),
             'description': Textarea(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter text.')
             }),
         }
