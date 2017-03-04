@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import urllib3  # Third Party Library
 from django.conf import settings
@@ -36,7 +37,7 @@ class SendEmailViewMixin(object):
                 # If this User profile has an assigned manager then add this person
                 # to the email else just email the administrator.
                 contact_list.append(me.managed_by.owner.email)
-                
+
         if len(contact_list) == 0:
             admins = User.objects.filter(groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
             for admin in admins.all():

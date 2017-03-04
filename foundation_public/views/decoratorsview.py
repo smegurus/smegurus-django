@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.http import JsonResponse
 from foundation_public.decorators import tenant_required
 from foundation_public.decorators import group_required

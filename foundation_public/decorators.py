@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from functools import wraps
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden

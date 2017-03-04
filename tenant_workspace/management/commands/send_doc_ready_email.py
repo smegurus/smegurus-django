@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import urllib3  # Third Party Library
 from django.conf import settings

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os.path
 import json
 import urllib3  # Library used for sending POST/GET.

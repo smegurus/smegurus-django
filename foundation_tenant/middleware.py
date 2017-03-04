@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pytz
 from django.utils import timezone
 from foundation_tenant.models.base.me import Me

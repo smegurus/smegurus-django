@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.docxpresso_utils import DocxspressoAPI
 from foundation_tenant.models.base.naicsoption import NAICSOption
@@ -319,37 +320,12 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text('business_friendly_name', answer.content['var_3'])
 
     def do_q62(self, answer, api):
-        business_weaknesses_array = []
-        business_weakness_resolutions_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            business_weaknesses_array.append(ans['var_2'])
-            business_weakness_resolutions_array.append(ans['var_3'])
-
-        # Generate our custom item.
-        business_weaknesses_dict = {
-            "var": 'business_weaknesses',
-            'value': business_weaknesses_array
-        }
-        business_weakness_resolutions_dict = {
-            "var": 'business_weakness_resolutions',
-            'value': business_weakness_resolutions_array
-        }
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                business_weaknesses_dict,
-                business_weakness_resolutions_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type33(
+            answer,
+            api,
+            'business_weaknesses',
+            'business_weakness_resolutions',
+        )
 
     def do_q63(self, answer, api):
         api.add_text('business_mission', answer.content['var_2'])
