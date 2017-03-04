@@ -28,72 +28,72 @@ class IntakeForm(forms.ModelForm):
         }
         widgets = {
             'how_can_we_help': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'how_can_we_help_other': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
             'how_can_we_help_tag': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
             'how_did_you_hear': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'how_did_you_hear_other': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
 
             'do_you_own_a_biz': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'do_you_own_a_biz_other': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
 
             'has_telephone': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'telephone': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
             'telephone_time': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'government_benefits': CheckboxSelectMultiple(),
             'other_government_benefit': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
             'identities': CheckboxSelectMultiple(),
             'date_of_birth': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'naics_depth_one': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'naics_depth_two': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'naics_depth_three': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'naics_depth_four': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'naics_depth_five': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'has_signed_with_name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
             'has_signed_on_date': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 # 'placeholder': _('Enter name.')
             }),
         }
