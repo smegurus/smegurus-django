@@ -592,6 +592,23 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_q85(self, answer, api):
+        # Implemented year totals.
+        yr1_total = 0
+        yr2_total = 0
+        yr3_total = 0
+
+        # Populate rows.
+        for ans in answer.content:
+            yr1_total += self.string_to_float(ans['var_5'])
+            yr2_total += self.string_to_float(ans['var_6'])
+            yr3_total += self.string_to_float(ans['var_7'])
+
+        # Populate the totals.
+        api.add_text("pro_fee_cost_y1_total", yr1_total)
+        api.add_text("pro_fee_cost_y2_total", yr2_total)
+        api.add_text("pro_fee_cost_y3_total", yr3_total)
+
+        # Generate the table.
         self.do_type50(
             answer,
             api,
