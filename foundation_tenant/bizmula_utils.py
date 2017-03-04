@@ -1371,16 +1371,60 @@ class BizmulaAPI(DocxspressoAPI):
         self.do_type52(answer, api, "lease_costs")
 
     def do_q130(self, answer, api):
-        self.do_type50(
-            answer,
-            api,
-            'maintain_types',
-            'maintain_details',
-            'maintain_cost_types',
-            'maintain_y1_costs',
-            'maintain_y2_costs',
-            'maintain_y3_costs'
-        )
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": 'maintain_types', 'value': ['-']},
+                    {"var": 'maintain_details', 'value': ['-']},
+                    {"var": 'maintain_y1_costs', 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # DEVELOPERS NOTE:
+        # - We cannot use "do_type40" because our GUI is custom so we'll have to
+        #   get a custom instance.
+        # - Here is the former list:
+        # - maintain_types
+        # - maintain_details
+        # - maintain_cost_types
+        # - maintain_y1_costs
+        # - maintain_y2_costs
+        # - maintain_y3_costs
+        #
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_5'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'maintain_types', 'value': col1_array}
+        c2_dict = {"var": 'maintain_details', 'value': col2_array}
+        c3_dict = {"var": 'maintain_y1_costs', 'value': col3_array}
+
+        # Generate the custom API query & attach our table.
+        api.add_custom({
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        })
 
     def do_q131(self, answer, api):
         self.do_type52(answer, api, "maintain_costs")
