@@ -11,47 +11,53 @@
         <h3 class="blk-h3">{% trans 'Entrepreneur Intake Form - Round One' %}</h3>
     
                     <div class="form-group" id="id_how_can_we_help_div">
-                        <h2 class="text-center pv">
-                            <label for="signupInputText1" style="font-weight: 400;"><label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'How can we help you' %}:</label></label>
-                        </h2>
-                        <div class="col-sm-6 col-centered">
-                            <select class="form-control input-lg" id="id_how_can_we_help" name="how_can_we_help" required="">
-                                <option value="1" {% if intake.how_can_we_help == 1 %}selected="selected"{% endif %}>{% trans 'I am interested in one of your programs' %}</option>
-                                <option value="2" {% if intake.how_can_we_help == 2 %}selected="selected"{% endif %}>{% trans 'I am interested in one of your services' %}</option>
-                                <option value="3" {% if intake.how_can_we_help == 3 %}selected="selected"{% endif %}>{% trans 'I want to find out how to start a business' %}</option>
-                                <option value="4" {% if intake.how_can_we_help == 4 %}selected="selected"{% endif %}>{% trans 'I have an existing business I need help with' %}</option>
-                                <option value="5" {% if intake.how_can_we_help == 5 %}selected="selected"{% endif %}>{% trans 'I want to find out about grants and loans' %}</option>
-                                <option value="6" {% if intake.how_can_we_help == 6 %}selected="selected"{% endif %}>{% trans 'Other' %}</option>
-                            </select>
-                        <br>
-                        </div>
+                        <fieldset class="mgn-below">
+                            <h2 class="text-center pv">
+                                <label for="signupInputText1" style="font-weight: 400;"><label for="id_how_can_we_help" style="font-weight: 400;">{% trans 'How can we help you' %}:</label></label>
+                            </h2>
+                            <div class="col-sm-6 col-centered">
+                                <select class="form-control input-lg" id="id_how_can_we_help" name="how_can_we_help" required="">
+                                    <option value="1" {% if intake.how_can_we_help == 1 %}selected="selected"{% endif %}>{% trans 'I am interested in one of your programs' %}</option>
+                                    <option value="2" {% if intake.how_can_we_help == 2 %}selected="selected"{% endif %}>{% trans 'I am interested in one of your services' %}</option>
+                                    <option value="3" {% if intake.how_can_we_help == 3 %}selected="selected"{% endif %}>{% trans 'I want to find out how to start a business' %}</option>
+                                    <option value="4" {% if intake.how_can_we_help == 4 %}selected="selected"{% endif %}>{% trans 'I have an existing business I need help with' %}</option>
+                                    <option value="5" {% if intake.how_can_we_help == 5 %}selected="selected"{% endif %}>{% trans 'I want to find out about grants and loans' %}</option>
+                                    <option value="6" {% if intake.how_can_we_help == 6 %}selected="selected"{% endif %}>{% trans 'Other' %}</option>
+                                </select>
+                            <br>
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="form-group" id="id_how_can_we_help_other_div" {% if not intake.how_can_we_help == 6 %}style="display: none;"{% endif %}>
-                        <h2 class="text-center pv">
-                            <label for="signupInputText1" style="font-weight: 400;"><label for="id_how_can_we_help_other" style="font-weight: 400;">{% trans 'Other' %}:</label></label>
-                        </h2>
-                        <div class="col-sm-6 col-centered">
-                            <input class="form-control input-lg" id="id_how_can_we_help_other" maxlength="255" name="how_can_we_help_other" type="text" value="{{ intake.how_can_we_help_other }}">
-                        <br>
-                        </div>
+                        <fieldset class="mgn-below">
+                            <h2 class="text-center pv">
+                                <label for="signupInputText1" style="font-weight: 400;"><label for="id_how_can_we_help_other" style="font-weight: 400;">{% trans 'Other' %}:</label></label>
+                            </h2>
+                            <div class="col-sm-6 col-centered">
+                                <input class="form-control input-lg" id="id_how_can_we_help_other" maxlength="255" name="how_can_we_help_other" type="text" value="{{ intake.how_can_we_help_other }}">
+                            <br>
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="form-group" id="id_how_can_we_help_tag_div" {% if not intake.how_can_we_help == 1 %}style="display: none;"{% endif %}>
-                        <h2 class="text-center pv">
-                            <label for="signupInputText1" style="font-weight: 400;"><label for="id_how_can_we_help_tag" style="font-weight: 400;">{% trans 'Which program are you interested in?' %}</label></label>
-                        </h2>
-                        <div class="col-sm-6 col-centered">
-                        <select class="form-control input-lg" id="id_how_can_we_help_tag" name="how_can_we_help_tag">
-                            <option value="">---------</option>
-                            {% for tag in tags.all %}
-                                <option value="{{ tag.id }}" {% if intake.how_can_we_help_tag == tag %}selected="selected"{% endif %}>{{ tag }}</option>
-                            {% endfor %}
-                        </select>
-                        <br>
-                        </div>
+                        <fieldset class="mgn-below">
+                            <h2 class="text-center pv">
+                                <label for="signupInputText1" style="font-weight: 400;"><label for="id_how_can_we_help_tag" style="font-weight: 400;">{% trans 'Which program are you interested in?' %}</label></label>
+                            </h2>
+                            <div class="col-sm-6 col-centered">
+                            <select class="form-control input-lg" id="id_how_can_we_help_tag" name="how_can_we_help_tag">
+                                <option value="">---------</option>
+                                {% for tag in tags.all %}
+                                    <option value="{{ tag.id }}" {% if intake.how_can_we_help_tag == tag %}selected="selected"{% endif %}>{{ tag }}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            </div>
+                        </fieldset>
                     </div>
            
             <div class="actions text-center clearfix">
-                        <button id="id_continue_btn" type="button" class="btn btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Save & Continue' %}</button>
+                        <button id="id_continue_btn" type="button" class="btn btn-block mt-lg btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Save & Continue' %}</button>
             </div>
     </div>
 <!-- end PAGE CONTENT -->
