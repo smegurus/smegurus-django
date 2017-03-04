@@ -8,26 +8,13 @@
     <!-- end PAGE JS -->
     <!-- PAGE HTML -->
     <div class="content-wrapper">
-<div class="panel panel-default">
-    <!-- <div class="panel-heading">{% trans 'Entrepreneur Intake Form' %}</div> -->
-    <div class="panel-body">
-        <div id="example-vertical" role="application" class="wizard clearfix vertical">
+            <h2 class="text-center pv">{% trans 'Great! You\'re Almost There!' %}</h2>
+            <p class="text-center pv">{% trans 'We just need a few more details to finish setting up your profile. We need you to do this to get started, but don\'t worry, you can always change these settings later. Let\'s get started!' %}</p>
+            <p class="text-center pv">{% trans 'First, let\'s upload your profile picture. This will help you to brand and customize SME Gurus for your clients. If you don\'t have your profile picture handy, you can skip this step, but we highly recommended that you add one now.' %}</p>
 
-            <!-- PAGE SIDEBAR -->
-            {% include 'tenant_configuration/organization/sidebar_view.html' with page=6 %}
-            <!-- end PAGE SIDEBAR -->
-
-            <!-- PAGE CONTENT -->
-            <div class="content clearfix" style="height: 650px; display: inline; "> <!-- TODO: IMPLEMENT DYNAMIC HEIGHT ADJUSTMENT -->
-                <h4 id="example-vertical-h-0" tabindex="-1" class="title current">{% trans 'My Profile' %}</h4>
-                <section id="example-vertical-p-0" role="tabpanel" aria-labelledby="example-vertical-h-0" class="body current" aria-hidden="false" style="left: 0px; display: block;">
-                    <h2 class="text-center pv">{% trans 'Great! You\'re Almost There!' %}</h2>
-                    <p class="text-center pv">{% trans 'We just need a few more details to finish setting up your profile. We need you to do this to get started, but don\'t worry, you can always change these settings later. Let\'s get started!' %}</p>
-                    <p class="text-center pv">{% trans 'First, let\'s upload your profile picture. This will help you to brand and customize SME Gurus for your clients. If you don\'t have your profile picture handy, you can skip this step, but we highly recommended that you add one now.' %}</p>
-
-                    <br/>
-
-                    <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                    <fieldset class="blue-lbl">
+                              
                         <!-- Upload ID -->
                         <input type="hidden" id="id_hidden_upload_id" value="{{ request.tenant_me.image.id }}"/>
                         <input type="hidden" id="id_hidden_url" value="{% if request.tenant_me.image %}{% if request.tenant_me.image.imagefile %}{{ request.tenant_me.image.imagefile.url }}{% endif %}{% endif %}"/>
@@ -54,7 +41,7 @@
                         <br/>
 
                         <!-- Image Upload Button -->
-                        <label class="form-control btn btn-success mt10 curp" >
+                        <label class="form-control btn btn-success btn-lg" style="height: auto;">
                             <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Profile Picture...' %}
                             <input onchange="ajax_upload_image();"
                                          id="id_image"
@@ -63,25 +50,13 @@
                                        name="product-image" />
                         </label>
                         <!-- /.Image Upload Button -->
+                    </fieldset>
+                </form>
 
-                        <br/>
-                    </form>
-                </section>
+            <div class="actions text-center clearfix">
+                    <button id="id_back_btn" type="button" class="btn btn-block btn-default mb-lg btn-lg mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
+                    <button id="id_continue_btn" type="button" class="btn btn-block btn-primary btn-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
             </div>
-            <!-- end PAGE CONTENT -->
-
-            <div class="actions clearfix">
-                <ul role="menu" aria-label="Pagination">
-                    <li class="disabled" aria-disabled="true">
-                        <button id="id_back_btn" type="button" class="btn btn-block btn-default mt-lg" onclick="ajax_back();" role="menuitem">{% trans 'Previous' %}</button>
-                    </li>
-                    <li aria-hidden="false" aria-disabled="false" class="" style="display: block;">
-                        <button id="id_continue_btn" type="button" class="btn btn-block btn-primary mt-lg" onclick="ajax_save_and_continue();" role="menuitem">{% trans 'Next' %}</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
-</div>
 <!-- end PAGE HTML -->
 {% endblock content %}
