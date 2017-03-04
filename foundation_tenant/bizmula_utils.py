@@ -1253,16 +1253,60 @@ class BizmulaAPI(DocxspressoAPI):
         self.do_type52(answer, api, "sales_expense")
 
     def do_q126(self, answer, api):
-        self.do_type50(
-            answer,
-            api,
-            'mem_types',
-            'mem_details',
-            'mem_cost_types',
-            'mem_y1_costs',
-            'mem_y2_costs',
-            'mem_y3_costs'
-        )
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": 'mem_types', 'value': ['-']},
+                    {"var": 'mem_details', 'value': ['-']},
+                    {"var": 'mem_y1_costs', 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # DEVELOPERS NOTE:
+        # - We cannot use "do_type40" because our GUI is custom so we'll have to
+        #   get a custom instance.
+        # - Here is the former list:
+        #     - mem_types (var_2)
+        #     - mem_details (var_3)
+        #     - mem_cost_types (var_4)
+        #     - mem_y1_costs (var_5)
+        #     - mem_y2_costs (var_6)
+        #     - mem_y3_costs (var_7)
+        #
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_5'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'mem_types', 'value': col1_array}
+        c2_dict = {"var": 'mem_details', 'value': col2_array}
+        c3_dict = {"var": 'mem_y1_costs', 'value': col3_array}
+
+        # Generate the custom API query & attach our table.
+        api.add_custom({
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        })
 
     def do_q127(self, answer, api):
         self.do_type52(answer, api, "mem_costs")
@@ -1892,6 +1936,21 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("supplier_amount", text)
 
     def do_type33(self, answer, api, key1, key2):  # 2 Col Table
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": key1, 'value': ['-']},
+                    {"var": key2, 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
         col1_array = []
         col2_array = []
 
@@ -1919,6 +1978,22 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_type40(self, answer, api, key1, key2, key3):  # 3 Col Table
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": key1, 'value': ['-']},
+                    {"var": key2, 'value': ['-']},
+                    {"var": key3, 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
         col1_array = []
         col2_array = []
         col3_array = []
@@ -1950,6 +2025,23 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_type41(self, answer, api, key1, key2, key3, key4):  # 4 Col Table
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": key1, 'value': ['-']},
+                    {"var": key2, 'value': ['-']},
+                    {"var": key3, 'value': ['-']},
+                    {"var": key4, 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
         col1_array = []
         col2_array = []
         col3_array = []
@@ -1985,6 +2077,26 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_type43(self, answer, api, key1, key2, key3, key4, key5, key6, key7):  # 7 Col Table
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": key1, 'value': ['-']},
+                    {"var": key2, 'value': ['-']},
+                    {"var": key3, 'value': ['-']},
+                    {"var": key4, 'value': ['-']},
+                    {"var": key5, 'value': ['-']},
+                    {"var": key6, 'value': ['-']},
+                    {"var": key7, 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
         col1_array = []
         col2_array = []
         col3_array = []
@@ -2032,6 +2144,25 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_custom(custom)
 
     def do_type50(self, answer, api, key1, key2, key3, key4, key5, key6):  # 6 Col Table
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": key1, 'value': ['-']},
+                    {"var": key2, 'value': ['-']},
+                    {"var": key3, 'value': ['-']},
+                    {"var": key4, 'value': ['-']},
+                    {"var": key5, 'value': ['-']},
+                    {"var": key6, 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
         col1_array = []
         col2_array = []
         col3_array = []
