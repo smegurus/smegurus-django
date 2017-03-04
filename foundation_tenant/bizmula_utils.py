@@ -1598,17 +1598,60 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("taxes_total_y2", yr2_total)
         api.add_text("taxes_total_y3", yr3_total)
 
-        # Populate the tax table.
-        self.do_type50(
-            answer,
-            api,
-            'tax_items',
-            'tax_details',
-            'tax_cost_types',
-            'tax_y1_costs',
-            'tax_y2_costs',
-            'tax_y3_costs'
-        )
+        # CASE 1 OF 2: USER ENTERS NO INFORMATION.
+        if len(answer.content) == 0:
+            # Attach empty tables.
+            api.add_custom({
+                "vars": [
+                    {"var": 'tax_items', 'value': ['-']},
+                    {"var": 'tax_details', 'value': ['-']},
+                    {"var": 'tax_y1_costs', 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
+            return
+
+        # CASE 2 OF 2: USER ENTERS INFORMATION.
+        col1_array = []
+        col2_array = []
+        col3_array = []
+
+        # DEVELOPERS NOTE:
+        # - We cannot use "do_type40" because our GUI is custom so we'll have to
+        #   get a custom instance.
+        # - Here is the former list:
+        # - tax_items
+        # - tax_details
+        # - tax_cost_types
+        # - tax_y1_costs
+        # - tax_y2_costs
+        # - tax_y3_costs
+        #
+
+        # Populate rows.
+        for ans in answer.content:
+            col1_array.append(ans['var_2'])
+            col2_array.append(ans['var_3'])
+            col3_array.append(ans['var_5'])
+
+        # Generate our custom item.
+        c1_dict = {"var": 'tax_items', 'value': col1_array}
+        c2_dict = {"var": 'tax_details', 'value': col2_array}
+        c3_dict = {"var": 'tax_y1_costs', 'value': col3_array}
+
+        # Generate the custom API query & attach our table.
+        api.add_custom({
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        })
 
     def do_q136_q137_q138(self, qid_136_answer, qid_137_answer, qid_138_answer, api):
         yr1_total = 0
