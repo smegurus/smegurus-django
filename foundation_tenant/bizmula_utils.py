@@ -2497,7 +2497,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text(prefix+"_m22", answer.content['m_22'] if answer.content['m_22'] else answer.content['m_22_r'])
         api.add_text(prefix+"_m23", answer.content['m_23'] if answer.content['m_23'] else answer.content['m_23_r'])
         api.add_text(prefix+"_m24", answer.content['m_24'] if answer.content['m_24'] else answer.content['m_24_r'])
-        api.add_text(prefix+"_yr2", answer.content['yr_1'] if answer.content['yr_2'] else answer.content['yr_2_r'])
+        api.add_text(prefix+"_yr2", answer.content['yr_2'] if answer.content['yr_2'] else answer.content['yr_2_r'])
         api.add_text(prefix+"_m25", answer.content['m_25'] if answer.content['m_25'] else answer.content['m_25_r'])
         api.add_text(prefix+"_m26", answer.content['m_26'] if answer.content['m_26'] else answer.content['m_26_r'])
         api.add_text(prefix+"_m27", answer.content['m_27'] if answer.content['m_27'] else answer.content['m_27_r'])
