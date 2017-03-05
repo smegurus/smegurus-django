@@ -1957,18 +1957,24 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q155(self, answer, api):
         if answer.content['var_1_other']:
+            api.add_text('location_and_facility_benefits_1', answer.content['var_1_other'])
             api.add_text('location_benefits_1', answer.content['var_1_other'])
         else:
+            api.add_text('location_and_facility_benefits_1', answer.content['var_1'])
             api.add_text('location_benefits_1', answer.content['var_1'])
 
         if answer.content['var_2_other']:
+            api.add_text('location_and_facility_benefits_2', answer.content['var_2_other'])
             api.add_text('location_benefits_2', answer.content['var_2_other'])
         else:
+            api.add_text('location_and_facility_benefits_2', answer.content['var_2'])
             api.add_text('location_benefits_2', answer.content['var_2'])
 
         if answer.content['var_3_other']:
+            api.add_text('location_and_facility_benefits_3', answer.content['var_3_other'])
             api.add_text('location_benefits_3', answer.content['var_3_other'])
         else:
+            api.add_text('location_and_facility_benefits_3', answer.content['var_3'])
             api.add_text('location_benefits_3', answer.content['var_3'])
 
     def do_q156(self, answer, api):
