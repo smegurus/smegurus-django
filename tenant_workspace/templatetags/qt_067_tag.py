@@ -609,6 +609,7 @@ def render_question_type_067(workspace, module, node, question, answer):
     net_cash_position['net_cash_m10'] = net_cash_position['net_cash_m9'] + net_profit['m_10']
     net_cash_position['net_cash_m11'] = net_cash_position['net_cash_m10'] + net_profit['m_11']
     net_cash_position['net_cash_m12'] = net_cash_position['net_cash_m11'] + net_profit['m_12']
+    net_cash_position['net_cash_yr1'] = net_cash_position['net_cash_m12']
     # Yr2
     net_cash_position['net_cash_m13'] = net_cash_position['net_cash_m12'] + net_profit['m_13']
     net_cash_position['net_cash_m14'] = net_cash_position['net_cash_m13'] + net_profit['m_14']
@@ -622,6 +623,7 @@ def render_question_type_067(workspace, module, node, question, answer):
     net_cash_position['net_cash_m22'] = net_cash_position['net_cash_m21'] + net_profit['m_22']
     net_cash_position['net_cash_m23'] = net_cash_position['net_cash_m22'] + net_profit['m_23']
     net_cash_position['net_cash_m24'] = net_cash_position['net_cash_m23'] + net_profit['m_24']
+    net_cash_position['net_cash_yr2'] = net_cash_position['net_cash_m24']
     # YR2
     net_cash_position['net_cash_m25'] = net_cash_position['net_cash_m24'] + net_profit['m_25']
     net_cash_position['net_cash_m26'] = net_cash_position['net_cash_m25'] + net_profit['m_26']
@@ -635,6 +637,7 @@ def render_question_type_067(workspace, module, node, question, answer):
     net_cash_position['net_cash_m34'] = net_cash_position['net_cash_m33'] + net_profit['m_34']
     net_cash_position['net_cash_m35'] = net_cash_position['net_cash_m34'] + net_profit['m_35']
     net_cash_position['net_cash_m36'] = net_cash_position['net_cash_m35'] + net_profit['m_36']
+    net_cash_position['net_cash_yr3'] = net_cash_position['net_cash_m36']
     computation = merge_two_dicts(computation, net_cash_position)
 
     #=============#
