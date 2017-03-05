@@ -140,6 +140,8 @@ class Command(BaseCommand):
         self.do_date(api)
 
         # Some questions need to be stored for later reuse.
+        qid_099_answer = None
+        qid_104_answer = None
         qid_136_answer = None
         qid_137_answer = None
         qid_138_answer = None
@@ -395,6 +397,7 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 99:
                 api.do_q99(answer, api)
+                qid_099_answer = answer
 
             elif answer.question.pk == 100:
                 api.do_q100(answer, api)
@@ -410,6 +413,7 @@ class Command(BaseCommand):
 
             elif answer.question.pk == 104:
                 api.do_q104(answer, api)
+                qid_104_answer = answer
 
             elif answer.question.pk == 105:
                 api.do_q105(answer, api)
@@ -599,6 +603,8 @@ class Command(BaseCommand):
 
         # Perform specific computations based on previous saved answers.
         api.do_q136_q137_q138(qid_136_answer, qid_137_answer, qid_138_answer, api)
+
+        api.do_marketing_roi(qid_099_answer, qid_104_answer, api)
 
     def do_date(self, api):
         today = timezone.now()

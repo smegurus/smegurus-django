@@ -2175,6 +2175,32 @@ class BizmulaAPI(DocxspressoAPI):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         api.add_text("supplier_amount", text)
 
+    def do_marketing_roi(self, qid_99_answer, qid_104_answer, api):
+        # Year 1
+        try:
+            yr1 = qid_104_answer.content['yr_1_r'] if qid_104_answer.content['yr_1_r'] else qid_104_answer.content['yr_1']
+            marketing_roi_yr1 = yr1 / qid_99_answer.content['yr1_total']
+        except Exception as e:
+            marketing_roi_yr1 = 0
+
+        # Year 2
+        try:
+            yr2 = qid_104_answer.content['yr_2_r'] if qid_104_answer.content['yr_2_r'] else qid_104_answer.content['yr_2']
+            marketing_roi_yr2 = yr2 / qid_99_answer.content['yr3_total']
+        except Exception as e:
+            marketing_roi_yr2 = 0
+
+        # Year 3
+        try:
+            yr3 = qid_104_answer.content['yr_3_r'] if qid_104_answer.content['yr_3_r'] else qid_104_answer.content['yr_3']
+            marketing_roi_yr3 = yr3 / qid_99_answer.content['yr3_total']
+        except Exception as e:
+            marketing_roi_yr3 = 0
+
+        api.add_text("marketing_roi_yr1", marketing_roi_yr1)
+        api.add_text("marketing_roi_yr2", marketing_roi_yr2)
+        api.add_text("marketing_roi_yr3", marketing_roi_yr3)
+
     def do_type33(self, answer, api, key1, key2):  # 2 Col Table
         # CASE 1 OF 2: USER ENTERS NO INFORMATION.
         if len(answer.content) == 0:
