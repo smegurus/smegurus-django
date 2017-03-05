@@ -513,8 +513,8 @@ class Command(BaseCommand):
                 api.do_q138(answer, api)
                 qid_138_answer = answer
 
-            # elif answer.question.pk == 139: #BUG: ENABLING THIS CORRUPTS DOCUMENT.
-            #     api.do_q139(answer, api)
+            elif answer.question.pk == 139:
+                api.do_q139(answer, api)
 
             elif answer.question.pk == 140:
                 api.do_q140(answer, api)

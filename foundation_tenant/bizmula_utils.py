@@ -1678,6 +1678,16 @@ class BizmulaAPI(DocxspressoAPI):
                     "element": "table"
                 }
             })
+            api.add_custom({
+                "vars": [
+                    {"var": 'equipment_to_purchase_details', 'value': ['-']},
+                    {"var": 'equipment_to_purchase_types', 'value': ['-']},
+                    {"var": 'equipment_to_purchase_y1_costs', 'value': ['-']}
+                ],
+                "options": {
+                    "element": "table"
+                }
+            })
             return
 
         # CASE 2 OF 2: USER ENTERS INFORMATION.
@@ -1691,10 +1701,29 @@ class BizmulaAPI(DocxspressoAPI):
             col2_array.append(ans['var_3'])
             col3_array.append(ans['var_5'])
 
+        # CASE 1 OF 2:
         # Generate our custom item.
-        c1_dict = {"var": 'equipment_types', 'value': col1_array}
-        c2_dict = {"var": 'equipment_details', 'value': col2_array}
+        c1_dict = {"var": 'equipment_details', 'value': col1_array}
+        c2_dict = {"var": 'equipment_types', 'value': col2_array}
         c3_dict = {"var": 'equipment_y1_costs', 'value': col3_array}
+
+        # Generate the custom API query & attach our table.
+        api.add_custom({
+            "vars": [
+                c1_dict,
+                c2_dict,
+                c3_dict
+            ],
+            "options": {
+                "element": "table"
+            }
+        })
+
+        # CASE 2 OF 2:
+        # Generate our custom item.
+        c1_dict = {"var": 'equipment_to_purchase_details', 'value': col1_array}
+        c2_dict = {"var": 'equipment_to_purchase_types', 'value': col2_array}
+        c3_dict = {"var": 'equipment_to_purchase_y1_costs', 'value': col3_array}
 
         # Generate the custom API query & attach our table.
         api.add_custom({
