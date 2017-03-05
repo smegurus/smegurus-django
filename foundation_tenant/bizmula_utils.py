@@ -2178,21 +2178,21 @@ class BizmulaAPI(DocxspressoAPI):
     def do_marketing_roi(self, qid_99_answer, qid_104_answer, api):
         # Year 1
         try:
-            yr1 = qid_104_answer.content['yr_1_r'] if qid_104_answer.content['yr_1_r'] else qid_104_answer.content['yr_1']
+            yr1 = qid_104_answer.content['yr_1'] if qid_104_answer.content['yr_1'] else qid_104_answer.content['yr_1_r']
             marketing_roi_yr1 = yr1 / qid_99_answer.content['yr1_total']
         except Exception as e:
             marketing_roi_yr1 = 0
 
         # Year 2
         try:
-            yr2 = qid_104_answer.content['yr_2_r'] if qid_104_answer.content['yr_2_r'] else qid_104_answer.content['yr_2']
+            yr2 = qid_104_answer.content['yr_2'] if qid_104_answer.content['yr_2'] else qid_104_answer.content['yr_2_r']
             marketing_roi_yr2 = yr2 / qid_99_answer.content['yr3_total']
         except Exception as e:
             marketing_roi_yr2 = 0
 
         # Year 3
         try:
-            yr3 = qid_104_answer.content['yr_3_r'] if qid_104_answer.content['yr_3_r'] else qid_104_answer.content['yr_3']
+            yr3 = qid_104_answer.content['yr_3'] if qid_104_answer.content['yr_3'] else qid_104_answer.content['yr_3_r']
             marketing_roi_yr3 = yr3 / qid_99_answer.content['yr3_total']
         except Exception as e:
             marketing_roi_yr3 = 0
@@ -2484,7 +2484,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text(prefix+"_m10", answer.content['m_10'] if answer.content['m_10'] else answer.content['m_10_r'])
         api.add_text(prefix+"_m11", answer.content['m11'] if answer.content['m_11'] else answer.content['m_11_r'])
         api.add_text(prefix+"_m12", answer.content['m12'] if answer.content['m_12'] else answer.content['m_12_r'])
-        api.add_text(prefix+"_y1_total", answer.content['yr_1'] if answer.content['yr_1'] else answer.content['yr_1_r'])
+        api.add_text(prefix+"_yr1", answer.content['yr_1'] if answer.content['yr_1'] else answer.content['yr_1_r'])
         api.add_text(prefix+"_m13", answer.content['m_13'] if answer.content['m_13'] else answer.content['m_13_r'])
         api.add_text(prefix+"_m14", answer.content['m_14'] if answer.content['m_14'] else answer.content['m_14_r'])
         api.add_text(prefix+"_m15", answer.content['m_15'] if answer.content['m_15'] else answer.content['m_15_r'])
@@ -2497,7 +2497,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text(prefix+"_m22", answer.content['m_22'] if answer.content['m_22'] else answer.content['m_22_r'])
         api.add_text(prefix+"_m23", answer.content['m_23'] if answer.content['m_23'] else answer.content['m_23_r'])
         api.add_text(prefix+"_m24", answer.content['m_24'] if answer.content['m_24'] else answer.content['m_24_r'])
-        api.add_text(prefix+"_y2_total", answer.content['yr_1'] if answer.content['yr_2'] else answer.content['yr_2_r'])
+        api.add_text(prefix+"_yr2", answer.content['yr_1'] if answer.content['yr_2'] else answer.content['yr_2_r'])
         api.add_text(prefix+"_m25", answer.content['m_25'] if answer.content['m_25'] else answer.content['m_25_r'])
         api.add_text(prefix+"_m26", answer.content['m_26'] if answer.content['m_26'] else answer.content['m_26_r'])
         api.add_text(prefix+"_m27", answer.content['m_27'] if answer.content['m_27'] else answer.content['m_27_r'])
@@ -2510,7 +2510,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text(prefix+"_m34", answer.content['m_34'] if answer.content['m_34'] else answer.content['m_34_r'])
         api.add_text(prefix+"_m35", answer.content['m_35'] if answer.content['m_35'] else answer.content['m_35_r'])
         api.add_text(prefix+"_m36", answer.content['m_36'] if answer.content['m_36'] else answer.content['m_36_r'])
-        api.add_text(prefix+"_y3_total", answer.content['yr_3'] if answer.content['yr_3'] else answer.content['yr_3_r'])
+        api.add_text(prefix+"_yr3", answer.content['yr_3'] if answer.content['yr_3'] else answer.content['yr_3_r'])
 
     def string_to_float(self, string):
         string = string.replace('$', '')
