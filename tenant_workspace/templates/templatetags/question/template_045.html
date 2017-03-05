@@ -113,6 +113,7 @@
     function calculate_profit_percent(cogs_id, sales_id, profit_percent_id) {
         // The sum total of the materials, labour and overhead.
         var total = 0;
+        var total_pr = 0;
 
         // Fetch the User inputs.
         var cogs = parseFloat($(cogs_id).val());
@@ -120,9 +121,10 @@
 
         // Calculate the amount (if not NaN).
         total = ( sales_per_unit - cogs ) / sales_per_unit * 100;
+        total_pr = total.toFixed();
 
         // Update the UI
-        $(profit_percent_id).val(total);
+        $(profit_percent_id).val(total_pr);
     }
 
     /**
