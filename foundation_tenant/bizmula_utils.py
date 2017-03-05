@@ -565,31 +565,18 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("business_province", answer.content['var_4'])
 
     def do_q84(self, answer, api):
-        col1_array = []
-        col2_array = []
-
-        # Populate rows.
-        for ans in answer.content:
-            col1_array.append(ans['var_2'])
-            col2_array.append(ans['var_3'])
-
-        # Generate our custom item.
-        c1_dict = {"var": 'business_space_uses', 'value': col1_array}
-        c2_dict = {"var": 'business_sqft_sizes', 'value': col2_array}
-
-        # Generate the custom API query.
-        custom = {
-            "vars": [
-                c1_dict,
-                c2_dict
-            ],
-            "options": {
-                "element": "table"
-            }
-        }
-
-        # Attach all out tables.
-        api.add_custom(custom)
+        self.do_type33(
+            answer,
+            api,
+            'location_space_uses',
+            'location_sqft_sizes',
+        )
+        self.do_type33(
+            answer,
+            api,
+            'business_space_uses',
+            'business_sqft_sizes',
+        )
 
     def do_q85(self, answer, api):
         # Implemented year totals.
