@@ -93,10 +93,25 @@ def generate_hash():
     return  hash.hexdigest()
 
 
-def humanize_number(number):
+from django.contrib.humanize.templatetags.humanize import intcomma
+
+
+def currency(dollars):
+    """
+    http://stackoverflow.com/a/2180209
+    """
+    dollars = round(float(dollars), 2)
+    return "$%s%s" % (intcomma(int(dollars)), ("%0.2f" % dollars)[-3:])
+
+
+def humanize_number(number, locale = None):
     """
     Utility function which will take a integer/float value and convert it
     into a humanized format.
     """
-    locale = to_locale(get_language())
+    if locale is None:
+        lang = get_language()
+        if lang is None:
+            lang = "en"
+        locale = to_locale(lang)
     return format_number(number, locale = locale)
