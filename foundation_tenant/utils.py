@@ -10,9 +10,9 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.utils import crypto
 from django.utils import timezone
+from django.utils.translation import to_locale, get_language
 from django.utils.translation import ugettext_lazy as _
-
-
+from babel.numbers import format_number
 from foundation_public.utils import latest_date_between
 
 
@@ -91,3 +91,12 @@ def generate_hash():
     utf8_time_str = time_str.encode('utf-8')
     hash.update(utf8_time_str)
     return  hash.hexdigest()
+
+
+def humanize_number(number):
+    """
+    Utility function which will take a integer/float value and convert it
+    into a humanized format.
+    """
+    locale = to_locale(get_language())
+    return format_number(number, locale = locale)
