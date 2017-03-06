@@ -365,7 +365,7 @@
     </legend>
     <!-- ROW 1 -->
     <div class="form-group">
-        <div class="col-sm-5 col-centered">
+        <div class="col-sm-12 text-center">
             {% for option in question.options.opt1 %}
             <!-- OPTION TEXT -->
             <div class="radio c-radio">
@@ -381,7 +381,7 @@
                 </label>
                 <br />
                 <br />
-                <div class="table-responsive">
+                <div class="table-responsive text-left">
                    <table class="table table-striped table-bordered table-hover">
                       <thead>
                          <tr>
@@ -396,45 +396,45 @@
                          {% if option.value == 1 %}
                          <tr>
                             <td>{% trans 'Revenue' %}</td>
-                            <td>{{ scenario_1.revenue.yr1 }}</td>
-                            <td>{{ scenario_1.revenue.yr2 }}</td>
-                            <td>{{ scenario_1.revenue.yr3 }}</td>
+                            <td>{{ scenario_1.revenue.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.revenue.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.revenue.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'COGS' %}</td>
-                            <td>{{ scenario_1.cogs.yr1 }}</td>
-                            <td>{{ scenario_1.cogs.yr2 }}</td>
-                            <td>{{ scenario_1.cogs.yr3 }}</td>
+                            <td>{{ scenario_1.cogs.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.cogs.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.cogs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Gross Profit' %}</td>
-                            <td>{{ scenario_1.gross_profit.yr1 }}</td>
-                            <td>{{ scenario_1.gross_profit.yr2 }}</td>
-                            <td>{{ scenario_1.gross_profit.yr3 }}</td>
+                            <td>{{ scenario_1.gross_profit.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.gross_profit.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.gross_profit.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Gross Margin Percent' %}</td>
-                            <td>{{ scenario_1.gross_margin_percent.yr1 }}</td>
-                            <td>{{ scenario_1.gross_margin_percent.yr2 }}</td>
-                            <td>{{ scenario_1.gross_margin_percent.yr3 }}</td>
+                            <td>{{ scenario_1.gross_margin_percent.yr1|floatformat }}%</td>
+                            <td>{{ scenario_1.gross_margin_percent.yr2|floatformat }}%</td>
+                            <td>{{ scenario_1.gross_margin_percent.yr3|floatformat }}%</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Net Profit' %}</td>
-                            <td>{{ scenario_1.net_profit.yr1 }}</td>
-                            <td>{{ scenario_1.net_profit.yr2 }}</td>
-                            <td>{{ scenario_1.net_profit.yr3 }}</td>
+                            <td>{{ scenario_1.net_profit.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.net_profit.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.net_profit.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Net Profit Percent' %}</td>
-                            <td>{{ scenario_1.net_profit_percent.yr1 }}</td>
-                            <td>{{ scenario_1.net_profit_percent.yr2 }}</td>
-                            <td>{{ scenario_1.net_profit_percent.yr3 }}</td>
+                            <td>{{ scenario_1.net_profit_percent.yr1|floatformat }}%</td>
+                            <td>{{ scenario_1.net_profit_percent.yr2|floatformat }}%</td>
+                            <td>{{ scenario_1.net_profit_percent.yr3|floatformat }}%</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Sales' %}</td>
-                            <td>{{ scenario_1.total_sales.yr1 }}</td>
-                            <td>{{ scenario_1.total_sales.yr2 }}</td>
-                            <td>{{ scenario_1.total_sales.yr3 }}</td>
+                            <td>{{ scenario_1.total_sales.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.total_sales.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.total_sales.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Labour' %}</td>
@@ -456,27 +456,27 @@
                          </tr>
                          <tr>
                             <td>{% trans 'Total Variable Costs' %}</td>
-                            <td>{{ scenario_1.total_variable_costs.yr1 }}</td>
-                            <td>{{ scenario_1.total_variable_costs.yr2 }}</td>
-                            <td>{{ scenario_1.total_variable_costs.yr3 }}</td>
+                            <td>{{ scenario_1.total_variable_costs.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.total_variable_costs.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.total_variable_costs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Variable Costs Excluding COGS' %}</td>
-                            <td>{{ scenario_1.total_variable_costs_excluding_cogs.yr1 }}</td>
-                            <td>{{ scenario_1.total_variable_costs_excluding_cogs.yr2 }}</td>
-                            <td>{{ scenario_1.total_variable_costs_excluding_cogs.yr3 }}</td>
+                            <td>{{ scenario_1.total_variable_costs_excluding_cogs.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.total_variable_costs_excluding_cogs.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.total_variable_costs_excluding_cogs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Fixed Costs' %}</td>
-                            <td>{{ scenario_1.total_fixed.yr1 }}</td>
-                            <td>{{ scenario_1.total_fixed.yr2 }}</td>
-                            <td>{{ scenario_1.total_fixed.yr3 }}</td>
+                            <td>{{ scenario_1.total_fixed.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.total_fixed.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.total_fixed.yr3|floatformat }}</td>
                          </tr>
                          <tr>
-                            <td>{% trans 'General &amp; Marketing Expenses' %}</td>
-                            <td>{{ scenario_1.general_and_marketing_expenses.yr1 }}</td>
-                            <td>{{ scenario_1.general_and_marketing_expenses.yr2 }}</td>
-                            <td>{{ scenario_1.general_and_marketing_expenses.yr3 }}</td>
+                            <td>{% trans 'General &amp; Administrative Expenses' %}</td>
+                            <td>{{ scenario_1.general_and_marketing_expenses.yr1|floatformat }}</td>
+                            <td>{{ scenario_1.general_and_marketing_expenses.yr2|floatformat }}</td>
+                            <td>{{ scenario_1.general_and_marketing_expenses.yr3|floatformat }}</td>
                          </tr>
                          {% endif %}
 
@@ -484,33 +484,33 @@
                          {% if option.value == 2 %}
                          <tr>
                             <td>{% trans 'Revenue' %}</td>
-                            <td>{{ scenario_3.revenue.yr1 }}</td>
-                            <td>{{ scenario_3.revenue.yr2 }}</td>
-                            <td>{{ scenario_3.revenue.yr3 }}</td>
+                            <td>{{ scenario_3.revenue.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.revenue.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.revenue.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'COGS' %}</td>
-                            <td>{{ scenario_3.cogs.yr1 }}</td>
-                            <td>{{ scenario_3.cogs.yr2 }}</td>
-                            <td>{{ scenario_3.cogs.yr3 }}</td>
+                            <td>{{ scenario_3.cogs.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.cogs.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.cogs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Gross Profit' %}</td>
-                            <td>{{ scenario_3.gross_profit.yr1 }}</td>
-                            <td>{{ scenario_3.gross_profit.yr2 }}</td>
-                            <td>{{ scenario_3.gross_profit.yr3 }}</td>
+                            <td>{{ scenario_3.gross_profit.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.gross_profit.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.gross_profit.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Gross Margin Percent' %}</td>
-                            <td>{{ scenario_3.gross_margin_percent.yr1 }}</td>
-                            <td>{{ scenario_3.gross_margin_percent.yr2 }}</td>
-                            <td>{{ scenario_3.gross_margin_percent.yr3 }}</td>
+                            <td>{{ scenario_3.gross_margin_percent.yr1|floatformat }}%</td>
+                            <td>{{ scenario_3.gross_margin_percent.yr2|floatformat }}%</td>
+                            <td>{{ scenario_3.gross_margin_percent.yr3|floatformat }}%</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Sales' %}</td>
-                            <td>{{ scenario_3.total_sales.yr1 }}</td>
-                            <td>{{ scenario_3.total_sales.yr2 }}</td>
-                            <td>{{ scenario_3.total_sales.yr3 }}</td>
+                            <td>{{ scenario_3.total_sales.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.total_sales.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.total_sales.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Labour' %}</td>
@@ -532,39 +532,39 @@
                          </tr>
                          <tr>
                             <td>{% trans 'Total Variable Costs' %}</td>
-                            <td>{{ scenario_3.total_variable_costs.yr1 }}</td>
-                            <td>{{ scenario_3.total_variable_costs.yr2 }}</td>
-                            <td>{{ scenario_3.total_variable_costs.yr3 }}</td>
+                            <td>{{ scenario_3.total_variable_costs.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.total_variable_costs.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.total_variable_costs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Variable Costs Excluding COGS' %}</td>
-                            <td>{{ scenario_3.total_variable_costs_excluding_cogs.yr1 }}</td>
-                            <td>{{ scenario_3.total_variable_costs_excluding_cogs.yr2 }}</td>
-                            <td>{{ scenario_3.total_variable_costs_excluding_cogs.yr3 }}</td>
+                            <td>{{ scenario_3.total_variable_costs_excluding_cogs.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.total_variable_costs_excluding_cogs.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.total_variable_costs_excluding_cogs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Fixed Costs' %}</td>
-                            <td>{{ scenario_3.total_fixed.yr1 }}</td>
-                            <td>{{ scenario_3.total_fixed.yr2 }}</td>
-                            <td>{{ scenario_3.total_fixed.yr3 }}</td>
+                            <td>{{ scenario_3.total_fixed.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.total_fixed.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.total_fixed.yr3|floatformat }}</td>
                          </tr>
                          <tr>
-                            <td>{% trans 'General &amp; Marketing Expenses' %}</td>
-                            <td>{{ scenario_3.general_and_marketing_expenses.yr1 }}</td>
-                            <td>{{ scenario_3.general_and_marketing_expenses.yr2 }}</td>
-                            <td>{{ scenario_3.general_and_marketing_expenses.yr3 }}</td>
+                            <td>{% trans 'General &amp; Administrative Expenses' %}</td>
+                            <td>{{ scenario_3.general_and_marketing_expenses.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.general_and_marketing_expenses.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.general_and_marketing_expenses.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Net Profit' %}</td>
-                            <td>{{ scenario_3.net_profit.yr1 }}</td>
-                            <td>{{ scenario_3.net_profit.yr2 }}</td>
-                            <td>{{ scenario_3.net_profit.yr3 }}</td>
+                            <td>{{ scenario_3.net_profit.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.net_profit.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.net_profit.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Net Profit Percent' %}</td>
-                            <td>{{ scenario_3.net_profit_percent.yr1 }}</td>
-                            <td>{{ scenario_3.net_profit_percent.yr2 }}</td>
-                            <td>{{ scenario_3.net_profit_percent.yr3 }}</td>
+                            <td>{{ scenario_3.net_profit_percent.yr1|floatformat }}%</td>
+                            <td>{{ scenario_3.net_profit_percent.yr2|floatformat }}%</td>
+                            <td>{{ scenario_3.net_profit_percent.yr3|floatformat }}%</td>
                          </tr>
                          {% endif %}
 
@@ -572,45 +572,45 @@
                          {% if option.value == 3 %}
                          <tr>
                             <td>{% trans 'Revenue' %}</td>
-                            <td>{{ scenario_2.revenue.yr1 }}</td>
-                            <td>{{ scenario_2.revenue.yr2 }}</td>
-                            <td>{{ scenario_2.revenue.yr3 }}</td>
+                            <td>{{ scenario_2.revenue.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.revenue.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.revenue.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'COGS' %}</td>
-                            <td>{{ scenario_2.cogs.yr1 }}</td>
-                            <td>{{ scenario_2.cogs.yr2 }}</td>
-                            <td>{{ scenario_2.cogs.yr3 }}</td>
+                            <td>{{ scenario_2.cogs.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.cogs.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.cogs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Gross Profit' %}</td>
-                            <td>{{ scenario_2.gross_profit.yr1 }}</td>
-                            <td>{{ scenario_2.gross_profit.yr2 }}</td>
-                            <td>{{ scenario_2.gross_profit.yr3 }}</td>
+                            <td>{{ scenario_2.gross_profit.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.gross_profit.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.gross_profit.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Gross Margin Percent' %}</td>
-                            <td>{{ scenario_2.gross_margin_percent.yr1 }}</td>
-                            <td>{{ scenario_2.gross_margin_percent.yr2 }}</td>
-                            <td>{{ scenario_2.gross_margin_percent.yr3 }}</td>
+                            <td>{{ scenario_2.gross_margin_percent.yr1|floatformat }}%</td>
+                            <td>{{ scenario_2.gross_margin_percent.yr2|floatformat }}%</td>
+                            <td>{{ scenario_2.gross_margin_percent.yr3|floatformat }}%</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Net Profit' %}</td>
-                            <td>{{ scenario_2.net_profit.yr1 }}</td>
-                            <td>{{ scenario_2.net_profit.yr2 }}</td>
-                            <td>{{ scenario_2.net_profit.yr3 }}</td>
+                            <td>{{ scenario_2.net_profit.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.net_profit.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.net_profit.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Net Profit Percent' %}</td>
-                            <td>{{ scenario_2.net_profit_percent.yr1 }}</td>
-                            <td>{{ scenario_2.net_profit_percent.yr2 }}</td>
-                            <td>{{ scenario_2.net_profit_percent.yr3 }}</td>
+                            <td>{{ scenario_2.net_profit_percent.yr1|floatformat }}%</td>
+                            <td>{{ scenario_2.net_profit_percent.yr2|floatformat }}%</td>
+                            <td>{{ scenario_2.net_profit_percent.yr3|floatformat }}%</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Sales' %}</td>
-                            <td>{{ scenario_2.total_sales.yr1 }}</td>
-                            <td>{{ scenario_2.total_sales.yr2 }}</td>
-                            <td>{{ scenario_2.total_sales.yr3 }}</td>
+                            <td>{{ scenario_2.total_sales.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.total_sales.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.total_sales.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Labour' %}</td>
@@ -632,27 +632,27 @@
                          </tr>
                          <tr>
                             <td>{% trans 'Total Variable Costs' %}</td>
-                            <td>{{ scenario_3.total_variable_costs.yr1 }}</td>
-                            <td>{{ scenario_3.total_variable_costs.yr2 }}</td>
-                            <td>{{ scenario_3.total_variable_costs.yr3 }}</td>
+                            <td>{{ scenario_3.total_variable_costs.yr1|floatformat }}</td>
+                            <td>{{ scenario_3.total_variable_costs.yr2|floatformat }}</td>
+                            <td>{{ scenario_3.total_variable_costs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Variable Costs Excluding COGS' %}</td>
-                            <td>{{ scenario_2.total_variable_costs_excluding_cogs.yr1 }}</td>
-                            <td>{{ scenario_2.total_variable_costs_excluding_cogs.yr2 }}</td>
-                            <td>{{ scenario_2.total_variable_costs_excluding_cogs.yr3 }}</td>
+                            <td>{{ scenario_2.total_variable_costs_excluding_cogs.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.total_variable_costs_excluding_cogs.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.total_variable_costs_excluding_cogs.yr3|floatformat }}</td>
                          </tr>
                          <tr>
                             <td>{% trans 'Total Fixed Costs' %}</td>
-                            <td>{{ scenario_2.total_fixed.yr1 }}</td>
-                            <td>{{ scenario_2.total_fixed.yr2 }}</td>
-                            <td>{{ scenario_2.total_fixed.yr3 }}</td>
+                            <td>{{ scenario_2.total_fixed.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.total_fixed.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.total_fixed.yr3|floatformat }}</td>
                          </tr>
                          <tr>
-                            <td>{% trans 'General &amp; Marketing Expenses' %}</td>
-                            <td>{{ scenario_2.general_and_marketing_expenses.yr1 }}</td>
-                            <td>{{ scenario_2.general_and_marketing_expenses.yr2 }}</td>
-                            <td>{{ scenario_2.general_and_marketing_expenses.yr3 }}</td>
+                            <td>{% trans 'General &amp; Administrative Expenses' %}</td>
+                            <td>{{ scenario_2.general_and_marketing_expenses.yr1|floatformat }}</td>
+                            <td>{{ scenario_2.general_and_marketing_expenses.yr2|floatformat }}</td>
+                            <td>{{ scenario_2.general_and_marketing_expenses.yr3|floatformat }}</td>
                          </tr>
                          {% endif %}
                       </tbody>
