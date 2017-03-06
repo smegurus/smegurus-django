@@ -32,7 +32,7 @@
     "fields": {
         "module": 3,
         "title": "Useful Market Size Articles and Links",
-        "description": "<h1>Useful Market Research Links</h1><p>http://blog.marketresearch.com/5-steps-to-estimate-market-size</p><p>https://www.b2binternational.com/publications/market-size-techniques/</p><p>https://www.entrepreneur.com/article/270853</p>",
+        "description": "<h3>Useful Market Research Links:</h3><p><a href=\"http://blog.marketresearch.com/5-steps-to-estimate-market-size\">5 Steps to Estimate Your Market Size</a></p><p><a href=\"https://www.b2binternational.com/publications/market-size-techniques/\">Market Sizing</a></p><p><a href=\"https://www.entrepreneur.com/article/270853\">5 Strategies for Determining Your Market Size</a></p>",
         "video_url": ""
     }
 }
