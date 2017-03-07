@@ -4,7 +4,7 @@ import json
 import urllib3  # Library used for sending POST/GET.
 from passlib.hash import sha1_crypt # Library used for the SHA1 hash algorithm.
 from datetime import datetime, timedelta  # Datetime.
-from foundation_tenant.utils import humanize_number
+from foundation_tenant.utils import humanize_number, humanize_currency
 
 
 class DocxspressoAPI:
@@ -62,6 +62,18 @@ class DocxspressoAPI:
             "vars": [{
                 "var": key,
                 "value": humanize_number(value)
+            }]
+        })
+
+    def add_currency(self, key, value):
+        """
+        Add number value per key for document construction which will be humanized
+        depending on the language of the user.
+        """
+        self.data.append({
+            "vars": [{
+                "var": key,
+                "value": humanize_currency(value)
             }]
         })
 

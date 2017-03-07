@@ -206,7 +206,7 @@ class Command(BaseCommand):
         api.add_text("business_name", answer.content['var_1'])
 
     def do_q41(self, answer, api):
-        api.add_number(
+        api.add_currency(
             "industry_size",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
@@ -272,7 +272,7 @@ class Command(BaseCommand):
 
     def do_q152(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        api.add_number("avg_customer_spending", text)
+        api.add_currency("avg_customer_spending", text)
 
     def do_q169(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']

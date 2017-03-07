@@ -12,7 +12,7 @@ from django.utils import crypto
 from django.utils import timezone
 from django.utils.translation import to_locale, get_language
 from django.utils.translation import ugettext_lazy as _
-from babel.numbers import format_number
+from babel.numbers import format_number, format_currency
 from foundation_public.utils import latest_date_between
 
 
@@ -93,15 +93,14 @@ def generate_hash():
     return  hash.hexdigest()
 
 
-from django.contrib.humanize.templatetags.humanize import intcomma
-
-
-def currency(dollars):
-    """
-    http://stackoverflow.com/a/2180209
-    """
-    dollars = round(float(dollars), 2)
-    return "$%s%s" % (intcomma(int(dollars)), ("%0.2f" % dollars)[-3:])
+def humanize_currency(dollars, currency='USD', locale = None):
+    # http://babel.pocoo.org/en/latest/api/numbers.html
+    if locale is None:
+        lang = get_language()
+        if lang is None:
+            lang = "en"
+        locale = to_locale(lang)
+    return format_currency(dollars, currency = currency, locale = locale)
 
 
 def humanize_number(number, locale = None):
@@ -109,6 +108,7 @@ def humanize_number(number, locale = None):
     Utility function which will take a integer/float value and convert it
     into a humanized format.
     """
+    # http://babel.pocoo.org/en/latest/api/numbers.html
     if locale is None:
         lang = get_language()
         if lang is None:
