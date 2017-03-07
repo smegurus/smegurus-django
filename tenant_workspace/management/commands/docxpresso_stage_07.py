@@ -14,6 +14,7 @@ from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.bizmula_utils import BizmulaAPI
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.utils import get_random_string
+from foundation_tenant.utils import humanize_number, humanize_currency
 from smegurus import constants
 
 
@@ -232,6 +233,13 @@ class Command(BaseCommand):
             # incentive_y2_costs
             # incentive_y3_costs
             elif answer.question.pk == 77:
+                items_array = []
+                for item in answer.content:
+                    item['var_6'] = humanize_currency(item['var_6'])
+                    item['var_7'] = humanize_currency(item['var_7'])
+                    item['var_8'] = humanize_currency(item['var_8'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q77(answer, api)
 
             # physical_marketing_types
@@ -242,6 +250,13 @@ class Command(BaseCommand):
             # physical_marketing_y2_costs
             # physical_marketing_y3_costs
             elif answer.question.pk == 78:
+                items_array = []
+                for item in answer.content:
+                    item['var_6'] = humanize_currency(item['var_6'])
+                    item['var_7'] = humanize_currency(item['var_7'])
+                    item['var_8'] = humanize_currency(item['var_8'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q78(answer, api)
 
             # media_campaign_types
@@ -252,6 +267,13 @@ class Command(BaseCommand):
             # media_campaign_y2_costs
             # media_campaign_y3_costs
             elif answer.question.pk == 79:
+                items_array = []
+                for item in answer.content:
+                    item['var_6'] = humanize_currency(item['var_6'])
+                    item['var_7'] = humanize_currency(item['var_7'])
+                    item['var_8'] = humanize_currency(item['var_8'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q79(answer, api)
 
             # marketing_partnership_types
@@ -262,6 +284,13 @@ class Command(BaseCommand):
             # marketing_partnership_y2_costs
             # marketing_partnership_y3_costs
             elif answer.question.pk == 80:
+                items_array = []
+                for item in answer.content:
+                    item['var_7'] = humanize_currency(item['var_7'])
+                    item['var_8'] = humanize_currency(item['var_8'])
+                    item['var_9'] = humanize_currency(item['var_9'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q80(answer, api)
 
             elif answer.question.pk == 104:  # marketing_costs
@@ -274,6 +303,13 @@ class Command(BaseCommand):
             # marketing_referral_y2_costs
             # marketing_referral_y3_costs
             elif answer.question.pk == 142:
+                items_array = []
+                for item in answer.content:
+                    item['var_5'] = humanize_currency(item['var_5'])
+                    item['var_6'] = humanize_currency(item['var_6'])
+                    item['var_7'] = humanize_currency(item['var_7'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q142(answer, api)
 
             # marketing_retention_types
@@ -283,6 +319,13 @@ class Command(BaseCommand):
             # marketing_retention_y2_costs
             # marketing_retention_y3_costs
             elif answer.question.pk == 143:
+                items_array = []
+                for item in answer.content:
+                    item['var_5'] = humanize_currency(item['var_5'])
+                    item['var_6'] = humanize_currency(item['var_6'])
+                    item['var_7'] = humanize_currency(item['var_7'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q143(answer, api)
 
             elif answer.question.pk == 147:  # business_strengths, business_strengths_1
