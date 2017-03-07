@@ -97,10 +97,6 @@ class Command(BaseCommand):
         self.process(workspace, answers, api)
 
     def process(self, workspace, answers, api):
-        # DEBUGGING PURPOSES
-        # for answer in answers.all():
-        #     print(answer.question.id, answer)
-
         api.new(
             name="workspace_" + str(workspace.id) + "_stage_05",
             format="odt",
@@ -155,25 +151,25 @@ class Command(BaseCommand):
         self.do_system_date(workspace, api)
 
         for answer in answers.all():
-            if answer.question.pk == 21: # workspace_name
+            if answer.question.pk == 21:  # workspace_name
                 self.do_q21(answer, api)
 
-            elif answer.question.pk == 36: # business_solution
+            elif answer.question.pk == 36:  # business_solution
                 self.do_q36(answer, api)
 
-            elif answer.question.pk == 51:
+            elif answer.question.pk == 51:  # customer_price_sensitivity
                 self.do_q51(answer, api)
 
-            elif answer.question.pk == 53:
+            elif answer.question.pk == 53:  # test_contact_number
                 self.do_q53(answer, api)
 
-            elif answer.question.pk == 54:
+            elif answer.question.pk == 54:  # test_reach_method
                 self.do_q54(answer, api)
 
-            elif answer.question.pk == 55:
+            elif answer.question.pk == 55:  # test_contact_agreed
                 self.do_q55(answer, api)
 
-            elif answer.question.pk == 73:
+            elif answer.question.pk == 73:  # test_contact_method
                 self.do_q73(answer, api)
 
     def do_system_date(self, workspace, api):
