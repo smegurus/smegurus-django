@@ -837,36 +837,36 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("unit_sales_y3_total", answer.content['yr3_total'])
 
     def do_q100(self, answer, api):
-        api.add_text("cogs_labour_year1", answer.content['labour_yr1'])
-        api.add_text("cogs_labour_year2", answer.content['labour_yr2'])
-        api.add_text("cogs_labour_year3", answer.content['labour_yr3'])
+        api.add_currency("cogs_labour_year1", answer.content['labour_yr1'])
+        api.add_currency("cogs_labour_year2", answer.content['labour_yr2'])
+        api.add_currency("cogs_labour_year3", answer.content['labour_yr3'])
 
-        api.add_text("cogs_material_year1", answer.content['materials_yr1'])
-        api.add_text("cogs_material_year2", answer.content['materials_yr2'])
-        api.add_text("cogs_material_year3", answer.content['materials_yr3'])
+        api.add_currency("cogs_material_year1", answer.content['materials_yr1'])
+        api.add_currency("cogs_material_year2", answer.content['materials_yr2'])
+        api.add_currency("cogs_material_year3", answer.content['materials_yr3'])
 
-        api.add_text("cogs_materials_year1", answer.content['materials_yr1'])
-        api.add_text("cogs_materials_year2", answer.content['materials_yr2'])
-        api.add_text("cogs_materials_year3", answer.content['materials_yr3'])
+        api.add_currency("cogs_materials_year1", answer.content['materials_yr1'])
+        api.add_currency("cogs_materials_year2", answer.content['materials_yr2'])
+        api.add_currency("cogs_materials_year3", answer.content['materials_yr3'])
 
-        api.add_text("cogs_overhead_year1", answer.content['overhead_yr1'])
-        api.add_text("cogs_overhead_year2", answer.content['overhead_yr2'])
-        api.add_text("cogs_overhead_year3", answer.content['overhead_yr3'])
+        api.add_currency("cogs_overhead_year1", answer.content['overhead_yr1'])
+        api.add_currency("cogs_overhead_year2", answer.content['overhead_yr2'])
+        api.add_currency("cogs_overhead_year3", answer.content['overhead_yr3'])
 
-        api.add_text("total_cogs_year1", answer.content['total_cogs_yr1'])
-        api.add_text("total_cogs_year2", answer.content['total_cogs_yr2'])
-        api.add_text("total_cogs_year3", answer.content['total_cogs_yr3'])
+        api.add_currency("total_cogs_year1", answer.content['total_cogs_yr1'])
+        api.add_currency("total_cogs_year2", answer.content['total_cogs_yr2'])
+        api.add_currency("total_cogs_year3", answer.content['total_cogs_yr3'])
 
-        api.add_text("sales_price_per_unit_year1", answer.content['sales_per_unit_yr1'])
-        api.add_text("sales_price_per_unit_year2", answer.content['sales_per_unit_yr2'])
-        api.add_text("sales_price_per_unit_year3", answer.content['sales_per_unit_yr3'])
+        api.add_currency("sales_price_per_unit_year1", answer.content['sales_per_unit_yr1'])
+        api.add_currency("sales_price_per_unit_year2", answer.content['sales_per_unit_yr2'])
+        api.add_currency("sales_price_per_unit_year3", answer.content['sales_per_unit_yr3'])
 
-        api.add_text("gross_margin_percent_year1", answer.content['profit_percent_yr1'])
-        api.add_text("gross_margin_percent_year2", answer.content['profit_percent_yr2'])
-        api.add_text("gross_margin_percent_year3", answer.content['profit_percent_yr3'])
-        api.add_text("gross_margin_dollars_year1", answer.content['profit_amount_yr1'])
-        api.add_text("gross_margin_dollars_year2", answer.content['profit_amount_yr2'])
-        api.add_text("gross_margin_dollars_year3", answer.content['profit_amount_yr3'])
+        api.add_currency("gross_margin_percent_year1", answer.content['profit_percent_yr1'])
+        api.add_currency("gross_margin_percent_year2", answer.content['profit_percent_yr2'])
+        api.add_currency("gross_margin_percent_year3", answer.content['profit_percent_yr3'])
+        api.add_currency("gross_margin_dollars_year1", answer.content['profit_amount_yr1'])
+        api.add_currency("gross_margin_dollars_year2", answer.content['profit_amount_yr2'])
+        api.add_currency("gross_margin_dollars_year3", answer.content['profit_amount_yr3'])
 
     def do_q101(self, answer, api):
         api.add_text("cogs_materials_m1", answer.content['materials_month_1_other'] if answer.content['materials_month_1_other'] else answer.content['materials_month_1'])
@@ -1871,8 +1871,8 @@ class BizmulaAPI(DocxspressoAPI):
         value = float(value_str)
 
         # Input.
-        api.add_text("ent_cash_req", value)
-        api.add_text("ent_cash_startup_req", value * 12.00)
+        api.add_currency("ent_cash_req", value)
+        api.add_currency("ent_cash_startup_req", value * 12.00)
 
     def do_q147(self, answer, api):
         array = []

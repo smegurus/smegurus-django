@@ -14,6 +14,7 @@ from foundation_tenant.models.base.s3file import S3File
 from foundation_tenant.bizmula_utils import BizmulaAPI
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.utils import get_random_string
+from foundation_tenant.utils import humanize_number, humanize_currency
 from smegurus import constants
 
 
@@ -146,64 +147,79 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            if answer.question.pk == 34:
+            if answer.question.pk == 34:  # business_opportunity
                 api.do_q34(answer, api)
 
-            elif answer.question.pk == 36:
+            elif answer.question.pk == 36:  # business_solution
                 api.do_q36(answer, api)
 
-            elif answer.question.pk == 72:
+            elif answer.question.pk == 72:  # key_success_factors
                 api.do_q72(answer, api)
 
-            elif answer.question.pk == 61:
+            elif answer.question.pk == 61:  # business_formal_name, business_friendly_name
                 api.do_q61(answer, api)
 
-            elif answer.question.pk == 81:
+            elif answer.question.pk == 81:  # owner_names, owner_percentages, owner_types
                 api.do_q81(answer, api)
 
-            elif answer.question.pk == 65:
+            elif answer.question.pk == 65:  # product_customer_need
                 api.do_q65(answer, api)
 
-            elif answer.question.pk == 66:
+            elif answer.question.pk == 66:  # business_how_different
                 api.do_q66(answer, api)
 
-            elif answer.question.pk == 68:
+            elif answer.question.pk == 68:  # business_great_at
                 api.do_q68(answer, api)
 
-            elif answer.question.pk == 147:
+            elif answer.question.pk == 147:  # business_strengths
                 api.do_q147(answer, api)
 
-            elif answer.question.pk == 49:
+            elif answer.question.pk == 49:  # target_market_types, target_market_first_traits, target_market_second_traits
                 api.do_q49(answer, api)
 
-            elif answer.question.pk == 51:
+            elif answer.question.pk == 51:  # customer_price_sensitivity
                 api.do_q51(answer, api)
 
-            elif answer.question.pk == 45:
+            elif answer.question.pk == 45:  # industry_service_level
                 api.do_q45(answer, api)
 
-            elif answer.question.pk == 70:
+            elif answer.question.pk == 70:  # how_customer_buys
                 api.do_q70(answer, api)
 
-            elif answer.question.pk == 151:
+            elif answer.question.pk == 151:  # product_distribution
                 api.do_q151(answer, api)
 
-            elif answer.question.pk == 104:
+            elif answer.question.pk == 104:  # marketing_costs
                 api.do_q104(answer, api)
 
-            elif answer.question.pk == 146:
+            elif answer.question.pk == 146:  # ent_cash_req, ent_cash_startup_req
                 api.do_q146(answer, api)
 
+            # cogs_labour_year1, 2, 3
+            # cogs_material_year1, 2, 3
+            # ...
+            # gross_margin_dollars_year1, 2, 3
             elif answer.question.pk == 100:
                 api.do_q100(answer, api)
 
-            elif answer.question.pk == 31:
+            elif answer.question.pk == 31:  # product_or_service
                 api.do_q31(answer, api)
 
             elif answer.question.pk == 168:
-                api.add_text("net_profit_y1", answer.content['net_profit_yr1'])
+                api.add_currency("net_profit_y1", answer.content['net_profit_yr1'])
 
+            # target_market_types
+            # sales_year1_targetmarkets
+            # sales_year2_targetmarkets
+            # sales_year3_targetmarkets
             elif answer.question.pk == 103:
+                items_array = []
+                for item in answer.content:
+                    item['yr1_amount'] = humanize_currency(item['yr1_amount'])
+                    item['yr2_amount'] = humanize_currency(item['yr2_amount'])
+                    item['yr3_amount'] = humanize_currency(item['yr3_amount'])
+                    items_array.append(item)
+                answer.content = items_array
                 api.do_q103(answer, api)
 
     def do_date(self, api):
