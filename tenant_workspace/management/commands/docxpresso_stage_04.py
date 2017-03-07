@@ -95,10 +95,6 @@ class Command(BaseCommand):
         self.process(workspace, answers, api)
 
     def process(self, workspace, answers, api):
-        # DEBUGGING PURPOSES
-        # for answer in answers.all():
-        #     print(answer.question.id, answer)
-
         api.new(
             name="workspace_" + str(workspace.id) + "_stage_04",
             format="odt",
@@ -153,40 +149,54 @@ class Command(BaseCommand):
         self.do_system_date(workspace, api)
 
         for answer in answers.all():
-            if answer.question.pk == 21:
+            if answer.question.pk == 21:  # workspace_name
                 self.do_q21(answer, api)
 
-            if answer.question.pk == 41:
+            if answer.question.pk == 41:  # industry_size
                 self.do_q41(answer, api)
 
-            elif answer.question.pk == 42:
+            elif answer.question.pk == 42:  # industry_change_type
                 self.do_q42(answer, api)
 
-            elif answer.question.pk == 43:
+            elif answer.question.pk == 43:  # total_potential_customer_base
                 self.do_q43(answer, api)
 
-            elif answer.question.pk == 44:
+            elif answer.question.pk == 44:  # industry_competition_levels
                 self.do_q44(answer, api)
 
-            elif answer.question.pk == 45:
+            elif answer.question.pk == 45:  # industry_service_level
                 self.do_q45(answer, api)
 
-            elif answer.question.pk == 46:
+            elif answer.question.pk == 46:  # industry_price_variation
                 self.do_q46(answer, api)
 
+            # dc_names
+            # dc_proximities
+            # dc_market_shares
+            # dc_price_comparisons
+            # dc_main_strengths
+            # dc_service_levels
+            # dc_competitive_strategy
             elif answer.question.pk == 47:
                 self.do_q47(answer, api)
 
+            # idc_names
+            # idc_proximities
+            # idc_market_shares
+            # idc_price_comparisons
+            # idc_main_strengths
+            # idc_service_levels
+            # idc_competitive_strategy
             elif answer.question.pk == 48:
                 self.do_q48(answer, api)
 
-            elif answer.question.pk == 150:
+            elif answer.question.pk == 150:  # industry_competition_amount
                 self.do_q150(answer, api)
 
-            elif answer.question.pk == 152:
+            elif answer.question.pk == 152:  # avg_customer_spending
                 self.do_q152(answer, api)
 
-            elif answer.question.pk == 169:
+            elif answer.question.pk == 169:  # supplier_amount
                 self.do_q169(answer, api)
 
     def do_system_date(self, workspace, api):
@@ -196,7 +206,7 @@ class Command(BaseCommand):
         api.add_text("business_name", answer.content['var_1'])
 
     def do_q41(self, answer, api):
-        api.add_text(
+        api.add_number(
             "industry_size",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
@@ -262,7 +272,7 @@ class Command(BaseCommand):
 
     def do_q152(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        api.add_text("avg_customer_spending", text)
+        api.add_number("avg_customer_spending", text)
 
     def do_q169(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
@@ -295,15 +305,6 @@ class Command(BaseCommand):
         c5_dict = {"var": key5, 'value': col5_array}
         c6_dict = {"var": key6, 'value': col6_array}
         c7_dict = {"var": key7, 'value': col7_array}
-
-        # print(c1_dict)
-        # print(c2_dict)
-        # print(c3_dict)
-        # print(c4_dict)
-        # print(c5_dict)
-        # print(c6_dict)
-        # print(c7_dict)
-        # print("\n\n")
 
         # Generate the custom API query.
         custom = {
