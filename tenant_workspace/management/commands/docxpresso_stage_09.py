@@ -97,8 +97,6 @@ class Command(BaseCommand):
         # Generate our document!
         doc_filename = api.get_filename()
         doc_modified_filename = settings.SMEGURUS_APP_DOCXPRESSO_FILE_PREFIX+doc_filename
-        # print(api)
-        # return #TODO: REMOVE
         doc_bin_data = api.generate()
 
         # DEVELOPERS NOTE:
@@ -143,26 +141,82 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            if answer.question.pk == 61:
+            if answer.question.pk == 61:  # business_formal_name, business_friendly_name
                 api.do_q61(answer, api)
-            elif answer.question.pk == 99:
+
+            elif answer.question.pk == 99:  # unit_sales_m1, m2, ... , m36
                 api.do_q99(answer, api)
+
+            # cogs_labour_year1, 2, 3
+            # cogs_material_year1, 2, 3
+            # cogs_materials_year1, 2, 3
+            # ...
+            # gross_margin_dollars_year1, 2, 3
             elif answer.question.pk == 100:
                 api.do_q100(answer, api)
+
+            # cogs_materials_m1, m2, ... , m36
+            # cogs_labour_m1, m2, ... , m36
+            # cogs_overhead_m1, m2, ... , m36
             elif answer.question.pk == 101:
                 api.do_q101(answer, api)
+
+            # asset_names
+            # asset_deps
+            # asset_cost_types
+            # asset_y1_costs
+            # asset_y2_costs
+            # asset_y3_costs
+            # depreciation_total
+            # depreciation_total_y1
+            # depreciation_total_y2
+            # depreciation_total_y3
             elif answer.question.pk == 136:
                 api.do_q136(answer, api)
+
+            # interest_items
+            # interest_details
+            # interest_cost_types
+            # interest_y1_costs
+            # interest_y2_costs
+            # interest_y3_costs
+            # interest_total
+            # interest_total_y1
+            # interest_total_y2
+            # interest_total_y3
             elif answer.question.pk == 137:
                 api.do_q137(answer, api)
+
+            # taxes_total_y1
+            # taxes_total_y2
+            # taxes_total_y3
+            # tax_items
+            # tax_details
+            # tax_y1_costs
             elif answer.question.pk == 138:
                 api.do_q138(answer, api)
+
+            # total_sales_yr1, 2, 3, total
+            # labour_yr1, 2, 3, total
+            # net_profit_percent_yr1, 2, 3, total
+            # gross_profit_yr1, 2, 3, total
+            # ...
+            # cogs_yr1, 2, 3, total
             elif answer.question.pk == 165:
                 api.do_q165(answer, api)
+
+            # contribution_margin_unit_yr1, 2, 3, total
+            # break_even_units_yr1, 2, 3, total
+            # total_fixed_costs_yr1, 2, 3, total
+            # total_variable_costs_yr1, 2, 3, total
             elif answer.question.pk == 166:
                 api.do_q166(answer, api)
+
+            # ...
             elif answer.question.pk == 167:
                 api.do_q167(answer, api)
+
+            # ...
             elif answer.question.pk == 168:
                 api.do_q168(answer, api)
 
