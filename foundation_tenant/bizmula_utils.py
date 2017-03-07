@@ -174,7 +174,7 @@ class BizmulaAPI(DocxspressoAPI):
         api.add_text("geographic_market_details", company_market)
 
     def do_q41(self, answer, api):
-        api.add_text(
+        api.add_currency(
             "industry_size",
             answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
         )
@@ -422,7 +422,6 @@ class BizmulaAPI(DocxspressoAPI):
         for ans in answer.content['var_1']:
             array.append(ans['value'])
         api.add_text_paragraphs("how_to_convince", array)
-
 
     def do_q75(self, answer, api):
         customer_objections_array = []
@@ -1942,7 +1941,7 @@ class BizmulaAPI(DocxspressoAPI):
 
     def do_q152(self, answer, api):
         text = answer.content['var_1_other'] if answer.content['var_1_other'] else answer.content['var_1']
-        api.add_text("avg_customer_spending", text)
+        api.add_currency("avg_customer_spending", text)
 
     def do_q153(self, answer, api):
         array = []

@@ -141,112 +141,166 @@ class Command(BaseCommand):
 
         # Iterate through all the answers and transcode the business plan.
         for answer in answers.all():
-            if answer.question.pk == 25:
+            if answer.question.pk == 25:  # naics_industry_name, naics_industry_friendly_name
                 api.do_q25(answer, api)
 
-            elif answer.question.pk == 27:
+            elif answer.question.pk == 27:  # business_idea
                 api.do_q27(answer, api)
 
-            elif answer.question.pk == 32:
+            elif answer.question.pk == 32:  # product_categories
                 api.do_q32(answer, api)
 
-            elif answer.question.pk == 44:
+            elif answer.question.pk == 44:  # industry_competition_levels
                 api.do_q44(answer, api)
 
+            # dc_names
+            # dc_proximities
+            # dc_market_shares
+            # dc_price_comparisons
+            # dc_main_strengths
+            # dc_service_levels
+            # dc_competitive_strategy
             elif answer.question.pk == 47:
                 api.do_q47(answer, api)
 
+            # idc_names
+            # idc_proximities
+            # idc_market_shares
+            # idc_price_comparisons
+            # idc_main_strengths
+            # idc_service_levels
+            # idc_competitive_strategy
             elif answer.question.pk == 48:
                 api.do_q48(answer, api)
 
+            # target_market_types
+            # target_market_first_traits
+            # target_market_second_traits
             elif answer.question.pk == 49:
                 api.do_q49(answer, api)
 
-            elif answer.question.pk == 61:
+            elif answer.question.pk == 61:  # business_formal_name, business_friendly_name
                 api.do_q61(answer, api)
 
-            elif answer.question.pk == 62:
+            elif answer.question.pk == 62:  # business_weaknesses, business_weakness_resolutions
                 api.do_q62(answer, api)
 
-            elif answer.question.pk == 63:
+            elif answer.question.pk == 63:  # business_mission
                 api.do_q63(answer, api)
 
-            elif answer.question.pk == 64:
+            elif answer.question.pk == 64:  # business_vision
                 api.do_q64(answer, api)
 
-            elif answer.question.pk == 65:
+            elif answer.question.pk == 65:  # product_customer_need
                 api.do_q65(answer, api)
 
-            elif answer.question.pk == 66:
+            elif answer.question.pk == 66:  # business_how_different
                 api.do_q66(answer, api)
 
-            elif answer.question.pk == 67:
+            elif answer.question.pk == 67:  # market_position, market_position_details
                 api.do_q67(answer, api)
 
-            elif answer.question.pk == 68:
+            elif answer.question.pk == 68:  # business_great_at
                 api.do_q68(answer, api)
 
-            elif answer.question.pk == 69:
+            elif answer.question.pk == 69:  # pricing_strategy
                 api.do_q69(answer, api)
 
-            elif answer.question.pk == 70:
+            elif answer.question.pk == 70:  # how_customer_buys
                 api.do_q70(answer, api)
 
-            elif answer.question.pk == 71:
+            elif answer.question.pk == 71:  # distribution_challenge
                 api.do_q71(answer, api)
 
-            elif answer.question.pk == 72:
+            elif answer.question.pk == 72:  # key_success_factors
                 api.do_q72(answer, api)
 
-            elif answer.question.pk == 74:
+            elif answer.question.pk == 74:  # how_to_convince
                 api.do_q74(answer, api)
 
-            elif answer.question.pk == 75:
+            elif answer.question.pk == 75:  # customer_objections, customer_objection_responses
                 api.do_q75(answer, api)
 
-            elif answer.question.pk == 76:
+            elif answer.question.pk == 76:  # customer_buying_time
                 api.do_q76(answer, api)
 
+            # incentive_types
+            # incentive_impacts
+            # incentive_durations
+            # incentive_cost_types
+            # incentive_y1_costs
+            # incentive_y2_costs
+            # incentive_y3_costs
             elif answer.question.pk == 77:
                 api.do_q77(answer, api)
 
+            # physical_marketing_types
+            # physical_marketing_impacts
+            # physical_marketing_uses
+            # physical_marketing_cost_types
+            # physical_marketing_y1_costs
+            # physical_marketing_y2_costs
+            # physical_marketing_y3_costs
             elif answer.question.pk == 78:
                 api.do_q78(answer, api)
 
+            # media_campaign_types
+            # media_campaign_impacts
+            # media_campaign_durations
+            # media_campaign_cost_types
+            # media_campaign_y1_costs
+            # media_campaign_y2_costs
+            # media_campaign_y3_costs
             elif answer.question.pk == 79:
                 api.do_q79(answer, api)
 
+            # marketing_partnership_types
+            # marketing_partnership_impacts
+            # marketing_partnership_durations
+            # marketing_partnership_cost_types
+            # marketing_partnership_y1_costs
+            # marketing_partnership_y2_costs
+            # marketing_partnership_y3_costs
             elif answer.question.pk == 80:
                 api.do_q80(answer, api)
 
-            elif answer.question.pk == 104:
+            elif answer.question.pk == 104:  # marketing_costs
                 api.do_q104(answer, api)
 
+            # marketing_referral_types
+            # marketing_referral_impacts
+            # marketing_referral_cost_types
+            # marketing_referral_y1_costs
+            # marketing_referral_y2_costs
+            # marketing_referral_y3_costs
             elif answer.question.pk == 142:
                 api.do_q142(answer, api)
 
-            elif answer.question.pk == 142:
-                api.do_q142(answer, api)
-
+            # marketing_retention_types
+            # marketing_retention_impacts
+            # marketing_retention_cost_types
+            # marketing_retention_y1_costs
+            # marketing_retention_y2_costs
+            # marketing_retention_y3_costs
             elif answer.question.pk == 143:
                 api.do_q143(answer, api)
 
-            elif answer.question.pk == 147:
+            elif answer.question.pk == 147:  # business_strengths, business_strengths_1
                 api.do_q147(answer, api)
 
-            elif answer.question.pk == 148:
+            elif answer.question.pk == 148:  # business_opportunities
                 api.do_q148(answer, api)
 
-            elif answer.question.pk == 149:
+            elif answer.question.pk == 149:  # business_threats, business_threat_mitigations
                 api.do_q149(answer, api)
 
-            elif answer.question.pk == 151:
+            elif answer.question.pk == 151:  # product_distribution
                 api.do_q151(answer, api)
 
-            elif answer.question.pk == 153:
+            elif answer.question.pk == 153:  # growth_strategies
                 api.do_q153(answer, api)
 
-            elif answer.question.pk == 154:
+            elif answer.question.pk == 154:  # competitive_strategies
                 api.do_q154(answer, api)
 
     def do_date(self, api):
