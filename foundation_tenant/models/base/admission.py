@@ -15,8 +15,8 @@ class Admission(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_admission'
-        verbose_name = 'Admission'
-        verbose_name_plural = 'Admissions'
+        verbose_name = _('Admission')
+        verbose_name_plural = _('Admissions')
 
     objects = AdmissionManager()
     tag = models.OneToOneField(

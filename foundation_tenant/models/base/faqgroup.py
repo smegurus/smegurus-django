@@ -17,8 +17,8 @@ class FAQGroup(models.Model):
         app_label = 'foundation_tenant'
         ordering = ('created',)
         db_table = 'smeg_faq_groups'
-        verbose_name = 'FAQ Group'
-        verbose_name_plural = 'FAQ Groups'
+        verbose_name = _('FAQ Group')
+        verbose_name_plural = _('FAQ Groups')
 
     objects = FAQGroupManager()
     created = models.DateTimeField(auto_now_add=True)

@@ -13,8 +13,8 @@ class CountryOption(models.Model):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_country_options'
-        verbose_name = 'Country Option'
-        verbose_name_plural = 'Country Options'
+        verbose_name = _('Country Option')
+        verbose_name_plural = _('Country Options')
 
     objects = CountryOptionManager()
     name = models.CharField(

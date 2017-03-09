@@ -19,8 +19,8 @@ class PublicOrganizationRegistration(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_organization_registration'
-        verbose_name = 'Organization Registration'
-        verbose_name_plural = 'Organizations Registration'
+        verbose_name = _('Organization Registration')
+        verbose_name_plural = _('Organizations Registration')
 
     schema_name = models.CharField(
         _("Legal Name"),

@@ -2,6 +2,9 @@ from foundation_public.models import user
 from foundation_public.models.banned import BannedDomain
 from foundation_public.models.banned import BannedIP
 from foundation_public.models.banned import BannedWord
+from foundation_public.models.banned import AlphabeticallySortedBannedDomain
+from foundation_public.models.banned import SortedBannedIPByLatestCreationDate
+from foundation_public.models.banned import AlphabeticallySortedBannedWord
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.abstract_thing import AbstractPublicThing
@@ -21,3 +24,4 @@ from foundation_public.models.organizationregistration import PublicOrganization
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
 from foundation_public.models.visitor import PublicVisitor
+from foundation_public.models.visitor import SortedPublicVisitorsByLatestCreation

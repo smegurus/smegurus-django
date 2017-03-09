@@ -15,8 +15,8 @@ class CommentPost(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_comment_posts'
-        verbose_name = 'Comment'
-        verbose_name_plural = 'Comments'
+        verbose_name = _('Comment')
+        verbose_name_plural = _('Comments')
 
     objects = CommentPostManager()
     me = models.ForeignKey(

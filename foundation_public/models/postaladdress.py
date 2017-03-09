@@ -23,8 +23,8 @@ class PublicPostalAddress(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_postal_addresses'
-        verbose_name = 'Postal Address'
-        verbose_name_plural = 'Postal Addresses'
+        verbose_name = _('Postal Address')
+        verbose_name_plural = _('Postal Addresses')
 
     objects = PublicPostalAddressManager()
     country = models.ForeignKey(

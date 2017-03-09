@@ -19,8 +19,8 @@ class Country(AbstractPlace):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_countries'
-        verbose_name = 'Country'
-        verbose_name_plural = 'Countries'
+        verbose_name = _('Country')
+        verbose_name_plural = _('Countries')
 
     objects = CountryManager()
 

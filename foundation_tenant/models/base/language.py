@@ -19,8 +19,8 @@ class Language(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_languages'
-        verbose_name = 'Language'
-        verbose_name_plural = 'Languages'
+        verbose_name = _('Language')
+        verbose_name_plural = _('Languages')
 
     objects = LanguageManager()
 

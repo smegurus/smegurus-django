@@ -28,8 +28,8 @@ class Task(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_tasks'
-        verbose_name = 'Task'
-        verbose_name_plural = 'Tasks'
+        verbose_name = _('Task')
+        verbose_name_plural = _('Tasks')
 
     objects = TaskManager()
     status = models.PositiveSmallIntegerField(            # CONTROLLED BY SYSTEM

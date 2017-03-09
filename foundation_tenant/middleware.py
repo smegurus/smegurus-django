@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytz
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
 from foundation_tenant.models.base.contactpoint import ContactPoint
@@ -37,11 +38,23 @@ class MeMiddleware(object):
     def __call__(self, request):
         if not request.tenant.schema_name in ['public', 'test']:
             if request.user.is_authenticated():
-                # STEP 1: Get or create a Me.
+                # STEP 1: Security, ensure the authenticated user belongs to this org.
+                if request.user not in request.tenant.users.all():
+                    # Step I: Load depedency
+                    from django.http import HttpResponseForbidden
+                    from django.contrib.auth import logout
+
+                    # Step II: Close the Django session.
+                    logout(request)
+
+                    # Step III:
+                    return HttpResponseForbidden(_('You do not belong to this organizaiton.'))
+
+                # STEP 2: Get or create a Me.
                 tenant_me, created = Me.objects.get_or_create(owner=request.user)
                 request.tenant_me = tenant_me
 
-                # STEP 2: Populate the Me object.
+                # STEP 3: Populate the Me object.
                 if created:
                     tenant_me.name = request.user.first_name+' '+request.user.last_name
                     tenant_me.given_name = request.user.first_name
@@ -59,11 +72,11 @@ class MeMiddleware(object):
                         owner=request.user,
                     )
 
-                    # STEP 3: Update profile that staff users are managed by themselves.
+                    # STEP 4: Update profile that staff users are managed by themselves.
                     if tenant_me.is_employee():
                         tenant_me.managed_by = tenant_me
 
-                    # STEP 4: SAVE
+                    # STEP 5: SAVE
                     tenant_me.save()
         return self.get_response(request)
 

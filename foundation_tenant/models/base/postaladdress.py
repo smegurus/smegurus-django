@@ -18,8 +18,8 @@ class PostalAddress(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_postal_addresses'
-        verbose_name = 'Postal Address'
-        verbose_name_plural = 'Postal Addresses'
+        verbose_name = _('Postal Address')
+        verbose_name_plural = _('Postal Addresses')
 
     objects = PostalAddressManager()
     country = models.ForeignKey(

@@ -13,8 +13,8 @@ class PublicImageUpload(models.Model):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_public_image_uploads'
-        verbose_name = 'Image Upload'
-        verbose_name_plural = 'Image Uploads'
+        verbose_name = _('Image Upload')
+        verbose_name_plural = _('Image Uploads')
 
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

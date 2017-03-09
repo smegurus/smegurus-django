@@ -23,7 +23,7 @@ class PublicVisitor(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     path = models.CharField(
         _("Path"),
-        max_length=63,
+        max_length=1027,
         help_text=_('The resource path that was visted.'),
     )
     ip_address = models.GenericIPAddressField(
@@ -45,3 +45,16 @@ class PublicVisitor(models.Model):
         list.
         """
         return self.path in constants.SUSPICIOUS_PATHS
+
+
+class SortedPublicVisitorsByLatestCreation(PublicVisitor):
+    """
+    Proxy model which will automatically return querys which are sorted
+    by the lastest creation date.
+    """
+    class Meta:
+        proxy = True
+        app_label = 'foundation_public'
+        ordering = ('-created',)
+        verbose_name = _('Sorted Public Visitor by Latest Creation Date')
+        verbose_name_plural = _('Sorted Public Visitors by Latest Creation Date')

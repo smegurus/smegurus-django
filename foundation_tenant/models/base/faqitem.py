@@ -16,8 +16,8 @@ class FAQItem(models.Model):
         app_label = 'foundation_tenant'
         ordering = ('created',)
         db_table = 'smeg_faq_items'
-        verbose_name = 'FAQ Item'
-        verbose_name_plural = 'FAQ Items'
+        verbose_name = _('FAQ Item')
+        verbose_name_plural = _('FAQ Items')
 
     objects = FAQItemManager()
     created = models.DateTimeField(auto_now_add=True)

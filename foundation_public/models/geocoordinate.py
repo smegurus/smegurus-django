@@ -12,8 +12,8 @@ class PublicGeoCoordinate(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_geocoordinates'
-        verbose_name = 'GeoCoordinate'
-        verbose_name_plural = 'GeoCoordinates'
+        verbose_name = _('GeoCoordinate')
+        verbose_name_plural = _('GeoCoordinates')
 
     address = models.CharField(
         _("Address"),

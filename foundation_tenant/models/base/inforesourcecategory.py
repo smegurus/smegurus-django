@@ -17,8 +17,8 @@ class InfoResourceCategory(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_info_resource_categories'
-        verbose_name = 'Information Resource Category'
-        verbose_name_plural = 'Information Resources Category'
+        verbose_name = _('Information Resource Category')
+        verbose_name_plural = _('Information Resources Category')
 
     objects = InfoResourceCategoryManager()
     order_num = models.PositiveSmallIntegerField(

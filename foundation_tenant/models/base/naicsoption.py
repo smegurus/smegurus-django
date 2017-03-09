@@ -17,8 +17,8 @@ class NAICSOption(models.Model):
         app_label = 'foundation_tenant'
         ordering = ['seq_num',]
         db_table = 'smeg_naics_options'
-        verbose_name = 'NAICS Option'
-        verbose_name_plural = 'NAICS Options'
+        verbose_name = _('NAICS Option')
+        verbose_name_plural = _('NAICS Options')
 
     objects = NAICSOptionManager()
     seq_num = models.PositiveSmallIntegerField(

@@ -33,8 +33,8 @@ class Me(AbstractPerson):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_mes'
-        verbose_name = 'Tenant Me'
-        verbose_name_plural = 'Tenant Mes'
+        verbose_name = _('Me')
+        verbose_name_plural = _('Mes')
 
     objects = MeManager()
     is_in_intake = models.BooleanField(  # CONTROLLED BY EMPLOYEES ONLY

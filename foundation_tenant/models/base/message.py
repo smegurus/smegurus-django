@@ -21,8 +21,8 @@ class Message(AbstractCreativeWork):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_messages'
-        verbose_name = 'Message'
-        verbose_name_plural = 'Messages'
+        verbose_name = _('Message')
+        verbose_name_plural = _('Messages')
 
     objects = MessageManager()
     date_read = models.DateTimeField(

@@ -17,8 +17,8 @@ class CityOption(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_city_options'
-        verbose_name = 'City Option'
-        verbose_name_plural = 'City Options'
+        verbose_name = _('City Option')
+        verbose_name_plural = _('City Options')
 
     objects = CityOptionManager()
     name = models.CharField(

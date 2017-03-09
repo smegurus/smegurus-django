@@ -16,8 +16,8 @@ class FileUpload(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_file_uploads'
-        verbose_name = 'File Upload'
-        verbose_name_plural = 'File Uploads'
+        verbose_name = _('File Upload')
+        verbose_name_plural = _('File Uploads')
 
     objects = FileUploadManager()
     created = models.DateTimeField(auto_now_add=True)

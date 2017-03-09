@@ -18,8 +18,8 @@ class CalendarEvent(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_calendar_events'
-        verbose_name = 'Calendar Event'
-        verbose_name_plural = 'Calendar Events'
+        verbose_name = _('Calendar Event')
+        verbose_name_plural = _('Calendar Events')
 
     objects = CalendarEventManager()
     type_of = models.PositiveSmallIntegerField(

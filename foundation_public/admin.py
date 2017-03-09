@@ -1,6 +1,6 @@
 from django.contrib import admin
 from foundation_public.models.banned import BannedDomain
-from foundation_public.models.banned import BannedIP
+from foundation_public.models.banned import SortedBannedIPByLatestCreationDate
 from foundation_public.models.banned import BannedWord
 from foundation_public.models.fileupload import PublicFileUpload
 from foundation_public.models.imageupload import PublicImageUpload
@@ -18,7 +18,7 @@ from foundation_public.models.country import PublicCountry
 from foundation_public.models.organizationregistration import PublicOrganizationRegistration
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.models.organization import PublicDomain
-from foundation_public.models.visitor import PublicVisitor
+from foundation_public.models.visitor import SortedPublicVisitorsByLatestCreation
 
 
 # Register your models here.
@@ -26,7 +26,7 @@ admin.site.register(CountryOption)
 admin.site.register(ProvinceOption)
 admin.site.register(CityOption)
 admin.site.register(BannedDomain)
-admin.site.register(BannedIP)
+admin.site.register(SortedBannedIPByLatestCreationDate)
 admin.site.register(BannedWord)
 admin.site.register(PublicFileUpload)
 admin.site.register(PublicImageUpload)
@@ -41,4 +41,4 @@ admin.site.register(PublicCountry)
 admin.site.register(PublicOrganization)
 admin.site.register(PublicOrganizationRegistration)
 admin.site.register(PublicDomain)
-admin.site.register(PublicVisitor)
+admin.site.register(SortedPublicVisitorsByLatestCreation)

@@ -590,7 +590,7 @@
                     "previous_position": 73,
                     "current_position": 74,
                     "next_position": 75,
-                    "id": 165,
+                    "id": 170,
                     "type": "question",
                     "document_type": 8,
                     "order_num": 74
@@ -598,21 +598,29 @@
                     "previous_position": 74,
                     "current_position": 75,
                     "next_position": 76,
+                    "id": 165,
+                    "type": "question",
+                    "document_type": 8,
+                    "order_num": 74
+                },{
+                    "previous_position": 75,
+                    "current_position": 76,
+                    "next_position": 77,
                     "id": 166,
                     "type": "question",
                     "document_type": 8,
                     "order_num": 75
                 },{
-                    "previous_position": 75,
-                    "current_position": 76,
-                    "next_position": 77,
+                    "previous_position": 76,
+                    "current_position": 77,
+                    "next_position": 78,
                     "id": 167,
                     "type": "question",
                     "document_type": 8,
                     "order_num": 76
                 },{
-                    "previous_position": 76,
-                    "current_position": 77,
+                    "previous_position": 77,
+                    "current_position": 78,
                     "next_position": -1,
                     "id": 168,
                     "type": "question",

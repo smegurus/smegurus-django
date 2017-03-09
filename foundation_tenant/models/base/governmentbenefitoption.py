@@ -14,8 +14,8 @@ class GovernmentBenefitOption(models.Model):
         app_label = 'foundation_tenant'
         ordering = ('order_number',)
         db_table = 'smeg_government_benefit_options'
-        verbose_name = 'Government Benefit Option'
-        verbose_name_plural = 'Government Benefit Options'
+        verbose_name = _('Government Benefit Option')
+        verbose_name_plural = _('Government Benefit Options')
 
     objects = GovernmentBenefitOptionManager()
     order_number = models.PositiveSmallIntegerField(

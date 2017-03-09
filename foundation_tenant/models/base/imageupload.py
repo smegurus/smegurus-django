@@ -20,8 +20,8 @@ class ImageUpload(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_image_uploads'
-        verbose_name = 'Image Upload'
-        verbose_name_plural = 'Image Uploads'
+        verbose_name = _('Image Upload')
+        verbose_name_plural = _('Image Uploads')
 
     objects = ImageUploadManager()
     created = models.DateTimeField(auto_now_add=True)

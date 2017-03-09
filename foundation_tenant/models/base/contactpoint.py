@@ -21,8 +21,8 @@ class ContactPoint(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_contact_points'
-        verbose_name = 'Contact Point'
-        verbose_name_plural = 'Contact Points'
+        verbose_name = _('Contact Point')
+        verbose_name_plural = _('Contact Points')
 
     objects = ContactPointManager()
     area_served = models.CharField(

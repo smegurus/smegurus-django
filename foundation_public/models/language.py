@@ -12,8 +12,8 @@ class PublicLanguage(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_languages'
-        verbose_name = 'Language'
-        verbose_name_plural = 'Languages'
+        verbose_name = _('Language')
+        verbose_name_plural = _('Languages')
 
     def __str__(self):
         return str(self.name)

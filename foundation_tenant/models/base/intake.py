@@ -70,8 +70,8 @@ class Intake(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_intakes'
-        verbose_name = 'Intake'
-        verbose_name_plural = 'Intakes'
+        verbose_name = _('Intake')
+        verbose_name_plural = _('Intakes')
 
     objects = IntakeManager()
     created = models.DateTimeField(auto_now_add=True)

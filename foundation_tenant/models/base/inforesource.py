@@ -19,8 +19,8 @@ class InfoResource(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_info_resources'
-        verbose_name = 'Information Resource'
-        verbose_name_plural = 'Information Resources'
+        verbose_name = _('Information Resource')
+        verbose_name_plural = _('Information Resources')
 
     objects = InfoResourceManager()
     category = models.ForeignKey(

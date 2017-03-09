@@ -12,8 +12,8 @@ class PublicOpeningHoursSpecification(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_opening_hours_specifications'
-        verbose_name = 'Opening Hours Specification'
-        verbose_name_plural = 'Opening Hours Specifications'
+        verbose_name = _('Opening Hours Specification')
+        verbose_name_plural = _('Opening Hours Specifications')
 
     closes = models.CharField(
         _("Closes"),

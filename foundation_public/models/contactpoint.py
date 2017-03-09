@@ -14,8 +14,8 @@ class PublicContactPoint(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_contact_points'
-        verbose_name = 'Contact Point'
-        verbose_name_plural = 'Contact Points'
+        verbose_name = _('Contact Point')
+        verbose_name_plural = _('Contact Points')
 
     area_served = models.CharField(
         _("Area Served"),

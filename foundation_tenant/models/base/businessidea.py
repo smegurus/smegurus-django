@@ -22,8 +22,8 @@ class BusinessIdea(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_business_ideas'
-        verbose_name = 'Business Idea'
-        verbose_name_plural = 'Business Ideas'
+        verbose_name = _('Business Idea')
+        verbose_name_plural = _('Business Ideas')
 
     objects = BusinessIdeaManager()
     created = models.DateTimeField(auto_now_add=True)

@@ -14,8 +14,8 @@ class Tag(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_tags'
-        verbose_name = 'Tag'
-        verbose_name_plural = 'Tags'
+        verbose_name = _('Tag')
+        verbose_name_plural = _('Tags')
 
     objects = TagManager()
     name = models.CharField(

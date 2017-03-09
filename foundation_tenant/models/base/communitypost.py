@@ -18,8 +18,8 @@ class CommunityPost(AbstractThing):
         app_label = 'foundation_tenant'
         ordering = ('-created',)
         db_table = 'smeg_community_posts'
-        verbose_name = 'Community Post'
-        verbose_name_plural = 'Community Posts'
+        verbose_name = _('Community Post')
+        verbose_name_plural = _('Community Posts')
 
     objects = CommunityPostManager()
     tags = models.ManyToManyField(

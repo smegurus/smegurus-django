@@ -13,8 +13,8 @@ class PublicBrand(AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_brands'
-        verbose_name = 'Brand'
-        verbose_name_plural = 'Brands'
+        verbose_name = _('Brand')
+        verbose_name_plural = _('Brands')
 
     logo = models.ForeignKey(
         PublicImageUpload,

@@ -14,8 +14,8 @@ class IdentifyOption(models.Model):
         app_label = 'foundation_tenant'
         ordering = ('order_number',)
         db_table = 'smeg_identify_options'
-        verbose_name = 'Identify Option'
-        verbose_name_plural = 'Identify Options'
+        verbose_name = _('Identify Option')
+        verbose_name_plural = _('Identify Options')
 
     objects = IdentifyOptionManager()
     order_number = models.PositiveSmallIntegerField(

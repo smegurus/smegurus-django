@@ -20,8 +20,8 @@ class Brand(AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_brands'
-        verbose_name = 'Brand'
-        verbose_name_plural = 'Brands'
+        verbose_name = _('Brand')
+        verbose_name_plural = _('Brands')
 
     objects = BrandManager()
     logo = models.ForeignKey(

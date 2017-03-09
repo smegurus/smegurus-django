@@ -17,8 +17,8 @@ class CommunityAdvertisement(AbstractThing):
         app_label = 'foundation_tenant'
         ordering = ('-created',)
         db_table = 'smeg_community_advertisements'
-        verbose_name = 'Community Advertisement'
-        verbose_name_plural = 'Community Advertisements'
+        verbose_name = _('Community Advertisement')
+        verbose_name_plural = _('Community Advertisements')
 
     objects = CommunityAdvertisementManager()
 

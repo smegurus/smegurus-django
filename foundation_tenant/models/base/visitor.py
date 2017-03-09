@@ -16,8 +16,8 @@ class Visitor(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_visitors'
-        verbose_name = 'Visitor'
-        verbose_name_plural = 'Visitors'
+        verbose_name = _('Visitor')
+        verbose_name_plural = _('Visitors')
 
     objects = VisitorManager()
     created = models.DateTimeField(auto_now_add=True)
@@ -28,7 +28,7 @@ class Visitor(models.Model):
     )
     path = models.CharField(
         _("Path"),
-        max_length=63,
+        max_length=1027,
         help_text=_('The resource path that was visted.'),
     )
     ip_address = models.GenericIPAddressField(

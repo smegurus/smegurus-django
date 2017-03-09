@@ -14,8 +14,8 @@ class TellUsYourNeed(models.Model):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_tell_us_your_needs'
-        verbose_name = 'Tell Us Your Need'
-        verbose_name_plural = 'Tell Us Your Needs'
+        verbose_name = _('Tell Us Your Need')
+        verbose_name_plural = _('Tell Us Your Needs')
 
     objects = TellUsYourNeedManager()
     owner = models.OneToOneField(

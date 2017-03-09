@@ -77,8 +77,8 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_organizations'
-        verbose_name = 'Organization'
-        verbose_name_plural = 'Organizations'
+        verbose_name = _('Organization')
+        verbose_name_plural = _('Organizations')
 
     objects = PublicOrganizationManager()
 
