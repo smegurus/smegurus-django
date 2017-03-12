@@ -2,7 +2,7 @@ amqp==2.1.4
 Babel==2.3.4
 beautifulsoup4==4.5.1
 billiard==3.5.0.2
-boto==2.45.0
+boto==2.46.1
 celery==4.0.2
 click==6.6
 coverage==4.3.4
