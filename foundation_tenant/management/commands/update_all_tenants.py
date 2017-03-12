@@ -36,5 +36,5 @@ class Command(BaseCommand):
             call_command('populate_tenant')
 
         self.stdout.write(
-            self.style.SUCCESS(_('Successfully populated tenant.'))
+            self.style.SUCCESS(_('Successfully updated tenant.'))
         )
