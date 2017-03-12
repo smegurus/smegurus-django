@@ -73,7 +73,10 @@ def staff_category_details_page(request, category_id):
     return render(request, 'tenant_resource/staff/category/details/view.html',{
         'page': 'resource',
         'category': category,
-        'inforesources': InfoResource.objects.filter(category=category)
+        'inforesources': InfoResource.objects.filter(
+            category=category,
+            is_for_staff=True
+        )
     })
 
 
