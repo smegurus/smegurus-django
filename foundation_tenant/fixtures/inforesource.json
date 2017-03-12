@@ -1,0 +1,122 @@
+[
+    {
+        "model": "foundation_tenant.inforesource",
+        "pk": 1,
+        "fields": {
+            "name": "Target Market Calculation",
+            "description": "This worksheet will help you to calculate the size of your target market. Please be sure to ask your advisor if you have any questions, or are unsure as to how to complete this form.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-target-market-calculation.xlsx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    },{
+        "model": "foundation_tenant.inforesource",
+        "pk": 2,
+        "fields": {
+            "name": "Sample Purchase",
+            "description": "This is a sample purchase order in MS Excel format.  It may require some adjustments to work for your business.  Always be sure to consult with a professional if you have any doubts as to the suitability of this form.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-sample-purchase-order.xlsx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    },{
+        "model": "foundation_tenant.inforesource",
+        "pk": 3,
+        "fields": {
+            "name": "Sample Invoice",
+            "description": "This is a sample invoice in MS Excel format.  It may require some adjustments to work for your business, and you may wish to consider having an accountant or your advisor review this form.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-sample-invoice.xlsx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    },{
+        "model": "foundation_tenant.inforesource",
+        "pk": 4,
+        "fields": {
+            "name": "Sample Partnership Agreement",
+            "description": "This is a sample partnership agreement in MS Word format.  Remember, this is simply a starting point. You should have a lawyer and your advisor review any agreements such as these.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-partnership-agreement.docx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    },{
+        "model": "foundation_tenant.inforesource",
+        "pk": 5,
+        "fields": {
+            "name": "Sample Letter of Intent",
+            "description": "This is a sample letter of intent in MS Word format.  Remember, this is simply a starting point. You should have a lawyer and your advisor review any agreements such as these.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-letter-of-intent.docx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    },{
+        "model": "foundation_tenant.inforesource",
+        "pk": 6,
+        "fields": {
+            "name": "Sample Confidentiality Agreement",
+            "description": "This is a sample confidentiality agreement in MS Word format.  You may also hear this referred to as an NDA or non-disclosure agreement. Remember, this is simply a starting point. You should have a lawyer and your advisor review any agreements such as these.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-confidentiality-agreement.docx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    },{
+        "model": "foundation_tenant.inforesource",
+        "pk": 7,
+        "fields": {
+            "name": "Sample Client Service Agreement",
+            "description": "This is a sample client agreement in MS Word format.  Remember, this is simply a starting point. You should have a lawyer and your advisor review any agreements such as these.",
+            "created": "2017-03-12 16:20:49.960597-04",
+            "last_modified": "2017-03-12 16:20:49.960597-04",
+            "url": "https://s3.ca-central-1.amazonaws.com/smegurus-prod/static/doc/smegurus-templates-client-service-agreement.docx",
+            "category": 2,
+            "is_stock": true,
+            "is_for_staff": false,
+            "is_for_entrepreneur": true,
+            "stage_num": 1,
+            "uploads": [],
+            "tags": []
+        }
+    }
+]
