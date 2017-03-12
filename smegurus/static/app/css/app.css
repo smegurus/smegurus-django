@@ -7604,7 +7604,8 @@ body .jvectormap-zoomout {
   width: 320px;
 }
 .wd-xxl {
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
 }
 .wd-wide {
   width: 100%;
