@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.http import condition
 from rest_framework.authtoken.models import Token
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.base.faqitem import FAQItem
 from foundation_tenant.models.base.faqgroup import FAQGroup
 
@@ -57,6 +58,7 @@ def generate_faqs():
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_profile_required
 # @condition(last_modified_func=latest_faq_master)
 def faq_page(request):

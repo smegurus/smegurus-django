@@ -9,6 +9,7 @@ from rest_framework.authtoken.models import Token
 from tenant_intake.decorators import tenant_intake_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_configuration.decorators import tenant_configuration_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
@@ -23,6 +24,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -42,6 +44,7 @@ def task_open_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -61,6 +64,7 @@ def task_closed_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -77,6 +81,7 @@ def task_master_create_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -98,6 +103,7 @@ def task_edit_details_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required
@@ -119,6 +125,7 @@ def task_info_details_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_intake_required
 @tenant_profile_required

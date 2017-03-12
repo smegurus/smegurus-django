@@ -8,6 +8,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.base.notification import Notification
 from foundation_tenant.models.base.task import Task
 from foundation_tenant.models.base.me import Me
@@ -15,6 +16,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -48,6 +50,8 @@ def dashboard_page(request):
         return HttpResponseBadRequest(_('You do not belong to any group!'))
 
 
+@login_required(login_url='/en/login')
+@tenant_required
 def admin_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
@@ -55,6 +59,8 @@ def admin_dashboard_page(request, notification):
     })
 
 
+@login_required(login_url='/en/login')
+@tenant_required
 def org_manager_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
@@ -62,6 +68,8 @@ def org_manager_dashboard_page(request, notification):
     })
 
 
+@login_required(login_url='/en/login')
+@tenant_required
 def advisor_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',
@@ -69,6 +77,8 @@ def advisor_dashboard_page(request, notification):
     })
 
 
+@login_required(login_url='/en/login')
+@tenant_required
 def entrepreneur_dashboard_page(request, notification):
     return render(request, 'dashboard/view.html',{
         'page': 'dashboard',

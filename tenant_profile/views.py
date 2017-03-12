@@ -7,6 +7,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.forms.postaladdressform import PostalAddressForm
 from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.countryoption import CountryOption
@@ -16,6 +17,7 @@ from foundation_tenant.models.base.postaladdress import PostalAddress
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -27,6 +29,7 @@ def profile_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -38,6 +41,7 @@ def profile_settings_profile_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -60,6 +64,7 @@ def profile_settings_address_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -71,6 +76,7 @@ def profile_settings_password_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -82,6 +88,7 @@ def profile_settings_notification_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def locked_page(request):
     """Function will lock the User out of our system and will require a password authentication to be let back in."""
     request.tenant_me.is_locked=True
@@ -92,6 +99,7 @@ def locked_page(request):
 
 
 @tenant_profile_required
+@tenant_required
 def tenant_profile_is_locked_page(request):
     from django.http import JsonResponse
     """Function will return either True or False depending if a subdomain exists or not."""

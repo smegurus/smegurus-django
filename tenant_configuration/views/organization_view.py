@@ -10,6 +10,7 @@ from foundation_public.forms.organizationform import PublicOrganizationForm
 from foundation_public.forms.postaladdressform import PublicPostalAddressForm
 from foundation_public.models.organization import PublicOrganization
 from foundation_public.decorators import group_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.forms.businessideaform import BusinessIdeaForm
 from foundation_tenant.forms.tellusyourneedform import TellUsYourNeedForm
 from foundation_tenant.models.base.tag import Tag
@@ -25,6 +26,7 @@ from smegurus.settings import env_var
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_one_page(request):
     # Connection needs first to be at the public schema, as this is where
@@ -49,6 +51,7 @@ def config_org_step_one_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_two_page(request):
     # Connection will set it back to our tenant.
@@ -59,12 +62,14 @@ def config_org_step_two_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_three_page(request):
     return render(request, 'tenant_configuration/organization/3/view.html',{})
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_four_page(request):
     return render(request, 'tenant_configuration/organization/4/view.html',{
@@ -73,6 +78,7 @@ def config_org_step_four_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_five_page(request):
     return render(request, 'tenant_configuration/organization/5/view.html',{
@@ -81,12 +87,14 @@ def config_org_step_five_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_six_page(request):
     return render(request, 'tenant_configuration/organization/6/view.html',{})
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_seven_page(request):
     return render(request, 'tenant_configuration/organization/7/view.html',{
@@ -98,6 +106,7 @@ def config_org_step_seven_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([constants.ORGANIZATION_ADMIN_GROUP_ID,])
 def config_org_step_eight_page(request):
     return render(request, 'tenant_configuration/organization/8/view.html',{})

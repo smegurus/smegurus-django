@@ -9,6 +9,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.calendarevent import CalendarEvent
 from foundation_tenant.models.base.me import Me
@@ -17,6 +18,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -36,6 +38,7 @@ def calendar_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -51,6 +54,7 @@ def calendar_create_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -66,6 +70,7 @@ def calendar_edit_details_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required

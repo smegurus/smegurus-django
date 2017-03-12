@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.translation import get_language
 from django.contrib.auth.models import User, Group
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.me import Me
@@ -11,6 +12,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def inbox_page(request):
     # Fetch all the Messages and only get a single message per sender. Also ensure
     # that deleted messages are not returned.
@@ -25,6 +27,7 @@ def inbox_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def compose_page(request):
     admins = Me.objects.filter(owner__groups__id=constants.ORGANIZATION_ADMIN_GROUP_ID)
     return render(request, 'tenant_reception/message/create/view.html',{
@@ -35,6 +38,7 @@ def compose_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def conversation_page(request, sender_id):
     messages = Message.objects.filter(
         Q(

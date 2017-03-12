@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.question import Question
@@ -18,6 +19,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -38,6 +40,7 @@ def master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,

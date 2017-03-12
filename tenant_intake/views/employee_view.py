@@ -6,6 +6,7 @@ from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.intake import Intake
@@ -17,6 +18,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -40,6 +42,7 @@ def pending_intake_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -63,6 +66,7 @@ def held_intake_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -88,6 +92,7 @@ def pending_intake_details_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,

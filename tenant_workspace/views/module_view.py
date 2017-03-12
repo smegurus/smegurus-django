@@ -8,6 +8,7 @@ from rest_framework.authtoken.models import Token
 from foundation_tenant.utils import int_or_none
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
@@ -18,6 +19,7 @@ from foundation_tenant.models.bizmula.questionanswer import QuestionAnswer
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 def start_master_page(request, workspace_id, module_id):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
@@ -33,6 +35,7 @@ def start_master_page(request, workspace_id, module_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 def detail_page(request, workspace_id, module_id, node_id):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
@@ -77,6 +80,7 @@ def detail_page(request, workspace_id, module_id, node_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 def submit_master_page(request, workspace_id, module_id, previous_node_id):
     """
@@ -109,6 +113,7 @@ def submit_master_page(request, workspace_id, module_id, previous_node_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 def finish_master_page(request, workspace_id, module_id):
     # Fetch our associated models.

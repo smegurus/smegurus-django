@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.forms.tagform import TagForm
 from foundation_tenant.forms.intakeform import IntakeForm
 from foundation_tenant.models.base.tag import Tag
@@ -14,6 +15,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def reception_tasks_master_page(request):
     tasks = Task.objects.filter(
         Q(opening__id=request.tenant_me.id) |
@@ -27,6 +29,7 @@ def reception_tasks_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def task_details_page(request, id):
     task = get_object_or_404(Task, pk=int(id))
     template_path = 'tenant_reception/task/details/view.html'

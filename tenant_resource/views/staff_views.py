@@ -9,6 +9,7 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.base.inforesourcecategory import InfoResourceCategory
 from foundation_tenant.models.base.inforesource import InfoResource
 from foundation_tenant.models.base.tag import Tag
@@ -16,6 +17,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -34,6 +36,7 @@ def staff_launchpad_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -53,6 +56,7 @@ def staff_category_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -74,6 +78,7 @@ def staff_category_details_page(request, category_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -97,6 +102,7 @@ def staff_resource_details_edit_page(request, category_id, resource_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -120,6 +126,7 @@ def staff_resource_details_info_page(request, category_id, resource_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,

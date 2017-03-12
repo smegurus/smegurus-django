@@ -12,6 +12,7 @@ from tenant_reception.decorators import tenant_reception_required
 from foundation_public.decorators import group_required
 from foundation_public.utils import random_text
 from foundation_public.models.organization import PublicOrganization
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.postaladdress import PostalAddress
@@ -26,6 +27,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -46,6 +48,7 @@ def master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -66,6 +69,7 @@ def details_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -128,6 +132,7 @@ def create_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -148,6 +153,7 @@ def create_step_one_page(request, pk):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -181,6 +187,7 @@ def create_step_two_page(request, pk):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,
@@ -251,6 +258,7 @@ def create_step_three_page(request, pk):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @group_required([
     constants.ADVISOR_GROUP_ID,
     constants.ORGANIZATION_MANAGER_GROUP_ID,

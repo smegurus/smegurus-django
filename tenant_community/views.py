@@ -9,12 +9,14 @@ from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.base.communitypost import CommunityPost
 from foundation_tenant.models.base.communityadvertisement import CommunityAdvertisement
 from foundation_tenant.models.base.tag import Tag
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -45,6 +47,7 @@ def community_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required

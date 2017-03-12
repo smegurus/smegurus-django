@@ -12,12 +12,14 @@ from tenant_profile.decorators import tenant_profile_required
 from tenant_intake.decorators import tenant_intake_required
 from tenant_reception.decorators import tenant_reception_required
 from tenant_configuration.decorators import tenant_configuration_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.base.message import Message
 from foundation_tenant.models.base.me import Me
 from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -36,6 +38,7 @@ def inbox_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -58,6 +61,7 @@ def compose_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -80,6 +84,8 @@ def specific_compose_page(request, id):
     })
 
 
+@login_required()
+@tenant_required
 def latest_conversation_details(request, sender_id):
     return Message.objects.filter(
         Q(
@@ -95,6 +101,7 @@ def latest_conversation_details(request, sender_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -127,6 +134,7 @@ def conversation_page(request, sender_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -153,6 +161,8 @@ def archive_conversation_page(request, sender_id):
     return HttpResponseRedirect(reverse('tenant_message_inbox'))
 
 
+@login_required()
+@tenant_required
 def latest_archived_message_master(request):
     try:
         return Message.objects.filter(
@@ -168,6 +178,7 @@ def latest_archived_message_master(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required
@@ -191,6 +202,7 @@ def archive_list_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_intake_required
 @tenant_reception_required
 @tenant_profile_required

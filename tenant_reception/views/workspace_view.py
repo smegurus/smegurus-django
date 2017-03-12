@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.bizmula.documenttype import DocumentType
 from foundation_tenant.models.bizmula.workspace import Workspace
@@ -16,6 +17,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def start_master_page(request, workspace_id):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     module = get_object_or_404(Module, stage_num=constants.ME_ONBOARDING_STAGE_NUM)
@@ -31,6 +33,7 @@ def start_master_page(request, workspace_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def workspace_detail_page(request, workspace_id, node_id=0):
     workspace = get_object_or_404(Workspace, pk=int_or_none(workspace_id))
     module = get_object_or_404(Module, stage_num=constants.ME_ONBOARDING_STAGE_NUM)
@@ -73,6 +76,7 @@ def workspace_detail_page(request, workspace_id, node_id=0):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def finish_master_page(request, workspace_id, node_id=0):
     module = get_object_or_404(Module, stage_num=constants.ME_ONBOARDING_STAGE_NUM)
     node_id = int_or_none(node_id)

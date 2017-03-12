@@ -7,6 +7,7 @@ from rest_framework.authtoken.models import Token
 from foundation_public.decorators import group_required
 from tenant_configuration.decorators import tenant_configuration_required
 from tenant_profile.decorators import tenant_profile_required
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.models.base.me import Me
 from foundation_tenant.models.base.note import Note
 from foundation_tenant.forms.noteform import NoteForm
@@ -14,6 +15,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_profile_required
 @group_required([
@@ -34,6 +36,7 @@ def entrepreneur_master_page(request, id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_profile_required
 @group_required([
@@ -54,6 +57,7 @@ def entrepreneur_details_page(request, me_id, note_id):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 @tenant_configuration_required
 @tenant_profile_required
 @group_required([

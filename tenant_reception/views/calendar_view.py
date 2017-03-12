@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import get_language
 from django.contrib.auth.models import User
 from django.db.models import Q, Count
+from foundation_tenant.decorators import tenant_required
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.models.base.calendarevent import CalendarEvent
 from foundation_tenant.models.base.me import Me
@@ -11,6 +12,7 @@ from smegurus import constants
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def reception_calendar_master_page(request):
     calendar_events = CalendarEvent.objects.filter(
         Q(pending__id=request.tenant_me.id) |
@@ -24,6 +26,7 @@ def reception_calendar_master_page(request):
 
 
 @login_required(login_url='/en/login')
+@tenant_required
 def reception_calendar_details_page(request, id):
     return render(request, 'tenant_reception/calendar/details/view.html',{
         'page': 'reception-calendar-details',
