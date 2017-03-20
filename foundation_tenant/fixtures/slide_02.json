@@ -32,7 +32,7 @@
     "fields": {
         "module": 2,
         "title": "Important Market Research Links.",
-        "description": "Here are some Useful Market Research Links to Help you get Started:<ul><li><a href=\"https://www.census.gov/\">United States Census Bureau</a></li><li><a href=\"http://www.statcan.gc.ca/eng/start\">Statistics Canada</a></li><li><a href=\"http://www.ic.gc.ca/eic/site/icgc.nsf/eng/h_07063.html\">Canada Industry Trends</a></li></ul>",
+        "description": "Here are some Useful Market Research Links to Help you get Started:<ul><li><a href=\"https://www.census.gov/\" target=\"_blank\">United States Census Bureau</a></li><li><a href=\"http://www.statcan.gc.ca/eng/start\" target=\"_blank\">Statistics Canada</a></li><li><a href=\"http://www.ic.gc.ca/eic/site/icgc.nsf/eng/h_07063.html\" target=\"_blank\">Canada Industry Trends</a></li></ul>",
         "video_url": ""
     }
 }
