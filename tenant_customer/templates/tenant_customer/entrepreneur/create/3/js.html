@@ -1,6 +1,24 @@
 {% load i18n %}
 <script>
     $(document).ready(function () {
+         // Show "Other" field if the "Other" option was selected.
+        $(document).on('change','#id_how_can_we_help',function(){
+            var input_2 = $('#id_how_can_we_help').val();
+            if (input_2 == 6) {
+                $('#id_how_can_we_help_other_div').show();
+            } else {
+                $('#id_how_can_we_help_other_div').hide();
+            }
+        });
+         // Show "Other" field if the "Other" option was selected.
+        $(document).on('change','#id_how_did_you_hear',function(){
+            var input_2 = $('#id_how_did_you_hear').val();
+            if (input_2 == 3) {
+                $('#id_how_did_you_hear_other_div').show();
+            } else {
+                $('#id_how_did_you_hear_other_div').hide();
+            }
+        });
         // Source from: http://stackoverflow.com/a/7120932
         $( "#id_date_of_birth" ).datepicker({
             dateFormat: "yy-mm-dd",
