@@ -157,33 +157,32 @@
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
+        <div class="col-sm-12">
             <fieldset>
                 <!-- ROW 1 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_1 }}</label>
-                    <div class="col-sm-10">
-                        <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_2 }}" value="{{ picked.var_1 }}" />
+                    <label class="col-sm-4 control-label">{{ question.content.stub_1 }}</label>
+                    <div class="col-sm-6">
+                        <input id="id_input_1" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_2 }}" value="{{ picked.var_1 }}" />
                     </div>
                 </div>
                 <!-- end ROW 1 -->
                 <br />
                 <!-- ROW 2 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_3 }}</label>
-                    <div class="col-sm-10">
-                        <input id="id_input_2" type="text" class="form-control" placeholder="{{ question.content.stub_4 }}" value="{{ picked.var_2 }}" />
+                    <label class="col-sm-4 control-label">{{ question.content.stub_3 }}</label>
+                    <div class="col-sm-6">
+                        <input id="id_input_2" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_4 }}" value="{{ picked.var_2 }}" />
                     </div>
                 </div>
                 <!-- end ROW 2 -->
                 <br />
                 <!-- ROW 3 -->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 control-label">{{ question.content.stub_5 }}</label>
+                    <div class="col-sm-6">
                         <!-- OPTIONS -->
-                        <select id="id_input_3" class="form-control">
+                        <select id="id_input_3" class="form-control input-lg">
                             <option value="">{{ question.options.opt1_select }}</option>
                             {% for item in question.options.opt1 %}
                                 <option value="{{ item }}" {% if item == picked.var_3 %}selected="selected"{% endif %}>{{ item }}</option>
@@ -196,10 +195,10 @@
                 <br />
                 <!-- ROW 4 | SELECTFIELD -->
                 <div class="form-group" id="id_input_4_selectfield_div" {% if not picked.var_4 %}style="display: none;"{% endif %}>
-                    <label class="col-sm-2 control-label">{{ question.content.stub_6 }}</label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-4 control-label">{{ question.content.stub_6 }}</label>
+                    <div class="col-sm-6">
                         <!-- SELECTIONFIELD -->
-                        <select id="id_input_4a" class="form-control">
+                        <select id="id_input_4a" class="form-control input-lg">
                             <!-- OPTION -->
                             <option value="" selected="selected">---</option>
                             <!-- end OPTION -->
@@ -226,9 +225,9 @@
 
                 <!-- ROW 4 | TEXTFIELD -->
                 <div class="form-group" id="id_input_4_textfield_div" {% if not picked.var_4_other %}style="display: none;"{% endif %}>
-                    <label class="col-sm-2 control-label">{{ question.content.stub_7 }}</label>
-                    <div class="col-sm-10">
-                        <input id="id_input_4b" type="text" class="form-control" placeholder="" value="{{ picked.var_4_other }}" />
+                    <label class="col-sm-4 control-label">{{ question.content.stub_7 }}</label>
+                    <div class="col-sm-6">
+                        <input id="id_input_4b" type="text" class="form-control input-lg" placeholder="" value="{{ picked.var_4_other }}" />
                     </div>
                 </div>
                 <!-- end ROW 4 | TEXTFIELD  -->
