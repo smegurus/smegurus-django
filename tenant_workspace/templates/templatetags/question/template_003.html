@@ -141,7 +141,6 @@
         $('#id_input_1').val("");
         $('#id_input_2 option[value=0]').attr('selected','selected');
         $('#id_input_2_other').val("");
-        $('#id_input_2_other').hide();
         row_index += 1;
     }
 
@@ -226,7 +225,7 @@
                                 <th>{{ question.content.stub_1 }}</th>
                                 <th>{{ question.content.stub_2 }}</th>
                                 <th>{{ question.content.stub_3 }}</th>
-                                <th>{{ question.content.stub_4 }}</th>
+                                <th> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -253,9 +252,9 @@
                 <fieldset>
                     <!-- ROW 2 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_5 }}</label>
-                        <div class="col-sm-10">
-                            <input id="id_input_1" type="text" class="form-control" placeholder="{{ question.content.stub_6 }}" value="{{ picked.input_1 }}" />
+                        <label class="col-sm-3 control-label">{{ question.content.stub_5 }}</label>
+                        <div class="col-sm-7">
+                            <input id="id_input_1" type="text" class="form-control input-lg" placeholder="{{ question.content.stub_6 }}" value="{{ picked.input_1 }}" />
                         </div>
                     </div>
                     <!-- end ROW 2 -->
@@ -264,10 +263,10 @@
 
                     <!-- ROW 3 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_7 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">{{ question.content.stub_7 }}</label>
+                        <div class="col-sm-7">
                             <!-- OPTIONS -->
-                            <select id="id_input_2" class="form-control">
+                            <select id="id_input_2" class="form-control input-lg">
                                 <!-- STATIC OPTION -->
                                 <option value="{{ question.options.opt1_select }}">{{ question.options.opt1_select }}</option>
                                 <!-- STATIC end OPTION -->
@@ -286,10 +285,10 @@
 
                     <!-- ROW 4 | HIDDEN -->
                     <div class="form-group" style="display: none;" id="id_input_2_other_div">
-                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-7">
                             <!-- OTHER -->
-                            <input id="id_input_2_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="" />
+                            <input id="id_input_2_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="" />
                             <!-- end OTHER -->
                         </div>
                         <br />
@@ -300,10 +299,10 @@
 
                     <!-- ROW 5 -->
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{ question.content.stub_8 }}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">{{ question.content.stub_8 }}</label>
+                        <div class="col-sm-7">
                             <!-- OPTIONS -->
-                            <select id="id_input_3" class="form-control">
+                            <select id="id_input_3" class="form-control input-lg">
                                 <!-- SELECT OPTION -->
                                 <option value="{{ question.options.opt2_select }}">{{ question.options.opt2_select }}</option>
                                 <!-- end SELECT OPTION -->
@@ -322,10 +321,10 @@
 
                     <!-- ROW 6 | HIDDEN -->
                     <div class="form-group" style="display: none;" id="id_input_3_other_div">
-                        <label class="col-sm-2 control-label">{% trans 'Other' %}</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-3 control-label">{% trans 'Other' %}</label>
+                        <div class="col-sm-7">
                             <!-- OTHER -->
-                            <input id="id_input_3_other" type="text" class="form-control" placeholder="{% trans 'Please specify here...' %}" value="" />
+                            <input id="id_input_3_other" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify here...' %}" value="" />
                             <!-- end OTHER -->
                         </div>
                         <br />
