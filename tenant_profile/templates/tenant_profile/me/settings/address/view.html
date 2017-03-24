@@ -3,7 +3,7 @@
 {% block content %}
 <!-- PAGE JS -->
     {% compress js inline %}
-        {% include 'tenant_profile/settings/address/js.html' %}
+        {% include 'tenant_profile/me/settings/address/js.html' %}
     {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
@@ -11,7 +11,7 @@
     <div class="container-md">
         <div class="row">
             <div class="col-md-3">
-                {% include 'tenant_profile/settings/sidebar_panel.html' with page_num=2 %}
+                {% include 'tenant_profile/me/settings/sidebar_panel.html' with page_num=2 %}
             </div>
             <div class="col-md-9">
                 <div class="tab-content p0 b0">

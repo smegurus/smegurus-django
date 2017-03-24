@@ -23,7 +23,7 @@ from foundation_tenant.models.base.postaladdress import PostalAddress
 @tenant_profile_required
 @tenant_configuration_required
 def profile_page(request):
-    return render(request, 'tenant_profile/generic/view.html',{
+    return render(request, 'tenant_profile/me/generic/view.html',{
         'page': 'profile',
     })
 
@@ -35,7 +35,7 @@ def profile_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def profile_settings_profile_page(request):
-    return render(request, 'tenant_profile/settings/profile/view.html',{
+    return render(request, 'tenant_profile/me/settings/profile/view.html',{
         'page': 'profile'
     })
 
@@ -50,7 +50,7 @@ def profile_settings_address_page(request):
     address = request.tenant_me.address
     countries = CountryOption.objects.all()
     provinces = [] if not address.country else ProvinceOption.objects.filter(country=address.country)
-    return render(request, 'tenant_profile/settings/address/view.html',{
+    return render(request, 'tenant_profile/me/settings/address/view.html',{
         'page': 'profile',
         'countries': countries,
         'provinces': provinces,
@@ -70,7 +70,7 @@ def profile_settings_address_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def profile_settings_password_page(request):
-    return render(request, 'tenant_profile/settings/password/view.html',{
+    return render(request, 'tenant_profile/me/settings/password/view.html',{
         'page': 'profile'
     })
 
@@ -82,7 +82,7 @@ def profile_settings_password_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def profile_settings_notification_page(request):
-    return render(request, 'tenant_profile/settings/notification/view.html',{
+    return render(request, 'tenant_profile/me/settings/notification/view.html',{
         'page': 'profile'
     })
 
@@ -93,7 +93,7 @@ def locked_page(request):
     """Function will lock the User out of our system and will require a password authentication to be let back in."""
     request.tenant_me.is_locked=True
     request.tenant_me.save()
-    return render(request, 'tenant_profile/locked/view.html',{
+    return render(request, 'tenant_profile/me/locked/view.html',{
         'page': 'profile',
     })
 
