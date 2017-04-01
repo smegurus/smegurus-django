@@ -13,7 +13,7 @@ class LoginForm(forms.Form):
         max_length=100,
         widget=forms.TextInput(attrs={
             'type':'email',
-            'class':'form-control',
+            'class':'form-control input-lg',
             'placeholder':_('Enter Email'),
             'autocapitalize':'off',
             'autocomplete':'off',
@@ -27,7 +27,7 @@ class LoginForm(forms.Form):
         max_length=100,
         widget=forms.TextInput(attrs={
             'type':'password',
-            'class':'form-control',
+            'class':'form-control input-lg',
             'placeholder':_('Enter Password'),
             'autocapitalize':'off',
             'autocomplete':'off',
