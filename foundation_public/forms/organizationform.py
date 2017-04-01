@@ -23,43 +23,43 @@ class PublicOrganizationForm(forms.ModelForm):
         }
         widgets = {
             'schema_name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter sub-domain of this Organization.'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
                 'spellcheck':'false',
             }),
             'name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter name.'),
                 'spellcheck':'false',
             }),
             'url': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter website URL.'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
             }),
             'facebook_url': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter Facebook URL.'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
             }),
             'twitter_url': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter Twitter URL.'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
             }),
             'how_many_served': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter how many entrepreneurs served.'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
             }),
             'how_discovered': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('How did you hear about SME Gurus?'),
                 'autocapitalize':'off',
                 'autocomplete':'off',
