@@ -20,15 +20,15 @@ class PublicContactPointForm(forms.ModelForm):
         }
         widgets = {
             'email': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the email.')
             }),
             'telephone': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the telephone.')
             }),
             'fax_number': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the fax number.')
             }),
         }
