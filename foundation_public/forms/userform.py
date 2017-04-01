@@ -19,11 +19,11 @@ class UserForm(forms.ModelForm):
         }
         widgets = {
             'first_name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter First Name')
             }),
             'last_name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter Last Name')
             }),
         }
@@ -32,7 +32,7 @@ class UserForm(forms.ModelForm):
         max_length=75, 
         widget=forms.TextInput(attrs={
             'type':'email',
-            'class':'form-control',
+            'class':'form-control input-lg',
             'placeholder': _('Enter Email'),
             'spellcheck':'false',
             'autocapitalize':'off',
@@ -45,7 +45,7 @@ class UserForm(forms.ModelForm):
         max_length=100,
         widget=forms.TextInput(attrs={
             'type':'password',
-            'class':'form-control',
+            'class':'form-control input-lg',
             'placeholder': _('Enter Old Password'),
             'spellcheck':'false',
             'autocapitalize':'off',
@@ -59,7 +59,7 @@ class UserForm(forms.ModelForm):
         max_length=100,
         widget=forms.TextInput(attrs={
             'type':'password',
-            'class':'form-control',
+            'class':'form-control input-lg',
             'placeholder': _('Enter New Password'),
             'spellcheck':'false',
             'autocapitalize':'off',
@@ -73,7 +73,7 @@ class UserForm(forms.ModelForm):
         max_length=100,
         widget=forms.TextInput(attrs={
             'type':'password',
-            'class':'form-control',
+            'class':'form-control input-lg',
             'placeholder': _('Enter Password Again'),
             'spellcheck':'false',
             'autocapitalize':'off',
