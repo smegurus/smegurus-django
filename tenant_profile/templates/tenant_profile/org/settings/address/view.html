@@ -7,10 +7,91 @@
     {% endcompress %}
 <!-- end PAGE JS -->
 <!-- PAGE HTML -->
-
-
-<!-- HTML for page codes here -->
-
+<div class="content-wrapper">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=2 %}
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content p0 b0">
+                    <!-- TAB -->
+                    <div id="tabSetting2" class="tab-pane active">
+                        <div class="panel b">
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Address' %}</div>
+                            <div class="panel-body">
+                                <!-- ADDRESS -->
+                                <form action="">
+                                    <!-- COUNTRY -->
+                                    <div class="form-group has-feedback">
+                                        <label for="signupInputText1">{% trans 'Country' %}</label>
+                                        <select id="id_country" class="form-control input-lg">
+                                            {% if not address.country %}
+                                                <option value="">{% trans 'Please select your country' %}</option>
+                                            {% endif %}
+                                            {% for country in countries.all %}
+                                                <option value="{{ country.id }}" {% if address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <span class="fa fa-map-marker form-control-feedback text-muted" style="right: -12px;top: 30px;"></span>
+                                    </div>
+                                    <!-- end COUNTRY -->
+                                    <!-- PROVINCE -->
+                                    <div class="form-group has-feedback">
+                                        <label for="signupInputText1">{% trans 'Province/State' %}</label>
+                                        <select id="id_region" class="form-control input-lg" {% if not address.region %}disabled{% endif %}>
+                                            {% for province in provinces.all %}
+                                                <option value="{{ province.id }}" {% if province == address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
+                                            {% empty %}
+                                                <option value="" selected="selected">{% trans 'Please select a province/state' %}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <span class="fa fa-map-marker form-control-feedback text-muted" style="right: -12px;top: 30px;"></span>
+                                    </div>
+                                    <!-- end PROVINCE -->
+                                    <!-- CITY -->
+                                    <div class="form-group" id="id_locality_div">
+                                        <label for="id_locality">{% trans 'City' %}</label>
+                                        <input class="form-control input-lg" id="id_locality" maxlength="127" name="locality" placeholder="{% trans 'Enter the city.' %}" type="text" value="{{ address.locality }}">
+                                        <br>
+                                    </div>
+                                    <!-- end CITY -->
+                                    <!-- ALL OTHER FIELDS -->
+                                    {% for field in form %}
+                                        {% if field.id_for_label in accepted_fields %}
+                                            <div class="form-group" id="{{ field.id_for_label }}_div">
+                                                {{ field.label_tag }} {{ field }}
+                                                {{ field.errors }}<br/>
+                                                {% comment %}
+                                                <label class="col-sm-4 control-label">{{ field.label_tag }}</label>
+                                                <div class="col-sm-8">
+                                                    {{ field }}
+                                                    {{ field.errors }}<br/>
+                                                </div>
+                                                {% endcomment %}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {{ form.non_field_errors }}
+                                    <!-- end ALL OTHER FIELDS -->
+                                    <button id="id_location_btn"
+                                       onclick="ajax_location();"
+                                          type="button"
+                                         class="btn btn-info btn-lg">{% trans 'Update Address' %}</button>
+                                    <p>
+                                        <!-- <small class="text-muted">{% trans '* Your telephone and address are private, and can only be viewed by your host organization and advisors.' %}</small> -->
+                                    </p>
+                                </form>
+                                <!-- end PASSWORD -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end TAB -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- end PAGE HTML -->
 {% endblock content %}
