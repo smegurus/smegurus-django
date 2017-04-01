@@ -15,9 +15,9 @@ urlpatterns = (
     # Organization Views
     url(r'^settings/organization/profile$', org_views.profile_settings_profile_page, name='tenant_profile_setting_profile'),
     url(r'^settings/organization/address$', org_views.profile_settings_address_page, name='tenant_profile_setting_address'),
-    # Create here ...
-    # "settings/organization/program_tags"
-    # "settings/organization/client_tags"
-    # "settings/organization/perks"
-    # "settings/organization/affiliate_links"
+    url(r'^settings/organization/program_tags$', org_views.profile_settings_address_page, name='tenant_profile_setting_program_tags'),
+    url(r'^settings/organization/client_tags$', org_views.profile_settings_address_page, name='tenant_profile_setting_client_tags'),
+    url(r'^settings/organization/perks$', org_views.profile_settings_address_page, name='tenant_profile_setting_perks'),
+    url(r'^settings/organization/affiliate_links$', org_views.profile_settings_address_page, name='tenant_profile_setting_affiliate_links'),
+
 )
