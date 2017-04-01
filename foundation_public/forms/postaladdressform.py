@@ -28,39 +28,39 @@ class PublicPostalAddressForm(forms.ModelForm):
         }
         widgets = {
             'street_number': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the street number.')
             }),
             'street_name': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the street name.')
             }),
             'postal_code': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the postal code')
             }),
             'country': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'region': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'locality': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'suffix': Select(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
             }),
             'suite_number': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the suite number.')
             }),
             'address_line_2': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the address line 2.')
             }),
             'address_line_3': TextInput(attrs={
-                'class': u'form-control',
+                'class': u'form-control input-lg',
                 'placeholder': _('Enter the address line 3.')
             }),
         }
