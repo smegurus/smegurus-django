@@ -25,6 +25,12 @@
                                     <fieldset class="blue-lbl">
                                         <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
                                     </fieldset>
+                                    
+                                    <button id="id_location_btn"
+                                       onclick="ajax_location();"
+                                          type="button"
+                                         class="btn btn-info btn-lg">{% trans 'Update Client Tags' %}</button>
+                                         
                                 </form>
                             </div>
                         </div>
