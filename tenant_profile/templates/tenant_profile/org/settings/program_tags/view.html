@@ -1,0 +1,45 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress thumbnail %}
+{% block content %}
+<!-- PAGE JS -->
+    {% compress js inline %}
+        {% include 'tenant_profile/org/settings/program_tags/js.html' %}
+    {% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=3 %}
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content p0 b0">
+                    <!-- TAB -->
+                    <div id="tabSetting3" class="tab-pane active">
+                        <div class="panel b">
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Program tags' %}</div>
+                            <div class="panel-body">
+                                <p class="text-center pv">You can add, edit and remove program tags below:</p>
+                                <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+                                    <fieldset class="blue-lbl">
+                                        <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
+                                    </fieldset>
+                                    
+                                    <button id="id_location_btn"
+                                       onclick="ajax_location();"
+                                          type="button"
+                                         class="btn btn-info btn-lg">{% trans 'Update Program Tags' %}</button>
+                                         
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end TAB -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}
