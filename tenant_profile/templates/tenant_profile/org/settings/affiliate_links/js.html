@@ -1,0 +1,18 @@
+<!-- JS -->
+{% compress js inline %}
+<script>
+    $(document).ready(function () {
+        // Detect User clicking on one of the Radio buttons.
+        $("input[name=enable_affiliate_links]").click(function(){
+            // Get the option selected.
+            
+            if (this.checked) {
+                $('#id_input_1_url_div').show();
+            } else {
+                $('#id_input_1_url_div').hide();
+            }
+        }); // end RADIO CLICK DETECTION HANDLER
+    }); // end DOCUMENT START
+</script>
+{% endcompress %}
+<!-- end JS -->
