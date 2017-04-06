@@ -36,8 +36,15 @@
             message,
             function(json_result) {
                 enable_btn();
-                alert("{% trans 'Message sent.' %}");
-                window.location = "{% url 'tenant_reception_message_master' %}";
+                
+                $('#messageSent').modal('show');
+                window.setTimeout(function(){
+                    $('#messageSent').modal('hide');
+                }, 3000);
+                window.setTimeout(function(){
+                    window.location.href = "{% url 'tenant_reception_message_master' %}";
+                }, 6000);
+            
             },
             function(error_json_result) {
                 enable_btn();
