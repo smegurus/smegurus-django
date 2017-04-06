@@ -269,7 +269,11 @@
                 intake['has_signed_with_name'] = $('#id_has_signed_with_name').val();
 
                 //---------------- NAICS ----------------
-                intake['naics_depth_one'] = parseInt(naics_depth_one);
+                if (naics_depth_one > 0 && naics_depth_one != '----') {
+                    intake['naics_depth_one'] = parseInt(naics_depth_one);
+                } else {
+                    intake['naics_depth_one'] = '';
+                }
 
                 if (naics_depth_two > 0 && naics_depth_two != '----') {
                     intake['naics_depth_two'] = parseInt(naics_depth_two);
