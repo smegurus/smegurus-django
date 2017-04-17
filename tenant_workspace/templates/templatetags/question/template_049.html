@@ -510,6 +510,34 @@
     <div class="form-group">
         <div class="col-sm-12">
             <br />
+        
+            <div class="table-responsive">
+                   <table class="table table-striped table-bordered table-hover table-fq-ui">
+                      <thead>
+                         <tr style="border-top: 1px solid #eee;">
+                            <th>{% trans 'Year' %}</th>
+                            <th>{% trans 'Total' %}</th>
+                         </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                             <td>{% trans 'Year 1' %}</td>
+                             <td>{{ answer_picked.yr_1 }}</td>
+                          </tr>
+                          <tr>
+                             <td>{% trans 'Year 2' %}</td>
+                             <td>{{ answer_picked.yr_2 }}</td>
+                          </tr>
+                          <tr>
+                             <td>{% trans 'Year 3' %}</td>
+                             <td>{{ answer_picked.yr_3 }}</td>
+                          </tr>
+                      </tbody>
+                    </table>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <br />
             <br />
         <!-- OPTION YES -->
             <div class="col-sm-6 text-center">
