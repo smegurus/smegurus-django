@@ -177,8 +177,8 @@
         var total = 0;
 
         // MONTH 01
-        var m1r = parseFloat($(m1r_id).val());
-        var m1 = parseFloat($(m1_id).val());
+        var m1r = parseInt($(m1r_id).val());
+        var m1 = parseInt($(m1_id).val());
         if (isNaN(m1)) {
             total += m1r;
         } else {
@@ -186,8 +186,8 @@
         }
 
         // MONTH 02
-        var m2r = parseFloat($(m2r_id).val());
-        var m2 = parseFloat($(m2_id).val());
+        var m2r = parseInt($(m2r_id).val());
+        var m2 = parseInt($(m2_id).val());
         if (isNaN(m2)) {
             total += m2r;
         } else {
@@ -195,8 +195,8 @@
         }
 
         // MONTH 03
-        var m3r = parseFloat($(m3r_id).val());
-        var m3 = parseFloat($(m3_id).val());
+        var m3r = parseInt($(m3r_id).val());
+        var m3 = parseInt($(m3_id).val());
         if (isNaN(m3)) {
             total += m3r;
         } else {
@@ -204,8 +204,8 @@
         }
 
         // MONTH 04
-        var m4r = parseFloat($(m4r_id).val());
-        var m4 = parseFloat($(m4_id).val());
+        var m4r = parseInt($(m4r_id).val());
+        var m4 = parseInt($(m4_id).val());
         if (isNaN(m4)) {
             total += m4r;
         } else {
@@ -213,8 +213,8 @@
         }
 
         // MONTH 05
-        var m5r = parseFloat($(m5r_id).val());
-        var m5 = parseFloat($(m5_id).val());
+        var m5r = parseInt($(m5r_id).val());
+        var m5 = parseInt($(m5_id).val());
         if (isNaN(m5)) {
             total += m5r;
         } else {
@@ -222,8 +222,8 @@
         }
 
         // MONTH 06
-        var m6r = parseFloat($(m6r_id).val());
-        var m6 = parseFloat($(m6_id).val());
+        var m6r = parseInt($(m6r_id).val());
+        var m6 = parseInt($(m6_id).val());
         if (isNaN(m6)) {
             total += m6r;
         } else {
@@ -231,8 +231,8 @@
         }
 
         // MONTH 07
-        var m7r = parseFloat($(m7r_id).val());
-        var m7 = parseFloat($(m7_id).val());
+        var m7r = parseInt($(m7r_id).val());
+        var m7 = parseInt($(m7_id).val());
         if (isNaN(m4)) {
             total += m7r;
         } else {
@@ -240,8 +240,8 @@
         }
 
         // MONTH 08
-        var m8r = parseFloat($(m8r_id).val());
-        var m8 = parseFloat($(m8_id).val());
+        var m8r = parseInt($(m8r_id).val());
+        var m8 = parseInt($(m8_id).val());
         if (isNaN(m8)) {
             total += m8r;
         } else {
@@ -249,8 +249,8 @@
         }
 
         // MONTH 09
-        var m9r = parseFloat($(m9r_id).val());
-        var m9 = parseFloat($(m9_id).val());
+        var m9r = parseInt($(m9r_id).val());
+        var m9 = parseInt($(m9_id).val());
         if (isNaN(m9)) {
             total += m9r;
         } else {
@@ -258,8 +258,8 @@
         }
 
         // MONTH 10
-        var m10r = parseFloat($(m10r_id).val());
-        var m10 = parseFloat($(m10_id).val());
+        var m10r = parseInt($(m10r_id).val());
+        var m10 = parseInt($(m10_id).val());
         if (isNaN(m10)) {
             total += m10r;
         } else {
@@ -267,8 +267,8 @@
         }
 
         // MONTH 11
-        var m11r = parseFloat($(m11r_id).val());
-        var m11 = parseFloat($(m11_id).val());
+        var m11r = parseInt($(m11r_id).val());
+        var m11 = parseInt($(m11_id).val());
         if (isNaN(m11)) {
             total += m11r;
         } else {
@@ -276,8 +276,8 @@
         }
 
         // MONTH 12
-        var m12r = parseFloat($(m12r_id).val());
-        var m12 = parseFloat($(m12_id).val());
+        var m12r = parseInt($(m12r_id).val());
+        var m12 = parseInt($(m12_id).val());
         if (isNaN(m12)) {
             total += m12r;
         } else {
@@ -295,84 +295,84 @@
     function question_answer_protected_next(next_url) {
         // Fetch our inputs.
         //----------------------------------------
-        var m1 = parseFloat($('#id_m1').val());
-        var m2 = parseFloat($('#id_m2').val());
-        var m3 = parseFloat($('#id_m3').val());
-        var m4 = parseFloat($('#id_m4').val());
-        var m5 = parseFloat($('#id_m5').val());
-        var m6 = parseFloat($('#id_m6').val());
-        var m7 = parseFloat($('#id_m7').val());
-        var m8 = parseFloat($('#id_m8').val());
-        var m9 = parseFloat($('#id_m9').val());
-        var m10 = parseFloat($('#id_m10').val());
-        var m11 = parseFloat($('#id_m11').val());
-        var m12 = parseFloat($('#id_m12').val());
-        var m13 = parseFloat($('#id_m13').val());
-        var m14 = parseFloat($('#id_m14').val());
-        var m15 = parseFloat($('#id_m15').val());
-        var m16 = parseFloat($('#id_m16').val());
-        var m17 = parseFloat($('#id_m17').val());
-        var m18 = parseFloat($('#id_m18').val());
-        var m19 = parseFloat($('#id_m19').val());
-        var m20 = parseFloat($('#id_m20').val());
-        var m21 = parseFloat($('#id_m21').val());
-        var m22 = parseFloat($('#id_m22').val());
-        var m23 = parseFloat($('#id_m23').val());
-        var m24 = parseFloat($('#id_m24').val());
-        var m25 = parseFloat($('#id_m25').val());
-        var m26 = parseFloat($('#id_m26').val());
-        var m27 = parseFloat($('#id_m27').val());
-        var m28 = parseFloat($('#id_m28').val());
-        var m29 = parseFloat($('#id_m29').val());
-        var m30 = parseFloat($('#id_m30').val());
-        var m31 = parseFloat($('#id_m31').val());
-        var m32 = parseFloat($('#id_m32').val());
-        var m33 = parseFloat($('#id_m33').val());
-        var m34 = parseFloat($('#id_m34').val());
-        var m35 = parseFloat($('#id_m35').val());
-        var m36 = parseFloat($('#id_m36').val());
-        var yr1_total = parseFloat($('#id_yr1_total').val());
-        var yr2_total = parseFloat($('#id_yr2_total').val());
-        var yr3_total = parseFloat($('#id_yr3_total').val());
-        var m1_r = parseFloat($('#id_m1_r').val());
-        var m2_r = parseFloat($('#id_m2_r').val());
-        var m3_r = parseFloat($('#id_m3_r').val());
-        var m4_r = parseFloat($('#id_m4_r').val());
-        var m5_r = parseFloat($('#id_m5_r').val());
-        var m6_r = parseFloat($('#id_m6_r').val());
-        var m7_r = parseFloat($('#id_m7_r').val());
-        var m8_r = parseFloat($('#id_m8_r').val());
-        var m9_r = parseFloat($('#id_m9_r').val());
-        var m10_r = parseFloat($('#id_m10_r').val());
-        var m11_r = parseFloat($('#id_m11_r').val());
-        var m12_r = parseFloat($('#id_m12_r').val());
-        var m13_r = parseFloat($('#id_m13_r').val());
-        var m14_r = parseFloat($('#id_m14_r').val());
-        var m15_r = parseFloat($('#id_m15_r').val());
-        var m16_r = parseFloat($('#id_m16_r').val());
-        var m17_r = parseFloat($('#id_m17_r').val());
-        var m18_r = parseFloat($('#id_m18_r').val());
-        var m19_r = parseFloat($('#id_m19_r').val());
-        var m20_r = parseFloat($('#id_m20_r').val());
-        var m21_r = parseFloat($('#id_m21_r').val());
-        var m22_r = parseFloat($('#id_m22_r').val());
-        var m23_r = parseFloat($('#id_m23_r').val());
-        var m24_r = parseFloat($('#id_m24_r').val());
-        var m25_r = parseFloat($('#id_m25_r').val());
-        var m26_r = parseFloat($('#id_m26_r').val());
-        var m27_r = parseFloat($('#id_m27_r').val());
-        var m28_r = parseFloat($('#id_m28_r').val());
-        var m29_r = parseFloat($('#id_m29_r').val());
-        var m30_r = parseFloat($('#id_m30_r').val());
-        var m31_r = parseFloat($('#id_m31_r').val());
-        var m32_r = parseFloat($('#id_m32_r').val());
-        var m33_r = parseFloat($('#id_m33_r').val());
-        var m34_r = parseFloat($('#id_m34_r').val());
-        var m35_r = parseFloat($('#id_m35_r').val());
-        var m36_r = parseFloat($('#id_m36_r').val());
-        var yr1_total_r = parseFloat($('#id_yr1_total_r').val());
-        var yr2_total_r = parseFloat($('#id_yr2_total_r').val());
-        var yr3_total_r = parseFloat($('#id_yr3_total_r').val());
+        var m1 = parseInt($('#id_m1').val());
+        var m2 = parseInt($('#id_m2').val());
+        var m3 = parseInt($('#id_m3').val());
+        var m4 = parseInt($('#id_m4').val());
+        var m5 = parseInt($('#id_m5').val());
+        var m6 = parseInt($('#id_m6').val());
+        var m7 = parseInt($('#id_m7').val());
+        var m8 = parseInt($('#id_m8').val());
+        var m9 = parseInt($('#id_m9').val());
+        var m10 = parseInt($('#id_m10').val());
+        var m11 = parseInt($('#id_m11').val());
+        var m12 = parseInt($('#id_m12').val());
+        var m13 = parseInt($('#id_m13').val());
+        var m14 = parseInt($('#id_m14').val());
+        var m15 = parseInt($('#id_m15').val());
+        var m16 = parseInt($('#id_m16').val());
+        var m17 = parseInt($('#id_m17').val());
+        var m18 = parseInt($('#id_m18').val());
+        var m19 = parseInt($('#id_m19').val());
+        var m20 = parseInt($('#id_m20').val());
+        var m21 = parseInt($('#id_m21').val());
+        var m22 = parseInt($('#id_m22').val());
+        var m23 = parseInt($('#id_m23').val());
+        var m24 = parseInt($('#id_m24').val());
+        var m25 = parseInt($('#id_m25').val());
+        var m26 = parseInt($('#id_m26').val());
+        var m27 = parseInt($('#id_m27').val());
+        var m28 = parseInt($('#id_m28').val());
+        var m29 = parseInt($('#id_m29').val());
+        var m30 = parseInt($('#id_m30').val());
+        var m31 = parseInt($('#id_m31').val());
+        var m32 = parseInt($('#id_m32').val());
+        var m33 = parseInt($('#id_m33').val());
+        var m34 = parseInt($('#id_m34').val());
+        var m35 = parseInt($('#id_m35').val());
+        var m36 = parseInt($('#id_m36').val());
+        var yr1_total = parseInt($('#id_yr1_total').val());
+        var yr2_total = parseInt($('#id_yr2_total').val());
+        var yr3_total = parseInt($('#id_yr3_total').val());
+        var m1_r = parseInt($('#id_m1_r').val());
+        var m2_r = parseInt($('#id_m2_r').val());
+        var m3_r = parseInt($('#id_m3_r').val());
+        var m4_r = parseInt($('#id_m4_r').val());
+        var m5_r = parseInt($('#id_m5_r').val());
+        var m6_r = parseInt($('#id_m6_r').val());
+        var m7_r = parseInt($('#id_m7_r').val());
+        var m8_r = parseInt($('#id_m8_r').val());
+        var m9_r = parseInt($('#id_m9_r').val());
+        var m10_r = parseInt($('#id_m10_r').val());
+        var m11_r = parseInt($('#id_m11_r').val());
+        var m12_r = parseInt($('#id_m12_r').val());
+        var m13_r = parseInt($('#id_m13_r').val());
+        var m14_r = parseInt($('#id_m14_r').val());
+        var m15_r = parseInt($('#id_m15_r').val());
+        var m16_r = parseInt($('#id_m16_r').val());
+        var m17_r = parseInt($('#id_m17_r').val());
+        var m18_r = parseInt($('#id_m18_r').val());
+        var m19_r = parseInt($('#id_m19_r').val());
+        var m20_r = parseInt($('#id_m20_r').val());
+        var m21_r = parseInt($('#id_m21_r').val());
+        var m22_r = parseInt($('#id_m22_r').val());
+        var m23_r = parseInt($('#id_m23_r').val());
+        var m24_r = parseInt($('#id_m24_r').val());
+        var m25_r = parseInt($('#id_m25_r').val());
+        var m26_r = parseInt($('#id_m26_r').val());
+        var m27_r = parseInt($('#id_m27_r').val());
+        var m28_r = parseInt($('#id_m28_r').val());
+        var m29_r = parseInt($('#id_m29_r').val());
+        var m30_r = parseInt($('#id_m30_r').val());
+        var m31_r = parseInt($('#id_m31_r').val());
+        var m32_r = parseInt($('#id_m32_r').val());
+        var m33_r = parseInt($('#id_m33_r').val());
+        var m34_r = parseInt($('#id_m34_r').val());
+        var m35_r = parseInt($('#id_m35_r').val());
+        var m36_r = parseInt($('#id_m36_r').val());
+        var yr1_total_r = parseInt($('#id_yr1_total_r').val());
+        var yr2_total_r = parseInt($('#id_yr2_total_r').val());
+        var yr3_total_r = parseInt($('#id_yr3_total_r').val());
 
 
         // CREATE OUR UPDATE URL.
