@@ -743,7 +743,7 @@
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
-        <div class="col-sm-12">
+        <div class="col-sm-6 col-centered">
             <br />
         
             <div class="table-responsive">
@@ -757,15 +757,15 @@
                       <tbody>
                           <tr>
                              <td>{% trans 'Year 1' %}</td>
-                             <td><input id="id_yr1_total_rt" type="text" class="form-control input-custom input-lg" placeholder="-" value="{{ autogen.yr_1 }}" style="background: transparent;border: 0px;" readonly="true"></td>
+                             <td><input id="id_yr1_total_rt" type="text" class="form-control input-custom input-lg" placeholder="-" value="$ {{ autogen.yr_1 }}" style="background: transparent;border: 0px;" readonly="true"></td>
                           </tr>
                           <tr>
                              <td>{% trans 'Year 2' %}</td>
-                             <td><input id="id_yr2_total_rt" type="text" class="form-control input-custom input-lg" placeholder="-" value="{{ autogen.yr_2 }}" style="background: transparent;border: 0px;" readonly="true"></td>
+                             <td><input id="id_yr2_total_rt" type="text" class="form-control input-custom input-lg" placeholder="-" value="$ {{ autogen.yr_2 }}" style="background: transparent;border: 0px;" readonly="true"></td>
                           </tr>
                           <tr>
                              <td>{% trans 'Year 3' %}</td>
-                             <td><input id="id_yr3_total_rt" type="text" class="form-control input-custom input-lg" placeholder="-" value="{{ autogen.yr_3 }}" style="background: transparent;border: 0px;" readonly="true"></td>
+                             <td><input id="id_yr3_total_rt" type="text" class="form-control input-custom input-lg" placeholder="-" value="$ {{ autogen.yr_3 }}" style="background: transparent;border: 0px;" readonly="true"></td>
                           </tr>
                       </tbody>
                     </table>
@@ -774,7 +774,7 @@
         <div class="col-sm-12">
             
             <br />
-            <p style="color: #1b72e2;text-align: center;"><strong>Do you wish to view and modify the cashflow values?</strong></p>
+            <p style="color: #1b72e2;text-align: center;font-size:20px;"><strong>Do you wish to view and modify the cashflow values?</strong></p>
             <br />
         <!-- OPTION YES -->
             <div class="col-sm-6 text-center">
