@@ -82,29 +82,29 @@ def render_question_type_049(workspace, module, node, question, answer):
     total_yr2 = 0
     total_yr3 = 0
     for item in q1_picked:
-        total_yr1 += float(item['var_6'])
-        total_yr2 += float(item['var_7'])
-        total_yr3 += float(item['var_8'])
+        total_yr1 += int(item['var_6'])
+        total_yr2 += int(item['var_7'])
+        total_yr3 += int(item['var_8'])
     for item in q2_picked:
-        total_yr1 += float(item['var_6'])
-        total_yr2 += float(item['var_7'])
-        total_yr3 += float(item['var_8'])
+        total_yr1 += int(item['var_6'])
+        total_yr2 += int(item['var_7'])
+        total_yr3 += int(item['var_8'])
     for item in q3_picked:
-        total_yr1 += float(item['var_6'])
-        total_yr2 += float(item['var_7'])
-        total_yr3 += float(item['var_8'])
+        total_yr1 += int(item['var_6'])
+        total_yr2 += int(item['var_7'])
+        total_yr3 += int(item['var_8'])
     for item in q4_picked:
-        total_yr1 += float(item['var_7'])
-        total_yr2 += float(item['var_8'])
-        total_yr3 += float(item['var_9'])
+        total_yr1 += int(item['var_7'])
+        total_yr2 += int(item['var_8'])
+        total_yr3 += int(item['var_9'])
     for item in q5_picked:
-        total_yr1 += float(item['var_7'])
-        total_yr2 += float(item['var_8'])
-        total_yr3 += float(item['var_9'])
+        total_yr1 += int(item['var_7'])
+        total_yr2 += int(item['var_8'])
+        total_yr3 += int(item['var_9'])
     for item in q6_picked:
-        total_yr1 += float(item['var_7'])
-        total_yr2 += float(item['var_8'])
-        total_yr3 += float(item['var_9'])
+        total_yr1 += int(item['var_7'])
+        total_yr2 += int(item['var_8'])
+        total_yr3 += int(item['var_9'])
 
     autogen = {
         # --- YEAR 1 ---
