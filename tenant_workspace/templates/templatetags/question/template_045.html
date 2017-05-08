@@ -5,6 +5,82 @@
     $(document).ready(function () {
         $('#lowProfitModal').appendTo("body"); // BUGFIX: This code makes modals work.
 
+
+        $("#id_materials_yr1").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_materials_yr2").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_materials_yr3").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_labour_yr1").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_labour_yr2").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_labour_yr3").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_overhead_yr1").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_overhead_yr2").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_overhead_yr3").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_sales_per_unit_yr1").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_sales_per_unit_yr2").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        $("#id_sales_per_unit_yr3").keypress(function (e) {
+         //if the letter is not digit
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                   return false;
+            }
+        });
+        
+
+
         //------------------------//
         // MATERIALS TEXT CHANGE  //
         //------------------------//
@@ -375,13 +451,13 @@
                      <tr>
                         <td>{% trans 'Materials' %}</td>
                         <td>
-                            <input id="id_materials_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.materials_yr1 }}">
+                            <input id="id_materials_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.materials_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_materials_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.materials_yr2 }}">
+                            <input id="id_materials_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.materials_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_materials_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.materials_yr3 }}">
+                            <input id="id_materials_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.materials_yr3 }}">
                         </td>
                      </tr>
 
@@ -389,13 +465,13 @@
                      <tr>
                         <td>{% trans 'Labour' %}</td>
                         <td>
-                            <input id="id_labour_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.labour_yr1 }}">
+                            <input id="id_labour_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.labour_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_labour_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.labour_yr2 }}">
+                            <input id="id_labour_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.labour_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_labour_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.labour_yr3 }}">
+                            <input id="id_labour_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.labour_yr3 }}">
                         </td>
                      </tr>
 
@@ -403,13 +479,13 @@
                      <tr>
                         <td>{% trans 'Overhead' %}</td>
                         <td>
-                            <input id="id_overhead_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.overhead_yr1 }}">
+                            <input id="id_overhead_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.overhead_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_overhead_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.overhead_yr2 }}">
+                            <input id="id_overhead_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.overhead_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_overhead_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.overhead_yr3 }}">
+                            <input id="id_overhead_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.overhead_yr3 }}">
                         </td>
                      </tr>
 
@@ -417,13 +493,13 @@
                      <tr>
                         <td>{% trans 'TOTAL COGS' %}</td>
                         <td>
-                            <input id="id_total_cogs_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.total_cogs_yr1 }}" readonly=true>
+                            <input id="id_total_cogs_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.total_cogs_yr1 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_total_cogs_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.total_cogs_yr2 }}" readonly=true>
+                            <input id="id_total_cogs_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.total_cogs_yr2 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_total_cogs_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.total_cogs_yr3 }}" readonly=true>
+                            <input id="id_total_cogs_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.total_cogs_yr3 }}" readonly=true>
                         </td>
                      </tr>
 
@@ -431,13 +507,13 @@
                      <tr>
                         <td>{% trans 'Sales price per unit' %}</td>
                         <td>
-                            <input id="id_sales_per_unit_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.sales_per_unit_yr1 }}">
+                            <input id="id_sales_per_unit_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.sales_per_unit_yr1 }}">
                         </td>
                         <td>
-                            <input id="id_sales_per_unit_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.sales_per_unit_yr2 }}">
+                            <input id="id_sales_per_unit_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.sales_per_unit_yr2 }}">
                         </td>
                         <td>
-                            <input id="id_sales_per_unit_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.sales_per_unit_yr3 }}">
+                            <input id="id_sales_per_unit_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.sales_per_unit_yr3 }}">
                         </td>
                      </tr>
 
@@ -445,13 +521,13 @@
                      <tr>
                         <td>{% trans 'Gross Margin/Profit Margin (%)' %}</td>
                         <td>
-                            <input id="id_profit_percent_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.profit_percent_yr1 }}" readonly=true>
+                            <input id="id_profit_percent_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.profit_percent_yr1 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_percent_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.profit_percent_yr2 }}" readonly=true>
+                            <input id="id_profit_percent_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.profit_percent_yr2 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_percent_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.profit_percent_yr3 }}" readonly=true>
+                            <input id="id_profit_percent_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.profit_percent_yr3 }}" readonly=true>
                         </td>
                      </tr>
 
@@ -459,13 +535,13 @@
                      <tr>
                         <td>{% trans 'Gross Margin/Profit Margin ($)' %}</td>
                         <td>
-                            <input id="id_profit_amount_yr1" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr1 }}" readonly=true>
+                            <input id="id_profit_amount_yr1" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.profit_amount_yr1 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_amount_yr2" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr2 }}" readonly=true>
+                            <input id="id_profit_amount_yr2" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.profit_amount_yr2 }}" readonly=true>
                         </td>
                         <td>
-                            <input id="id_profit_amount_yr3" type="number" class="form-control" placeholder="-" value="{{ picked.profit_amount_yr3 }}" readonly=true>
+                            <input id="id_profit_amount_yr3" type="text" class="form-control input-lg" placeholder="-" value="{{ picked.profit_amount_yr3 }}" readonly=true>
                         </td>
                      </tr>
                   </tbody>
