@@ -32,7 +32,7 @@
     "fields": {
         "module": 9,
         "title": "",
-        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_9_8.png\" />",
+        "description": "<img class=\"slide-img\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_9_8.png\" />",
         "video_url": ""
     }
 }
