@@ -23,7 +23,7 @@
     "fields": {
         "module": 9,
         "title": "Start-Up Mistakes",
-        "description": "<p>As you get ready to launch, you are going to make mistakes. Why not learn from the best, and see if you can avoid the mistakes these entrepreneurs made.</p><p>Key Start-Up Mistakes to Avoid</p><p>http://paulgraham.com/startupmistakes.html</p><p>10 Start-up Mistakes that Kill Businesses</p><p>http://fundersandfounders.com/startup-mistakes/</p><p>Biggest Startup Mistakes and How to Avoid them</p><p>http://www.forbes.com/sites/tomtaulli/2014/08/13/biggest-startup-mistakes-and-how-to-avoid-them/#3afb49a12044</p>",
+        "description": "<p>As you get ready to launch, you are going to make mistakes. Why not learn from the best, and see if you can avoid the mistakes these entrepreneurs made.</p><p><a href=\"http://paulgraham.com/startupmistakes.html\" target=\"_blank\">Key Start-Up Mistakes to Avoid</a></p><p><a href=\"http://fundersandfounders.com/startup-mistakes/\" target=\"_blank\">10 Start-up Mistakes that Kill Businesses</a></p><p><a href=\"http://www.forbes.com/sites/tomtaulli/2014/08/13/biggest-startup-mistakes-and-how-to-avoid-them/#3afb49a12044\" target=\"_blank\">Biggest Startup Mistakes and How to Avoid them</a></p>",
         "video_url": ""
     }
 },{
@@ -32,7 +32,7 @@
     "fields": {
         "module": 9,
         "title": "",
-        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_9_8.png\" />",
+        "description": "<img class=\"slide-img\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_9_8.png\" />",
         "video_url": ""
     }
 }
