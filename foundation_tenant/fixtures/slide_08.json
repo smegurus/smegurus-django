@@ -59,7 +59,7 @@
     "fields": {
         "module": 8,
         "title": "",
-        "description": "<ul><li>Learning to Make Decisions - http://smallbusiness.chron.com/top-5-biggest-decisions-business-owners-make-10131.html</li><li>Build Your Management Team - https://www.entrepreneur.com/article/83618</li><li>How to Build an Executive Team - http://www.wikihow.com/Build-a-Management-Team</li></ul>",
+        "description": "<ul><li><a href=\"http://smallbusiness.chron.com/top-5-biggest-decisions-business-owners-make-10131.html\" target=\"_blank\">Learning to Make Decisions</a></li><li><a href=\"https://www.entrepreneur.com/article/83618\" target=\"_blank\">Build Your Management Team</a></li><li><a href=\"http://www.wikihow.com/Build-a-Management-Team\" target=\"_blank\">How to Build an Executive Team</a></li></ul>",
         "video_url": ""
     }
 },{
