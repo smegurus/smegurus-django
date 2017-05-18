@@ -14,7 +14,7 @@
     "fields": {
         "module": 8,
         "title": "",
-        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_8_1.jpeg\" />",
+        "description": "<img width=\"100%\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_8_1.jpeg\" />",
         "video_url": ""
     }
 },{
@@ -68,7 +68,7 @@
     "fields": {
         "module": 8,
         "title": "Congrats! You are Half Done. You are an Operations Master!",
-        "description": "<img height=\"1028px\" width=\"1028px\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_8_36.jpg\" />",
+        "description": "<img class=\"slide_img\" width=\"100%\" src=\"https://d3uimy9w7dnlxy.cloudfront.net/static/img/mod_8_36.jpg\" />",
         "video_url": ""
     }
 },{
@@ -77,7 +77,7 @@
     "fields": {
         "module": 8,
         "title": "Dealing with Stress",
-        "description": "<p>This far in, we know this is stressful. So take a break and learn how to manage your stress as an Entrepreneur</p><p>https://www.entrepreneur.com/article/282539</p><p>Stress Management tips for Entrepreneurs from BDC</p><p>https://www.bdc.ca/en/articles-tools/entrepreneurial-skills/be-effective-leader/pages/stress-management-tips-entrepreneurs.aspx</p><p>Stress and the Entrepreneur</p><p>https://www.entrepreneur.com/article/271055</p>",
+        "description": "<p><a href=\"https://www.entrepreneur.com/article/282539\" target=\"_blank\">This far in, we know this is stressful. So take a break and learn how to manage your stress as an Entrepreneur</a></p><p><a href=\"https://www.bdc.ca/en/articles-tools/entrepreneurial-skills/be-effective-leader/pages/stress-management-tips-entrepreneurs.aspx\" target=\"_blank\">Stress Management tips for Entrepreneurs from BDC</a></p><p><a href=\"https://www.entrepreneur.com/article/271055\" target=\"_blank\">Stress and the Entrepreneur</a></p>",
         "video_url": ""
     }
 },{
