@@ -22,36 +22,35 @@
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
-        <label class="col-sm-2 control-label"><!--{% trans 'Does this sound like you?' %}--></label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 col-centered">
             <!-- FILL IN -->
 
             <h1>Start-up Costs</h1>
-            <p>Assets Owned: ${{ picked.asset_y1_costs_total }}</p>
+            <p>Assets Owned: ${{ picked.asset_y1_costs_total|floatformat:"0" }}</p>
             <br>
 
             <h1>Cash Required</h1>
-            <p>Assets to Purchase: ${{ picked.equipment_y1_costs }}</p>
-            <p>Inventory: ${{ picked.startup_inventory_req }}</p>
-            <p>Salary: ${{ picked.ent_cash_startup_req }}</p>
+            <p>Assets to Purchase: ${{ picked.equipment_y1_costs|floatformat:"0" }}</p>
+            <p>Inventory: ${{ picked.startup_inventory_req|floatformat:"0" }}</p>
+            <p>Salary: ${{ picked.ent_cash_startup_req|floatformat:"0" }}</p>
             <br>
 
             <h1>Total Start-up Costs</h1>
-            <p>${{ picked.cash_required }}</p>
+            <p>${{ picked.cash_required|floatformat:"0" }}</p>
             <br>
 
             <h1>Funds Available</h1>
-            <p>Savings: ${{ picked.short_term_assets_y1 }}</p>
-            <p>Short Torm Liabilties: ${{ picked.short_term_liabilities_y1 }}</p>
-            <p>Long Torm Liabilties: ${{ picked.long_term_liabilities_y1 }}</p>
+            <p>Savings: ${{ picked.short_term_assets_y1|floatformat:"0" }}</p>
+            <p>Short Torm Liabilties: ${{ picked.short_term_liabilities_y1|floatformat:"0" }}</p>
+            <p>Long Torm Liabilties: ${{ picked.long_term_liabilities_y1|floatformat:"0" }}</p>
             <br>
 
             <h1>Total Funds Available</h1>
-            <p>${{ picked.funds_available }}</p>
+            <p>${{ picked.funds_available|floatformat:"0" }}</p>
             <br>
 
             <h1>Start-up Deficit/Surplus</h1>
-            <p>${{ picked.net_startup_deficit_surplus }}</p>
+            <p>${{ picked.net_startup_deficit_surplus|floatformat:"0" }}</p>
             <br>
         </div>
     </div>
