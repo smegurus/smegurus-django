@@ -22,7 +22,7 @@
         {{ node.order_num }}. {{ question.title|escape|safe }}
     </legend>
     <div class="form-group">
-        <div class="col-sm-12 col-centered">
+        <div class="col-sm-10 col-centered">
 
 
             <div class="table-responsive">
@@ -38,15 +38,15 @@
                    <tbody>
                       <tr>
                          <td>{% trans 'Total Contribution Margin (CM)' %}</td>
-                         <td>{{ picked.contribution_margin_unit.yr1 }}</td>
-                         <td>{{ picked.contribution_margin_unit.yr2 }}</td>
-                         <td>{{ picked.contribution_margin_unit.yr3 }}</td>
+                         <td>{{ picked.contribution_margin_unit.yr1|floatformat:2 }}</td>
+                         <td>{{ picked.contribution_margin_unit.yr2|floatformat:2 }}</td>
+                         <td>{{ picked.contribution_margin_unit.yr3|floatformat:2 }}</td>
                       </tr>
                       <tr>
                          <td>{% trans 'Total Breakeven in Units (BE)' %}</td>
-                         <td>{{ picked.break_even_units.yr1 }}</td>
-                         <td>{{ picked.break_even_units.yr2 }}</td>
-                         <td>{{ picked.break_even_units.yr3 }}</td>
+                         <td>{{ picked.break_even_units.yr1|floatformat:2 }}</td>
+                         <td>{{ picked.break_even_units.yr2|floatformat:2 }}</td>
+                         <td>{{ picked.break_even_units.yr3|floatformat:2 }}</td>
                       </tr>
                   </tbody>
               </table>
