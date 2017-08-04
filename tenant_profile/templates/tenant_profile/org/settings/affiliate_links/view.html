@@ -20,29 +20,20 @@
                         <div class="panel b">
                             <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Affiliate Links' %}</div>
                             <div class="panel-body bb">
-                                <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                                    <div class="form-group">
-                                        <div class="checkbox c-checkbox">
-                                            <label>
-                                                <input id="enable_affiliate_links" name="enable_affiliate_links" type="checkbox" value="" onchange="">
-                                                <span class="fa fa-check"></span> <strong>{% trans 'Enable Affiliate Links?' %}</strong>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <br />
+                                <p class="text-center">{% trans 'Please input your organization's affiliate links below.' %}</p>
+                                <form action="">
                                     
-                                    <!-- ROW 2 -->
-                                    <div class="form-group" id="id_input_1_url_div" style="display: none;">
-                                        <label class="control-label">{% trans '*Amazon Link' %}</label>
-                                        <input id="id_input_url" type="text" class="form-control input-lg" placeholder="{% trans 'Please specify url here...' %}" value="" />
-                                   
+                                    <!-- ROW 1 -->
+                                    <div class="form-group col-sm-7 col-centered" id="id_input_1_url_div">
+                                        <label class="control-label mt">{% trans 'Amazon' %}</label>
+                                        <input id="id_input_url" type="text" class="form-control input-lg mb" placeholder="{% trans 'Please specify url here...' %}" value="" />
                                     </div>
-                                    <!-- end ROW 2 -->
+                                    <!-- end ROW 1 -->
                                     
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"
                                           type="button"
-                                         class="btn btn-info btn-lg">{% trans 'Update Affiliate Links' %}</button>
+                                         class="btn btn-info btn-lg mt">{% trans 'Update Affiliate Links' %}</button>
                                 </form>
                             </div>
                         </div>
