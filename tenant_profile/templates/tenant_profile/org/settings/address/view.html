@@ -22,10 +22,28 @@
                             <div class="panel-body">
                                 <!-- ADDRESS -->
                                 <form action="">
+                                    <!-- Street Name and no. -->
+                                    <div class="col-md-7 col-centered">
+                                        <div class="form-group col-sm-4">
+                                            <label>{% trans 'Street No.' %}</label>
+                                            <input id="street_no" type="text" class="form-control input-lg">
+                                        </div>
+                                        <div class="form-group col-sm-8">
+                                            <label>{% trans 'Street Name' %}</label>
+                                            <input id="street_name" type="text" class="form-control input-lg">
+                                        </div>
+                                    </div>
+                                     <!-- end Street Name and no. -->
+                                    <!-- CITY -->
+                                    <div class="form-group col-md-7 col-centered" id="id_locality_div">
+                                        <label for="id_locality" class="mt">{% trans 'City' %}</label>
+                                        <input class="form-control input-lg mb" id="id_locality" maxlength="127" name="locality" placeholder="{% trans 'Enter the city.' %}" type="text" value="{{ address.locality }}">
+                                    </div>
+                                    <!-- end CITY -->
                                     <!-- COUNTRY -->
-                                    <div class="form-group has-feedback">
-                                        <label for="signupInputText1">{% trans 'Country' %}</label>
-                                        <select id="id_country" class="form-control input-lg">
+                                    <div class="form-group col-md-7 col-centered">
+                                        <label for="signupInputText1" class="mt">{% trans 'Country' %}</label>
+                                        <select id="id_country" class="form-control input-lg mb">
                                             {% if not address.country %}
                                                 <option value="">{% trans 'Please select your country' %}</option>
                                             {% endif %}
@@ -33,33 +51,27 @@
                                                 <option value="{{ country.id }}" {% if address.country == country %}selected="selected"{% endif %}>{{ country.name }}</option>
                                             {% endfor %}
                                         </select>
-                                        <span class="fa fa-map-marker form-control-feedback text-muted" style="right: -12px;top: 30px;"></span>
+                                        <span class="fa fa-map-marker form-control-feedback text-muted" style="right: 2px;top: 40px;"></span>
                                     </div>
                                     <!-- end COUNTRY -->
                                     <!-- PROVINCE -->
-                                    <div class="form-group has-feedback">
-                                        <label for="signupInputText1">{% trans 'Province/State' %}</label>
-                                        <select id="id_region" class="form-control input-lg" {% if not address.region %}disabled{% endif %}>
+                                    <div class="form-group col-md-7 col-centered">
+                                        <label for="signupInputText1" class="mt">{% trans 'Province/State' %}</label>
+                                        <select id="id_region" class="form-control input-lg mb" {% if not address.region %}disabled{% endif %}>
                                             {% for province in provinces.all %}
                                                 <option value="{{ province.id }}" {% if province == address.region %}selected="selected"{% endif %}>{{ province.name }}</option>
                                             {% empty %}
                                                 <option value="" selected="selected">{% trans 'Please select a province/state' %}</option>
                                             {% endfor %}
                                         </select>
-                                        <span class="fa fa-map-marker form-control-feedback text-muted" style="right: -12px;top: 30px;"></span>
+                                        <span class="fa fa-map-marker form-control-feedback text-muted" style="right: 2px;top: 40px;"></span>
                                     </div>
                                     <!-- end PROVINCE -->
-                                    <!-- CITY -->
-                                    <div class="form-group" id="id_locality_div">
-                                        <label for="id_locality">{% trans 'City' %}</label>
-                                        <input class="form-control input-lg" id="id_locality" maxlength="127" name="locality" placeholder="{% trans 'Enter the city.' %}" type="text" value="{{ address.locality }}">
-                                        <br>
-                                    </div>
-                                    <!-- end CITY -->
+                                    
                                     <!-- ALL OTHER FIELDS -->
                                     {% for field in form %}
                                         {% if field.id_for_label in accepted_fields %}
-                                            <div class="form-group" id="{{ field.id_for_label }}_div">
+                                            <div class="form-group col-md-7 col-centered" id="{{ field.id_for_label }}_div">
                                                 {{ field.label_tag }} {{ field }}
                                                 {{ field.errors }}<br/>
                                                 {% comment %}
