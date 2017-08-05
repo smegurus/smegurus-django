@@ -1,0 +1,52 @@
+{% extends 'foundation_tenant/base.html' %}
+{% load staticfiles i18n compress thumbnail %}
+{% block content %}
+<!-- PAGE JS -->
+    {% compress js inline %}
+        {% include 'tenant_profile/org/settings/preferences/js.html' %}
+    {% endcompress %}
+<!-- end PAGE JS -->
+<!-- PAGE HTML -->
+<div class="content-wrapper">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=3 %}
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content p0 b0">
+                    <!-- TAB -->
+                    <div id="tabSetting3" class="tab-pane active">
+                        <div class="panel b">
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Preferences' %}</div>
+                            <div class="panel-body">
+                                <form action="">
+                                    <div class="form-group col-sm-8">
+                                        <p class="b">{% trans 'Disable advisor check-ins?' %}</p>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <div class="checkbox c-checkbox">
+                                            <label>
+                                                <input id="disable_check" name="disable_check" type="checkbox" value="" onchange="">
+                                                <span class="fa fa-check"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+      
+                                    <button id="id_location_btn"
+                                       onclick="ajax_location();"
+                                          type="button"
+                                         class="btn btn-info btn-lg">{% trans 'Update Preferences' %}</button>
+                                         
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end TAB -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end PAGE HTML -->
+{% endblock content %}
