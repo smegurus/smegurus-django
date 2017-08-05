@@ -11,26 +11,38 @@
     <div class="container-md">
         <div class="row">
             <div class="col-md-3">
-                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=4 %}
+                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=5 %}
             </div>
             <div class="col-md-9">
                 <div class="tab-content p0 b0">
                     <!-- TAB -->
-                    <div id="tabSetting4" class="tab-pane active">
+                    <div id="tabSetting5" class="tab-pane active">
                         <div class="panel b">
-                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Client tags' %}</div>
+                            <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Client Tags' %}</div>
                             <div class="panel-body">
-                                <p class="text-center pv">You can add, edit and remove client tags below:</p>
-                                <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                                    <fieldset class="blue-lbl">
+                                <p class="pv">{% trans 'Here you can view and edit your client tags.' %}</p>
+                                <form action="">
+                                    <div class="form-group col-sm-6">
+                                        <label>{% trans 'Tag Name' %}</label>
+                                        <input id="tags" type="text" class="form-control input-lg" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>{% trans 'Edit' %}</label>
+                                        <button id="edit_tags" onclick="ajax_edit_tags();" type="button" class="btn btn-link" style="font-size: 24px;">
+                                            <em class="fa fa-pencil-square-o"></em>
+                                        </button>
+                                    </div>
+                                    
+                                    
+                                    
+                                    <!-- <fieldset class="blue-lbl">
                                         <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
-                                    </fieldset>
+                                    </fieldset> -->
                                     
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"
                                           type="button"
-                                         class="btn btn-info btn-lg">{% trans 'Update Client Tags' %}</button>
-                                         
+                                         class="btn btn-info btn-lg mt">{% trans 'Update Client Tags' %}</button>
                                 </form>
                             </div>
                         </div>
