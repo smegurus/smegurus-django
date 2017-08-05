@@ -11,17 +11,17 @@
     <div class="container-md">
         <div class="row">
             <div class="col-md-3">
-                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=5 %}
+                {% include 'tenant_profile/org/settings/sidebar_panel.html' with page_num=6 %}
             </div>
             <div class="col-md-9">
                 <div class="tab-content p0 b0">
                     <!-- TAB -->
-                    <div id="tabSetting5" class="tab-pane active">
+                    <div id="tabSetting6" class="tab-pane active">
                         <div class="panel b">
                             <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Perks' %}</div>
                             <div class="panel-body bb">
-                                <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                                    <div class="form-group">
+                                <form action="">
+                                    <div class="form-group col-md-7 col-centered">
                                         <div class="checkbox c-checkbox">
                                             <label>
                                                 <input id="enable_perks" name="enable_perks" type="checkbox" value="" onchange="">
@@ -29,11 +29,13 @@
                                             </label>
                                         </div>
                                     </div>
+                                    <br>
+                                    <br />
                                     
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"
                                           type="button"
-                                         class="btn btn-info btn-lg">{% trans 'Update Perks' %}</button>
+                                         class="btn btn-info btn-lg mt">{% trans 'Update Perks' %}</button>
                                 </form>
                             </div>
                         </div>
