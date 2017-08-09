@@ -22,7 +22,7 @@ from foundation_tenant.models.base.postaladdress import PostalAddress
 @tenant_profile_required
 @tenant_configuration_required
 def profile_settings_profile_page(request):
-    return render(request, 'tenant_profile/me/settings/profile/view.html',{
+    return render(request, 'tenant_profile/org/settings/profile/view.html',{
         'page': 'profile'
     })
 
@@ -33,18 +33,70 @@ def profile_settings_profile_page(request):
 @tenant_profile_required
 @tenant_configuration_required
 def profile_settings_address_page(request):
-    return render(request, 'tenant_profile/me/settings/address/view.html',{
+    return render(request, 'tenant_profile/org/settings/address/view.html',{
         'page': 'profile'
     })
 
 
+@login_required(login_url='/en/login')
+@tenant_required
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+def profile_settings_preferences_page(request):
+    return render(request, 'tenant_profile/org/settings/preferences/view.html',{
+        'page': 'profile'
+    })
+
 # program_tags_page
+@login_required(login_url='/en/login')
+@tenant_required
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+def profile_settings_program_tags_page(request):
+    return render(request, 'tenant_profile/org/settings/program_tags/view.html',{
+        'page': 'profile'
+    })
 
 
 # client_tags_page
+@login_required(login_url='/en/login')
+@tenant_required
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+def profile_settings_client_tags_page(request):
+    return render(request, 'tenant_profile/org/settings/client_tags/view.html',{
+        'page': 'profile'
+    })
 
 
 # perks_page
+@login_required(login_url='/en/login')
+@tenant_required
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+def profile_settings_perks_page(request):
+    return render(request, 'tenant_profile/org/settings/perks/view.html',{
+        'page': 'profile'
+    })
 
 
 # affiliate_links_page
+@login_required(login_url='/en/login')
+@tenant_required
+@tenant_intake_required
+@tenant_reception_required
+@tenant_profile_required
+@tenant_configuration_required
+def profile_settings_affiliate_links_page(request):
+    return render(request, 'tenant_profile/org/settings/affiliate_links/view.html',{
+        'page': 'profile'
+    })
+
