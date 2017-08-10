@@ -86,13 +86,15 @@
                                     {% endfor %}
                                     {{ form.non_field_errors }}
                                     <!-- end ALL OTHER FIELDS -->
+                                    
+                                    <div class="form-group col-sm-12" style="text-align: center;">
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"
                                           type="button"
-                                         class="btn btn-info btn-lg">{% trans 'Update Address' %}</button>
-                                    <p>
-                                        <!-- <small class="text-muted">{% trans '* Your telephone and address are private, and can only be viewed by your host organization and advisors.' %}</small> -->
-                                    </p>
+                                         class="btn btn-info btn-lg mt">{% trans 'Update Address' %}</button>
+                                    </div>
+                                   
+                                   
                                 </form>
                                 <!-- end PASSWORD -->
                             </div>
