@@ -27,22 +27,22 @@
                                         <input id="tags" type="text" class="form-control input-lg" disabled>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label>{% trans 'Edit' %}</label>
-                                        <button id="edit_tags" onclick="ajax_edit_tags();" type="button" class="btn btn-link" style="font-size: 24px;">
+                                        <label><!-- edit --></label>
+                                        <button id="edit_tags" onclick="ajax_edit_tags();" type="button" class="btn btn-link form-control input-lg" style="font-size: 24px; margin-top: 5px;">
                                             <em class="fa fa-pencil-square-o"></em>
                                         </button>
                                     </div>
                                     
-                                    
-                                    
                                     <!-- <fieldset class="blue-lbl">
                                         <input id="tags" value="{% for tag in tags %}{{ tag }}, {% endfor %}" />
                                     </fieldset> -->
-                                    
+                                    <div class="form-group col-sm-12" style="text-align: center;">
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"
                                           type="button"
                                          class="btn btn-info btn-lg mt">{% trans 'Update Client Tags' %}</button>
+                                    </div>
+                                    
                                 </form>
                             </div>
                         </div>
