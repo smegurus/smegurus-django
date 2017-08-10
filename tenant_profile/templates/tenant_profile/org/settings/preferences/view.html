@@ -21,10 +21,10 @@
                             <div class="panel-heading bg-gray-lighter text-bold">{% trans 'Preferences' %}</div>
                             <div class="panel-body">
                                 <form action="">
-                                    <div class="form-group col-sm-8">
-                                        <p class="b">{% trans 'Disable advisor check-ins?' %}</p>
+                                    <div class="form-group col-sm-6">
+                                        <p class="mt">{% trans 'Disable advisor check-ins?' %}</p>
                                     </div>
-                                    <div class="form-group col-sm-4">
+                                    <div class="form-group col-sm-6">
                                         <div class="checkbox c-checkbox">
                                             <label>
                                                 <input id="disable_check" name="disable_check" type="checkbox" value="" onchange="">
@@ -32,12 +32,13 @@
                                             </label>
                                         </div>
                                     </div>
-      
+                                    
+                                    <div class="form-group col-sm-12">
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"
                                           type="button"
-                                         class="btn btn-info btn-lg">{% trans 'Update Preferences' %}</button>
-                                         
+                                         class="btn btn-info btn-lg mt">{% trans 'Update Preferences' %}</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
