@@ -19,6 +19,6 @@ urlpatterns = (
     url(r'^settings/organization/program_tags$', org_views.profile_settings_program_tags_page, name='tenant_profile_setting_organization_program_tags'),
     url(r'^settings/organization/client_tags$', org_views.profile_settings_client_tags_page, name='tenant_profile_setting_organization_client_tags'),
     url(r'^settings/organization/perks$', org_views.profile_settings_perks_page, name='tenant_profile_setting_organization_perks'),
-    url(r'^settings/organization/affiliate_links$', org_views.profile_settings_affiliate_links_page, name='tenant_profile_setting_organization_affiliate_links'),
+    url(r'^settings/organization/affiliate_links$', org_views.profile_settings_affiliate_links_page, name='tenant_profile_setting_organization_affiliate_links')
 
 )
