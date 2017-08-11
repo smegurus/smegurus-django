@@ -118,9 +118,9 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   ```bash
   python manage.py makemigrations;
   python manage.py migrate;
-  python manage.py migrate_schemas
-  python manage.py populate_public
-  python manage.py setup_fixtures
+  python manage.py migrate_schemas;
+  python manage.py populate_public;
+  python manage.py setup_fixtures;
   ```
 
 12. Setup your **root** user.
