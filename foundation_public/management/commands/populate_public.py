@@ -46,29 +46,8 @@ class Command(BaseCommand):
             self.style.SUCCESS(_('Successfully setup public database.'))
         )
 
-        # # First tenant.
-        # tenant = PublicOrganization(
-        #     schema_name='demo',
-        #     name='SMEGurus Demo',
-        #     paid_until='2016-12-05',
-        #     on_trial=True,
-        #     has_perks=False,
-        #     has_mentors=False,
-        #     how_many_served=1,
-        # )
-        # try:
-        #     print("Creating Tenant")
-        #     tenant.save() # migrate_schemas automatically called, your tenant is ready to be used!
-        # except Exception as e:
-        #     print(e)
-        #
-        # # Add one or more domains for the tenant
-        # domain = PublicDomain()
-        # domain.domain = 'demo.'+env_var('SMEGURUS_APP_HTTP_DOMAIN') # don't add your port or www here!
-        # domain.tenant = tenant
-        # domain.is_primary = True
-        # try:
-        #     print("Creating Tenant Domain")
-        #     domain.save()
-        # except Exception as e:
-        #     print(e)
+        # First call; current site fetched from database.
+        from django.contrib.sites.models import Site # https://docs.djangoproject.com/en/dev/ref/contrib/sites/#caching-the-current-site-object
+        current_site = Site.objects.get_current()
+        current_site.domain = env_var('SMEGURUS_APP_HTTP_DOMAIN')
+        current_site.save()       
