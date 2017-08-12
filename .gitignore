@@ -109,6 +109,11 @@ coverage_html/*
 docs/_build/
 
 #—————————————————————————————
+# Misc Applications.
+#—————————————————————————————
+.gitkeep
+
+#—————————————————————————————
 # Python VirtualEnv Directory
 #—————————————————————————————
 # Important Note: Make sure this is the name of the virtualenv directory

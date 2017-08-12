@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string    # HTML to TXT
 from django.core.mail import EmailMultiAlternatives    # EMAILER
+from django.core.management import call_command
 from django.db import transaction
 from rest_framework import viewsets
 from rest_framework import filters
@@ -153,17 +154,54 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                 # Process asynchyonously.
                 from api.tasks import begin_sending_pending_document_review_email_task
+                from api.tasks import begin_send_accepted_document_review_notification_task
 
                 # Iterate through all the documents inside this Module belonging
                 # to the authenticated User and process the Document.
                 for document in documents.all():
-                    document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-                    document.save()
 
-                    begin_sending_pending_document_review_email_task.delay(
-                        request.tenant.schema_name,
-                        document.id
-                    )
+                    # DEVELOPERS NOTE:
+                    # - If the administrator wants automatic approval of document
+                    #   reviews and no longer have advisors review the document then
+                    #   the following code will be run.
+                    # - Else document needs to be approved by the advisor.
+                    if request.tenant.has_staff_checkin_required:
+
+                        print("AUTO-ACCEPT")
+
+                        # Change document type.
+                        document.status = constants.DOCUMENT_READY_STATUS
+
+                        # Add simple comment.
+                        document.doc = "Automatically approved."
+
+                        # Save the document.
+                        document.save()
+
+                        # Send acceptance email.
+                        begin_send_accepted_document_review_notification_task.delay(
+                            request.tenant.schema_name,
+                            document.pk
+                        )
+
+                        # Update all the workspaces.
+                        max_stage_num = module.stage_num + 1  # Set to the next stage level.
+                        document.workspace.stage_num = max_stage_num
+                        document.workspace.save()
+                        for me in document.workspace.mes.all():
+                            if me.stage_num < max_stage_num:
+                                me.stage_num = max_stage_num
+                                me.save()
+
+                    else:
+
+                        document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
+                        document.save()
+
+                        begin_sending_pending_document_review_email_task.delay(
+                            request.tenant.schema_name,
+                            document.id
+                        )
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:

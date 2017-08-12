@@ -375,6 +375,18 @@ class PublicOrganization(TenantMixin, AbstractPublicThing):
         unique=True,
         blank=True
     )
+    has_staff_checkin_required = models.BooleanField(
+        _("Has staff check-ins required"),
+        blank=True,
+        default=True,
+        help_text=_('Variable controls whether advisor checks are required for moving forward with bizumla creation.')
+    )
+    amazon_affiliate_link_url = models.URLField(
+        _("Amazon Affiliate Link URL"),
+        blank=True,
+        default=''
+    )
+
 
     def __str__(self):
         return str(self.legal_name)
