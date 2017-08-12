@@ -80,6 +80,9 @@
         var hostName = document.domain;
         var domain = hostName;
 
+        console.log(hostName);
+        console.log(domain);
+
         if (hostName != null) {
             var parts = hostName.split('.').reverse();
 
@@ -92,7 +95,9 @@
             }
         }
 
-        return location.protocol + "//" + domain + append_url;
+        url = location.protocol + "//" + domain + append_url;
+        console.log(url);
+        return url;
     }
 
     function convert_to_slug(Text) {
