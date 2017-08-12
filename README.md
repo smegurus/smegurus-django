@@ -121,6 +121,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   python manage.py migrate_schemas;
   python manage.py populate_public;
   python manage.py setup_fixtures;
+  python manage.py populate_site;
   ```
 
 12. Setup your **root** user.
