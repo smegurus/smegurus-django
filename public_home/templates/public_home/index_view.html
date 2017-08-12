@@ -45,6 +45,13 @@
             </style>
          <![endif]-->
 
+        <link type="text/plain" rel="author" href="{% static 'txt/humans.txt' %}" />
+        {% if request.SMEGURUS_APP_RESTRICT_SEARCH_CRAWLERS %}
+            <meta name="robots" content="noindex" />
+        {% else %}
+            <meta name="robots" content="index" />
+        {% endif %}
+
 	</head>
 	<body>
 
