@@ -1,5 +1,43 @@
 <script>
-function ajax_location() {
-    alert("TEST");
+/**
+ * Function will enables "has_staff_checkin_required" option.
+ */
+function enable_staff_checkin() {
+    enable_set_has_staff_checkin_required(
+        {{ request.tenant.pk }},
+        function(result) {
+            location.reload(true);
+        },
+        function(error_json) {
+            alert(error_json);
+        }
+    );
 }
+
+/**
+ * Function will disable "has_staff_checkin_required" option.
+ */
+function disable_staff_checkin() {
+    disable_set_has_staff_checkin_required(
+        {{ request.tenant.pk }},
+        function(result) {
+            location.reload(true);
+        },
+        function(error_json) {
+            alert(error_json);
+        }
+    );
+}
+
+/**
+ * Either enable or disable "Disable advisor check-ins?" preference.
+ */
+function ajax_location() {
+    {% if not request.tenant.has_staff_checkin_required %}
+        enable_staff_checkin();
+    {% else %}
+        disable_staff_checkin();
+    {% endif %}
+}
+
 </script>

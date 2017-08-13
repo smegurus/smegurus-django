@@ -27,12 +27,12 @@
                                     <div class="form-group col-sm-6">
                                         <div class="checkbox c-checkbox">
                                             <label>
-                                                <input id="disable_check" name="disable_check" type="checkbox" value="" onchange="">
+                                                <input id="id_disable_check" name="disable_check" type="checkbox" value="" onchange="" {% if not request.tenant.has_staff_checkin_required %}checked{% endif %}>
                                                 <span class="fa fa-check"></span>
                                             </label>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group col-sm-12">
                                     <button id="id_location_btn"
                                        onclick="ajax_location();"

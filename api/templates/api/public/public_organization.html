@@ -86,4 +86,77 @@
             }
         });
     }
+
+    function enable_set_has_staff_checkin_required(id, func_callback, func_error_callback) {
+        var url = get_base_domain_url("/api/publicorganization/" + id + "/enable_set_has_staff_checkin_required/?format=json");
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            processData: false,
+            type: 'POST',
+            async: false,
+            success: function(json_results){
+                func_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                func_error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    function disable_set_has_staff_checkin_required(id, func_callback, func_error_callback) {
+        var url = get_base_domain_url("/api/publicorganization/" + id + "/disable_set_has_staff_checkin_required/?format=json");
+        jQuery.ajax({
+            url: url,
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            cache: false,
+            processData: false,
+            type: 'POST',
+            async: false,
+            success: function(json_results){
+                func_callback(json_results);
+            },
+            error: function(xhr,status,error) {
+                console.debug(status + ': ' + error + ' -- ' + xhr.responseText);
+                func_error_callback(xhr.responseText);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
+
+    /*
+     *  Function will allow the User to unlock his account.
+     */
+    function unlock_tenant_me(id, password, success_callback, error_callback) {
+        var me = { 'password': password };
+        jQuery.ajax({
+            url: "/api/tenantme/" + id + "/unlock_me/?format=json",
+            headers: {
+                Authorization: 'Token ' + '{{ request.token }}'
+            },
+            data: me,
+            type: "PUT",
+            traditional: true, // Note: This allows many-to-many arrays for Django REST Framework
+            success: function(json_result){
+                success_callback(json_result); // Call back the function with the JSON results.
+            },
+            error: function(error_json_result) {
+                error_callback(error_json_result);
+            },
+            complete: function(xhr,status) {
+                // Do nothing.
+            }
+        });
+    }
 </script>
