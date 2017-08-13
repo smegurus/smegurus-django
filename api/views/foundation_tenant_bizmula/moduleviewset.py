@@ -167,7 +167,15 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                     # - Else document needs to be approved by the advisor.
                     if request.tenant.has_staff_checkin_required:
 
-                        print("AUTO-ACCEPT")
+                        document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
+                        document.save()
+
+                        begin_sending_pending_document_review_email_task.delay(
+                            request.tenant.schema_name,
+                            document.id
+                        )
+
+                    else:
 
                         # Change document type.
                         document.status = constants.DOCUMENT_READY_STATUS
@@ -193,15 +201,6 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                                 me.stage_num = max_stage_num
                                 me.save()
 
-                    else:
-
-                        document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
-                        document.save()
-
-                        begin_sending_pending_document_review_email_task.delay(
-                            request.tenant.schema_name,
-                            document.id
-                        )
 
             return response.Response(status=status.HTTP_200_OK)  # Return the success indicator.
         except Exception as e:
