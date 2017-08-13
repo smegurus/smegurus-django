@@ -88,7 +88,7 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   CREATE EXTENSION postgis;
   ```
 
-  **Linux / FreeBSD**
+  **Linux**
 
   ```sql
   sudo -i -u postgres
@@ -97,6 +97,21 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
   DROP DATABASE smegurus_db;
   CREATE DATABASE smegurus_db;
   \c smegurus_db;
+  CREATE USER django WITH PASSWORD '123password';
+  GRANT ALL PRIVILEGES ON DATABASE smegurus_db to django;
+  ALTER USER django CREATEDB;
+  -- ALTER ROLE django SUPERUSER;
+  CREATE EXTENSION postgis;
+  ```
+
+  **FreeBSD**
+
+  ```sql
+  su postgres
+  /usr/local/bin/dropdb smegurus_db;
+  /usr/local/bin/createdb smegurus_db;
+
+  /usr/local/bin/psql smegurus_db;
   CREATE USER django WITH PASSWORD '123password';
   GRANT ALL PRIVILEGES ON DATABASE smegurus_db to django;
   ALTER USER django CREATEDB;
