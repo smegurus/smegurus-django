@@ -74,6 +74,9 @@
     </div>
     <!-- end CONTENT -->
 
+    {% if request.tenant.has_staff_checkin_required %}
+    <!-- This block of code gets loaded if the organization does not allows automatic approvals. -->
+
     <div class="modal fade" id="submitmodal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -84,7 +87,7 @@
             <h4 class="modal-title" id="helpModalLabel">{% trans 'Submitted' %}</h4>
           </div>
           <div class="modal-body">
-              <p>You have submitted your work! Please wait for your advisor to review it.</p>
+              <p>{% trans 'You have submitted your work! Please wait for your advisor to review it. ' %}</p>
           </div>
           <div class="modal-footer">
             <!-- BACK BUTTON -->
@@ -94,6 +97,32 @@
         </div>
       </div>
     </div>
+
+    {% else %}
+    <!-- This block of code gets loaded if the organization allows automatic approvals. -->
+
+    <div class="modal fade" id="submitmodal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="helpModalLabel">{% trans 'Submitted' %}</h4>
+          </div>
+          <div class="modal-body">
+              <p>{% trans 'You have submitted your work! Your profile will now be upgraded to an entrepreneur. Please log out and log back in for the upgrade to take effect.' %}</p>
+          </div>
+          <div class="modal-footer">
+            <!-- BACK BUTTON -->
+            <button type="button" class="btn btn-lg btn-next" onclick="after_submit_redirect();" data-dismiss="modal">{% trans 'OK' %}</button>
+            <!-- end BACK BUTTON -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
 
 </div>
 <!-- end PAGE CONTENT -->
