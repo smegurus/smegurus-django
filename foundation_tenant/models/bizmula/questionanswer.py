@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.bizmula.workspace import Workspace
 from foundation_tenant.models.bizmula.document import Document
 from foundation_tenant.models.bizmula.question import Question
@@ -13,7 +14,7 @@ class QuestionAnswerManager(models.Manager):
             item.delete()
 
 
-class QuestionAnswer(models.Model):
+class QuestionAnswer(AbstractBigPk):
     """
     The supported document types that our system can support.
     """

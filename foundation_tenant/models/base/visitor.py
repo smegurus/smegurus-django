@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.me import Me
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 
 
 class VisitorManager(models.Manager):
@@ -11,7 +12,7 @@ class VisitorManager(models.Manager):
             item.delete()
 
 
-class Visitor(models.Model):
+class Visitor(AbstractBigPk):
     """The model used to store what URL location was visted and from what User/IP."""
     class Meta:
         app_label = 'foundation_tenant'

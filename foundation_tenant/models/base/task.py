@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from foundation_tenant.models.base.abstract_thing import AbstractThing
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.tag import Tag
 from foundation_tenant.models.base.me import Me
@@ -19,7 +20,7 @@ class TaskManager(models.Manager):
             item.delete()
 
 
-class Task(AbstractThing):
+class Task(AbstractThing, AbstractBigPk):
     """
     This is a unified class model which will handle various task types in our
     system, including: basic, calendar, docgen, learning, webform, upload

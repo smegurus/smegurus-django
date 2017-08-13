@@ -2,9 +2,10 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 
 
-class PublicImageUpload(models.Model):
+class PublicImageUpload(AbstractPublicBigPk):
     """
     An image upload file restricted to public tenant.
 

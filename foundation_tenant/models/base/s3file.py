@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.utils import generate_hash
 from foundation_tenant.utils import int_or_none
 from foundation_tenant.utils import django_sign
@@ -43,7 +44,7 @@ class S3FileManager(models.Manager):
             return None
 
 
-class S3File(models.Model):
+class S3File(AbstractBigPk):
     """
     A uploaded file saved as a S3 object inside a remote S3 server.
     """

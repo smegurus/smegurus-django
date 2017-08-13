@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 
 
 class ImageUploadManager(models.Manager):
@@ -11,7 +12,7 @@ class ImageUploadManager(models.Manager):
             item.delete()
 
 
-class ImageUpload(models.Model):
+class ImageUpload(AbstractBigPk):
     """
     An image upload file restricted to specific tenants only.
 

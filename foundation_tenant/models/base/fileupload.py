@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from smegurus.settings import env_var
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
+
 
 class FileUploadManager(models.Manager):
     def delete_all(self):
@@ -11,7 +13,7 @@ class FileUploadManager(models.Manager):
             item.delete()
 
 
-class FileUpload(models.Model):
+class FileUpload(AbstractBigPk):
     """A file uploaded object restricted to specific tenants only."""
     class Meta:
         app_label = 'foundation_tenant'

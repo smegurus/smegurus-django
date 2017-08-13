@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 from foundation_public.models.abstract_thing import AbstractPublicThing
 
 
-class PublicGeoCoordinate(AbstractPublicThing):
+class PublicGeoCoordinate(AbstractPublicBigPk, AbstractPublicThing):
     """
     The geographic coordinates of a place or event.
 

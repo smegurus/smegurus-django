@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.governmentbenefitoption import GovernmentBenefitOption
 from foundation_tenant.models.base.identifyoption import IdentifyOption
 from foundation_tenant.models.base.tag import Tag
@@ -66,7 +67,7 @@ class IntakeManager(models.Manager):
             item.delete()
 
 
-class Intake(models.Model):
+class Intake(AbstractBigPk):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_intakes'

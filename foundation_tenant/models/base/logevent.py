@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.me import Me
 
 
@@ -10,7 +11,7 @@ class LogEventManager(models.Manager):
             item.delete()
 
 
-class LogEvent(models.Model):
+class LogEvent(AbstractBigPk):
     """
     Model is to be used by our system to create log entries about various
     events. This model cannot be accessed by the API.

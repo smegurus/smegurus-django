@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_tenant.models.base.me import Me
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 from foundation_tenant.models.base.tag import Tag
 from smegurus import constants
@@ -14,7 +15,7 @@ class CalendarEventManager(models.Manager):
             item.delete()
 
 
-class CalendarEvent(AbstractThing):
+class CalendarEvent(AbstractBigPk, AbstractThing):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_calendar_events'

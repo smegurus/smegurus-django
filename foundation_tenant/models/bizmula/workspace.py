@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.countryoption import CountryOption
 from foundation_tenant.models.base.provinceoption import ProvinceOption
 from foundation_tenant.models.base.me import Me
@@ -14,7 +15,7 @@ class WorkspaceManager(models.Manager):
             item.delete()
 
 
-class Workspace(models.Model):
+class Workspace(AbstractBigPk):
     class Meta:
         app_label = 'foundation_tenant'
         db_table = 'smeg_workspaces'

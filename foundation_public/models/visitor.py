@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from foundation_public import constants
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 
 
 class PublicVisitorManager(models.Manager):
@@ -11,7 +12,7 @@ class PublicVisitorManager(models.Manager):
             item.delete()
 
 
-class PublicVisitor(models.Model):
+class PublicVisitor(AbstractPublicBigPk):
     """The model used to store what URL location was visted and from what a IP."""
     class Meta:
         app_label = 'foundation_public'

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.abstract_thing import AbstractThing
 
 
@@ -10,7 +11,7 @@ class GeoCoordinateManager(models.Manager):
             item.delete()
 
 
-class GeoCoordinate(AbstractThing):
+class GeoCoordinate(AbstractThing, AbstractBigPk):
     """
     The geographic coordinates of a place or event.
 

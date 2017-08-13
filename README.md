@@ -116,11 +116,11 @@ A cloud-based application used to help entrepreneurs throughout the lifecycle of
 11. Setup the database.
 
   ```bash
-  python manage.py makemigrations;
-  python manage.py migrate;
-  python manage.py migrate_schemas;
-  python manage.py populate_public;
-  python manage.py setup_fixtures;
+  python manage.py makemigrations; \
+  python manage.py migrate; \
+  python manage.py migrate_schemas; \
+  python manage.py populate_public; \
+  python manage.py setup_fixtures; \
   python manage.py populate_site;
   ```
 

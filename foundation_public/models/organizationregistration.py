@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_tenants.models import TenantMixin, DomainMixin
 from smegurus import constants
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 from foundation_public.models.abstract_thing import AbstractPublicThing
 from foundation_public.models.imageupload import PublicImageUpload
 from foundation_public.models.brand import PublicBrand
@@ -15,7 +16,7 @@ from foundation_public.models.postaladdress import PublicPostalAddress
 from foundation_public.models.place import PublicPlace
 
 
-class PublicOrganizationRegistration(AbstractPublicThing):
+class PublicOrganizationRegistration(AbstractPublicBigPk, AbstractPublicThing):
     class Meta:
         app_label = 'foundation_public'
         db_table = 'smeg_organization_registration'

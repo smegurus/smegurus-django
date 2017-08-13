@@ -2,9 +2,10 @@ import os
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 
 
-class PublicFileUpload(models.Model):
+class PublicFileUpload(AbstractPublicBigPk):
     """A file uploaded object restricted to public tenant."""
     class Meta:
         app_label = 'foundation_public'

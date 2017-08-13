@@ -1,6 +1,7 @@
 #------------
 #    BASE
 #------------
+from foundation_tenant.models.base.abstract_bigpk import AbstractBigPk
 from foundation_tenant.models.base.fileupload import FileUpload
 from foundation_tenant.models.base.imageupload import ImageUpload
 from foundation_tenant.models.base.s3file import S3File

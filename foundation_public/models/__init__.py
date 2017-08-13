@@ -1,4 +1,5 @@
 from foundation_public.models import user
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 from foundation_public.models.banned import BannedDomain
 from foundation_public.models.banned import BannedIP
 from foundation_public.models.banned import BannedWord

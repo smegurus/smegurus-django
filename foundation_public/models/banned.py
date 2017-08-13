@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from foundation_public.models.abstract_bigpk import AbstractPublicBigPk
 
 
-class BannedDomain(models.Model):
+class BannedDomain(AbstractPublicBigPk):
     name = models.CharField(max_length=63, db_index=True, unique=True)
     banned_on = models.DateField(auto_now_add=True, null=True)
     reason = models.CharField(max_length=127, blank=True, null=True)
@@ -29,7 +30,7 @@ class AlphabeticallySortedBannedDomain(BannedDomain):
         verbose_name_plural = _('Alphabetically Sorted Banned Domains')
 
 
-class BannedIP(models.Model):
+class BannedIP(AbstractPublicBigPk):
     address = models.GenericIPAddressField(db_index=True, unique=True)
     banned_on = models.DateField(auto_now_add=True, null=True)
     reason = models.CharField(max_length=127, blank=True, null=True)
@@ -60,7 +61,7 @@ class SortedBannedIPByLatestCreationDate(BannedIP):
         verbose_name_plural = _('Sorted Banned IPs By Latest Creation Date')
 
 
-class BannedWord(models.Model):
+class BannedWord(AbstractPublicBigPk):
     text = models.CharField(max_length=63, db_index=True, unique=True)
     banned_on = models.DateField(auto_now_add=True, null=True)
     reason = models.CharField(max_length=127, blank=True, null=True)
