@@ -180,11 +180,13 @@
       </div>
       <div class="modal-footer">
         <!-- BACK BUTTON -->
-        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        <div class="pull-left">
+            <button type="button" class="btn btn-back btn-lg" data-dismiss="modal">{% trans 'Cancel' %}</button>
+        </div>
         <!-- end BACK BUTTON -->
         <!-- SUBMIT BUTTON -->
         <div class="pull-right">
-            <button id="id_submit_btn" type="button" class="btn btn-sm btn-default" onclick="ajax_create_workspace();">{% trans 'Submit' %}</button>
+            <button id="id_submit_btn" type="button" class="btn btn-next btn-lg" onclick="ajax_create_workspace();">{% trans 'Submit' %}</button>
         </div>
         <!-- end SUBMIT BUTTON -->
       </div>
