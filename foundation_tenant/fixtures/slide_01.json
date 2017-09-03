@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "module": 1,
-        "title": "This is slide #1 title.",
+        "title": "",
         "description": "This is slide #1 description.",
         "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_01.mp4"
     }
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
         "module": 1,
-        "title": "This is slide #2 title.",
+        "title": "",
         "description": "This is slide #2 description.",
         "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_02.mp4"
     }
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
         "module": 1,
-        "title": "This is final slide #3 title.",
+        "title": "",
         "description": "You have finished!.",
         "video_url": "https://d3uimy9w7dnlxy.cloudfront.net/static/mov/mod_03.mp4"
     }
