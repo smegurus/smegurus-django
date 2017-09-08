@@ -10,15 +10,17 @@
                     <div class="form-group" id="id_has_business_idea_div">
                         <div class="col-sm-6 text-center col-centered">
                             <div class="checkbox c-checkbox">
-                            <input value="{{ identity.id }}"
-                            {% if intake.has_business_idea %}
-                                 checked="checked"
-                            {% endif %}
-                                   class="source"
-                                      id="id_has_business_idea"
-                                    type="checkbox" />
-                                     <span class="fa fa-check"></span>
-                                    {% trans 'I have a business idea.' %}
+                                <label>
+                                    <input value="{{ identity.id }}"
+                                    {% if intake.has_business_idea %}
+                                         checked="checked"
+                                    {% endif %}
+                                           class="source"
+                                              id="id_has_business_idea"
+                                            type="checkbox" />
+                                             <span class="fa fa-check"></span>
+                                            {% trans 'I have a business idea.' %}
+                                </label>
                             </div>
                         </div>
                     </div>
