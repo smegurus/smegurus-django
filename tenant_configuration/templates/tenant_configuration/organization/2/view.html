@@ -13,7 +13,7 @@
                     <p class="text-center pv">First, let's upload your logo. This will help you to brand and customize SME Gurus for your clients. If you don't have your logo handy, you can skip this step, but we highly recommended that you add one now.</p>
 
                     <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
-                        <fieldset class="col-sm-12">
+                        <fieldset class="blue-lbl">
                             <!-- Upload ID -->
                             <input type="hidden" id="id_hidden_upload_id" value="{% if request.tenant.logo %}{{ request.tenant.logo.id }}{% endif %}"/>
                             <input type="hidden" id="id_hidden_url" value="{% if request.tenant.logo %}{% if request.tenant.logo.imagefile %}{{ request.tenant.logo.imagefile.url }}{% endif %}{% endif %}"/>
@@ -39,10 +39,8 @@
     
                             <br/>
     
-                        </fieldset>
-                        
                         <!-- Image Upload Button -->
-                            <label class="form-control btn btn-success btn-lg" style="height: auto;" >
+                            <label class="form-control btn btn-success btn-lg" style="height: auto;color: #ffffff !important;" >
                                 <em class="fa fa-upload"></em>&nbsp;&nbsp; {% trans 'Upload Logo Image...' %}
                                 <input onchange="ajax_upload_image();"
                                              id="id_image"
@@ -51,7 +49,7 @@
                                            name="product-image" />
                             </label>
                             <!-- /.Image Upload Button -->
-                            
+                        </fieldset>
                     </form>
             
             <div class="actions text-center clearfix">
