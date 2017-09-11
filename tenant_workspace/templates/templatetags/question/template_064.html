@@ -61,9 +61,9 @@
                      </tr>
                      <tr>
                         <td><strong>{% trans 'Net Profit' %}</strong></td>
-                        <td><strong>$&nbsp;{{ scenario.net_profit.yr1|intcomma }}</strong></td>
-                        <td><strong>$&nbsp;{{ scenario.net_profit.yr2|intcomma }}</strong></td>
-                        <td><strong>$&nbsp;{{ scenario.net_profit.yr3|intcomma }}</strong></td>
+                        <td><strong>$&nbsp;{{ scenario.net_profit.yr1|floatformat:"0"|intcomma }}</strong></td>
+                        <td><strong>$&nbsp;{{ scenario.net_profit.yr2|floatformat:"0"|intcomma }}</strong></td>
+                        <td><strong>$&nbsp;{{ scenario.net_profit.yr3|floatformat:"0"|intcomma }}</strong></td>
                      </tr>
                      <tr>
                         <td>{% trans 'Net Profit Percent' %}</td>
@@ -97,27 +97,27 @@
                      </tr>
                      <tr>
                         <td>{% trans 'Total Variable Costs' %}</td>
-                        <td>$&nbsp;{{ scenario.total_variable_costs.yr1|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.total_variable_costs.yr2|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.total_variable_costs.yr3|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_variable_costs.yr1|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_variable_costs.yr2|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_variable_costs.yr3|floatformat:"0"|intcomma }}</td>
                      </tr>
                      <tr>
                         <td>{% trans 'Total Variable Costs Excluding COGS' %}</td>
-                        <td>$&nbsp;{{ scenario.total_variable_costs_excluding_cogs.yr1|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.total_variable_costs_excluding_cogs.yr2|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.total_variable_costs_excluding_cogs.yr3|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_variable_costs_excluding_cogs.yr1|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_variable_costs_excluding_cogs.yr2|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_variable_costs_excluding_cogs.yr3|floatformat:"0"|intcomma }}</td>
                      </tr>
                      <tr>
                         <td>{% trans 'Total Fixed Costs' %}</td>
-                        <td>$&nbsp;{{ scenario.total_fixed.yr1|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.total_fixed.yr2|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.total_fixed.yr3|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_fixed.yr1|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_fixed.yr2|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.total_fixed.yr3|floatformat:"0"|intcomma }}</td>
                      </tr>
                      <tr>
                         <td>{% trans 'General &amp; Admin Expenses' %}</td>
-                        <td>$&nbsp;{{ scenario.general_and_marketing_expenses.yr1|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.general_and_marketing_expenses.yr2|intcomma }}</td>
-                        <td>$&nbsp;{{ scenario.general_and_marketing_expenses.yr3|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.general_and_marketing_expenses.yr1|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.general_and_marketing_expenses.yr2|floatformat:"0"|intcomma }}</td>
+                        <td>$&nbsp;{{ scenario.general_and_marketing_expenses.yr3|floatformat:"0"|intcomma }}</td>
                      </tr>
                   </tbody>
                </table>
