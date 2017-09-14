@@ -316,6 +316,15 @@
                                 </a>
                             </li>
                             <!-- end CALENDAR -->
+                            
+                            <!-- ORG SETTINGS -->
+                            <li {% if page == 'profile' %}class=" active"{% endif %}>
+                                <a href="{% url 'tenant_profile_setting_organization_profile' %}" title="{% trans 'Org Settings' %}">
+                                    <em class="icon-settings"></em>
+                                    <span data-localize="sidebar.nav.ORG_SETTINGS">{% trans 'Org Settings' %}</span>
+                                </a>
+                            </li>
+                            <!-- end ORG SETTINGS -->
 
                         </ul>
                         <!-- END sidebar nav-->
