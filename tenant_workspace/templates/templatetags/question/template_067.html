@@ -1,4 +1,5 @@
 {% load staticfiles i18n compress foundation_public_tags %}
+{% load humanize %}
 <!-- JS -->
 {% compress js inline %}
 <script>
@@ -25,7 +26,7 @@
         
         <div class="col-sm-12">
             <h1>{% trans 'Start-Up Surplus/Deficit' %}</h1>
-            <p>$ {{ picked.net_startup_deficit_surplus|floatformat:"0" }}</p>
+            <p><strong>$ {{ picked.net_startup_deficit_surplus|floatformat:"0" }}</strong></p>
             <br/>
             <!--#############################################################-->
             <!--#                          YEAR 1                           #-->
@@ -33,7 +34,7 @@
             <h1>{% trans 'Year 1 Revenue' %}</h1>
             <!-- REVENUE -->
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-lbb table-striped table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>{% trans '' %}</th>
@@ -46,157 +47,157 @@
                         <tr>
                             <th>{% trans 'Month 1' %}</th>
                             <td>
-                                {{ picked.total_sales_m1 }}
+                                $ {{ picked.total_sales_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m1 }}
+                                $ {{ picked.total_cogs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m1 }}
+                                $ {{ picked.gross_profit_m1|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 2' %}</th>
                             <td>
-                                {{ picked.total_sales_m2 }}
+                                $ {{ picked.total_sales_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m2 }}
+                                $ {{ picked.total_cogs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m2 }}
+                                $ {{ picked.gross_profit_m2|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 3' %}</th>
                             <td>
-                                {{ picked.total_sales_m3 }}
+                                $ {{ picked.total_sales_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m3 }}
+                                $ {{ picked.total_cogs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m3 }}
+                                $ {{ picked.gross_profit_m3|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 4' %}</th>
                             <td>
-                                {{ picked.total_sales_m4 }}
+                                $ {{ picked.total_sales_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m4 }}
+                                $ {{ picked.total_cogs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m4 }}
+                                $ {{ picked.gross_profit_m4|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 5' %}</th>
                             <td>
-                                {{ picked.total_sales_m5 }}
+                                $ {{ picked.total_sales_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m5 }}
+                                $ {{ picked.total_cogs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m5 }}
+                                $ {{ picked.gross_profit_m5|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 6' %}</th>
                             <td>
-                                {{ picked.total_sales_m6 }}
+                                $ {{ picked.total_sales_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m6 }}
+                                $ {{ picked.total_cogs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m6 }}
+                                $ {{ picked.gross_profit_m6|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 7' %}</th>
                             <td>
-                                {{ picked.total_sales_m7 }}
+                                $ {{ picked.total_sales_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m7 }}
+                                $ {{ picked.total_cogs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m7 }}
+                                $ {{ picked.gross_profit_m7|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 8' %}</th>
                             <td>
-                                {{ picked.total_sales_m8 }}
+                                $ {{ picked.total_sales_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m8 }}
+                                $ {{ picked.total_cogs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m8 }}
+                                $ {{ picked.gross_profit_m8|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 9' %}</th>
                             <td>
-                                {{ picked.total_sales_m9 }}
+                                $ {{ picked.total_sales_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m9 }}
+                                $ {{ picked.total_cogs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m9 }}
+                                $ {{ picked.gross_profit_m9|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 10' %}</th>
                             <td>
-                                {{ picked.total_sales_m10 }}
+                                $ {{ picked.total_sales_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m10 }}
+                                $ {{ picked.total_cogs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m10 }}
+                                $ {{ picked.gross_profit_m10|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 11' %}</th>
                             <td>
-                                {{ picked.total_sales_m11 }}
+                                $ {{ picked.total_sales_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m11 }}
+                                $ {{ picked.total_cogs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m11 }}
+                                $ {{ picked.gross_profit_m11|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 12' %}</th>
                             <td>
-                                {{ picked.total_sales_m12 }}
+                                $ {{ picked.total_sales_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_m12 }}
+                                $ {{ picked.total_cogs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_m12 }}
+                                $ {{ picked.gross_profit_m12|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
-                            <th><b>{% trans 'TOTAL' %}</b></th>
+                            <th>{% trans 'TOTAL' %}</th>
                             <td>
-                                {{ picked.total_sales_y1 }}
+                                $ {{ picked.total_sales_y1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.total_cogs_y1 }}
+                                $ {{ picked.total_cogs_y1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.gross_profit_yr1 }}
+                                $ {{ picked.gross_profit_yr1|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                     </tbody>
@@ -207,868 +208,868 @@
             <!-- G & A EXPENSES -->
             <h1>General & Admin Expenses</h1>
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-lbb table-striped table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>{% trans '' %}</th>
-                            <td><b>{% trans 'Location Costs' %}</b></td>
-                            <td><b>{% trans 'Insurance' %}</b></td>
-                            <td><b>{% trans 'Admin/Support' %}</b></td>
-                            <td><b>{% trans 'Licenses and Permits' %}</b></td>
-                            <td><b>{% trans 'Marketing' %}</b></td>
-                            <td><b>{% trans 'Sales Expenses' %}</b></td>
+                            <th>{% trans 'Location Costs' %}</th>
+                            <th>{% trans 'Insurance' %}</th>
+                            <th>{% trans 'Admin/Support' %}</th>
+                            <th>{% trans 'Licenses and Permits' %}</th>
+                            <th>{% trans 'Marketing' %}</th>
+                            <th>{% trans 'Sales Expenses' %}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>    
                             <th>{% trans 'Month 1' %}</th>
                             <td>
-                                {{ picked.location_costs_m1 }}
+                                $ {{ picked.location_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m1 }}
+                                $ {{ picked.insurance_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m1 }}
+                                $ {{ picked.admin_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m1 }}
+                                $ {{ picked.license_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m1 }}
+                                $ {{ picked.marketing_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m1 }}
+                                $ {{ picked.sales_expenses_m1|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 2' %}</th>
                             <td>
-                                {{ picked.location_costs_m2 }}
+                                $ {{ picked.location_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m2 }}
+                                $ {{ picked.insurance_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m2 }}
+                                $ {{ picked.admin_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m2 }}
+                                $ {{ picked.license_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m2 }}
+                                $ {{ picked.marketing_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m2 }}
+                                $ {{ picked.sales_expenses_m2|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 3' %}</th>
                             <td>
-                                {{ picked.location_costs_m3 }}
+                                $ {{ picked.location_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m3 }}
+                                $ {{ picked.insurance_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m3 }}
+                                $ {{ picked.admin_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m3 }}
+                                $ {{ picked.license_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m3 }}
+                                $ {{ picked.marketing_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m3 }}
+                                $ {{ picked.sales_expenses_m3|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 4' %}</th>
                             <td>
-                                {{ picked.location_costs_m4 }}
+                                $ {{ picked.location_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m4 }}
+                                $ {{ picked.insurance_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m4 }}
+                                $ {{ picked.admin_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m4 }}
+                                $ {{ picked.license_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m4 }}
+                                $ {{ picked.marketing_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m4 }}
+                                $ {{ picked.sales_expenses_m4|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 5' %}</th>
                             <td>
-                                {{ picked.location_costs_m5 }}
+                                $ {{ picked.location_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m5 }}
+                                $ {{ picked.insurance_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m5 }}
+                                $ {{ picked.admin_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m5 }}
+                                $ {{ picked.license_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m5 }}
+                                $ {{ picked.marketing_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m5 }}
+                                $ {{ picked.sales_expenses_m5|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 6' %}</th>
                             <td>
-                                {{ picked.location_costs_m6 }}
+                                $ {{ picked.location_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m6 }}
+                                $ {{ picked.insurance_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m6 }}
+                                $ {{ picked.admin_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m6 }}
+                                $ {{ picked.license_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m6 }}
+                                $ {{ picked.marketing_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m6 }}
+                                $ {{ picked.sales_expenses_m6|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 7' %}</th>
                             <td>
-                                {{ picked.location_costs_m7 }}
+                                $ {{ picked.location_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m7 }}
+                                $ {{ picked.insurance_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m7 }}
+                                $ {{ picked.admin_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m7 }}
+                                $ {{ picked.license_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m7 }}
+                                $ {{ picked.marketing_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m7 }}
+                                $ {{ picked.sales_expenses_m7|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 8' %}</th>
                             <td>
-                                {{ picked.location_costs_m8 }}
+                                $ {{ picked.location_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m8 }}
+                                $ {{ picked.insurance_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m8 }}
+                                $ {{ picked.admin_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m8 }}
+                                $ {{ picked.license_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m8 }}
+                                $ {{ picked.marketing_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m8 }}
+                                $ {{ picked.sales_expenses_m8|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 9' %}</th>
                             <td>
-                                {{ picked.location_costs_m9 }}
+                                $ {{ picked.location_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m9 }}
+                                $ {{ picked.insurance_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m9 }}
+                                $ {{ picked.admin_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m9 }}
+                                $ {{ picked.license_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m9 }}
+                                $ {{ picked.marketing_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m9 }}
+                                $ {{ picked.sales_expenses_m9|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 10' %}</th>
                             <td>
-                                {{ picked.location_costs_m10 }}
+                                $ {{ picked.location_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m10 }}
+                                $ {{ picked.insurance_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m10 }}
+                                $ {{ picked.admin_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m10 }}
+                                $ {{ picked.license_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m10 }}
+                                $ {{ picked.marketing_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m10 }}
+                                $ {{ picked.sales_expenses_m10|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 11' %}</th>
                             <td>
-                                {{ picked.location_costs_m11 }}
+                                $ {{ picked.location_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m11 }}
+                                $ {{ picked.insurance_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m11 }}
+                                $ {{ picked.admin_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m11 }}
+                                $ {{ picked.license_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m11 }}
+                                $ {{ picked.marketing_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m11 }}
+                                $ {{ picked.sales_expenses_m11|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 12' %}</th>
                             <td>
-                                {{ picked.location_costs_m12 }}
+                                $ {{ picked.location_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_m12 }}
+                                $ {{ picked.insurance_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_m12 }}
+                                $ {{ picked.admin_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_m12 }}
+                                $ {{ picked.license_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_m12 }}
+                                $ {{ picked.marketing_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_m12 }}
+                                $ {{ picked.sales_expenses_m12|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Total' %}</th>
                             <td>
-                                {{ picked.location_costs_yr1 }}
+                                $ {{ picked.location_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.insurance_costs_yr1 }}
+                                $ {{ picked.insurance_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.admin_costs_yr1 }}
+                                $ {{ picked.admin_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.license_costs_yr1 }}
+                                $ {{ picked.license_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.marketing_costs_yr1 }}
+                                $ {{ picked.marketing_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sales_expenses_yr1 }}
+                                $ {{ picked.sales_expenses_yr1|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-striped table-bordered table-hover table-lbb mt-lg" style="border-top: 1px solid #eeeeee;">
                     <thead>
                         <tr>
                             <th>{% trans '' %}</th>
-                            <td><b>{% trans 'Bank Fees' %}</b></td>
-                            <td><b>{% trans 'Salaries' %}</b></td>
-                            <td><b>{% trans 'Communication Costs' %}</b></td>
-                            <td><b>{% trans 'Subscriptions' %}</b></td>
-                            <td><b>{% trans 'Equipment Leases' %}</b></td>
-                            <td><b>{% trans 'Maintenance and Repairs' %}</b></td>
+                            <th>{% trans 'Bank Fees' %}</th>
+                            <th>{% trans 'Salaries' %}</th>
+                            <th>{% trans 'Communication Costs' %}</th>
+                            <th>{% trans 'Subscriptions' %}</th>
+                            <th>{% trans 'Equipment Leases' %}</th>
+                            <th>{% trans 'Maintenance and Repairs' %}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>    
                             <th>{% trans 'Month 1' %}</th>
                             <td>
-                                {{ picked.bank_fees_m1 }}
+                                $ {{ picked.bank_fees_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m1 }}
+                                $ {{ picked.salary_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m1 }}
+                                $ {{ picked.comm_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m1 }}
+                                $ {{ picked.sub_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m1 }}
+                                $ {{ picked.lease_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m1 }}
+                                $ {{ picked.maintain_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 2' %}</th>
                             <td>
-                                {{ picked.bank_fees_m2 }}
+                                $ {{ picked.bank_fees_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m2 }}
+                                $ {{ picked.salary_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m2 }}
+                                $ {{ picked.comm_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m2 }}
+                                $ {{ picked.sub_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m2 }}
+                                $ {{ picked.lease_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m2 }}
+                                $ {{ picked.maintain_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 3' %}</th>
                             <td>
-                                {{ picked.bank_fees_m3 }}
+                                $ {{ picked.bank_fees_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m3 }}
+                                $ {{ picked.salary_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m3 }}
+                                $ {{ picked.comm_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m3 }}
+                                $ {{ picked.sub_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m3 }}
+                                $ {{ picked.lease_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m3 }}
+                                $ {{ picked.maintain_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 4' %}</th>
                             <td>
-                                {{ picked.bank_fees_m4 }}
+                                $ {{ picked.bank_fees_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m4 }}
+                                $ {{ picked.salary_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m4 }}
+                                $ {{ picked.comm_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m4 }}
+                                $ {{ picked.sub_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m4 }}
+                                $ {{ picked.lease_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m4 }}
+                                $ {{ picked.maintain_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 5' %}</th>
                             <td>
-                                {{ picked.bank_fees_m5 }}
+                                $ {{ picked.bank_fees_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m5 }}
+                                $ {{ picked.salary_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m5 }}
+                                $ {{ picked.comm_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m5 }}
+                                $ {{ picked.sub_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m5 }}
+                                $ {{ picked.lease_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m5 }}
+                                $ {{ picked.maintain_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 6' %}</th>
                             <td>
-                                {{ picked.bank_fees_m6 }}
+                                $ {{ picked.bank_fees_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m6 }}
+                                $ {{ picked.salary_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m6 }}
+                                $ {{ picked.comm_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m6 }}
+                                $ {{ picked.sub_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m6 }}
+                                $ {{ picked.lease_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m6 }}
+                                $ {{ picked.maintain_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 7' %}</th>
                             <td>
-                                {{ picked.bank_fees_m7 }}
+                                $ {{ picked.bank_fees_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m7 }}
+                                $ {{ picked.salary_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m7 }}
+                                $ {{ picked.comm_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m7 }}
+                                $ {{ picked.sub_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m7 }}
+                                $ {{ picked.lease_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m7 }}
+                                $ {{ picked.maintain_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 8' %}</th>
                             <td>
-                                {{ picked.bank_fees_m8 }}
+                                $ {{ picked.bank_fees_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m8 }}
+                                $ {{ picked.salary_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m8 }}
+                                $ {{ picked.comm_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m8 }}
+                                $ {{ picked.sub_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m8 }}
+                                $ {{ picked.lease_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m8 }}
+                                $ {{ picked.maintain_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 9' %}</th>
                             <td>
-                                {{ picked.bank_fees_m9 }}
+                                $ {{ picked.bank_fees_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m9 }}
+                                $ {{ picked.salary_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m9 }}
+                                $ {{ picked.comm_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m9 }}
+                                $ {{ picked.sub_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m9 }}
+                                $ {{ picked.lease_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m9 }}
+                                $ {{ picked.maintain_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 10' %}</th>
                             <td>
-                                {{ picked.bank_fees_m10 }}
+                                $ {{ picked.bank_fees_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m10 }}
+                                $ {{ picked.salary_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m10 }}
+                                $ {{ picked.comm_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m10 }}
+                                $ {{ picked.sub_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m10 }}
+                                $ {{ picked.lease_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m10 }}
+                                $ {{ picked.maintain_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 11' %}</th>
                             <td>
-                                {{ picked.bank_fees_m11 }}
+                                $ {{ picked.bank_fees_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m11 }}
+                                $ {{ picked.salary_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m11 }}
+                                $ {{ picked.comm_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m11 }}
+                                $ {{ picked.sub_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m11 }}
+                                $ {{ picked.lease_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m11 }}
+                                $ {{ picked.maintain_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 12' %}</th>
                             <td>
-                                {{ picked.bank_fees_m12 }}
+                                $ {{ picked.bank_fees_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_m12 }}
+                                $ {{ picked.salary_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_m12 }}
+                                $ {{ picked.comm_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_m12 }}
+                                $ {{ picked.sub_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_m12 }}
+                                $ {{ picked.lease_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_m12 }}
+                                $ {{ picked.maintain_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Total' %}</th>
                             <td>
-                                {{ picked.bank_fees_yr1 }}
+                                $ {{ picked.bank_fees_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.salary_costs_yr1 }}
+                                $ {{ picked.salary_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.comm_costs_yr1 }}
+                                $ {{ picked.comm_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.sub_costs_yr1 }}
+                                $ {{ picked.sub_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.lease_costs_yr1 }}
+                                $ {{ picked.lease_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.maintain_costs_yr1 }}
+                                $ {{ picked.maintain_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-striped table-bordered table-hover table-lbb mt-lg" style="border-top: 1px solid #eeeeee;">
                     <thead>
                         <tr>
                             <th>{% trans '' %}</th>
-                            <td><b>{% trans 'General Supplies' %}</b></td>
-                            <td><b>{% trans 'Professional Fees' %}</b></td>
-                            <td><b>{% trans 'Membership Fees' %}</b></td>
-                            <td><b>{% trans 'Other' %}</b></td>
-                            <td><b>{% trans 'Misc.' %}</b></td>
-                            <td><b>{% trans 'Total.' %}</b></td>
+                            <th>{% trans 'General Supplies' %}</th>
+                            <th>{% trans 'Professional Fees' %}</th>
+                            <th>{% trans 'Membership Fees' %}</th>
+                            <th>{% trans 'Other' %}</th>
+                            <th>{% trans 'Misc.' %}</th>
+                            <th>{% trans 'Total.' %}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>    
                             <th>{% trans 'Month 1' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m1 }}
+                                $ {{ picked.supplies_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m1 }}
+                                $ {{ picked.pro_fee_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m1 }}
+                                $ {{ picked.mem_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m1 }}
+                                $ {{ picked.other_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m1 }}
+                                $ {{ picked.misc_costs_m1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m1 }}</b>
+                                <b>$ {{ picked.total_g_a_m1|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 2' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m2 }}
+                                $ {{ picked.supplies_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m2 }}
+                                $ {{ picked.pro_fee_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m2 }}
+                                $ {{ picked.mem_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m2 }}
+                                $ {{ picked.other_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m2 }}
+                                $ {{ picked.misc_costs_m2|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m2 }}</b>
+                                <b>$ {{ picked.total_g_a_m2|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 3' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m3 }}
+                                $ {{ picked.supplies_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m3 }}
+                                $ {{ picked.pro_fee_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m3 }}
+                                $ {{ picked.mem_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m3 }}
+                                $ {{ picked.other_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m3 }}
+                                $ {{ picked.misc_costs_m3|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m3 }}</b>
+                                <b>$ {{ picked.total_g_a_m3|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 4' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m4 }}
+                                $ {{ picked.supplies_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m4 }}
+                                $ {{ picked.pro_fee_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m4 }}
+                                $ {{ picked.mem_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m4 }}
+                                $ {{ picked.other_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m4 }}
+                                $ {{ picked.misc_costs_m4|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m4 }}</b>
+                                <b>$ {{ picked.total_g_a_m4|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 5' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m5 }}
+                                $ {{ picked.supplies_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m5 }}
+                                $ {{ picked.pro_fee_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m5 }}
+                                $ {{ picked.mem_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m5 }}
+                                $ {{ picked.other_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m5 }}
+                                $ {{ picked.misc_costs_m5|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m5 }}</b>
+                                <b>$ {{ picked.total_g_a_m5|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 6' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m6 }}
+                                $ {{ picked.supplies_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m6 }}
+                                $ {{ picked.pro_fee_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m6 }}
+                                $ {{ picked.mem_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m6 }}
+                                $ {{ picked.other_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m6 }}
+                                $ {{ picked.misc_costs_m6|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m6 }}</b>
+                                <b>$ {{ picked.total_g_a_m6|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 7' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m7 }}
+                                $ {{ picked.supplies_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m7 }}
+                                $ {{ picked.pro_fee_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m7 }}
+                                $ {{ picked.mem_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m7 }}
+                                $ {{ picked.other_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m7 }}
+                                $ {{ picked.misc_costs_m7|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m7 }}</b>
+                                <b>$ {{ picked.total_g_a_m7|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 8' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m8 }}
+                                $ {{ picked.supplies_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m8 }}
+                                $ {{ picked.pro_fee_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m8 }}
+                                $ {{ picked.mem_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m8 }}
+                                $ {{ picked.other_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m8 }}
+                                $ {{ picked.misc_costs_m8|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m8 }}</b>
+                                <b>$ {{ picked.total_g_a_m8|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 9' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m9 }}
+                                $ {{ picked.supplies_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m9 }}
+                                $ {{ picked.pro_fee_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m9 }}
+                                $ {{ picked.mem_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m9 }}
+                                $ {{ picked.other_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m9 }}
+                                $ {{ picked.misc_costs_m9|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m9 }}</b>
+                                <b>$ {{ picked.total_g_a_m9|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 10' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m10 }}
+                                $ {{ picked.supplies_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m10 }}
+                                $ {{ picked.pro_fee_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m10 }}
+                                $ {{ picked.mem_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m10 }}
+                                $ {{ picked.other_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m10 }}
+                                $ {{ picked.misc_costs_m10|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m10 }}</b>
+                                <b>$ {{ picked.total_g_a_m10|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>    
                             <th>{% trans 'Month 11' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m11 }}
+                                $ {{ picked.supplies_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m11 }}
+                                $ {{ picked.pro_fee_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m11 }}
+                                $ {{ picked.mem_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m11 }}
+                                $ {{ picked.other_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m11 }}
+                                $ {{ picked.misc_costs_m11|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m11 }}</b>
+                                <b>$ {{ picked.total_g_a_m11|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Month 12' %}</th>
                             <td>
-                                {{ picked.supplies_costs_m12 }}
+                                $ {{ picked.supplies_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_m12 }}
+                                $ {{ picked.pro_fee_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_m12 }}
+                                $ {{ picked.mem_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_m12 }}
+                                $ {{ picked.other_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_m12 }}
+                                $ {{ picked.misc_costs_m12|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_m12 }}</b>
+                                <b>$ {{ picked.total_g_a_m12|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                         <tr>
                             <th>{% trans 'Total' %}</th>
                             <td>
-                                {{ picked.supplies_costs_yr1 }}
+                                $ {{ picked.supplies_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.pro_fee_costs_yr1 }}
+                                $ {{ picked.pro_fee_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.mem_costs_yr1 }}
+                                $ {{ picked.mem_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.other_costs_yr1 }}
+                                $ {{ picked.other_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                {{ picked.misc_costs_yr1 }}
+                                $ {{ picked.misc_costs_yr1|floatformat:"0"|intcomma }}
                             </td>
                             <td>
-                                <b>{{ picked.total_g_a_yr1 }}</b>
+                                <b>$ {{ picked.total_g_a_yr1|floatformat:"0"|intcomma }}</b>
                             </td>
                         </tr>
                     </tbody>
@@ -1080,7 +1081,7 @@
             <!-- NET PROFIT -->
             <h1>{% trans 'Net Profit' %}</h1>
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-lbb table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>{% trans 'Month 1' %}</th>
@@ -1089,28 +1090,28 @@
                         <th>{% trans 'Month 4' %}</th>
                         <th>{% trans 'Month 5' %}</th>
                         <th>{% trans 'Month 6' %}</th>
-                        <th><b>{% trans 'TOTAL' %}</b></th>
+                        <th>{% trans 'TOTAL' %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            {{ picked.net_profit_m1 }}
+                            $ {{ picked.net_profit_m1|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m2 }}
+                            $ {{ picked.net_profit_m2|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m3 }}
+                            $ {{ picked.net_profit_m3|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m4 }}
+                            $ {{ picked.net_profit_m4|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m5 }}
+                            $ {{ picked.net_profit_m5|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m6 }}
+                            $ {{ picked.net_profit_m6|floatformat:"0"|intcomma }}
                         </td>
                         <td>&nbsp;</td>
                     </tr>
@@ -1125,25 +1126,25 @@
                     </tr>
                     <tr>
                         <td>
-                            {{ picked.net_profit_m7 }}
+                            $ {{ picked.net_profit_m7|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m8 }}
+                            $ {{ picked.net_profit_m8|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m9 }}
+                            $ {{ picked.net_profit_m9|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m10 }}
+                            $ {{ picked.net_profit_m10|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m11 }}
+                            $ {{ picked.net_profit_m11|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_m12 }}
+                            $ {{ picked.net_profit_m12|floatformat:"0"|intcomma }}
                         </td>
                         <td>
-                            {{ picked.net_profit_yr1 }}
+                            $ {{ picked.net_profit_yr1|floatformat:"0"|intcomma }}
                         </td>
                     </tr>
                 </tbody>
@@ -1154,7 +1155,7 @@
         <!-- NET CASH -->
         <h1>{% trans 'Net Cash' %}</h1>
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-lbb table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>{% trans 'Month 1' %}</th>
@@ -1168,22 +1169,22 @@
             <tbody>
                 <tr>
                     <td>
-                        {{ picked.net_cash_m1 }}
+                        $ {{ picked.net_cash_m1|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m2 }}
+                        $ {{ picked.net_cash_m2|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m3 }}
+                        $ {{ picked.net_cash_m3|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m4 }}
+                        $ {{ picked.net_cash_m4|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m5 }}
+                        $ {{ picked.net_cash_m5|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m6 }}
+                        $ {{ picked.net_cash_m6|floatformat:"0"|intcomma }}
                     </td>
                 </tr>
                 <tr>
@@ -1196,22 +1197,22 @@
                 </tr>
                 <tr>
                     <td>
-                        {{ picked.net_cash_m7 }}
+                        $ {{ picked.net_cash_m7|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m8 }}
+                        $ {{ picked.net_cash_m8|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m9 }}
+                        $ {{ picked.net_cash_m9|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m10 }}
+                        $ {{ picked.net_cash_m10|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m11 }}
+                        $ {{ picked.net_cash_m11|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.net_cash_m12 }}
+                        $ {{ picked.net_cash_m12|floatformat:"0"|intcomma }}
                     </td>
                 </tr>
             </tbody>
@@ -1229,7 +1230,7 @@
     <h1>{% trans 'Year 2 Revenue' %}</h1>
     
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
+        <table class="table table-lbb table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>{% trans '' %}</th>
@@ -1245,134 +1246,134 @@
                     <th>{% trans 'Month 22' %}</th>
                     <th>{% trans 'Month 23' %}</th>
                     <th>{% trans 'Month 24' %}</th>
-                    <th><b>{% trans 'TOTAL' %}</b></th>
+                    <th>{% trans 'TOTAL' %}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{% trans 'Total Sales' %}</td>
+                    <th>{% trans 'Total Sales' %}</th>
                     <td>
-                        {{ picked.total_sales_m13 }}
+                        $ {{ picked.total_sales_m13|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m14 }}
+                        $ {{ picked.total_sales_m14|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m15 }}
+                        $ {{ picked.total_sales_m15|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m16 }}
+                        $ {{ picked.total_sales_m16|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m17 }}
+                        $ {{ picked.total_sales_m17|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m18 }}
+                        $ {{ picked.total_sales_m18|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m19 }}
+                        $ {{ picked.total_sales_m19|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m20 }}
+                        $ {{ picked.total_sales_m20|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m21 }}
+                        $ {{ picked.total_sales_m21|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m22 }}
+                        $ {{ picked.total_sales_m22|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m23 }}
+                        $ {{ picked.total_sales_m23|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_m24 }}
+                        $ {{ picked.total_sales_m24|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.total_sales_y2 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>{% trans 'Cost of Goods Sold' %}</td>
-                    <td>
-                        {{ picked.total_cogs_m13 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m14 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m15 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m16 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m17 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m18 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m19 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m20 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m21 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m22 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m23 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_m24 }}
-                    </td>
-                    <td>
-                        {{ picked.total_cogs_y1 }}
+                        $ {{ picked.total_sales_y2|floatformat:"0"|intcomma }}
                     </td>
                 </tr>
                 <tr>
-                    <td>{% trans 'Profit Margin' %}</td>
+                    <th>{% trans 'Cost of Goods Sold' %}</th>
                     <td>
-                        {{ picked.gross_profit_m1 }}
+                        $ {{ picked.total_cogs_m13|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m2 }}
+                        $ {{ picked.total_cogs_m14|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m3 }}
+                        $ {{ picked.total_cogs_m15|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m4 }}
+                        $ {{ picked.total_cogs_m16|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m5 }}
+                        $ {{ picked.total_cogs_m17|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m6 }}
+                        $ {{ picked.total_cogs_m18|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m7 }}
+                        $ {{ picked.total_cogs_m19|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m8 }}
+                        $ {{ picked.total_cogs_m20|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m9 }}
+                        $ {{ picked.total_cogs_m21|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m10 }}
+                        $ {{ picked.total_cogs_m22|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m11 }}
+                        $ {{ picked.total_cogs_m23|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_m12 }}
+                        $ {{ picked.total_cogs_m24|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.gross_profit_yr1 }}
+                        $ {{ picked.total_cogs_y1|floatformat:"0"|intcomma }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{% trans 'Profit Margin' %}</th>
+                    <td>
+                        $ {{ picked.gross_profit_m1|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m2|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m3|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m4|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m5|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m6|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m7|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m8|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m9|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m10|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m11|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_m12|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.gross_profit_yr1|floatformat:"0"|intcomma }}
                     </td>
                 </tr>
             </tbody>
@@ -1383,7 +1384,7 @@
     <!-- G & A EXPENSES -->
     <h1>General & Admin Expenses</h1>
     <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
+        <table class="table table-lbb table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>{% trans '' %}</th>
@@ -1399,138 +1400,138 @@
                     <th>{% trans 'Month 10' %}</th>
                     <th>{% trans 'Month 11' %}</th>
                     <th>{% trans 'Month 12' %}</th>
-                    <th><b>{% trans 'TOTAL' %}</b></th>
+                    <th>{% trans 'TOTAL' %}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{% trans 'Location Costs' %}</td>
+                    <th>{% trans 'Location Costs' %}</th>
                     <td>
-                        {{ picked.location_costs_m1 }}
+                        $ {{ picked.location_costs_m1|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m2 }}
+                        $ {{ picked.location_costs_m2|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m3 }}
+                        $ {{ picked.location_costs_m3|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m4 }}
+                        $ {{ picked.location_costs_m4|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m5 }}
+                        $ {{ picked.location_costs_m5|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m6 }}
+                        $ {{ picked.location_costs_m6|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m7 }}
+                        $ {{ picked.location_costs_m7|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m8 }}
+                        $ {{ picked.location_costs_m8|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m9 }}
+                        $ {{ picked.location_costs_m9|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m10 }}
+                        $ {{ picked.location_costs_m10|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m11 }}
+                        $ {{ picked.location_costs_m11|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_m12 }}
+                        $ {{ picked.location_costs_m12|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.location_costs_yr1 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>{% trans 'Insurance' %}</td>
-                    <td>
-                        {{ picked.insurance_costs_m1 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m2 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m3 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m4 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m5 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m6 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m7 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m8 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m9 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m10 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m11 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_m12 }}
-                    </td>
-                    <td>
-                        {{ picked.insurance_costs_yr1 }}
+                        $ {{ picked.location_costs_yr1|floatformat:"0"|intcomma }}
                     </td>
                 </tr>
                 <tr>
-                    <td>{% trans 'Admin/Support' %}</td>
+                    <th>{% trans 'Insurance' %}</th>
                     <td>
-                        {{ picked.admin_costs_m1 }}
+                        $ {{ picked.insurance_costs_m1|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m2 }}
+                        $ {{ picked.insurance_costs_m2|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m3 }}
+                        $ {{ picked.insurance_costs_m3|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m4 }}
+                        $ {{ picked.insurance_costs_m4|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m5 }}
+                        $ {{ picked.insurance_costs_m5|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m6 }}
+                        $ {{ picked.insurance_costs_m6|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m7 }}
+                        $ {{ picked.insurance_costs_m7|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m8 }}
+                        $ {{ picked.insurance_costs_m8|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m9 }}
+                        $ {{ picked.insurance_costs_m9|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m10 }}
+                        $ {{ picked.insurance_costs_m10|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m11 }}
+                        $ {{ picked.insurance_costs_m11|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_m12 }}
+                        $ {{ picked.insurance_costs_m12|floatformat:"0"|intcomma }}
                     </td>
                     <td>
-                        {{ picked.admin_costs_yr1 }}
+                        $ {{ picked.insurance_costs_yr1|floatformat:"0"|intcomma }}
                     </td>
                 </tr>
                 <tr>
-                    <td>{% trans 'Licenses and Permits' %}</td>
+                    <th>{% trans 'Admin/Support' %}</th>
+                    <td>
+                        $ {{ picked.admin_costs_m1|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m2|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m3|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m4|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m5|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m6|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m7|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m8|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m9|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m10|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m11|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_m12|floatformat:"0"|intcomma }}
+                    </td>
+                    <td>
+                        $ {{ picked.admin_costs_yr1|floatformat:"0"|intcomma }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{% trans 'Licenses and Permits' %}</th>
                     <td>
                         {{ picked.license_costs_m1 }}
                     </td>
