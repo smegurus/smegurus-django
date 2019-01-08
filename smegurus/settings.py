@@ -127,7 +127,7 @@ MIDDLEWARE = [
     'smegurus.middleware.AttachIPAddressMiddleware',                  # Custom
     'foundation_public.middleware.BanEnforcingMiddleware',            # Custom
     'foundation_public.middleware.TrapURLBanningMiddleware',          # Custom
-    'django_tenants.middleware.TenantMiddleware',                     # Third Party
+    'django_tenants.middleware.main.TenantMainMiddleware',            # Third Party
     'htmlmin.middleware.HtmlMinifyMiddleware',                        # Third Party
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
