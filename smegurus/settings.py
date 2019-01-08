@@ -93,6 +93,7 @@ SHARED_APPS = (
   'django.contrib.postgres', # Postgres full-text search: https://docs.djangoproject.com/en/1.10/ref/contrib/postgres/search/
   'django.contrib.humanize',
   'anymail',                 # https://github.com/anymail/django-anymail
+  'celery',
 )
 
 TENANT_APPS = (
