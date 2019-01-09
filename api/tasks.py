@@ -1,4 +1,4 @@
-from celery import shared_task
+from django_rq import job
 from django.core.management import call_command
 from foundation_public.models.organizationregistration import PublicOrganizationRegistration
 
@@ -7,7 +7,7 @@ from foundation_public.models.organizationregistration import PublicOrganization
 # (1) This file contains various asynchyonous processes that can be done by our system.
 
 
-@shared_task
+@job
 def begin_organization_creation_task(registered_id):
     """
     Asynchronously create our tenant schema. Email owner when process completes.
@@ -27,7 +27,7 @@ def begin_organization_creation_task(registered_id):
     return None
 
 
-@shared_task
+@job
 def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     """
     Asynchronously process our document. Email owner when process completes.
@@ -72,19 +72,19 @@ def begin_processing_document_task(doc_id, doc_type, schema_name, workspace_id):
     return None
 
 
-@shared_task
+@job
 def begin_sending_pending_document_review_email_task(schema_name, doc_id):
     call_command('send_doc_pending_review_email', schema_name, str(doc_id))
     return None
 
 
-@shared_task
+@job
 def begin_send_accepted_document_review_notification_task(schema_name, doc_id):
     call_command('send_doc_acceptance_email', schema_name, str(doc_id))
     return None
 
 
-@shared_task
+@job
 def begin_send_rejection_document_review_notification_task(schema_name, doc_id):
     call_command('send_doc_rejection_email', schema_name, str(doc_id))
     return None

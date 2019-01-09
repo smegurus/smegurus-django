@@ -93,7 +93,7 @@ SHARED_APPS = (
   'django.contrib.postgres', # Postgres full-text search: https://docs.djangoproject.com/en/1.10/ref/contrib/postgres/search/
   'django.contrib.humanize',
   'anymail',                 # https://github.com/anymail/django-anymail
-  'celery',
+
 )
 
 TENANT_APPS = (
@@ -360,6 +360,42 @@ AUTHENTICATION_BACKENDS = (
     'smegurus.backends.UserModelEmailBackend',
     'django.contrib.auth.backends.ModelBackend',
  )
+
+
+# django-rq
+# https://github.com/ui/django-rq
+
+RQ_QUEUES = {
+    'default': {
+        'USE_REDIS_CACHE': 'default',
+    }
+}
+
+
+# django-redis-cache
+# https://github.com/sebleier/django-redis-cache
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': 'localhost:6379',
+    },
+}
+
+
+SESSION_ENGINE = 'redis_sessions.session'
+
+
+# django-redis-sessions
+# https://github.com/martinrusev/django-redis-sessions
+
+SESSION_REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 0,
+    'prefix': 'session',
+    'socket_timeout': 1
+}
 
 
 # sorl-thumbnail

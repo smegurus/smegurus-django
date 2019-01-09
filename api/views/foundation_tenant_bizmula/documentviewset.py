@@ -1,4 +1,5 @@
 import django_filters
+import django_rq
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string    # HTML to TXT
@@ -92,14 +93,15 @@ class DocumentViewSet(viewsets.ModelViewSet):
                             me.save()
 
                     # Send acceptance email.
-                    begin_send_accepted_document_review_notification_task.delay(
+                    django_rq.enqueue(begin_send_accepted_document_review_notification_task,
                         request.tenant.schema_name,
-                        document.id
+                        document.pk
                     )
+
 
                 # Send rejection notification.
                 if document.status == constants.DOCUMENT_CREATED_STATUS:
-                    begin_send_rejection_document_review_notification_task.delay(
+                    django_rq.enqueue(begin_send_rejection_document_review_notification_task,
                         request.tenant.schema_name,
                         document.id
                     )

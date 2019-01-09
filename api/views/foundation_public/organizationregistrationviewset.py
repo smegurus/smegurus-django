@@ -43,5 +43,8 @@ class PublicOrganizationRegistrationViewSet(viewsets.ModelViewSet):
         org = serializer.save()
 
         # Populate the organization in an asynch process.
+        import django_rq
         from api.tasks import begin_organization_creation_task
-        begin_organization_creation_task.delay(org.id)
+        django_rq.enqueue(update_balance_owing_amount_for_associate_func,
+            org.id
+        )

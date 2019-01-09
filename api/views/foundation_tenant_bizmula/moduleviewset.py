@@ -1,4 +1,5 @@
 import django_filters
+import django_rq
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string    # HTML to TXT
@@ -124,7 +125,8 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
             # Iterate through all the documents inside this Module belonging
             # to the authenticated User and process the Document.
             for document in documents.all():
-                begin_processing_document_task.delay(
+                django_rq.enqueue(
+                    begin_processing_document_task,
                     document.id,
                     document.document_type.id,
                     request.tenant.schema_name,
@@ -169,8 +171,7 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
 
                         document.status = constants.DOCUMENT_PENDING_REVIEW_STATUS
                         document.save()
-
-                        begin_sending_pending_document_review_email_task.delay(
+                        django_rq.enqueue(begin_sending_pending_document_review_email_task,
                             request.tenant.schema_name,
                             document.id
                         )
@@ -187,7 +188,7 @@ class ModuleViewSet(SendEmailViewMixin, viewsets.ModelViewSet):
                         document.save()
 
                         # Send acceptance email.
-                        begin_send_accepted_document_review_notification_task.delay(
+                        django_rq.enqueue(begin_send_accepted_document_review_notification_task,
                             request.tenant.schema_name,
                             document.pk
                         )
