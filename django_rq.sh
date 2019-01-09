@@ -14,5 +14,4 @@
 
 cd /opt/django/smegurus-django
 source env/bin/activate
-cd /opt/django/smegurus-django/smegurus
 exec python manage.py rqworker
